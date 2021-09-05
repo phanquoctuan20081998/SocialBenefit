@@ -36,6 +36,7 @@ class InternalNewsService {
         var contentId: Int?
         var title: String?
         var shortBody: String?
+        var body: String?
         var cover: String?
         var newsCategory: Int?
         
@@ -45,10 +46,11 @@ class InternalNewsService {
                 contentId = result[i]["id"].int ?? 0
                 title = result[i]["title"].string ?? ""
                 shortBody = result[i]["shortBody"].string ?? ""
+                body = result[i]["body"].string ?? ""
                 cover = result[i]["cover"].string ?? ""
                 newsCategory = result[i]["newsCategory"].int ?? 0
                 
-                let tempInternalNewsData = InternalNewsData(id: order, contentId: contentId!, title: title!, shortBody: shortBody!, cover: cover!, newsCategory: newsCategory!)
+                let tempInternalNewsData = InternalNewsData(id: order, contentId: contentId!, title: title!, shortBody: shortBody!, body: body!, cover: cover!, newsCategory: newsCategory!)
                 data.append(tempInternalNewsData)
                 order += 1
             }

@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct ParentCommentData {
+struct ParentCommentData: Identifiable {
+    let id = UUID()
+    
     var data: CommentData
     var childIndex: Int
 }
 
-class CommentViewModel: ObservableObject {
+class CommentViewModel: ObservableObject, Identifiable {
     
     @Published var parentComment = [ParentCommentData]()
     @Published var childComment = [[CommentData]]()
@@ -30,7 +32,7 @@ class CommentViewModel: ObservableObject {
     }
     
     func addComment() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.allComment = self.commnetService.allComment
             self.numOfComment = self.commnetService.allComment.count
             self.separateChildAndParent()
@@ -39,23 +41,25 @@ class CommentViewModel: ObservableObject {
     
     func separateChildAndParent() {
         
-        for item in self.allComment {
-            if item.parentId == -1 {
-                let tempParent = ParentCommentData(data: item, childIndex: -1)
-                self.parentComment.append(tempParent)
-            } else {
-                let sameParentIndex = findSameParent(Array: self.childComment, child: item)
-                
-                if sameParentIndex == -1 {
-                    self.childComment.append([item])
+        DispatchQueue.main.async {
+            for item in self.allComment {
+                if item.parentId == -1 {
+                    let tempParent = ParentCommentData(data: item, childIndex: -1)
+                    self.parentComment.append(tempParent)
                 } else {
-                    self.childComment[sameParentIndex].append(item)
+                    let sameParentIndex = self.findSameParent(Array: self.childComment, child: item)
+                    
+                    if sameParentIndex == -1 {
+                        self.childComment.append([item])
+                    } else {
+                        self.childComment[sameParentIndex].append(item)
+                    }
                 }
             }
-        }
-        
-        if self.numOfComment != 0 {
-            assignChildToParent()
+            
+            if self.numOfComment != 0 {
+                self.assignChildToParent()
+            }
         }
     }
     

@@ -9,15 +9,16 @@ import SwiftUI
 
 struct InternalNewsDetailView: View {
     
-    @ObservedObject var commentViewModel = CommentViewModel(index: 0)
+    @ObservedObject var commentViewModel: CommentViewModel
     var internalNewData: InternalNewsData
     @State var commentText = ""
     
-//    init(internalNewData: InternalNewsData) {
-//
-//        self.commentViewModel = CommentViewModel(index: internalNewData.contentId)
-//        self.internalNewData = internalNewData
-//    }
+    
+    init(internalNewData: InternalNewsData) {
+        self.commentViewModel = CommentViewModel(index: internalNewData.contentId)
+        self.internalNewData = internalNewData
+    }
+    
     
     var body: some View {
         VStack {
@@ -27,16 +28,27 @@ struct InternalNewsDetailView: View {
             Divider().frame(width: ScreenInfor().screenWidth*0.9)
             LikeAndCommentButton
             Divider().frame(width: ScreenInfor().screenWidth*0.9)
-//
-//            ScrollView(.vertical, showsIndicators: false) {
-//                VStack(spacing: 20) {
-//                    ForEach(commentViewModel.allComment) { item in
-//                        if item.parentId == nil {
-//
-//                        }
-//                    }
-//                }
-//            }
+            
+            let _ = print(commentViewModel.parentComment.count)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 10) {
+                    
+                    let parentCommentMax = commentViewModel.parentComment.indices
+                    ForEach(parentCommentMax, id: \.self) { i in
+                        
+                        FirstCommentCardView(comment: commentViewModel.parentComment[i].data)
+                        
+                        if commentViewModel.parentComment[i].childIndex != -1 {
+                            let childIndex = commentViewModel.parentComment[i].childIndex
+
+                            ForEach(0..<commentViewModel.childComment[childIndex].count) { j in
+                                SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
+                            }
+                        }
+                    }
+                }
+            }
             
             Spacer()
             
@@ -48,25 +60,24 @@ struct InternalNewsDetailView: View {
 
 struct FirstCommentCardView: View {
     
-    var avatar: String
-    var comment: String
-    var time: String
+    var comment: CommentData
     
     var body: some View {
         HStack(alignment: .top) {
-            URLImageView(url: avatar)
+            URLImageView(url: comment.avatar)
                 .clipShape(Circle())
                 .frame(width: 40, height: 40)
                 .padding(.all, 7)
                 .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
             
-            Spacer().frame(width: 20)
+            Spacer().frame(width: 10)
             
             VStack {
-                Text(comment)
+                Text(comment.commentDetail)
                     .font(.system(size: 15))
                     .lineLimit(5)
                     .padding()
+                    .frame(width: ScreenInfor().screenWidth * 0.7, alignment: .leading)
                     .background(RoundedRectangle(cornerRadius: 15)
                                     .fill(Color.gray.opacity(0.2)))
                 
@@ -79,7 +90,7 @@ struct FirstCommentCardView: View {
                             .font(.system(size: 13))
                     })
                     
-                    Text(time)
+                    Text(comment.commentTime)
                         .font(.system(size: 13))
                     
                     Spacer()
@@ -92,14 +103,12 @@ struct FirstCommentCardView: View {
 
 struct SecondCommentCardView: View {
     
-    var avatar: String
-    var comment: String
-    var time: String
+    var comment: CommentData
     
     var body: some View {
         HStack(alignment: .top) {
             Spacer().frame(width: 70)
-            URLImageView(url: avatar)
+            URLImageView(url: comment.avatar)
                 .clipShape(Circle())
                 .frame(width: 40, height: 40)
                 .padding(.all, 7)
@@ -108,15 +117,16 @@ struct SecondCommentCardView: View {
             Spacer().frame(width: 20)
             
             VStack {
-                Text(comment)
+                Text(comment.commentDetail)
                     .font(.system(size: 15))
                     .lineLimit(5)
                     .padding()
+                    .frame(width: ScreenInfor().screenWidth * 0.55, alignment: .leading)
                     .background(RoundedRectangle(cornerRadius: 15)
                                     .fill(Color.gray.opacity(0.2)))
                 
                 HStack {
-                    Text(time)
+                    Text(comment.commentTime)
                         .font(.system(size: 13))
                     
                     Spacer()
@@ -139,9 +149,9 @@ extension InternalNewsDetailView {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(internalNewData.title)
                         .bold()
-                        .font(.system(size: 30))
+                        .font(.system(size: 20))
                         .lineLimit(2)
-                    Text(internalNewData.shortBody)
+                    Text(internalNewData.body)
                         .lineLimit(5)
                 }
                 Spacer()
