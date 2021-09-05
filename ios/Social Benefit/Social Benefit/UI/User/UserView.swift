@@ -98,9 +98,7 @@ struct UserInforView: View {
                 
             }, label: {
                 HStack(spacing: 20) {
-                    Image(uiImage: (Constant.baseURL + userInfor.avatar).loadURLImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    URLImageView(url:  userInfor.avatar)
                         .frame(width: 50, height: 50, alignment: .center)
                         .clipShape(Circle())
                         .padding(.all, 5)

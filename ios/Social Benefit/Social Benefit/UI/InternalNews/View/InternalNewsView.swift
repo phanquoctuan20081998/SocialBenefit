@@ -13,6 +13,7 @@ struct InternalNewsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
+    @ObservedObject var commentViewModel = CommentViewModel(index: 0)
     
     @Binding var isPresentedTabBar: Bool
     
@@ -25,9 +26,6 @@ struct InternalNewsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
-                InternalNewsUpperView
-
                 if selectedTabIndex == 0 {
                     AllTabView
                 } else if selectedTabIndex == 1 {
@@ -36,14 +34,17 @@ struct InternalNewsView: View {
                     AnnoucementTabView
                 }
             }
+            .padding(.top, 200)
             .navigationBarHidden(true)
-            .background(
-                NavigationLink(
-                    destination: InternalNewsDetailView(internalNewData: selectedInternalNew).navigationBarHidden(true),
-                    isActive: $isActive,
-                    label: {EmptyView()})
-            )
         }
+        .overlay(InternalNewsUpperView, alignment: .top)
+        .padding(.top, 0)
+        .background(
+            NavigationLink(
+                destination: InternalNewsDetailView(internalNewData: selectedInternalNew).navigationBarHidden(true),
+                isActive: $isActive,
+                label: {EmptyView()})
+        )
     }
 }
 
@@ -52,37 +53,34 @@ extension InternalNewsView {
     private var InternalNewsUpperView: some View {
         VStack {
             HStack {
-                Button(action: {
-                    //Do something
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.isPresentedTabBar.toggle()
-                }, label: {
-                    Image(systemName: "arrow.backward")
-                        .font(.headline)
+                HStack {
+                    Button(action: {
+                        //Do something
+                        self.presentationMode.wrappedValue.dismiss()
+                        self.isPresentedTabBar.toggle()
+                    }, label: {
+                        Image(systemName: "arrow.backward")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                            .padding(.leading, 20)
+                    })
+                    
+                    Text("internal_news".localized)
                         .foregroundColor(.blue)
-                        .padding(.leading, 20)
-                })
+                        .fontWeight(.bold)
+                }
                 
                 Spacer()
                 
-                Text("internal_news".localized)
-                    .foregroundColor(.blue)
-                    .fontWeight(.bold)
-                
-                Spacer()
-                
-                Image("pic_company_logo")
-                    .resizable()
-                    .renderingMode(.original)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150)
+                URLImageView(url: userInfor.companyLogo)
+                    .frame(height: 30)
                     .padding(.all, 15)
             }
             
             SearchBarView(searchText: $searchText, isSearching: $isSearching)
             
             SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
-        }
+        }.frame(width: ScreenInfor().screenWidth, height: 200)
     }
     
     private var AllTabView: some View {

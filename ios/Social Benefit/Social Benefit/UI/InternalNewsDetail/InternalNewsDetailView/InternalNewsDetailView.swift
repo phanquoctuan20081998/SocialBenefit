@@ -9,82 +9,52 @@ import SwiftUI
 
 struct InternalNewsDetailView: View {
     
-    var internalNewData = InternalNewsData()
+    @ObservedObject var commentViewModel = CommentViewModel(index: 0)
+    var internalNewData: InternalNewsData
+    @State var commentText = ""
     
-    @State var commnetData = comment
+//    init(internalNewData: InternalNewsData) {
+//
+//        self.commentViewModel = CommentViewModel(index: internalNewData.contentId)
+//        self.internalNewData = internalNewData
+//    }
     
     var body: some View {
         VStack {
             Spacer().frame(height: 50)
-            
-            PostContentView(internalNewData: internalNewData)
-            LikeAndCommentCount()
+            PostContentView
+            LikeAndCommentCount
             Divider().frame(width: ScreenInfor().screenWidth*0.9)
-            LikeAndCommentButton()
+            LikeAndCommentButton
             Divider().frame(width: ScreenInfor().screenWidth*0.9)
+//
+//            ScrollView(.vertical, showsIndicators: false) {
+//                VStack(spacing: 20) {
+//                    ForEach(commentViewModel.allComment) { item in
+//                        if item.parentId == nil {
+//
+//                        }
+//                    }
+//                }
+//            }
             
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 20) {
-                    FirstCommentCardView()
-                    SecondCommentCardView()
-                    FirstCommentCardView()
-                    SecondCommentCardView()
-                }
-            }
             Spacer()
             
-            CommentBarView(commentText: .constant(""))
+            CommentBarView
             
         }.background(NoSearchBackgroundView(isActive: .constant(true)))
-        .if(comment.count == 0) { (view) in
-            view.onAppear {
-                CommentService().getAPI(index: 1) { (data) in
-                    updateComment(data: data)
-                    self.commnetData = data
-                }
-            }
-        }
-        
-        
-    }
-}
-
-struct PostContentView: View {
-    var internalNewData: InternalNewsData
-    
-    var body: some View {
-        VStack {
-            Image(uiImage: (Constant.baseURL + internalNewData.cover).loadURLImage())
-                .resizable()
-                .scaledToFit()
-                .frame(width: ScreenInfor().screenWidth*0.8, height: 150)
-                .padding()
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(internalNewData.title)
-                        .bold()
-                        .font(.system(size: 30))
-                        .lineLimit(2)
-                         Text(internalNewData.shortBody)
-                        .lineLimit(5)
-                }
-                Spacer()
-            }.padding(.horizontal)
-            .padding(.bottom)
-        }.frame(width: ScreenInfor().screenWidth*0.9)
-        .background(Color.white)
-        .cornerRadius(20)
     }
 }
 
 struct FirstCommentCardView: View {
     
+    var avatar: String
+    var comment: String
+    var time: String
+    
     var body: some View {
         HStack(alignment: .top) {
-            Image("pic_user_profile")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            URLImageView(url: avatar)
                 .clipShape(Circle())
                 .frame(width: 40, height: 40)
                 .padding(.all, 7)
@@ -93,7 +63,7 @@ struct FirstCommentCardView: View {
             Spacer().frame(width: 20)
             
             VStack {
-                Text("AAhbcdbcdbchbdbchjsbdhcbhsbchbchhdscdbschbdshcbshjdbchbchbsdchbdshcbhjdsbchsdbchsbchjbhdjcbhdbchdbchbshcbhbcsdbcjhsdbchbsdhjcbjhsdbchjsdbchbsdhjcbsdjhbcjhsdbchjsdbchjsbdchjsbdchbsdjhcbsdjhcbhsdbcbcjhbsdcb")
+                Text(comment)
                     .font(.system(size: 15))
                     .lineLimit(5)
                     .padding()
@@ -104,12 +74,12 @@ struct FirstCommentCardView: View {
                     Button(action: {
                         
                     }, label: {
-                        Text("Reply")
+                        Text("reply".localized)
                             .bold()
                             .font(.system(size: 13))
                     })
                     
-                    Text("2 hours")
+                    Text(time)
                         .font(.system(size: 13))
                     
                     Spacer()
@@ -117,19 +87,19 @@ struct FirstCommentCardView: View {
                 .padding(.leading)
             }
         }.padding(.horizontal)
-        
     }
-    
 }
 
 struct SecondCommentCardView: View {
     
+    var avatar: String
+    var comment: String
+    var time: String
+    
     var body: some View {
         HStack(alignment: .top) {
             Spacer().frame(width: 70)
-            Image("pic_user_profile")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            URLImageView(url: avatar)
                 .clipShape(Circle())
                 .frame(width: 40, height: 40)
                 .padding(.all, 7)
@@ -138,7 +108,7 @@ struct SecondCommentCardView: View {
             Spacer().frame(width: 20)
             
             VStack {
-                Text("AAhbcdbcdbchbdbchjsbdhcbhsbchbchhdscdbschbdshcbshjdbchbchbsdchbdshcbhjdsbchsdbchsbchjbhdjcbhdbchdbchbshcbhbcsdbcjhsdbchbsdhjcbjhsdbchjsdbchbsdhjcbsdjhbcjhsdbchjsdbchjsbdchjsbdchbsdjhcbsdjhcbhsdbcbcjhbsdcb")
+                Text(comment)
                     .font(.system(size: 15))
                     .lineLimit(5)
                     .padding()
@@ -146,7 +116,7 @@ struct SecondCommentCardView: View {
                                     .fill(Color.gray.opacity(0.2)))
                 
                 HStack {
-                    Text("2 hours")
+                    Text(time)
                         .font(.system(size: 13))
                     
                     Spacer()
@@ -157,10 +127,33 @@ struct SecondCommentCardView: View {
     }
 }
 
-struct CommentBarView: View {
-    @Binding var commentText: String
+extension InternalNewsDetailView {
     
-    var body: some View {
+    var PostContentView: some View {
+        VStack {
+            URLImageView(url: internalNewData.cover)
+                .frame(width: ScreenInfor().screenWidth*0.8, height: 150)
+                .padding()
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(internalNewData.title)
+                        .bold()
+                        .font(.system(size: 30))
+                        .lineLimit(2)
+                    Text(internalNewData.shortBody)
+                        .lineLimit(5)
+                }
+                Spacer()
+            }.padding(.horizontal)
+            .padding(.bottom)
+        }.frame(width: ScreenInfor().screenWidth*0.9)
+        .background(Color.white)
+        .cornerRadius(20)
+        
+    }
+    
+    var CommentBarView: some View {
         VStack {
             Divider().frame(width: ScreenInfor().screenWidth*0.9)
             HStack {
@@ -186,12 +179,10 @@ struct CommentBarView: View {
                              alignment: .trailing)
             }.padding(.horizontal)
         }
-        
     }
-}
-
-struct LikeAndCommentCount: View {
-    var body: some View {
+    
+    var LikeAndCommentCount: some View {
+        
         HStack {
             HStack {
                 HStack(spacing: 4) {
@@ -209,15 +200,13 @@ struct LikeAndCommentCount: View {
             
             Spacer()
             
-            Text("31 bình luận")
+            Text("\(commentViewModel.numOfComment)" + " comments".localized)
                 .font(.system(size: 12))
                 .bold()
         }.padding(.horizontal)
     }
-}
-
-struct LikeAndCommentButton: View {
-    var body: some View {
+    
+    var LikeAndCommentButton: some View {
         HStack {
             HStack {
                 Image(systemName: "hand.thumbsup")
@@ -235,8 +224,9 @@ struct LikeAndCommentButton: View {
 }
 
 
+
 struct InternalNewsDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        InternalNewsDetailView()
+        InternalNewsDetailView(internalNewData: InternalNewsData())
     }
 }

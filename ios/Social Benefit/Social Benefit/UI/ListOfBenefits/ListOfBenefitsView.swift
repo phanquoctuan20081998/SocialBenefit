@@ -31,9 +31,7 @@ struct ListOfBenefitsView: View {
 
 
                     //Add logo
-                    Image(uiImage: (Constant.baseURL + userInfor.companyLogo).loadURLImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    URLImageView(url: userInfor.companyLogo)
                         .frame(height: 50)
                         .padding()
                 }

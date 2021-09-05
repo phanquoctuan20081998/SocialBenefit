@@ -11,15 +11,11 @@ struct CommentData: Identifiable, Hashable {
     var id: Int
     
     var contentId: Int
-    var parentId: Int
+    var parentId: Int?
     var avatar: String
     var commentBy: String
     var commentDetail: String
     var commentTime: String
 }
 
-var comment = [CommentData]()
 
-func updateComment(data: [CommentData]) {
-    comment = data
-}

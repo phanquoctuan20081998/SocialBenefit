@@ -17,9 +17,7 @@ struct BackgroundView: View {
             .frame(width: ScreenInfor().screenWidth)
             .overlay(
                 HStack {
-                    Image(uiImage: (Constant.baseURL + userInfor.companyLogo).loadURLImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    URLImageView(url: userInfor.companyLogo)
                         .frame(height: 30)
                         .padding(.leading)
                     
@@ -76,9 +74,7 @@ struct NoSearchBackgroundView: View {
                         Spacer()
                     }
                     
-                    Image(uiImage: (Constant.baseURL + userInfor.companyLogo).loadURLImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    URLImageView(url: userInfor.companyLogo)
                         .frame(height: 30, alignment: .trailing)
                         .padding(.trailing, 25)
                 }

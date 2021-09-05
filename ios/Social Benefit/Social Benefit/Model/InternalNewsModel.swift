@@ -16,9 +16,3 @@ struct InternalNewsData: Identifiable, Hashable {
     var cover: String = ""
     var newsCategory: Int = 0
 }
-
-//var internalNews = [InternalNewsData]()
-//
-//func updateInternalNews(data: [InternalNewsData]) {
-//    internalNews = data
-//}

@@ -54,9 +54,7 @@ class InternalNewsService {
             }
             
             DispatchQueue.main.async {
-                for item in data {
-                    self.allInternalNews.append(item)
-                }
+                self.allInternalNews = data
             }
         })
     }

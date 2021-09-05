@@ -283,9 +283,7 @@ struct BasicInformationView: View {
                 print(userInfor)
                 
             }, label: {
-                Image(uiImage: (Constant.baseURL + userInfor.avatar).loadURLImage())
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                URLImageView(url: userInfor.avatar)
                     .clipShape(Circle())
                     .frame(width: 70, height: 70)
                     .padding(.all, 7)

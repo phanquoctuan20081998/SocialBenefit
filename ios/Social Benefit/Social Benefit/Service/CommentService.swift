@@ -15,14 +15,19 @@ import SwiftyJSON
     
 class CommentService {
     
-    func getAPI(index: Int, returnCallBack: @escaping ([CommentData]) -> ()) {
+    @Published var allComment: [CommentData] = []
+    
+    init(index: Int) {
+        self.getAPI(index)
+    }
+    
+    func getAPI(_ index: Int) {
         let service = BaseAPI()
         var data = [CommentData]()
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
-//                      "contentId": String(internalNewsData[index].contentId),
-                      "contentId": "12",
+                      "contentId": String(index),
                       "contentType": "1"]
     
         let params: Parameters = ["": ""]
@@ -46,10 +51,12 @@ class CommentService {
                 commentTime = result[i]["commentTime"].string ?? ""
                 
                 let tempCommentData = CommentData(id: id!, contentId: contentId!, parentId: parentId!, avatar: avatar!, commentBy: commentBy!, commentDetail: commentDetail!, commentTime: commentTime!)
-                
                 data.append(tempCommentData)
             }
-            returnCallBack(data)
+            
+            DispatchQueue.main.async {
+                self.allComment = data
+            }
         })
     }
 }

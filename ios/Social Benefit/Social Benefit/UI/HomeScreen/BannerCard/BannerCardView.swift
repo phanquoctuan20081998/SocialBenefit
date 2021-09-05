@@ -233,9 +233,7 @@ struct BannerContentView: View {
     var image: String
     
     var body: some View {
-        Image(uiImage: (Constant.baseURL + image).loadURLImage())
-            .resizable()
-            .scaledToFill()
+        URLImageView(url: image)
             .navigationBarHidden(true)
     }
 }
