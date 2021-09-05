@@ -1,0 +1,98 @@
+/* 
+  Localizable.strings
+  Social Benefit
+
+  Created by Admin on 7/14/21.
+  
+*/
+
+// Login Screen
+"app_name" = "Social Benefit";
+"company" = "Nhập mã công ty";
+"email" = "Nhập email/ ID";
+"password" = "Nhập mật khẩu";
+"remember_me" = "Ghi nhớ tài khoản";
+"login" = "Đăng Nhập";
+"forgot_password" = "Quên mật khẩu";
+"warning1" = "Chưa có tài khoản?";
+"warning2" = "Vui lòng liên hệ bộ phận HR";
+
+// Reset Password Screen
+"forgot_password" = "Quên mật khẩu";
+"infor" = "Vui lòng điền email của bạn, hệ thống sẽ gửi hướng dẫn lấy lại mật khẩu.";
+"company_code" = "Nhập mã công ty";
+"email_reset" = "Email của bạn";
+"reset_password" = "Lấy lại mật khẩu";
+"back_login" = "Quay trở lại đăng nhập";
+
+// Reset Password Success
+"success_notification1" = "Thiết lập thành công! Mật khẩu mới";
+"success_notification2" = "đã được gửi đến email của bạn";
+
+// List of Benefit
+"benefit_title" = "DANH SÁCH PHÚC LỢI CỦA BẠN";
+"order" = "Thứ tự";
+"benefit" = "Phúc lợi";
+"benefit_status" = "Trạng thái";
+"up_comming" = "sắp diễn ra";
+"on_going" = "đang diễn ra";
+"apply" = "Đăng kí";
+"waiting" = "chờ xác nhận";
+
+// Internal News
+"internal_news" = "Bản tin nội bộ";
+"search_news" = "Tìm kiếm bản tin";
+"all" = "Tất cả";
+"training" = "Đào tạo";
+"annoucement" = "Thông báo";
+"cancel" = "Huỷ";
+
+// User Screen
+"point_history" = "Lịch sử tiêu dùng điễm";
+"favorite" = "Cửa hàng ưu thích";
+"benefits" = "Danh sách phúc lợi của bạn";
+"surveys" = "Khảo sát công ty";
+"setting" = "Cài đặt";
+"customer" = "Tổng đài hỗ trợ";
+"rate" = "Đánh giá ứng dụng";
+"logout" = "Đăng xuất";
+
+// User Information Screen
+"presentation" = "Giới thiệu";
+"contact" = "Liên hệ";
+"select_date" = "Chọn ngày";
+"done" = "Xong";
+"choose_city" = "Chọn tỉnh/ thành phố";
+"enter_address" = "Vui lòng nhập địa chỉ";
+"location_example" = "324, Tây Sơn";
+"nickname" = "Tên thân mật (0/90)";
+"nickname_placeholder" = "Nhập tên thân mật";
+"address" = "Bạn đang sống tại?";
+"birthday" = "Sinh nhật";
+"gender" = "Giới tính";
+"male" = "Nam";
+"female" = "Nữ";
+"other" = "Khác";
+"passport" = "Chứng minh thư/ CCCD";
+"insurance" = "Mã số bảo hiểm xã hội";
+"contact_email" = "Địa chỉ email";
+"telephone" = "Số điện thoại";
+"leader" = "Là quản lý?";
+"save" = "Lưu";
+
+// Banner Card View
+
+"recognitions_in_company" = "Bảng tin khen thưởng";
+"promotions" = "Khuyến mãi đừng bỏ lỡ";
+"total_point" = "Tổng điểm của bạn";
+"recognize" = "Khen tặng";
+"my_voucher" = "Ví của tôi";
+"my_order" = "Đơn đặt hàng";
+"others" = "Khác";
+"see_all" = "Xem thêm";
+
+// Tab Bar
+"home" = "Trang chủ";
+"recognition" = "Khen thưởng";
+"promotion" = "Khuyến mãi";
+"user" = "Người dùng";

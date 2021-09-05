@@ -1,0 +1,99 @@
+/* 
+  Localizable.strings
+  Social Benefit
+
+  Created by Admin on 7/14/21.
+  
+*/
+
+// Login Screen
+"app_name" = "Social Benefit";
+"company" = "Your Company Name/ ID";
+"email" = "Your email/ ID";
+"password" = "Your Pasword";
+"remember_me" = "Remember me";
+"login" = "Log In";
+"forgot_password" = "Forgot password";
+"warning1" = "Don't have an account yet?";
+"warning2" = "Please contact your HR";
+
+// Reset Password Screen
+"forgot_password" = "Forgot your password";
+"infor" = "Please enter you email address, we will send the instruction for the new one.";
+"company_code" = "Enter you company code";
+"email_reset" = "Enter your email";
+"reset_password" = "Reset Password";
+"back_login" = "Already have an account? Login!";
+
+// Reset Password Success
+"success_notification1" = "Reset password successfully!";
+"success_notification2" = "A new password has been sent to your email!";
+
+// List of Benefit
+"benefit_title" = "LIST OF YOU BENEFITS";
+"order" = "No.";
+"benefit" = "Benefit";
+"benefit_status" = "Appied?";
+"up_comming" = "up comming";
+"on_going" = "on going";
+"apply" = "Apply";
+"waiting" = "waiting for confirm";
+
+// Internal News
+"internal_news" = "Internal News";
+"search_news" = "Search the news";
+"all" = "All";
+"training" = "Training";
+"annoucement" = "Annoucement";
+"cancel" = "Cancel";
+
+// User Screen
+"point_history" = "Used points history";
+"favorite" = "Favorite merchants";
+"benefits" = "List of your benefits";
+"surveys" = "Company Surveys";
+"setting" = "Setting";
+"customer" = "Customer support";
+"rate" = "Rate the Application";
+"logout" = "Log out";
+
+// User Information Screen
+"presentation" = "Presentation";
+"contact" = "Contact";
+"select_date" = "Select Date";
+"done" = "Done";
+"choose_city" = "Choose Province/City";
+"enter_address" = "Enter your address";
+"location_example" = "324, Tây Sơn";
+"nickname" = "Your nickename (0/90)";
+"nickname_placeholder" = "Input your nickname";
+"address" = "Where are you living now?";
+"birthday" = "Your birthday";
+"gender" = "Your gender";
+"male" = "Male";
+"female" = "Female";
+"other" = "Other";
+"passport" = "Your ID/Passport";
+"insurance" = "Your Social Insurance Code";
+"contact_email" = "Email address";
+"telephone" = "Telephone number";
+"leader" = "Is the leader?";
+"save" = "Save";
+
+// Banner Card View
+
+"recognitions_in_company" = "Recognitions in Company";
+"promotions" = "Your promotions, check them out!";
+"total_point" = "Your total points";
+"recognize" = "Recognize";
+"my_voucher" = "My voucher";
+"my_order" = "My order";
+"others" = "Others";
+"see_all" = "See all";
+
+// Tab Bar
+"home" = "Home";
+"recognition" = "Recognition";
+"promotion" = "Promotion";
+"user" = "User";
+
