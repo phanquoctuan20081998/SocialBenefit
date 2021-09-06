@@ -20,25 +20,31 @@ struct InternalNewsDetailView: View {
     }
     
     
+    //DEBUG
+//    let parent = [ParentCommentData(data: CommentData(id: 253, contentId: 172, parentId: Optional(-1), avatar: "/files/523/freepressjournal_2020-08_ab6e6d11-54d6-4723-a883-5c6817f6fca3_anchor.jpg", commentBy: "Quang Tran Dinh", commentDetail: "aaaaaaaa", commentTime: "20 hours"), childIndex: 0)]
+//
+//    let child = [[CommentData(id: 254, contentId: 172, parentId: Optional(253), avatar: "/files/523/freepressjournal_2020-08_ab6e6d11-54d6-4723-a883-5c6817f6fca3_anchor.jpg", commentBy: "Quang Tran Dinh", commentDetail: "bbwfwfwejhfbhjwebfhbwehfbwehjbfhwebfhbwehfbwhjbfhjwebfhjwbehjfbwhejfbwehbfhwebfhjbwejhfbwefbbbbbb", commentTime: "20 hours")]]
+    
     var body: some View {
         VStack {
             Spacer().frame(height: 50)
-            PostContentView
-            LikeAndCommentCount
-            Divider().frame(width: ScreenInfor().screenWidth*0.9)
-            LikeAndCommentButton
-            Divider().frame(width: ScreenInfor().screenWidth*0.9)
-            
-            let _ = print(commentViewModel.parentComment.count)
             
             ScrollView(.vertical, showsIndicators: false) {
+                PostContentView
+                LikeAndCommentCount
+                Divider().frame(width: ScreenInfor().screenWidth*0.9)
+                LikeAndCommentButton
+                Divider().frame(width: ScreenInfor().screenWidth*0.9)
+                
+                Spacer().frame(height: 20)
+                
                 VStack(spacing: 10) {
                     
                     let parentCommentMax = commentViewModel.parentComment.indices
                     ForEach(parentCommentMax, id: \.self) { i in
-                        
+
                         FirstCommentCardView(comment: commentViewModel.parentComment[i].data)
-                        
+
                         if commentViewModel.parentComment[i].childIndex != -1 {
                             let childIndex = commentViewModel.parentComment[i].childIndex
 
@@ -47,6 +53,22 @@ struct InternalNewsDetailView: View {
                             }
                         }
                     }
+                    
+                    //DEBUG
+//                    let parentCommentMax = parent.indices
+//                    ForEach(parentCommentMax, id: \.self) { i in
+//
+//                        FirstCommentCardView(comment: parent[i].data)
+//
+//                        if parent[i].childIndex != -1 {
+//                            let childIndex = parent[i].childIndex
+//
+//                            ForEach(0..<child[childIndex].count) { j in
+//                                SecondCommentCardView(comment: child[childIndex][j])
+//                            }
+//                        }
+//                    }
+                    
                 }
             }
             
@@ -66,20 +88,29 @@ struct FirstCommentCardView: View {
         HStack(alignment: .top) {
             URLImageView(url: comment.avatar)
                 .clipShape(Circle())
-                .frame(width: 40, height: 40)
-                .padding(.all, 7)
+                .frame(width: 30, height: 30)
+                .padding(.all, 5)
                 .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
             
             Spacer().frame(width: 10)
             
             VStack {
-                Text(comment.commentDetail)
-                    .font(.system(size: 15))
-                    .lineLimit(5)
-                    .padding()
-                    .frame(width: ScreenInfor().screenWidth * 0.7, alignment: .leading)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                                    .fill(Color.gray.opacity(0.2)))
+                
+                VStack(alignment: .leading) {
+                    Text(comment.commentBy)
+                        .font(.system(size: 15))
+                        .fontWeight(.bold)
+                        .padding(.init(top: 15, leading: 15, bottom: 0, trailing: 0))
+                    
+                    Spacer().frame(height: 10)
+                    Text(comment.commentDetail)
+                        .font(.system(size: 15))
+                        .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 0))
+                }.frame(width: ScreenInfor().screenWidth * 0.75, alignment: .leading)
+                .background(RoundedRectangle(cornerRadius: 13)
+                .fill(Color.gray.opacity(0.2)))
+                
+                Spacer().frame(height: 5)
                 
                 HStack() {
                     Button(action: {
@@ -98,6 +129,7 @@ struct FirstCommentCardView: View {
                 .padding(.leading)
             }
         }.padding(.horizontal)
+        .padding(.top, 5)
     }
 }
 
@@ -110,20 +142,28 @@ struct SecondCommentCardView: View {
             Spacer().frame(width: 70)
             URLImageView(url: comment.avatar)
                 .clipShape(Circle())
-                .frame(width: 40, height: 40)
-                .padding(.all, 7)
+                .frame(width: 30, height: 30)
+                .padding(.all, 5)
                 .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
             
-            Spacer().frame(width: 20)
+            Spacer().frame(width: 10)
             
             VStack {
-                Text(comment.commentDetail)
-                    .font(.system(size: 15))
-                    .lineLimit(5)
-                    .padding()
-                    .frame(width: ScreenInfor().screenWidth * 0.55, alignment: .leading)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                                    .fill(Color.gray.opacity(0.2)))
+                VStack(alignment: .leading) {
+                    Text(comment.commentBy)
+                        .font(.system(size: 15))
+                        .fontWeight(.bold)
+                        .padding(.init(top: 15, leading: 15, bottom: 0, trailing: 15))
+                    
+                    Spacer().frame(height: 10)
+                    Text(comment.commentDetail)
+                        .font(.system(size: 15))
+                        .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))
+                }.frame(width: ScreenInfor().screenWidth * 0.56, alignment: .leading)
+                .background(RoundedRectangle(cornerRadius: 13)
+                .fill(Color.gray.opacity(0.2)))
+                
+                Spacer().frame(height: 5)
                 
                 HStack {
                     Text(comment.commentTime)
@@ -134,6 +174,7 @@ struct SecondCommentCardView: View {
                 .padding(.leading)
             }
         }.padding(.horizontal)
+        .padding(.top, 5)
     }
 }
 
@@ -180,13 +221,15 @@ extension InternalNewsDetailView {
                 TextField("Comment", text: $commentText)
                     .padding(5)
                     .padding(.leading, 10)
-                    .overlay(RoundedRectangle(cornerRadius: 100)
-                                .stroke(Color.blue.opacity(0.5), lineWidth: 2))
                     .overlay(Image(systemName: "arrow.up.circle.fill")
                                 .padding(.trailing, 3)
                                 .foregroundColor(.blue)
-                                .font(.system(size: 23)),
+                                .font(.system(size: 23))
+                                .background(Color.white),
                              alignment: .trailing)
+                    .overlay(RoundedRectangle(cornerRadius: 100)
+                                .stroke(Color.blue.opacity(0.5), lineWidth: 2))
+                    
             }.padding(.horizontal)
         }
     }
@@ -237,6 +280,6 @@ extension InternalNewsDetailView {
 
 struct InternalNewsDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        InternalNewsDetailView(internalNewData: InternalNewsData())
+        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắt điện6", shortBody: "Thông báo cắt điện", body: "Test", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
