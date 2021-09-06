@@ -17,5 +17,7 @@ struct Constant {
     static let API_INTERNEL_NEWS_LIST = "/internal_news/list"
     static let API_LOCATION_LIST = "/location/list"
     static let API_MERCHANT_LIST_SPECIAL = "/merchant-voucher-special-list"
+    
     static let API_COMMENT_LIST = "/comment/list"
+    static let API_COMMENT_ADD = "/comment/add"
 }

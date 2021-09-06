@@ -23,18 +23,18 @@ class CommentViewModel: ObservableObject, Identifiable {
     @Published var index: Int
     @Published var numOfComment: Int = 0
     
-    private let commnetService: CommentService
+    private let commentService: CommentService
     
     init(index: Int) {
         self.index = index
-        self.commnetService = CommentService(index: index)
-        addComment()
+        self.commentService = CommentService(index: index)
+        initComment()
     }
     
-    func addComment() {
+    func initComment() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.allComment = self.commnetService.allComment
-            self.numOfComment = self.commnetService.allComment.count
+            self.allComment = self.commentService.allComment
+            self.numOfComment = self.commentService.allComment.count
             self.separateChildAndParent()
         }
     }
@@ -82,5 +82,15 @@ class CommentViewModel: ObservableObject, Identifiable {
                 }
             }
         }
+    }
+    
+    func addComment(contentId: Int, parentId: Int, content: String) {
+        
+        print(contentId)
+        print(parentId)
+        print(content)
+        
+        let addCommentService = AddCommentService()
+        addCommentService.getAPI(contentId: contentId, parentId: parentId, content: content)
     }
 }

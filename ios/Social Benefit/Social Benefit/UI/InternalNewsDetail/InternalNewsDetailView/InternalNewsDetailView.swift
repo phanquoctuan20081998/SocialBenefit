@@ -12,7 +12,8 @@ struct InternalNewsDetailView: View {
     @ObservedObject var commentViewModel: CommentViewModel
     var internalNewData: InternalNewsData
     @State var commentText = ""
-    
+    @State var isRely: Bool = false
+    @State var parentId: Int = -1
     
     init(internalNewData: InternalNewsData) {
         self.commentViewModel = CommentViewModel(index: internalNewData.contentId)
@@ -43,7 +44,7 @@ struct InternalNewsDetailView: View {
                     let parentCommentMax = commentViewModel.parentComment.indices
                     ForEach(parentCommentMax, id: \.self) { i in
 
-                        FirstCommentCardView(comment: commentViewModel.parentComment[i].data)
+                        FirstCommentCardView(comment: commentViewModel.parentComment[i].data, isRely: $isRely, parentId: $parentId)
 
                         if commentViewModel.parentComment[i].childIndex != -1 {
                             let childIndex = commentViewModel.parentComment[i].childIndex
@@ -83,6 +84,8 @@ struct InternalNewsDetailView: View {
 struct FirstCommentCardView: View {
     
     var comment: CommentData
+    @Binding var isRely: Bool
+    @Binding var parentId: Int
     
     var body: some View {
         HStack(alignment: .top) {
@@ -114,7 +117,8 @@ struct FirstCommentCardView: View {
                 
                 HStack() {
                     Button(action: {
-                        
+                        self.isRely.toggle()
+                        self.parentId = comment.id
                     }, label: {
                         Text("reply".localized)
                             .bold()
@@ -178,6 +182,27 @@ struct SecondCommentCardView: View {
     }
 }
 
+struct SendCommentButtonView: View {
+    
+    @ObservedObject var commentViewModel: CommentViewModel
+    var contentId: Int
+    var parentId: Int
+    var content: String
+    
+    var body: some View {
+        Button(action: {
+            commentViewModel.addComment(contentId: contentId, parentId: parentId, content: content)
+        }, label: {
+            Image(systemName: "paperplane.circle.fill")
+                        .padding(.trailing, 3)
+                .foregroundColor(content.isEmpty ? .gray : .blue)
+                        .font(.system(size: 35))
+                        .background(Color.white)
+        })
+        .disabled(content.isEmpty)
+    }
+}
+
 extension InternalNewsDetailView {
     
     var PostContentView: some View {
@@ -218,19 +243,16 @@ extension InternalNewsDetailView {
                 
                 Spacer().frame(width: 18)
                 
-                TextField("Comment", text: $commentText)
-                    .padding(5)
-                    .padding(.leading, 10)
-                    .overlay(Image(systemName: "arrow.up.circle.fill")
-                                .padding(.trailing, 3)
-                                .foregroundColor(.blue)
-                                .font(.system(size: 23))
-                                .background(Color.white),
-                             alignment: .trailing)
-                    .overlay(RoundedRectangle(cornerRadius: 100)
-                                .stroke(Color.blue.opacity(0.5), lineWidth: 2))
+                HStack {
+                    TextField("Comment", text: $commentText)
+                        .padding(5)
+                        .padding(.leading, 10)
+                        .overlay(RoundedRectangle(cornerRadius: 100)
+                                    .stroke(Color.blue.opacity(0.5), lineWidth: 2))
                     
-            }.padding(.horizontal)
+                    SendCommentButtonView(commentViewModel: commentViewModel, contentId: internalNewData.contentId, parentId: parentId, content: commentText)
+                }
+            }.padding(.init(top: 5, leading: 10, bottom: 0, trailing: 10))
         }
     }
     
