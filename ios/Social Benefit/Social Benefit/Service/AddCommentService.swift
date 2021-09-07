@@ -10,6 +10,8 @@ import SwiftUI
 import Alamofire
 import SwiftyJSON
 
+var newCommentId: Int = 0
+
 class AddCommentService {
     
     func getAPI(contentId: Int, parentId: Int, content: String) {
@@ -36,7 +38,8 @@ class AddCommentService {
         
         
         service.makeCall(endpoint: Constant.API_COMMENT_ADD, method: "POST", header: header as [String : String], body: params, callback: { result in
-            print("Comment Id = \(result["id"].int!)")
+                newCommentId = result["id"].int!
         })
     }
 }
+

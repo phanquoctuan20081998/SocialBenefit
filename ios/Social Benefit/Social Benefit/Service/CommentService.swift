@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import SwiftUI
 import Alamofire
 import SwiftyJSON
@@ -17,17 +15,17 @@ class CommentService {
     
     @Published var allComment: [CommentData] = []
     
-    init(index: Int) {
-        self.getAPI(index)
+    init(contentId: Int) {
+        self.getAPI(contentId)
     }
     
-    func getAPI(_ index: Int) {
+    func getAPI(_ contentId: Int) {
         let service = BaseAPI()
         var data = [CommentData]()
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
-                      "contentId": String(index),
+                      "contentId": String(contentId),
                       "contentType": "1"]
     
         let params: Parameters = ["": ""]

@@ -20,4 +20,5 @@ struct Constant {
     
     static let API_COMMENT_LIST = "/comment/list"
     static let API_COMMENT_ADD = "/comment/add"
+    static let API_CONTENT_LIST_REACT = "/content/get/react"
 }

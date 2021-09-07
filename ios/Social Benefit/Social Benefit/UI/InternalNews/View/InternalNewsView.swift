@@ -13,7 +13,7 @@ struct InternalNewsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
-    @ObservedObject var commentViewModel = CommentViewModel(index: 0)
+    @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)
     
     @Binding var isPresentedTabBar: Bool
     

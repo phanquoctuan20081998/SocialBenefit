@@ -8,5 +8,6 @@ target 'Social Benefit' do
   # Pods for Social Benefit
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'SDWebImageSwiftUI'
   
 end

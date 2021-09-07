@@ -20,14 +20,14 @@ class CommentViewModel: ObservableObject, Identifiable {
     @Published var childComment = [[CommentData]]()
     @Published var allComment = [CommentData]()
     
-    @Published var index: Int
+    @Published var contentId: Int
     @Published var numOfComment: Int = 0
     
     private let commentService: CommentService
     
-    init(index: Int) {
-        self.index = index
-        self.commentService = CommentService(index: index)
+    init(contentId: Int) {
+        self.contentId = contentId
+        self.commentService = CommentService(contentId: contentId)
         initComment()
     }
     
@@ -84,13 +84,24 @@ class CommentViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func addComment(contentId: Int, parentId: Int, content: String) {
-        
-        print(contentId)
-        print(parentId)
-        print(content)
-        
-        let addCommentService = AddCommentService()
-        addCommentService.getAPI(contentId: contentId, parentId: parentId, content: content)
+    func updateComment(newComment: CommentData) {
+        if newComment.parentId == -1 {
+            let parentData = ParentCommentData(data: newComment, childIndex: -1)
+            self.parentComment.append(parentData)
+        } else {
+            for i in self.parentComment.indices {
+                if self.parentComment[i].data.id == newComment.parentId {
+                    let childId = self.parentComment[i].childIndex
+                    
+                    //If parent hasn't had child yet
+                    if childId == -1 {
+                        self.childComment.append([newComment])
+                        self.parentComment[i].childIndex = self.childComment.count - 1
+                    } else {
+                        self.childComment[childId].append(newComment)
+                    }
+                }
+            }
+        }
     }
 }
