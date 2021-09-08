@@ -50,6 +50,7 @@
 		C431446B26BC1BF4009FCA89 /* MoveTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431446A26BC1BF4009FCA89 /* MoveTo.swift */; };
 		C436562826CB4BB800148796 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436562726CB4BB800148796 /* UserView.swift */; };
 		C436562A26CB4C0700148796 /* FunctionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436562926CB4C0700148796 /* FunctionCardView.swift */; };
+		C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4393D2826E90F2200C02D43 /* AutoResizeTextField.swift */; };
 		C43B21C626DDCDB800E2E451 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B21C526DDCDB800E2E451 /* CommentModel.swift */; };
 		C43B21C826DDD0F600E2E451 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B21C726DDD0F600E2E451 /* CommentService.swift */; };
 		C43B21CB26DE141900E2E451 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B21CA26DE141900E2E451 /* SearchBarView.swift */; };
@@ -133,6 +134,7 @@
 		C431446A26BC1BF4009FCA89 /* MoveTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTo.swift; sourceTree = "<group>"; };
 		C436562726CB4BB800148796 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		C436562926CB4C0700148796 /* FunctionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionCardView.swift; sourceTree = "<group>"; };
+		C4393D2826E90F2200C02D43 /* AutoResizeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoResizeTextField.swift; sourceTree = "<group>"; };
 		C43B21C526DDCDB800E2E451 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		C43B21C726DDD0F600E2E451 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		C43B21CA26DE141900E2E451 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C4393D2726E90EDC00C02D43 /* AutoResizeTextField */,
 				C419868726E46F2500A877A5 /* URLImage */,
 				C43B21C926DE140400E2E451 /* SearchBar */,
 			);
@@ -416,6 +419,14 @@
 				C436562926CB4C0700148796 /* FunctionCardView.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		C4393D2726E90EDC00C02D43 /* AutoResizeTextField */ = {
+			isa = PBXGroup;
+			children = (
+				C4393D2826E90F2200C02D43 /* AutoResizeTextField.swift */,
+			);
+			path = AutoResizeTextField;
 			sourceTree = "<group>";
 		};
 		C43B21C926DE140400E2E451 /* SearchBar */ = {
@@ -707,6 +718,7 @@
 				C43B21CB26DE141900E2E451 /* SearchBarView.swift in Sources */,
 				C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */,
 				C431446B26BC1BF4009FCA89 /* MoveTo.swift in Sources */,
+				C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */,
 				C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */,
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Constant.swift in Sources */,

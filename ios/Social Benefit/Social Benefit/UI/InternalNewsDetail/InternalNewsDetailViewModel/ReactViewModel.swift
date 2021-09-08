@@ -11,11 +11,13 @@ class ReactViewModel: ObservableObject, Identifiable {
     
     @Published var allReact = [ReactData]()
     @Published var numOfReact: Int = 0
-    @Published var numOfLike: Int = 0 // reactType = 0
-    @Published var numOfLove: Int = 0 // reactType = 1
-    @Published var numOfLaugh: Int = 0 // reactType = 2
-    @Published var numOfSad: Int = 0 // reactType = 4
-    @Published var numOfAngry: Int = 0 // reactType = 5
+    @Published var reactCount = [0, 0, 0, 0, 0, 0, 0, 0]
+    
+//    @Published var numOfLike: Int = 0 // reactType = 0
+//    @Published var numOfLove: Int = 0 // reactType = 1
+//    @Published var numOfLaugh: Int = 0 // reactType = 2
+//    @Published var numOfSad: Int = 0 // reactType = 4
+//    @Published var numOfAngry: Int = 0 // reactType = 5
     
     @Published var isLike: Bool = false
     @Published var selectedReaction: Int = 6 // 6 is "" in reactions constant
@@ -34,22 +36,22 @@ class ReactViewModel: ObservableObject, Identifiable {
             for react in self.allReact {
                 switch react.reactType {
                 case 0:
-                    self.numOfLike += 1
+                    self.reactCount[0] += 1
                 case 1:
-                    self.numOfLove += 1
+                    self.reactCount[1] += 1
                 case 2:
-                    self.numOfLaugh += 1
+                    self.reactCount[2] += 1
                 case 4:
-                    self.numOfSad += 1
+                    self.reactCount[4] += 1
                 case 5:
-                    self.numOfAngry += 1
+                    self.reactCount[5] += 1
                 default:
                     // More react
                     print("This \(String(describing: react.reactType)) reaction hasn't developed yet!")
                 }
             }
             
-            self.numOfReact = self.numOfLike + self.numOfLove + self.numOfLaugh + self.numOfSad + self.numOfAngry
+            self.numOfReact = self.reactCount.reduce(0, +)
             
             self.getUserStatus()
         }
@@ -67,7 +69,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     func getTop3React() -> [String] {
         var top3React = [String]()
         
-        var react = [self.numOfLike, self.numOfLove, self.numOfLaugh, self.numOfSad, self.numOfAngry]
+        var react = self.reactCount
         
         for _ in 0..<3 {
             let max = react.max()
@@ -80,10 +82,13 @@ class ReactViewModel: ObservableObject, Identifiable {
                     top3React.append("ic_fb_love")
                 case 2:
                     top3React.append("ic_fb_laugh")
-                case 3:
+                case 4:
                     top3React.append("ic_fb_sad")
-                default:
+                case 5:
                     top3React.append("ic_fb_angry")
+                default:
+                    //Do nothing
+                    print("")
                 }
             }
             react[maxIndex] = 0

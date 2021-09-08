@@ -19,9 +19,9 @@ struct InternalNewsDetailView: View {
     @State var isReply: Bool = false
     @State var parentId: Int = -1
     @State var replyTo: String = ""
-//    @State var isLike: Bool = false
     @State var isShowReactionBar: Bool = false
-//    @State var selectedReaction: Int = 6 // 6 is "" in reactions constant
+    
+    @State var previousReaction: Int = 6
     
     init(internalNewData: InternalNewsData) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
@@ -273,11 +273,13 @@ extension InternalNewsDetailView {
                     
                     Spacer().frame(width: 18)
                     
-                    TextField("Comment", text: $commentText)
+                    AutoResizeTextField(text: $commentText, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding(5)
-                        .padding(.leading, 10)
-                        .overlay(RoundedRectangle(cornerRadius: 100)
+                        
+                        .overlay(RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.blue.opacity(0.5), lineWidth: 2))
+                        
                     
                     SendCommentButtonView(commentViewModel: commentViewModel, isReply: $isReply, contentId: internalNewData.contentId, parentId: parentId, content: commentText)
                 }
@@ -291,7 +293,7 @@ extension InternalNewsDetailView {
         HStack {
             HStack(spacing: 4) {
                 let reactCount = reactViewModel.getTop3React().count
-
+                
                 // If there no react
                 if reactCount == 0 {
                     HStack {
@@ -383,13 +385,31 @@ extension InternalNewsDetailView {
                     }
                 }.frame(height: 40)
                 .onTapGesture {
+                    if self.reactViewModel.isLike {
+                        
+                        //Update delete reaction on server
+                        AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
+                        
+                        self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] -= 1
+                        self.reactViewModel.numOfReact -= 1
+                        self.reactViewModel.selectedReaction = 6
+                        
+                    } else {
+                        
+                        self.reactViewModel.selectedReaction = 0
+                        self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] += 1
+                        self.reactViewModel.numOfReact += 1
+                        
+                        //Update delete uncheck reaction on server
+                        AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
+                        self.previousReaction = self.reactViewModel.selectedReaction
+                    }
                     self.reactViewModel.isLike.toggle()
-                    self.reactViewModel.selectedReaction = 0
+                    
                 }
                 .gesture(DragGesture(minimumDistance: 0)
                             .onChanged(onChangedValue(value:))
                             .onEnded(onEndValue(value:)))
-                
             }
             
             Spacer()
@@ -405,21 +425,24 @@ extension InternalNewsDetailView {
         withAnimation(.easeIn) {self.isShowReactionBar = true}
         withAnimation(Animation.linear(duration: 0.15)) {
             let x = value.location.x
-            let y = value.location.y
             
-            if x > 10 && x < 70 && y > -80 && y < 0  {self.reactViewModel.selectedReaction = 0}
-            if x > 70 && x < 120 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 1}
-            if x > 120 && x < 180 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 2}
-            if x > 180 && x < 230 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 4}
-            if x > 230 && x < 280 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 5}
-            if x < 10 || x > 280 || y > 0 || y < -80 {self.reactViewModel.selectedReaction = 6}
+            if x > 10 && x < 70 {self.reactViewModel.selectedReaction = 0}
+            if x > 70 && x < 120 {self.reactViewModel.selectedReaction = 1}
+            if x > 120 && x < 180 {self.reactViewModel.selectedReaction = 2}
+            if x > 180 && x < 230 {self.reactViewModel.selectedReaction = 4}
+            if x > 230 && x < 280 {self.reactViewModel.selectedReaction = 5}
         }
     }
     
     func onEndValue(value: DragGesture.Value) {
-        withAnimation(Animation.easeOut.delay(0.3)) {
+        withAnimation(Animation.easeOut.delay(0.2)) {
             if !self.reactViewModel.isLike {
+                self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] += 1
                 self.reactViewModel.numOfReact += 1
+            }
+            else {
+                self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] += 1
+                self.reactViewModel.reactCount[self.previousReaction] -= 1
             }
             
             self.isShowReactionBar = false
@@ -427,6 +450,7 @@ extension InternalNewsDetailView {
             
             //Update reaction on server
             AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
+            self.previousReaction = self.reactViewModel.selectedReaction
         }
     }
 }
