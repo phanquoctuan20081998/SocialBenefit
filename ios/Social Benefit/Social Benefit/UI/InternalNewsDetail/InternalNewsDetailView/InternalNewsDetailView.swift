@@ -19,9 +19,9 @@ struct InternalNewsDetailView: View {
     @State var isReply: Bool = false
     @State var parentId: Int = -1
     @State var replyTo: String = ""
-    @State var isLike: Bool = false
+//    @State var isLike: Bool = false
     @State var isShowReactionBar: Bool = false
-    @State var selectedReaction: Int = 0
+//    @State var selectedReaction: Int = 6 // 6 is "" in reactions constant
     
     init(internalNewData: InternalNewsData) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
@@ -43,12 +43,12 @@ struct InternalNewsDetailView: View {
                     }.zIndex(0)
                     
                     if isShowReactionBar {
-                        ReactionBarView(isShowReactionBar: $isShowReactionBar, selectedReaction: $selectedReaction)
+                        ReactionBarView(isShowReactionBar: $isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
                             .offset(x: -30, y: 90)
                             .zIndex(1)
                     }
                 }
-               
+                
                 Divider().frame(width: ScreenInfor().screenWidth*0.9)
                 
                 Spacer().frame(height: 20)
@@ -291,7 +291,7 @@ extension InternalNewsDetailView {
         HStack {
             HStack(spacing: 4) {
                 let reactCount = reactViewModel.getTop3React().count
-                
+
                 // If there no react
                 if reactCount == 0 {
                     HStack {
@@ -348,63 +348,85 @@ extension InternalNewsDetailView {
     var LikeAndCommentButton: some View {
         HStack {
             HStack {
-                
                 HStack {
-                    if self.selectedReaction == 6 {
+                    if !self.reactViewModel.isLike {
                         HStack {
-                            Image(systemName: "hand.thumbsup\(isLike ? ".fill" : "")" )
+                            Image(systemName: "hand.thumbsup")
                             Text("\((reactViewModel.getTop3React().count == 0) ? "be_the_first".localized : "like".localized)")
-                        }.foregroundColor(isLike ? .blue : .black)
+                        }.foregroundColor(.black)
+                        
+                    } else {
+                        if self.reactViewModel.selectedReaction == 6 {
+                            HStack {
+                                Image(systemName: "hand.thumbsup.fill")
+                                Text("liked".localized)
+                            }.foregroundColor(.blue)
                             
-                    } else if self.selectedReaction == 0 {
-                        Image(systemName: "hand.thumbsup.fill")
-                        Text("liked".localized)
+                        } else if self.reactViewModel.selectedReaction == 0 {
+                            HStack {
+                                Image(systemName: "hand.thumbsup.fill")
+                                Text("liked".localized)
+                            }.foregroundColor(.blue)
+                            
+                        } else {
+                            HStack {
+                                AnimatedImage(name: reactions[self.reactViewModel.selectedReaction] + ".gif")
+                                    .customLoopCount(2)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 40,
+                                           height: 40)
+                                Text(reactions[self.reactViewModel.selectedReaction].localized)
+                                    .foregroundColor(reactionColors[self.reactViewModel.selectedReaction])
+                            }
+                        }
                     }
-                    
-                    else {
-                        AnimatedImage(name: reactions[self.selectedReaction])
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 60,
-                                   height: 60)
-                    }
-                }
+                }.frame(height: 40)
                 .onTapGesture {
-                    self.isLike.toggle()
+                    self.reactViewModel.isLike.toggle()
+                    self.reactViewModel.selectedReaction = 0
                 }
                 .gesture(DragGesture(minimumDistance: 0)
                             .onChanged(onChangedValue(value:))
                             .onEnded(onEndValue(value:)))
+                
             }
-
+            
             Spacer()
             
             HStack {
                 Image(systemName: "bubble.left")
                 Text("Comment")
             }
-            
-        }.padding()
+        }.padding(.horizontal)
     }
     
     func onChangedValue(value: DragGesture.Value) {
-        withAnimation(.easeIn) {isShowReactionBar = true}
+        withAnimation(.easeIn) {self.isShowReactionBar = true}
         withAnimation(Animation.linear(duration: 0.15)) {
             let x = value.location.x
+            let y = value.location.y
             
-            if x > 10 && x < 70 {self.selectedReaction = 0}
-            if x > 70 && x < 120 {self.selectedReaction = 1}
-            if x > 120 && x < 180 {self.selectedReaction = 2}
-            if x > 180 && x < 230 {self.selectedReaction = 4}
-            if x > 230 && x < 280 {self.selectedReaction = 5}
-            if x < 10 || x > 280 {self.selectedReaction = 6}
-        
+            if x > 10 && x < 70 && y > -80 && y < 0  {self.reactViewModel.selectedReaction = 0}
+            if x > 70 && x < 120 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 1}
+            if x > 120 && x < 180 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 2}
+            if x > 180 && x < 230 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 4}
+            if x > 230 && x < 280 && y > -80 && y < 0 {self.reactViewModel.selectedReaction = 5}
+            if x < 10 || x > 280 || y > 0 || y < -80 {self.reactViewModel.selectedReaction = 6}
         }
     }
     
     func onEndValue(value: DragGesture.Value) {
         withAnimation(Animation.easeOut.delay(0.3)) {
-            isShowReactionBar = false
+            if !self.reactViewModel.isLike {
+                self.reactViewModel.numOfReact += 1
+            }
+            
+            self.isShowReactionBar = false
+            self.reactViewModel.isLike = true
+            
+            //Update reaction on server
+            AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
         }
     }
 }

@@ -17,6 +17,9 @@ class ReactViewModel: ObservableObject, Identifiable {
     @Published var numOfSad: Int = 0 // reactType = 4
     @Published var numOfAngry: Int = 0 // reactType = 5
     
+    @Published var isLike: Bool = false
+    @Published var selectedReaction: Int = 6 // 6 is "" in reactions constant
+    
     private let reactService: ReactService
     
     init(contentId: Int) {
@@ -47,6 +50,17 @@ class ReactViewModel: ObservableObject, Identifiable {
             }
             
             self.numOfReact = self.numOfLike + self.numOfLove + self.numOfLaugh + self.numOfSad + self.numOfAngry
+            
+            self.getUserStatus()
+        }
+    }
+    
+    func getUserStatus() {
+        for react in self.allReact {
+            if String(react.employeeId) == userInfor.employeeId {
+                self.isLike = true
+                self.selectedReaction = react.reactType ?? 6
+            }
         }
     }
     
@@ -72,7 +86,7 @@ class ReactViewModel: ObservableObject, Identifiable {
                     top3React.append("ic_fb_angry")
                 }
             }
-            react.remove(at: maxIndex)
+            react[maxIndex] = 0
         }
         return top3React
     }

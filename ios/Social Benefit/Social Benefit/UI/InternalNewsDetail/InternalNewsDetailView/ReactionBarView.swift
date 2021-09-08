@@ -8,7 +8,8 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-var reactions = ["like.gif", "love.gif", "laugh.gif", "", "sad.gif", "angry.gif", ""]
+var reactions = ["like", "love", "laugh", "", "sad", "angry", ""]
+var reactionColors = [Color.blue, Color.pink, Color.yellow, Color.gray, Color.yellow, Color.orange]
 
 struct ReactionBarView: View {
 
@@ -19,7 +20,7 @@ struct ReactionBarView: View {
         HStack(spacing: 5) {
             ForEach(reactions, id: \.self) {reaction in
                 if !reaction.isEmpty {
-                    AnimatedImage(name: reaction)
+                    AnimatedImage(name: (reaction + ".gif"))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: (reactions[self.selectedReaction] == reaction) ? 150 : 50,
