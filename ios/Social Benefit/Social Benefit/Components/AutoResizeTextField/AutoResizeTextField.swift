@@ -22,7 +22,8 @@ struct DynamicHeightTextField: UIViewRepresentable {
         textView.isUserInteractionEnabled = true
         
         textView.text = text
-        textView.backgroundColor = UIColor.white
+        textView.backgroundColor = UIColor.clear
+        textView.font = UIFont.systemFont(ofSize: 17)
         
         context.coordinator.textView = textView
         textView.delegate = context.coordinator
@@ -121,30 +122,38 @@ struct AutoResizeTextField: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Color(UIColor.secondarySystemBackground)
-
             
-
+            if text.isEmpty {
+                Text(placeholder)
+                    .foregroundColor(Color(UIColor.placeholderText))
+                    .padding(10)
+            }
+            
             DynamicHeightTextField(text: $text, height: $textHeight, onEnd: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             })
-                .if(text.isEmpty) {view in
-                    view.overlay(Text(placeholder)
-                                    .foregroundColor(Color(UIColor.placeholderText))
-                                    .padding(10), alignment: .leading)
-                    
-                }
-                
-
         }
         .frame(height: textFieldHeight)
     }
 }
 
+struct Test1View: View {
+    @State var text = ""
+    
+    var body: some View {
+        
+        AutoResizeTextField(text: $text, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .padding(5)
+            
+            .overlay(RoundedRectangle(cornerRadius: 20)
+            .stroke(Color.blue.opacity(0.5), lineWidth: 2))
+    }
+}
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-                            AutoResizeTextField(text: .constant(""), minHeight: 30, maxHeight: 70, placeholder: "adbhdbhsd")
+        Test1View()
     }
 }
 

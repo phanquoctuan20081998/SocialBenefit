@@ -284,7 +284,7 @@ extension InternalNewsDetailView {
                     SendCommentButtonView(commentViewModel: commentViewModel, isReply: $isReply, contentId: internalNewData.contentId, parentId: parentId, content: commentText)
                 }
             }.padding(.top, 5)
-        }.padding(.init(top: 0, leading: 10, bottom: 0, trailing: 10))
+        }.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
     }
     
     
