@@ -30,7 +30,7 @@
 		C402B26A26E76C5300A41288 /* ReactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B26926E76C5300A41288 /* ReactViewModel.swift */; };
 		C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B26B26E76C5F00A41288 /* ReactModel.swift */; };
 		C402B26E26E76E5500A41288 /* ReactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402B26D26E76E5500A41288 /* ReactService.swift */; };
-		C40366FB26DB258C00381888 /* ListOfBenefitsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40366FA26DB258C00381888 /* ListOfBenefitsModel.swift */; };
+		C40366FB26DB258C00381888 /* BenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40366FA26DB258C00381888 /* BenefitModel.swift */; };
 		C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40366FC26DB260D00381888 /* InternalNewsModel.swift */; };
 		C40366FF26DB278100381888 /* MerchantListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40366FE26DB278100381888 /* MerchantListService.swift */; };
 		C403670126DB27A800381888 /* MerchantListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403670026DB27A800381888 /* MerchantListModel.swift */; };
@@ -72,6 +72,14 @@
 		C4A5583826BA783800029AC0 /* ResetSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A5583726BA783800029AC0 /* ResetSuccessViewController.xib */; };
 		C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */; };
 		C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DEA26C4B85A00203CB9 /* InternalNewsView.swift */; };
+		C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D57926E9B667003C6CA9 /* BenefitDetailView.swift */; };
+		C4B3D57C26E9BB28003C6CA9 /* BenefitDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D57B26E9BB28003C6CA9 /* BenefitDetailService.swift */; };
+		C4B3D58226E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58126E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift */; };
+		C4B3D58526E9FBAC003C6CA9 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58426E9FBAC003C6CA9 /* RoundedButton.swift */; };
+		C4B3D58726EA02DD003C6CA9 /* ApplyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58626EA02DD003C6CA9 /* ApplyPopupView.swift */; };
+		C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58826EA0995003C6CA9 /* LocationService.swift */; };
+		C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */; };
+		C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */; };
 		C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */; };
 		C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */; };
 		C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */; };
@@ -114,7 +122,7 @@
 		C402B26926E76C5300A41288 /* ReactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactViewModel.swift; sourceTree = "<group>"; };
 		C402B26B26E76C5F00A41288 /* ReactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactModel.swift; sourceTree = "<group>"; };
 		C402B26D26E76E5500A41288 /* ReactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactService.swift; sourceTree = "<group>"; };
-		C40366FA26DB258C00381888 /* ListOfBenefitsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsModel.swift; sourceTree = "<group>"; };
+		C40366FA26DB258C00381888 /* BenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitModel.swift; sourceTree = "<group>"; };
 		C40366FC26DB260D00381888 /* InternalNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsModel.swift; sourceTree = "<group>"; };
 		C40366FE26DB278100381888 /* MerchantListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantListService.swift; sourceTree = "<group>"; };
 		C403670026DB27A800381888 /* MerchantListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantListModel.swift; sourceTree = "<group>"; };
@@ -155,6 +163,14 @@
 		C4A5583726BA783800029AC0 /* ResetSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetSuccessViewController.xib; sourceTree = "<group>"; };
 		C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsCardView.swift; sourceTree = "<group>"; };
 		C4AA6DEA26C4B85A00203CB9 /* InternalNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsView.swift; sourceTree = "<group>"; };
+		C4B3D57926E9B667003C6CA9 /* BenefitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitDetailView.swift; sourceTree = "<group>"; };
+		C4B3D57B26E9BB28003C6CA9 /* BenefitDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitDetailService.swift; sourceTree = "<group>"; };
+		C4B3D58126E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsViewModel.swift; sourceTree = "<group>"; };
+		C4B3D58426E9FBAC003C6CA9 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		C4B3D58626EA02DD003C6CA9 /* ApplyPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyPopupView.swift; sourceTree = "<group>"; };
+		C4B3D58826EA0995003C6CA9 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyBenefitService.swift; sourceTree = "<group>"; };
 		C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
 		C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsService.swift; sourceTree = "<group>"; };
 		C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsView.swift; sourceTree = "<group>"; };
@@ -252,6 +268,9 @@
 				C430AEBA26E6552100D3D29A /* AddCommentService.swift */,
 				C402B26D26E76E5500A41288 /* ReactService.swift */,
 				C44F131426E87A19003156A6 /* AddReactService.swift */,
+				C4B3D57B26E9BB28003C6CA9 /* BenefitDetailService.swift */,
+				C4B3D58826EA0995003C6CA9 /* LocationService.swift */,
+				C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -259,9 +278,9 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
 				C412B0DE26D7521800A669A1 /* TEST */,
 				C41C8C6C26DC799B00AC1FA7 /* InternalNewsDetail */,
-				C4CD0D5E26D5FB0D003D5BE7 /* Background */,
 				C4E9D43126D49FE300B223AC /* HomeScreen */,
 				C4884DEF26CCA462006BC3C1 /* UserInformation */,
 				C436562626CB4A1F00148796 /* User */,
@@ -346,12 +365,13 @@
 			isa = PBXGroup;
 			children = (
 				C427BFDF26C366E400FEAA71 /* ScreenInforModel.swift */,
-				C40366FA26DB258C00381888 /* ListOfBenefitsModel.swift */,
+				C40366FA26DB258C00381888 /* BenefitModel.swift */,
 				C40366FC26DB260D00381888 /* InternalNewsModel.swift */,
 				C403670026DB27A800381888 /* MerchantListModel.swift */,
 				C403670226DB2A8200381888 /* UserInforModel.swift */,
 				C43B21C526DDCDB800E2E451 /* CommentModel.swift */,
 				C402B26B26E76C5F00A41288 /* ReactModel.swift */,
+				C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,6 +398,8 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C4B3D58326E9FB90003C6CA9 /* RoundedButton */,
+				C4CD0D5E26D5FB0D003D5BE7 /* Background */,
 				C4393D2726E90EDC00C02D43 /* AutoResizeTextField */,
 				C419868726E46F2500A877A5 /* URLImage */,
 				C43B21C926DE140400E2E451 /* SearchBar */,
@@ -521,11 +543,53 @@
 			path = InternalNews;
 			sourceTree = "<group>";
 		};
-		C4B94DED26C26ACD009D5C46 /* ListOfBenefits */ = {
+		C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3D57826E9B64B003C6CA9 /* View */,
+			);
+			path = BenefitDetail;
+			sourceTree = "<group>";
+		};
+		C4B3D57826E9B64B003C6CA9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3D57926E9B667003C6CA9 /* BenefitDetailView.swift */,
+				C4B3D58626EA02DD003C6CA9 /* ApplyPopupView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4B3D57F26E9DDB7003C6CA9 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */,
 				C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4B3D58026E9DDD5003C6CA9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3D58126E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C4B3D58326E9FB90003C6CA9 /* RoundedButton */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3D58426E9FBAC003C6CA9 /* RoundedButton.swift */,
+			);
+			path = RoundedButton;
+			sourceTree = "<group>";
+		};
+		C4B94DED26C26ACD009D5C46 /* ListOfBenefits */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3D58026E9DDD5003C6CA9 /* ViewModel */,
+				C4B3D57F26E9DDB7003C6CA9 /* View */,
 			);
 			path = ListOfBenefits;
 			sourceTree = "<group>";
@@ -715,11 +779,14 @@
 				C436562A26CB4C0700148796 /* FunctionCardView.swift in Sources */,
 				84DA60CB269ECB6A0012F55B /* StringUtils.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
+				C4B3D58226E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift in Sources */,
 				C43B21CB26DE141900E2E451 /* SearchBarView.swift in Sources */,
 				C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */,
 				C431446B26BC1BF4009FCA89 /* MoveTo.swift in Sources */,
+				C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */,
 				C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */,
 				C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */,
+				C4B3D58726EA02DD003C6CA9 /* ApplyPopupView.swift in Sources */,
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Constant.swift in Sources */,
 				C4A5583626BA77D100029AC0 /* ResetSuccessViewController.swift in Sources */,
@@ -727,7 +794,7 @@
 				84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */,
 				84DA60C3269ECA130012F55B /* UserViewController.swift in Sources */,
 				C403ECB726CD4E97001E3009 /* DatePickerPopUpView.swift in Sources */,
-				C40366FB26DB258C00381888 /* ListOfBenefitsModel.swift in Sources */,
+				C40366FB26DB258C00381888 /* BenefitModel.swift in Sources */,
 				C44D1E9A26E7A33E00D2DDA2 /* ReactionBarView.swift in Sources */,
 				84DA606B2696DAC80012F55B /* AppDelegate.swift in Sources */,
 				C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */,
@@ -739,6 +806,7 @@
 				C4E9D43526D4A04E00B223AC /* CustomTabBarView.swift in Sources */,
 				C43B21C826DDD0F600E2E451 /* CommentService.swift in Sources */,
 				C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */,
+				C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */,
 				C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */,
 				84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */,
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
@@ -760,17 +828,21 @@
 				C402B26E26E76E5500A41288 /* ReactService.swift in Sources */,
 				C430AEBB26E6552100D3D29A /* AddCommentService.swift in Sources */,
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,
+				C4B3D58526E9FBAC003C6CA9 /* RoundedButton.swift in Sources */,
 				C419868B26E46F5400A877A5 /* URLImageViewModel.swift in Sources */,
+				C4B3D57C26E9BB28003C6CA9 /* BenefitDetailService.swift in Sources */,
 				C41C8C6E26DC79C200AC1FA7 /* InternalNewsDetailView.swift in Sources */,
 				C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */,
 				C4D2606F26E475B2002E475C /* Test.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
+				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
 				C40366FF26DB278100381888 /* MerchantListService.swift in Sources */,
 				C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */,
 				C419869026E46F9000A877A5 /* NetworkingManager.swift in Sources */,
 				C436562826CB4BB800148796 /* UserView.swift in Sources */,
 				84DA60C4269ECA130012F55B /* HomeViewController.swift in Sources */,
+				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

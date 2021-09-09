@@ -33,19 +33,19 @@ struct UserView: View {
                 ScrollView (.vertical, showsIndicators: false) {
                     VStack(spacing: 8) {
                         NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
-                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, selection: $selection, selectedNumber: 2)
+                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 2)
                         }
                         
                         NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, selection: $selection, selectedNumber: 3)
+                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 3)
                         }
                         
-                        NavigationLink(destination: Text("4"), tag: 4, selection: $selection) {
-                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, selection: $selection, selectedNumber: 4)
+                        NavigationLink(destination: ListOfBenefitsView(isPresentedTabBar: $isPresentedTabBar).navigationBarHidden(true), tag: 4, selection: $selection) {
+                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 4)
                         }
                         
                         NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
-                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, selection: $selection, selectedNumber: 5)
+                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 5)
                         }
                     }.padding(.top, 10)
                     
@@ -54,15 +54,15 @@ struct UserView: View {
                     
                     VStack(spacing: 8) {
                         NavigationLink(destination: Text("6"), tag: 6, selection: $selection) {
-                            FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, selection: $selection, selectedNumber: 6)
+                            FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 6)
                         }
                         
                         NavigationLink(destination: Text("7"), tag: 7, selection: $selection) {
-                            FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, selection: $selection, selectedNumber: 7)
+                            FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 7)
                         }
                         
                         NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-                            FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, selection: $selection, selectedNumber: 8)
+                            FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 8)
                         }
                     }
                     //
@@ -70,7 +70,7 @@ struct UserView: View {
                     
                     VStack {
                         NavigationLink(destination: Text("9"), tag: 9, selection: $selection) {
-                            FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, selection: $selection, selectedNumber: 9)
+                            FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, selection: $selection, isPresentedTabBar: $isPresentedTabBar, selectedNumber: 9)
                         }
                     }
                 }
@@ -94,7 +94,7 @@ struct UserInforView: View {
             Button(action: {
                 // Do something
                 self.selection = 1
-                self.isPresentedTabBar.toggle()
+                self.isPresentedTabBar = false
                 
             }, label: {
                 HStack(spacing: 20) {

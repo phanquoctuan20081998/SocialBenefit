@@ -125,7 +125,7 @@ struct LocationPickerView: View {
                     })
                 }
                 .onAppear {
-                    getLocationAPI(filter) { (data) in
+                    LocationService().getAPI(filter) { (data) in
                         self.data = data
                     }
                 }
@@ -221,47 +221,6 @@ struct LocationPickerView: View {
     }
 }
 
-
-// Call API
-struct LocationData: Hashable, Identifiable {
-    var name: String
-    var id: String
-}
-
-func getLocationAPI(_ id: String, returnCallBack: @escaping ([LocationData]) -> ()) {
-    
-    let service = BaseAPI_Alamofire()
-    var data = [LocationData]()
-    
-    let filter: String
-    
-    if id == "" {
-        filter = "{\"parent_id\":null}"
-    } else {
-        filter = "{\"parent_id\":\"" + id + "\"}"
-    }
-    
-    
-    let header: HTTPHeaders = ["token": userInfor.token,
-                               "user_id": userInfor.userId]
-    
-    let params: Parameters = ["filter" : filter]
-    
-    var cityName: String?
-    var cityId: String?
-    
-    service.makeCall(endpoint: Constant.API_LOCATION_LIST, method: "POST", header: header, body: params, callback: { result in
-        for i in 0..<result.count {
-            cityName = result[i]["name"].string
-            cityId = result[i]["id"].string
-            
-            let tempLocationData = LocationData(name: cityName!, id: cityId!)
-            data.append(tempLocationData)
-        }
-        returnCallBack(data)
-    })
-    
-}
 
 struct LocationPickerPopUpView_Previews: PreviewProvider {
     static var previews: some View {

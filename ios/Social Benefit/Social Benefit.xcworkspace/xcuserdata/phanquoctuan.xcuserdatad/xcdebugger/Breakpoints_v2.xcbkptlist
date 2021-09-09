@@ -321,54 +321,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8039749A-CCB6-4B71-A41F-CB5FA77C885B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social Benefit/UI/UserInformation/LocationPickerPopUpView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "getLocationAPI(_:returnCallBack:)"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  uuid = "8039749A-CCB6-4B71-A41F-CB5FA77C885B - 76c6777b0e5a832a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Social_Benefit.getLocationAPI(_: Swift.String, returnCallBack: (Swift.Array&lt;Social_Benefit.LocationData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Social Benefit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phanquoctuan/Desktop/SBP/ios/Social%20Benefit/Social%20Benefit/UI/UserInformation/LocationPickerPopUpView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "1704">
-               </Location>
-               <Location
-                  uuid = "8039749A-CCB6-4B71-A41F-CB5FA77C885B - 3788b2976791f18d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in Social_Benefit.getLocationAPI(_: Swift.String, returnCallBack: (Swift.Array&lt;Social_Benefit.LocationData&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Social Benefit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phanquoctuan/Desktop/SBP/ios/Social%20Benefit/Social%20Benefit/UI/UserInformation/LocationPickerPopUpView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "324">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "73722F00-938D-457D-8C88-90B3011E8B71"
             shouldBeEnabled = "No"
             ignoreCount = "0"

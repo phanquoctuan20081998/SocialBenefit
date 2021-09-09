@@ -15,14 +15,15 @@ struct FunctionCardView: View {
     var chevron: Bool
     
     @Binding var selection: Int?
+    @Binding var isPresentedTabBar: Bool
     var selectedNumber: Int
     
     var body: some View {
         ZStack {
             Button(action: {
                 // Do something
-                selection = selectedNumber
-                
+                self.selection = selectedNumber
+                self.isPresentedTabBar = false
             }, label: {
                 HStack {
                     Image(systemName: thumnail)
@@ -55,6 +56,6 @@ struct FunctionCardView: View {
 
 struct FunctionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, selection: .constant(1), selectedNumber: 1)
+        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, selection: .constant(1), isPresentedTabBar: .constant(false), selectedNumber: 1)
     }
 }

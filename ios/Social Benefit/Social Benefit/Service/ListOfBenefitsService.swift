@@ -9,56 +9,46 @@ import Foundation
 import SwiftUI
 
 class ListOfBenefitsService {
+    @Published var allBenefits: [BenefitData] = []
     
-    func getAPI(returnCallBack: @escaping ([ListOfBenefitData]) -> ()) {
-        var data = [ListOfBenefitData]()
+    init() {
+        self.getAPI()
+    }
+    
+    func getAPI() {
         let service = BaseAPI()
-        
-        var order: Int = 0
-        var tempBenefitData = ListOfBenefitData(id: 0, order: "", benefit: "", applied: STATUS().REJECTED)
         
         let header = ["token": userInfor.token,
                       "user_id": userInfor.userId,
                       "companyId": userInfor.companyId,
                       "employeeId": userInfor.employeeId]
         
+        var id: Int?
         var title: String?
+        var body: String?
+        var logo: String?
+        var typeMember: Int?
         var status: Int?
+        var mobileStatus: Int?
         
-        service.makeCall(endpoint: Constant.API_BENEFIT_LIST, method: "POST", header: header as [String : String], body: ["":""], callback: { (result) in
+        service.makeCall(endpoint: Constant.API_BENEFIT_LIST, method: "POST", header: header as [String : String], body: ["":""]) { (result) in
 
             let resultArray = result
             let numOfList = resultArray.count
                 
             for i in 0..<numOfList {
                 let resultDic = resultArray[i]
+                id = resultDic["id"].int ?? 0
                 title = resultDic["title"].string ?? ""
-                status = resultDic["mobileStatus"].int ?? 0
+                body = resultDic["body"].string ?? ""
+                logo = resultDic["company"]["logo"].string ?? ""
+                typeMember = resultDic["typeMember"].int ?? 0
+                status = resultDic["status"].int ?? 0
+                mobileStatus = resultDic["mobileStatus"].int ?? 0
                 
-                // Add id, oder
-                tempBenefitData.id = order
-                tempBenefitData.order = String(order)
-                
-                
-                // Add benefit
-                tempBenefitData.benefit = title ?? ""
-                
-                // Add applied
-                switch status {
-                case 0: do {tempBenefitData.applied = STATUS().ON_GOING}
-                case 1: do {tempBenefitData.applied = STATUS().UP_COMMING}
-                case 2: do {tempBenefitData.applied = STATUS().RECEIVED}
-                case 3: do {tempBenefitData.applied = STATUS().NOT_REGISTER}
-                case 4: do {tempBenefitData.applied = STATUS().REGISTER}
-                case 5: do {tempBenefitData.applied = STATUS().APPROVED}
-                default: do {tempBenefitData.applied = STATUS().REJECTED}
-                }
-                
-                data.append(tempBenefitData)
-                order += 1
+                self.allBenefits.append(BenefitData(id: id!, title: title!, body: body!, logo: logo!, typeMember: typeMember!, status: status!, mobileStatus: mobileStatus!))
             }
-            returnCallBack(data)
-        })
+        }
     }
 }
 

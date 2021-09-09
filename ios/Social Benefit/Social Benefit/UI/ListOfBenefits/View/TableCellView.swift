@@ -52,33 +52,26 @@ struct benefitButton: View {
             Button(action: {
                 //do somthing
             }, label: {
-                Text("Apply")
-                    .foregroundColor(.white)
-                    .font(.system(size: 30))
+                RoundedButton(text: "Apply", font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
+                    .font(.system(size: 20, weight: .black, design: .default))
             })
-            .frame(width: width*0.13, height: 10)
-            .minimumScaleFactor(0.5)
-            .padding(.all, 10)
-            .background(Color.blue)
-            .cornerRadius(10)
-            .shadow(color: .black.opacity(0.3), radius: 3, x: 3, y: 3)
         }
-        .frame(width: width/3.3, alignment: .center)
+        .frame(width: width/3.3, height: 40, alignment: .center)
     }
 }
 
 struct TableCellView: View {
     
-    let benefitData: ListOfBenefitData
+    let benefitData: BenefitData
     
     var body: some View {
         let screen = ScreenInfor()
         HStack(spacing: 15) {
-            benefitText(text: benefitData.order, scaleRatio: 9, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: false)
+            URLImageView(url: benefitData.logo)
                 .padding(.leading, 10)
-            benefitText(text: benefitData.benefit,scaleRatio: 2.5, width: screen.screenWidth - 22*2, isCenter: false, isItalic: false, isBold: false)
+            benefitText(text: benefitData.title,scaleRatio: 2.5, width: screen.screenWidth - 22*2, isCenter: false, isItalic: false, isBold: false)
             
-            switch benefitData.applied {
+            switch benefitData.status {
             case 0: do {
                 benefitText(text: "on_going".localized, scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: true, isBold: false)
             }
@@ -107,16 +100,34 @@ struct TableCellView: View {
 
 
 struct TableCellView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        List {
-            TableCellView(benefitData: ListOfBenefitData(id: 0, order: "1", benefit: "dfsdfsd", applied: 1))
-            TableCellView(benefitData: ListOfBenefitData(id: 0, order: "2", benefit: "dfsdsdsfsdfsdfsdfsdfsdfsfsdsdfdfsdfsfsdfsfsfssdddfsd", applied: 2))
-            TableCellView(benefitData: ListOfBenefitData(id: 0, order: "3", benefit: "dfsdfsd", applied: 3))
-            TableCellView(benefitData: ListOfBenefitData(id: 0, order: "4", benefit: "dfsdhcbdsbhdbkfhfgwuhkjncnhsfgbcbcbsdhjfsd", applied: 4))
-            TableCellView(benefitData: ListOfBenefitData(id: 0, order: "5", benefit: "dfsdfsd", applied: 6))
-            TableCellView(benefitData: ListOfBenefitData(id: 0, order: "6", benefit: "dfsdfsd", applied: 0))
+        VStack {
+            let header = ["order".localized, "benefit".localized, "benefit_status".localized]
+            HStack(spacing: 0) {
+                benefitText(text: header[0], scaleRatio: 5, width: ScreenInfor().screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
+                benefitText(text: header[1],scaleRatio: 2.5, width: ScreenInfor().screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
+                benefitText(text: header[2], scaleRatio: 3, width: ScreenInfor().screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
+            }.frame(width: ScreenInfor().screenWidth, alignment: .center)
+            .padding(.all, 7)
+            .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
             
-//            TableCellView()
+            ScrollView {
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0))
+                Divider()
+                
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 1, mobileStatus: 1))
+                Divider()
+                
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 2, mobileStatus: 2))
+                Divider()
+                
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 3, mobileStatus: 3))
+                Divider()
+                
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 4, mobileStatus: 4))
+                Divider()
+            }
         }
     }
 }
