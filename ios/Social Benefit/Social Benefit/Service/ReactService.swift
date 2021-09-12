@@ -48,8 +48,8 @@ class ReactService {
                 data.append(tempCommentData)
             }
             
-            DispatchQueue.main.async {
-                self.allReact = data
+            DispatchQueue.main.async { [weak self] in
+                self?.allReact = data
             }
         })
     }

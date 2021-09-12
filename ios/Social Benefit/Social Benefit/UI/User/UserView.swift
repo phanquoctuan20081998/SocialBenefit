@@ -80,6 +80,7 @@ struct UserView: View {
                 BackgroundView()
             )
             .navigationBarHidden(true)
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

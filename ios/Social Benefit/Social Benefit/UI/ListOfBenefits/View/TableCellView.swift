@@ -50,7 +50,9 @@ struct benefitButton: View {
     var body: some View {
         ZStack {
             Button(action: {
-                //do somthing
+                //do something
+                
+                
             }, label: {
                 RoundedButton(text: "Apply", font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
                     .font(.system(size: 20, weight: .black, design: .default))
@@ -87,7 +89,7 @@ struct TableCellView: View {
             case 4: do {
                 benefitText(text: "waiting".localized, scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: true, isBold: false)
             }
-            case 6: do {
+            case 5: do {
                 benefitText(text: "❌", scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: false)
             }
             default: do {

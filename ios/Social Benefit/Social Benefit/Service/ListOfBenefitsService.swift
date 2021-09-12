@@ -32,7 +32,7 @@ class ListOfBenefitsService {
         var mobileStatus: Int?
         
         service.makeCall(endpoint: Constant.API_BENEFIT_LIST, method: "POST", header: header as [String : String], body: ["":""]) { (result) in
-
+            
             let resultArray = result
             let numOfList = resultArray.count
                 

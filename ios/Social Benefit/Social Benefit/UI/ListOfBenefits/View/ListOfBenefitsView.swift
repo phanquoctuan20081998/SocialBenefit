@@ -53,7 +53,8 @@ struct ListOfBenefitsView: View {
         }
         .background(
             NavigationLink(
-                destination: BenefitDetailView(isPresentedTabBar: $isPresentedTabBar, selectedBenefit: self.selectedBenefit).navigationBarHidden(true),
+                destination: BenefitDetailView(isPresentedTabBar: $isPresentedTabBar,
+                                               benefitDetailViewModel: BenefitDetailViewModel(benefit: self.selectedBenefit)).navigationBarHidden(true),
                 isActive: $isTapDetail,
                 label: {
                     EmptyView()

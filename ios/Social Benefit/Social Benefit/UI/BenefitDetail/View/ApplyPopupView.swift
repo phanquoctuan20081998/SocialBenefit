@@ -9,18 +9,16 @@ import SwiftUI
 
 struct ApplyPopupView: View {
     
-    @Binding var isPresented: Bool
-    @Binding var isApplied: Bool
-    var benefitId: Int
+    @EnvironmentObject var benefitDetailViewModel: BenefitDetailViewModel
     
     var body: some View {
         ZStack {
-            if self.isPresented {
+            if self.benefitDetailViewModel.isPresentedPopup {
                 Color.black
                     .opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
-                        self.isPresented = false
+                        self.benefitDetailViewModel.isPresentedPopup = false
                     }
                 
                 popupContent
@@ -52,15 +50,15 @@ extension ApplyPopupView {
                 Spacer()
                 HStack(spacing: 20) {
                     Button(action: {
-                        self.isPresented = false
+                        self.benefitDetailViewModel.isPresentedPopup = false
                     }, label: {
                         Text("cancel_button".localized)
                     })
                     
                     Button(action: {
-                        ApplyBenefitService().getAPI(benefitId: benefitId)
-                        self.isPresented = false
-                        self.isApplied = true
+                        ApplyBenefitService().getAPI(benefitId: self.benefitDetailViewModel.benefit.id)
+                        self.benefitDetailViewModel.isPresentedPopup = false
+                        self.benefitDetailViewModel.applyStatus = 0 //Change to waiting to confirm
                     }, label: {
                         Text("ok_button".localized)
                     })
@@ -73,6 +71,6 @@ extension ApplyPopupView {
 
 struct ApplyPopUp_Previews: PreviewProvider {
     static var previews: some View {
-        ApplyPopupView(isPresented: .constant(true), isApplied: .constant(false), benefitId: 0)
+        ApplyPopupView()
     }
 }

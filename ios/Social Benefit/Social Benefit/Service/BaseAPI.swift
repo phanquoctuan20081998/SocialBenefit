@@ -17,7 +17,7 @@ public class BaseAPI {
         session = URLSession.shared
     }
     
-    public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback:@escaping (JSON)->Void) {
+    public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback: @escaping (JSON) -> Void) {
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
         let url = URL(string: Constant.baseURL +  endpoint)!
         var request = URLRequest(url: url)
@@ -27,29 +27,25 @@ public class BaseAPI {
         request.httpBody = jsonData
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    print("Call API failed:  ",error?.localizedDescription ?? "No data")
-                    return
-                }
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                        let error = json["error"] as? Bool
-                        if (error == false) {
-                            let result = JSON(json as Any)["result"]
-                            callback(result)
-                        } else {
-                            //show error
-                            if json["messages"] != nil {
-                                print("Call API failed, Messages: ", json["messages"]!)
-                            }
+            guard let data = data, error == nil else {
+                print("Call API failed:  ",error?.localizedDescription ?? "No data")
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    let error = json["error"] as? Bool
+                    if (error == false) {
+                        let result = JSON(json as Any)["result"]
+                        callback(result)
+                    } else {
+                        //show error
+                        if json["messages"] != nil {
+                            print("Call API failed, Messages: ", json["messages"]!)
                         }
-                        
                     }
-                } catch let error {
-                    print(error.localizedDescription)
                 }
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
         
@@ -74,21 +70,18 @@ public class BaseAPI_Alamofire {
             METHOD = .post
         }
         
-        DispatchQueue.main.async {
-            let task = AF.request(strURL, method: METHOD, parameters: body, headers: header).responseJSON { response in
-
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    let result = JSON(response.data as Any)["result"]
-                    callback(result)
-                    
-                case let .failure(error):
-                    print("Call API failed, Messages: ", error)
-                }
+        let task = AF.request(strURL, method: METHOD, parameters: body, headers: header).responseJSON { response in
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+                let result = JSON(response.data as Any)["result"]
+                callback(result)
                 
+            case let .failure(error):
+                print("Call API failed, Messages: ", error)
             }
-            task.resume()
         }
+        task.resume()
+        
     }
 }

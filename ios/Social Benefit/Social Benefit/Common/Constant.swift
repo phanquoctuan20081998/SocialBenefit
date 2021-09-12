@@ -15,6 +15,7 @@ struct Constant {
     
     static let API_BENEFIT_LIST = "/benefit/list"
     static let API_BENEFIT_APPLY = "/benefit/employee/apply"
+    static let API_BENEFIT_CHECK = "/benefit/employee/check"
     
     static let API_INTERNEL_NEWS_LIST = "/internal_news/list"
     static let API_LOCATION_LIST = "/location/list"
