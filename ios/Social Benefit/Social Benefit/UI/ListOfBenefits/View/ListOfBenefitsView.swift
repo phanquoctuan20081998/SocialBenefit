@@ -22,7 +22,7 @@ struct ListOfBenefitsView: View {
             VStack(spacing: 0) {
                 Spacer(minLength: 50)
                 
-                BenefitUpperView(isPresentedTabBar: $isPresentedTabBar, isShowTabBar: true)
+                BenefitUpperView(isPresentedTabBar: $isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
                 
                 //Add header
                 let screen = ScreenInfor()
@@ -68,6 +68,7 @@ struct BenefitUpperView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var isPresentedTabBar: Bool
+    var text: String
     
     //Because 2 screen sharing this function...
     //But diffirent tabbar show status...
@@ -96,7 +97,7 @@ struct BenefitUpperView: View {
             }
             //Add title
             
-            Text("benefit_title".localized)
+            Text(text)
                 .font(.bold(.headline)())
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.vertical, 10)

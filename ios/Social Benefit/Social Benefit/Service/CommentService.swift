@@ -54,8 +54,8 @@ class CommentService {
                 data.append(tempCommentData)
             }
             
-            DispatchQueue.main.async {
-                self.allComment = data
+            DispatchQueue.main.async { [weak self] in
+                self?.allComment = data
             }
         })
     }
@@ -68,10 +68,10 @@ class CommentService {
             return "\(String(describing: diffirent.year!)) " + ((diffirent.year == 1) ? "year".localized : "years".localized)
         } else if diffirent.month != 0 {
             return "\(String(describing: diffirent.month!)) " + ((diffirent.month == 1) ? "month".localized : "months".localized)
-        } else if diffirent.hour != 0 {
-            return "\(String(describing: diffirent.hour!)) " + ((diffirent.hour == 1) ? "hour".localized : "hours".localized)
         } else if diffirent.day != 0 {
             return "\(String(describing: diffirent.day!)) " + ((diffirent.day == 1) ? "day".localized : "days".localized)
+        } else if diffirent.hour != 0 {
+            return "\(String(describing: diffirent.hour!)) " + ((diffirent.hour == 1) ? "hour".localized : "hours".localized)
         } else if diffirent.minute != 0 {
             return "\(String(describing: diffirent.minute!)) " + ((diffirent.minute == 1) ? "minute".localized : "minutes".localized)
         } else {

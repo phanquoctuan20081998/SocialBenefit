@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import ScrollViewProxy
 
 struct InternalNewsDetailView: View {
     
@@ -20,8 +21,10 @@ struct InternalNewsDetailView: View {
     @State var parentId: Int = -1
     @State var replyTo: String = ""
     @State var isShowReactionBar: Bool = false
-    
     @State var previousReaction: Int = 6
+    
+    @State private var proxy: AmzdScrollViewProxy? = nil
+    @State private var moveToPosition: Int = 0
     
     init(internalNewData: InternalNewsData) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
@@ -34,41 +37,11 @@ struct InternalNewsDetailView: View {
             Spacer().frame(height: 50)
             
             ScrollView(.vertical, showsIndicators: false) {
-                ZStack {
-                    VStack {
-                        PostContentView
-                        LikeAndCommentCount
-                        Divider().frame(width: ScreenInfor().screenWidth*0.9)
-                        LikeAndCommentButton
-                    }.zIndex(0)
-                    
-                    if isShowReactionBar {
-                        ReactionBarView(isShowReactionBar: $isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                            .offset(x: -30, y: 90)
-                            .zIndex(1)
-                    }
+                AmzdScrollViewReader { proxy in
+                    ScrollViewContent
+                    .onAppear { self.proxy = proxy }
                 }
-                
-                Divider().frame(width: ScreenInfor().screenWidth*0.9)
-                
-                Spacer().frame(height: 20)
-                
-                VStack(spacing: 10) {
-                    
-                    let parentCommentMax = commentViewModel.parentComment.indices
-                    ForEach(parentCommentMax, id: \.self) { i in
-                        
-                        FirstCommentCardView(comment: commentViewModel.parentComment[i].data, isReply: $isReply, parentId: $parentId, replyTo: $replyTo)
-                        
-                        if commentViewModel.parentComment[i].childIndex != -1 {
-                            let childIndex = commentViewModel.parentComment[i].childIndex
-                            
-                            ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
-                                SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
-                            }
-                        }
-                    }
-                }
+                Spacer().frame(height: 30)
             }
             
             Spacer()
@@ -79,141 +52,50 @@ struct InternalNewsDetailView: View {
     }
 }
 
-struct FirstCommentCardView: View {
-    
-    var comment: CommentData
-    @Binding var isReply: Bool
-    @Binding var parentId: Int
-    @Binding var replyTo: String
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            URLImageView(url: comment.avatar)
-                .clipShape(Circle())
-                .frame(width: 30, height: 30)
-                .padding(.all, 5)
-                .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-            
-            Spacer().frame(width: 10)
-            
-            VStack {
-                
-                VStack(alignment: .leading) {
-                    Text(comment.commentBy)
-                        .font(.system(size: 15))
-                        .fontWeight(.bold)
-                        .padding(.init(top: 15, leading: 15, bottom: 0, trailing: 0))
-                    
-                    Spacer().frame(height: 10)
-                    Text(comment.commentDetail)
-                        .font(.system(size: 15))
-                        .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 0))
-                }.frame(width: ScreenInfor().screenWidth * 0.75, alignment: .leading)
-                .background(RoundedRectangle(cornerRadius: 13)
-                                .fill(Color.gray.opacity(0.2)))
-                
-                Spacer().frame(height: 5)
-                
-                HStack() {
-                    Button(action: {
-                        self.isReply = true
-                        self.parentId = comment.id
-                        self.replyTo = comment.commentBy
-                    }, label: {
-                        Text("reply".localized)
-                            .bold()
-                            .font(.system(size: 13))
-                    })
-                    
-                    Text(comment.commentTime)
-                        .font(.system(size: 13))
-                    
-                    Spacer()
-                }.foregroundColor(.black.opacity(0.6))
-                .padding(.leading)
-            }
-        }.padding(.horizontal)
-        .padding(.top, 5)
-    }
-}
-
-struct SecondCommentCardView: View {
-    
-    var comment: CommentData
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Spacer().frame(width: 70)
-            URLImageView(url: comment.avatar)
-                .clipShape(Circle())
-                .frame(width: 30, height: 30)
-                .padding(.all, 5)
-                .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-            
-            Spacer().frame(width: 10)
-            
-            VStack {
-                VStack(alignment: .leading) {
-                    Text(comment.commentBy)
-                        .font(.system(size: 15))
-                        .fontWeight(.bold)
-                        .padding(.init(top: 15, leading: 15, bottom: 0, trailing: 15))
-                    
-                    Spacer().frame(height: 10)
-                    Text(comment.commentDetail)
-                        .font(.system(size: 15))
-                        .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))
-                }.frame(width: ScreenInfor().screenWidth * 0.56, alignment: .leading)
-                .background(RoundedRectangle(cornerRadius: 13)
-                                .fill(Color.gray.opacity(0.2)))
-                
-                Spacer().frame(height: 5)
-                
-                HStack {
-                    Text(comment.commentTime)
-                        .font(.system(size: 13))
-                    
-                    Spacer()
-                }.foregroundColor(.black.opacity(0.6))
-                .padding(.leading)
-            }
-        }.padding(.horizontal)
-        .padding(.top, 5)
-    }
-}
-
-struct SendCommentButtonView: View {
-    
-    @ObservedObject var commentViewModel: CommentViewModel
-    
-    @Binding var isReply: Bool
-    
-    var contentId: Int
-    var parentId: Int
-    var content: String
-    
-    var body: some View {
-        Button(action: {
-            AddCommentService().getAPI(contentId: contentId, parentId: parentId, content: content)
-            sleep(1)
-            
-            let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
-            
-            commentViewModel.updateComment(newComment: newComment)
-            
-            self.commentViewModel.numOfComment += 1
-        }, label: {
-            Image(systemName: "paperplane.circle.fill")
-                .padding(.trailing, 3)
-                .foregroundColor(content.isEmpty ? .gray : .blue)
-                .font(.system(size: 35))
-                .background(Color.white)
-        })
-        .disabled(content.isEmpty)
-    }
-}
 
 extension InternalNewsDetailView {
+    
+    var ScrollViewContent: some View {
+        VStack {
+            ZStack {
+                VStack {
+                    PostContentView
+                    LikeAndCommentCount
+                    Divider().frame(width: ScreenInfor().screenWidth*0.9)
+                    LikeAndCommentButton
+                }.zIndex(0)
+                
+                if isShowReactionBar {
+                    ReactionBarView(isShowReactionBar: $isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
+                        .offset(x: -30, y: 90)
+                        .zIndex(1)
+                }
+            }
+            
+            Divider().frame(width: ScreenInfor().screenWidth*0.9)
+            
+            Spacer().frame(height: 110)
+            
+            VStack(spacing: 10) {
+                
+                let parentCommentMax = commentViewModel.parentComment.indices
+                ForEach(parentCommentMax, id: \.self) { i in
+                    
+                    VStack {
+                        FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $isReply, parentId: $parentId, replyTo: $replyTo, moveToPosition: $moveToPosition)
+                        
+                        if commentViewModel.parentComment[i].childIndex != -1 {
+                            let childIndex = commentViewModel.parentComment[i].childIndex
+                            
+                            ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
+                                SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
+                            }
+                        }
+                    }.scrollId(i)
+                }
+            }
+        }
+    }
     
     var PostContentView: some View {
         VStack {
@@ -279,9 +161,9 @@ extension InternalNewsDetailView {
                         
                         .overlay(RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.blue.opacity(0.5), lineWidth: 2))
-                        
                     
-                    SendCommentButtonView(commentViewModel: commentViewModel, isReply: $isReply, contentId: internalNewData.contentId, parentId: parentId, content: commentText)
+                    
+                    SendCommentButtonView(commentViewModel: commentViewModel, isReply: $isReply, commentText: $commentText, moveToPosition: $moveToPosition, proxy: $proxy, contentId: internalNewData.contentId, parentId: parentId, content: commentText)
                 }
             }.padding(.top, 5)
         }.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
@@ -296,20 +178,7 @@ extension InternalNewsDetailView {
                 
                 // If there no react
                 if reactCount == 0 {
-                    HStack {
-                        HStack(spacing: 4) {
-                            Image("ic_fb_like")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                            Image("ic_fb_laugh")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                        }.scaledToFit()
-                        
-                        Text("be_the_first".localized)
-                            .font(.system(size: 12))
-                            .bold()
-                    }
+                    EmptyView()
                     
                     // If it have some react
                 } else {
@@ -332,18 +201,30 @@ extension InternalNewsDetailView {
                             }
                         }.scaledToFit()
                         
-                        Text(String(reactViewModel.numOfReact))
-                            .font(.system(size: 12))
-                            .bold()
+                        if self.reactViewModel.isLike {
+                            Text(self.reactViewModel.numOfReact == 1 ? "you".localized : "you_and %d".localizeWithFormat(arguments: self.reactViewModel.numOfReact - 1))
+                                .font(.system(size: 12))
+                                .bold()
+                        } else {
+                            Text(self.reactViewModel.numOfReact == 1 ? "%d other".localizeWithFormat(arguments: self.reactViewModel.numOfReact) : "%d others".localizeWithFormat(arguments: self.reactViewModel.numOfReact))
+                                .font(.system(size: 12))
+                                .bold()
+                        }
                     }
                 }
             }
             
             Spacer()
             
-            Text("\(commentViewModel.numOfComment)" + " comments".localized)
-                .font(.system(size: 12))
-                .bold()
+            if commentViewModel.numOfComment == 1 {
+                Text("\(commentViewModel.numOfComment)" + " " + "count_comment".localized)
+                    .font(.system(size: 12))
+                    .bold()
+            } else {
+                Text("\(commentViewModel.numOfComment)" + " " + "count_comments".localized)
+                    .font(.system(size: 12))
+                    .bold()
+            }
         }.padding(.horizontal)
     }
     
@@ -372,12 +253,13 @@ extension InternalNewsDetailView {
                             
                         } else {
                             HStack {
-                                AnimatedImage(name: reactions[self.reactViewModel.selectedReaction] + ".gif")
-                                    .customLoopCount(2)
+                                Image("ic_fb_" + reactions[self.reactViewModel.selectedReaction])
+                                    //                                AnimatedImage(name: reactions[self.reactViewModel.selectedReaction] + ".gif")
+                                    //                                    .customLoopCount(2)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 40,
-                                           height: 40)
+                                    .frame(width: 30,
+                                           height: 30)
                                 Text(reactions[self.reactViewModel.selectedReaction].localized)
                                     .foregroundColor(reactionColors[self.reactViewModel.selectedReaction])
                             }
@@ -416,7 +298,7 @@ extension InternalNewsDetailView {
             
             HStack {
                 Image(systemName: "bubble.left")
-                Text("Comment")
+                Text("comment".localized)
             }
         }.padding(.horizontal)
     }
@@ -456,9 +338,65 @@ extension InternalNewsDetailView {
 }
 
 
+struct SendCommentButtonView: View {
+    
+    @ObservedObject var commentViewModel: CommentViewModel
+    
+    @Binding var isReply: Bool
+    @Binding var commentText: String
+    @Binding var moveToPosition: Int
+    @Binding var proxy: AmzdScrollViewProxy?
+    
+    var contentId: Int
+    var parentId: Int
+    var content: String
+    
+    var body: some View {
+        Button(action: {
+            let addCommnetService = AddCommentService(contentId: contentId, parentId: parentId, content: content)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let newComment = CommentData(id: addCommnetService.newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
+                
+                commentViewModel.updateComment(newComment: newComment)
+            }
+            
+            // Move to the latest comment...
+            // if comment not reply anything
+            if parentId == -1 {
+                if let proxy = proxy {
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(.bottom, animated: true)
+                    }
+                }
+            } else {
+                if let proxy = proxy {
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(self.moveToPosition,
+                                       alignment: .bottom,
+                                       animated: true)
+                    }
+                }
+            }
+            
+            self.commentText = ""
+            self.commentViewModel.numOfComment += 1
+        }, label: {
+            Image(systemName: "paperplane.circle.fill")
+                .padding(.trailing, 3)
+                .foregroundColor(content.isEmpty ? .gray : .blue)
+                .font(.system(size: 35))
+                .background(Color.white)
+        })
+        .disabled(content.isEmpty)
+    }
+}
+
 
 struct InternalNewsDetailView_Previews: PreviewProvider {
     static var previews: some View {
         InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắt điện6", shortBody: "Thông báo cắt điện", body: "Test", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
+
+

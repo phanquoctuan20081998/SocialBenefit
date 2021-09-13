@@ -73,7 +73,7 @@ struct TableCellView: View {
                 .padding(.leading, 10)
             benefitText(text: benefitData.title,scaleRatio: 2.5, width: screen.screenWidth - 22*2, isCenter: false, isItalic: false, isBold: false)
             
-            switch benefitData.status {
+            switch benefitData.mobileStatus {
             case 0: do {
                 benefitText(text: "on_going".localized, scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: true, isBold: false)
             }

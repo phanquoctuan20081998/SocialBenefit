@@ -34,10 +34,13 @@
 "order" = "No.";
 "benefit" = "Benefit";
 "benefit_status" = "Appied?";
-"up_comming" = "up comming";
-"on_going" = "on going";
+"up_comming" = "Up comming";
+"on_going" = "On going";
 "apply" = "Apply";
-"waiting" = "waiting for confirm";
+"waiting_to_confirm" = "Waiting to confirm";
+"approved" = "Approved";
+"rejected" = "Rejected";
+"received" = "Received";
 
 // Internal News
 "internal_news" = "Internal News";
@@ -97,3 +100,42 @@
 "promotion" = "Promotion";
 "user" = "User";
 
+// Internal News Detail
+"reply" = "Reply";
+"a_few_seconds" = "few seconds";
+"reply_to" = "Reply to";
+"type_comment" = "Type to comment";
+"be_the_first" = "Become first people like it";
+"comment" = "Comment";
+"count_comment" = "comment";
+"count_comments" = "comments";
+"like" = "Like";
+"liked" = "Liked";
+"love" = "Love";
+"laugh" = "Laugh";
+"sad" = "Sad";
+"angry" = "Angry";
+"year" = "year";
+"years" = "years";
+"month" = "month";
+"months" = "months";
+"day" = "day";
+"days" = "days";
+"hour" = "hour";
+"hours" = "hours";
+"minute" = "minute";
+"minutes" = "minutes";
+"second" = "second";
+"seconds" = "seconds";
+"you_and %d" = "You and %d others";
+"you" = "You";
+"%d other" = "%d other";
+"%d others" = "%d others";
+
+// Benefit Detail
+"apply_this_benefit" = "Apply this Benefit?";
+"want_to_apply" = "Do you want to apply?"
+"cancel_button" = "CANCEL";
+"ok_button" = "OK";
+"register_now" = "Register now!";
+"condition" = "CONDITION OF BENEFIT";

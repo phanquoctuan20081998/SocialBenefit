@@ -34,10 +34,13 @@
 "order" = "Thứ tự";
 "benefit" = "Phúc lợi";
 "benefit_status" = "Trạng thái";
-"up_comming" = "sắp diễn ra";
-"on_going" = "đang diễn ra";
+"up_comming" = "Sắp diễn ra";
+"on_going" = "Đang diễn ra";
 "apply" = "Đăng kí";
-"waiting" = "chờ xác nhận";
+"waiting_to_confirm" = "Chờ xác nhận";
+"approved" = "Đã phê duyệt";
+"rejected" = "Đã từ chối";
+"received" = "Đã nhận";
 
 // Internal News
 "internal_news" = "Bản tin nội bộ";
@@ -96,3 +99,44 @@
 "recognition" = "Khen thưởng";
 "promotion" = "Khuyến mãi";
 "user" = "Người dùng";
+
+// Internal News Detail
+"reply" = "Trả lởi";
+"a_few_seconds" = "vài giây...";
+"reply_to" = "Trả lời";
+"type_comment" = "Nhập bình luận";
+"be_the_first" = "Trở thành người đầu tiên";
+"comment" = "Bình luận";
+"count_comment" = "bình luận";
+"count_comments" = "bình luận";
+"like" = "Thích";
+"liked" = "Đã thích";
+"love" = "Yêu thích";
+"laugh" = "Haha";
+"sad" = "Buồn";
+"angry" = "Giận dữ";
+"year" = "năm";
+"years" = "năm";
+"month" = "tháng";
+"months" = "tháng";
+"day" = "ngày";
+"days" = "ngày";
+"hour" = "giờ";
+"hours" = "giờ";
+"minute" = "phút";
+"minutes" = "phút";
+"second" = "giây";
+"seconds" = "giây";
+"you_and %d" = "Bạn và %d người khác";
+"you" = "Bạn";
+"%d other" = "%d người khác";
+"%d others" = "%d người khác";
+
+// Benefit Detail
+"apply_this_benefit" = "Đăng kí";
+"want_to_apply" = "Bạn muốn đăng kí?";
+"cancel_button" = "HỦY";
+"ok_button" = "OK";
+"register_now" = "Đăng kí ngay";
+"condition" = "ĐIỀU KIỆN ÁP DỤNG";
+

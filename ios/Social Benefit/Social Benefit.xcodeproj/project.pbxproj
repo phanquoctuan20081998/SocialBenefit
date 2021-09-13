@@ -66,6 +66,8 @@
 		C44F131526E87A19003156A6 /* AddReactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F131426E87A19003156A6 /* AddReactService.swift */; };
 		C4520AB326E3500E00E4B6A5 /* InternalNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4520AB226E3500E00E4B6A5 /* InternalNewsViewModel.swift */; };
 		C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */; };
+		C48BA34826EEE83A006C4F27 /* ScrollViewProxy in Frameworks */ = {isa = PBXBuildFile; productRef = C48BA34726EEE83A006C4F27 /* ScrollViewProxy */; };
+		C48BA34A26EEEBE1006C4F27 /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */; };
 		C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4953EF526E3A9A900295583 /* CommentViewModel.swift */; };
 		C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */; };
 		C4A5583126BA3BC400029AC0 /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A5583026BA3BC400029AC0 /* ResetPasswordViewController.xib */; };
@@ -158,6 +160,7 @@
 		C44F131426E87A19003156A6 /* AddReactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactService.swift; sourceTree = "<group>"; };
 		C4520AB226E3500E00E4B6A5 /* InternalNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsViewModel.swift; sourceTree = "<group>"; };
 		C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
+		C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		C4953EF526E3A9A900295583 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerPopUpView.swift; sourceTree = "<group>"; };
 		C4A5583026BA3BC400029AC0 /* ResetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordViewController.xib; sourceTree = "<group>"; };
@@ -198,6 +201,7 @@
 			files = (
 				C44862A526C62E0800A51883 /* SlidingTabView in Frameworks */,
 				3F3725A6A656E1467C0B9639 /* Pods_Social_Benefit.framework in Frameworks */,
+				C48BA34826EEE83A006C4F27 /* ScrollViewProxy in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,8 +237,8 @@
 		84DA60692696DAC80012F55B /* Social Benefit */ = {
 			isa = PBXGroup;
 			children = (
-				C419868C26E46F6D00A877A5 /* Utilities */,
 				84DA60782696DACA0012F55B /* Info.plist */,
+				C419868C26E46F6D00A877A5 /* Utilities */,
 				C419868626E46EFC00A877A5 /* Components */,
 				C40366F826DB248600381888 /* Application */,
 				C40366F726DB246200381888 /* Storyboards */,
@@ -280,8 +284,8 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
 				C412B0DE26D7521800A669A1 /* TEST */,
+				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
 				C41C8C6C26DC799B00AC1FA7 /* InternalNewsDetail */,
 				C4E9D43126D49FE300B223AC /* HomeScreen */,
 				C4884DEF26CCA462006BC3C1 /* UserInformation */,
@@ -513,6 +517,7 @@
 			children = (
 				C41C8C6D26DC79C200AC1FA7 /* InternalNewsDetailView.swift */,
 				C44D1E9926E7A33E00D2DDA2 /* ReactionBarView.swift */,
+				C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */,
 			);
 			path = InternalNewsDetailView;
 			sourceTree = "<group>";
@@ -672,6 +677,7 @@
 			name = "Social Benefit";
 			packageProductDependencies = (
 				C44862A426C62E0800A51883 /* SlidingTabView */,
+				C48BA34726EEE83A006C4F27 /* ScrollViewProxy */,
 			);
 			productName = "Social Benefit";
 			productReference = 84DA60672696DAC80012F55B /* Social Benefit.app */;
@@ -703,6 +709,7 @@
 			mainGroup = 84DA605E2696DAC80012F55B;
 			packageReferences = (
 				C44862A326C62E0800A51883 /* XCRemoteSwiftPackageReference "SlidingTabView" */,
+				C48BA34626EEE83A006C4F27 /* XCRemoteSwiftPackageReference "ScrollViewProxy" */,
 			);
 			productRefGroup = 84DA60682696DAC80012F55B /* Products */;
 			projectDirPath = "";
@@ -793,6 +800,7 @@
 				C4B3D58226E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift in Sources */,
 				C43B21CB26DE141900E2E451 /* SearchBarView.swift in Sources */,
 				C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */,
+				C48BA34A26EEEBE1006C4F27 /* CommentCardView.swift in Sources */,
 				C431446B26BC1BF4009FCA89 /* MoveTo.swift in Sources */,
 				C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */,
 				C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */,
@@ -1075,6 +1083,14 @@
 				minimumVersion = 1.0.2;
 			};
 		};
+		C48BA34626EEE83A006C4F27 /* XCRemoteSwiftPackageReference "ScrollViewProxy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Amzd/ScrollViewProxy.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1082,6 +1098,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C44862A326C62E0800A51883 /* XCRemoteSwiftPackageReference "SlidingTabView" */;
 			productName = SlidingTabView;
+		};
+		C48BA34726EEE83A006C4F27 /* ScrollViewProxy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C48BA34626EEE83A006C4F27 /* XCRemoteSwiftPackageReference "ScrollViewProxy" */;
+			productName = ScrollViewProxy;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

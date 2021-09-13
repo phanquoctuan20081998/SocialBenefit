@@ -35,7 +35,7 @@ struct DynamicHeightTextField: UIViewRepresentable {
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: context.coordinator, action: #selector(context.coordinator.closeKeyBoard))
+        let doneButton = UIBarButtonItem(title: "done".localized, style: .done, target: context.coordinator, action: #selector(context.coordinator.closeKeyBoard))
         
         toolBar.items = [spacer, doneButton]
         toolBar.sizeToFit()

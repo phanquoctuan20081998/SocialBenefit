@@ -12,6 +12,16 @@ struct ParentCommentData: Identifiable {
     
     var data: CommentData
     var childIndex: Int
+    
+    init() {
+        self.data = CommentData(id: 0, contentId: 0, parentId: 0, avatar: "", commentBy: "", commentDetail: "", commentTime: "")
+        self.childIndex = 0
+    }
+    
+    init(data: CommentData, childIndex: Int) {
+        self.data = data
+        self.childIndex = childIndex
+    }
 }
 
 class CommentViewModel: ObservableObject, Identifiable {
@@ -32,7 +42,7 @@ class CommentViewModel: ObservableObject, Identifiable {
     }
     
     func initComment() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.allComment = self.commentService.allComment
             self.numOfComment = self.commentService.allComment.count
             self.separateChildAndParent()
@@ -41,26 +51,25 @@ class CommentViewModel: ObservableObject, Identifiable {
     
     func separateChildAndParent() {
         
-        DispatchQueue.main.async {
-            for item in self.allComment {
-                if item.parentId == -1 {
-                    let tempParent = ParentCommentData(data: item, childIndex: -1)
-                    self.parentComment.append(tempParent)
+        for item in self.allComment {
+            if item.parentId == -1 {
+                let tempParent = ParentCommentData(data: item, childIndex: -1)
+                self.parentComment.append(tempParent)
+            } else {
+                let sameParentIndex = self.findSameParent(Array: self.childComment, child: item)
+                
+                if sameParentIndex == -1 {
+                    self.childComment.append([item])
                 } else {
-                    let sameParentIndex = self.findSameParent(Array: self.childComment, child: item)
-                    
-                    if sameParentIndex == -1 {
-                        self.childComment.append([item])
-                    } else {
-                        self.childComment[sameParentIndex].append(item)
-                    }
+                    self.childComment[sameParentIndex].append(item)
                 }
             }
-            
-            if self.numOfComment != 0 {
-                self.assignChildToParent()
-            }
         }
+        
+        if self.numOfComment != 0 {
+            self.assignChildToParent()
+        }
+        
     }
     
     func findSameParent(Array: [[CommentData]], child: CommentData) -> Int {
