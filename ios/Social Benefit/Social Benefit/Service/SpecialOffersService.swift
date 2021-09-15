@@ -24,9 +24,9 @@ class SpecialOffersService {
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId]
         
-        let params: Parameters = ["":""]
-        
-        print(params)
+        let params: Parameters = ["searchPattern": searchPattern,
+                                  "fromIndex": "",
+                                  "categoryId": ""]
         
         var id: Int?
         var voucherCode: Int?
@@ -35,7 +35,7 @@ class SpecialOffersService {
         var merchantName: String?
         var content: String?
         var favoriteValue: Int?
-        var outOfDateValue: Date?
+        var outOfDateTime: Date?
         var shoppingValue: Int?
         var pointValue: Int64?
         var moneyValue: Int64?
@@ -44,7 +44,8 @@ class SpecialOffersService {
         var merchantId: Int?
         var employeeLikeThis: Bool?
         
-        service.makeCall(endpoint: Constant.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Constant.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String: String], body: params, callback: { result in
+            
             for i in 0..<result.count {
                 
                 id = result[i]["id"].int ?? -1
@@ -54,7 +55,7 @@ class SpecialOffersService {
                 merchantName = result[i]["merchantName"].string ?? ""
                 content = result[i]["content"].string ?? ""
                 favoriteValue = result[i]["favoriteValue"].int ?? 0
-                outOfDateValue = self.dateFomatter.date(from: result[i]["outOfDateValue"].string ?? "00/00/0000")
+                outOfDateTime = self.dateFomatter.date(from: result[i]["outOfDateTime"].string ?? "00/00/0000")
                 shoppingValue = result[i]["shoppingValue"].int ?? 0
                 pointValue = result[i]["pointValue"].int64 ?? 0
                 moneyValue = result[i]["moneyValue"].int64 ?? 0
@@ -63,12 +64,10 @@ class SpecialOffersService {
                 merchantId = result[i]["merchantId"].int ?? -1
                 employeeLikeThis = result[i]["employeeLikeThis"].bool ?? false
                
-                let tempMerchantVoucherItemData = MerchantVoucherItemData(id: id!, voucherCode: voucherCode!, imageURL: imageURL!, name: name!, merchantName: merchantName!, content: content!, favoriteValue: favoriteValue!, outOfDateValue: outOfDateValue!, shoppingValue: shoppingValue!, pointValue: pointValue!, moneyValue: moneyValue!, discountValue: discountValue!, categoryId: categoryId!, merchantId: merchantId!, employeeLikeThis: employeeLikeThis!)
+                let tempMerchantVoucherItemData = MerchantVoucherItemData(id: id!, voucherCode: voucherCode!, imageURL: imageURL!, name: name!, merchantName: merchantName!, content: content!, favoriteValue: favoriteValue!, outOfDateTime: outOfDateTime!, shoppingValue: shoppingValue!, pointValue: pointValue!, moneyValue: moneyValue!, discountValue: discountValue!, categoryId: categoryId!, merchantId: merchantId!, employeeLikeThis: employeeLikeThis!)
                 
                 data.append(tempMerchantVoucherItemData)
             }
-            print("LALALA")
-            print(result)
             returnCallBack(data)
         })
     }

@@ -594,7 +594,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6D2E4A5C-9397-49F9-8CE0-15F2ACC040FD"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social Benefit/Service/SpecialOffersService.swift"
@@ -618,7 +618,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
                   endingLineNumber = "47"
-                  offsetFromSymbolStart = "2309">
+                  offsetFromSymbolStart = "2286">
                </Location>
                <Location
                   uuid = "6D2E4A5C-9397-49F9-8CE0-15F2ACC040FD - c42d04b382622712"

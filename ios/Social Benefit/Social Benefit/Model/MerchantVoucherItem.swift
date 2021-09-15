@@ -15,7 +15,7 @@ struct MerchantVoucherItemData: Identifiable, Hashable {
     var merchantName: String
     var content: String
     var favoriteValue: Int
-    var outOfDateValue: Date
+    var outOfDateTime: Date
     var shoppingValue: Int
     var pointValue: Int64
     var moneyValue: Int64

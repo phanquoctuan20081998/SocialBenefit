@@ -68,8 +68,8 @@ struct DatePickerPopupView: View {
                     .cornerRadius(16)
             })
             
-        }.frame(height: 360)
-        .frame(width: ScreenInfor().screenWidth)
+        }
+        .frame(width: ScreenInfor().screenWidth, height: 360)
         .background(Color.white)
         .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
         .background(Rectangle()

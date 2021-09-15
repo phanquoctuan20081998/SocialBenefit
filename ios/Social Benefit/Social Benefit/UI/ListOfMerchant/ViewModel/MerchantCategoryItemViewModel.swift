@@ -46,7 +46,9 @@ class MerchantCategoryItemViewModel: ObservableObject, Identifiable {
                                               MerchantCategoryItemData(id: 104, imgSrc: "", title: "anufbb    asdjfaiofjef"),
                                               MerchantCategoryItemData(id: 105, imgSrc: "", title: "jufuvfu shudfhoahdf"),
                                               MerchantCategoryItemData(id: 106, imgSrc: "", title: "aaaaaaaaaaaaa       nbbbb      bbbb")]
-    @Published var selectedIndex: Int = 0
+    
+    @Published var selectedId: Int = 0
+    @Published var isPresentPopUp: Bool = true
     
     private let merchantCategoryItemService = MerchantCategoryItemService()
     

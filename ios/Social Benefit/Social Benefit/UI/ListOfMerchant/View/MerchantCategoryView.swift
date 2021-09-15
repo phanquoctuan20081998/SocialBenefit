@@ -18,7 +18,10 @@ struct MerchantCategoryItemView: View {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
+            
+            Spacer()
         }
+        .overlay(OtherPopUpView())
         .environmentObject(merchantCategoryItemViewModel)
     }
 }
@@ -28,7 +31,7 @@ extension MerchantCategoryItemView {
         HStack(spacing: 10) {
             let allItem = merchantCategoryItemViewModel.allMerchantCategoryItem
             ForEach(0..<(allItem.count > 5 ? 5 : allItem.count)) { i in
-                MerchantCategoryItemCardView(curPosition: i)
+                MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
             }
         }.padding(.horizontal)
     }
@@ -39,11 +42,10 @@ extension MerchantCategoryItemView {
             let allItem = merchantCategoryItemViewModel.allMerchantCategoryItem
             
             ForEach(5..<(allItem.count > 9 ? 9 : allItem.count)) { i in
-                MerchantCategoryItemCardView(curPosition: i)
+                MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
             }
             
             MerchantCategoryItemCardLocalView()
-            
             
         }.padding(.horizontal)
     }
@@ -52,11 +54,11 @@ extension MerchantCategoryItemView {
 struct MerchantCategoryItemCardView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
-    var curPosition: Int
+    var data: MerchantCategoryItemData
     
     var body: some View {
         VStack {
-            URLImageView(url: self.merchantCategoryItemViewModel.allMerchantCategoryItem[self.curPosition].imgSrc)
+            URLImageView(url: self.data.imgSrc)
                 .frame(width: 30, height: 30)
                 .padding(7)
                 .background(
@@ -65,11 +67,11 @@ struct MerchantCategoryItemCardView: View {
                         .shadow(color: .black.opacity(0.3), radius: 3, x: -1, y: 3)
                 )
             
-            Text(self.merchantCategoryItemViewModel.allMerchantCategoryItem[self.curPosition].title)
+            Text(self.data.title)
                 .font(.system(size: 8))
             
             Spacer().frame(height: 3)
-            if self.merchantCategoryItemViewModel.selectedIndex == self.curPosition {
+            if self.merchantCategoryItemViewModel.selectedId == self.data.id {
                 Rectangle()
                     .fill(Color.blue)
                     .frame(height: 2)
@@ -78,7 +80,7 @@ struct MerchantCategoryItemCardView: View {
         .frame(width: 70, height: 70, alignment: .top)
         .onTapGesture {
             withAnimation(.spring()) {
-                self.merchantCategoryItemViewModel.selectedIndex = self.curPosition
+                self.merchantCategoryItemViewModel.selectedId = self.data.id
             }
         }
     }
@@ -91,41 +93,93 @@ struct MerchantCategoryItemCardLocalView: View {
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     
     var body: some View {
-        VStack {
-            Image("ic_others")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-                .padding(7)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white)
-                        .shadow(color: .black.opacity(0.3), radius: 3, x: -1, y: 3)
-                )
-            
-            Text("other".localized)
-                .font(.system(size: 8))
-            
-            Spacer().frame(height: 3)
-            
-            if self.merchantCategoryItemViewModel.selectedIndex == 9 {
-                Rectangle()
-                    .fill(Color.blue)
-                    .frame(height: 2)
+        ZStack {
+            VStack {
+                Image("ic_others")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30)
+                    .padding(7)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                            .shadow(color: .black.opacity(0.3), radius: 3, x: -1, y: 3)
+                    )
+                
+                Text("other".localized)
+                    .font(.system(size: 8))
+                
+                Spacer().frame(height: 3)
+                
+                if self.merchantCategoryItemViewModel.selectedId == -1 {
+                    Rectangle()
+                        .fill(Color.blue)
+                        .frame(height: 2)
+                }
             }
-        }
-        .frame(width: 70, height: 70, alignment: .top)
-        .onTapGesture {
-            withAnimation(.spring()) {
-                self.merchantCategoryItemViewModel.selectedIndex = 9
+            .frame(width: 70, height: 70, alignment: .top)
+            
+            .onTapGesture {
+                withAnimation(.spring()) {
+                    self.merchantCategoryItemViewModel.selectedId = -1
+                    self.merchantCategoryItemViewModel.isPresentPopUp = true
+                }
             }
         }
     }
 }
 
+struct OtherPopUpView: View {
+    
+    @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
+    
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            if merchantCategoryItemViewModel.isPresentPopUp {
+                Color.black
+                    .opacity(0.3)
+                    .edgesIgnoringSafeArea(.top)
+                    .onTapGesture {
+                        merchantCategoryItemViewModel.isPresentPopUp = false
+                    }
+                ContentView
+                    .animation(.easeInOut)
+                    .transition(.move(edge: .bottom))
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        .foregroundColor(.black)
+    }
+    
+    var ContentView: some View {
+        VStack(spacing: 15) {
+            
+            HStack {
+                Text("all_categories".localized)
+                Spacer()
+                Button(action: {
+                    merchantCategoryItemViewModel.isPresentPopUp = false
+                }, label: {
+                    Image(systemName: "xmark")
+                })
+            }.padding()
+            
+            ScrollView {
+                UIGrid(columns: 5, list: merchantCategoryItemViewModel.allMerchantCategoryItem) { item in
+                    MerchantCategoryItemCardView(data: item)
+                }
+            }
+        }.padding(.vertical, 5)
+        .frame(height: 420)
+        .background(Color.white)
+        .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
+        .padding(.horizontal)
+    }
+}
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         MerchantCategoryItemView()
+//        OtherPopUpView()
+//            .environmentObject(MerchantCategoryItemViewModel())
     }
 }

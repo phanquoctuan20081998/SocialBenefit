@@ -12,11 +12,18 @@ struct SpecialOffersView: View {
     @ObservedObject var specialOffersViewModel = SpecialOffersViewModel(searchPattern: "", fromIndex: -1, categoryid: -1)
 
     var body: some View {
-        HStack {
-            ScrollView {
-                ForEach(self.specialOffersViewModel.allSpecialOffers, id: \.self) { item in
-                    SpecialOfferCardView(voucherData: item)
-                }
+        VStack(alignment: .leading, spacing: 2) {
+            Text("special_offer".localized.uppercased())
+                .font(.system(size: 18, weight: .heavy, design: .default))
+                .padding(.leading)
+                .foregroundColor(.orange)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    ForEach(self.specialOffersViewModel.allSpecialOffers, id: \.self) { item in
+                        SpecialOfferCardView(voucherData: item)
+                    }
+                }.padding()
             }
         }.environmentObject(specialOffersViewModel)
     }
@@ -49,7 +56,7 @@ struct SpecialOfferCardView: View {
         .frame(width: 150, height: 200)
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
-                        .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 7))
+                        .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 1))
     }
 }
 
@@ -125,6 +132,6 @@ extension SpecialOfferCardView {
 
 struct SpecialOffersView_Previews: PreviewProvider {
     static var previews: some View {
-        SpecialOfferCardView(voucherData: MerchantVoucherItemData(id: 0, voucherCode: 0, imageURL:  "/files/4194/bee.gif", name: "Test", merchantName: "Toyota", content: "fsdfs", favoriteValue: 3, outOfDateValue: Date(), shoppingValue: 5, pointValue: 30000, moneyValue: 50000, discountValue: -10, categoryId: 1, merchantId: 1, employeeLikeThis: true))
+        SpecialOffersView()
     }
 }
