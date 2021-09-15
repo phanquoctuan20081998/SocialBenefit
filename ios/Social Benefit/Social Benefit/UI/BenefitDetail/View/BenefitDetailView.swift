@@ -33,9 +33,9 @@ struct BenefitDetailView: View {
             
             VStack {
                 ScrollView {
-                    Text(self.benefitDetailViewModel.benefit.body)
+                    HTMLText(html: self.benefitDetailViewModel.benefit.body)
                         .font(.system(size: 15))
-                        .padding()
+                        .padding(30)
                 }
                 getApplyButton()
             }

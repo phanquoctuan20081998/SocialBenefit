@@ -105,12 +105,19 @@ extension InternalNewsDetailView {
             
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(internalNewData.title)
+                    Text(internalNewData.title.toUpperCase())
                         .bold()
                         .font(.system(size: 20))
                         .lineLimit(2)
-                    Text(internalNewData.body)
-                        .lineLimit(5)
+                    
+                    if Array(internalNewData.body)[0] == "<" {
+                        HTMLText(html: internalNewData.body)
+                            .lineLimit(5)
+                    }
+                    else {
+                        Text(internalNewData.body)
+                            .lineLimit(5)
+                    }
                 }
                 Spacer()
             }.padding(.horizontal)
@@ -395,7 +402,7 @@ struct SendCommentButtonView: View {
 
 struct InternalNewsDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắt điện6", shortBody: "Thông báo cắt điện", body: "Test", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
+        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>Test</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
 

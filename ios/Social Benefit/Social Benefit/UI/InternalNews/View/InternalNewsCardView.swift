@@ -22,14 +22,14 @@ struct InternalNewsCardView: View {
             }, label: {
                 HStack {
                     URLImageView(url: internalNewsData.cover)
-                        .frame(width: 100)
+                        .frame(width: 80, height: 80)
                         .cornerRadius(20)
                         .padding(.all, 15)
                     
                     Spacer()
 
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(internalNewsData.title)
+                        Text(internalNewsData.title.toUpperCase())
                             .fontWeight(.semibold)
                             .lineLimit(2)
                         
@@ -41,7 +41,7 @@ struct InternalNewsCardView: View {
                     .padding(.trailing, 20)
                     
                     Spacer()
-                }
+                }.frame(height: 100)
             })
         }
         .frame(width: ScreenInfor().screenWidth * 0.9)

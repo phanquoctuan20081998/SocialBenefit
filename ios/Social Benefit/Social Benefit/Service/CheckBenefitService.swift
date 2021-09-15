@@ -31,7 +31,7 @@ class CheckBenefitService {
         service.makeCall(endpoint: Constant.API_BENEFIT_CHECK, method: "POST", header: header as [String : String], body: params, callback: { result in
             
             DispatchQueue.main.async { [weak self] in
-                self?.status = result["status"].int!
+                self?.status = result["status"].int ?? -1
             }
         })
     }

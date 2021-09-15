@@ -41,6 +41,7 @@
 "approved" = "Đã phê duyệt";
 "rejected" = "Đã từ chối";
 "received" = "Đã nhận";
+"waiting" = "Chờ xác nhận";
 
 // Internal News
 "internal_news" = "Bản tin nội bộ";
@@ -51,7 +52,7 @@
 "cancel" = "Huỷ";
 
 // User Screen
-"point_history" = "Lịch sử tiêu dùng điễm";
+"point_history" = "Lịch sử tiêu dùng điểm";
 "favorite" = "Cửa hàng ưu thích";
 "benefits" = "Danh sách phúc lợi của bạn";
 "surveys" = "Khảo sát công ty";

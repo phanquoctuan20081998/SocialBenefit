@@ -72,8 +72,5 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     userInfor.CMND = citizen["idCard"].string ?? ""
     userInfor.passport = citizen["passport"].string ?? ""
     userInfor.insurance = citizen["socialInsurance"].string ?? ""
-    
-    
-    print(userInfor)
 }
 

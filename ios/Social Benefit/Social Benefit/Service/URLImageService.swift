@@ -20,7 +20,10 @@ class URLImageService {
     private let folderName = "urlimages"
     
     init(url: String) {
-        self.urlImage = Constant.baseURL + url
+        if url.prefix(4) == "http" {
+            self.urlImage = url
+        } else { self.urlImage = Constant.baseURL + url }
+        
         self.imageName = (url as NSString).lastPathComponent
         getURLImage()
     }
@@ -50,4 +53,5 @@ class URLImageService {
     }
     
 }
+
 

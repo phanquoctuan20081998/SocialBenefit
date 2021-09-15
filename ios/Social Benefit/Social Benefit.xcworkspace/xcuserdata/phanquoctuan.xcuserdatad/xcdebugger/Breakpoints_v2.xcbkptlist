@@ -590,5 +590,53 @@
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D2E4A5C-9397-49F9-8CE0-15F2ACC040FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/Service/SpecialOffersService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getAPI(searchPattern:fromIndex:categoryId:returnCallBack:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6D2E4A5C-9397-49F9-8CE0-15F2ACC040FD - 91ba1a1e11fd6fcc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.SpecialOffersService.getAPI(searchPattern: Swift.String, fromIndex: Swift.Int, categoryId: Swift.Int, returnCallBack: (Swift.Array&lt;Social_Benefit.MerchantVoucherItemData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/Service/SpecialOffersService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "2309">
+               </Location>
+               <Location
+                  uuid = "6D2E4A5C-9397-49F9-8CE0-15F2ACC040FD - c42d04b382622712"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in Social_Benefit.SpecialOffersService.getAPI(searchPattern: Swift.String, fromIndex: Swift.Int, categoryId: Swift.Int, returnCallBack: (Swift.Array&lt;Social_Benefit.MerchantVoucherItemData&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/Service/SpecialOffersService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "681">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

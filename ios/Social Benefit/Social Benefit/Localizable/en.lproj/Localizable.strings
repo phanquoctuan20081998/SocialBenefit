@@ -41,6 +41,7 @@
 "approved" = "Approved";
 "rejected" = "Rejected";
 "received" = "Received";
+"waiting" = "Waiting";
 
 // Internal News
 "internal_news" = "Internal News";
@@ -134,7 +135,7 @@
 
 // Benefit Detail
 "apply_this_benefit" = "Apply this Benefit?";
-"want_to_apply" = "Do you want to apply?"
+"want_to_apply" = "Do you want to apply?";
 "cancel_button" = "CANCEL";
 "ok_button" = "OK";
 "register_now" = "Register now!";

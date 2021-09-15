@@ -54,7 +54,7 @@ struct benefitButton: View {
                 
                 
             }, label: {
-                RoundedButton(text: "Apply", font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
+                RoundedButton(text: "apply".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
                     .font(.system(size: 20, weight: .black, design: .default))
             })
         }
