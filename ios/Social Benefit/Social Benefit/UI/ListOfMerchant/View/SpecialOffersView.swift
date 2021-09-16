@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SpecialOffersView: View {
     
-    @ObservedObject var specialOffersViewModel = SpecialOffersViewModel(searchPattern: "", fromIndex: -1, categoryid: -1)
-
+    @EnvironmentObject var specialOffersViewModel: SpecialOffersViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("special_offer".localized.uppercased())
@@ -23,9 +23,38 @@ struct SpecialOffersView: View {
                     ForEach(self.specialOffersViewModel.allSpecialOffers, id: \.self) { item in
                         SpecialOfferCardView(voucherData: item)
                     }
+                    //Infinite Scroll View
+                    
+                    if (self.specialOffersViewModel.fromIndex == self.specialOffersViewModel.allSpecialOffers.count) {
+                        
+                        ActivityIndicator(isAnimating: true)
+                            .onAppear {
+                                let _ = print("Loading")
+                                if self.specialOffersViewModel.allSpecialOffers.count % 10 == 0 {
+                                    self.specialOffersViewModel.reLoadData()
+                                }
+                            }
+                        
+                    } else {
+                        GeometryReader { reader -> Color in
+                            let minY = reader.frame(in: .global).minY
+                            let height = ScreenInfor().screenHeight / 1.3
+                            
+                            
+                            if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minY < height {
+                                
+                                DispatchQueue.main.async {
+                                    self.specialOffersViewModel.fromIndex = self.specialOffersViewModel.allSpecialOffers.count
+                                }
+                            }
+                            return Color.clear
+                        }
+                        .frame(width: 20, height: 20)
+                    }
+                    
                 }.padding()
             }
-        }.environmentObject(specialOffersViewModel)
+        }.padding(.horizontal)
     }
 }
 
@@ -65,7 +94,7 @@ extension SpecialOfferCardView {
     var LoveAndCartCountView: some View {
         HStack {
             HStack(spacing: 2) {
-                Image(systemName: "suit.heart")
+                Image(systemName: "suit.heart\(self.voucherData.employeeLikeThis ? ".fill" : "")")
                     .foregroundColor(.red)
                     .font(.system(size: 10))
                 Text("\(voucherData.favoriteValue)")
@@ -97,7 +126,7 @@ extension SpecialOfferCardView {
                     .foregroundColor(.blue)
                     .font(.system(size: 10))
                 
-                HStack {
+                HStack(spacing: 3) {
                     Text("\(voucherData.moneyValue) VND")
                         .strikethrough()
                         .font(.system(size: 10))
@@ -106,7 +135,7 @@ extension SpecialOfferCardView {
                         .bold()
                         .foregroundColor(.white)
                         .font(.system(size: 7))
-                        .padding(2)
+                        .padding(.init(top: 2, leading: 1, bottom: 2, trailing: 1))
                         .background(RoundedRectangle(cornerRadius: 6).fill(Color.orange))
                 }
             }
@@ -133,5 +162,6 @@ extension SpecialOfferCardView {
 struct SpecialOffersView_Previews: PreviewProvider {
     static var previews: some View {
         SpecialOffersView()
+            .environmentObject(SpecialOffersViewModel(searchPattern: "", fromIndex: 0, categoryId: -1))
     }
 }

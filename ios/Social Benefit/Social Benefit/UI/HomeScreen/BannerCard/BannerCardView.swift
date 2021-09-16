@@ -17,7 +17,6 @@ struct InternalNewsBannerView: View {
     @Binding var isPresentedTabBar: Bool
     
     var body: some View {
-        let _ = print(internalNewsViewModel.allInternalNews)
         VStack {
             NavigationLink(
                 destination: InternalNewsView(isPresentedTabBar: $isPresentedTabBar).navigationBarHidden(true),

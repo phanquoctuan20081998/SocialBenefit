@@ -25,8 +25,10 @@ class SpecialOffersService {
                       "employeeId": userInfor.employeeId]
         
         let params: Parameters = ["searchPattern": searchPattern,
-                                  "fromIndex": "",
-                                  "categoryId": ""]
+                                  "fromIndex": fromIndex,
+                                  "categoryId": (categoryId == -1) ? "" : categoryId]
+        
+        print(params)
         
         var id: Int?
         var voucherCode: Int?

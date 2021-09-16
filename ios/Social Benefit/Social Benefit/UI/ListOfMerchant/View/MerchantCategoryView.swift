@@ -18,8 +18,6 @@ struct MerchantCategoryItemView: View {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
-            
-            Spacer()
         }
         .overlay(OtherPopUpView())
         .environmentObject(merchantCategoryItemViewModel)
@@ -71,7 +69,8 @@ struct MerchantCategoryItemCardView: View {
                 .font(.system(size: 8))
             
             Spacer().frame(height: 3)
-            if self.merchantCategoryItemViewModel.selectedId == self.data.id {
+            
+            if self.merchantCategoryItemViewModel.selectedId == self.data.id && self.merchantCategoryItemViewModel.isInCategoryView {
                 Rectangle()
                     .fill(Color.blue)
                     .frame(height: 2)
@@ -111,7 +110,7 @@ struct MerchantCategoryItemCardLocalView: View {
                 
                 Spacer().frame(height: 3)
                 
-                if self.merchantCategoryItemViewModel.selectedId == -1 {
+                if self.merchantCategoryItemViewModel.selectedId == -1 && self.merchantCategoryItemViewModel.isInCategoryView {
                     Rectangle()
                         .fill(Color.blue)
                         .frame(height: 2)

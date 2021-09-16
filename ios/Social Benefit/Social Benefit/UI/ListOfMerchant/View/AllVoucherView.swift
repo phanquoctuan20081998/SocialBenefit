@@ -9,23 +9,51 @@ import SwiftUI
 
 struct AllOffersView: View {
     
-    @ObservedObject var specialOffersViewModel = SpecialOffersViewModel(searchPattern: "", fromIndex: -1, categoryid: -1)
-
+    @EnvironmentObject var specialOffersViewModel: SpecialOffersViewModel
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text("all_offer".localized.uppercased())
-                .font(.system(size: 18, weight: .heavy, design: .default))
-                .padding(.leading)
-                .foregroundColor(.orange)
+        
+        ScrollView(.vertical, showsIndicators: false) {
             
-            ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 2) {
+            
                 VStack(spacing: 15) {
                     ForEach(self.specialOffersViewModel.allSpecialOffers, id: \.self) { item in
-                    AllOfferCardView(voucherData: item)
+                        AllOfferCardView(voucherData: item)
                     }
+                    
+                    //Infinite Scroll View
+                    
+                    if (self.specialOffersViewModel.fromIndex == self.specialOffersViewModel.allSpecialOffers.count) {
+                        
+                        ActivityIndicator(isAnimating: true)
+                            .onAppear {
+                                let _ = print("Loading")
+                                if self.specialOffersViewModel.allSpecialOffers.count % 10 == 0 {
+                                    self.specialOffersViewModel.reLoadData()
+                                }
+                            }
+                        
+                    } else {
+                        GeometryReader { reader -> Color in
+                            let minY = reader.frame(in: .global).minY
+                            let height = ScreenInfor().screenHeight / 1.3
+                            
+                            
+                            if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minY < height {
+                                
+                                DispatchQueue.main.async {
+                                    self.specialOffersViewModel.fromIndex = self.specialOffersViewModel.allSpecialOffers.count
+                                }
+                            }
+                            return Color.clear
+                        }
+                        .frame(width: 20, height: 20)
+                    }
+                    
                 }.padding()
             }
-        }.environmentObject(specialOffersViewModel)
+        }
     }
 }
 
@@ -39,7 +67,7 @@ struct AllOfferCardView: View {
                 .frame(width: 80, height: 80)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(10)
-                
+            
             Spacer().frame(width: 5)
             
             VStack(alignment: .leading, spacing: 5) {
@@ -48,7 +76,7 @@ struct AllOfferCardView: View {
                     .font(.system(size: 13))
                     .lineLimit(2)
                     .frame(height: 32, alignment: .topLeading)
-
+                
                 
                 LoveAndCartCountView
                 
@@ -79,7 +107,7 @@ extension AllOfferCardView {
                 .fill(Color.gray.opacity(0.5))
                 .frame(width: 2, height: 10)
                 .padding(.horizontal, 5)
-                
+            
             
             HStack(spacing: 2) {
                 Image(systemName: "cart")
@@ -135,5 +163,10 @@ extension AllOfferCardView {
 struct AllOffersView_Previews: PreviewProvider {
     static var previews: some View {
         AllOffersView()
+            .environmentObject(SpecialOffersViewModel(searchPattern: "", fromIndex: 0, categoryId: -1))
     }
 }
+
+
+
+
