@@ -69,6 +69,8 @@
 		C44D1EA526E7A45300D2DDA2 /* laugh.gif in Resources */ = {isa = PBXBuildFile; fileRef = C44D1EA026E7A45300D2DDA2 /* laugh.gif */; };
 		C44F131526E87A19003156A6 /* AddReactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F131426E87A19003156A6 /* AddReactService.swift */; };
 		C4520AB326E3500E00E4B6A5 /* InternalNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4520AB226E3500E00E4B6A5 /* InternalNewsViewModel.swift */; };
+		C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16326F2E5E400933BBC /* VoucherFilterView.swift */; };
+		C462F16626F2E76700933BBC /* AllVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16526F2E76700933BBC /* AllVoucherView.swift */; };
 		C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */; };
 		C48BA34826EEE83A006C4F27 /* ScrollViewProxy in Frameworks */ = {isa = PBXBuildFile; productRef = C48BA34726EEE83A006C4F27 /* ScrollViewProxy */; };
 		C48BA34A26EEEBE1006C4F27 /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */; };
@@ -174,6 +176,8 @@
 		C44D1EA026E7A45300D2DDA2 /* laugh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = laugh.gif; path = ../../../../../../../../Downloads/laugh.gif; sourceTree = "<group>"; };
 		C44F131426E87A19003156A6 /* AddReactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactService.swift; sourceTree = "<group>"; };
 		C4520AB226E3500E00E4B6A5 /* InternalNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsViewModel.swift; sourceTree = "<group>"; };
+		C462F16326F2E5E400933BBC /* VoucherFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherFilterView.swift; sourceTree = "<group>"; };
+		C462F16526F2E76700933BBC /* AllVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVoucherView.swift; sourceTree = "<group>"; };
 		C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
 		C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCardView.swift; sourceTree = "<group>"; };
 		C48BA34F26EEFC6E006C4F27 /* MerchantCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantCategoryView.swift; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 			children = (
 				C48BA34F26EEFC6E006C4F27 /* MerchantCategoryView.swift */,
 				C40161C426F08D44003A1EEF /* SpecialOffersView.swift */,
+				C462F16326F2E5E400933BBC /* VoucherFilterView.swift */,
+				C462F16526F2E76700933BBC /* AllVoucherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -912,6 +918,7 @@
 				C426927326EB02130089A5B8 /* BenefitDetailViewModel.swift in Sources */,
 				C419869226E46FC200A877A5 /* URLImageService.swift in Sources */,
 				C43B21C626DDCDB800E2E451 /* CommentModel.swift in Sources */,
+				C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */,
 				C403670526DB85D700381888 /* BannerCardView.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,
 				C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */,
@@ -935,6 +942,7 @@
 				C4492A6026F1965A008B26C9 /* SpecialOffersViewModel.swift in Sources */,
 				C40366FF26DB278100381888 /* MerchantListService.swift in Sources */,
 				C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */,
+				C462F16626F2E76700933BBC /* AllVoucherView.swift in Sources */,
 				C419869026E46F9000A877A5 /* NetworkingManager.swift in Sources */,
 				C436562826CB4BB800148796 /* UserView.swift in Sources */,
 				84DA60C4269ECA130012F55B /* HomeViewController.swift in Sources */,
