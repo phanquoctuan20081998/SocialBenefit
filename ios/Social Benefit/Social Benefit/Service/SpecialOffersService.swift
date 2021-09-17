@@ -28,8 +28,6 @@ class SpecialOffersService {
                                   "fromIndex": fromIndex,
                                   "categoryId": (categoryId == -1) ? "" : categoryId]
         
-        print(params)
-        
         var id: Int?
         var voucherCode: Int?
         var imageURL: String?

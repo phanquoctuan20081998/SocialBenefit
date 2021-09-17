@@ -600,8 +600,8 @@
             filePath = "Social Benefit/Service/SpecialOffersService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "getAPI(searchPattern:fromIndex:categoryId:returnCallBack:)"
             landmarkType = "7">
             <Locations>
@@ -648,8 +648,8 @@
             filePath = "Social Benefit/UI/ListOfMerchant/View/AllVoucherView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -696,8 +696,227 @@
             filePath = "Social Benefit/UI/ListOfMerchant/View/AllVoucherView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "ListOfMerchantView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - cdd2c34b06160370"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Social_Benefit.ListOfMerchantView.specialOffersViewModel : Social_Benefit.SpecialOffersViewModel"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - a6be0289a6a22092"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ListOfMerchantView.specialOffersViewModel.getter : Social_Benefit.SpecialOffersViewModel"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "93">
+               </Location>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - a367807eb94a129e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ListOfMerchantView.specialOffersViewModel.setter : Social_Benefit.SpecialOffersViewModel"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "74">
+               </Location>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - 5d0d42569c692a73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ListOfMerchantView.specialOffersViewModel.modify : Social_Benefit.SpecialOffersViewModel"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "14">
+               </Location>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - e81f3f3afc5ff85e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ListOfMerchantView.specialOffersViewModel.modify : Social_Benefit.SpecialOffersViewModel with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - 93cb0d27e418a615"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ListOfMerchantView.$specialOffersViewModel.getter : SwiftUI.ObservedObject&lt;Social_Benefit.SpecialOffersViewModel&gt;.Wrapper"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "98">
+               </Location>
+               <Location
+                  uuid = "5A048FDD-9845-45EB-85FD-71C79ADEEB51 - b03863a80af7e223"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ListOfMerchantView.init() -&gt; Social_Benefit.ListOfMerchantView"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/ListOfMerchantView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C4BF3AF-63A5-44B7-8395-A7F35BF1B81B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/ListOfMerchant/View/SpecialOffersView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72DF45BA-866A-42D7-8FC8-7F7C812D0460"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/ListOfMerchant/ViewModel/SpecialOffersViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "reLoadData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "478F96F3-1E57-47A0-9500-CDD8A3006D4D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/ListOfMerchant/ViewModel/SpecialOffersViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
             endingLineNumber = "45"
+            landmarkName = "reLoadData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "478F96F3-1E57-47A0-9500-CDD8A3006D4D - e0fe63f68407787f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.SpecialOffersViewModel.reLoadData() -&gt; ()"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/ViewModel/SpecialOffersViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  uuid = "478F96F3-1E57-47A0-9500-CDD8A3006D4D - fca21f8aca1c61e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Social_Benefit.MerchantVoucherItemData&gt;) -&gt; () in Social_Benefit.SpecialOffersViewModel.reLoadData() -&gt; ()"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/ViewModel/SpecialOffersViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "147">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60FAF036-73E0-4DDC-A5C1-FCC7510EE730"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/ListOfMerchant/View/SpecialOffersView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

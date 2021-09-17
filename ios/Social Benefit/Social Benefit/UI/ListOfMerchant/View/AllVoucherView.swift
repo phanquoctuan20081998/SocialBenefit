@@ -10,6 +10,7 @@ import SwiftUI
 struct AllOffersView: View {
     
     @EnvironmentObject var specialOffersViewModel: SpecialOffersViewModel
+    @State var isShowProgressView: Bool = false
     
     var body: some View {
         
@@ -24,14 +25,18 @@ struct AllOffersView: View {
                     
                     //Infinite Scroll View
                     
-                    if (self.specialOffersViewModel.fromIndex == self.specialOffersViewModel.allSpecialOffers.count) {
+                    if (self.specialOffersViewModel.fromIndex == self.specialOffersViewModel.allSpecialOffers.count && self.isShowProgressView) {
                         
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
-                                let _ = print("Loading")
                                 if self.specialOffersViewModel.allSpecialOffers.count % 10 == 0 {
                                     self.specialOffersViewModel.reLoadData()
                                 }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    self.isShowProgressView = false
+                                }
+                                
                             }
                         
                     } else {
@@ -39,17 +44,19 @@ struct AllOffersView: View {
                             let minY = reader.frame(in: .global).minY
                             let height = ScreenInfor().screenHeight / 1.3
                             
-                            
                             if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minY < height {
                                 
                                 DispatchQueue.main.async {
                                     self.specialOffersViewModel.fromIndex = self.specialOffersViewModel.allSpecialOffers.count
+                                    self.isShowProgressView = true
                                 }
                             }
                             return Color.clear
                         }
                         .frame(width: 20, height: 20)
                     }
+                    
+                    Spacer().frame(height: 40)
                     
                 }.padding()
             }
@@ -163,7 +170,7 @@ extension AllOfferCardView {
 struct AllOffersView_Previews: PreviewProvider {
     static var previews: some View {
         AllOffersView()
-            .environmentObject(SpecialOffersViewModel(searchPattern: "", fromIndex: 0, categoryId: -1))
+            .environmentObject(SpecialOffersViewModel())
     }
 }
 

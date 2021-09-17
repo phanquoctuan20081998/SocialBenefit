@@ -77,7 +77,7 @@ extension InternalNewsView {
                     .padding(.all, 15)
             }
             
-            SearchBarView(searchText: $searchText, isSearching: $isSearching)
+            SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized)
             
             SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
         }.frame(width: ScreenInfor().screenWidth, height: 200)

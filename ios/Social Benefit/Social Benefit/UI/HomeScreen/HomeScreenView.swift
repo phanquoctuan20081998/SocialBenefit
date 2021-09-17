@@ -22,7 +22,7 @@ struct HomeScreenView: View {
             } else if selectedTab == "star" {
                 EmptyView()
             } else if selectedTab == "tag" {
-                AllOffersView()
+                ListOfMerchantView()
             } else if selectedTab == "person.circle" {
                 UserView(isPresentedTabBar: $isPresentedTabBar)
             }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class SpecialOffersViewModel: ObservableObject, Identifiable {
 //    @Published var allSpecialOffers = [MerchantVoucherItemData]()
@@ -14,27 +15,46 @@ class SpecialOffersViewModel: ObservableObject, Identifiable {
     @Published var curLoad = 0
     
     @Published var searchPattern: String = ""
-    @Published var fromIndex: Int = -1
+    @Published var fromIndex: Int = 0
     @Published var categoryId: Int = -1
     
     private let specialOffersService = SpecialOffersService()
+    private var cancellables = Set<AnyCancellable>()
     
-    init(searchPattern: String, fromIndex: Int, categoryId: Int) {
-        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId) { data in
+    init() {
+        loadData(searchPattern: "")
+        addSubscribers()
+    }
+    
+    func addSubscribers() {
+        $searchPattern
+            .sink(receiveValue: loadData(searchPattern:))
+            .store(in: &cancellables)
+    }
+    
+    func loadData(searchPattern: String) {
+        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId) { data in
             DispatchQueue.main.async {
                 self.allSpecialOffers = data
+                
             }
         }
     }
     
     func reLoadData() {
-        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId) { data in
-            print(data)
+        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId) { [self] data in
+            print("searchPattern: \(searchPattern), fromIndex: \(fromIndex), categoryId: \(categoryId)")
             DispatchQueue.main.async {
                 for item in data {
                     self.allSpecialOffers.append(item)
                 }
             }
+        }
+    }
+    
+    func searchSpecialOffers(searchtext: String, categoryId: Int, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ())  {
+        specialOffersService.getAPI(searchPattern: searchtext, fromIndex: 0, categoryId: categoryId) { data in
+            returnCallBack(data)
         }
     }
 }

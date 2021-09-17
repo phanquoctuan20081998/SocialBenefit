@@ -13,11 +13,12 @@ struct SearchBarView: View {
     
     @Binding var searchText: String
     @Binding var isSearching: Bool
+    var placeHolder: String
     
     var body: some View {
         HStack {
             HStack {
-                TextField("search_news".localized, text: $searchText)
+                TextField(placeHolder, text: $searchText)
                     .padding(.leading, 35)
             }
             .padding(.all, 10)
@@ -68,9 +69,9 @@ struct SearchBarView: View {
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SearchBarView(searchText: .constant(""), isSearching: .constant(true))
+            SearchBarView(searchText: .constant(""), isSearching: .constant(true), placeHolder: "search_news".localized)
                 .previewLayout(.sizeThatFits)
-            SearchBarView(searchText: .constant(""), isSearching: .constant(false))
+            SearchBarView(searchText: .constant(""), isSearching: .constant(false), placeHolder: "search_news".localized)
                 .previewLayout(.sizeThatFits)
         }
     }

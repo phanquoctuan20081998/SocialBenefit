@@ -571,11 +571,11 @@
 		C48BA34C26EEFC0A006C4F27 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C42F55C026F37670006F1CAC /* ListOfMerchantView.swift */,
 				C48BA34F26EEFC6E006C4F27 /* MerchantCategoryView.swift */,
 				C40161C426F08D44003A1EEF /* SpecialOffersView.swift */,
 				C462F16326F2E5E400933BBC /* VoucherFilterView.swift */,
 				C462F16526F2E76700933BBC /* AllVoucherView.swift */,
-				C42F55C026F37670006F1CAC /* ListOfMerchantView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -12,7 +12,7 @@ let filterType = ["nearest_deadline", "farthest_deadline", "lowest_pice", "highe
 
 struct FilterView: View {
     
-    @State var selectedFilterIndex: Int = 0
+    @State var selectedFilterIndex: Int = -1
     @State private var proxy: AmzdScrollViewProxy? = nil
     
     var body: some View {
@@ -49,7 +49,7 @@ extension FilterView {
                                     .foregroundColor(.white)
                                     .background(RoundedRectangle(cornerRadius: 30).fill(Color.blue))
                                     .onTapGesture {
-                                        self.selectedFilterIndex = i
+                                        self.selectedFilterIndex = -1
                                         self.proxy?.scrollTo(self.selectedFilterIndex,
                                                              alignment: .top,
                                                                animated: true)

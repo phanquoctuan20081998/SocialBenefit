@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MerchantCategoryItemView: View {
-    @ObservedObject var merchantCategoryItemViewModel = MerchantCategoryItemViewModel()
+    
+    @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     
     var body: some View {
         VStack {
@@ -20,7 +21,7 @@ struct MerchantCategoryItemView: View {
             }
         }
         .overlay(OtherPopUpView())
-        .environmentObject(merchantCategoryItemViewModel)
+        
     }
 }
 
