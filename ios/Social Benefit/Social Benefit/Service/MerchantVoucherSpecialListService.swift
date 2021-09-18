@@ -10,7 +10,7 @@ import SwiftUI
 import Alamofire
 import SwiftyJSON
 
-class SpecialOffersService {
+class MerchantVoucherSpecialListService {
     let dateFomatter = DateFormatter()
     
     init() {

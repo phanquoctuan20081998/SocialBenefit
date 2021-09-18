@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SpecialOffersView: View {
     
-    @EnvironmentObject var specialOffersViewModel: SpecialOffersViewModel
+    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @State var isShowProgressView = false
     
     var body: some View {
@@ -173,6 +173,6 @@ extension SpecialOfferCardView {
 struct SpecialOffersView_Previews: PreviewProvider {
     static var previews: some View {
         SpecialOffersView()
-            .environmentObject(SpecialOffersViewModel())
+            .environmentObject(MerchantVoucherSpecialListViewModel())
     }
 }

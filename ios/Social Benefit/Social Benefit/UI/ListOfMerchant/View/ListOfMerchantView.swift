@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ListOfMerchantView: View {
     
-    @ObservedObject var specialOffersViewModel = SpecialOffersViewModel()
     @ObservedObject var merchantCategoryItemViewModel = MerchantCategoryItemViewModel()
+    @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
+    @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
     
     @State var isSearching = false
+    @State var searchText = ""
     
     var body: some View {
         ScrollView {
@@ -25,15 +27,24 @@ struct ListOfMerchantView: View {
             }
             .environmentObject(specialOffersViewModel)
             .environmentObject(merchantCategoryItemViewModel)
+            .environmentObject(offersViewModel)
         }
     }
 }
 
 extension ListOfMerchantView {
     private var SearchBarView: some View {
-        HStack {
+        
+        let binding = Binding<String>(get: { self.searchText },
+                                      set: {
+                                        self.searchText = $0
+                                        self.specialOffersViewModel.searchPattern = $0
+                                        self.offersViewModel.searchPattern = $0
+                                      })
+
+        return HStack {
             HStack {
-                TextField("", text: $specialOffersViewModel.searchPattern)
+                TextField("", text: binding)
                     .padding(.leading, 35)
             }
             .padding(.all, 10)
@@ -49,7 +60,11 @@ extension ListOfMerchantView {
                     Spacer()
                     
                     if isSearching {
-                        Button(action: { specialOffersViewModel.searchPattern = "" }, label: {
+                        Button(action: {
+                            self.searchText = ""
+                            self.specialOffersViewModel.searchPattern = ""
+                            self.offersViewModel.searchPattern = ""
+                        }, label: {
                             Image(systemName: "xmark.circle.fill")
                                 .padding(.vertical)
                         })

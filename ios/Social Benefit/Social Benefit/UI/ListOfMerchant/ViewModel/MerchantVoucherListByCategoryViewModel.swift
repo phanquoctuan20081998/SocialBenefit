@@ -1,24 +1,25 @@
 //
-//  SpecialOffersViewModel.swift
+//  MerchantVoucherListByCategoryViewModel.swift
 //  Social Benefit
 //
-//  Created by Phan Quốc Tuấn on 15/09/2021.
+//  Created by Phan Quốc Tuấn on 18/09/2021.
 //
 
 import Foundation
 import Combine
 
-class SpecialOffersViewModel: ObservableObject, Identifiable {
+class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
 //    @Published var allSpecialOffers = [MerchantVoucherItemData]()
     
-    @Published var allSpecialOffers = allSpecialOffersDebug
+    @Published var allOffers = allOffersDebug
     @Published var curLoad = 0
     
     @Published var searchPattern: String = ""
     @Published var fromIndex: Int = 0
     @Published var categoryId: Int = -1
+    @Published var filterConditionItems = "[]"
     
-    private let specialOffersService = SpecialOffersService()
+    private let offersService = MerchantVoucherListByCategoryService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -33,28 +34,21 @@ class SpecialOffersViewModel: ObservableObject, Identifiable {
     }
     
     func loadData(searchPattern: String) {
-        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId) { data in
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
             DispatchQueue.main.async {
-                self.allSpecialOffers = data
+                self.allOffers = data
                 
             }
         }
     }
     
     func reLoadData() {
-        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId) { [self] data in
-            print("searchPattern: \(searchPattern), fromIndex: \(fromIndex), categoryId: \(categoryId)")
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
             DispatchQueue.main.async {
                 for item in data {
-                    self.allSpecialOffers.append(item)
+                    self.allOffers.append(item)
                 }
             }
-        }
-    }
-    
-    func searchSpecialOffers(searchtext: String, categoryId: Int, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ())  {
-        specialOffersService.getAPI(searchPattern: searchtext, fromIndex: 0, categoryId: categoryId) { data in
-            returnCallBack(data)
         }
     }
 }
@@ -65,7 +59,7 @@ class SpecialOffersViewModel: ObservableObject, Identifiable {
 
 
 
-let allSpecialOffersDebug = [
+let allOffersDebug = [
     MerchantVoucherItemData(id: 1839, voucherCode: 0, imageURL: "", name: "Bảo dưỡng xe máy", merchantName: "Toyota", content: "<h1><strong>Bảo dưỡng xe máy</strong></h1><p><strong><em>Thay dầu nhớt</em></strong></p><p><strong><em>Kiểm tra đèn xe</em></strong></p><p><strong><em>Chỉnh phanh</em></strong></p><p><br></p><p>Đến ngay đi!!!</p>", favoriteValue: 0, outOfDateTime: Date(), shoppingValue: 0, pointValue: 250000, moneyValue: 300000, discountValue: -16, categoryId: -1, merchantId: -1, employeeLikeThis: false),
     MerchantVoucherItemData(id: 1841, voucherCode: 0, imageURL: "", name: "Ưu đãi giá tiền taxi", merchantName: "Công ty giầy thể thao Triệu Sơn", content: "<p>123</p>", favoriteValue: 2, outOfDateTime: Date(), shoppingValue: 1, pointValue: 900000, moneyValue: 1000000, discountValue: -10, categoryId: -1, merchantId: -1, employeeLikeThis: true),
                                                               

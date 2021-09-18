@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllOffersView: View {
     
-    @EnvironmentObject var specialOffersViewModel: SpecialOffersViewModel
+    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     @State var isShowProgressView: Bool = false
     
     var body: some View {
@@ -19,18 +19,18 @@ struct AllOffersView: View {
             VStack(alignment: .leading, spacing: 2) {
             
                 VStack(spacing: 15) {
-                    ForEach(self.specialOffersViewModel.allSpecialOffers, id: \.self) { item in
+                    ForEach(self.offersViewModel.allOffers, id: \.self) { item in
                         AllOfferCardView(voucherData: item)
                     }
                     
                     //Infinite Scroll View
                     
-                    if (self.specialOffersViewModel.fromIndex == self.specialOffersViewModel.allSpecialOffers.count && self.isShowProgressView) {
+                    if (self.offersViewModel.fromIndex == self.offersViewModel.allOffers.count && self.isShowProgressView) {
                         
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
-                                if self.specialOffersViewModel.allSpecialOffers.count % 10 == 0 {
-                                    self.specialOffersViewModel.reLoadData()
+                                if self.offersViewModel.allOffers.count % 10 == 0 {
+                                    self.offersViewModel.reLoadData()
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -44,10 +44,10 @@ struct AllOffersView: View {
                             let minY = reader.frame(in: .global).minY
                             let height = ScreenInfor().screenHeight / 1.3
                             
-                            if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minY < height {
+                            if !self.offersViewModel.allOffers.isEmpty && minY < height {
                                 
                                 DispatchQueue.main.async {
-                                    self.specialOffersViewModel.fromIndex = self.specialOffersViewModel.allSpecialOffers.count
+                                    self.offersViewModel.fromIndex = self.offersViewModel.allOffers.count
                                     self.isShowProgressView = true
                                 }
                             }
@@ -170,7 +170,7 @@ extension AllOfferCardView {
 struct AllOffersView_Previews: PreviewProvider {
     static var previews: some View {
         AllOffersView()
-            .environmentObject(SpecialOffersViewModel())
+            .environmentObject(MerchantVoucherSpecialListViewModel())
     }
 }
 
