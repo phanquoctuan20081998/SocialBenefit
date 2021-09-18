@@ -28,7 +28,7 @@ class CheckBenefitService {
         
         let params: Parameters = ["":""]
         
-        service.makeCall(endpoint: Constant.API_BENEFIT_CHECK, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_BENEFIT_CHECK, method: "POST", header: header as [String : String], body: params, callback: { result in
             
             DispatchQueue.main.async { [weak self] in
                 self?.status = result["status"].int ?? -1

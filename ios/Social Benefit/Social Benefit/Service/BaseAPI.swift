@@ -19,7 +19,7 @@ public class BaseAPI {
     
     public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback: @escaping (JSON) -> Void) {
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
-        let url = URL(string: Constant.baseURL +  endpoint)!
+        let url = URL(string: Config.baseURL +  endpoint)!
         var request = URLRequest(url: url)
         request.httpMethod = method
         if header != ["":""] {request.allHTTPHeaderFields = header}
@@ -58,7 +58,7 @@ public class BaseAPI {
 public class BaseAPI_Alamofire {
     
     public func makeCall(endpoint: String, method: String, header: HTTPHeaders, body: Parameters, callback:@escaping (JSON)->Void) {
-        let strURL = Constant.baseURL + endpoint
+        let strURL = Config.baseURL + endpoint
         let METHOD: HTTPMethod
         
         switch method {

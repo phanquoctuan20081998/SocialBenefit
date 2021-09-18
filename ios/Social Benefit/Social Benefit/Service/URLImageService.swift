@@ -22,7 +22,7 @@ class URLImageService {
     init(url: String) {
         if url.prefix(4) == "http" {
             self.urlImage = url
-        } else { self.urlImage = Constant.baseURL + url }
+        } else { self.urlImage = Config.baseURL + url }
         
         self.imageName = (url as NSString).lastPathComponent
         getURLImage()

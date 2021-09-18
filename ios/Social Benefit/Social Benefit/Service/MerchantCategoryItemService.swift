@@ -32,7 +32,7 @@ class MerchantCategoryItemService {
         var imgSrc: String?
         var title: String?
         
-        service.makeCall(endpoint: Constant.API_MERCHANT_CATEGORY, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_MERCHANT_CATEGORY, method: "POST", header: header as [String : String], body: params, callback: { result in
             for i in 0..<result.count {
                 id = result[i]["id"].int ?? 0
                 imgSrc = result[i]["imgSrc"].string ?? ""

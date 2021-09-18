@@ -42,7 +42,7 @@ class ResetPasswordViewController: UIViewController {
         
         let jsonBody = ["email": resetEmail]
         
-        service.makeCall(endpoint: Constant.API_EMPLOYEE_FORGOTPASS, method: "POST", header: ["":""], body: jsonBody as [String : Any], callback: { (result) in
+        service.makeCall(endpoint: Config.API_EMPLOYEE_FORGOTPASS, method: "POST", header: ["":""], body: jsonBody as [String : Any], callback: { (result) in
             
             if ((result["success"].bool)!) {
                 // Move to Successfull Notification Screen

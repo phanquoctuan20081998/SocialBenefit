@@ -25,7 +25,7 @@ class AddReactService {
         
         let params: Parameters = ["":""]
         
-        service.makeCall(endpoint: Constant.API_CONTENT_REACT, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_CONTENT_REACT, method: "POST", header: header as [String : String], body: params, callback: { result in
             if(result["success"].bool!) {
                 print("Successfully update react")
             }

@@ -41,7 +41,7 @@ class AddCommentService {
         }
         
         
-        service.makeCall(endpoint: Constant.API_COMMENT_ADD, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_COMMENT_ADD, method: "POST", header: header as [String : String], body: params, callback: { result in
             
             DispatchQueue.main.async {
                 self.newCommentId = result["id"].int!

@@ -44,7 +44,7 @@ class MerchantVoucherSpecialListService {
         var merchantId: Int?
         var employeeLikeThis: Bool?
         
-        service.makeCall(endpoint: Constant.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String: String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String: String], body: params, callback: { result in
             
             for i in 0..<result.count {
                 

@@ -18,7 +18,7 @@
 		84DA608B2696DB7F0012F55B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60892696DB7F0012F55B /* LoginViewController.swift */; };
 		84DA608C2696DB7F0012F55B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DA608A2696DB7F0012F55B /* LoginViewController.xib */; };
 		84DA608F2696DB950012F55B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DA608E2696DB950012F55B /* Media.xcassets */; };
-		84DA60AF269EC9280012F55B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60AD269EC9280012F55B /* Constant.swift */; };
+		84DA60AF269EC9280012F55B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60AD269EC9280012F55B /* Config.swift */; };
 		84DA60BB269EC9C40012F55B /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60B9269EC9C40012F55B /* en.lproj */; };
 		84DA60BC269EC9C40012F55B /* vn.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60BA269EC9C40012F55B /* vn.lproj */; };
 		84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60BD269ECA120012F55B /* PromotionViewController.swift */; };
@@ -104,6 +104,8 @@
 		C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD0D5F26D5FB79003D5BE7 /* BackgroundView.swift */; };
 		C4D2606F26E475B2002E475C /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D2606E26E475B2002E475C /* Test.swift */; };
 		C4E0268F26CA3C5E00FBB11B /* GetLocalizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0268E26CA3C5E00FBB11B /* GetLocalizableText.swift */; };
+		C4E3442F26F627BD00B343E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3442E26F627BD00B343E8 /* Constants.swift */; };
+		C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3443026F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift */; };
 		C4E9D43326D4A00C00B223AC /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D43226D4A00C00B223AC /* HomeScreenView.swift */; };
 		C4E9D43526D4A04E00B223AC /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D43426D4A04E00B223AC /* CustomTabBarView.swift */; };
 		C4E9D43726D4C86B00B223AC /* TabCurveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D43626D4C86B00B223AC /* TabCurveShape.swift */; };
@@ -130,7 +132,7 @@
 		84DA608A2696DB7F0012F55B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		84DA608E2696DB950012F55B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		84DA609E269E98470012F55B /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		84DA60AD269EC9280012F55B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		84DA60AD269EC9280012F55B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		84DA60B9269EC9C40012F55B /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		84DA60BA269EC9C40012F55B /* vn.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vn.lproj; sourceTree = "<group>"; };
 		84DA60BD269ECA120012F55B /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,8 @@
 		C4D2606E26E475B2002E475C /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		C4DE23E126CAC2C70061C098 /* vi */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = vi; path = vi.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4E0268E26CA3C5E00FBB11B /* GetLocalizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLocalizableText.swift; sourceTree = "<group>"; };
+		C4E3442E26F627BD00B343E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C4E3443026F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarAndMyVoucherView.swift; sourceTree = "<group>"; };
 		C4E9D43226D4A00C00B223AC /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		C4E9D43426D4A04E00B223AC /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		C4E9D43626D4C86B00B223AC /* TabCurveShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurveShape.swift; sourceTree = "<group>"; };
@@ -291,7 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				84DA60CA269ECB6A0012F55B /* StringUtils.swift */,
-				84DA60AD269EC9280012F55B /* Constant.swift */,
+				84DA60AD269EC9280012F55B /* Config.swift */,
+				C4E3442E26F627BD00B343E8 /* Constants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				C42F55C026F37670006F1CAC /* ListOfMerchantView.swift */,
+				C4E3443026F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift */,
 				C48BA34F26EEFC6E006C4F27 /* MerchantCategoryView.swift */,
 				C40161C426F08D44003A1EEF /* SpecialOffersView.swift */,
 				C462F16326F2E5E400933BBC /* VoucherFilterView.swift */,
@@ -902,8 +908,9 @@
 				C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */,
 				C4B3D58726EA02DD003C6CA9 /* ApplyPopupView.swift in Sources */,
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
-				84DA60AF269EC9280012F55B /* Constant.swift in Sources */,
+				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
 				C4A5583626BA77D100029AC0 /* ResetSuccessViewController.swift in Sources */,
+				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
 				C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */,
 				84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */,
 				84DA60C3269ECA130012F55B /* UserViewController.swift in Sources */,
@@ -959,6 +966,7 @@
 				C4F2A4FE26F04BAE0090675A /* UpperCaseText.swift in Sources */,
 				C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */,
 				C4D2606F26E475B2002E475C /* Test.swift in Sources */,
+				C4E3442F26F627BD00B343E8 /* Constants.swift in Sources */,
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
 				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,

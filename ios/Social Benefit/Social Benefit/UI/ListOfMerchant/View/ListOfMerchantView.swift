@@ -14,73 +14,33 @@ struct ListOfMerchantView: View {
     @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
     
     @State var isSearching = false
-    @State var searchText = ""
     
     var body: some View {
-        ScrollView {
-            VStack {
-                SearchBarView
-                MerchantCategoryItemView()
+        VStack(spacing: 15) {
+            Spacer().frame(height: 20)
+            SearchBarAndMyVoucherView()
+            MerchantCategoryItemView()
+            ScrollView {
                 SpecialOffersView()
                 FilterView()
                 AllOffersView()
             }
-            .environmentObject(specialOffersViewModel)
-            .environmentObject(merchantCategoryItemViewModel)
-            .environmentObject(offersViewModel)
-        }
-    }
-}
-
-extension ListOfMerchantView {
-    private var SearchBarView: some View {
-        
-        let binding = Binding<String>(get: { self.searchText },
-                                      set: {
-                                        self.searchText = $0
-                                        self.specialOffersViewModel.searchPattern = $0
-                                        self.offersViewModel.searchPattern = $0
-                                      })
-
-        return HStack {
-            HStack {
-                TextField("", text: binding)
-                    .padding(.leading, 35)
-            }
-            .padding(.all, 10)
-            .background(Color(.systemGray5))
-            .cornerRadius(20)
-            .padding(.horizontal)
-            .onTapGesture(perform: {
-                isSearching = true
-            })
-            .overlay(
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                    Spacer()
-                    
-                    if isSearching {
-                        Button(action: {
-                            self.searchText = ""
-                            self.specialOffersViewModel.searchPattern = ""
-                            self.offersViewModel.searchPattern = ""
-                        }, label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .padding(.vertical)
-                        })
-                    }
-                    
-                }.padding(.horizontal, 32)
-                .foregroundColor(.gray)
-            )
-            .transition(.move(edge: .trailing))
-            .animation(.spring())
-        }.padding(.vertical, 5)
+            
+            
+            
+        }.background(BackgroundView())
+        .overlay(OtherPopUpView())
+        .environmentObject(specialOffersViewModel)
+        .environmentObject(merchantCategoryItemViewModel)
+        .environmentObject(offersViewModel)
     }
 }
 
 struct ListOfMerchantView_Previews: PreviewProvider {
     static var previews: some View {
         ListOfMerchantView()
+        //            .environmentObject(MerchantVoucherSpecialListViewModel())
+        //            .environmentObject(MerchantCategoryItemViewModel())
+        //            .environmentObject(MerchantVoucherListByCategoryViewModel())
     }
 }

@@ -23,17 +23,30 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        loadData(searchPattern: "")
+        loadSearchData(searchPattern: "")
         addSubscribers()
     }
     
     func addSubscribers() {
         $searchPattern
-            .sink(receiveValue: loadData(searchPattern:))
+            .sink(receiveValue: loadSearchData(searchPattern:))
+            .store(in: &cancellables)
+        
+        $filterConditionItems
+            .sink(receiveValue: loadFilterData(filterConditionItems:))
             .store(in: &cancellables)
     }
     
-    func loadData(searchPattern: String) {
+    func loadSearchData(searchPattern: String) {
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
+            DispatchQueue.main.async {
+                self.allOffers = data
+                
+            }
+        }
+    }
+    
+    func loadFilterData(filterConditionItems: String) {
         offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
             DispatchQueue.main.async {
                 self.allOffers = data

@@ -32,7 +32,7 @@ class LocationService {
         var cityName: String?
         var cityId: String?
         
-        service.makeCall(endpoint: Constant.API_LOCATION_LIST, method: "POST", header: header, body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_LOCATION_LIST, method: "POST", header: header, body: params, callback: { result in
             for i in 0..<result.count {
                 cityName = result[i]["name"].string
                 cityId = result[i]["id"].string

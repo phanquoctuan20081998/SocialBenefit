@@ -62,7 +62,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         "deviceToken": deviceToken,
                         "deviceType": deviceType]
         
-        service.makeCall(endpoint: Constant.API_LOGIN, method: "POST", header: ["":""], body: jsonBody as [String : Any], callback: { (result) in
+        service.makeCall(endpoint: Config.API_LOGIN, method: "POST", header: ["":""], body: jsonBody as [String : Any], callback: { (result) in
             
             let token = result["token"]
             let employeeDto = result["employeeDto"]

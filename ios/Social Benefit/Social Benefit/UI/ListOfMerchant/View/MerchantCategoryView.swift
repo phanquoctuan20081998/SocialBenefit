@@ -20,8 +20,6 @@ struct MerchantCategoryItemView: View {
                 if 5 < allItem.count { SecondRowItemView }
             }
         }
-        .overlay(OtherPopUpView())
-        
     }
 }
 

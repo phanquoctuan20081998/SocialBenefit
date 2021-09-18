@@ -36,7 +36,7 @@ class ReactService {
         var name: String?
         var avatar: String?
         
-        service.makeCall(endpoint: Constant.API_CONTENT_LIST_REACT, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_CONTENT_LIST_REACT, method: "POST", header: header as [String : String], body: params, callback: { result in
             for i in 0..<result.count {
                 id = result[i]["id"].int ?? 0
                 employeeId = result[i]["employeeId"].int ?? 0

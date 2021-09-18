@@ -38,7 +38,7 @@ class CommentService {
         var commentDetail: String?
         var commentTime: String?
         
-        service.makeCall(endpoint: Constant.API_COMMENT_LIST, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_COMMENT_LIST, method: "POST", header: header as [String : String], body: params, callback: { result in
             for i in 0..<result.count {
                 id = result[i]["id"].int ?? 0
                 contentId = result[i]["contentId"].int ?? 0

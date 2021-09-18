@@ -8,11 +8,11 @@
 import SwiftUI
 import ScrollViewProxy
 
-let filterType = ["nearest_deadline", "farthest_deadline", "lowest_pice", "highest_price", "a-z", "z-a", "most_discounts", "bestseller", "best_reviews"]
-
 struct FilterView: View {
     
-    @State var selectedFilterIndex: Int = -1
+    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    
+    @State var selectedFilterIndex: Int = 0
     @State private var proxy: AmzdScrollViewProxy? = nil
     
     var body: some View {
@@ -41,36 +41,32 @@ extension FilterView {
             ScrollView(.horizontal, showsIndicators: false) {
                 AmzdScrollViewReader { proxy in
                     HStack {
-                        ForEach(0..<filterType.count, id: \.self) { i in
-                            if self.selectedFilterIndex == i  {
-                                Text(filterType[i])
-                                    .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                                    .font(.system(size: 13))
-                                    .foregroundColor(.white)
-                                    .background(RoundedRectangle(cornerRadius: 30).fill(Color.blue))
-                                    .onTapGesture {
-                                        self.selectedFilterIndex = -1
-                                        self.proxy?.scrollTo(self.selectedFilterIndex,
-                                                             alignment: .top,
-                                                               animated: true)
-                                    }
-                                    .scrollId(i)
-                            }
+                        ForEach(0..<Constants.FilterAndSortType.count, id: \.self) { i in
                             
-                            else {
-                                Text(filterType[i])
-                                    .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                                    .font(.system(size: 13))
-                                    .foregroundColor(.black)
-                                    .background(RoundedRectangle(cornerRadius: 30).fill(Color(#colorLiteral(red: 0.977273643, green: 0.9723979831, blue: 0.9766659141, alpha: 1))))
-                                    .onTapGesture {
+                            Text(Constants.FilterAndSortType[i].localized)
+                                .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                .font(.system(size: 13))
+                                .foregroundColor((self.selectedFilterIndex == i) ? .white : .black)
+                                .background(RoundedRectangle(cornerRadius: 30).fill((self.selectedFilterIndex == i) ? Color.blue : Color(#colorLiteral(red: 0.977273643, green: 0.9723979831, blue: 0.9766659141, alpha: 1))))
+                                .onTapGesture {
+                                    
+                                    if self.selectedFilterIndex == i {
+                                        self.selectedFilterIndex = 0
+                                        self.offersViewModel.filterConditionItems = "[]"
+                                    } else {
                                         self.selectedFilterIndex = i
-                                        self.proxy?.scrollTo(self.selectedFilterIndex,
-                                                             alignment: .leading,
-                                                               animated: true)
+                                        self.offersViewModel.filterConditionItems = "[{\"filterType\":\"\(Constants.FilterAndSortType[i])\",\"sortType\":\"\(Constants.SortDirectionType[0])\"}]"
+                                        print("\(Constants.FilterAndSortType[i])")
                                     }
-                                    .scrollId(i)
-                            }
+                                    
+                                    self.proxy?.scrollTo(self.selectedFilterIndex,
+                                                         alignment: .leading,
+                                                           animated: true)
+                                    
+                                    
+                                    
+                                }
+                                .scrollId(i)
                         }
                         Spacer().frame(width: 30)
                     }

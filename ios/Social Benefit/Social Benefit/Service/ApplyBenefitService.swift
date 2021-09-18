@@ -23,7 +23,7 @@ class ApplyBenefitService {
         
         let params: Parameters = ["":""]
         
-        service.makeCall(endpoint: Constant.API_BENEFIT_APPLY, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_BENEFIT_APPLY, method: "POST", header: header as [String : String], body: params, callback: { result in
             print("Apply id = \(result["id"])")
         })
     }

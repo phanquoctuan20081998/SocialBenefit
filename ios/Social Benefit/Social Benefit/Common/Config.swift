@@ -8,7 +8,7 @@
 import Foundation
 import Foundation
 
-struct Constant {
+struct Config {
     
     static let baseURL = "http://172.20.109.102:8089"
     

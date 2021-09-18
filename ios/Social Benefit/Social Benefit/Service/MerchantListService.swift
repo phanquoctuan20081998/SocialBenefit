@@ -25,7 +25,7 @@ class MerchantListService {
         var name: String?
         var cover: String?
         
-        service.makeCall(endpoint: Constant.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String : String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String : String], body: params, callback: { result in
             for i in 0..<result.count {
                 id = result[i]["id"].int ?? 0
                 name = result[i]["name"].string ?? ""
