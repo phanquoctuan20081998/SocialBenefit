@@ -97,6 +97,7 @@
 		C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58826EA0995003C6CA9 /* LocationService.swift */; };
 		C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */; };
 		C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */; };
+		C4B6854626F75E6C0046F97F /* ListOfMerchantViewByCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B6854526F75E6C0046F97F /* ListOfMerchantViewByCategory.swift */; };
 		C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */; };
 		C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */; };
 		C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */; };
@@ -209,6 +210,7 @@
 		C4B3D58826EA0995003C6CA9 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyBenefitService.swift; sourceTree = "<group>"; };
+		C4B6854526F75E6C0046F97F /* ListOfMerchantViewByCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfMerchantViewByCategory.swift; sourceTree = "<group>"; };
 		C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
 		C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsService.swift; sourceTree = "<group>"; };
 		C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsView.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				C42F55C026F37670006F1CAC /* ListOfMerchantView.swift */,
+				C4B6854526F75E6C0046F97F /* ListOfMerchantViewByCategory.swift */,
 				C4E3443026F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift */,
 				C48BA34F26EEFC6E006C4F27 /* MerchantCategoryView.swift */,
 				C40161C426F08D44003A1EEF /* SpecialOffersView.swift */,
@@ -957,6 +960,7 @@
 				C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */,
 				C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */,
 				C402B26E26E76E5500A41288 /* ReactService.swift in Sources */,
+				C4B6854626F75E6C0046F97F /* ListOfMerchantViewByCategory.swift in Sources */,
 				C430AEBB26E6552100D3D29A /* AddCommentService.swift in Sources */,
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,
 				C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */,

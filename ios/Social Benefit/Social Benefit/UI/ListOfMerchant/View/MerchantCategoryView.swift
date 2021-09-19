@@ -10,6 +10,7 @@ import SwiftUI
 struct MerchantCategoryItemView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
+    @Binding var isActive: Bool
     
     var body: some View {
         VStack {
@@ -28,7 +29,7 @@ extension MerchantCategoryItemView {
         HStack(spacing: 10) {
             let allItem = merchantCategoryItemViewModel.allMerchantCategoryItem
             ForEach(0..<(allItem.count > 5 ? 5 : allItem.count)) { i in
-                MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
+                MerchantCategoryItemCardView(isActive: $isActive, data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
             }
         }.padding(.horizontal)
     }
@@ -39,7 +40,7 @@ extension MerchantCategoryItemView {
             let allItem = merchantCategoryItemViewModel.allMerchantCategoryItem
             
             ForEach(5..<(allItem.count > 9 ? 9 : allItem.count)) { i in
-                MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
+                MerchantCategoryItemCardView(isActive: $isActive, data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
             }
             
             MerchantCategoryItemCardLocalView()
@@ -51,6 +52,11 @@ extension MerchantCategoryItemView {
 struct MerchantCategoryItemCardView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
+    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
+    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    
+    @Binding var isActive: Bool
+    
     var data: MerchantCategoryItemData
     
     var body: some View {
@@ -77,9 +83,11 @@ struct MerchantCategoryItemCardView: View {
         }
         .frame(width: 70, height: 70, alignment: .top)
         .onTapGesture {
-            withAnimation(.spring()) {
-                self.merchantCategoryItemViewModel.selectedId = self.data.id
-            }
+            self.merchantCategoryItemViewModel.selectedId = self.data.id
+            self.specialOffersViewModel.categoryId = self.data.id
+            self.offersViewModel.categoryId = self.data.id
+            self.isActive = true
+            self.merchantCategoryItemViewModel.isPresentPopUp = false
         }
     }
 }
@@ -130,6 +138,7 @@ struct MerchantCategoryItemCardLocalView: View {
 struct OtherPopUpView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
+    @Binding var isActive: Bool
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -163,7 +172,7 @@ struct OtherPopUpView: View {
             
             ScrollView {
                 UIGrid(columns: 5, list: merchantCategoryItemViewModel.allMerchantCategoryItem) { item in
-                    MerchantCategoryItemCardView(data: item)
+                    MerchantCategoryItemCardView(isActive: $isActive, data: item)
                 }
             }
         }.padding(.vertical, 5)
@@ -176,7 +185,7 @@ struct OtherPopUpView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        MerchantCategoryItemView()
+        MerchantCategoryItemView(isActive: .constant(true))
 //        OtherPopUpView()
 //            .environmentObject(MerchantCategoryItemViewModel())
     }

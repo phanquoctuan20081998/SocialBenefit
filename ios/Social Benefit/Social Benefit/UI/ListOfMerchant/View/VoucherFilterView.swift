@@ -25,11 +25,12 @@ struct FilterView: View {
             
             FilterSlideView
             
-        }.padding(.horizontal)
+        }
     }
 }
 
 extension FilterView {
+    
     var FilterSlideView: some View {
         HStack(spacing: 15) {
             HStack {
@@ -56,15 +57,11 @@ extension FilterView {
                                     } else {
                                         self.selectedFilterIndex = i
                                         self.offersViewModel.filterConditionItems = "[{\"filterType\":\"\(Constants.FilterAndSortType[i])\",\"sortType\":\"\(Constants.SortDirectionType[0])\"}]"
-                                        print("\(Constants.FilterAndSortType[i])")
                                     }
                                     
                                     self.proxy?.scrollTo(self.selectedFilterIndex,
                                                          alignment: .leading,
                                                            animated: true)
-                                    
-                                    
-                                    
                                 }
                                 .scrollId(i)
                         }

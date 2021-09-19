@@ -13,23 +13,33 @@ struct ListOfMerchantView: View {
     @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
     @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
     
+    @State var isActive = false
     @State var isSearching = false
     
     var body: some View {
-        VStack(spacing: 15) {
-            Spacer().frame(height: 20)
-            SearchBarAndMyVoucherView()
-            MerchantCategoryItemView()
-            ScrollView {
-                SpecialOffersView()
-                FilterView()
-                AllOffersView()
-            }
-            
-            
-            
-        }.background(BackgroundView())
-        .overlay(OtherPopUpView())
+        NavigationView {
+            VStack(spacing: 15) {
+                Spacer().frame(height: 25)
+                SearchBarAndMyVoucherView()
+                MerchantCategoryItemView(isActive: $isActive)
+                ScrollView {
+                    SpecialOffersView()
+                    FilterView()
+                    AllOffersView()
+                }
+            }.navigationBarHidden(true)
+            .background(BackgroundView())
+            .background(
+                NavigationLink(
+                    destination: ListOfMerchantViewByCategory(isActive: $isActive).navigationBarHidden(true),
+                    isActive: $isActive,
+                    label: {
+                        EmptyView()
+                    })
+                    
+            )
+        }
+        .overlay(OtherPopUpView(isActive: $isActive))
         .environmentObject(specialOffersViewModel)
         .environmentObject(merchantCategoryItemViewModel)
         .environmentObject(offersViewModel)
@@ -39,8 +49,5 @@ struct ListOfMerchantView: View {
 struct ListOfMerchantView_Previews: PreviewProvider {
     static var previews: some View {
         ListOfMerchantView()
-        //            .environmentObject(MerchantVoucherSpecialListViewModel())
-        //            .environmentObject(MerchantCategoryItemViewModel())
-        //            .environmentObject(MerchantVoucherListByCategoryViewModel())
     }
 }

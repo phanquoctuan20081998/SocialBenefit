@@ -22,28 +22,38 @@ class MerchantVoucherSpecialListViewModel: ObservableObject, Identifiable {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        loadData(searchPattern: "")
+        loadSearchData(searchPattern: "")
         addSubscribers()
     }
     
     func addSubscribers() {
         $searchPattern
-            .sink(receiveValue: loadData(searchPattern:))
+            .sink(receiveValue: loadSearchData(searchPattern:))
+            .store(in: &cancellables)
+        
+        $categoryId
+            .sink(receiveValue: loadCategoryData(categoryId:))
             .store(in: &cancellables)
     }
     
-    func loadData(searchPattern: String) {
+    func loadSearchData(searchPattern: String) {
         specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId) { data in
             DispatchQueue.main.async {
                 self.allSpecialOffers = data
-                
+            }
+        }
+    }
+    
+    func loadCategoryData(categoryId: Int) {
+        specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId) { data in
+            DispatchQueue.main.async {
+                self.allSpecialOffers = data
             }
         }
     }
     
     func reLoadData() {
         specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId) { [self] data in
-            print("searchPattern: \(searchPattern), fromIndex: \(fromIndex), categoryId: \(categoryId)")
             DispatchQueue.main.async {
                 for item in data {
                     self.allSpecialOffers.append(item)

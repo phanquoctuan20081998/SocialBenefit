@@ -65,7 +65,7 @@ struct SpecialOffersView: View {
                     }
                 }.padding()
             }
-        }.padding(.horizontal)
+        }
     }
 }
 

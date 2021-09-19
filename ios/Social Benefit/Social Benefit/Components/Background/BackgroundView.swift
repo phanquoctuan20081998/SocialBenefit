@@ -27,6 +27,7 @@ struct BackgroundView: View {
                         HStack(spacing: 20) {
                             Button(action: {
                                 // Do something
+
                                 
                             }, label: {
                                 Image(systemName: "bell.fill")

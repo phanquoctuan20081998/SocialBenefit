@@ -32,6 +32,10 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
             .sink(receiveValue: loadSearchData(searchPattern:))
             .store(in: &cancellables)
         
+        $categoryId
+            .sink(receiveValue: loadCategoryData(categoryId:))
+            .store(in: &cancellables)
+        
         $filterConditionItems
             .sink(receiveValue: loadFilterData(filterConditionItems:))
             .store(in: &cancellables)
@@ -42,6 +46,14 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
             DispatchQueue.main.async {
                 self.allOffers = data
                 
+            }
+        }
+    }
+    
+    func loadCategoryData(categoryId: Int) {
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
+            DispatchQueue.main.async {
+                self.allOffers = data
             }
         }
     }
