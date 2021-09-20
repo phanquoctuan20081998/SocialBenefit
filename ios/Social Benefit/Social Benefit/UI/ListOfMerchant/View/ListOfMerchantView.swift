@@ -12,6 +12,7 @@ struct ListOfMerchantView: View {
     @ObservedObject var merchantCategoryItemViewModel = MerchantCategoryItemViewModel()
     @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
     @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
+    @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
     
     @State var isActive = false
     @State var isSearching = false
@@ -40,9 +41,11 @@ struct ListOfMerchantView: View {
             )
         }
         .overlay(OtherPopUpView(isActive: $isActive))
+        .overlay(BuyVoucherPopUp())
         .environmentObject(specialOffersViewModel)
         .environmentObject(merchantCategoryItemViewModel)
         .environmentObject(offersViewModel)
+        .environmentObject(confirmInforBuyViewModel)
     }
 }
 

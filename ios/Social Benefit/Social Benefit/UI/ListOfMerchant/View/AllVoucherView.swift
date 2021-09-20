@@ -66,6 +66,7 @@ struct AllOffersView: View {
 
 struct AllOfferCardView: View {
     
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     var voucherData: MerchantVoucherItemData
     
     var body: some View {
@@ -152,8 +153,8 @@ extension AllOfferCardView {
             Spacer()
             
             Button(action: {
-                
-                
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
+                self.confirmInforBuyViewModel.isPresentedPopup = true
             }, label: {
                 Text("buy".localized)
                     .font(.system(size: 15))
@@ -171,6 +172,8 @@ struct AllOffersView_Previews: PreviewProvider {
     static var previews: some View {
         AllOffersView()
             .environmentObject(MerchantVoucherSpecialListViewModel())
+            .environmentObject(MerchantVoucherListByCategoryViewModel())
+            .environmentObject(ConfirmInforBuyViewModel())
     }
 }
 

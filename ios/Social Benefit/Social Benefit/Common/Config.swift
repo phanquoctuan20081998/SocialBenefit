@@ -22,6 +22,7 @@ struct Config {
     static let API_MERCHANT_CATEGORY = "/merchant-voucher-category"
     static let API_MERCHANT_LIST_SPECIAL = "/merchant-voucher-special-list"
     static let API_MERCHANT_LIST_BY_CATEGORY = "/merchant-voucher-list-by-category"
+    static let API_CONFIRM_BUY_VOUCHER = "/mobile/voucher/confirm_info_buy"
 
     static let API_INTERNEL_NEWS_LIST = "/internal_news/list"
     static let API_LOCATION_LIST = "/location/list"

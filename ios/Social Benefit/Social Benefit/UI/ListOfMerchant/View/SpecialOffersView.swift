@@ -71,6 +71,7 @@ struct SpecialOffersView: View {
 
 struct SpecialOfferCardView: View {
     
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     var voucherData: MerchantVoucherItemData
     
     var body: some View {
@@ -154,7 +155,8 @@ extension SpecialOfferCardView {
             Spacer()
             
             Button(action: {
-                
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
+                self.confirmInforBuyViewModel.isPresentedPopup = true
                 
             }, label: {
                 Text("buy".localized)

@@ -13,14 +13,15 @@ struct HomeScreenView: View {
     
     @State var selectedTab = "house"
     @State var isPresentedTabBar = true
+    @State var zIndex = 0
     
     var body: some View {
-        ZStack (alignment: .bottom) {
+        ZStack(alignment: .bottom) {
             
             if selectedTab == "house" {
                 HomeView(isPresentedTabBar: $isPresentedTabBar)
             } else if selectedTab == "star" {
-                EmptyView()
+//                EmptyView()
             } else if selectedTab == "tag" {
                 ListOfMerchantView()
             } else if selectedTab == "person.circle" {
