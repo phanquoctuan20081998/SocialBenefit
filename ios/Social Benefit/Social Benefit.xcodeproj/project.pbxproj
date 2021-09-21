@@ -102,6 +102,7 @@
 		C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */; };
 		C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */; };
 		C4B6854626F75E6C0046F97F /* ListOfMerchantViewByCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B6854526F75E6C0046F97F /* ListOfMerchantViewByCategory.swift */; };
+		C4B89EEC26F975E800F043D3 /* ScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B89EEB26F975E800F043D3 /* ScrollableTabBar.swift */; };
 		C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */; };
 		C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */; };
 		C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */; };
@@ -219,6 +220,7 @@
 		C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyBenefitService.swift; sourceTree = "<group>"; };
 		C4B6854526F75E6C0046F97F /* ListOfMerchantViewByCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfMerchantViewByCategory.swift; sourceTree = "<group>"; };
+		C4B89EEB26F975E800F043D3 /* ScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTabBar.swift; sourceTree = "<group>"; };
 		C4B94DEE26C26B0E009D5C46 /* TableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
 		C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsService.swift; sourceTree = "<group>"; };
 		C4B94DF226C2756E009D5C46 /* ListOfBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfBenefitsView.swift; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C4B89EEA26F975CB00F043D3 /* ScrollableTabBar */,
 				C462F16726F3451700933BBC /* ProgressView */,
 				C4EC104126F23B5A0064C3B3 /* GridView */,
 				C4B3D58326E9FB90003C6CA9 /* RoundedButton */,
@@ -705,6 +708,14 @@
 			path = RoundedButton;
 			sourceTree = "<group>";
 		};
+		C4B89EEA26F975CB00F043D3 /* ScrollableTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C4B89EEB26F975E800F043D3 /* ScrollableTabBar.swift */,
+			);
+			path = ScrollableTabBar;
+			sourceTree = "<group>";
+		};
 		C4B94DED26C26ACD009D5C46 /* ListOfBenefits */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B89EEC26F975E800F043D3 /* ScrollableTabBar.swift in Sources */,
 				C48BA35626EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift in Sources */,
 				C40161C526F08D44003A1EEF /* SpecialOffersView.swift in Sources */,
 				C424F73926CDFCBD00BD441E /* ConditionInViewModifier.swift in Sources */,

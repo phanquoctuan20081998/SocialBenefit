@@ -7,50 +7,53 @@
 
 import SwiftUI
 
+var tabs = ["Home", "Recognition", "Promotion", "User"]
+var tabImages = ["house", "star", "tag", "person.circle"]
+
 struct CustomTabBarView: View {
     
-    @Binding var selectedTab: String
-    @State var tabPoint: [CGFloat] = []
+    @Binding var offset: CGFloat
+    @State var width: CGFloat = 0
     
     var body: some View {
-        HStack(spacing: 0) {
-            
-            // Tab Bar Buttons
-            TabBarButtonView(buttonImage: "house", buttonName: "home".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
-            TabBarButtonView(buttonImage: "star", buttonName: "recognition".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
-            TabBarButtonView(buttonImage: "tag", buttonName: "promotion".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
-            TabBarButtonView(buttonImage: "person.circle", buttonName: "user".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
-            
-        }
-        .frame(height: 60)
-        .offset(x: 0, y: 8)
-        .edgesIgnoringSafeArea(.bottom)
-        .background(
-            Color.white
-                .clipShape(TabCurveShape(tabPoint: getCurvePoint()))
-                .background(Color.blue.opacity(0.2))
-                .background(Color.white)
-                .edgesIgnoringSafeArea(.bottom)
-        )
-        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
+        
+        EmptyView()
+//
+//        HStack(spacing: 0) {
+//            ForEach(tabs.indices, id: \.self) { index in
+//                VStack(spacing: 3) {
+//                    let isChoosed = ScreenInfor().screenWidth * CGFloat(index - 1) < offset && offset <= ScreenInfor().screenWidth * CGFloat(index)
+//
+//                    Image(systemName: isChoosed ? tabImages[index] + ".fill" : tabImages[index])
+//                        .foregroundColor(isChoosed ? .blue : .black)
+//                        .font(.system(size: 20, weight: .semibold))
+//
+//
+//                    Text(tabs[index])
+//                        .frame(width: self.width)
+//                        .font(.system(size: 13, weight: .light))
+//                        .foregroundColor(isChoosed ? .blue : .black)
+//                }
+//                .contentShape(Rectangle())
+//                .onTapGesture {
+//                    withAnimation {
+//                        offset = ScreenInfor().screenWidth * CGFloat(index)
+//                    }
+//                }
+//            }
+//            .padding(.top, 5)
+//            .edgesIgnoringSafeArea(.bottom)
+//            .frame(height: ScreenInfor().screenHeight * 0.1, alignment: .top)
+//            .background(Color.white)
+//            .onAppear {
+//                self.width = ScreenInfor().screenWidth / CGFloat(tabs.count)
+//            }
+//        }
     }
     
-    func getCurvePoint() -> CGFloat {
-        if tabPoint.isEmpty {
-            return 10
-        }
-        else {
-            switch selectedTab {
-            case "house":
-                return tabPoint[3]
-            case "star":
-                return tabPoint[2]
-            case "tag":
-                return tabPoint[1]
-            default:
-                return tabPoint[0]
-            }
-        }
+    func getOffset() -> CGFloat {
+        let progress = offset / ScreenInfor().screenWidth
+        return progress * width
     }
 }
 
@@ -106,7 +109,7 @@ struct TabBarButtonView: View {
 
 struct CustomTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        CustomTabBarView(offset: .constant(CGFloat(0)))
     }
 }
 

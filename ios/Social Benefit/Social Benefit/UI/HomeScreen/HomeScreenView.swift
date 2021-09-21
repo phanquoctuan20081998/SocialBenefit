@@ -10,42 +10,25 @@ import SwiftUI
 struct HomeScreenView: View {
     
     @ObservedObject var internalNewsViewModel = InternalNewsViewModel()
-    
-    @State var selectedTab = "house"
     @State var isPresentedTabBar = true
-    @State var zIndex = 0
+    @State var offset: CGFloat = 0
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
+
+        GeometryReader { proxy in
+            ScrollableTabBar(tabs: tabs, rect: proxy.frame(in: .global), offset: $offset) {
+                HStack(spacing: 0 ){
                     HomeView(isPresentedTabBar: $isPresentedTabBar)
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
                     Rectangle().fill(Color.white)
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
                     ListOfMerchantView()
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
                     UserView(isPresentedTabBar: $isPresentedTabBar)
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-                }
-            }
-            
-//            if selectedTab == "house" {
-//                HomeView(isPresentedTabBar: $isPresentedTabBar)
-//            } else if selectedTab == "star" {
-////                EmptyView()
-//            } else if selectedTab == "tag" {
-//                ListOfMerchantView()
-//            } else if selectedTab == "person.circle" {
-//                UserView(isPresentedTabBar: $isPresentedTabBar)
-//            }
-            
-            // Custom Tab Bar
-            if isPresentedTabBar {
-                CustomTabBarView(selectedTab: $selectedTab)
+                }.edgesIgnoringSafeArea(.all)
             }
         }
         .environmentObject(internalNewsViewModel)
+        .overlay(CustomTabBarView(offset: $offset),
+                 alignment: .bottom)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -69,7 +52,9 @@ struct HomeView: View {
                     Spacer()
                         .frame(height: 100)
                 }
-            }.background(
+            }
+            
+            .background(
                 BackgroundView()
             ).navigationBarHidden(true)
         }
