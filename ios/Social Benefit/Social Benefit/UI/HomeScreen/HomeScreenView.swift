@@ -17,28 +17,8 @@ struct HomeScreenView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    HomeView(isPresentedTabBar: $isPresentedTabBar)
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-                    Rectangle().fill(Color.white)
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-                    ListOfMerchantView()
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-                    UserView(isPresentedTabBar: $isPresentedTabBar)
-                        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-                }
-            }
             
-//            if selectedTab == "house" {
-//                HomeView(isPresentedTabBar: $isPresentedTabBar)
-//            } else if selectedTab == "star" {
-////                EmptyView()
-//            } else if selectedTab == "tag" {
-//                ListOfMerchantView()
-//            } else if selectedTab == "person.circle" {
-//                UserView(isPresentedTabBar: $isPresentedTabBar)
-//            }
+            getView(selectedTab: selectedTab)
             
             // Custom Tab Bar
             if isPresentedTabBar {
@@ -46,6 +26,19 @@ struct HomeScreenView: View {
             }
         }
         .environmentObject(internalNewsViewModel)
+    }
+    
+    @ViewBuilder func getView(selectedTab: String) -> some View {
+        switch selectedTab {
+        case "house":
+            HomeView(isPresentedTabBar: $isPresentedTabBar)
+        case "star":
+            Rectangle().fill(Color.white)
+        case "tag":
+            ListOfMerchantView()
+        default:
+            UserView(isPresentedTabBar: $isPresentedTabBar)
+        }
     }
 }
 
