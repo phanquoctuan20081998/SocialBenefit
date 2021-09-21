@@ -15,6 +15,7 @@ class MerchantCategoryItemViewModel: ObservableObject, Identifiable {
     @Published var selectedId: Int = 0
     @Published var isInCategoryView: Bool = false
     @Published var isPresentPopUp: Bool = false
+    @Published var isActive = false // Move to Navigation Link or not
     
     private let merchantCategoryItemService = MerchantCategoryItemService()
     

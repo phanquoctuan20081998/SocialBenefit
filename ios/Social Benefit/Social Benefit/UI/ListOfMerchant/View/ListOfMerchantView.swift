@@ -9,20 +9,17 @@ import SwiftUI
 
 struct ListOfMerchantView: View {
     
-    @ObservedObject var merchantCategoryItemViewModel = MerchantCategoryItemViewModel()
-    @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
-    @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
-    @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
-    
-    @State var isActive = false
-    @State var isSearching = false
+    @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
+    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
+    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
     var body: some View {
         NavigationView {
             VStack(spacing: 15) {
                 Spacer().frame(height: 25)
                 SearchBarAndMyVoucherView()
-                MerchantCategoryItemView(isActive: $isActive)
+                MerchantCategoryItemView(isActive: $merchantCategoryItemViewModel.isActive)
                 ScrollView {
                     SpecialOffersView()
                     FilterView()
@@ -32,25 +29,25 @@ struct ListOfMerchantView: View {
             .background(BackgroundView())
             .background(
                 NavigationLink(
-                    destination: ListOfMerchantViewByCategory(isActive: $isActive).navigationBarHidden(true),
-                    isActive: $isActive,
+                    destination: ListOfMerchantViewByCategory(isActive: $merchantCategoryItemViewModel.isActive).navigationBarHidden(true),
+                    isActive: $merchantCategoryItemViewModel.isActive,
                     label: {
                         EmptyView()
                     })
-                    
             )
-        }
-        .overlay(OtherPopUpView(isActive: $isActive))
-        .overlay(BuyVoucherPopUp())
-        .environmentObject(specialOffersViewModel)
-        .environmentObject(merchantCategoryItemViewModel)
-        .environmentObject(offersViewModel)
-        .environmentObject(confirmInforBuyViewModel)
+        }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
+            view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+        })
     }
 }
 
 struct ListOfMerchantView_Previews: PreviewProvider {
     static var previews: some View {
         ListOfMerchantView()
+            .environmentObject(InternalNewsViewModel())
+            .environmentObject(MerchantVoucherSpecialListViewModel())
+            .environmentObject(MerchantCategoryItemViewModel())
+            .environmentObject(MerchantVoucherListByCategoryViewModel())
+            .environmentObject(ConfirmInforBuyViewModel())
     }
 }

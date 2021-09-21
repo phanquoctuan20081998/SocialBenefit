@@ -138,7 +138,6 @@ struct MerchantCategoryItemCardLocalView: View {
 struct OtherPopUpView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
-    @Binding var isActive: Bool
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -155,6 +154,8 @@ struct OtherPopUpView: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .foregroundColor(.black)
+        .padding(.bottom, 20)
+        .edgesIgnoringSafeArea(.bottom)
     }
     
     var ContentView: some View {
@@ -172,14 +173,14 @@ struct OtherPopUpView: View {
             
             ScrollView {
                 UIGrid(columns: 5, list: merchantCategoryItemViewModel.allMerchantCategoryItem) { item in
-                    MerchantCategoryItemCardView(isActive: $isActive, data: item)
+                    MerchantCategoryItemCardView(isActive: $merchantCategoryItemViewModel.isActive, data: item)
                 }
             }
         }.padding(.vertical, 5)
         .frame(height: 420)
         .background(Color.white)
         .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
-        .padding(.horizontal)
+//        .padding(.horizontal)
     }
 }
 
@@ -187,6 +188,6 @@ struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         MerchantCategoryItemView(isActive: .constant(true))
 //        OtherPopUpView()
-//            .environmentObject(MerchantCategoryItemViewModel())
+            .environmentObject(MerchantCategoryItemViewModel())
     }
 }

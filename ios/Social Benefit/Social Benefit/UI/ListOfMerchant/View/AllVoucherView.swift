@@ -19,8 +19,8 @@ struct AllOffersView: View {
             VStack(alignment: .leading, spacing: 2) {
             
                 VStack(spacing: 15) {
-                    ForEach(self.offersViewModel.allOffers, id: \.self) { item in
-                        AllOfferCardView(voucherData: item)
+                    ForEach(self.offersViewModel.allOffers.indices, id: \.self) { i in
+                        AllOfferCardView(voucherData: self.offersViewModel.allOffers[i], choosedIndex: i)
                     }
                     
                     //Infinite Scroll View
@@ -68,6 +68,7 @@ struct AllOfferCardView: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     var voucherData: MerchantVoucherItemData
+    var choosedIndex: Int
     
     var body: some View {
         HStack {
@@ -153,7 +154,7 @@ extension AllOfferCardView {
             Spacer()
             
             Button(action: {
-                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id, choosedIndex: choosedIndex)
                 self.confirmInforBuyViewModel.isPresentedPopup = true
             }, label: {
                 Text("buy".localized)

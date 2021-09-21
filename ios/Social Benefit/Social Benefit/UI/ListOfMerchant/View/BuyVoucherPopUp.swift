@@ -10,6 +10,9 @@ import SwiftUI
 struct BuyVoucherPopUp: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
+    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
+    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    
     @State var buyNumber = 1
     
     var body: some View {
@@ -84,7 +87,7 @@ extension BuyVoucherPopUp {
                         get: { String(buyNumber) },
                         set: { buyNumber = Int($0) ?? 0 }
                     )).keyboardType(.numberPad)
-                    .foregroundColor((self.buyNumber > self.confirmInforBuyViewModel.maxVoucher) ? .red : .black)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .frame(width: 20)
                     
@@ -92,33 +95,45 @@ extension BuyVoucherPopUp {
                         self.buyNumber += 1
                     }, label: {
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor((self.buyNumber > self.confirmInforBuyViewModel.maxVoucher) ? .gray : .blue)
-                    }).disabled(self.buyNumber > self.confirmInforBuyViewModel.maxVoucher)
+                            .foregroundColor(.blue)
+                    })
                 }
             }
-            
-            if (self.buyNumber > self.confirmInforBuyViewModel.maxVoucher) {
-                Text(self.confirmInforBuyViewModel.errorMes)
-                    .font(.system(size: 10))
-                    .foregroundColor(.red)
-            }
-                
             
             Spacer()
             
             HStack {
-                HStack(spacing: 40) {
+                HStack(spacing: 20) {
                     Button(action: {
+                        BuyVoucherService().getAPI(voucherId: self.confirmInforBuyViewModel.voucherId, number: self.buyNumber) { data in
+                            DispatchQueue.main.async {
+                                self.confirmInforBuyViewModel.buyVoucherResponse = data
+                                if !data.errorCode.isEmpty {
+                                    confirmInforBuyViewModel.isPresentedError = true
+                                } else {
+                                    let choosedIndex1 = getIndex(in: specialOffersViewModel.allSpecialOffers, value: confirmInforBuyViewModel.voucherId)
+                                        
+                                    self.specialOffersViewModel.allSpecialOffers[choosedIndex1].shoppingValue += self.buyNumber
+                                    
+                                    let choosedIndex2 = getIndex(in: offersViewModel.allOffers, value: confirmInforBuyViewModel.voucherId)
+                                        
+                                    self.offersViewModel.allOffers[choosedIndex2].shoppingValue += self.buyNumber
+                                }
+                            }
+                        }
+                        
                         self.confirmInforBuyViewModel.isPresentedPopup = false
+                        
+                                                                        
                     }, label: {
-                        Text("yes_button".localized)
+                        Text("yes".localized)
                             .foregroundColor(.black)
                             .padding(5)
                             .background(RoundedRectangle(cornerRadius: 5)
-                                            .fill((self.buyNumber < 1 || self.buyNumber > self.confirmInforBuyViewModel.maxVoucher) ? Color(.gray).opacity(0.2) : Color(#colorLiteral(red: 0.6876488924, green: 0.7895539403, blue: 0.9556769729, alpha: 1)))
+                                            .fill((self.buyNumber < 1) ? Color(.gray).opacity(0.2) : Color(#colorLiteral(red: 0.6876488924, green: 0.7895539403, blue: 0.9556769729, alpha: 1)))
                                             .frame(width: 80))
                         
-                    }).disabled(self.buyNumber < 1 || self.buyNumber > self.confirmInforBuyViewModel.maxVoucher)
+                    }).disabled(self.buyNumber < 1)
                     
                     Button(action: {
                         self.confirmInforBuyViewModel.isPresentedPopup = false
@@ -139,6 +154,14 @@ extension BuyVoucherPopUp {
             RoundedRectangle(cornerRadius: 20)
                .fill(Color.white)
         )
+    }
+    
+    func getIndex(in array: [MerchantVoucherItemData], value: Int) -> Int {
+        if let index = array.firstIndex(where: { $0.id == value }) {
+            return index
+        }
+        
+        return -1
     }
 }
 

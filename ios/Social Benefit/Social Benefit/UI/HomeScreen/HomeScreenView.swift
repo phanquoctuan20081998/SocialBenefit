@@ -10,8 +10,13 @@ import SwiftUI
 struct HomeScreenView: View {
     
     @ObservedObject var internalNewsViewModel = InternalNewsViewModel()
+    @ObservedObject var merchantCategoryItemViewModel = MerchantCategoryItemViewModel()
+    @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
+    @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
+    @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
     
     @State var selectedTab = "house"
+    @State var isPresentedError = false
     @State var isPresentedTabBar = true
     @State var zIndex = 0
     
@@ -25,7 +30,17 @@ struct HomeScreenView: View {
                 CustomTabBarView(selectedTab: $selectedTab)
             }
         }
+        
+        // PopUp for Buy Button and Other Category...
+        // Promotion tab
+        .overlay(BuyVoucherPopUp())
+        .overlay(OtherPopUpView())
+        
         .environmentObject(internalNewsViewModel)
+        .environmentObject(specialOffersViewModel)
+        .environmentObject(merchantCategoryItemViewModel)
+        .environmentObject(offersViewModel)
+        .environmentObject(confirmInforBuyViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {

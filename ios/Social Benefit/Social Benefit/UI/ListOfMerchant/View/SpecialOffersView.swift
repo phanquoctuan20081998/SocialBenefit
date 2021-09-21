@@ -21,14 +21,14 @@ struct SpecialOffersView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
-                    ForEach(self.specialOffersViewModel.allSpecialOffers, id: \.self) { item in
-                        SpecialOfferCardView(voucherData: item)
+                    ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
+                        SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
                     }
-                    
+
                     //Infinite Scroll View
-                    
+
                     if (self.specialOffersViewModel.fromIndex == self.specialOffersViewModel.allSpecialOffers.count && self.isShowProgressView) {
-                        
+
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
 
@@ -38,22 +38,22 @@ struct SpecialOffersView: View {
                                 if self.specialOffersViewModel.allSpecialOffers.count % 10 == 0 {
                                     self.specialOffersViewModel.reLoadData()
                                 }
-                                
+
                                 // Otherwise just delete the ProgressView after 1 seconds...
- 
+
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                     self.isShowProgressView = false
                                 }
-                                
+
                             }
-                        
+
                     } else {
                         GeometryReader { reader -> Color in
                             let minX = reader.frame(in: .global).maxX
                             let width = ScreenInfor().screenWidth / 1.3
 
                             if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minX < width && minX > 250 {
-                                
+
                                 DispatchQueue.main.async {
                                     self.specialOffersViewModel.fromIndex = self.specialOffersViewModel.allSpecialOffers.count
                                     self.isShowProgressView = true
@@ -65,7 +65,10 @@ struct SpecialOffersView: View {
                     }
                 }.padding()
             }
+            Spacer()
         }
+        .padding(.top)
+        .frame(height: 260)
     }
 }
 
@@ -73,6 +76,7 @@ struct SpecialOfferCardView: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     var voucherData: MerchantVoucherItemData
+    var choosedIndex: Int
     
     var body: some View {
         VStack {
@@ -155,7 +159,7 @@ extension SpecialOfferCardView {
             Spacer()
             
             Button(action: {
-                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id, choosedIndex: choosedIndex)
                 self.confirmInforBuyViewModel.isPresentedPopup = true
                 
             }, label: {
