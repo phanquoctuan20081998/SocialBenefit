@@ -39,10 +39,10 @@ struct InternalNewsBannerView: View {
                     }
                 }
             }
-            .frame(width: ScreenInfor().screenWidth * 0.9, height: 200)
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
             .background(Color.white)
             .cornerRadius(30)
-        }
+        }.foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
     }
 }
@@ -67,10 +67,10 @@ struct RecognitionsBannerView: View {
                     EmptyView()
                 }
             }
-            .frame(width: ScreenInfor().screenWidth * 0.9, height: 200)
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
             .background(Color.white)
             .cornerRadius(30)
-        }
+        }.foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
     }
 }
@@ -101,7 +101,7 @@ struct PromotionsBannerView: View {
                     }
                 }
             }
-            .frame(width: ScreenInfor().screenWidth * 0.9, height: 200)
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
             .background(Color.white)
             .cornerRadius(30)
             
@@ -111,7 +111,7 @@ struct PromotionsBannerView: View {
                     self.data = data
                 }
             }
-        }
+        }.foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
     }
 }
@@ -156,7 +156,7 @@ struct MainCardView: View {
             }
             
         }.padding()
-        .frame(width: ScreenInfor().screenWidth*0.9, height: 170)
+        .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)

@@ -924,54 +924,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2B83CDE2-ADBF-4141-BD02-29C94FE0A330"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social Benefit/UI/ListOfMerchant/View/MerchantCategoryView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "2B83CDE2-ADBF-4141-BD02-29C94FE0A330 - 7a18b60e7c9d282c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in Social_Benefit.MerchantCategoryItemCardLocalView.body.getter : some"
-                  moduleName = "Social Benefit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/MerchantCategoryView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "131">
-               </Location>
-               <Location
-                  uuid = "2B83CDE2-ADBF-4141-BD02-29C94FE0A330 - bb67069407119491"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in Social_Benefit.MerchantCategoryItemCardLocalView.body.getter : some"
-                  moduleName = "Social Benefit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phanquoctuan/Documents/Development/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/UI/ListOfMerchant/View/MerchantCategoryView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "41F1DE74-DA2F-4B0F-8992-A9772093DDDF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -979,8 +931,8 @@
             filePath = "Social Benefit/UI/ListOfMerchant/View/BuyVoucherPopUp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "popupContent"
             landmarkType = "24">
             <Locations>

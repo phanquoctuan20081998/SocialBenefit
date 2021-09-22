@@ -15,7 +15,7 @@ struct ListOfMerchantViewByCategory: View {
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Binding var isActive: Bool
+//    @Binding var isActive: Bool
     @State private var proxy: AmzdScrollViewProxy? = nil
     
     var body: some View {
@@ -75,7 +75,7 @@ extension ListOfMerchantViewByCategory {
                     let allItem = self.merchantCategoryItemViewModel.allMerchantCategoryItem
                     
                     ForEach(0..<allItem.count, id: \.self) { i in
-                        MerchantCategoryItemCardView(isActive: $isActive, data: allItem[i])
+                        MerchantCategoryItemCardView(data: allItem[i])
                             .scrollId(allItem[i].id)
                     }
                     let _ = self.proxy?.scrollTo(self.merchantCategoryItemViewModel.selectedId,

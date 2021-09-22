@@ -7,13 +7,18 @@
 
 import SwiftUI
 
+// To remember the last search
+var tempSearchText = ""
+var tempIsSearching = false
+
 struct SearchBarAndMyVoucherView: View {
     
+    @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
-    @State var searchText = ""
-    @State var isSearching = false
+    @State var searchText = tempSearchText
+    @State var isSearching = tempIsSearching
     
     var body: some View {
         SearchBarView
@@ -27,6 +32,7 @@ extension SearchBarAndMyVoucherView {
         let binding = Binding<String>(get: { self.searchText },
                                       set: {
                                         self.searchText = $0
+                                        tempSearchText = $0
                                         self.specialOffersViewModel.searchPattern = $0
                                         self.offersViewModel.searchPattern = $0
                                       })
@@ -42,6 +48,7 @@ extension SearchBarAndMyVoucherView {
             .cornerRadius(20)
             .onTapGesture(perform: {
                 isSearching = true
+                tempIsSearching = true
             })
             .overlay(
                 HStack {
@@ -51,6 +58,11 @@ extension SearchBarAndMyVoucherView {
                     if isSearching {
                         Button(action: {
                             self.searchText = ""
+                            tempSearchText = ""
+                            
+                            self.isSearching = false
+                            tempIsSearching = false
+                            
                             self.specialOffersViewModel.searchPattern = ""
                             self.offersViewModel.searchPattern = ""
                         }, label: {
@@ -63,24 +75,29 @@ extension SearchBarAndMyVoucherView {
                 .foregroundColor(.gray)
             )
             
-            HStack() {
-                Image("ic_my_voucher")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 27)
-                
-                Text("my_voucher".localized)
-                    .font(.system(size: 9))
-                    .frame(width: 40)
-                    .multilineTextAlignment(.center)
-            }
-            .padding(.horizontal, 7)
-            .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
-            .onTapGesture {
-                
-                
-                
-            }
+            NavigationLink(destination: MyVoucherView().navigationBarHidden(true),
+                           tag: 2,
+                           selection: $merchantCategoryItemViewModel.selection,
+                           label: {
+                            HStack() {
+                                Image("ic_my_voucher")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 27)
+                                
+                                Text("my_voucher".localized)
+                                    .font(.system(size: 9))
+                                    .frame(width: 40)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.black)
+                            }
+                            .padding(.horizontal, 7)
+                            .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
+                            .onTapGesture {
+                                self.merchantCategoryItemViewModel.selection = 2
+                            }
+                           })
+            
             
         }.padding(.horizontal, 10)
     }

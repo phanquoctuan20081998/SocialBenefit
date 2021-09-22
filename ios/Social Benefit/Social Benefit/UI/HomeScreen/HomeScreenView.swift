@@ -65,11 +65,12 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 Spacer()
-                    .frame(height: 70)
+                    .frame(height: 40)
                 
                 ScrollView {
-                    VStack(spacing: 30) {
+                    VStack(spacing: 20) {
                         MainCardView()
+                            .padding(.top, 10)
                         InternalNewsBannerView(isPresentedTabBar: $isPresentedTabBar)
                         RecognitionsBannerView(isPresentedTabBar: $isPresentedTabBar)
                         PromotionsBannerView(isPresentedTabBar: $isPresentedTabBar)

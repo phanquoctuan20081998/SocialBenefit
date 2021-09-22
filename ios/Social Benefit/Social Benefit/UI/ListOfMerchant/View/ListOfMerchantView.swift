@@ -19,7 +19,7 @@ struct ListOfMerchantView: View {
             VStack(spacing: 15) {
                 Spacer().frame(height: 25)
                 SearchBarAndMyVoucherView()
-                MerchantCategoryItemView(isActive: $merchantCategoryItemViewModel.isActive)
+                MerchantCategoryItemView()
                 ScrollView {
                     SpecialOffersView()
                     FilterView()
@@ -28,16 +28,17 @@ struct ListOfMerchantView: View {
             }.navigationBarHidden(true)
             .background(BackgroundView())
             .background(
-                NavigationLink(
-                    destination: ListOfMerchantViewByCategory(isActive: $merchantCategoryItemViewModel.isActive).navigationBarHidden(true),
-                    isActive: $merchantCategoryItemViewModel.isActive,
-                    label: {
-                        EmptyView()
-                    })
+                NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
+                               tag: 1,
+                               selection: $merchantCategoryItemViewModel.selection,
+                               label: {
+                                EmptyView()
+                               })
             )
         }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
             view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         })
+        
     }
 }
 

@@ -70,6 +70,8 @@ extension BuyVoucherPopUp {
             }.font(.system(size: 15))
             .padding()
             
+            let checkMax = self.buyNumber >= confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber!
+            
             HStack {
                 Text("purchase_number".localized)
                     .font(.system(size: 15))
@@ -91,19 +93,27 @@ extension BuyVoucherPopUp {
                     .multilineTextAlignment(.center)
                     .frame(width: 20)
                     
+                    
                     Button(action: {
                         self.buyNumber += 1
                     }, label: {
+                        // Check if buy number is larger than maximun voucher can buy
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.blue)
-                    })
+                            .foregroundColor(checkMax ? .gray : .blue)
+                    }).disabled(checkMax)
                 }
+            }
+            
+            if checkMax {
+                Text("reach_maximum".localized)
+                    .font(.system(size: 13))
+                    .foregroundColor(.red)
             }
             
             Spacer()
             
             HStack {
-                HStack(spacing: 20) {
+                HStack(spacing: 50) {
                     Button(action: {
                         BuyVoucherService().getAPI(voucherId: self.confirmInforBuyViewModel.voucherId, number: self.buyNumber) { data in
                             DispatchQueue.main.async {
@@ -135,6 +145,7 @@ extension BuyVoucherPopUp {
                         
                     }).disabled(self.buyNumber < 1)
                     
+    
                     Button(action: {
                         self.confirmInforBuyViewModel.isPresentedPopup = false
                     }, label: {
@@ -149,7 +160,7 @@ extension BuyVoucherPopUp {
                 .padding(5)
             }
         }.padding()
-        .frame(width: ScreenInfor().screenWidth * 0.8, height: 200)
+        .frame(width: ScreenInfor().screenWidth * 0.8, height: 205)
         .background(
             RoundedRectangle(cornerRadius: 20)
                .fill(Color.white)
