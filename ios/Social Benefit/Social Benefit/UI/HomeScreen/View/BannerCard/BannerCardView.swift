@@ -9,20 +9,19 @@ import SwiftUI
 struct InternalNewsBannerView: View {
     
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     @State var index = 0
     @State var isPresent = false
     @State private var currentPage = 0
     
-    @Binding var isPresentedTabBar: Bool
-    
     var body: some View {
         VStack {
             NavigationLink(
-                destination: InternalNewsView(isPresentedTabBar: $isPresentedTabBar).navigationBarHidden(true),
+                destination: InternalNewsView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar).navigationBarHidden(true),
                 isActive: $isPresent,
                 label: {
-                    topTitleView(isPresent: $isPresent, isPresentedTabBar: $isPresentedTabBar, title: "internal_news".localized)
+                    topTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized)
                 })
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
@@ -49,16 +48,17 @@ struct InternalNewsBannerView: View {
 
 
 struct RecognitionsBannerView: View {
+    
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    
     @State var index = 0
     @State var isPresent = false
     @State private var currentPage = 0
     @State var data: [InternalNewsData] = []
     
-    @Binding var isPresentedTabBar: Bool
-    
     var body: some View {
         VStack {
-            topTitleView(isPresent: $isPresent, isPresentedTabBar: $isPresentedTabBar, title: "recognitions_in_company".localized)
+            topTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "recognitions_in_company".localized)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             
@@ -77,16 +77,17 @@ struct RecognitionsBannerView: View {
 
 
 struct PromotionsBannerView: View {
+    
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    
     @State var index = 0
     @State var isPresent = false
     @State private var currentPage = 0
     @State var data: [MerchantListData] = []
     
-    @Binding var isPresentedTabBar: Bool
-    
     var body: some View {
         VStack {
-            topTitleView(isPresent: $isPresent, isPresentedTabBar: $isPresentedTabBar, title: "promotions".localized)
+            topTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ListOfBenefitsView: View {
-
+    
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var listOfBenefitsViewModel = ListOfBenefitsViewModel()
     @State var isTapDetail: Bool = false
     @State var selectedBenefit = BenefitData()
-    @Binding var isPresentedTabBar: Bool
     
     let header = ["order".localized, "benefit".localized, "benefit_status".localized]
     
@@ -22,7 +22,7 @@ struct ListOfBenefitsView: View {
             VStack(spacing: 0) {
                 Spacer(minLength: 50)
                 
-                BenefitUpperView(isPresentedTabBar: $isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
+                BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
                 
                 //Add header
                 let screen = ScreenInfor()
@@ -53,7 +53,7 @@ struct ListOfBenefitsView: View {
         }
         .background(
             NavigationLink(
-                destination: BenefitDetailView(isPresentedTabBar: $isPresentedTabBar,
+                destination: BenefitDetailView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar,
                                                benefitDetailViewModel: BenefitDetailViewModel(benefit: self.selectedBenefit)).navigationBarHidden(true),
                 isActive: $isTapDetail,
                 label: {
@@ -109,6 +109,6 @@ struct BenefitUpperView: View {
 
 struct ListOfBenefitView_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfBenefitsView(isPresentedTabBar: .constant(false))
+        ListOfBenefitsView()
     }
 }

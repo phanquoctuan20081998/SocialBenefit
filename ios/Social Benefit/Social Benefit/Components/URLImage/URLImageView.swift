@@ -24,12 +24,13 @@ struct URLImageView: View {
                     .scaledToFit()
                     
             } else if vm.isLoading {
-                if #available(iOS 14.0, *) {
-                    ProgressView()
-                } else {
-                    // Fallback on earlier versions
-                    Text("Loading")
-                }
+                Rectangle()
+                    .fill(Color.gray.opacity(0.1))
+                    .overlay(
+                        Image(systemName: "photo")
+                                .foregroundColor(.gray.opacity(0.5))
+                    )
+      
             } else {
                 Image(systemName: "questionmark")
                     .foregroundColor(Color.gray)

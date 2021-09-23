@@ -16,6 +16,7 @@ struct SearchBarAndMyVoucherView: View {
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     @State var searchText = tempSearchText
     @State var isSearching = tempIsSearching
@@ -46,6 +47,7 @@ extension SearchBarAndMyVoucherView {
             .padding(.all, 5)
             .background(Color.white)
             .cornerRadius(20)
+            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 0)
             .onTapGesture(perform: {
                 isSearching = true
                 tempIsSearching = true
@@ -95,6 +97,7 @@ extension SearchBarAndMyVoucherView {
                             .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
                             .onTapGesture {
                                 self.merchantCategoryItemViewModel.selection = 2
+                                self.homeScreenViewModel.isPresentedTabBar = false
                             }
                            })
             

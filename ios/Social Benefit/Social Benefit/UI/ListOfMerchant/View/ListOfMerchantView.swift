@@ -26,7 +26,7 @@ struct ListOfMerchantView: View {
                     AllOffersView()
                 }
             }.navigationBarHidden(true)
-            .background(BackgroundView())
+            .background(BackgroundViewWithNotiAndSearch())
             .background(
                 NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
                                tag: 1,
@@ -35,10 +35,10 @@ struct ListOfMerchantView: View {
                                 EmptyView()
                                })
             )
+            
         }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
             view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         })
-        
     }
 }
 

@@ -15,16 +15,22 @@ struct SearchBarView: View {
     @Binding var isSearching: Bool
     var placeHolder: String
     
+    var width: CGFloat
+    var height: CGFloat
+    var fontSize: CGFloat
+    var isShowCancelButton: Bool
+    
     var body: some View {
         HStack {
             HStack {
                 TextField(placeHolder, text: $searchText)
                     .padding(.leading, 35)
+                    .font(.system(size: CGFloat(fontSize)))
             }
-            .padding(.all, 10)
-            .background(Color(.systemGray5))
+            .padding(.all, 7)
+            .background(Color.white)
             .cornerRadius(20)
-            .padding(.horizontal)
+            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 0)
             .onTapGesture(perform: {
                 isSearching = true
             })
@@ -36,18 +42,19 @@ struct SearchBarView: View {
                     if isSearching {
                         Button(action: { searchText = "" }, label: {
                             Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: CGFloat(fontSize)))
                                 .padding(.vertical)
                         })
-                        
                     }
                     
-                }.padding(.horizontal, 32)
+                }.padding(.horizontal, 13)
                 .foregroundColor(.gray)
             )
             .transition(.move(edge: .trailing))
             .animation(.spring())
-            
-            if isSearching {
+        
+            if isSearching && isShowCancelButton {
+                Spacer().frame(width: 15)
                 Button(action: {
                     isSearching = false
                     searchText = ""
@@ -56,22 +63,22 @@ struct SearchBarView: View {
                     
                 }, label: {
                     Text("cancel".localized)
-                        .padding(.trailing)
-                        .padding(.leading, 0)
+                        .font(.system(size: CGFloat(fontSize)))
                 })
                 .transition(.move(edge: .trailing))
-                .animation(.spring())
+                .animation(.easeInOut(duration: 0.1))
             }
         }.padding(.vertical, 5)
+        .frame(width: CGFloat(width), height: CGFloat(height), alignment: .leading)
     }
 }
 
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SearchBarView(searchText: .constant(""), isSearching: .constant(true), placeHolder: "search_news".localized)
+            SearchBarView(searchText: .constant(""), isSearching: .constant(true), placeHolder: "search_news".localized, width: 400, height: 30, fontSize: 13, isShowCancelButton: true)
                 .previewLayout(.sizeThatFits)
-            SearchBarView(searchText: .constant(""), isSearching: .constant(false), placeHolder: "search_news".localized)
+            SearchBarView(searchText: .constant(""), isSearching: .constant(false), placeHolder: "search_news".localized, width: 400, height: 30, fontSize: 13, isShowCancelButton: true)
                 .previewLayout(.sizeThatFits)
         }
     }

@@ -14,20 +14,16 @@ struct HomeScreenView: View {
     @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
     @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
     @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
-    
-    @State var selectedTab = "house"
-    @State var isPresentedError = false
-    @State var isPresentedTabBar = true
-    @State var zIndex = 0
+    @ObservedObject var homeScreenViewModel = HomeScreenViewModel()
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            getView(selectedTab: selectedTab)
+            getView(selectedTab: homeScreenViewModel.selectedTab)
             
             // Custom Tab Bar
-            if isPresentedTabBar {
-                CustomTabBarView(selectedTab: $selectedTab)
+            if homeScreenViewModel.isPresentedTabBar {
+                CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
             }
         }
         
@@ -41,25 +37,26 @@ struct HomeScreenView: View {
         .environmentObject(merchantCategoryItemViewModel)
         .environmentObject(offersViewModel)
         .environmentObject(confirmInforBuyViewModel)
+        .environmentObject(homeScreenViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {
         switch selectedTab {
         case "house":
-            HomeView(isPresentedTabBar: $isPresentedTabBar)
+            HomeView()
         case "star":
             Rectangle().fill(Color.white)
         case "tag":
             ListOfMerchantView()
         default:
-            UserView(isPresentedTabBar: $isPresentedTabBar)
+            UserView()
         }
     }
 }
 
 struct HomeView: View {
     
-    @Binding var isPresentedTabBar: Bool
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
         NavigationView {
@@ -71,15 +68,15 @@ struct HomeView: View {
                     VStack(spacing: 20) {
                         MainCardView()
                             .padding(.top, 10)
-                        InternalNewsBannerView(isPresentedTabBar: $isPresentedTabBar)
-                        RecognitionsBannerView(isPresentedTabBar: $isPresentedTabBar)
-                        PromotionsBannerView(isPresentedTabBar: $isPresentedTabBar)
+                        InternalNewsBannerView()
+                        RecognitionsBannerView()
+                        PromotionsBannerView()
                     }
                     Spacer()
                         .frame(height: 100)
                 }
             }.background(
-                BackgroundView()
+                BackgroundViewWithNotiAndSearch()
             ).navigationBarHidden(true)
         }
     }

@@ -51,6 +51,7 @@ extension MerchantCategoryItemView {
 
 struct MerchantCategoryItemCardView: View {
     
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
@@ -89,6 +90,7 @@ struct MerchantCategoryItemCardView: View {
 //            self.isActive = true
             self.merchantCategoryItemViewModel.selection = 1
             self.merchantCategoryItemViewModel.isPresentPopUp = false
+            self.homeScreenViewModel.isPresentedTabBar = false
         }
     }
 }

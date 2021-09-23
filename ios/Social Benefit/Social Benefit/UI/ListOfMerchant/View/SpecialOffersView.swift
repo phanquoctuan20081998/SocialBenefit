@@ -35,7 +35,7 @@ struct SpecialOffersView: View {
                                 // Because the maximum length of the result returned from the API is 10...
                                 // So if length % 10 != 0 will be the last queue...
                                 // We only send request if it have more data to load...
-                                if self.specialOffersViewModel.allSpecialOffers.count % 10 == 0 {
+                                if self.specialOffersViewModel.allSpecialOffers.count % Constants.MAX_NUM_API_LOAD == 0 {
                                     self.specialOffersViewModel.reLoadData()
                                 }
 
@@ -52,7 +52,7 @@ struct SpecialOffersView: View {
                             let minX = reader.frame(in: .global).maxX
                             let width = ScreenInfor().screenWidth / 1.3
 
-                            if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minX < width && minX > 250 {
+                            if !self.specialOffersViewModel.allSpecialOffers.isEmpty && minX < width && specialOffersViewModel.allSpecialOffers.count >= Constants.MAX_NUM_API_LOAD {
 
                                 DispatchQueue.main.async {
                                     self.specialOffersViewModel.fromIndex = self.specialOffersViewModel.allSpecialOffers.count

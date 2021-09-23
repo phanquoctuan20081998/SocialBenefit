@@ -9,6 +9,7 @@ import Foundation
 
 struct MyVoucherData: Identifiable, Hashable {
     var id: Int
+    var voucherOrderId: Int
     var title: String
     var cover: String
     var expriedDate: Date

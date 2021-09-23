@@ -76,6 +76,14 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
             }
         }
     }
+    
+    func reset() {
+        DispatchQueue.main.async {
+            self.searchPattern = tempSearchText
+            self.fromIndex = 0
+            self.categoryId = -1
+        }
+    }
 }
 
 

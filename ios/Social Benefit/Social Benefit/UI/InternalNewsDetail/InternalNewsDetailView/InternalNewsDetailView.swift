@@ -48,7 +48,7 @@ struct InternalNewsDetailView: View {
             
             CommentBarView
             
-        }.background(NoSearchBackgroundView(isActive: .constant(true)))
+        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: ""))
     }
 }
 
@@ -110,7 +110,7 @@ extension InternalNewsDetailView {
                         .font(.system(size: 20))
                         .lineLimit(2)
                     
-                    if Array(internalNewData.body)[0] == "<" {
+                    if !internalNewData.body.isEmpty && Array(internalNewData.body)[0] == "<" {
                         HTMLText(html: internalNewData.body)
                             .lineLimit(5)
                     }

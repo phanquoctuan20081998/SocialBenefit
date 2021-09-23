@@ -30,6 +30,7 @@ class MyVoucherService {
                                   "filterConditionItemsString": ""]
         
         var id: Int?
+        var voucherOrderId: Int?
         var title: String?
         var cover: String?
         var expriedDate: Date?
@@ -40,6 +41,7 @@ class MyVoucherService {
             for i in 0..<result.count {
                 
                 id = result[i]["id"].int ?? -1
+                voucherOrderId = result[i]["voucher_order_id"].int ?? -1
                 title = result[i]["title"].string ?? ""
                 cover = result[i]["cover"].string ?? ""
                 merchantname = result[i]["merchant"]["fullName"].string ?? ""
@@ -48,7 +50,7 @@ class MyVoucherService {
                 expriedDate = Date(timeIntervalSince1970: Double(date / 1000))
                 
                
-                let tempData = MyVoucherData(id: id!, title: title!, cover: cover!, expriedDate: expriedDate!, merchantName: merchantname!)
+                let tempData = MyVoucherData(id: id!, voucherOrderId: voucherOrderId!, title: title!, cover: cover!, expriedDate: expriedDate!, merchantName: merchantname!)
                 data.append(tempData)
             }
             returnCallBack(data)

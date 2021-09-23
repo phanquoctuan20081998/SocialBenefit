@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BackgroundView: View {
+struct BackgroundViewWithNotiAndSearch: View {
     
     var body: some View {
         VStack {
@@ -43,16 +43,19 @@ struct BackgroundView: View {
                         .foregroundColor(.blue)
                         .padding(.trailing)
                         
-                    }, alignment: .top)
+                    }.padding(.top, 50)
+                    , alignment: .top)
+                .edgesIgnoringSafeArea(.all)
             Spacer()
         }
     }
 }
 
-struct NoSearchBackgroundView: View {
+struct BackgroundViewWithoutNotiAndSearch: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var isActive: Bool
+    var title: String
     
     var body: some View {
         VStack {
@@ -75,15 +78,24 @@ struct NoSearchBackgroundView: View {
                                         .padding(.leading, 20)
                                 }
                             }).padding()
+                            
+                            if !title.isEmpty {
+                                Text(title)
+                                    .bold()
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 15))
+                            }
+                            
                             Spacer()
                         }
                         
                         URLImageView(url: userInfor.companyLogo)
                             .frame(height: 30, alignment: .trailing)
                             .padding(.trailing, 25)
-                    }
+                    }.padding(.top, 40)
                     
                     ,alignment: .top)
+                .edgesIgnoringSafeArea(.all)
             
             Spacer()
         }
@@ -93,7 +105,7 @@ struct NoSearchBackgroundView: View {
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfMerchantView()
+        BackgroundViewWithNotiAndSearch()
     }
 }
 

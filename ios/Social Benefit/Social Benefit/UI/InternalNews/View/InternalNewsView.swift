@@ -34,7 +34,7 @@ struct InternalNewsView: View {
                     AnnoucementTabView
                 }
             }
-            .padding(.top, 200)
+            .padding(.top, 160)
             .navigationBarHidden(true)
         }
         .overlay(InternalNewsUpperView, alignment: .top)
@@ -52,35 +52,46 @@ extension InternalNewsView {
     
     private var InternalNewsUpperView: some View {
         VStack {
-            HStack {
-                HStack {
-                    Button(action: {
-                        //Do something
-                        self.presentationMode.wrappedValue.dismiss()
-                        self.isPresentedTabBar.toggle()
-                    }, label: {
-                        Image(systemName: "arrow.backward")
-                            .font(.headline)
-                            .foregroundColor(.blue)
-                            .padding(.leading, 20)
-                    })
-                    
-                    Text("internal_news".localized)
-                        .foregroundColor(.blue)
-                        .fontWeight(.bold)
-                }
-                
-                Spacer()
-                
-                URLImageView(url: userInfor.companyLogo)
-                    .frame(height: 30)
-                    .padding(.all, 15)
-            }
-            
-            SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized)
+            Spacer().frame(height: 50)
+            SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             
             SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
-        }.frame(width: ScreenInfor().screenWidth, height: 200)
+        }
+        .background(Image("pic_background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .edgesIgnoringSafeArea([.top])
+                        .frame(width: ScreenInfor().screenWidth)
+                        .overlay(
+                            HStack {
+                                HStack {
+                                    Button(action: {
+                                        //Do something
+                                        self.presentationMode.wrappedValue.dismiss()
+                                        self.isPresentedTabBar.toggle()
+                                    }, label: {
+                                        Image(systemName: "arrow.backward")
+                                            .font(.headline)
+                                            .foregroundColor(.blue)
+                                            .padding(.leading, 20)
+                                    }).padding(5)
+                                    
+                                    Text("internal_news".localized)
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.blue)
+                                        .fontWeight(.bold)
+                                    
+                                    Spacer()
+                                }
+                                
+                                URLImageView(url: userInfor.companyLogo)
+                                    .frame(width: 30, height: 30)
+                                    .padding(.all, 15)
+                            }.padding(.top, 40)
+                            , alignment: .top)
+                        
+                        .edgesIgnoringSafeArea(.all)
+                        )
     }
     
     private var AllTabView: some View {

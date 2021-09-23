@@ -29,7 +29,7 @@ struct AllOffersView: View {
                         
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
-                                if self.offersViewModel.allOffers.count % 10 == 0 {
+                                if self.offersViewModel.allOffers.count % Constants.MAX_NUM_API_LOAD == 0 {
                                     self.offersViewModel.reLoadData()
                                 }
                                 
@@ -44,7 +44,7 @@ struct AllOffersView: View {
                             let minY = reader.frame(in: .global).minY
                             let height = ScreenInfor().screenHeight / 1.3
                             
-                            if !self.offersViewModel.allOffers.isEmpty && minY < height {
+                            if !self.offersViewModel.allOffers.isEmpty && minY < height && offersViewModel.allOffers.count >= Constants.MAX_NUM_API_LOAD {
                                 
                                 DispatchQueue.main.async {
                                     self.offersViewModel.fromIndex = self.offersViewModel.allOffers.count

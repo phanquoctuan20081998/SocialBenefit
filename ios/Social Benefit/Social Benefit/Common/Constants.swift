@@ -13,4 +13,6 @@ struct Constants {
     
     static let SortDirectionType = ["ASC", "DESC"]
     
+    static let MAX_NUM_API_LOAD = 10
+    
 }

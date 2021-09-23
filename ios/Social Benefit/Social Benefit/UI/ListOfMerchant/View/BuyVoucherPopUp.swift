@@ -23,6 +23,7 @@ struct BuyVoucherPopUp: View {
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
                         self.confirmInforBuyViewModel.isPresentedPopup = false
+                        self.buyNumber = 1
                     }
                 
                 if confirmInforBuyViewModel.buyVoucher.remainVoucherInStock == 0 {
@@ -70,7 +71,7 @@ extension BuyVoucherPopUp {
             }.font(.system(size: 15))
             .padding()
             
-            let checkMax = self.buyNumber >= confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber!
+            let checkMax = (confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber == -1) ? false : (self.buyNumber >= confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber!)
             
             HStack {
                 Text("purchase_number".localized)
@@ -134,6 +135,7 @@ extension BuyVoucherPopUp {
                         
                         self.confirmInforBuyViewModel.isPresentedPopup = false
                         
+                        self.buyNumber = 1
                                                                         
                     }, label: {
                         Text("yes".localized)
@@ -148,6 +150,7 @@ extension BuyVoucherPopUp {
     
                     Button(action: {
                         self.confirmInforBuyViewModel.isPresentedPopup = false
+                        self.buyNumber = 1
                     }, label: {
                         Text("cancel".localized)
                             .foregroundColor(.black)
