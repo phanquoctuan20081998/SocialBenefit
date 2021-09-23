@@ -14,8 +14,12 @@ class ListOfBenefitsViewModel: ObservableObject, Identifiable {
     var listOfBenefitsService = ListOfBenefitsService()
     
     init() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.listOfBenefits = self.listOfBenefitsService.allBenefits
+        listOfBenefitsService.getAPI { data in
+            DispatchQueue.main.async {
+                self.listOfBenefits = data
+            }
         }
     }
+    
+    
 }

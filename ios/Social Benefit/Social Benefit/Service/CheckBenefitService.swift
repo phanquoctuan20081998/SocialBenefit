@@ -12,13 +12,8 @@ import SwiftyJSON
 
     
 class CheckBenefitService {
-    @Published var status = -1
-    
-    init(benefitId: Int) {
-        self.getAPI(benefitId: benefitId)
-    }
-    
-    func getAPI(benefitId: Int) {
+   
+    func getAPI(benefitId: Int, returnCallBack: @escaping (Int) -> ()) {
         let service = BaseAPI()
         
         let header = ["token": userInfor.token,
@@ -30,9 +25,9 @@ class CheckBenefitService {
         
         service.makeCall(endpoint: Config.API_BENEFIT_CHECK, method: "POST", header: header as [String : String], body: params, callback: { result in
             
-            DispatchQueue.main.async { [weak self] in
-                self?.status = result["status"].int ?? -1
-            }
+            let status =  result["status"].int ?? -1
+            
+            returnCallBack(status)
         })
     }
 }

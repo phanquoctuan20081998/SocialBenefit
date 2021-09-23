@@ -7,96 +7,71 @@
 
 import SwiftUI
 
-struct benefitText: View {
-    var text: String
-    var scaleRatio: CGFloat
-    var width: CGFloat
-    var isCenter: Bool
-    var isItalic: Bool
-    var isBold: Bool
-    
-    var body: some View {
-        if isItalic {
-            Text(text)
-                .italic()
-                .frame(width: width/scaleRatio, alignment: isCenter ? .center : .leading)
-                .multilineTextAlignment(isCenter ? .center : .leading)
-                .minimumScaleFactor(0.5)
-                .lineLimit(nil)
-                .padding(.all, 10)
-        } else if isBold {
-            Text(text)
-                .bold()
-                .frame(width: width/scaleRatio, alignment: isCenter ? .center : .leading)
-                .multilineTextAlignment(isCenter ? .center : .leading)
-                .minimumScaleFactor(0.5)
-                .lineLimit(nil)
-                .padding(.all, 10)
-        } else {
-            Text(text)
-                .frame(width: width/scaleRatio, alignment: isCenter ? .center : .leading)
-                .multilineTextAlignment(isCenter ? .center : .leading)
-                .minimumScaleFactor(0.5)
-                .lineLimit(nil)
-                .padding(.all, 10)
-        }
-    }
-}
-
-struct benefitButton: View {
-    var scaleRatio: CGFloat
-    var width: CGFloat
-    
-    var body: some View {
-        ZStack {
-            Button(action: {
-                //do something
-                
-                
-            }, label: {
-                RoundedButton(text: "apply".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
-                    .font(.system(size: 20, weight: .black, design: .default))
-            })
-        }
-        .frame(width: width/3.3, height: 40, alignment: .center)
-    }
-}
-
 struct TableCellView: View {
     
     let benefitData: BenefitData
     
     var body: some View {
-        let screen = ScreenInfor()
-        HStack(spacing: 15) {
+        
+        HStack(spacing: 20) {
             URLImageView(url: benefitData.logo)
-                .padding(.leading, 10)
-            benefitText(text: benefitData.title,scaleRatio: 2.5, width: screen.screenWidth - 22*2, isCenter: false, isItalic: false, isBold: false)
+                .frame(width: 50, height: 50)
             
+            Text(benefitData.title)
+                .frame(width: ScreenInfor().screenWidth * 0.5, alignment: .leading)
+
             switch benefitData.mobileStatus {
             case 0: do {
-                benefitText(text: "on_going".localized, scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: true, isBold: false)
+                Text("on_going".localized)
+                    .italic()
+                    .multilineTextAlignment(.center)
+                    .frame(width: ScreenInfor().screenWidth * 0.2)
             }
             case 1: do {
-                benefitText(text: "up_comming".localized, scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: true, isBold: false)
+                Text("up_comming".localized)
+                    .italic()
+                    .multilineTextAlignment(.center)
+                    .frame(width: ScreenInfor().screenWidth * 0.2)
             }
             case 2: do {
-                benefitText(text: "☑️", scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: false)
+                Image(systemName: "checkmark")
+                    .font(.headline)
+                    .foregroundColor(.green)
+                    .frame(width: ScreenInfor().screenWidth * 0.2)
             }
             case 3: do {
-                benefitButton(scaleRatio: 4, width: screen.screenWidth - 22*2)
+                
+                Button(action: {
+                    //do something
+                    
+                    
+                }, label: {
+                    RoundedButton(text: "apply".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
+                        .font(.system(size: 15, weight: .black, design: .default))
+                        .frame(width: ScreenInfor().screenWidth * 0.2, height: 20)
+                })
             }
             case 4: do {
-                benefitText(text: "waiting".localized, scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: true, isBold: false)
+                Text("waiting".localized)
+                    .italic()
+                    .multilineTextAlignment(.center)
+                    .frame(width: ScreenInfor().screenWidth * 0.2)
             }
-            case 5: do {
-                benefitText(text: "❌", scaleRatio: 4, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: false)
+            case 6: do {
+                Image(systemName: "xmark")
+                    .font(.headline)
+                    .foregroundColor(.red)
+                    .frame(width: ScreenInfor().screenWidth * 0.2)
             }
             default: do {
                 //Do something
+                Text("".localized)
+                    .italic()
+                    .multilineTextAlignment(.center)
+                    .frame(width: ScreenInfor().screenWidth * 0.2)
             }
             }
-        }.frame(width: screen.screenWidth - 18*2, alignment: .center)
+        }.font(.system(size: 13))
     }
 }
 
@@ -104,18 +79,26 @@ struct TableCellView: View {
 struct TableCellView_Previews: PreviewProvider {
     
     static var previews: some View {
+        
         VStack {
-            let header = ["order".localized, "benefit".localized, "benefit_status".localized]
+            
+            let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
+            let scale = [0.17, 0.6, 0.2]
+            
             HStack(spacing: 0) {
-                benefitText(text: header[0], scaleRatio: 5, width: ScreenInfor().screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
-                benefitText(text: header[1],scaleRatio: 2.5, width: ScreenInfor().screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
-                benefitText(text: header[2], scaleRatio: 3, width: ScreenInfor().screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
-            }.frame(width: ScreenInfor().screenWidth, alignment: .center)
-            .padding(.all, 7)
+                
+                ForEach(headers.indices, id: \.self) { i in
+                    Text(headers[i])
+                        .bold()
+                        .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
+                }
+            }
+            .padding(.vertical, 10)
+            .frame(width: ScreenInfor().screenWidth)
             .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
             
             ScrollView {
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0))
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcasgdvasgdvasvdvasdvvsadjhasvjdasdvasvdhjasvdjhvasjhdvahsvdhasvdasvdjasvjdvasdvasvdavdhavhdvashjdvahjsvdahsvdavdhjavdavhdvahdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0))
                 Divider()
                 
                 TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 1, mobileStatus: 1))
@@ -124,11 +107,13 @@ struct TableCellView_Previews: PreviewProvider {
                 TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 2, mobileStatus: 2))
                 Divider()
                 
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 3, mobileStatus: 3))
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdsdfsdfsfsdfssdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 4, mobileStatus: 3))
                 Divider()
                 
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 4, mobileStatus: 4))
+                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: -1, status: -1, mobileStatus: 6))
+                
                 Divider()
+                
             }
         }
     }

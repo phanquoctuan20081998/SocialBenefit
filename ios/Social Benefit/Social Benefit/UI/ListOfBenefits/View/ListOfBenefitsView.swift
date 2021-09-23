@@ -14,7 +14,7 @@ struct ListOfBenefitsView: View {
     @State var isTapDetail: Bool = false
     @State var selectedBenefit = BenefitData()
     
-    let header = ["order".localized, "benefit".localized, "benefit_status".localized]
+    let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
     
     var body: some View {
         
@@ -25,13 +25,19 @@ struct ListOfBenefitsView: View {
                 BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
                 
                 //Add header
-                let screen = ScreenInfor()
+                let scale = [0.17, 0.6, 0.2]
+                
                 HStack(spacing: 0) {
-                    benefitText(text: header[0], scaleRatio: 5, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
-                    benefitText(text: header[1],scaleRatio: 2.5, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
-                    benefitText(text: header[2], scaleRatio: 3, width: screen.screenWidth - 22*2, isCenter: true, isItalic: false, isBold: true)
-                }.frame(width: screen.screenWidth, alignment: .center)
-                .padding(.all, 7)
+                    
+                    ForEach(headers.indices, id: \.self) { i in
+                        Text(headers[i])
+                            .bold()
+                            .font(.system(size: 15))
+                            .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
+                    }
+                }
+                .padding(.vertical, 10)
+                .frame(width: ScreenInfor().screenWidth)
                 .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
                 
                 //Add tabble view
@@ -100,7 +106,7 @@ struct BenefitUpperView: View {
             Text(text)
                 .font(.bold(.headline)())
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 10)
+                .padding(.bottom, 15)
                 .foregroundColor(.blue)
         }
     }

@@ -9,14 +9,10 @@ import Foundation
 import SwiftUI
 
 class ListOfBenefitsService {
-    @Published var allBenefits: [BenefitData] = []
     
-    init() {
-        self.getAPI()
-    }
-    
-    func getAPI() {
+    func getAPI(returnCallBack: @escaping ([BenefitData]) -> ()) {
         let service = BaseAPI()
+        var data = [BenefitData]()
         
         let header = ["token": userInfor.token,
                       "user_id": userInfor.userId,
@@ -46,8 +42,10 @@ class ListOfBenefitsService {
                 status = resultDic["status"].int ?? 0
                 mobileStatus = resultDic["mobileStatus"].int ?? 0
                 
-                self.allBenefits.append(BenefitData(id: id!, title: title!, body: body!, logo: logo!, typeMember: typeMember!, status: status!, mobileStatus: mobileStatus!))
+                data.append(BenefitData(id: id!, title: title!, body: body!, logo: logo!, typeMember: typeMember!, status: status!, mobileStatus: mobileStatus!))
             }
+            
+            returnCallBack(data)
         }
     }
 }

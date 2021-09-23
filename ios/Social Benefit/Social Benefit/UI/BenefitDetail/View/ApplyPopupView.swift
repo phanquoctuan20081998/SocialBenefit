@@ -37,18 +37,17 @@ extension ApplyPopupView {
     
     var popupContent: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 10) {
                 Text("apply_this_benefit".localized)
                     .font(.system(size: 20, weight: .bold, design: .default))
                 Text("want_to_apply".localized)
-                    .padding(.top, 5)
-            }.padding()
+            }.padding(.init(top: 25, leading: 30, bottom: 0, trailing: 0))
             
             Spacer()
             
             HStack {
                 Spacer()
-                HStack(spacing: 20) {
+                HStack(spacing: 30) {
                     Button(action: {
                         self.benefitDetailViewModel.isPresentedPopup = false
                     }, label: {
@@ -63,7 +62,7 @@ extension ApplyPopupView {
                         Text("ok_button".localized)
                     })
                 }.foregroundColor(.blue)
-                .padding()
+                .padding(.init(top: 0, leading: 0, bottom: 20, trailing: 30))
             }
         }
     }
@@ -72,5 +71,6 @@ extension ApplyPopupView {
 struct ApplyPopUp_Previews: PreviewProvider {
     static var previews: some View {
         ApplyPopupView()
+            .environmentObject(BenefitDetailViewModel(benefit: BenefitData(id: 0, title: "fsdf", body: "fsdfsdfs", logo: "", typeMember: 3, status: 0, mobileStatus: 0)))
     }
 }
