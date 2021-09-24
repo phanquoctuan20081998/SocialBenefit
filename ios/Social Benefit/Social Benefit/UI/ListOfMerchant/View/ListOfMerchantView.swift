@@ -14,6 +14,8 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
+    @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 15) {
@@ -35,6 +37,7 @@ struct ListOfMerchantView: View {
                                 EmptyView()
                                })
             )
+            .environmentObject(merchantVoucherDetailViewModel)
             
         }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
             view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))

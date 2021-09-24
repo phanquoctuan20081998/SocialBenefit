@@ -26,6 +26,8 @@ struct Config {
     static let API_BUY_VOUCHER = "/by-voucher"
     static let API_MY_VOUCHER = "/list-my-voucher"
     static let API_GEN_VOUCHER_CODE = "/gen-voucher-code"
+    static let API_MERCHANT_VOUCHER_DETAIL = "/merchant-voucher-detail"
+    static let API_APPLIED_STORE_MERCHANT_LIST = "/applied-store-merchant-list"
 
     static let API_INTERNEL_NEWS_LIST = "/internal_news/list"
     static let API_LOCATION_LIST = "/location/list"

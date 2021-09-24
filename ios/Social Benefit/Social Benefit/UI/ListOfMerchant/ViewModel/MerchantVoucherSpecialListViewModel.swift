@@ -18,6 +18,8 @@ class MerchantVoucherSpecialListViewModel: ObservableObject, Identifiable {
     @Published var fromIndex: Int = 0
     @Published var categoryId: Int = -1
     
+    @Published var selectedVoucherId: Int = -1
+    
     private let specialOffersService = MerchantVoucherSpecialListService()
     private var cancellables = Set<AnyCancellable>()
     

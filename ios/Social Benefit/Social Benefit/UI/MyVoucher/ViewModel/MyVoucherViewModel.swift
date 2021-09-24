@@ -10,8 +10,8 @@ import Combine
 
 class MyVoucherViewModel: ObservableObject, Identifiable {
     
-//    @Published var allMyVoucher = [MyVoucherData]()
-    @Published var allMyVoucher = myVoucherDeBug
+    @Published var allMyVoucher = [MyVoucherData]()
+//    @Published var allMyVoucher = myVoucherDeBug
     @Published var selectedVoucherCode = VoucherCodeData(voucherCode: "", remainTime: 0)
     
     // API controller...

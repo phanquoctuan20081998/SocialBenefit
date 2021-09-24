@@ -75,6 +75,7 @@ struct SpecialOffersView: View {
 struct SpecialOfferCardView: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
+    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     var voucherData: MerchantVoucherItemData
     var choosedIndex: Int
     
@@ -102,6 +103,9 @@ struct SpecialOfferCardView: View {
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 1))
+        .onTapGesture {
+            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
+        }
     }
 }
 

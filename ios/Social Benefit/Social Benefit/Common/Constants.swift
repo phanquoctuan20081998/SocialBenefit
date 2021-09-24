@@ -15,4 +15,6 @@ struct Constants {
     
     static let MAX_NUM_API_LOAD = 10
     
+    static let VOUCHER_DETAIL_TAB = ["information", "applied_stores", "similar_promotions"]
+    
 }

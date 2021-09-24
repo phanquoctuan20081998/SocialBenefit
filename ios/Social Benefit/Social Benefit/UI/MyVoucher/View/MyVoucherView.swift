@@ -80,6 +80,9 @@ extension MyVoucherView {
             Spacer().frame(height: 15)
             ScrollView {
                 VStack(spacing: 15) {
+                    if myVoucherViewModel.allMyVoucher.isEmpty {
+                        Text("no_voucher".localized).font(.system(size: 13))
+                    }
                     ForEach(myVoucherViewModel.allMyVoucher.indices, id: \.self) {i in
                         VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
                     }
