@@ -30,15 +30,6 @@ struct ListOfMerchantView: View {
                     }
                 }.navigationBarHidden(true)
                 .background(BackgroundViewWithNotiAndSearch())
-                .background(
-                    NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
-                                   tag: 1,
-                                   selection: $merchantCategoryItemViewModel.selection,
-                                   label: {
-                                    EmptyView()
-                                   })
-                )
-                
                 
             }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
                 view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))

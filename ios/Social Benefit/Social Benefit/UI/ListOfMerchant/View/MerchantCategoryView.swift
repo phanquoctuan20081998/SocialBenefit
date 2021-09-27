@@ -99,6 +99,7 @@ struct MerchantCategoryItemCardView: View {
 struct MerchantCategoryItemCardLocalView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
         NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
@@ -135,6 +136,7 @@ struct MerchantCategoryItemCardLocalView: View {
                             withAnimation {
                                 self.merchantCategoryItemViewModel.selectedId = -1
                                 self.merchantCategoryItemViewModel.isPresentPopUp = true
+                                self.homeScreenViewModel.isPresentedTabBar = false
                             }
                         }
                        })
@@ -143,6 +145,7 @@ struct MerchantCategoryItemCardLocalView: View {
 
 struct OtherPopUpView: View {
     
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     
     var body: some View {
@@ -153,6 +156,7 @@ struct OtherPopUpView: View {
                     .edgesIgnoringSafeArea(.top)
                     .onTapGesture {
                         merchantCategoryItemViewModel.isPresentPopUp = false
+                        self.homeScreenViewModel.isPresentedTabBar = true
                     }
                 ContentView
                     .animation(.easeInOut)
@@ -160,7 +164,6 @@ struct OtherPopUpView: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .foregroundColor(.black)
-        .padding(.bottom, 20)
         .edgesIgnoringSafeArea(.bottom)
     }
     
@@ -172,6 +175,7 @@ struct OtherPopUpView: View {
                 Spacer()
                 Button(action: {
                     merchantCategoryItemViewModel.isPresentPopUp = false
+                    self.homeScreenViewModel.isPresentedTabBar = true
                 }, label: {
                     Image(systemName: "xmark")
                 })
@@ -180,20 +184,22 @@ struct OtherPopUpView: View {
             ScrollView {
                 UIGrid(columns: 5, list: merchantCategoryItemViewModel.allMerchantCategoryItem) { item in
                     MerchantCategoryItemCardView(data: item)
-                }
+                }.edgesIgnoringSafeArea(.all)
+                
+                Spacer().frame(height: 30)
             }
+            
+            Spacer().frame(height: 30)
+            
         }.padding(.vertical, 5)
         .frame(height: 420)
         .background(Color.white)
         .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
-//        .padding(.horizontal)
     }
 }
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        MerchantCategoryItemView()
-//        OtherPopUpView()
-            .environmentObject(MerchantCategoryItemViewModel())
+        HomeScreenView()
     }
 }

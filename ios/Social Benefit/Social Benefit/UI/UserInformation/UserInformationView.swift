@@ -37,29 +37,30 @@ struct UserInformationView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 50)
+            Spacer().frame(height: 15)
             
             ScrollView {
                 BasicInformationView()
                     .padding(.top, 30)
                 
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 15)
                 
-                VStack {
+                VStack(spacing: 0) {
                     Text("presentation".localized)
                         .bold()
                         .frame(width: ScreenInfor().screenWidth*0.8, alignment: .leading)
                         .padding(.horizontal)
                         .padding(.top)
                     
-                    VStack(spacing: 30) {
+                    VStack(spacing: 20) {
                         
                         InformationTextFieldView(text: $nicknameText, title: "nickname".localized, placeHolder: (userInfor.nickname == "") ? "nickname_placeholder".localized : userInfor.nickname, showChevron: false, disable: false)
                         
                         LocationFieldView(isPresented: $isPresentedLocationPickerView, endDragOffsetY: $endDragOffsetY, filter: $filter, text: $locationText, curText: $curLocationText)
                         
                         DateFieldView(isPresented: $isPresentedDatePickerPopUp, isChanged: $isChangedDatePickerPopUp, date: $dateText, currentDate: $currentDate, dateFormatter: dateFormatter)
+                            .disabled(true)
                         
                         InformationTextFieldView(text: $genderText, title: "gender".localized, placeHolder: userInfor.gender.localized, showChevron: true, disable: true)
                         
@@ -80,14 +81,14 @@ struct UserInformationView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                VStack {
+                VStack(spacing: 0) {
                     Text("contact".localized)
                         .bold()
                         .frame(width: ScreenInfor().screenWidth*0.8, alignment: .leading)
                         .padding(.horizontal)
                         .padding(.top)
                     
-                    VStack (spacing: 30) {
+                    VStack (spacing: 20) {
                         InformationTextFieldView(text: $emailText, title: "contact_email".localized, placeHolder: userInfor.email, showChevron: false, disable: false)
                         InformationTextFieldView(text: $passportText, title: "telephone".localized, placeHolder: userInfor.phone, showChevron: false, disable: false)
                     }.padding(.top, 30)
@@ -207,6 +208,7 @@ struct DateFieldView: View {
                     //                    let strDate = dateFormatter.string(from: isChanged ? date : currentDate)
                     let strDate = dateFormatter.string(from: date)
                     Text(strDate)
+                        .foregroundColor(Color.gray)
                         .font(.system(size: 15))
                         .padding()
                         .frame(width: ScreenInfor().screenWidth*0.75, height: 40, alignment: .leading)

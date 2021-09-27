@@ -41,7 +41,7 @@ struct ListOfMerchantViewByCategory: View {
         }
         .background(
             NavigationLink(
-                destination: MyVoucherView(),
+                destination: MyVoucherView().navigationBarHidden(true),
                 isActive: $isActive,
                 label: {
                     EmptyView()
