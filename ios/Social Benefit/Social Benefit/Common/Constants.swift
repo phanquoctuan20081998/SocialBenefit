@@ -17,4 +17,20 @@ struct Constants {
     
     static let VOUCHER_DETAIL_TAB = ["information", "applied_stores", "similar_promotions"]
     
+    struct ReactType {
+        static var LIKE = 0
+        static var LOVE = 1
+        static var LAUGH = 2
+        static var SURPRISE = 3
+        static var SAD = 4
+        static var ANGER = 5
+    }
+    
+    struct ReactContentType {
+        static var VOUCHER = 0
+        static var INTERNAL_NEWS = 1
+        static var COMMENT = 2
+        static var SURVEY = 3
+        static var RECOGNIZE = 4
+    }
 }

@@ -22,8 +22,7 @@ struct CustomTabBarView: View {
             TabBarButtonView(buttonImage: "person.circle", buttonName: "user".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
             
         }
-        .frame(height: 60)
-        .offset(x: 0, y: 8)
+        .frame(height: 50)
         .edgesIgnoringSafeArea(.bottom)
         .background(
             Color.white
@@ -84,7 +83,7 @@ struct TabBarButtonView: View {
                     }
                 }, label: {
                     
-                    VStack {
+                    VStack(spacing: 3) {
                         Image(systemName: "\(buttonImage)\(selectedTab == buttonImage ? ".fill" : "")")
                             .font(.system(size: 20, weight: .semibold))
                         Text(buttonName)

@@ -149,7 +149,7 @@ struct UserInformationView: View {
         }
         .overlay(DatePickerPopupView(isPresented: $isPresentedDatePickerPopUp, isChanged: $isChangedDatePickerPopUp, selectedDate: $dateText, currentDate: $currentDate))
         .overlay(LocationPickerPopUpView(curDragOffsetY: endDragOffsetY, isPresented: $isPresentedLocationPickerView, endDragOffsetY: $endDragOffsetY, filter: $filter, text: $locationText, curText: $curLocationText))
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: $isPresentedTabBar, title: ""))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $isPresentedTabBar, title: "", isHaveLogo: true))
         
     }
 }

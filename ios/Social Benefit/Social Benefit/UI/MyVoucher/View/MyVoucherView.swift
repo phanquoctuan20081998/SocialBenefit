@@ -40,7 +40,7 @@ struct MyVoucherView: View {
             }.background(Color(#colorLiteral(red: 0.8864943981, green: 0.9303048253, blue: 0.9857663512, alpha: 1)))
             .edgesIgnoringSafeArea(.bottom)
         }
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers"))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers", isHaveLogo: true))
         .if(isShowCopiedPopUp) { view in
             view.overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
         }

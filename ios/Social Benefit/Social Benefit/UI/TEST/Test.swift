@@ -8,34 +8,65 @@
 import SwiftUI
 
 struct Test: View {
-    @State private var timeRemaining = 100
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @ObservedObject var specialOffersViewModel = MerchantVoucherSpecialListViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        VStack {
-            Text("Time: \(timeRemaining)")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 5)
-                .background(
-                    Capsule()
-                        .fill(Color.black)
-                        .opacity(0.75)
-                )
-            Button(action: {
-                timeRemaining = 10
-            }, label: {
-                Text("Button")
-            })
-        }.onReceive(timer) { time in
-            if self.timeRemaining > 0 {
-                self.timeRemaining -= 1
-            }
+        NavigationView {
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 50) {
+                        ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
+                            NavigationLink(destination: Test2()
+//                                            .navigationBarHidden(true)
+                                            .environmentObject(specialOffersViewModel)) {
+                                    SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[0], choosedIndex: 0)
+                                        
+//                                VStack {
+//                                    Text("sbdkadabd")
+//                                    Rectangle()
+//                                }.background(RoundedRectangle(cornerRadius: 30)
+//                                                    .fill(Color.gray)
+//                                                    .frame(width: 100, height: 100))
+                                }
+                        }
+                    }
+                }
+                
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Button")
+                })
+                
+            }.navigationBarHidden(true)
+            .environmentObject(specialOffersViewModel)
         }
     }
 }
 
+struct Test2: View {
+    
+    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
+    
+    var body: some View {
+        NavigationView {
+            HStack {
+                Text("lslsls")
+//                ScrollView(.horizontal, showsIndicators: false) {
+//                    HStack(spacing: 20) {
+//                        ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
+                            NavigationLink(destination: Test().navigationBarHidden(true)) {
+                                    SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[0], choosedIndex: 0)
+                                }
+//                        }
+//                    }
+//                }
+            }.navigationBarHidden(true)
+        }
+    }
+}
 struct Test_Previews: PreviewProvider {
     static var previews: some View {
         Test()

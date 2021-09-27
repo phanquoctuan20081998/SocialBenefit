@@ -1,8 +1,8 @@
 //
-//  MerchantVoucherListByCategoryService.swift
+//  SimilarVoucherService.swift
 //  Social Benefit
 //
-//  Created by Phan Quốc Tuấn on 18/09/2021.
+//  Created by Phan Quốc Tuấn on 24/09/2021.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import SwiftUI
 import Alamofire
 import SwiftyJSON
 
-class MerchantVoucherListByCategoryService {
+class SimilarVoucherService {
     
     let dateFomatter = DateFormatter()
     
@@ -18,17 +18,15 @@ class MerchantVoucherListByCategoryService {
         dateFomatter.dateFormat = "dd/MM/yyyy"
     }
     
-    func getAPI(searchPattern: String, fromIndex: Int, categoryId: Int, filterConditionItems: String, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ()) {
+    func getAPI(voucherId: Int, fromIndex: Int, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ()) {
         let service = BaseAPI()
         var data = [MerchantVoucherItemData]()
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId]
         
-        let params: Parameters = ["searchPattern": searchPattern,
-                                  "fromIndex": fromIndex,
-                                  "categoryId": (categoryId == -1) ? "" : categoryId,
-                                  "filterConditionItems": filterConditionItems]
+        let params: Parameters = ["voucherId": voucherId,
+                                  "fromIndex": fromIndex]
         
         var id: Int?
         var voucherCode: Int?
@@ -46,7 +44,7 @@ class MerchantVoucherListByCategoryService {
         var merchantId: Int?
         var employeeLikeThis: Bool?
         
-        service.makeCall(endpoint: Config.API_MERCHANT_LIST_BY_CATEGORY, method: "POST", header: header as [String: String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_MERCHANT_VOUCHER_LIST_BY_SIMILAR, method: "POST", header: header as [String: String], body: params, callback: { result in
             
             for i in 0..<result.count {
                 
@@ -74,6 +72,3 @@ class MerchantVoucherListByCategoryService {
         })
     }
 }
-
-
-

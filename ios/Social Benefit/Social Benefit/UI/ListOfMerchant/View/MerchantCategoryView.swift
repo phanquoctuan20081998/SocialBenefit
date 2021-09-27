@@ -87,7 +87,6 @@ struct MerchantCategoryItemCardView: View {
             self.merchantCategoryItemViewModel.selectedId = self.data.id
             self.specialOffersViewModel.categoryId = self.data.id
             self.offersViewModel.categoryId = self.data.id
-//            self.isActive = true
             self.merchantCategoryItemViewModel.selection = 1
             self.merchantCategoryItemViewModel.isPresentPopUp = false
             self.homeScreenViewModel.isPresentedTabBar = false

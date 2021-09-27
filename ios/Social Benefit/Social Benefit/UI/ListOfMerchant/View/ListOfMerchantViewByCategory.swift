@@ -78,23 +78,10 @@ extension ListOfMerchantViewByCategory {
                             
                             Spacer()
                             
-                            HStack() {
-                                Image("ic_my_voucher")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 27)
-                                
-                                Text("my_voucher".localized)
-                                    .font(.system(size: 9))
-                                    .frame(width: 40)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.black)
-                            }
-                            .padding(.horizontal, 7)
-                            .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
-                            .onTapGesture {
-                                self.isActive = true
-                            }
+                            MyVoucherButtonView()
+                                .onTapGesture {
+                                    self.isActive = true
+                                }
                         }.foregroundColor(.blue)
                         .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
                         

@@ -9,17 +9,43 @@ import SwiftUI
 
 struct MerchantVoucherDetailView: View {
     
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     
+    var voucherId: Int
+    
     @State var offset: CGFloat = 0
+    @State var isActive: Bool = false
     
     var body: some View {
         VStack {
             VoucherHeadline
-            InformationBar
+            InformationBar()
             Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
             ScrollableTabView
+        }.environmentObject(merchantVoucherDetailViewModel)
+        .navigationBarHidden(true)
+        .onAppear {
+            self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
+            self.homeScreenViewModel.isPresentedTabBar = false
         }
+        .overlay(
+            MyVoucherButtonView()
+                .padding(.trailing)
+                .onTapGesture {
+                    self.isActive = true
+                },alignment: .topTrailing)
+        
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
+        
+        .background(
+            NavigationLink(
+                destination: MyVoucherView().navigationBarHidden(true),
+                isActive: $isActive,
+                label: {
+                    EmptyView()
+                })
+        )
     }
 }
 
@@ -45,60 +71,16 @@ extension MerchantVoucherDetailView {
         
     }
     
-    var InformationBar: some View {
-        
-        let voucherDetail = merchantVoucherDetailViewModel.merchantVoucherDetail
-        
-        return HStack {
-            HStack(spacing: 5) {
-                Button(action: {
-                    
-                }, label: {
-                    Image(systemName: "heart\(voucherDetail.employeeLikeThis ? ".fill" : "")")
-                        .foregroundColor(.red)
-                })
-                Text(String(voucherDetail.favoriteValue))
-            }
-            
-            Rectangle()
-                .fill(Color.gray.opacity(0.5))
-                .frame(width: 2, height: 10)
-                .padding(.horizontal, 5)
-            
-            Spacer()
-            
-            HStack(spacing: 5) {
-                Image(systemName: "clock")
-                    .foregroundColor(.blue)
-                Text(voucherDetail.outOfDate)
-            }
-            
-            Spacer()
-            
-            Rectangle()
-                .fill(Color.gray.opacity(0.5))
-                .frame(width: 2, height: 10)
-                .padding(.horizontal, 5)
-            
-            HStack(spacing: 5) {
-                Image(systemName: "dollarsign.circle")
-                    .foregroundColor(.yellow)
-                Text("\(voucherDetail.pointValue)")
-            }
-        }.font(.system(size: 13))
-        .frame(width: ScreenInfor().screenWidth * 0.9)
-    }
-    
     var ScrollableTabView: some View {
         VStack {
             ScrollableTabBarView(offset: $offset)
- 
+            
             GeometryReader { proxy in
                 ScrollableTabBar(tabs: Constants.VOUCHER_DETAIL_TAB, rect: proxy.frame(in: .global), offset: $offset) {
                     HStack(spacing: 0 ){
-                        AppliedStoreView
-                        AppliedStoreView
-                        AppliedStoreView
+                        AppliedStoreView()
+                        AppliedStoreView()
+                        SimiliarVoucherView()
                     }
                 }
             }.edgesIgnoringSafeArea(.all)
@@ -114,19 +96,114 @@ extension MerchantVoucherDetailView {
                 .padding(30)
         }.frame(width: ScreenInfor().screenWidth * 0.9)
     }
+}
+
+struct InformationBar: View {
     
-    var AppliedStoreView: some View {
+    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    
+    var body: some View {
+        HStack {
+            HStack(spacing: 5) {
+                Button(action: {
+                    
+                    merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis.toggle()
+                    
+                    AddReactService().getAPI(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ReactContentType.VOUCHER, reactType: Constants.ReactType.LOVE)
+                    
+                    if merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis {
+                        merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue += 1
+                    } else {
+                        merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue -= 1
+                    }
+                    
+                }, label: {
+                    Image(systemName: "heart\(merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis ? ".fill" : "")")
+                        .foregroundColor(.red)
+                })
+                Text(String(merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue))
+            }
+            
+            Rectangle()
+                .fill(Color.gray.opacity(0.5))
+                .frame(width: 2, height: 10)
+                .padding(.horizontal, 5)
+            
+            Spacer()
+            
+            HStack(spacing: 5) {
+                Image(systemName: "clock")
+                    .foregroundColor(.blue)
+                Text(merchantVoucherDetailViewModel.merchantVoucherDetail.outOfDate)
+            }
+            
+            Spacer()
+            
+            Rectangle()
+                .fill(Color.gray.opacity(0.5))
+                .frame(width: 2, height: 10)
+                .padding(.horizontal, 5)
+            
+            HStack(spacing: 5) {
+                Image(systemName: "dollarsign.circle")
+                    .foregroundColor(.yellow)
+                Text("\(merchantVoucherDetailViewModel.merchantVoucherDetail.pointValue)")
+            }
+        }.font(.system(size: 13))
+        .frame(width: ScreenInfor().screenWidth * 0.9)
+    }
+}
+
+struct AppliedStoreView: View {
+    
+    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    @State var isShowProgressView: Bool = false
+    
+    var body: some View {
         
-        let appliedStores = merchantVoucherDetailViewModel.appliedStoreMerchantList
-        
-        return VStack {
+        VStack {
             ScrollView {
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {
-                    ForEach(appliedStores.indices, id: \.self) { i in
-                        AppliedStoreMerchantCardView(appliedStore: appliedStores[i], index: i)
+                    ForEach(merchantVoucherDetailViewModel.appliedStoreMerchantList.indices, id: \.self) { i in
+                        AppliedStoreMerchantCardView(appliedStore: merchantVoucherDetailViewModel.appliedStoreMerchantList[i], index: i)
                             .padding(.horizontal)
                     }
+                    
+                    //Infinite Scroll View
+                    
+                    if (self.merchantVoucherDetailViewModel.fromIndexAppliedStore == self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count && self.isShowProgressView) {
+                        
+                        ActivityIndicator(isAnimating: true)
+                            .onAppear {
+                                if self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                    self.merchantVoucherDetailViewModel.reloadAppliedStore()
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    self.isShowProgressView = false
+                                }
+                                
+                            }
+                        
+                    } else {
+                        GeometryReader { reader -> Color in
+                            let minY = reader.frame(in: .global).minY
+                            let height = ScreenInfor().screenHeight / 1.15
+                            if !self.merchantVoucherDetailViewModel.appliedStoreMerchantList.isEmpty && minY < height && self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count >= Constants.MAX_NUM_API_LOAD {
+                                
+                                DispatchQueue.main.async {
+                                    self.self.merchantVoucherDetailViewModel.fromIndexAppliedStore = self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count
+                                    self.isShowProgressView = true
+                                }
+                            }
+                            return Color.clear
+                        }
+                        .frame(width: 20, height: 20)
+                    }
+                    
+                    Spacer().frame(height: 40)
+                    
                 }
                 Spacer().frame(height: 20)
             }
@@ -134,6 +211,64 @@ extension MerchantVoucherDetailView {
         .frame(width: ScreenInfor().screenWidth)
     }
 }
+
+struct SimiliarVoucherView: View {
+    
+    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    @State var isShowProgressView: Bool = false
+    
+    var body: some View {
+        VStack {
+            ScrollView {
+                Spacer().frame(height: 20)
+                VStack(spacing: 10) {
+                    ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
+                        AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i], choosedIndex: i)
+                            .padding(.horizontal)
+                    }
+                    
+                    //Infinite Scroll View
+                    
+                    if (self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher == self.merchantVoucherDetailViewModel.similarVouchers.count && self.isShowProgressView) {
+                        
+                        ActivityIndicator(isAnimating: true)
+                            .onAppear {
+                                if self.merchantVoucherDetailViewModel.similarVouchers.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                    self.merchantVoucherDetailViewModel.reloadSimilarVoucher()
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    self.isShowProgressView = false
+                                }
+                                
+                            }
+                        
+                    } else {
+                        GeometryReader { reader -> Color in
+                            let minY = reader.frame(in: .global).minY
+                            let height = ScreenInfor().screenHeight / 1.3
+                            
+                            if !self.merchantVoucherDetailViewModel.similarVouchers.isEmpty && minY < height && self.merchantVoucherDetailViewModel.similarVouchers.count >= Constants.MAX_NUM_API_LOAD {
+                                
+                                DispatchQueue.main.async {
+                                    self.self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher = self.merchantVoucherDetailViewModel.similarVouchers.count
+                                    self.isShowProgressView = true
+                                }
+                            }
+                            return Color.clear
+                        }
+                        .frame(width: 20, height: 20)
+                    }
+                    
+                    Spacer().frame(height: 40)
+                }
+                Spacer().frame(height: 20)
+            }
+        }
+        .frame(width: ScreenInfor().screenWidth)
+    }
+}
+
 
 struct ScrollableTabBarView: View {
     
@@ -180,7 +315,8 @@ struct ScrollableTabBarView: View {
 
 struct VoucherDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MerchantVoucherDetailView()
+        MerchantVoucherDetailView(voucherId: 0)
             .environmentObject(MerchantVoucherDetailViewModel())
+            .environmentObject(HomeScreenViewModel())
     }
 }

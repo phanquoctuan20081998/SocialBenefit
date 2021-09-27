@@ -9,13 +9,16 @@ import Foundation
 
 class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     @Published var merchantVoucherDetail = merchantVoucherDetailDebug
-    @Published var appliedStoreMerchantList = appliedStoreMerchantListDebug
+    @Published var appliedStoreMerchantList = [AppliedStoreMerchantListData]()
+    @Published var similarVouchers = allSpecialOffersDebug
     
     @Published var selectedVoucherId = -1
-    @Published var fromIndex = 0
+    @Published var fromIndexAppliedStore = 0
+    @Published var fromIndexSimilarVoucher = 0
     
     private let merchantVoucherDetailService = MerchantVoucherDetailService()
     private let appliedStoreMerchantListService = AppliedStoreMerchantListService()
+    private let similarVoucherService = SimilarVoucherService()
     
     func getData(voucherId: Int) {
         self.selectedVoucherId = voucherId
@@ -26,9 +29,31 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
             }
         }
         
-        appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: fromIndex) { data in
+        appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: fromIndexAppliedStore) { data in
             DispatchQueue.main.async {
                 self.appliedStoreMerchantList = data
+            }
+        }
+        
+        similarVoucherService.getAPI(voucherId: voucherId, fromIndex: fromIndexSimilarVoucher) { data in
+            DispatchQueue.main.async {
+                self.similarVouchers = data
+            }
+        }
+    }
+    
+    func reloadAppliedStore() {
+        appliedStoreMerchantListService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexAppliedStore) { data in
+            DispatchQueue.main.async {
+                self.appliedStoreMerchantList = data
+            }
+        }
+    }
+    
+    func reloadSimilarVoucher() {
+        similarVoucherService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexSimilarVoucher) { data in
+            DispatchQueue.main.async {
+                self.similarVouchers = data
             }
         }
     }

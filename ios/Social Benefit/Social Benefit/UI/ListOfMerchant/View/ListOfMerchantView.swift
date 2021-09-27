@@ -17,31 +17,33 @@ struct ListOfMerchantView: View {
     @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 15) {
-                Spacer().frame(height: 25)
-                SearchBarAndMyVoucherView()
-                MerchantCategoryItemView()
-                ScrollView {
-                    SpecialOffersView()
-                    FilterView()
-                    AllOffersView()
-                }
-            }.navigationBarHidden(true)
-            .background(BackgroundViewWithNotiAndSearch())
-            .background(
-                NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
-                               tag: 1,
-                               selection: $merchantCategoryItemViewModel.selection,
-                               label: {
-                                EmptyView()
-                               })
-            )
-            .environmentObject(merchantVoucherDetailViewModel)
-            
-        }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
-            view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-        })
+        ZStack {
+            NavigationView {
+                VStack(spacing: 15) {
+                    Spacer().frame(height: 25)
+                    SearchBarAndMyVoucherView()
+                    MerchantCategoryItemView()
+                    ScrollView {
+                        SpecialOffersView()
+                        FilterView()
+                        AllOffersView()
+                    }
+                }.navigationBarHidden(true)
+                .background(BackgroundViewWithNotiAndSearch())
+                .background(
+                    NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
+                                   tag: 1,
+                                   selection: $merchantCategoryItemViewModel.selection,
+                                   label: {
+                                    EmptyView()
+                                   })
+                )
+                
+                
+            }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
+                view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+            })
+        }.environmentObject(merchantVoucherDetailViewModel)
     }
 }
 

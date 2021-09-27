@@ -10,6 +10,8 @@ import SwiftUI
 struct SpecialOffersView: View {
     
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
+    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    
     @State var isShowProgressView = false
     
     var body: some View {
@@ -22,7 +24,12 @@ struct SpecialOffersView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
-                        SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
+                        NavigationLink(
+                            destination: MerchantVoucherDetailView(voucherId: self.specialOffersViewModel.allSpecialOffers[i].id),
+                            label: {
+                                SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
+                                    .foregroundColor(.black)
+                            })
                     }
 
                     //Infinite Scroll View
@@ -75,7 +82,7 @@ struct SpecialOffersView: View {
 struct SpecialOfferCardView: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    
     var voucherData: MerchantVoucherItemData
     var choosedIndex: Int
     
@@ -103,9 +110,6 @@ struct SpecialOfferCardView: View {
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 1))
-        .onTapGesture {
-            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
-        }
     }
 }
 
@@ -173,6 +177,7 @@ extension SpecialOfferCardView {
                     .padding(3)
                     .padding(.horizontal, 5)
                     .background(RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color.blue)
                                     .shadow(color: .black.opacity(0.2), radius: 2, x: -0.5, y: 0.5))
             })
         }.padding(.horizontal, 7)
@@ -183,6 +188,8 @@ extension SpecialOfferCardView {
 struct SpecialOffersView_Previews: PreviewProvider {
     static var previews: some View {
         SpecialOffersView()
+            .environmentObject(MerchantVoucherDetailViewModel())
             .environmentObject(MerchantVoucherSpecialListViewModel())
+            
     }
 }

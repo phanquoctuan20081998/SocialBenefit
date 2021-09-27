@@ -35,15 +35,15 @@ class ReactViewModel: ObservableObject, Identifiable {
             
             for react in self.allReact {
                 switch react.reactType {
-                case 0:
+                case Constants.ReactType.LIKE:
                     self.reactCount[0] += 1
-                case 1:
+                case Constants.ReactType.LOVE:
                     self.reactCount[1] += 1
-                case 2:
+                case Constants.ReactType.LAUGH:
                     self.reactCount[2] += 1
-                case 4:
+                case Constants.ReactType.SAD:
                     self.reactCount[4] += 1
-                case 5:
+                case Constants.ReactType.ANGER:
                     self.reactCount[5] += 1
                 default:
                     // More react
@@ -76,15 +76,15 @@ class ReactViewModel: ObservableObject, Identifiable {
             let maxIndex = react.firstIndex(of: max!)!
             if max != 0 {
                 switch maxIndex {
-                case 0:
+                case Constants.ReactType.LIKE:
                     top3React.append("ic_fb_like")
-                case 1:
+                case Constants.ReactType.LOVE:
                     top3React.append("ic_fb_love")
-                case 2:
+                case Constants.ReactType.LAUGH:
                     top3React.append("ic_fb_laugh")
-                case 4:
+                case Constants.ReactType.SAD:
                     top3React.append("ic_fb_sad")
-                case 5:
+                case Constants.ReactType.ANGER:
                     top3React.append("ic_fb_angry")
                 default:
                     //Do nothing

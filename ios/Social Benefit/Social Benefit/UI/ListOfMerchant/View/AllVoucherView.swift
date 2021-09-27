@@ -20,7 +20,14 @@ struct AllOffersView: View {
             
                 VStack(spacing: 15) {
                     ForEach(self.offersViewModel.allOffers.indices, id: \.self) { i in
-                        AllOfferCardView(voucherData: self.offersViewModel.allOffers[i], choosedIndex: i)
+                        
+                        NavigationLink(
+                            destination: MerchantVoucherDetailView(voucherId: self.offersViewModel.allOffers[i].id),
+                            label: {
+                                AllOfferCardView(voucherData: self.offersViewModel.allOffers[i], choosedIndex: i)
+                                    .foregroundColor(.black)
+                            })
+                        
                     }
                     
                     //Infinite Scroll View
@@ -67,8 +74,10 @@ struct AllOffersView: View {
 struct AllOfferCardView: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     var voucherData: MerchantVoucherItemData
+    
+    // For store index of current card view...
+    // it's basically = index when use ForEach
     var choosedIndex: Int
     
     var body: some View {
@@ -98,9 +107,9 @@ struct AllOfferCardView: View {
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 1))
-        .onTapGesture {
-            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
-        }
+//        .onTapGesture {
+//            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
+//        }
     }
 }
 
@@ -167,6 +176,7 @@ extension AllOfferCardView {
                     .padding(.vertical, 5)
                     .padding(.horizontal, 20)
                     .background(RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.blue)
                                     .shadow(color: .black.opacity(0.2), radius: 2, x: -0.5, y: 0.5))
             })
         }.padding(.trailing, 20)

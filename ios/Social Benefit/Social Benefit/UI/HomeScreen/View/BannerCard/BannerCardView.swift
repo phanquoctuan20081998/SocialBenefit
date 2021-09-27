@@ -21,7 +21,7 @@ struct InternalNewsBannerView: View {
                 destination: InternalNewsView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar).navigationBarHidden(true),
                 isActive: $isPresent,
                 label: {
-                    topTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized)
+                    TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized)
                 })
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
@@ -58,7 +58,7 @@ struct RecognitionsBannerView: View {
     
     var body: some View {
         VStack {
-            topTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "recognitions_in_company".localized)
+            TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "recognitions_in_company".localized)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             
@@ -87,7 +87,7 @@ struct PromotionsBannerView: View {
     
     var body: some View {
         VStack {
-            topTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
+            TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             
@@ -198,7 +198,7 @@ struct mainButton: View {
     }
 }
 
-struct topTitleView: View {
+struct TopTitleView: View {
     
     @Binding var isPresent: Bool
     @Binding var isPresentedTabBar: Bool
@@ -214,7 +214,7 @@ struct topTitleView: View {
                 Text(title)
                     .frame(height: 40, alignment: .trailing)
                     .font(.system(size: 13))
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 10)
                     .background(Color.blue.opacity(0.2))
                     .clipShape(BannerCurveShape())
                 Spacer()
@@ -223,7 +223,7 @@ struct topTitleView: View {
                         .font(.system(size: 13))
                     Image(systemName: "chevron.right")
                 }
-            }.padding(.horizontal, 30)
+            }.padding(.horizontal, 15)
         })
     }
 }

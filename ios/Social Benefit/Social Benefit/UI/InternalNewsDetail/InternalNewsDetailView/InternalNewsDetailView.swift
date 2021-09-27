@@ -48,7 +48,7 @@ struct InternalNewsDetailView: View {
             
             CommentBarView
             
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: ""))
+        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true))
     }
 }
 
@@ -277,7 +277,7 @@ extension InternalNewsDetailView {
                     if self.reactViewModel.isLike {
                         
                         //Update delete reaction on server
-                        AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
+                        AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: Constants.ReactContentType.INTERNAL_NEWS, reactType: self.reactViewModel.selectedReaction)
                         
                         self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] -= 1
                         self.reactViewModel.numOfReact -= 1

@@ -56,6 +56,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var isActive: Bool
     var title: String
+    var isHaveLogo: Bool
     
     var body: some View {
         VStack {
@@ -89,9 +90,11 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                             Spacer()
                         }
                         
-                        URLImageView(url: userInfor.companyLogo)
-                            .frame(height: 30, alignment: .trailing)
-                            .padding(.trailing, 25)
+                        if isHaveLogo {
+                            URLImageView(url: userInfor.companyLogo)
+                                .frame(height: 30, alignment: .trailing)
+                                .padding(.trailing, 25)
+                        }
                     }.padding(.top, 40)
                     
                     ,alignment: .top)
