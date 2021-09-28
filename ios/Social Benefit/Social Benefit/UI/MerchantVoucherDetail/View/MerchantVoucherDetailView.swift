@@ -11,6 +11,7 @@ struct MerchantVoucherDetailView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
     var voucherId: Int
     
@@ -23,29 +24,23 @@ struct MerchantVoucherDetailView: View {
             InformationBar()
             Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
             ScrollableTabView
+            BottomButtonView()
         }.environmentObject(merchantVoucherDetailViewModel)
         .navigationBarHidden(true)
-        .onAppear {
-            self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
-            self.homeScreenViewModel.isPresentedTabBar = false
-        }
         .overlay(
             MyVoucherButtonView()
                 .padding(.trailing)
-                .onTapGesture {
-                    self.isActive = true
-                },alignment: .topTrailing)
+                ,alignment: .topTrailing)
+        
+        .overlay(BuyVoucherPopUp())
+        .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
         
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
-        
-        .background(
-            NavigationLink(
-                destination: MyVoucherView().navigationBarHidden(true),
-                isActive: $isActive,
-                label: {
-                    EmptyView()
-                })
-        )
+        .onAppear {
+            self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
+            self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
+            self.homeScreenViewModel.isPresentedTabBar = false 
+        }
     }
 }
 
@@ -54,6 +49,9 @@ extension MerchantVoucherDetailView {
     var VoucherHeadline: some View {
         
         let voucherDetail = merchantVoucherDetailViewModel.merchantVoucherDetail
+        
+        // Load data to display 3 bottom button
+        self.merchantVoucherDetailViewModel.loadButtonController(buyVoucherInfor: confirmInforBuyViewModel.buyVoucher)
         
         return VStack {
             
@@ -202,7 +200,7 @@ struct AppliedStoreView: View {
                         .frame(width: 20, height: 20)
                     }
                     
-                    Spacer().frame(height: 40)
+                    Spacer().frame(height: 20)
                     
                 }
                 Spacer().frame(height: 20)
@@ -223,7 +221,7 @@ struct SimiliarVoucherView: View {
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {
                     ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
-                        AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i], choosedIndex: i)
+                        AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i])
                             .padding(.horizontal)
                     }
                     
@@ -318,5 +316,6 @@ struct VoucherDetailView_Previews: PreviewProvider {
         MerchantVoucherDetailView(voucherId: 0)
             .environmentObject(MerchantVoucherDetailViewModel())
             .environmentObject(HomeScreenViewModel())
+            .environmentObject(ConfirmInforBuyViewModel())
     }
 }

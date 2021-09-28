@@ -38,15 +38,8 @@ struct ListOfMerchantViewByCategory: View {
             self.merchantCategoryItemViewModel.isInCategoryView = true
             self.specialOffersViewModel.searchPattern = ""
             self.offersViewModel.searchPattern = ""
+            self.homeScreenViewModel.isPresentedTabBar = false
         }
-        .background(
-            NavigationLink(
-                destination: MyVoucherView().navigationBarHidden(true),
-                isActive: $isActive,
-                label: {
-                    EmptyView()
-                })
-        )
     }
 }
 
@@ -79,9 +72,6 @@ extension ListOfMerchantViewByCategory {
                             Spacer()
                             
                             MyVoucherButtonView()
-                                .onTapGesture {
-                                    self.isActive = true
-                                }
                         }.foregroundColor(.blue)
                         .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
                         
@@ -112,12 +102,6 @@ extension ListOfMerchantViewByCategory {
 }
 struct ListOfMerchantViewByCategory_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfMerchantViewByCategory()
-            .environmentObject(HomeScreenViewModel())
-            .environmentObject(InternalNewsViewModel())
-            .environmentObject(MerchantVoucherSpecialListViewModel())
-            .environmentObject(MerchantCategoryItemViewModel())
-            .environmentObject(MerchantVoucherListByCategoryViewModel())
-            .environmentObject(ConfirmInforBuyViewModel())
+        HomeScreenView()
     }
 }

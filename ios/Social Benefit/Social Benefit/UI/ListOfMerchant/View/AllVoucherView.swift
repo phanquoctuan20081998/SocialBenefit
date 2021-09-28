@@ -24,7 +24,7 @@ struct AllOffersView: View {
                         NavigationLink(
                             destination: MerchantVoucherDetailView(voucherId: self.offersViewModel.allOffers[i].id),
                             label: {
-                                AllOfferCardView(voucherData: self.offersViewModel.allOffers[i], choosedIndex: i)
+                                AllOfferCardView(voucherData: self.offersViewModel.allOffers[i])
                                     .foregroundColor(.black)
                             })
                         
@@ -78,7 +78,7 @@ struct AllOfferCardView: View {
     
     // For store index of current card view...
     // it's basically = index when use ForEach
-    var choosedIndex: Int
+//    var choosedIndex: Int
     
     var body: some View {
         HStack {
@@ -167,7 +167,7 @@ extension AllOfferCardView {
             Spacer()
             
             Button(action: {
-                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id, choosedIndex: choosedIndex)
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
                 self.confirmInforBuyViewModel.isPresentedPopup = true
             }, label: {
                 Text("buy".localized)

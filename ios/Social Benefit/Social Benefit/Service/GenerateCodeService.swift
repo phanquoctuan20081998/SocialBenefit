@@ -18,8 +18,9 @@ class GenerateCodeService {
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId]
         
+        
         let params: Parameters = ["voucherId": voucherId,
-                                  "voucherOrderId": voucherOrderId]
+                                  "voucherOrderId": ""]
         
         
         service.makeCall(endpoint: Config.API_GEN_VOUCHER_CODE, method: "POST", header: header as [String: String], body: params, callback: { result in

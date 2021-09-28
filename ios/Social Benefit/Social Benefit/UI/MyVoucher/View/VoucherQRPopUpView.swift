@@ -7,22 +7,22 @@
 
 import SwiftUI
 
+let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
 struct VoucherQRPopUpView: View {
     
-    @EnvironmentObject var myVoucherViewModel: MyVoucherViewModel
+    @Binding var isPresentedPopup: Bool
     @State private var timeRemaining = 0
-    
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var voucher: VoucherCodeData
     
     var body: some View {
         ZStack {
-            if myVoucherViewModel.isPresentedPopup {
+            if isPresentedPopup {
                 Color.black
                     .opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
-                        myVoucherViewModel.isPresentedPopup = false
+                        isPresentedPopup = false
                     }
                 PopUpContentView
             }
@@ -35,10 +35,10 @@ extension VoucherQRPopUpView {
     
     var PopUpContentView: some View {
         VStack(spacing: 15) {
-            QRCodeView(code: myVoucherViewModel.selectedVoucherCode.voucherCode)
+            QRCodeView(code: voucher.voucherCode)
             
             VStack(spacing: 8) {
-                Text(myVoucherViewModel.selectedVoucherCode.voucherCode)
+                Text(voucher.voucherCode)
                     .font(.system(size: 20))
                 Text("the_code_will_be_expried_after".localized + " \(timeRemaining) " + "(s)".localized)
             }.foregroundColor(.gray)
@@ -52,13 +52,13 @@ extension VoucherQRPopUpView {
                .fill(Color.white)
         )
         .onAppear {
-            self.timeRemaining = myVoucherViewModel.selectedVoucherCode.remainTime
+            self.timeRemaining = voucher.remainTime
         }
-        .onReceive(timer) { time in
+        .onReceive(timer) { _ in
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
             } else {
-                myVoucherViewModel.isPresentedPopup = false
+                isPresentedPopup = false
             }
         }
         
@@ -67,7 +67,8 @@ extension VoucherQRPopUpView {
 
 struct VoucherQRPopUpView_Previews: PreviewProvider {
     static var previews: some View {
-        VoucherQRPopUpView()
+        VoucherQRPopUpView(isPresentedPopup: .constant(true), voucher: VoucherCodeData(voucherCode: "QTSGSJ", remainTime: 176))
+
             .environmentObject(MyVoucherViewModel())
     }
 }

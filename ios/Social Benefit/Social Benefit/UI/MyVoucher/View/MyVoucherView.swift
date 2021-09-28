@@ -40,11 +40,14 @@ struct MyVoucherView: View {
             }.background(Color(#colorLiteral(red: 0.8864943981, green: 0.9303048253, blue: 0.9857663512, alpha: 1)))
             .edgesIgnoringSafeArea(.bottom)
         }
+        .onAppear {
+            homeScreenViewModel.isPresentedTabBar = false
+        }
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers", isHaveLogo: true))
         .if(isShowCopiedPopUp) { view in
             view.overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
         }
-        .overlay(VoucherQRPopUpView())
+        .overlay(VoucherQRPopUpView(isPresentedPopup: $myVoucherViewModel.isPresentedPopup, voucher: myVoucherViewModel.selectedVoucherCode))
         .environmentObject(myVoucherViewModel)
     }
 }
@@ -97,7 +100,7 @@ extension MyVoucherView {
                                 // Because the maximum length of the result returned from the API is 10...
                                 // So if length % 10 != 0 will be the last queue...
                                 // We only send request if it have more data to load...
-                                if self.myVoucherViewModel.allMyVoucher.count % 10 == 0 {
+                                if self.myVoucherViewModel.allMyVoucher.count % Constants.MAX_NUM_API_LOAD == 0 {
                                     self.myVoucherViewModel.reloadData()
                                 }
 
@@ -175,8 +178,9 @@ struct VoucherCardView: View {
                             QRButtonTapped()
                             
                         }, label: {
-                            Image("scan2")
+                            Image(systemName: "qrcode.viewfinder")
                                 .resizable()
+                                .foregroundColor(.black)
                                 .scaledToFit()
                                 .frame(width: 20, height: 20)
                         })

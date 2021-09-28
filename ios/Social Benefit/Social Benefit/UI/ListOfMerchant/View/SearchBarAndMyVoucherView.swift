@@ -77,17 +77,7 @@ extension SearchBarAndMyVoucherView {
                 .foregroundColor(.gray)
             )
             
-            NavigationLink(destination: MyVoucherView().navigationBarHidden(true),
-                           tag: 2,
-                           selection: $merchantCategoryItemViewModel.selection,
-                           label: {
-                            MyVoucherButtonView()
-                                .onTapGesture {
-                                    self.merchantCategoryItemViewModel.selection = 2
-                                    self.homeScreenViewModel.isPresentedTabBar = false
-                                }
-                           })
-            
+            MyVoucherButtonView()
             
         }.padding(.horizontal, 10)
     }
@@ -95,6 +85,6 @@ extension SearchBarAndMyVoucherView {
 
 struct SearchBarAndMyVoucherView_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfMerchantView()
+        HomeScreenView()
     }
 }

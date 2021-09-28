@@ -16,6 +16,15 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     @Published var fromIndexAppliedStore = 0
     @Published var fromIndexSimilarVoucher = 0
     
+    // For display 3 bottom button controller...
+    @Published var isBuy = false
+    @Published var isOutOfStock = true
+    @Published var isShowCopiedPopUp = false
+    @Published var isShowQRPopUp = false
+    
+    // For store QR data
+    @Published var QRData = VoucherCodeData(voucherCode: "", remainTime: 0)
+    
     private let merchantVoucherDetailService = MerchantVoucherDetailService()
     private let appliedStoreMerchantListService = AppliedStoreMerchantListService()
     private let similarVoucherService = SimilarVoucherService()
@@ -55,6 +64,16 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
             DispatchQueue.main.async {
                 self.similarVouchers = data
             }
+        }
+    }
+    
+    func loadButtonController(buyVoucherInfor: BuyVoucherInforData) {
+        DispatchQueue.main.async {
+            if buyVoucherInfor.canUseNumber ?? 0 > 0 { self.isBuy = true }
+            else { self.isBuy = false }
+            
+            if buyVoucherInfor.remainVoucherInStock ?? 0 > 0 {self.isOutOfStock = false}
+            else { self.isOutOfStock = true }
         }
     }
 }

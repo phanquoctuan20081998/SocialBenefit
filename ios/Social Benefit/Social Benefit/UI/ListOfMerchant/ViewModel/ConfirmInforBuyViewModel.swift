@@ -14,7 +14,6 @@ class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
     @Published var buyVoucher = popUpDebug
     @Published var isPresentedPopup = false
     @Published var voucherId = 0
-    @Published var choosedIndex = 0
     @Published var buyVoucherResponse = BuyVoucherData()
     @Published var isPresentedError = false
     
@@ -32,9 +31,8 @@ class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func loadData(voucherId: Int, choosedIndex: Int) {
+    func loadData(voucherId: Int) {
         self.voucherId = voucherId
-        self.choosedIndex = choosedIndex
         self.confirmInforBuyService = ConfirmInforBuyService(voucherId: voucherId)
         getBuyVoucherInfor()
     }

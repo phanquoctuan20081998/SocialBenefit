@@ -17,7 +17,7 @@ class MerchantCategoryItemViewModel: ObservableObject, Identifiable {
     @Published var isPresentPopUp: Bool = false
 
     // To control moving between screen using Navigation Link with selection
-    @Published var selection: Int? = nil
+    @Published var selection: Bool = false
     
     private let merchantCategoryItemService = MerchantCategoryItemService()
     

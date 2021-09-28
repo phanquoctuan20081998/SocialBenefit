@@ -13,8 +13,7 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
-    
-    @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
         ZStack {
@@ -29,12 +28,14 @@ struct ListOfMerchantView: View {
                         AllOffersView()
                     }
                 }.navigationBarHidden(true)
-                .background(BackgroundViewWithNotiAndSearch())
-                
+                    .background(BackgroundViewWithNotiAndSearch())
             }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
                 view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
             })
-        }.environmentObject(merchantVoucherDetailViewModel)
+            .onAppear {
+                homeScreenViewModel.isPresentedTabBar = true
+            }
+        }
     }
 }
 

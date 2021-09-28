@@ -15,6 +15,8 @@ struct HomeScreenView: View {
     @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
     @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
     @ObservedObject var homeScreenViewModel = HomeScreenViewModel()
+    @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
+    
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -38,6 +40,7 @@ struct HomeScreenView: View {
         .environmentObject(offersViewModel)
         .environmentObject(confirmInforBuyViewModel)
         .environmentObject(homeScreenViewModel)
+        .environmentObject(merchantVoucherDetailViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {

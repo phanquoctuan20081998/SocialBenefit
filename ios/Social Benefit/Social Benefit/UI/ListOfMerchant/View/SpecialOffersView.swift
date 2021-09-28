@@ -167,7 +167,7 @@ extension SpecialOfferCardView {
             Spacer()
             
             Button(action: {
-                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id, choosedIndex: choosedIndex)
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
                 self.confirmInforBuyViewModel.isPresentedPopup = true
                 
             }, label: {

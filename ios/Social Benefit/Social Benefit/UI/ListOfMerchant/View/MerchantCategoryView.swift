@@ -10,7 +10,7 @@ import SwiftUI
 struct MerchantCategoryItemView: View {
     
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
-//    @Binding var isActive: Bool
+    //    @Binding var isActive: Bool
     
     var body: some View {
         VStack {
@@ -20,7 +20,11 @@ struct MerchantCategoryItemView: View {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
-        }
+        }.background(
+            NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
+                           isActive: $merchantCategoryItemViewModel.selection,
+                           label: {EmptyView()})
+        )
     }
 }
 
@@ -56,7 +60,7 @@ struct MerchantCategoryItemCardView: View {
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
-//    @Binding var isActive: Bool
+    //    @Binding var isActive: Bool
     
     var data: MerchantCategoryItemData
     
@@ -87,9 +91,8 @@ struct MerchantCategoryItemCardView: View {
             self.merchantCategoryItemViewModel.selectedId = self.data.id
             self.specialOffersViewModel.categoryId = self.data.id
             self.offersViewModel.categoryId = self.data.id
-            self.merchantCategoryItemViewModel.selection = 1
+            self.merchantCategoryItemViewModel.selection = true
             self.merchantCategoryItemViewModel.isPresentPopUp = false
-            self.homeScreenViewModel.isPresentedTabBar = false
         }
     }
 }
@@ -102,44 +105,39 @@ struct MerchantCategoryItemCardLocalView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
-        NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
-                       tag: 1,
-                       selection: $merchantCategoryItemViewModel.selection,
-                       label: {
-                        VStack {
-                            Image("ic_others")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                                .padding(7)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.white)
-                                        .shadow(color: .black.opacity(0.3), radius: 3, x: -1, y: 3)
-                                )
-                            
-                            Text("other".localized)
-                                .font(.system(size: 8))
-                                .foregroundColor(.black)
-                            
-                            Spacer().frame(height: 3)
-                            
-                            if self.merchantCategoryItemViewModel.selectedId == -1 && self.merchantCategoryItemViewModel.isInCategoryView {
-                                Rectangle()
-                                    .fill(Color.blue)
-                                    .frame(height: 2)
-                            }
-                        }
-                        .frame(width: 70, height: 70, alignment: .top)
-                        
-                        .onTapGesture {
-                            withAnimation {
-                                self.merchantCategoryItemViewModel.selectedId = -1
-                                self.merchantCategoryItemViewModel.isPresentPopUp = true
-                                self.homeScreenViewModel.isPresentedTabBar = false
-                            }
-                        }
-                       })
+        VStack {
+            Image("ic_others")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+                .padding(7)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.3), radius: 3, x: -1, y: 3)
+                )
+            
+            Text("other".localized)
+                .font(.system(size: 8))
+                .foregroundColor(.black)
+            
+            Spacer().frame(height: 3)
+            
+            if self.merchantCategoryItemViewModel.selectedId == -1 && self.merchantCategoryItemViewModel.isInCategoryView {
+                Rectangle()
+                    .fill(Color.blue)
+                    .frame(height: 2)
+            }
+        }
+        .frame(width: 70, height: 70, alignment: .top)
+        
+        .onTapGesture {
+            withAnimation {
+                self.merchantCategoryItemViewModel.selectedId = -1
+                self.merchantCategoryItemViewModel.isPresentPopUp = true
+                self.homeScreenViewModel.isPresentedTabBar = false
+            }
+        }
     }
 }
 
@@ -163,8 +161,8 @@ struct OtherPopUpView: View {
                     .transition(.move(edge: .bottom))
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .foregroundColor(.black)
-        .edgesIgnoringSafeArea(.bottom)
+            .foregroundColor(.black)
+            .edgesIgnoringSafeArea(.bottom)
     }
     
     var ContentView: some View {
@@ -192,9 +190,9 @@ struct OtherPopUpView: View {
             Spacer().frame(height: 30)
             
         }.padding(.vertical, 5)
-        .frame(height: 420)
-        .background(Color.white)
-        .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
+            .frame(height: 420)
+            .background(Color.white)
+            .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
     }
 }
 
