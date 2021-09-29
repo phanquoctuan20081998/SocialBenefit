@@ -32,11 +32,9 @@ struct BenefitDetailView: View {
             Spacer()
             
             VStack {
-
 //                Text(self.benefitDetailViewModel.benefit.body)
-                HTMLText(html: self.benefitDetailViewModel.benefit.body)
+                HTMLView(htmlString: self.benefitDetailViewModel.benefit.body)
                     .padding(30)
-                
                 
                 getApplyButton()
             }

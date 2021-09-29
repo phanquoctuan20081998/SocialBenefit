@@ -32,7 +32,9 @@ struct ListOfMerchantView: View {
             }
             .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
             .onAppear {
-                homeScreenViewModel.isPresentedTabBar = true
+//                homeScreenViewModel.isPresentedTabBar = true
+                self.specialOffersViewModel.reset()
+                self.offersViewModel.reset()
             }
         }
     }

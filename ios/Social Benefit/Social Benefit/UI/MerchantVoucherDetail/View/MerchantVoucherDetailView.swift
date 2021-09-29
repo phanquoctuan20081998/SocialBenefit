@@ -26,24 +26,24 @@ struct MerchantVoucherDetailView: View {
             ScrollableTabView
             BottomButtonView()
         }.environmentObject(merchantVoucherDetailViewModel)
-        .navigationBarHidden(true)
-        .overlay(
-            MyVoucherButtonView()
-                .padding(.trailing)
+            .navigationBarHidden(true)
+            .overlay(
+                MyVoucherButtonView()
+                    .padding(.trailing)
                 ,alignment: .topTrailing)
         
         // PopUp overlay...
-        .overlay(BuyVoucherPopUp())
-        .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
-        .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
-                
+            .overlay(BuyVoucherPopUp())
+            .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
+            .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
         
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
-        .onAppear {
-            self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
-            self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
-            self.homeScreenViewModel.isPresentedTabBar = false 
-        }
+        
+            .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
+            .onAppear {
+                self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
+                self.homeScreenViewModel.isPresentedTabBar = false
+            }
     }
 }
 
@@ -79,7 +79,7 @@ extension MerchantVoucherDetailView {
             GeometryReader { proxy in
                 ScrollableTabBar(tabs: Constants.VOUCHER_DETAIL_TAB, rect: proxy.frame(in: .global), offset: $offset) {
                     HStack(spacing: 0 ){
-                        InformationTabView
+                        InformationTabView()
                         AppliedStoreView()
                         SimiliarVoucherView()
                     }
@@ -88,15 +88,7 @@ extension MerchantVoucherDetailView {
         }
     }
     
-    var InformationTabView: some View {
-        let voucherDetail = merchantVoucherDetailViewModel.merchantVoucherDetail
-        
-        return ZStack(alignment: .topLeading) {
-            HTMLText(html: voucherDetail.content)
-//                .font(.system(size: 20))
-                .padding(30)
-        }.frame(width: ScreenInfor().screenWidth)
-    }
+    
 }
 
 struct InformationBar: View {
@@ -151,125 +143,9 @@ struct InformationBar: View {
                 Text("\(merchantVoucherDetailViewModel.merchantVoucherDetail.pointValue)")
             }
         }.font(.system(size: 13))
-        .frame(width: ScreenInfor().screenWidth * 0.9)
+            .frame(width: ScreenInfor().screenWidth * 0.9)
     }
 }
-
-struct AppliedStoreView: View {
-    
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
-    @State var isShowProgressView: Bool = false
-    
-    var body: some View {
-        
-        VStack {
-            ScrollView {
-                Spacer().frame(height: 20)
-                VStack(spacing: 10) {
-                    ForEach(merchantVoucherDetailViewModel.appliedStoreMerchantList.indices, id: \.self) { i in
-                        AppliedStoreMerchantCardView(appliedStore: merchantVoucherDetailViewModel.appliedStoreMerchantList[i], index: i)
-                            .padding(.horizontal)
-                    }
-                    
-                    //Infinite Scroll View
-                    
-                    if (self.merchantVoucherDetailViewModel.fromIndexAppliedStore == self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count && self.isShowProgressView) {
-                        
-                        ActivityIndicator(isAnimating: true)
-                            .onAppear {
-                                if self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count % Constants.MAX_NUM_API_LOAD == 0 {
-                                    self.merchantVoucherDetailViewModel.reloadAppliedStore()
-                                }
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    self.isShowProgressView = false
-                                }
-                                
-                            }
-                        
-                    } else {
-                        GeometryReader { reader -> Color in
-                            let minY = reader.frame(in: .global).minY
-                            let height = ScreenInfor().screenHeight / 1.15
-                            if !self.merchantVoucherDetailViewModel.appliedStoreMerchantList.isEmpty && minY < height && self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count >= Constants.MAX_NUM_API_LOAD {
-                                
-                                DispatchQueue.main.async {
-                                    self.self.merchantVoucherDetailViewModel.fromIndexAppliedStore = self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count
-                                    self.isShowProgressView = true
-                                }
-                            }
-                            return Color.clear
-                        }
-                        .frame(width: 20, height: 20)
-                    }
-                    
-                    Spacer().frame(height: 20)
-                    
-                }
-                Spacer().frame(height: 20)
-            }
-        }
-        .frame(width: ScreenInfor().screenWidth)
-    }
-}
-
-struct SimiliarVoucherView: View {
-    
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
-    @State var isShowProgressView: Bool = false
-    
-    var body: some View {
-        VStack {
-            ScrollView {
-                Spacer().frame(height: 20)
-                VStack(spacing: 10) {
-                    ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
-                        AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i])
-                            .padding(.horizontal)
-                    }
-                    
-                    //Infinite Scroll View
-                    
-                    if (self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher == self.merchantVoucherDetailViewModel.similarVouchers.count && self.isShowProgressView) {
-                        
-                        ActivityIndicator(isAnimating: true)
-                            .onAppear {
-                                if self.merchantVoucherDetailViewModel.similarVouchers.count % Constants.MAX_NUM_API_LOAD == 0 {
-                                    self.merchantVoucherDetailViewModel.reloadSimilarVoucher()
-                                }
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    self.isShowProgressView = false
-                                }
-                                
-                            }
-                        
-                    } else {
-                        GeometryReader { reader -> Color in
-                            let minY = reader.frame(in: .global).minY
-                            let height = ScreenInfor().screenHeight / 1.3
-                            
-                            if !self.merchantVoucherDetailViewModel.similarVouchers.isEmpty && minY < height && self.merchantVoucherDetailViewModel.similarVouchers.count >= Constants.MAX_NUM_API_LOAD {
-                                
-                                DispatchQueue.main.async {
-                                    self.self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher = self.merchantVoucherDetailViewModel.similarVouchers.count
-                                    self.isShowProgressView = true
-                                }
-                            }
-                            return Color.clear
-                        }
-                        .frame(width: 20, height: 20)
-                    }
-                    
-                    Spacer().frame(height: 40)
-                }
-                Spacer().frame(height: 20)
-            }
-        }
-        .frame(width: ScreenInfor().screenWidth)
-    }
-}
-
 
 struct ScrollableTabBarView: View {
     
@@ -292,7 +168,7 @@ struct ScrollableTabBarView: View {
             
             HStack(spacing: 0) {
                 ForEach(Constants.VOUCHER_DETAIL_TAB.indices, id: \.self) { index in
-                    Text(Constants.VOUCHER_DETAIL_TAB[index])
+                    Text(Constants.VOUCHER_DETAIL_TAB[index].localized)
                         .font(.system(size: 13))
                         .frame(width: equalWidth, height: 40)
                         .contentShape(Rectangle())

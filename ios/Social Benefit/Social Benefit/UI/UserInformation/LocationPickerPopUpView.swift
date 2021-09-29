@@ -26,16 +26,14 @@ struct LocationPickerPopUpView: View {
                     .edgesIgnoringSafeArea(.top)
                     .onTapGesture {
                         isPresented.toggle()
-                        if curText != "" {
-                            text = curText
-                        }
+                        if curText != "" { text = curText }
                     }
                 LocationPickerView(text: $text, curText: $curText, isPresented: $isPresented, curDragOffsetY: $curDragOffsetY, endDragOffsetY: $endDragOffsetY, filter: $filter)
                     .animation(.easeInOut)
                     .transition(.move(edge: .bottom))
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .foregroundColor(.black)
+            .foregroundColor(.black)
     }
 }
 
@@ -92,37 +90,34 @@ struct LocationPickerView: View {
                 }, label: {
                     Image(systemName: "xmark")
                 })
-                .padding(.leading, 50)
-                .padding(.bottom, 15)
+                    .padding(.leading, 50)
+                    .padding(.bottom, 15)
                 
                 Text("choose_city".localized)
                     .frame(width: ScreenInfor().screenWidth - 100, alignment: .center)
                     .padding(.trailing, 60)
                     .padding(.bottom, 15)
             }.padding(.top, 25)
-            .gesture(dragGesture)
+                .gesture(dragGesture)
             
             Divider()
             
-            ScrollView(.vertical) {
-                ForEach(data, id: \.self) { item in
-                    
-                    Button(action: {
-                        filter = item.id
-                        
-                        if curText == "" {
-                            curText = item.name
-                        } else {
-                            curText = item.name + ", " + curText
-                        }
-                    }, label: {
+            ScrollView {
+                VStack {
+                    ForEach(data, id: \.self) { item in
                         VStack {
                             Text(item.name)
                                 .frame(width: ScreenInfor().screenWidth - 70, height: 30, alignment: .leading)
                                 .padding(.top, 10)
                             Divider().frame(maxWidth: ScreenInfor().screenWidth - 60, maxHeight: 10)
                         }
-                    })
+                        
+                        .onTapGesture {
+                            filter = item.id
+                            if curText == "" { curText = item.name }
+                            else { curText = item.name + ", " + curText }
+                        }
+                    }
                 }
                 .onAppear {
                     LocationService().getAPI(filter) { (data) in
@@ -157,15 +152,15 @@ struct LocationPickerView: View {
                 }, label: {
                     Image(systemName: "xmark")
                 })
-                .padding(.leading, 50)
-                .padding(.bottom, 15)
+                    .padding(.leading, 50)
+                    .padding(.bottom, 15)
                 
                 Text("enter_address".localized)
                     .frame(width: ScreenInfor().screenWidth - 100, alignment: .center)
                     .padding(.trailing, 60)
                     .padding(.bottom, 15)
             }.padding(.top, 25)
-            .gesture(dragGesture)
+                .gesture(dragGesture)
             
             Divider()
             
@@ -200,24 +195,24 @@ struct LocationPickerView: View {
     var dragGesture: some Gesture {
         DragGesture()
             .onChanged { val in
-
-                    curDragOffsetY = val.translation.height
-                    if curDragOffsetY < 0 {
-                        curDragOffsetY = 0
-                    }
+                
+                curDragOffsetY = val.translation.height
+                if curDragOffsetY < 0 {
+                    curDragOffsetY = 0
+                }
                 
             }
             .onEnded { val in
                 
-                    if curDragOffsetY > 150 {
-                        isPresented.toggle()
-                        if curText != "" {
-                            text = curText
-                        }
+                if curDragOffsetY > 150 {
+                    isPresented.toggle()
+                    if curText != "" {
+                        text = curText
                     }
-                    curDragOffsetY = 0
                 }
-            
+                curDragOffsetY = 0
+            }
+        
     }
 }
 

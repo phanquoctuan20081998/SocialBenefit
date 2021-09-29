@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 class MerchantVoucherSpecialListViewModel: ObservableObject, Identifiable {
-    //    @Published var allSpecialOffers = [MerchantVoucherItemData]()
     
-    @Published var allSpecialOffers = allSpecialOffersDebug
+    @Published var allSpecialOffers = [MerchantVoucherItemData]()
+//    @Published var allSpecialOffers = allSpecialOffersDebug
     @Published var curLoad = 0
     
     @Published var searchPattern: String = ""

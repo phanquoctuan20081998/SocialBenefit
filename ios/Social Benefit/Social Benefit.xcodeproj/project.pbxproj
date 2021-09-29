@@ -128,6 +128,9 @@
 		C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7C26FC58E60022DA55 /* Test.swift */; };
 		C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7E26FC63B50022DA55 /* GetError.swift */; };
 		C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */; };
+		C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE2182704BFC5008E25DE /* InformationView.swift */; };
+		C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */; };
+		C4CAE21D2704C01E008E25DE /* SimiliarVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE21C2704C01E008E25DE /* SimiliarVoucherView.swift */; };
 		C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD0D5F26D5FB79003D5BE7 /* BackgroundView.swift */; };
 		C4D2606F26E475B2002E475C /* SlideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D2606E26E475B2002E475C /* SlideBar.swift */; };
 		C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DF7A6426F9BC5200DC7D04 /* BuyVoucherService.swift */; };
@@ -270,6 +273,9 @@
 		C4B9BF7C26FC58E60022DA55 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		C4B9BF7E26FC63B50022DA55 /* GetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetError.swift; sourceTree = "<group>"; };
 		C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsService.swift; sourceTree = "<group>"; };
+		C4CAE2182704BFC5008E25DE /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreView.swift; sourceTree = "<group>"; };
+		C4CAE21C2704C01E008E25DE /* SimiliarVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimiliarVoucherView.swift; sourceTree = "<group>"; };
 		C4CD0D5F26D5FB79003D5BE7 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		C4D2606E26E475B2002E475C /* SlideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideBar.swift; sourceTree = "<group>"; };
 		C4DE23E126CAC2C70061C098 /* vi */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = vi; path = vi.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -681,6 +687,9 @@
 				C472E4BA26FD609900D047BA /* MerchantVoucherDetailView.swift */,
 				C472E4CB26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift */,
 				C471A9CB2702AA0200C5F6EE /* BottomButtonView.swift */,
+				C4CAE2182704BFC5008E25DE /* InformationView.swift */,
+				C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */,
+				C4CAE21C2704C01E008E25DE /* SimiliarVoucherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1069,6 +1078,7 @@
 				84DA60CB269ECB6A0012F55B /* StringUtils.swift in Sources */,
 				C48BA35426EF016E006C4F27 /* MerchantCategoryItemModel.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
+				C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */,
 				C4B3D58226E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift in Sources */,
 				C43B21CB26DE141900E2E451 /* SearchBarView.swift in Sources */,
 				C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */,
@@ -1104,6 +1114,7 @@
 				C402B26A26E76C5300A41288 /* ReactViewModel.swift in Sources */,
 				C4492A5E26F18E98008B26C9 /* MerchantVoucherItemModel.swift in Sources */,
 				C4A5583326BA3C5300029AC0 /* ResetPasswordViewController.swift in Sources */,
+				C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */,
 				C426927026EB005C0089A5B8 /* CheckBenefitService.swift in Sources */,
 				C4E9D43326D4A00C00B223AC /* HomeScreenView.swift in Sources */,
 				C4E0268F26CA3C5E00FBB11B /* GetLocalizableText.swift in Sources */,
@@ -1166,6 +1177,7 @@
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
 				C43C7BB426FAE3800056D169 /* MyVoucherService.swift in Sources */,
+				C4CAE21D2704C01E008E25DE /* SimiliarVoucherView.swift in Sources */,
 				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
 				C4492A6026F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift in Sources */,

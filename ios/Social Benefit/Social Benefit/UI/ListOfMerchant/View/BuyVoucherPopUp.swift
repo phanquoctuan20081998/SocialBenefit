@@ -66,15 +66,15 @@ extension BuyVoucherPopUp {
     var popupContent: some View {
         VStack() {
             VStack(spacing: 2) {
-                Text("buy_button_notification %d".localizeWithFormat(arguments: 3))
-                Text("buy_more".localized)
+                Text("buy_button_notification %d".localizeWithFormat(arguments: confirmInforBuyViewModel.buyVoucher.orderedNumber!))
+                Text("would_like_buy_more".localized)
             }.font(.system(size: 15))
             .padding()
             
             let checkMax = (confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber == -1) ? false : (self.buyNumber >= confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber!)
             
             HStack {
-                Text("purchase_number".localized)
+                Text("purchase_number".localized + ": ")
                     .font(.system(size: 15))
                 
                 HStack {
@@ -107,8 +107,10 @@ extension BuyVoucherPopUp {
             
             if checkMax {
                 Text("reach_maximum".localized)
-                    .font(.system(size: 13))
+                    .font(.system(size: 10))
                     .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .frame(width: ScreenInfor().screenWidth * 0.5, height: 30)
             }
             
             Spacer()

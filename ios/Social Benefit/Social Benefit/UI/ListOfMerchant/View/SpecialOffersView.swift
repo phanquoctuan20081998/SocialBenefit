@@ -98,6 +98,7 @@ struct SpecialOfferCardView: View {
                 .font(.system(size: 10))
                 .lineLimit(2)
                 .padding(.horizontal, 7)
+                .multilineTextAlignment(.leading)
                 .frame(width: 150, alignment: .leading)
             
             Spacer()

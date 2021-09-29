@@ -140,3 +140,67 @@
 "ok_button" = "OK";
 "register_now" = "Register now!";
 "condition" = "CONDITION OF BENEFIT";
+
+//Merchant List
+"promotion" = "Promotion";
+"search_voucher" = "Search voucher";
+"other" = "Others";
+"all_categories" = "All categories";
+"special_offer" = "Special offers";
+"buy" = "Buy";
+"all_offer" = "All Offers";
+"filter" = "Filter";
+"ENUM_NEAREST_DEADLINE" = "Nearest deadline";
+"ENUM_FARTHEST_DEADLINE" = "Farthest deadline";
+"ENUM_LOWEST_PRICE" = "Lowest price";
+"ENUM_HIGHEST_PRICE" = "Highest price";
+"ENUM_NAME_AZ" = "Sort by name (A-Z)";
+"ENUM_NAME_ZA" = "Sort by name (Z-A)";
+"ENUM_MOST_DISCOUNTS" = "Most discount";
+"ENUM_BESTSELLER" = "Best seller";
+"ENUM_BEST_REVIEW" = "Best review";
+"yes" = "Yes";
+"cancel" = "Cancel";
+"voucher_is_out_of_stock" = "Voucher is out of stock";
+"buy_button_notification %d" = "You have owned %d of this voucher.";
+"would_like_buy_more" = "Would you like to buy some more?";
+"purchase_number" = "Purchase number";
+"reach_maximum" = "You've reached the maximum number you can buy";
+
+// My voucher
+"my_vouchers" = " My vouchers";
+"copied_to_clipboard" = "Copied to clipboard";
+"search_your_voucher" = "Search your voucher";
+"all" = "All";
+"active" = "Active";
+"used" = "Used";
+"expried" = "Expried";
+"no_voucher" = "No voucher";
+"expriy" = "Expriy";
+"copy" = "Copy";
+"the_code_will_be_expried_after" = "The code will be expried after";
+"(s)" = "(s)";
+"thank_you_for_using_our_service" = "Thank you for using our service!";
+
+// Merchant Voucher Detail
+"share/copy" = "Share/Copy";
+"qrcode" = "QR code";
+"buy_more" = "Buy more";
+"information" = "Information";
+"applied_stores" = "Applied stores";
+"similar_promotions" = "Similar promotions";
+
+
+// Month
+"january" = "January";
+"february" = "February";
+"march" = "March";
+"april" = "April";
+"may" = "May";
+"june" = "June";
+"july" = "July";
+"august" = "August";
+"september" = "September";
+"october" = "October";
+"november" = "November";
+"december" = "December";

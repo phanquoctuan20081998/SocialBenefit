@@ -94,7 +94,8 @@ struct AllOfferCardView: View {
                 Text("[\(voucherData.merchantName)] \(voucherData.name)")
                     .font(.system(size: 13))
                     .lineLimit(2)
-                    .frame(height: 32, alignment: .topLeading)
+                    .multilineTextAlignment(.leading)
+                    .frame(height: 32, alignment: .leading)
                 
                 
                 LoveAndCartCountView
@@ -118,7 +119,7 @@ extension AllOfferCardView {
     var LoveAndCartCountView: some View {
         HStack {
             HStack(spacing: 2) {
-                Image(systemName: "suit.heart")
+                Image(systemName: "suit.heart\(self.voucherData.employeeLikeThis ? ".fill" : "")")
                     .foregroundColor(.red)
                     .font(.system(size: 13))
                 Text("\(voucherData.favoriteValue)")

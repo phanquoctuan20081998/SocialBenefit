@@ -15,7 +15,6 @@ struct VOUCHER_TAB {
     var EXPIRED = 3
 }
 
-let TABHEADER = ["all", "active", "used", "expried"]
 
 struct MyVoucherView: View {
     
@@ -43,7 +42,7 @@ struct MyVoucherView: View {
         .onAppear {
             homeScreenViewModel.isPresentedTabBar = false
         }
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers", isHaveLogo: true))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers".localized, isHaveLogo: true))
         
         //Pop-up overlay
         .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
@@ -62,12 +61,12 @@ extension MyVoucherView {
     
     var TabView: some View {
         HStack(spacing: 0) {
-            ForEach(TABHEADER.indices, id:\.self) { i in
-                Text(TABHEADER[i].localized)
+            ForEach(Constants.TABHEADER.indices, id:\.self) { i in
+                Text(Constants.TABHEADER[i].localized)
                     .font(.system(size: 15))
                     .bold()
                     .foregroundColor((myVoucherViewModel.status == i) ? Color(#colorLiteral(red: 0.2199586034, green: 0.4942095876, blue: 0.9028041363, alpha: 1)) : Color(#colorLiteral(red: 0.5607333779, green: 0.5608169436, blue: 0.5607150793, alpha: 1)))
-                    .frame(width: ScreenInfor().screenWidth / CGFloat(TABHEADER.count), height: 30)
+                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.TABHEADER.count), height: 30)
                     .background((myVoucherViewModel.status == i) ? Color(#colorLiteral(red: 0.8864943981, green: 0.9303048253, blue: 0.9857663512, alpha: 1)) : Color(#colorLiteral(red: 0.999904573, green: 1, blue: 0.9998808503, alpha: 1)))
                     .onTapGesture {
                         withAnimation {
@@ -88,7 +87,12 @@ extension MyVoucherView {
                         Text("no_voucher".localized).font(.system(size: 13))
                     }
                     ForEach(myVoucherViewModel.allMyVoucher.indices, id: \.self) {i in
-                        VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
+                        NavigationLink(
+                            destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[i].id),
+                            label: {
+                                VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
+                                    .foregroundColor(Color.black)
+                            })
                     }
                     
                     //Infinite Scroll View

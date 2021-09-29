@@ -110,14 +110,7 @@ extension InternalNewsDetailView {
                         .font(.system(size: 20))
                         .lineLimit(2)
                     
-                    if !internalNewData.body.isEmpty && Array(internalNewData.body)[0] == "<" {
-                        HTMLText(html: internalNewData.body)
-                            .lineLimit(5)
-                    }
-                    else {
-                        Text(internalNewData.body)
-                            .lineLimit(5)
-                    }
+                    HTMLView(htmlString: internalNewData.body)
                 }
                 Spacer()
             }.padding(.horizontal)

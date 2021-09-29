@@ -835,8 +835,8 @@
             filePath = "Social Benefit/UI/ListOfMerchant/View/BuyVoucherPopUp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "popupContent"
             landmarkType = "24">
             <Locations>
@@ -902,6 +902,22 @@
             startingLineNumber = "59"
             endingLineNumber = "59"
             landmarkName = "PopUpContentView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "84244350-CE1C-44FB-9B16-6A55AC68298F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/ListOfMerchant/View/BuyVoucherPopUp.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "outOfStockContent"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
