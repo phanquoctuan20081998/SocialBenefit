@@ -23,7 +23,11 @@ struct HTMLText: UIViewRepresentable {
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
-        label.attributedText = html.convertHtml()
+        DispatchQueue.global(qos: .userInitiated).async {
+            // do something
+            label.attributedText = html.convertHtml()
+        }
+        
         return label
     }
 
@@ -49,6 +53,7 @@ extension String {
         }catch{
             return NSAttributedString()
         }
-    }    
+    }
+    
 }
 

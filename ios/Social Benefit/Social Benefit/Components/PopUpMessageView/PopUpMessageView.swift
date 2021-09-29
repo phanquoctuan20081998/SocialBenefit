@@ -28,7 +28,7 @@ struct PopUpMessageView: View {
                 .font(.system(size: 15))
         }
         .padding()
-//        .frame(width: ScreenInfor().screenWidth * 0.8)
+        //        .frame(width: ScreenInfor().screenWidth * 0.8)
         .background(RoundedRectangle(cornerRadius: 25).fill(backgroundColor))
         .padding(.horizontal)
         .offset(x: 0, y: ScreenInfor().screenHeight * 0.3)
@@ -40,11 +40,13 @@ struct ErrorMessageView: View {
     @Binding var isPresentedError: Bool
     
     var body: some View {
-        PopUpMessageView(text: getError(errorCode: error), isPresent: $isPresentedError, textColor: Color.white, backgroundColor: Color.red)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                isPresentedError = false
-            }
+        if isPresentedError {
+            PopUpMessageView(text: getError(errorCode: error), isPresent: $isPresentedError, textColor: Color.white, backgroundColor: Color.red)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        isPresentedError = false
+                    }
+                }
         }
     }
 }
@@ -54,11 +56,13 @@ struct SuccessedMessageView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.white, backgroundColor: Color.black.opacity(0.7))
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                isPresented = false
-            }
+        if isPresented {
+            PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.white, backgroundColor: Color.black.opacity(0.7))
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        isPresented = false
+                    }
+                }
         }
     }
 }

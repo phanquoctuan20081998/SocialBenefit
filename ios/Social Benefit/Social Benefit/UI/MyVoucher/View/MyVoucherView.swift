@@ -44,10 +44,11 @@ struct MyVoucherView: View {
             homeScreenViewModel.isPresentedTabBar = false
         }
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers", isHaveLogo: true))
-        .if(isShowCopiedPopUp) { view in
-            view.overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
-        }
+        
+        //Pop-up overlay
+        .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
         .overlay(VoucherQRPopUpView(isPresentedPopup: $myVoucherViewModel.isPresentedPopup, voucher: myVoucherViewModel.selectedVoucherCode))
+        
         .environmentObject(myVoucherViewModel)
     }
 }

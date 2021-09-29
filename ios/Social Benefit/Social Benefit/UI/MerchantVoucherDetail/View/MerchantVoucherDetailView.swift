@@ -32,11 +32,11 @@ struct MerchantVoucherDetailView: View {
                 .padding(.trailing)
                 ,alignment: .topTrailing)
         
+        // PopUp overlay...
         .overlay(BuyVoucherPopUp())
         .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
-        .if(merchantVoucherDetailViewModel.isShowCopiedPopUp) { view in
-            view.overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
-        }
+        .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
+                
         
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
         .onAppear {
@@ -79,7 +79,7 @@ extension MerchantVoucherDetailView {
             GeometryReader { proxy in
                 ScrollableTabBar(tabs: Constants.VOUCHER_DETAIL_TAB, rect: proxy.frame(in: .global), offset: $offset) {
                     HStack(spacing: 0 ){
-                        AppliedStoreView()
+                        InformationTabView
                         AppliedStoreView()
                         SimiliarVoucherView()
                     }
@@ -93,9 +93,9 @@ extension MerchantVoucherDetailView {
         
         return ZStack(alignment: .topLeading) {
             HTMLText(html: voucherDetail.content)
-                .font(.system(size: 20))
+//                .font(.system(size: 20))
                 .padding(30)
-        }.frame(width: ScreenInfor().screenWidth * 0.9)
+        }.frame(width: ScreenInfor().screenWidth)
     }
 }
 

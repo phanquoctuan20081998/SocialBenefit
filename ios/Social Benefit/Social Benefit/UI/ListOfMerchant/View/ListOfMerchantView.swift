@@ -29,9 +29,8 @@ struct ListOfMerchantView: View {
                     }
                 }.navigationBarHidden(true)
                     .background(BackgroundViewWithNotiAndSearch())
-            }.if(confirmInforBuyViewModel.isPresentedError, transform: { view in
-                view.overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-            })
+            }
+            .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
             .onAppear {
                 homeScreenViewModel.isPresentedTabBar = true
             }
