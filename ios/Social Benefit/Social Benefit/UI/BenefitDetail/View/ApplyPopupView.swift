@@ -71,6 +71,6 @@ extension ApplyPopupView {
 struct ApplyPopUp_Previews: PreviewProvider {
     static var previews: some View {
         ApplyPopupView()
-            .environmentObject(BenefitDetailViewModel(benefit: BenefitData(id: 0, title: "fsdf", body: "fsdfsdfs", logo: "", typeMember: 3, status: 0, mobileStatus: 0)))
+            .environmentObject(BenefitDetailViewModel())
     }
 }

@@ -10,9 +10,10 @@ import SwiftUI
 struct ListOfBenefitsView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    
     @ObservedObject var listOfBenefitsViewModel = ListOfBenefitsViewModel()
+    @ObservedObject var benefitDetailViewModel = BenefitDetailViewModel()
     @State var isTapDetail: Bool = false
-    @State var selectedBenefit = BenefitData()
     
     let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
     
@@ -47,8 +48,8 @@ struct ListOfBenefitsView: View {
                             .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
                             .padding(.top, 7)
                             .onTapGesture {
+                                self.benefitDetailViewModel.getData(benefit: item)
                                 self.isTapDetail = true
-                                self.selectedBenefit = item
                             }
                         Divider()
                     }
@@ -59,14 +60,15 @@ struct ListOfBenefitsView: View {
         }
         .background(
             NavigationLink(
-                destination: BenefitDetailView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar,
-                                               benefitDetailViewModel: BenefitDetailViewModel(benefit: self.selectedBenefit)).navigationBarHidden(true),
+                destination: BenefitDetailView().navigationBarHidden(true)
+                    .environmentObject(benefitDetailViewModel),
                 isActive: $isTapDetail,
                 label: {
                     EmptyView()
                 })
         )
         .environmentObject(listOfBenefitsViewModel)
+        .environmentObject(benefitDetailViewModel)
     }
 }
 
@@ -93,20 +95,16 @@ struct BenefitUpperView: View {
                         .foregroundColor(.blue)
                         .padding(.leading, 20)
                 })
-                .padding(.leading, -140)
-                
-                
-                //Add logo
-                URLImageView(url: userInfor.companyLogo)
-                    .frame(height: 50)
-                    .padding()
-            }
+            }.frame(width: ScreenInfor().screenWidth, height: 20, alignment: .leading)
+        
             //Add title
+            URLImageView(url: userInfor.companyLogo)
+                .frame(height: 50)
             
             Text(text)
                 .font(.bold(.headline)())
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.bottom, 15)
+                .padding(.vertical, 15)
                 .foregroundColor(.blue)
         }
     }
@@ -115,6 +113,6 @@ struct BenefitUpperView: View {
 
 struct ListOfBenefitView_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfBenefitsView()
+        BenefitUpperView(isPresentedTabBar: .constant(true), text: "dsad", isShowTabBar: false)
     }
 }

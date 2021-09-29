@@ -9,15 +9,15 @@ import SwiftUI
 
 struct BenefitDetailView: View {
     
-    @Binding var isPresentedTabBar: Bool
-    @ObservedObject var benefitDetailViewModel: BenefitDetailViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var benefitDetailViewModel: BenefitDetailViewModel
     
     var body: some View {
         VStack {
             VStack {
                 // Upper view...
                 // Reference at ListOfBenefitsView.swift...
-                BenefitUpperView(isPresentedTabBar: $isPresentedTabBar, text: "condition".localized, isShowTabBar: false)
+                BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "condition".localized, isShowTabBar: false)
                 
                 Rectangle()
                     .fill(Color.gray)
@@ -32,15 +32,15 @@ struct BenefitDetailView: View {
             Spacer()
             
             VStack {
-                ScrollView {
-                    HTMLText(html: self.benefitDetailViewModel.benefit.body)
-                        .font(.system(size: 15))
-                        .padding(30)
-                }
+
+//                Text(self.benefitDetailViewModel.benefit.body)
+                HTMLText(html: self.benefitDetailViewModel.benefit.body)
+                    .padding(30)
+                
+                
                 getApplyButton()
             }
         }.overlay(ApplyPopupView())
-        .environmentObject(benefitDetailViewModel)
     }
     
     @ViewBuilder
@@ -86,6 +86,6 @@ struct BenefitDetailView: View {
 
 struct ConditionOfBenefitView_Previews: PreviewProvider {
     static var previews: some View {
-        BenefitDetailView(isPresentedTabBar: .constant(false), benefitDetailViewModel: BenefitDetailViewModel(benefit: BenefitData(id: 0, title: "", body: "", logo: "", typeMember: 2, status: 1, mobileStatus: 1)))
+        BenefitDetailView()
     }
 }

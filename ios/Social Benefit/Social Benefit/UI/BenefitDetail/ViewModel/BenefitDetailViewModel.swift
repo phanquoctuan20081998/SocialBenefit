@@ -11,11 +11,11 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     
     @Published var applyStatus = -1
     @Published var isPresentedPopup: Bool = false
-    @Published var benefit: BenefitData
+    @Published var benefit: BenefitData = BenefitData()
     
     private let checkBenefitService = CheckBenefitService()
     
-    init(benefit: BenefitData) {
+    func getData(benefit: BenefitData) {
         self.benefit = benefit
         initApplyStatus()
     }

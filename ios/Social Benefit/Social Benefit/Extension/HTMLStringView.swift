@@ -8,32 +8,47 @@
 import UIKit
 import SwiftUI
 
-extension String {
-    var decoded: String {
-        let attr = try? NSAttributedString(data: Data(utf8), options: [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf8.rawValue
-        ], documentAttributes: nil)
-
-        return attr?.string ?? self
-    }
-}
-
 struct HTMLText: UIViewRepresentable {
-
-   let html: String
-
-   func makeUIView(context: UIViewRepresentableContext<Self>) -> UILabel {
+    
+    private(set) var html: String
+    
+    func makeUIView(context: UIViewRepresentableContext<HTMLText>) -> UILabel {
         let label = UILabel()
-        DispatchQueue.main.async {
-            let data = Data(self.html.utf8)
-            if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-                label.attributedText = attributedString
-            }
-        }
-
+        label.text = """
+        This is UILabel, one of the most interesting View class in UIKit.
+        With autolayout and multiline and it often give you some surprises.
+        Now using it with SwiftUI = 🤯
+        """
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = true
+        label.attributedText = html.convertHtml()
         return label
     }
 
-    func updateUIView(_ uiView: UILabel, context: Context) {}
+    func updateUIView(_ uiView: UILabel, context: UIViewRepresentableContext<HTMLText>) { }
 }
+
+
+extension String {
+    
+    func convertToAttributedFromHTML() -> NSAttributedString? {
+        var attributedText: NSAttributedString = NSAttributedString(string: "")
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue]
+        if let data = data(using: .unicode, allowLossyConversion: true), let attrStr = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
+            attributedText = attrStr
+        }
+        return attributedText
+    }
+
+    func convertHtml() -> NSAttributedString{
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do{
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        }catch{
+            return NSAttributedString()
+        }
+    }    
+}
+

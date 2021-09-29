@@ -34,6 +34,9 @@ struct MerchantVoucherDetailView: View {
         
         .overlay(BuyVoucherPopUp())
         .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
+        .if(merchantVoucherDetailViewModel.isShowCopiedPopUp) { view in
+            view.overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
+        }
         
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
         .onAppear {
