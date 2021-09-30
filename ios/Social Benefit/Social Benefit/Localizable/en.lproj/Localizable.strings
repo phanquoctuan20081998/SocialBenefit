@@ -161,14 +161,14 @@
 "ENUM_BEST_REVIEW" = "Best review";
 "yes" = "Yes";
 "cancel" = "Cancel";
-"voucher_is_out_of_stock" = "Voucher is out of stock";
+"voucher_is_out_of_stock" = "Voucher is out of stock!";
 "buy_button_notification %d" = "You have owned %d of this voucher.";
 "would_like_buy_more" = "Would you like to buy some more?";
 "purchase_number" = "Purchase number";
 "reach_maximum" = "You've reached the maximum number you can buy";
 
 // My voucher
-"my_vouchers" = " My vouchers";
+"my_vouchers" = "My vouchers";
 "copied_to_clipboard" = "Copied to clipboard";
 "search_your_voucher" = "Search your voucher";
 "all" = "All";
