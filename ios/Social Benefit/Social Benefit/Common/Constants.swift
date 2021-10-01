@@ -37,4 +37,12 @@ struct Constants {
         static var SURVEY = 3
         static var RECOGNIZE = 4
     }
+    
+    // Language
+    struct LANGUAGE {
+        static let ENG = 0
+        static let VN = 1
+    }
+    
+    static let LANGUAGE_TAB = ["eng", "vn"]
 }

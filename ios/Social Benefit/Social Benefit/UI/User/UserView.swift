@@ -53,7 +53,7 @@ struct UserView: View {
                         .frame(height: 30)
                     
                     VStack(spacing: 8) {
-                        NavigationLink(destination: Text("6"), tag: 6, selection: $selection) {
+                        NavigationLink(destination: SettingsView().navigationBarHidden(true), tag: 6, selection: $selection) {
                             FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, selection: $selection, selectedNumber: 6)
                         }
                         

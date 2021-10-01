@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "48327C62-5D0D-4C32-9895-0E1723D54ABB"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F5883FC-8466-4438-AACC-C19DD5B5206B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/Service/ChangePasswordService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getAPI(userId:oldPass:newPass:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4F5883FC-8466-4438-AACC-C19DD5B5206B - a416b8ecc6c1fe0d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social_Benefit.ChangePasswordService.getAPI(userId: Swift.String, oldPass: Swift.String, newPass: Swift.String) -&gt; ()"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/SocialBenefit/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/Service/ChangePasswordService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1433">
+               </Location>
+               <Location
+                  uuid = "4F5883FC-8466-4438-AACC-C19DD5B5206B - 471a7fb958c86d79"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in Social_Benefit.ChangePasswordService.getAPI(userId: Swift.String, oldPass: Swift.String, newPass: Swift.String) -&gt; ()"
+                  moduleName = "Social Benefit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/SocialBenefit/SocialBenefit/ios/Social%20Benefit/Social%20Benefit/Service/ChangePasswordService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

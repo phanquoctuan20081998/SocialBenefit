@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		3F3725A6A656E1467C0B9639 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18AEA1A836E17DC14C6C907 /* Pods_Social_Benefit.framework */; };
+		848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848753562705A37A0061D4E1 /* SettingsViewModel.swift */; };
+		848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848753582705A9400061D4E1 /* AppInformationPopUp.swift */; };
+		8487535B2705A9670061D4E1 /* LanguageSelectorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487535A2705A9670061D4E1 /* LanguageSelectorPopUp.swift */; };
+		8487535D2705AB060061D4E1 /* ChangePasswordPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487535C2705AB060061D4E1 /* ChangePasswordPopUpView.swift */; };
+		848753632706A46F0061D4E1 /* love.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8487535E2706A46E0061D4E1 /* love.gif */; };
+		848753642706A46F0061D4E1 /* angry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8487535F2706A46E0061D4E1 /* angry.gif */; };
+		848753652706A46F0061D4E1 /* laugh.gif in Resources */ = {isa = PBXBuildFile; fileRef = 848753602706A46E0061D4E1 /* laugh.gif */; };
+		848753662706A46F0061D4E1 /* like.gif in Resources */ = {isa = PBXBuildFile; fileRef = 848753612706A46F0061D4E1 /* like.gif */; };
+		848753672706A46F0061D4E1 /* sad.gif in Resources */ = {isa = PBXBuildFile; fileRef = 848753622706A46F0061D4E1 /* sad.gif */; };
+		848753692706BAA60061D4E1 /* ChangePasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848753682706BAA60061D4E1 /* ChangePasswordService.swift */; };
 		84DA606B2696DAC80012F55B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA606A2696DAC80012F55B /* AppDelegate.swift */; };
 		84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA606C2696DAC80012F55B /* SceneDelegate.swift */; };
 		84DA60722696DAC80012F55B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60702696DAC80012F55B /* Main.storyboard */; };
@@ -68,11 +78,6 @@
 		C4492A6026F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A5F26F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift */; };
 		C4492A6226F19916008B26C9 /* MerchantVoucherSpecialListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */; };
 		C44D1E9A26E7A33E00D2DDA2 /* ReactionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D1E9926E7A33E00D2DDA2 /* ReactionBarView.swift */; };
-		C44D1EA126E7A45300D2DDA2 /* angry.gif in Resources */ = {isa = PBXBuildFile; fileRef = C44D1E9C26E7A45300D2DDA2 /* angry.gif */; };
-		C44D1EA226E7A45300D2DDA2 /* like.gif in Resources */ = {isa = PBXBuildFile; fileRef = C44D1E9D26E7A45300D2DDA2 /* like.gif */; };
-		C44D1EA326E7A45300D2DDA2 /* love.gif in Resources */ = {isa = PBXBuildFile; fileRef = C44D1E9E26E7A45300D2DDA2 /* love.gif */; };
-		C44D1EA426E7A45300D2DDA2 /* sad.gif in Resources */ = {isa = PBXBuildFile; fileRef = C44D1E9F26E7A45300D2DDA2 /* sad.gif */; };
-		C44D1EA526E7A45300D2DDA2 /* laugh.gif in Resources */ = {isa = PBXBuildFile; fileRef = C44D1EA026E7A45300D2DDA2 /* laugh.gif */; };
 		C44F131526E87A19003156A6 /* AddReactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F131426E87A19003156A6 /* AddReactService.swift */; };
 		C4520AB326E3500E00E4B6A5 /* InternalNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4520AB226E3500E00E4B6A5 /* InternalNewsViewModel.swift */; };
 		C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16326F2E5E400933BBC /* VoucherFilterView.swift */; };
@@ -153,6 +158,16 @@
 
 /* Begin PBXFileReference section */
 		21B5600D4966E23460C26448 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
+		848753562705A37A0061D4E1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		848753582705A9400061D4E1 /* AppInformationPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInformationPopUp.swift; sourceTree = "<group>"; };
+		8487535A2705A9670061D4E1 /* LanguageSelectorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectorPopUp.swift; sourceTree = "<group>"; };
+		8487535C2705AB060061D4E1 /* ChangePasswordPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordPopUpView.swift; sourceTree = "<group>"; };
+		8487535E2706A46E0061D4E1 /* love.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = love.gif; sourceTree = "<group>"; };
+		8487535F2706A46E0061D4E1 /* angry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = angry.gif; sourceTree = "<group>"; };
+		848753602706A46E0061D4E1 /* laugh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = laugh.gif; sourceTree = "<group>"; };
+		848753612706A46F0061D4E1 /* like.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = like.gif; sourceTree = "<group>"; };
+		848753622706A46F0061D4E1 /* sad.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sad.gif; sourceTree = "<group>"; };
+		848753682706BAA60061D4E1 /* ChangePasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordService.swift; sourceTree = "<group>"; };
 		84DA60672696DAC80012F55B /* Social Benefit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Benefit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DA606A2696DAC80012F55B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84DA606C2696DAC80012F55B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,11 +230,6 @@
 		C4492A5F26F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherSpecialListViewModel.swift; sourceTree = "<group>"; };
 		C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherSpecialListService.swift; sourceTree = "<group>"; };
 		C44D1E9926E7A33E00D2DDA2 /* ReactionBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionBarView.swift; sourceTree = "<group>"; };
-		C44D1E9C26E7A45300D2DDA2 /* angry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = angry.gif; path = ../../../../../../../../Downloads/angry.gif; sourceTree = "<group>"; };
-		C44D1E9D26E7A45300D2DDA2 /* like.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = like.gif; path = ../../../../../../../../Downloads/like.gif; sourceTree = "<group>"; };
-		C44D1E9E26E7A45300D2DDA2 /* love.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = love.gif; path = ../../../../../../../../Downloads/love.gif; sourceTree = "<group>"; };
-		C44D1E9F26E7A45300D2DDA2 /* sad.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = sad.gif; path = ../../../../../../../../Downloads/sad.gif; sourceTree = "<group>"; };
-		C44D1EA026E7A45300D2DDA2 /* laugh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = laugh.gif; path = ../../../../../../../../Downloads/laugh.gif; sourceTree = "<group>"; };
 		C44F131426E87A19003156A6 /* AddReactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactService.swift; sourceTree = "<group>"; };
 		C4520AB226E3500E00E4B6A5 /* InternalNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsViewModel.swift; sourceTree = "<group>"; };
 		C462F16326F2E5E400933BBC /* VoucherFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherFilterView.swift; sourceTree = "<group>"; };
@@ -322,6 +332,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		848753542705A3470061D4E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4CFE7B327055B22006C81C9 /* SettingsView.swift */,
+				8487535C2705AB060061D4E1 /* ChangePasswordPopUpView.swift */,
+				848753582705A9400061D4E1 /* AppInformationPopUp.swift */,
+				8487535A2705A9670061D4E1 /* LanguageSelectorPopUp.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		848753552705A3570061D4E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				848753562705A37A0061D4E1 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		84DA605E2696DAC80012F55B = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +425,7 @@
 				C472E4BF26FD723000D047BA /* MerchantVoucherDetailService.swift */,
 				C472E4C926FDA5DC00D047BA /* AppliedStoreMerchantListService.swift */,
 				C42255DE26FE0E5200A4416F /* SimilarVoucherService.swift */,
+				848753682706BAA60061D4E1 /* ChangePasswordService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -641,11 +671,11 @@
 		C44D1E9B26E7A42D00D2DDA2 /* Reactions */ = {
 			isa = PBXGroup;
 			children = (
-				C44D1E9C26E7A45300D2DDA2 /* angry.gif */,
-				C44D1EA026E7A45300D2DDA2 /* laugh.gif */,
-				C44D1E9D26E7A45300D2DDA2 /* like.gif */,
-				C44D1E9E26E7A45300D2DDA2 /* love.gif */,
-				C44D1E9F26E7A45300D2DDA2 /* sad.gif */,
+				8487535F2706A46E0061D4E1 /* angry.gif */,
+				848753602706A46E0061D4E1 /* laugh.gif */,
+				848753612706A46F0061D4E1 /* like.gif */,
+				8487535E2706A46E0061D4E1 /* love.gif */,
+				848753622706A46F0061D4E1 /* sad.gif */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -885,7 +915,8 @@
 		C4CFE7B227055AEA006C81C9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				C4CFE7B327055B22006C81C9 /* SettingsView.swift */,
+				848753552705A3570061D4E1 /* ViewModel */,
+				848753542705A3470061D4E1 /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1013,20 +1044,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DA60BB269EC9C40012F55B /* en.lproj in Resources */,
-				C44D1EA226E7A45300D2DDA2 /* like.gif in Resources */,
+				848753662706A46F0061D4E1 /* like.gif in Resources */,
+				848753652706A46F0061D4E1 /* laugh.gif in Resources */,
+				848753632706A46F0061D4E1 /* love.gif in Resources */,
 				84DA608C2696DB7F0012F55B /* LoginViewController.xib in Resources */,
 				C4A5583826BA783800029AC0 /* ResetSuccessViewController.xib in Resources */,
-				C44D1EA326E7A45300D2DDA2 /* love.gif in Resources */,
 				84DA60772696DACA0012F55B /* LaunchScreen.storyboard in Resources */,
 				C4A5583126BA3BC400029AC0 /* ResetPasswordViewController.xib in Resources */,
 				84DA60742696DACA0012F55B /* Assets.xcassets in Resources */,
-				C44D1EA526E7A45300D2DDA2 /* laugh.gif in Resources */,
 				84DA60BC269EC9C40012F55B /* vn.lproj in Resources */,
-				C44D1EA426E7A45300D2DDA2 /* sad.gif in Resources */,
+				848753642706A46F0061D4E1 /* angry.gif in Resources */,
 				84DA60722696DAC80012F55B /* Main.storyboard in Resources */,
-				C44D1EA126E7A45300D2DDA2 /* angry.gif in Resources */,
 				84DA608F2696DB950012F55B /* Media.xcassets in Resources */,
 				84DA60882696DB720012F55B /* SplashViewController.xib in Resources */,
+				848753672706A46F0061D4E1 /* sad.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,12 +1135,14 @@
 				C471A9CC2702AA0200C5F6EE /* BottomButtonView.swift in Sources */,
 				C4B9BF7326FC1BDE0022DA55 /* HomeScreenViewModel.swift in Sources */,
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
+				848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
 				C4A5583626BA77D100029AC0 /* ResetSuccessViewController.swift in Sources */,
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
 				C4B9BF7926FC2AC50022DA55 /* GeneratorQRCode.swift in Sources */,
 				C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */,
 				C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */,
+				8487535D2705AB060061D4E1 /* ChangePasswordPopUpView.swift in Sources */,
 				C4792A5B27017DF5006D71AD /* MyVoucherButtonView.swift in Sources */,
 				84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */,
 				C4DF7A6A26F9CB0500DC7D04 /* PopUpMessageView.swift in Sources */,
@@ -1139,6 +1172,7 @@
 				C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */,
 				84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */,
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
+				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
 				84DA608B2696DB7F0012F55B /* LoginViewController.swift in Sources */,
 				C403670326DB2A8200381888 /* UserInforModel.swift in Sources */,
@@ -1163,6 +1197,7 @@
 				C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */,
 				C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */,
 				C403670526DB85D700381888 /* BannerCardView.swift in Sources */,
+				8487535B2705A9670061D4E1 /* LanguageSelectorPopUp.swift in Sources */,
 				C462F16926F3452C00933BBC /* ProgressView.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,
 				C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */,
@@ -1189,6 +1224,7 @@
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
 				C43C7BB426FAE3800056D169 /* MyVoucherService.swift in Sources */,
+				848753692706BAA60061D4E1 /* ChangePasswordService.swift in Sources */,
 				C4CAE21D2704C01E008E25DE /* SimiliarVoucherView.swift in Sources */,
 				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
