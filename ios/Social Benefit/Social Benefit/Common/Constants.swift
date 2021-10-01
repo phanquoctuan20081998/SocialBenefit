@@ -38,11 +38,26 @@ struct Constants {
         static var RECOGNIZE = 4
     }
     
-    // Language
+    // Language...
     struct LANGUAGE {
         static let ENG = 0
         static let VN = 1
     }
     
     static let LANGUAGE_TAB = ["eng", "vn"]
+    
+    // Change Password Error
+    struct ChangePasswordErrors {
+        static let password_not_match = "password_not_match"
+        static let password_6_to_15 = "password_6_to_15"
+        static let need_to_fill_all_data = "need_fill_all_data"
+        static let wrong_old_password = "wrong_old_password"
+        static let api_call_failed = "api_call_failed"
+    }
+    
+    struct ChangePasswordErrorCodeResponse {
+        static let MOBILE_WRONG_OLD_PASSWORD = 1
+        static let MOBILE_CHANGE_PASSWORD_FAIL = -1
+        static let MOBILE_CHANGE_PASSWORD_OK = 0
+    }
 }

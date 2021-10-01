@@ -86,9 +86,11 @@ struct SettingsView: View {
             if trailingElement == "selector" {
                 HStack {
                     Text(Constants.LANGUAGE_TAB[settingsViewModel.selectedlanguage].localized)
+                    Spacer()
                     Image(systemName: "chevron.down")
                 }
                 .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                .frame(width: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.gray, lineWidth: 1))
                 .onTapGesture {

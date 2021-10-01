@@ -50,12 +50,26 @@ extension ChangePasswordPopUpView {
                 .font(.system(size: 30))
                 .rotationEffect(.degrees(-90))
             
-            Spacer()
+            VStack {
+                if settingsViewModel.isShowError {
+                    Text(settingsViewModel.errorMeg)
+                        .foregroundColor(.red)
+                }
+            }.frame(height: 20)
             
             VStack(spacing: 25) {
                 PasswordTextField(title: "old_password".localized, placeHolder: "enter_old_password", text: $settingsViewModel.oldPassword)
+                    .onTapGesture {
+                        settingsViewModel.resetError()
+                    }
                 PasswordTextField(title: "new_password".localized, placeHolder: "enter_new_password", text: $settingsViewModel.newPassword)
+                    .onTapGesture {
+                        settingsViewModel.resetError()
+                    }
                 PasswordTextField(title: "retype_password".localized, placeHolder: "retype_new_password", text: $settingsViewModel.retypePassword)
+                    .onTapGesture {
+                        settingsViewModel.resetError()
+                    }
             }
             
             Spacer()
@@ -64,7 +78,7 @@ extension ChangePasswordPopUpView {
 
                 // Update button...
                 Button(action: {
-                    settingsViewModel.updatePassword()
+                    settingsViewModel.updateButtontapped()
                 }, label: {
                     Text("Update".localized)
                         .foregroundColor(settingsViewModel.isAllTextFieldAreTyped ? .black : .gray)
