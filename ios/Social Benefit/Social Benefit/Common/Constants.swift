@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
     
@@ -60,4 +61,15 @@ struct Constants {
         static let MOBILE_CHANGE_PASSWORD_FAIL = -1
         static let MOBILE_CHANGE_PASSWORD_OK = 0
     }
+    
+    // Background Search Bar
+    static let SEARCH_TAB = ["company_surveys", "employee_information", "favorite merchants", "home", "internal_news",
+                             "list_of_your_benefits", "merchant_voucher_list", "my_vouchers", "recognize", "recognize_ranking",
+                             "used_points_history"]
+    
+    static let SEARCH_ICON = ["chart.bar.xaxis", "home_my_profile", "heart.fill", "ic_home", "newspaper.fill", "list.number",
+                              "cart.fill", "ic_my_voucher", "star.fill", "ic_medal_gold", "clock.arrow.circlepath"]
+    
+    static let SEARCH_ICON_COLOR = [Color.purple, Color.white, Color.red, Color.white, Color.green, Color.blue, Color.blue,
+                                    Color.white, Color.yellow, Color.white, Color.gray]
 }

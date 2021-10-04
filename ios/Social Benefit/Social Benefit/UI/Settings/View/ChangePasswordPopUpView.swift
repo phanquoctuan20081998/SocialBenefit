@@ -57,7 +57,7 @@ extension ChangePasswordPopUpView {
                 }
             }.frame(height: 20)
             
-            VStack(spacing: 25) {
+            VStack(spacing: 15) {
                 PasswordTextField(title: "old_password".localized, placeHolder: "enter_old_password", text: $settingsViewModel.oldPassword)
                     .onTapGesture {
                         settingsViewModel.resetError()
@@ -111,7 +111,7 @@ extension ChangePasswordPopUpView {
             }
             
         }.font(.system(size: 13))
-        .padding(.vertical, 30)
+        .padding(.vertical, 25)
         .frame(width: ScreenInfor().screenWidth * 0.9, height: 400)
         .background(
             RoundedRectangle(cornerRadius: 20)

@@ -77,10 +77,12 @@ struct SettingsView: View {
             Image(systemName: image)
                 .foregroundColor(color)
                 .font(.system(size: 20))
-                .if(title == "security".localized) { view in
+                .frame(width: 30, height: 30)
+                .if(image == "key.fill") { view in
                     view.rotationEffect(.degrees(-90))
                 }
             Text(title)
+                .padding(.leading, 5)
             Spacer()
             
             if trailingElement == "selector" {

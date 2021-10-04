@@ -33,10 +33,7 @@ struct BackgroundViewWithNotiAndSearch: View {
                                 Image(systemName: "bell.fill")
                             })
                             
-                            Button(action: {
-                                // Do something
-                                
-                            }, label: {
+                            NavigationLink(destination: SearchView().navigationBarHidden(true), label: {
                                 Image(systemName: "magnifyingglass")
                             })
                         }

@@ -99,7 +99,7 @@ extension InternalNewsView {
             ScrollView (.vertical, showsIndicators: false) {
                 VStack (alignment: .leading, spacing: 10) {
                     
-                    let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
+                    let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.localizedStandardContains(searchText) || $0.shortBody.localizedStandardContains(searchText))})
                     
                     ForEach(filteredData, id: \.self) { item in
                         InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)

@@ -53,6 +53,7 @@ struct FunctionCardView: View {
         }
         
     }
+    
 }
 
 struct FunctionCardView_Previews: PreviewProvider {
