@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SearchBarData: Hashable {
+    var id: Int
     var icon: String
     var title: String
     var color: Color
