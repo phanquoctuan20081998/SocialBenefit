@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BackgroundViewWithNotiAndSearch: View {
     
+    @ObservedObject var searchViewModel = SearchViewModel()
+    
     var body: some View {
         VStack {
             Image("pic_background")
@@ -33,7 +35,7 @@ struct BackgroundViewWithNotiAndSearch: View {
                                 Image(systemName: "bell.fill")
                             })
                             
-                            NavigationLink(destination: SearchView().navigationBarHidden(true), label: {
+                            NavigationLink(destination: SearchView(searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView())).navigationBarHidden(true).environmentObject(searchViewModel), label: {
                                 Image(systemName: "magnifyingglass")
                             })
                         }

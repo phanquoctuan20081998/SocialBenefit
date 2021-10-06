@@ -17,6 +17,7 @@ struct FunctionCardView: View {
     var chevron: Bool
     
     @Binding var selection: Int?
+    @Binding var isPresentCustomerSupportPopUp: Bool
     var selectedNumber: Int
     
     var body: some View {
@@ -25,6 +26,9 @@ struct FunctionCardView: View {
                 // Do something
                 self.selection = selectedNumber
                 self.homeScreenViewModel.isPresentedTabBar = false
+                if selectedNumber == 7 {
+                    isPresentCustomerSupportPopUp = true
+                }
             }, label: {
                 HStack {
                     Image(systemName: thumnail)
@@ -58,6 +62,6 @@ struct FunctionCardView: View {
 
 struct FunctionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, selection: .constant(1), selectedNumber: 1)
+        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, selection: .constant(1), isPresentCustomerSupportPopUp: .constant(true), selectedNumber: 1)
     }
 }

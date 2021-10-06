@@ -155,7 +155,7 @@ extension InternalNewsDetailView {
                     
                     Spacer().frame(width: 18)
                     
-                    AutoResizeTextField(text: $commentText, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                    AutoResizeTextField(text: $commentText, isFocus: .constant(false), minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding(5)
                         
