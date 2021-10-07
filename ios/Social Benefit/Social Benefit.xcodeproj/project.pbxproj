@@ -143,6 +143,7 @@
 		C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7C26FC58E60022DA55 /* Test.swift */; };
 		C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7E26FC63B50022DA55 /* GetError.swift */; };
 		C4BBFFEE270AE20000A92109 /* IsSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BBFFED270AE20000A92109 /* IsSystemImage.swift */; };
+		C4C8115C270E8A4A002D7220 /* ConfirmPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8115B270E8A4A002D7220 /* ConfirmPopUp.swift */; };
 		C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */; };
 		C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE2182704BFC5008E25DE /* InformationView.swift */; };
 		C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */; };
@@ -312,6 +313,7 @@
 		C4B9BF7C26FC58E60022DA55 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		C4B9BF7E26FC63B50022DA55 /* GetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetError.swift; sourceTree = "<group>"; };
 		C4BBFFED270AE20000A92109 /* IsSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsSystemImage.swift; sourceTree = "<group>"; };
+		C4C8115B270E8A4A002D7220 /* ConfirmPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopUp.swift; sourceTree = "<group>"; };
 		C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsService.swift; sourceTree = "<group>"; };
 		C4CAE2182704BFC5008E25DE /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreView.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C4C8115A270E8A33002D7220 /* ConfirmPopUp */,
 				C4D02616270D40F30048B671 /* PopUp */,
 				C4D0260E270D3E5F0048B671 /* BackgroundSearch */,
 				C447E4C5270C393400ECBB3E /* DragPopUp */,
@@ -997,6 +1000,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C4C8115A270E8A33002D7220 /* ConfirmPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				C4C8115B270E8A4A002D7220 /* ConfirmPopUp.swift */,
+			);
+			path = ConfirmPopUp;
+			sourceTree = "<group>";
+		};
 		C4CD0D5E26D5FB0D003D5BE7 /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -1359,6 +1370,7 @@
 				C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */,
 				C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */,
 				C402B26E26E76E5500A41288 /* ReactService.swift in Sources */,
+				C4C8115C270E8A4A002D7220 /* ConfirmPopUp.swift in Sources */,
 				C4B6854626F75E6C0046F97F /* ListOfMerchantViewByCategory.swift in Sources */,
 				C430AEBB26E6552100D3D29A /* AddCommentService.swift in Sources */,
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,

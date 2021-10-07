@@ -9,8 +9,8 @@ import SwiftUI
 
 struct UserView: View {
     
+    @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
     @State var selection: Int? = nil
-    @State var isPresentCustomerSupportPopUp: Bool = false
     
     var body: some View {
         NavigationView {
@@ -33,19 +33,19 @@ struct UserView: View {
                 ScrollView (.vertical, showsIndicators: false) {
                     VStack(spacing: 8) {
                         NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
-                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 2)
+                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
                         }
                         
                         NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 3)
+                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
                         }
                         
                         NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
-                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 4)
+                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
                         }
                         
                         NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
-                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 5)
+                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
                         }
                     }.padding(.top, 10)
                     
@@ -54,18 +54,15 @@ struct UserView: View {
                     
                     VStack(spacing: 8) {
                         NavigationLink(destination: SettingsView().navigationBarHidden(true), tag: 6, selection: $selection) {
-                            FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 6)
+                            FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 6)
                         }
                         
                        
-                        FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, selection: $selection, isPresentCustomerSupportPopUp: $isPresentCustomerSupportPopUp, selectedNumber: 7)
-                            .onTapGesture {
-                                isPresentCustomerSupportPopUp = true
-                            }
+                        FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7)
                         
                         
                         NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-                            FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 8)
+                            FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8)
                         }
                     }
                     //
@@ -73,7 +70,7 @@ struct UserView: View {
                     
                     VStack {
                         NavigationLink(destination: Text("9"), tag: 9, selection: $selection) {
-                            FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, selection: $selection, isPresentCustomerSupportPopUp: .constant(false), selectedNumber: 9)
+                            FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
                         }
                     }
                 }
@@ -82,7 +79,7 @@ struct UserView: View {
             }.background(
                 BackgroundViewWithNotiAndSearch()
             )
-                .overlay(CustomerSupportPopUp(isPresentedPopUp: $isPresentCustomerSupportPopUp).frame(width: ScreenInfor().screenWidth))
+                
             .navigationBarHidden(true)
             .navigationViewStyle(StackNavigationViewStyle())
         }

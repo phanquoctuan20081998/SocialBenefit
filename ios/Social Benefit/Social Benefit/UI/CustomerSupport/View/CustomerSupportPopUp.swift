@@ -9,13 +9,12 @@ import SwiftUI
 
 struct CustomerSupportPopUp: View {
     
-    @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
-    @Binding var isPresentedPopUp: Bool
+    @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
     @State var isPresentComfirmPopUp = false
     
     var body: some View {
-        PopUpView(isPresentedPopUp: $isPresentedPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
-            .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $isPresentedPopUp))
+        PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
+            .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp))
     }
 }
 
@@ -67,7 +66,7 @@ extension CustomerSupportPopUp {
                 Button(action: {
                     withAnimation {
                         if customerSupportViewModel.isAllTextFieldAreBlank {
-                            isPresentedPopUp = false
+                            customerSupportViewModel.isPresentCustomerSupportPopUp = false
                         } else {
                             isPresentComfirmPopUp = true
                         }
@@ -92,7 +91,7 @@ extension CustomerSupportPopUp {
     func outOfPopUpAreaTapped() {
         if customerSupportViewModel.isAllTextFieldAreBlank {
             withAnimation {
-                isPresentedPopUp = false
+                customerSupportViewModel.isPresentCustomerSupportPopUp = false
             }
         } else {
             isPresentComfirmPopUp = true
@@ -119,6 +118,6 @@ struct FeedBackTextField: View {
 
 struct CustomerSupportPopUp_Previews: PreviewProvider {
     static var previews: some View {
-        CustomerSupportPopUp(isPresentedPopUp: .constant(true))
+        CustomerSupportPopUp()
     }
 }

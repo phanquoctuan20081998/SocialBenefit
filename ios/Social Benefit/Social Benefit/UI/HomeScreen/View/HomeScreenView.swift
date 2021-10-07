@@ -16,23 +16,31 @@ struct HomeScreenView: View {
     @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
     @ObservedObject var homeScreenViewModel = HomeScreenViewModel()
     @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
+    @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
     
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
-            getView(selectedTab: homeScreenViewModel.selectedTab)
-            
-            // Custom Tab Bar
-            if homeScreenViewModel.isPresentedTabBar {
-                CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
-            }
+        NavigationView {
+            ZStack(alignment: .bottom) {
+                
+                getView(selectedTab: homeScreenViewModel.selectedTab)
+                
+                // Custom Tab Bar
+                if homeScreenViewModel.isPresentedTabBar {
+                    CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
+                }
+                
+                
+                // Promotion - Buy Button and Other Category popup...
+                BuyVoucherPopUp()
+                OtherPopUpView()
+                
+                // User - Customer support popup...
+                //            NavigationView {
+                CustomerSupportPopUp()
+                //            }
+            }.navigationBarHidden(true)
         }
-        
-        // PopUp for Buy Button and Other Category...
-        // Promotion tab
-        .overlay(BuyVoucherPopUp())
-        .overlay(OtherPopUpView())
         
         .environmentObject(internalNewsViewModel)
         .environmentObject(specialOffersViewModel)
@@ -41,6 +49,7 @@ struct HomeScreenView: View {
         .environmentObject(confirmInforBuyViewModel)
         .environmentObject(homeScreenViewModel)
         .environmentObject(merchantVoucherDetailViewModel)
+        .environmentObject(customerSupportViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {
