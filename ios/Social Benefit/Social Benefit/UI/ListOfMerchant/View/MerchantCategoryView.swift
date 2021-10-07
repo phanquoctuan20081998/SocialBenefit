@@ -20,7 +20,8 @@ struct MerchantCategoryItemView: View {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
-        }.background(
+        }
+        .background(
             NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
                            isActive: $merchantCategoryItemViewModel.selection,
                            label: {EmptyView()})
@@ -198,6 +199,6 @@ struct OtherPopUpView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }

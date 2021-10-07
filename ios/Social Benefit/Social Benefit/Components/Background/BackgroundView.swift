@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BackgroundViewWithNotiAndSearch: View {
-    
-    @ObservedObject var searchViewModel = SearchViewModel()
-    
+    @EnvironmentObject var homeScreen: HomeScreenViewModel
+
     var body: some View {
         VStack {
+            
             Image("pic_background")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -27,17 +27,24 @@ struct BackgroundViewWithNotiAndSearch: View {
                         Spacer()
                         
                         HStack(spacing: 20) {
-                            Button(action: {
-                                // Do something
-
-                                
-                            }, label: {
-                                Image(systemName: "bell.fill")
-                            })
                             
-                            NavigationLink(destination: SearchView(searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView())).navigationBarHidden(true).environmentObject(searchViewModel), label: {
+                            // Bell Button
+                            Button {
+                                // Do something
+                                
+                                
+                            } label: {
+                                Image(systemName: "bell.fill")
+                            }
+                            
+                            // Search Button
+                            Button {
+                                withAnimation(.easeInOut) {
+                                    homeScreen.isPresentedSearchView = true
+                                }
+                            } label: {
                                 Image(systemName: "magnifyingglass")
-                            })
+                            }
                         }
                         .foregroundColor(.blue)
                         .padding(.trailing)

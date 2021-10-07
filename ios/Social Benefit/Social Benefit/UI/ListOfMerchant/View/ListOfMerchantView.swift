@@ -16,28 +16,28 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                VStack(spacing: 15) {
-                    Spacer().frame(height: 25)
-                    SearchBarAndMyVoucherView()
-                    MerchantCategoryItemView()
-                    ScrollView {
-                        SpecialOffersView()
-                        FilterView()
-                        AllOffersView()
-                    }
-                }.navigationBarHidden(true)
-                    .background(BackgroundViewWithNotiAndSearch())
-            }
-            .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-            .onAppear {
-//                homeScreenViewModel.isPresentedTabBar = true
-                self.specialOffersViewModel.reset()
-                self.offersViewModel.reset()
-            }
+        
+        NavigationView {
+            VStack(spacing: 15) {
+                Spacer().frame(height: 25)
+                SearchBarAndMyVoucherView()
+                MerchantCategoryItemView()
+                ScrollView {
+                    SpecialOffersView()
+                    FilterView()
+                    AllOffersView()
+                }
+            }.navigationBarHidden(true)
+                .background(BackgroundViewWithNotiAndSearch())
+        }
+        .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+        .onAppear {
+            //                homeScreenViewModel.isPresentedTabBar = true
+            self.specialOffersViewModel.reset()
+            self.offersViewModel.reset()
         }
     }
+    
 }
 
 struct ListOfMerchantView_Previews: PreviewProvider {

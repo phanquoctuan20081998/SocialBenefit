@@ -142,7 +142,7 @@ struct UserInforView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }
 

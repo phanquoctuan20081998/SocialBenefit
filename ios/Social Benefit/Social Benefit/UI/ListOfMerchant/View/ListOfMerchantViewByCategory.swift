@@ -102,6 +102,6 @@ extension ListOfMerchantViewByCategory {
 }
 struct ListOfMerchantViewByCategory_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }

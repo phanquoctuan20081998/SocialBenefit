@@ -258,6 +258,6 @@ func getPromotionData(data: [MerchantListData]) -> [BannerContentView] {
 
 struct BannerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }

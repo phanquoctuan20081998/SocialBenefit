@@ -17,7 +17,11 @@ struct HomeScreenView: View {
     @ObservedObject var homeScreenViewModel = HomeScreenViewModel()
     @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
     @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
+    @ObservedObject var searchViewModel = SearchViewModel()
     
+    init(selectedTab: String) {
+        homeScreenViewModel.selectedTab = selectedTab
+    }
     
     var body: some View {
         NavigationView {
@@ -25,20 +29,21 @@ struct HomeScreenView: View {
                 
                 getView(selectedTab: homeScreenViewModel.selectedTab)
                 
-                // Custom Tab Bar
+                // Search View...
+                SearchView(searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
+                
+                // Custom Tab Bar...
                 if homeScreenViewModel.isPresentedTabBar {
                     CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
                 }
-                
-                
+
                 // Promotion - Buy Button and Other Category popup...
                 BuyVoucherPopUp()
                 OtherPopUpView()
                 
                 // User - Customer support popup...
-                //            NavigationView {
                 CustomerSupportPopUp()
-                //            }
+
             }.navigationBarHidden(true)
         }
         
@@ -50,6 +55,7 @@ struct HomeScreenView: View {
         .environmentObject(homeScreenViewModel)
         .environmentObject(merchantVoucherDetailViewModel)
         .environmentObject(customerSupportViewModel)
+        .environmentObject(searchViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {
@@ -71,7 +77,7 @@ struct HomeView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
                 Spacer()
                     .frame(height: 40)
@@ -89,12 +95,13 @@ struct HomeView: View {
                 }
             }.background(
                 BackgroundViewWithNotiAndSearch()
-            ).navigationBarHidden(true)
-        }
+            )
+//            .navigationBarHidden(true)
+//        }
     }
 }
 struct HomeScreenTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }

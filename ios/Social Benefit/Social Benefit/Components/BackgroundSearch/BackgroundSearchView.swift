@@ -18,14 +18,19 @@ struct SearchView: View {
     var contentView: AnyView
     
     var body: some View {
-        NavigationView {
+        
+        if homeScreen.isPresentedSearchView {
             VStack {
                 HStack(spacing: 15) {
                     SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "your_searching_screen".localized, width: ScreenInfor().screenWidth * 0.8, height: 50, fontSize: 15, isShowCancelButton: false)
                     
                     Button {
-                        homeScreen.isPresentedTabBar = true
-                        self.presentationMode.wrappedValue.dismiss()
+                        withAnimation(.easeInOut) {
+                            homeScreen.isPresentedTabBar = true
+                            homeScreen.isPresentedSearchView = false
+                        }
+                        
+//                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("close".localized)
                     }
@@ -33,9 +38,10 @@ struct SearchView: View {
                 
                 contentView
             }
+            .background(Color.white.edgesIgnoringSafeArea(.all).frame(width: ScreenInfor().screenWidth))
             .onAppear {
                 homeScreen.isPresentedTabBar = false
-            }.navigationBarHidden(true)
+            }
         }
     }
 }
