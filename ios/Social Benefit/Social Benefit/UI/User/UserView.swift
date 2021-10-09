@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserView: View {
     
+    @EnvironmentObject var homescreen: HomeScreenViewModel
     @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
     @State var selection: Int? = nil
     
@@ -82,6 +83,8 @@ struct UserView: View {
                 
             .navigationBarHidden(true)
             .navigationViewStyle(StackNavigationViewStyle())
+        }.onAppear {
+            homescreen.isPresentedTabBar = true
         }
     }
 }

@@ -12,6 +12,7 @@ struct SearchView: View {
     @EnvironmentObject var homeScreen: HomeScreenViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @Binding var isPresent: Bool
     @Binding var searchText: String
     @Binding var isSearching: Bool
     
@@ -19,7 +20,7 @@ struct SearchView: View {
     
     var body: some View {
         
-        if homeScreen.isPresentedSearchView {
+        if isPresent {
             VStack {
                 HStack(spacing: 15) {
                     SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "your_searching_screen".localized, width: ScreenInfor().screenWidth * 0.8, height: 50, fontSize: 15, isShowCancelButton: false)
@@ -27,7 +28,8 @@ struct SearchView: View {
                     Button {
                         withAnimation(.easeInOut) {
                             homeScreen.isPresentedTabBar = true
-                            homeScreen.isPresentedSearchView = false
+                            isPresent = false
+                            self.presentationMode.wrappedValue.dismiss()
                         }
                         
 //                        self.presentationMode.wrappedValue.dismiss()

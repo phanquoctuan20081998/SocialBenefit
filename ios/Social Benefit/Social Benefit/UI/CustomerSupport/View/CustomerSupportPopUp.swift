@@ -49,7 +49,6 @@ extension CustomerSupportPopUp {
                 // Send button...
                 Button(action: {
                     customerSupportViewModel.sendButtonTapped()
-                    print(customerSupportViewModel.isAllTextFieldAreBlank)
                 }, label: {
                     Text("send".localized)
                         .foregroundColor(customerSupportViewModel.feedBackText.isEmpty ? .gray : .black)

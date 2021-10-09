@@ -18,6 +18,7 @@ class CustomerSupportViewModel: ObservableObject, Identifiable {
     @Published var isAllTextFieldAreBlank = true
     
     private var cancellables = Set<AnyCancellable>()
+    private var customerSupportService = CustomerSupportService()
     
     init() {
         addSubscribers()
@@ -53,7 +54,10 @@ class CustomerSupportViewModel: ObservableObject, Identifiable {
     }
     
     func sendButtonTapped() {
-        
+        DispatchQueue.main.async {
+            self.customerSupportService.getAPI(screen: self.screenProblemText, content: self.feedBackText) { id in
+                print(id)
+            }
+        }
     }
-    
 }

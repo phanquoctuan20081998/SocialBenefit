@@ -11,9 +11,11 @@ struct InternalNewsBannerView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
-    @State var index = 0
     @State var isPresent = false
     @State private var currentPage = 0
+    @State var isAnimating: Bool = true
+    
+    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -33,6 +35,7 @@ struct InternalNewsBannerView: View {
                     if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
                         PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews), currentPage: $currentPage)
                         PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
+                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
                     } else {
                         EmptyView()
                     }
@@ -51,7 +54,6 @@ struct RecognitionsBannerView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
-    @State var index = 0
     @State var isPresent = false
     @State private var currentPage = 0
     @State var data: [InternalNewsData] = []
@@ -67,7 +69,7 @@ struct RecognitionsBannerView: View {
                     EmptyView()
                 }
             }
-            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 100)
             .background(Color.white)
             .cornerRadius(30)
         }.foregroundColor(.black)
@@ -80,14 +82,20 @@ struct PromotionsBannerView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
-    @State var index = 0
     @State var isPresent = false
     @State private var currentPage = 0
     @State var data: [MerchantListData] = []
     
     var body: some View {
         VStack {
-            TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
+            
+            NavigationLink(
+                destination: HomeScreenView(selectedTab: "tag").navigationBarHidden(true),
+                isActive: $isPresent,
+                label: {
+                    TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
+                })
+//            TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             

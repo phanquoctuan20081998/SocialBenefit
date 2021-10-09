@@ -41,4 +41,5 @@ struct Config {
     static let API_CONTENT_LIST_REACT = "/content/get/react"
     static let API_CONTENT_REACT = "/content/react"
     
+    static let API_SEND_MAIL_CUSTOMER_SUPPORT = "/mobile/mail/customer_support"
 }

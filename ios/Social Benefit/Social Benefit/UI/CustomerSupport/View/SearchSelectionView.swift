@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct SearchSelectionView: View {
+    @State var isPresent = true
     @State var searchText = ""
     @State var isSearching = false
+    
     @ObservedObject var searchViewModel = SearchViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @Binding var selectedTab: String
     
     var body: some View {
-        SearchView(searchText: $searchText, isSearching: $isSearching, contentView: AnyView(contentView))
+        SearchView(isPresent: $isPresent, searchText: $searchText, isSearching: $isSearching, contentView: AnyView(contentView))
     }
     
     var contentView: some View {
+        
         ScrollView {
             VStack {
                 let filteredData = searchViewModel.allSearchData.filter({searchViewModel.searchText.isEmpty ? true : ($0.title.localized.localizedStandardContains(searchViewModel.searchText))})

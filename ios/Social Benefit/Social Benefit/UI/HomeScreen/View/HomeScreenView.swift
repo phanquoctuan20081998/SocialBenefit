@@ -30,7 +30,7 @@ struct HomeScreenView: View {
                 getView(selectedTab: homeScreenViewModel.selectedTab)
                 
                 // Search View...
-                SearchView(searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
+                SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
                 
                 // Custom Tab Bar...
                 if homeScreenViewModel.isPresentedTabBar {
@@ -72,34 +72,6 @@ struct HomeScreenView: View {
     }
 }
 
-struct HomeView: View {
-    
-    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-    
-    var body: some View {
-//        NavigationView {
-            VStack {
-                Spacer()
-                    .frame(height: 40)
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        MainCardView()
-                            .padding(.top, 10)
-                        InternalNewsBannerView()
-                        RecognitionsBannerView()
-                        PromotionsBannerView()
-                    }
-                    Spacer()
-                        .frame(height: 100)
-                }
-            }.background(
-                BackgroundViewWithNotiAndSearch()
-            )
-//            .navigationBarHidden(true)
-//        }
-    }
-}
 struct HomeScreenTabBarView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreenView(selectedTab: "house")

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @EnvironmentObject var homeScreen: HomeScreenViewModel
     @ObservedObject var settingsViewModel = SettingsViewModel()
     
     var body: some View {
@@ -56,7 +57,9 @@ struct SettingsView: View {
             }
             
             Spacer()
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true))
+        }.background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "", isHaveLogo: true))
+        
+        // Pop Up
         .overlay(LanguageSelectorPopUp(isPresentedPopup: $settingsViewModel.isPresentedLanguagePopup), alignment: .top)
         .overlay(AppInformationPopUp(isPresentedPopup: $settingsViewModel.isPresentedAppinformationPopUp, companyName: "nissho".localized, companyAddress: "324, tay Son"))
         .overlay(ChangePasswordPopUpView(isPresentedPopUp: $settingsViewModel.isPresentedChangePasswordPopUp)

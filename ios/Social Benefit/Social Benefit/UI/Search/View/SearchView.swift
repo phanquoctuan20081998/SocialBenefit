@@ -45,7 +45,7 @@ struct SearchContentView: View {
         case 5:
             return AnyView(ListOfBenefitsView().navigationBarHidden(true))
         case 6:
-            return AnyView(ListOfMerchantNavigation().navigationBarHidden(true))
+            return AnyView(HomeScreenView(selectedTab: "tag").navigationBarHidden(true))
         case 7:
             return AnyView(MyVoucherView().navigationBarHidden(true))
         case 8:
@@ -56,20 +56,6 @@ struct SearchContentView: View {
             return AnyView(Text("10"))
         }
         
-    }
-}
-
-struct ListOfMerchantNavigation: View {
-    @EnvironmentObject var homeScreen: HomeScreenViewModel
-    
-    var body: some View {
-        HomeScreenView(selectedTab: "tag")
-            .onAppear {
-                DispatchQueue.main.async {
-                    homeScreen.selectedTab = "tag"
-                    homeScreen.isPresentedSearchView = true
-                }
-            }
     }
 }
 
