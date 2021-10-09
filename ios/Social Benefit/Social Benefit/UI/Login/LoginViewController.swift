@@ -72,8 +72,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if #available(iOS 13.0.0, *) {
-//                let loginViewController = HomeScreenView(selectedTab: "house")
-                let loginViewController = Test()
+                let loginViewController = HomeScreenView(selectedTab: "house")
+//                let loginViewController = Test()
                 let vc = UIHostingController(rootView: loginViewController)
                 //                self.navigationController?.pushViewController(vc, animated: true)
                 vc.modalPresentationStyle = .fullScreen

@@ -12,13 +12,7 @@ import SwiftyJSON
     
 class InternalNewsService {
     
-    @Published var allInternalNews: [InternalNewsData] = []
-    
-    init() {
-        self.getAPI()
-    }
-    
-    func getAPI() {
+    func getAPI(returnCallBack: @escaping ([InternalNewsData]) -> ()) {
         let service = BaseAPI_Alamofire()
         var data = [InternalNewsData]()
         
@@ -55,9 +49,8 @@ class InternalNewsService {
                 order += 1
             }
             
-            DispatchQueue.main.async {
-                self.allInternalNews = data
-            }
+           returnCallBack(data)
+            
         })
     }
 }

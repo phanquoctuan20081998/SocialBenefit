@@ -43,7 +43,7 @@ struct InternalNewsView: View {
             NavigationLink(
                 destination: InternalNewsDetailView(internalNewData: selectedInternalNew).navigationBarHidden(true),
                 isActive: $isActive,
-                label: {EmptyView()})
+                label: { EmptyView() })
         )
     }
 }

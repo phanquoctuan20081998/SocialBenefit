@@ -10,8 +10,10 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @ObservedObject var homeViewModel = HomeViewModel()
     
     var body: some View {
+        NavigationView {
         VStack {
             Spacer()
                 .frame(height: 40)
@@ -21,15 +23,16 @@ struct HomeView: View {
                     MainCardView()
                         .padding(.top, 10)
                     InternalNewsBannerView()
-                    RecognitionsBannerView()
-                    PromotionsBannerView()
+//                    RecognitionsBannerView()
+//                    PromotionsBannerView()
                 }
                 Spacer()
                     .frame(height: 100)
             }
-        }.background(
-            BackgroundViewWithNotiAndSearch()
-        )
+        }
+        .background(BackgroundViewWithNotiAndSearch())
+        .environmentObject(homeViewModel)
+        }
     }
 }
 
