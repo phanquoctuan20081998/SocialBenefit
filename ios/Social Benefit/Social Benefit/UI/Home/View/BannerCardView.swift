@@ -24,7 +24,7 @@ struct InternalNewsBannerView: View {
     var body: some View {
         VStack {
             
-            TopTitleView(selection: $selection, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized)
+            TopTitleView(title: "internal_news".localized, topTitleTapped: topTitleTapped)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             
@@ -36,7 +36,6 @@ struct InternalNewsBannerView: View {
                         PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex), currentPage: $currentPage)
                             .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
                         PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
-                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
                     } else {
                         EmptyView()
                     }
@@ -66,83 +65,113 @@ struct InternalNewsBannerView: View {
             }
         )
     }
+    
+    func topTitleTapped() {
+        self.selection = 0
+        homeScreenViewModel.isPresentedTabBar.toggle()
+    }
 }
 
 
-//struct RecognitionsBannerView: View {
-//
-//    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-//
-//    @State var isPresent = false
-//    @State private var currentPage = 0
-//    @State var data: [InternalNewsData] = []
-//
-//    var body: some View {
-//        VStack {
-//            TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "recognitions_in_company".localized)
-//
-//            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-//
-//            VStack(spacing: 15) {
-//                ZStack(alignment: .bottom) {
-//                    EmptyView()
-//                }
+struct RecognitionsBannerView: View {
+
+    @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    
+    @State private var currentPage = 0
+    @State var selection: Int? = nil
+    @State var isAnimating: Bool = true
+    @State var selectedIndex: Int = 0
+    
+    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        VStack {
+            
+            TopTitleView(title: "recognitions_in_company".localized, topTitleTapped: topTitleTapped)
+
+            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+
+            VStack(spacing: 15) {
+                ZStack(alignment: .bottom) {
+                    EmptyView()
+                }
+            }
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 100)
+            .background(Color.white)
+            .cornerRadius(30)
+        }
+        .foregroundColor(.black)
+        .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
+    }
+    
+    func topTitleTapped() {
+        
+    }
+}
+
+
+struct PromotionsBannerView: View {
+
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    
+    @State private var currentPage = 0
+    @State var selection: Int? = nil
+    @State var isAnimating: Bool = true
+    @State var selectedIndex: Int = 0
+    @State var data: [MerchantListData] = [MerchantListData(id: 0, name: "shdsbc", cover: "https://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif"),
+    MerchantListData(id: 0, name: "fjvfbv", cover: "https://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic")]
+    
+    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        VStack {
+            TopTitleView(title: "promotions".localized, topTitleTapped: toptitleTapped)
+
+            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+
+            VStack(spacing: 15) {
+                ZStack(alignment: .bottom) {
+                    if data.count != 0 { //If Data can read
+                        let pages = getPromotionData(data: data, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex)
+                        PageViewController(pages: pages, currentPage: $currentPage)
+                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
+                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
+                    } else {
+                        EmptyView()
+                    }
+                }
+            }
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
+            .background(Color.white)
+            .cornerRadius(30)
+
+            //Get data from API
+            .onAppear {
+                MerchantListService().getAPI { (data) in
+                    self.data = data
+                }
+            }
+        }
+        .foregroundColor(.black)
+        .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
+//        .background(
+//            if !data.isEmpty {
+//                NavigationLink(
+//                    destination: MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i]).navigationBarHidden(true),
+//                    tag: 1,
+//                    selection: $selection,
+//                    label: { EmptyView() })
 //            }
-//            .frame(width: ScreenInfor().screenWidth * 0.92, height: 100)
-//            .background(Color.white)
-//            .cornerRadius(30)
-//        }.foregroundColor(.black)
-//            .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
-//    }
-//}
-//
-//
-//struct PromotionsBannerView: View {
-//
-//    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-//
-//    @State var isPresent = false
-//    @State private var currentPage = 0
-//    @State var data: [MerchantListData] = []
-//
-//    var body: some View {
-//        VStack {
-//
-//            NavigationLink(
-//                destination: HomeScreenView(selectedTab: "tag").navigationBarHidden(true),
-//                isActive: $isPresent,
-//                label: {
-//                    TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
-//                })
-//            //            TopTitleView(isPresent: $isPresent, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, title: "promotions".localized)
-//
-//            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-//
-//            VStack(spacing: 15) {
-//                ZStack(alignment: .bottom) {
-//                    if data.count != 0 { //If Data can read
-//                        let pages = getPromotionData(data: data)
-//                        PageViewController(pages: pages, currentPage: $currentPage)
-//                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
-//                    } else {
-//                        EmptyView()
-//                    }
-//                }
-//            }
-//            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
-//            .background(Color.white)
-//            .cornerRadius(30)
-//
-//            //Get data from API
-//            .onAppear {
-//                MerchantListService().getAPI { (data) in
-//                    self.data = data
-//                }
-//            }
-//        }.foregroundColor(.black)
-//            .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
-//    }
-//}
+//        )
+    }
+    
+    func toptitleTapped() {
+        homeScreenViewModel.selectedTab = "tag"
+    }
+}
 
 struct MainCardView: View {
     var body: some View {
@@ -227,15 +256,13 @@ struct mainButton: View {
 
 struct TopTitleView: View {
     
-    @Binding var selection: Int?
-    @Binding var isPresentedTabBar: Bool
     var title: String
+    var topTitleTapped: () -> ()
     
     var body: some View {
         
         Button(action: {
-            self.selection = 0
-            self.isPresentedTabBar.toggle()
+            topTitleTapped()
         }, label: {
             HStack {
                 Text(title)
@@ -270,7 +297,6 @@ struct BannerContentView: View {
         WebImage(url: URL(string: image), isAnimating: $isAnimating)
             .resizable()
             .scaledToFill()
-            .navigationBarHidden(true)
             .onTapGesture {
                 homescreen.isPresentedTabBar = false
                 selection = 1

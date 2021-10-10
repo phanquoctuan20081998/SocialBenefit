@@ -14,76 +14,74 @@ struct UserView: View {
     @State var selection: Int? = nil
     
     var body: some View {
-        NavigationView {
-            VStack {
-
-                Spacer()
-                    .frame(height: 70)
-                
-                NavigationLink(destination: UserInformationView().navigationBarHidden(true),
-                               tag: 1,
-                               selection: $selection,
-                               label: {
-                                UserInforView(selection: $selection)
-                               })
+        VStack {
+            
+            Spacer()
+                .frame(height: 70)
+            
+            NavigationLink(destination: UserInformationView().navigationBarHidden(true),
+                           tag: 1,
+                           selection: $selection,
+                           label: {
+                UserInforView(selection: $selection)
+            })
+            
+            Spacer()
+                .frame(height: 30)
+            
+            
+            ScrollView (.vertical, showsIndicators: false) {
+                VStack(spacing: 8) {
+                    NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
+                        FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
+                    }
+                    
+                    NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
+                        FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
+                    }
+                    
+                    NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
+                        FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
+                    }
+                    
+                    NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
+                        FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
+                    }
+                }.padding(.top, 10)
                 
                 Spacer()
                     .frame(height: 30)
                 
-                
-                ScrollView (.vertical, showsIndicators: false) {
-                    VStack(spacing: 8) {
-                        NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
-                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
-                        }
-                        
-                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
-                        }
-                        
-                        NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
-                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
-                        }
-                        
-                        NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
-                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
-                        }
-                    }.padding(.top, 10)
-                    
-                    Spacer()
-                        .frame(height: 30)
-                    
-                    VStack(spacing: 8) {
-                        NavigationLink(destination: SettingsView().navigationBarHidden(true), tag: 6, selection: $selection) {
-                            FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 6)
-                        }
-                        
-                       
-                        FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7)
-                        
-                        
-                        NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-                            FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8)
-                        }
+                VStack(spacing: 8) {
+                    NavigationLink(destination: SettingsView().navigationBarHidden(true), tag: 6, selection: $selection) {
+                        FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 6)
                     }
-                    //
-                    Spacer().frame(height: 30)
                     
-                    VStack {
-                        NavigationLink(destination: Text("9"), tag: 9, selection: $selection) {
-                            FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
-                        }
+                    
+                    FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7)
+                    
+                    
+                    NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
+                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8)
                     }
                 }
+                //
+                Spacer().frame(height: 30)
                 
-                
-            }.background(
-                BackgroundViewWithNotiAndSearch()
-            )
-                
-            .navigationBarHidden(true)
-            .navigationViewStyle(StackNavigationViewStyle())
-        }.onAppear {
+                VStack {
+                    NavigationLink(destination: Text("9"), tag: 9, selection: $selection) {
+                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
+                    }
+                }
+            }
+            
+            
+        }
+        .background(
+            BackgroundViewWithNotiAndSearch()
+        )
+        
+        .onAppear {
             homescreen.isPresentedTabBar = true
         }
     }

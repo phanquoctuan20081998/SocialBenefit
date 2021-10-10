@@ -13,31 +13,31 @@ struct HomeView: View {
     @ObservedObject var homeViewModel = HomeViewModel()
     
     var body: some View {
-        NavigationView {
         VStack {
             Spacer()
-                .frame(height: 40)
+                .frame(height: 90)
             
             ScrollView {
                 VStack(spacing: 20) {
                     MainCardView()
                         .padding(.top, 10)
                     InternalNewsBannerView()
-//                    RecognitionsBannerView()
-//                    PromotionsBannerView()
+                    RecognitionsBannerView()
+                    PromotionsBannerView()
                 }
                 Spacer()
                     .frame(height: 100)
             }
         }
+        .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithNotiAndSearch())
         .environmentObject(homeViewModel)
-        }
+
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeScreenView(selectedTab: "house")
     }
 }

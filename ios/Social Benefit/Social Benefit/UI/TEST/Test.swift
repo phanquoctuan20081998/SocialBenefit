@@ -124,23 +124,25 @@ struct Test: View {
         
         
         NavigationView {
-        VStack(spacing: 15) {
-            ZStack(alignment: .bottom) {
-                if images.count != 0 { //If Data can read
-                    PageViewController(pages: getData(data: images), currentPage: $currentPage)
-                    PageControl(numberOfPages: images.count, currentPage: $currentPage)
-                        .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % images.count }
-                } else {
-                    EmptyView()
+            VStack(spacing: 15) {
+                ZStack(alignment: .bottom) {
+                    if images.count != 0 { //If Data can read
+                        PageViewController(pages: getData(data: images), currentPage: $currentPage)
+                        PageControl(numberOfPages: images.count, currentPage: $currentPage)
+                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % images.count }
+                    } else {
+                        EmptyView()
+                    }
                 }
             }
-        }
-        .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
-        .background(
-            NavigationLink(destination: Text("shsa"), isActive: $isMove, label: {
-                EmptyView()
-            })
-        )
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
+            .background(Color.white)
+            .cornerRadius(30)
+            .background(
+                NavigationLink(destination: Text("shsa"), isActive: $isMove, label: {
+                    EmptyView()
+                })
+            )
         }
     }
     
@@ -150,13 +152,13 @@ struct Test: View {
             a.append(
                 AnyView(
                     
-                        WebImage(url: URL(string: image), isAnimating: $isAnimating)
-                                        .resizable()
-                                        .scaledToFill()
-                            .onTapGesture {
-                                isMove = true
-                                print(isMove)
-                            }
+                    WebImage(url: URL(string: image), isAnimating: $isAnimating)
+                        .resizable()
+                        .scaledToFill()
+                        .onTapGesture {
+                            isMove = true
+                            print(isMove)
+                        }
                 )
             )
         }

@@ -17,22 +17,19 @@ struct ListOfMerchantView: View {
     
     var body: some View {
         
-        NavigationView {
-            VStack(spacing: 15) {
-                Spacer().frame(height: 25)
-                SearchBarAndMyVoucherView()
-                MerchantCategoryItemView()
-                ScrollView {
-                    SpecialOffersView()
-                    FilterView()
-                    AllOffersView()
-                }
-            }.navigationBarHidden(true)
-                .background(BackgroundViewWithNotiAndSearch())
+        VStack(spacing: 15) {
+            Spacer().frame(height: 25)
+            SearchBarAndMyVoucherView()
+            MerchantCategoryItemView()
+            ScrollView {
+                SpecialOffersView()
+                FilterView()
+                AllOffersView()
+            }
         }
+        .background(BackgroundViewWithNotiAndSearch(), alignment: .top)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         .onAppear {
-            //                homeScreenViewModel.isPresentedTabBar = true
             self.specialOffersViewModel.reset()
             self.offersViewModel.reset()
         }

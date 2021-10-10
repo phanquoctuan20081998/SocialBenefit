@@ -28,7 +28,7 @@ struct HomeScreenView: View {
             ZStack(alignment: .bottom) {
                 
                 getView(selectedTab: homeScreenViewModel.selectedTab)
-                
+              
                 // Search View...
                 SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
                 
@@ -44,9 +44,10 @@ struct HomeScreenView: View {
                 // User - Customer support popup...
                 CustomerSupportPopUp()
 
-            }.navigationBarHidden(true)
+            }
+            .navigationBarHidden(true)
         }
-        
+    
         .environmentObject(internalNewsViewModel)
         .environmentObject(specialOffersViewModel)
         .environmentObject(merchantCategoryItemViewModel)
@@ -65,7 +66,7 @@ struct HomeScreenView: View {
         case "star":
             Rectangle().fill(Color.white)
         case "tag":
-            ListOfMerchantView()
+            ListOfMerchantView().frame(width: ScreenInfor().screenWidth)
         default:
             UserView()
         }
