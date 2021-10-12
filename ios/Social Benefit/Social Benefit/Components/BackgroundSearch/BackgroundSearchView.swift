@@ -32,12 +32,10 @@ struct SearchView: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }
                         
-//                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("close".localized)
                     }
                 }
-                
                 contentView
             }
             .background(Color.white.edgesIgnoringSafeArea(.all).frame(width: ScreenInfor().screenWidth))
@@ -47,4 +45,11 @@ struct SearchView: View {
         }
     }
 }
+
+struct TabBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeScreenView(selectedTab: "house")
+    }
+}
+
 

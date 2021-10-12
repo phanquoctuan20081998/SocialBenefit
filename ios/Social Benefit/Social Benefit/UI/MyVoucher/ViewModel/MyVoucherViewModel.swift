@@ -23,6 +23,14 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     // PopUp controller...
     @Published var isPresentedPopup: Bool = false
     
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshing == true {
+                self.refresh()
+            }
+        }
+    }
+    
     private let myVoucherService = MyVoucherService()
     private var cancellables = Set<AnyCancellable>()
     
@@ -66,6 +74,13 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
                     self.allMyVoucher.append(item)
                 }
             }
+        }
+    }
+    
+    func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.loadSearchData(searchPattern: "")
+            self.isRefreshing = false
         }
     }
 }

@@ -25,6 +25,23 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     // For store QR data
     @Published var QRData = VoucherCodeData(voucherCode: "", remainTime: 0)
     
+    // For refreshing
+    @Published var isRefreshingStoreList: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshingStoreList == true {
+                self.reloadAppliedStore()
+            }
+        }
+    }
+    
+    @Published var isRefreshingSimiliarVoucher: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshingSimiliarVoucher == true {
+                self.reloadSimilarVoucher()
+            }
+        }
+    }
+    
     private let merchantVoucherDetailService = MerchantVoucherDetailService()
     private let appliedStoreMerchantListService = AppliedStoreMerchantListService()
     private let similarVoucherService = SimilarVoucherService()
@@ -77,6 +94,16 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 let merchantVoucherDetailDebug = MerchantVoucherDetailData(id: 1841, imageURL: "", name: "Ưu đãi giá tiền taxi", merchantName: "Công ty giầy thể thao Triệu Sơn", content: "<p>123</p>", favoriteValue: 2, outOfDate: "11/10/2021", shoppingValue: 11, pointValue: 900000, moneyValue: 1000000, discountValue: -10, hotlines: "", employeeLikeThis: true)
 

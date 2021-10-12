@@ -33,7 +33,7 @@ struct BenefitDetailView: View {
             
             VStack {
 //                Text(self.benefitDetailViewModel.benefit.body)
-                HTMLView(htmlString: self.benefitDetailViewModel.benefit.body)
+                HTMLView(htmlString: self.benefitDetailViewModel.benefit.body, font: 13)
                     .padding(30)
                 
                 getApplyButton()

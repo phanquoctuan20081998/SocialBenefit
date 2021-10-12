@@ -29,8 +29,8 @@ struct HomeView: View {
                     .frame(height: 100)
             }
         }
-        .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithNotiAndSearch())
+        .edgesIgnoringSafeArea(.all)
         .environmentObject(homeViewModel)
 
     }

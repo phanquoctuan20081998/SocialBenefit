@@ -89,20 +89,24 @@ extension InternalNewsView {
                                     .padding(.all, 15)
                             }.padding(.top, 40)
                             , alignment: .top)
-                        
+                    
                         .edgesIgnoringSafeArea(.all)
-                        )
+        )
     }
     
     private var AllTabView: some View {
         ZStack {
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.localizedStandardContains(searchText) || $0.shortBody.localizedStandardContains(searchText))})
-                    
-                    ForEach(filteredData, id: \.self) { item in
-                        InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
+                    VStack (alignment: .leading, spacing: 10) {
+                        
+                        let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.localizedStandardContains(searchText) || $0.shortBody.localizedStandardContains(searchText))})
+                        
+                        ForEach(filteredData, id: \.self) { item in
+                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
                     }
                 }
             }
@@ -111,13 +115,17 @@ extension InternalNewsView {
     
     private var TrainingTabView: some View {
         ZStack {
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    let filteredData = internalNewsViewModel.trainingInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                    
-                    ForEach(filteredData, id: \.self) { item in
-                        InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
+                    VStack (alignment: .leading, spacing: 10) {
+                        
+                        let filteredData = internalNewsViewModel.trainingInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
+                        
+                        ForEach(filteredData, id: \.self) { item in
+                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
                     }
                 }
             }
@@ -126,13 +134,17 @@ extension InternalNewsView {
     
     private var AnnoucementTabView: some View {
         ZStack {
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    let filteredData = internalNewsViewModel.announcementInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                    
-                    ForEach(filteredData, id: \.self) { item in
-                        InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
+                    VStack (alignment: .leading, spacing: 10) {
+                        
+                        let filteredData = internalNewsViewModel.announcementInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
+                        
+                        ForEach(filteredData, id: \.self) { item in
+                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
                     }
                 }
             }

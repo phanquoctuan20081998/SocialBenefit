@@ -23,10 +23,9 @@ struct SearchContentView: View {
                             .foregroundColor(.black)
                     }
                     
-                }.edgesIgnoringSafeArea(.all)
-                    .frame(width: ScreenInfor().screenWidth)
+                }
             }
-        }
+        }.edgesIgnoringSafeArea(.all)
     }
     
     func getDestinationView(selection: Int) -> AnyView {

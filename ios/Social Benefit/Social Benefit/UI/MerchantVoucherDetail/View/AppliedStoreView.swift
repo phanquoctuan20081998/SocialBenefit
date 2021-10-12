@@ -15,7 +15,7 @@ struct AppliedStoreView: View {
     var body: some View {
         
         VStack {
-            ScrollView {
+            RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingStoreList) {
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {
                     ForEach(merchantVoucherDetailViewModel.appliedStoreMerchantList.indices, id: \.self) { i in

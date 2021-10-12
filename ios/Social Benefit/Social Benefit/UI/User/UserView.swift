@@ -77,9 +77,7 @@ struct UserView: View {
             
             
         }
-        .background(
-            BackgroundViewWithNotiAndSearch()
-        )
+        .background(BackgroundViewWithNotiAndSearch())
         
         .onAppear {
             homescreen.isPresentedTabBar = true
@@ -101,7 +99,7 @@ struct UserInforView: View {
                 
             }, label: {
                 HStack(spacing: 20) {
-                    URLImageView(url:  userInfor.avatar)
+                    URLImageView(url: userInfor.avatar)
                         .frame(width: 50, height: 50, alignment: .center)
                         .clipShape(Circle())
                         .padding(.all, 5)

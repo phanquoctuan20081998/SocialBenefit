@@ -13,13 +13,7 @@ import SwiftyJSON
     
 class ReactService {
     
-    @Published var allReact: [ReactData] = []
-    
-    init(contentId: Int) {
-        self.getAPI(contentId: contentId)
-    }
-    
-    func getAPI(contentId: Int) {
+    func getAPI(contentId: Int, returnCallBack: @escaping ([ReactData]) -> ()) {
         let service = BaseAPI()
         var data = [ReactData]()
         
@@ -48,9 +42,7 @@ class ReactService {
                 data.append(tempCommentData)
             }
             
-            DispatchQueue.main.async { [weak self] in
-                self?.allReact = data
-            }
+            returnCallBack(data)
         })
     }
 }

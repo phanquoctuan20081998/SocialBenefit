@@ -21,10 +21,25 @@ struct ListOfMerchantView: View {
             Spacer().frame(height: 25)
             SearchBarAndMyVoucherView()
             MerchantCategoryItemView()
-            ScrollView {
-                SpecialOffersView()
-                FilterView()
-                AllOffersView()
+            
+            if (specialOffersViewModel.isLoading || offersViewModel.isLoading) && !(specialOffersViewModel.isRefreshing || offersViewModel.isRefreshing) {
+                LoadingPageView()
+            } else {
+                let binding = Binding<Bool>(
+                    get: {
+                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing
+                    },
+                                              
+                    set: {
+                        self.specialOffersViewModel.isRefreshing = $0
+                        self.offersViewModel.isRefreshing = $0
+                    })
+                
+                RefreshableScrollView(height: 70, refreshing: binding) {
+                    SpecialOffersView()
+                    FilterView()
+                    AllOffersView()
+                }
             }
         }
         .background(BackgroundViewWithNotiAndSearch(), alignment: .top)

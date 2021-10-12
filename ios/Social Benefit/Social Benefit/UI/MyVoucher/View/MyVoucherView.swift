@@ -81,7 +81,7 @@ extension MyVoucherView {
     var VoucherListView: some View {
         VStack {
             Spacer().frame(height: 15)
-            ScrollView {
+            RefreshableScrollView(height: 70, refreshing: self.$myVoucherViewModel.isRefreshing) {
                 VStack(spacing: 15) {
                     if myVoucherViewModel.allMyVoucher.isEmpty {
                         Text("no_voucher".localized).font(.system(size: 13))

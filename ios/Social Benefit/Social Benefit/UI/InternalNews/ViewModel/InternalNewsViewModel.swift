@@ -9,31 +9,65 @@ import Foundation
 
 class InternalNewsViewModel: ObservableObject {
     
-    @Published var allInternalNews: [InternalNewsData] = allInternalNewsDebug
+    @Published var allInternalNews: [InternalNewsData] = []
     @Published var trainingInternalNews: [InternalNewsData] = []
     @Published var announcementInternalNews: [InternalNewsData] = []
+    
+    @Published var isLoading: Bool = false
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshing == true {
+                self.refresh()
+            }
+        }
+    }
     
     private let internalNewsService = InternalNewsService()
     
     init() {
-        addInternalNews()
+        loadData()
     }
     
-    func addInternalNews() {
+    func loadData() {
         
+        var announcementInternalNews = [InternalNewsData]()
+        var trainingInternalNews = [InternalNewsData]()
+        
+        self.isLoading = true
         internalNewsService.getAPI { data in
             for item in data {
                 if item.newsCategory == 1 {
-                    self.announcementInternalNews.append(item)
+                    announcementInternalNews.append(item)
                 } else if item.newsCategory == 2 {
-                    self.trainingInternalNews.append(item)
+                    trainingInternalNews.append(item)
                 }
+            }
+            
+            DispatchQueue.main.async {
+                self.allInternalNews = data
+                self.trainingInternalNews = trainingInternalNews
+                self.announcementInternalNews = announcementInternalNews
                 
-                self.allInternalNews.append(item)
+                self.isLoading = false
+                self.isRefreshing = false
             }
         }
     }
+    
+    func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.loadData()
+        }
+    }
 }
+
+
+
+
+
+
+
+
 
 let allInternalNewsDebug = [InternalNewsData(id: 1, contentId: 1, title: "Test1", shortBody: "twgavsv", body: "jdsbcsbdc", cover: "https://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif", newsCategory: 0),
                             InternalNewsData(id: 0, contentId: 0, title: "bchdsbchjsbchj", shortBody: "dsfbsdcbsdbc", body: "dsbcjhdsbchjsbdchj", cover: "https://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif", newsCategory: 0),

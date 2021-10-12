@@ -13,13 +13,9 @@ import SwiftyJSON
     
 class CommentService {
     
-    @Published var allComment: [CommentData] = []
+//    @Published var allComment: [CommentData] = []
     
-    init(contentId: Int) {
-        self.getAPI(contentId)
-    }
-    
-    func getAPI(_ contentId: Int) {
+    func getAPI(_ contentId: Int, returnCallBack: @escaping ([CommentData]) -> ()) {
         let service = BaseAPI()
         var data = [CommentData]()
         
@@ -54,9 +50,7 @@ class CommentService {
                 data.append(tempCommentData)
             }
             
-            DispatchQueue.main.async { [weak self] in
-                self?.allComment = data
-            }
+            returnCallBack(data)
         })
     }
     

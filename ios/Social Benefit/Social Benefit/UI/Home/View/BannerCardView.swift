@@ -34,8 +34,9 @@ struct InternalNewsBannerView: View {
                 ZStack(alignment: .bottom) {
                     if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
                         PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex), currentPage: $currentPage)
-                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
+ 
                         PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
+                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
                     } else {
                         EmptyView()
                     }
@@ -121,8 +122,7 @@ struct PromotionsBannerView: View {
     @State var selection: Int? = nil
     @State var isAnimating: Bool = true
     @State var selectedIndex: Int = 0
-    @State var data: [MerchantListData] = [MerchantListData(id: 0, name: "shdsbc", cover: "https://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif"),
-    MerchantListData(id: 0, name: "fjvfbv", cover: "https://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic")]
+    @State var data: [MerchantListData] = []
     
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
@@ -294,9 +294,7 @@ struct BannerContentView: View {
     var index: Int
     
     var body: some View {
-        WebImage(url: URL(string: image), isAnimating: $isAnimating)
-            .resizable()
-            .scaledToFill()
+        URLImageView(url: image)
             .onTapGesture {
                 homescreen.isPresentedTabBar = false
                 selection = 1

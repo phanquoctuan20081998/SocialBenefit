@@ -14,7 +14,7 @@ struct SimiliarVoucherView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
+            RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingSimiliarVoucher) {
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {
                     ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
