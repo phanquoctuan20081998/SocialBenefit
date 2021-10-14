@@ -37,7 +37,7 @@ struct UserInfor {
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
-                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "")
+                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png")
 
 
 func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: JSON) {
@@ -72,5 +72,7 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     userInfor.CMND = citizen["idCard"].string ?? ""
     userInfor.passport = citizen["passport"].string ?? ""
     userInfor.insurance = citizen["socialInsurance"].string ?? ""
+    
+    print(userInfor)
 }
 

@@ -37,7 +37,7 @@ struct MyVoucherView: View {
                 TabView
                 VoucherListView
             }.background(Color(#colorLiteral(red: 0.8864943981, green: 0.9303048253, blue: 0.9857663512, alpha: 1)))
-            .edgesIgnoringSafeArea(.bottom)
+                .edgesIgnoringSafeArea(.bottom)
         }
         .onAppear {
             homeScreenViewModel.isPresentedTabBar = false
@@ -75,67 +75,72 @@ extension MyVoucherView {
                     }
             }
         }.frame(width: ScreenInfor().screenWidth)
-        .background(Color.white)
+            .background(Color.white)
     }
     
     var VoucherListView: some View {
         VStack {
-            Spacer().frame(height: 15)
-            RefreshableScrollView(height: 70, refreshing: self.$myVoucherViewModel.isRefreshing) {
-                VStack(spacing: 15) {
-                    if myVoucherViewModel.allMyVoucher.isEmpty {
-                        Text("no_voucher".localized).font(.system(size: 13))
-                    }
-                    ForEach(myVoucherViewModel.allMyVoucher.indices, id: \.self) {i in
-                        NavigationLink(
-                            destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[i].id),
-                            label: {
-                                VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
-                                    .foregroundColor(Color.black)
-                            })
-                    }
-                    
-                    //Infinite Scroll View
-
-                    if (myVoucherViewModel.fromIndex == myVoucherViewModel.allMyVoucher.count && self.isShowProgressView) {
-
-                        ActivityIndicator(isAnimating: true)
-                            .onAppear {
-
-                                // Because the maximum length of the result returned from the API is 10...
-                                // So if length % 10 != 0 will be the last queue...
-                                // We only send request if it have more data to load...
-                                if self.myVoucherViewModel.allMyVoucher.count % Constants.MAX_NUM_API_LOAD == 0 {
-                                    self.myVoucherViewModel.reloadData()
-                                }
-
-                                // Otherwise just delete the ProgressView after 1 seconds...
-
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    self.isShowProgressView = false
-                                }
-
-                            }
-
-                    } else {
-                        GeometryReader { reader -> Color in
-                            let minY = reader.frame(in: .global).minY
-                            let height = ScreenInfor().screenHeight / 1.3
-
-                            if !self.myVoucherViewModel.allMyVoucher.isEmpty && minY < height && myVoucherViewModel.allMyVoucher.count >= Constants.MAX_NUM_API_LOAD  {
-
-                                DispatchQueue.main.async {
-                                    self.myVoucherViewModel.fromIndex = self.myVoucherViewModel.allMyVoucher.count
-                                    self.isShowProgressView = true
-                                }
-                            }
-                            return Color.clear
+            if myVoucherViewModel.isLoading && !myVoucherViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                Spacer().frame(height: 15)
+                
+                RefreshableScrollView(height: 70, refreshing: self.$myVoucherViewModel.isRefreshing) {
+                    VStack(spacing: 15) {
+                        if myVoucherViewModel.allMyVoucher.isEmpty {
+                            Text("no_voucher".localized).font(.system(size: 13))
                         }
-                        .frame(width: 20, height: 20)
+                        ForEach(myVoucherViewModel.allMyVoucher.indices, id: \.self) {i in
+                            NavigationLink(
+                                destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[i].id),
+                                label: {
+                                    VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
+                                        .foregroundColor(Color.black)
+                                })
+                        }
+                        
+                        //Infinite Scroll View
+                        
+                        if (myVoucherViewModel.fromIndex == myVoucherViewModel.allMyVoucher.count && self.isShowProgressView) {
+                            
+                            ActivityIndicator(isAnimating: true)
+                                .onAppear {
+                                    
+                                    // Because the maximum length of the result returned from the API is 10...
+                                    // So if length % 10 != 0 will be the last queue...
+                                    // We only send request if it have more data to load...
+                                    if self.myVoucherViewModel.allMyVoucher.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                        self.myVoucherViewModel.reloadData()
+                                    }
+                                    
+                                    // Otherwise just delete the ProgressView after 1 seconds...
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        self.isShowProgressView = false
+                                    }
+                                    
+                                }
+                            
+                        } else {
+                            GeometryReader { reader -> Color in
+                                let minY = reader.frame(in: .global).minY
+                                let height = ScreenInfor().screenHeight / 1.3
+                                
+                                if !self.myVoucherViewModel.allMyVoucher.isEmpty && minY < height && myVoucherViewModel.allMyVoucher.count >= Constants.MAX_NUM_API_LOAD  {
+                                    
+                                    DispatchQueue.main.async {
+                                        self.myVoucherViewModel.fromIndex = self.myVoucherViewModel.allMyVoucher.count
+                                        self.isShowProgressView = true
+                                    }
+                                }
+                                return Color.clear
+                            }
+                            .frame(width: 20, height: 20)
+                        }
                     }
                 }
+                Spacer().frame(height: 15)
             }
-            Spacer().frame(height: 15)
         }
     }
 }
@@ -176,7 +181,7 @@ struct VoucherCardView: View {
                                 .padding(.vertical, 3)
                                 .padding(.horizontal, 5)
                                 .background(RoundedRectangle(cornerRadius: 6).fill(Color(#colorLiteral(red: 0.680760622, green: 0.7776962519, blue: 0.9396142364, alpha: 1))))
-                                
+                            
                         })
                         
                         Button(action: {

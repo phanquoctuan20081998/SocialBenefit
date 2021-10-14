@@ -23,6 +23,9 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     // PopUp controller...
     @Published var isPresentedPopup: Bool = false
     
+    // Refreshing and Loading
+    
+    @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
         didSet {
             if oldValue == false && isRefreshing == true {
@@ -52,9 +55,13 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     }
     
     func loadSearchData(searchPattern: String) {
+        self.isLoading = true
         myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: 0, status: status) { data in
             DispatchQueue.main.async {
                 self.allMyVoucher = data
+                
+                self.isLoading = false
+                self.isRefreshing = false
             }
         }
     }
@@ -80,7 +87,6 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     func refresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             self.loadSearchData(searchPattern: "")
-            self.isRefreshing = false
         }
     }
 }

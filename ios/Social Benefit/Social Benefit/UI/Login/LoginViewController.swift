@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
+    
     var service = BaseAPI()
     @IBOutlet weak var company_code_txt: UITextField!
     @IBOutlet weak var user_login_txt: UITextField!
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         login_button.setCorner(radius: 10)
         login_button.backgroundColor = UIColor.init(red: 200/255, green: 217/255, blue: 248/255, alpha: 200/255)
     }
-
+    
     @IBAction func loginButtonClicked(_ sender: Any) {
         let companyCode = company_code_txt.text ?? ""
         let userLogin = user_login_txt.text ?? ""
@@ -71,16 +71,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if #available(iOS 13.0.0, *) {
-                let loginViewController = HomeScreenView(selectedTab: "house")
-//                let loginViewController = Test()
-                let vc = UIHostingController(rootView: loginViewController)
-                //                self.navigationController?.pushViewController(vc, animated: true)
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
-            } else {
-                // Fallback on earlier versions
-            }
+            
+            let loginViewController = HomeScreenView(selectedTab: "house")
+            //                let loginViewController = LoginView()
+            let vc = UIHostingController(rootView: loginViewController)
+            //                self.navigationController?.pushViewController(vc, animated: true)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+            
         }
     }
     

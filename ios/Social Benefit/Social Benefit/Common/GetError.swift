@@ -16,6 +16,10 @@ func getError(errorCode: String) -> String {
         return "not_enough_voucher_error".localized
     case "M00121_E":
         return "not_exist".localized
+    case "need_to_fill_all_data":
+        return "need_to_fill_all_data".localized
+    case "wrong_data":
+        return "wrong_data".localized
     default:
         return ""
     }

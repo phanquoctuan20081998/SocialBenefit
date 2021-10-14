@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window!.makeKeyAndVisible()
             self.window!.backgroundColor = .red
         }
-        FirebaseApp.configure()
         return true
        }
     

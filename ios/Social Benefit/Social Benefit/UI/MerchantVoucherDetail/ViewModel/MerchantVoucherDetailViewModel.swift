@@ -72,6 +72,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         appliedStoreMerchantListService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexAppliedStore) { data in
             DispatchQueue.main.async {
                 self.appliedStoreMerchantList = data
+                self.isRefreshingStoreList = false
             }
         }
     }
@@ -80,6 +81,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         similarVoucherService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexSimilarVoucher) { data in
             DispatchQueue.main.async {
                 self.similarVouchers = data
+                self.isRefreshingSimiliarVoucher = false
             }
         }
     }
