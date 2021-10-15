@@ -23,6 +23,9 @@ struct BackgroundViewWithNotiAndSearch: View {
                         URLImageView(url: userInfor.companyLogo)
                             .frame(height: 30)
                             .padding(.leading)
+                            .onTapGesture {
+                                homeScreen.selectedTab = "house"
+                            }
                         
                         Spacer()
                         
@@ -60,9 +63,11 @@ struct BackgroundViewWithNotiAndSearch: View {
 struct BackgroundViewWithoutNotiAndSearch: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var homeScreen: HomeScreenViewModel
     @Binding var isActive: Bool
     var title: String
     var isHaveLogo: Bool
+    var isHiddenTabBarWhenBack = true
     
     var body: some View {
         VStack {
@@ -77,6 +82,9 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                             Button(action: {
                                 self.presentationMode.wrappedValue.dismiss()
                                 self.isActive.toggle()
+                                if !isHiddenTabBarWhenBack {
+                                    homeScreen.isPresentedTabBar = true
+                                }
                             }, label: {
                                 VStack(alignment: .leading) {
                                     Image(systemName: "arrow.backward")

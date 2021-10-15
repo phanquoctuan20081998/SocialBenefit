@@ -24,8 +24,6 @@
 		84DA60772696DACA0012F55B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60752696DACA0012F55B /* LaunchScreen.storyboard */; };
 		84DA60872696DB720012F55B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60852696DB720012F55B /* SplashViewController.swift */; };
 		84DA60882696DB720012F55B /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60862696DB720012F55B /* SplashViewController.xib */; };
-		84DA608B2696DB7F0012F55B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60892696DB7F0012F55B /* LoginViewController.swift */; };
-		84DA608C2696DB7F0012F55B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DA608A2696DB7F0012F55B /* LoginViewController.xib */; };
 		84DA608F2696DB950012F55B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DA608E2696DB950012F55B /* Media.xcassets */; };
 		84DA60AF269EC9280012F55B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60AD269EC9280012F55B /* Config.swift */; };
 		84DA60BB269EC9C40012F55B /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60B9269EC9C40012F55B /* en.lproj */; };
@@ -105,6 +103,8 @@
 		C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478889D270C2979009F5A25 /* ImagePicker.swift */; };
 		C47888A0270C2BF7009F5A25 /* DragPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478889F270C2BF7009F5A25 /* DragPopUpView.swift */; };
 		C4792A5B27017DF5006D71AD /* MyVoucherButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792A5A27017DF5006D71AD /* MyVoucherButtonView.swift */; };
+		C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47EA7A32717E09400E91171 /* ResetPasswordService.swift */; };
+		C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47EA7A52717E56300E91171 /* EmailValidation.swift */; };
 		C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4850B8A27172B1B0003AE71 /* LoginService.swift */; };
 		C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */; };
 		C48B6D1C271141DE00766804 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B6D1B271141DE00766804 /* HomeView.swift */; };
@@ -114,6 +114,7 @@
 		C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA35126EF0137006C4F27 /* MerchantCategoryItemService.swift */; };
 		C48BA35426EF016E006C4F27 /* MerchantCategoryItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA35326EF016E006C4F27 /* MerchantCategoryItemModel.swift */; };
 		C48BA35626EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA35526EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift */; };
+		C48C6AFF2718064000BFAF34 /* ResetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C6AFE2718064000BFAF34 /* ResetSuccessView.swift */; };
 		C49285552716B89300F5BCBB /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49285542716B89300F5BCBB /* CheckBox.swift */; };
 		C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4953EF526E3A9A900295583 /* CommentViewModel.swift */; };
 		C4974ABB26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4974ABA26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift */; };
@@ -124,10 +125,7 @@
 		C497AA1A26F844AA006EFE0C /* ConfirmInforBuyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C497AA1926F844AA006EFE0C /* ConfirmInforBuyViewModel.swift */; };
 		C49B0B71270DF10D002C3D9F /* SearchSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B0B70270DF10D002C3D9F /* SearchSelectionView.swift */; };
 		C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */; };
-		C4A5583126BA3BC400029AC0 /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A5583026BA3BC400029AC0 /* ResetPasswordViewController.xib */; };
-		C4A5583326BA3C5300029AC0 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A5583226BA3C5300029AC0 /* ResetPasswordViewController.swift */; };
-		C4A5583626BA77D100029AC0 /* ResetSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A5583526BA77D100029AC0 /* ResetSuccessViewController.swift */; };
-		C4A5583826BA783800029AC0 /* ResetSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A5583726BA783800029AC0 /* ResetSuccessViewController.xib */; };
+		C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A4C439271957C700C306EE /* MyVoucherCardView.swift */; };
 		C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */; };
 		C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DEA26C4B85A00203CB9 /* InternalNewsView.swift */; };
 		C4AB352D270AD7B000A186F5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AB352C270AD7B000A186F5 /* SearchView.swift */; };
@@ -150,6 +148,9 @@
 		C4B9BF7B26FC53540022DA55 /* VoucherQRPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7A26FC53540022DA55 /* VoucherQRPopUpView.swift */; };
 		C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7C26FC58E60022DA55 /* Test.swift */; };
 		C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9BF7E26FC63B50022DA55 /* GetError.swift */; };
+		C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */; };
+		C4BA720E2717D1B800D73660 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA720D2717D1B800D73660 /* ResetPasswordView.swift */; };
+		C4BA72122717D4E100D73660 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA72112717D4E100D73660 /* ResetPasswordViewModel.swift */; };
 		C4BAD396F91BE1969BB34C52 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; };
 		C4BBFFEE270AE20000A92109 /* IsSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BBFFED270AE20000A92109 /* IsSystemImage.swift */; };
 		C4C8115C270E8A4A002D7220 /* ConfirmPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8115B270E8A4A002D7220 /* ConfirmPopUp.swift */; };
@@ -205,8 +206,6 @@
 		84DA60782696DACA0012F55B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84DA60852696DB720012F55B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		84DA60862696DB720012F55B /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
-		84DA60892696DB7F0012F55B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		84DA608A2696DB7F0012F55B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		84DA608E2696DB950012F55B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		84DA609E269E98470012F55B /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		84DA60AD269EC9280012F55B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -287,6 +286,8 @@
 		C478889D270C2979009F5A25 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C478889F270C2BF7009F5A25 /* DragPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragPopUpView.swift; sourceTree = "<group>"; };
 		C4792A5A27017DF5006D71AD /* MyVoucherButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoucherButtonView.swift; sourceTree = "<group>"; };
+		C47EA7A32717E09400E91171 /* ResetPasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordService.swift; sourceTree = "<group>"; };
+		C47EA7A52717E56300E91171 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		C4850B8A27172B1B0003AE71 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
 		C48B6D1B271141DE00766804 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -295,6 +296,7 @@
 		C48BA35126EF0137006C4F27 /* MerchantCategoryItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantCategoryItemService.swift; sourceTree = "<group>"; };
 		C48BA35326EF016E006C4F27 /* MerchantCategoryItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantCategoryItemModel.swift; sourceTree = "<group>"; };
 		C48BA35526EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantCategoryItemViewModel.swift; sourceTree = "<group>"; };
+		C48C6AFE2718064000BFAF34 /* ResetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSuccessView.swift; sourceTree = "<group>"; };
 		C49285542716B89300F5BCBB /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		C4953EF526E3A9A900295583 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		C4974ABA26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherListByCategoryService.swift; sourceTree = "<group>"; };
@@ -305,10 +307,7 @@
 		C497AA1926F844AA006EFE0C /* ConfirmInforBuyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmInforBuyViewModel.swift; sourceTree = "<group>"; };
 		C49B0B70270DF10D002C3D9F /* SearchSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSelectionView.swift; sourceTree = "<group>"; };
 		C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerPopUpView.swift; sourceTree = "<group>"; };
-		C4A5583026BA3BC400029AC0 /* ResetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordViewController.xib; sourceTree = "<group>"; };
-		C4A5583226BA3C5300029AC0 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		C4A5583526BA77D100029AC0 /* ResetSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSuccessViewController.swift; sourceTree = "<group>"; };
-		C4A5583726BA783800029AC0 /* ResetSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetSuccessViewController.xib; sourceTree = "<group>"; };
+		C4A4C439271957C700C306EE /* MyVoucherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoucherCardView.swift; sourceTree = "<group>"; };
 		C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsCardView.swift; sourceTree = "<group>"; };
 		C4AA6DEA26C4B85A00203CB9 /* InternalNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsView.swift; sourceTree = "<group>"; };
 		C4AB352C270AD7B000A186F5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -331,6 +330,9 @@
 		C4B9BF7A26FC53540022DA55 /* VoucherQRPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherQRPopUpView.swift; sourceTree = "<group>"; };
 		C4B9BF7C26FC58E60022DA55 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		C4B9BF7E26FC63B50022DA55 /* GetError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetError.swift; sourceTree = "<group>"; };
+		C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousUserLoginInfor.swift; sourceTree = "<group>"; };
+		C4BA720D2717D1B800D73660 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		C4BA72112717D4E100D73660 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		C4BBFFED270AE20000A92109 /* IsSystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsSystemImage.swift; sourceTree = "<group>"; };
 		C4C8115B270E8A4A002D7220 /* ConfirmPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopUp.swift; sourceTree = "<group>"; };
 		C4C8334D2711475A0058E8E3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				C4BBFFED270AE20000A92109 /* IsSystemImage.swift */,
 				C478889D270C2979009F5A25 /* ImagePicker.swift */,
 				C45260C427156782007E945B /* RefreshableScrollView.swift */,
+				C47EA7A52717E56300E91171 /* EmailValidation.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				848753682706BAA60061D4E1 /* ChangePasswordService.swift */,
 				C45EDBA0270FF7B5004799B5 /* CustomerSupportService.swift */,
 				C4850B8A27172B1B0003AE71 /* LoginService.swift */,
+				C47EA7A32717E09400E91171 /* ResetPasswordService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -521,8 +525,6 @@
 			children = (
 				C46CD3C22716884E00A454CE /* ViewModel */,
 				C46CD3C12716884600A454CE /* View */,
-				84DA60892696DB7F0012F55B /* LoginViewController.swift */,
-				84DA608A2696DB7F0012F55B /* LoginViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -604,6 +606,7 @@
 				C472E4C126FD726B00D047BA /* MerchantVoucherDetailModel.swift */,
 				C472E4C726FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift */,
 				C4750072270B40B000FE75EB /* SearchBarModel.swift */,
+				C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 			isa = PBXGroup;
 			children = (
 				C43C7BB126FAD04D0056D169 /* MyVoucherView.swift */,
+				C4A4C439271957C700C306EE /* MyVoucherCardView.swift */,
 				C4B9BF7A26FC53540022DA55 /* VoucherQRPopUpView.swift */,
 				C4792A5A27017DF5006D71AD /* MyVoucherButtonView.swift */,
 			);
@@ -979,8 +983,8 @@
 		C4A5582D26BA3A7000029AC0 /* ResetPassword */ = {
 			isa = PBXGroup;
 			children = (
-				C4A5583226BA3C5300029AC0 /* ResetPasswordViewController.swift */,
-				C4A5583026BA3BC400029AC0 /* ResetPasswordViewController.xib */,
+				C4BA72102717D4CC00D73660 /* ViewModel */,
+				C4BA720F2717D20500D73660 /* View */,
 			);
 			path = ResetPassword;
 			sourceTree = "<group>";
@@ -988,8 +992,7 @@
 		C4A5583426BA779500029AC0 /* ResetSuccess */ = {
 			isa = PBXGroup;
 			children = (
-				C4A5583526BA77D100029AC0 /* ResetSuccessViewController.swift */,
-				C4A5583726BA783800029AC0 /* ResetSuccessViewController.xib */,
+				C48C6AFE2718064000BFAF34 /* ResetSuccessView.swift */,
 			);
 			path = ResetSuccess;
 			sourceTree = "<group>";
@@ -1077,6 +1080,22 @@
 			isa = PBXGroup;
 			children = (
 				C4B9BF7226FC1BDE0022DA55 /* HomeScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C4BA720F2717D20500D73660 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4BA720D2717D1B800D73660 /* ResetPasswordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4BA72102717D4CC00D73660 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C4BA72112717D4E100D73660 /* ResetPasswordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1273,10 +1292,7 @@
 				848753662706A46F0061D4E1 /* like.gif in Resources */,
 				848753652706A46F0061D4E1 /* laugh.gif in Resources */,
 				848753632706A46F0061D4E1 /* love.gif in Resources */,
-				84DA608C2696DB7F0012F55B /* LoginViewController.xib in Resources */,
-				C4A5583826BA783800029AC0 /* ResetSuccessViewController.xib in Resources */,
 				84DA60772696DACA0012F55B /* LaunchScreen.storyboard in Resources */,
-				C4A5583126BA3BC400029AC0 /* ResetPasswordViewController.xib in Resources */,
 				84DA60742696DACA0012F55B /* Assets.xcassets in Resources */,
 				84DA60BC269EC9C40012F55B /* vn.lproj in Resources */,
 				848753642706A46F0061D4E1 /* angry.gif in Resources */,
@@ -1345,6 +1361,7 @@
 				C436562A26CB4C0700148796 /* FunctionCardView.swift in Sources */,
 				84DA60CB269ECB6A0012F55B /* StringUtils.swift in Sources */,
 				C4D02615270D3F8A0048B671 /* CustomerSupportPopUp.swift in Sources */,
+				C48C6AFF2718064000BFAF34 /* ResetSuccessView.swift in Sources */,
 				C48BA35426EF016E006C4F27 /* MerchantCategoryItemModel.swift in Sources */,
 				C478889A270BFF65009F5A25 /* UserInformationViewModel.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
@@ -1366,11 +1383,11 @@
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
 				848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
-				C4A5583626BA77D100029AC0 /* ResetSuccessViewController.swift in Sources */,
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
 				C4B9BF7926FC2AC50022DA55 /* GeneratorQRCode.swift in Sources */,
 				C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */,
 				C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */,
+				C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */,
 				8487535D2705AB060061D4E1 /* ChangePasswordPopUpView.swift in Sources */,
 				C4792A5B27017DF5006D71AD /* MyVoucherButtonView.swift in Sources */,
 				84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */,
@@ -1390,7 +1407,6 @@
 				C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */,
 				C402B26A26E76C5300A41288 /* ReactViewModel.swift in Sources */,
 				C4492A5E26F18E98008B26C9 /* MerchantVoucherItemModel.swift in Sources */,
-				C4A5583326BA3C5300029AC0 /* ResetPasswordViewController.swift in Sources */,
 				C46CD3C42716885F00A454CE /* LoginView.swift in Sources */,
 				C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */,
 				C4BBFFEE270AE20000A92109 /* IsSystemImage.swift in Sources */,
@@ -1409,7 +1425,6 @@
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
 				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
-				84DA608B2696DB7F0012F55B /* LoginViewController.swift in Sources */,
 				C45EDBA1270FF7B5004799B5 /* CustomerSupportService.swift in Sources */,
 				C403670326DB2A8200381888 /* UserInforModel.swift in Sources */,
 				84DA60872696DB720012F55B /* SplashViewController.swift in Sources */,
@@ -1421,6 +1436,7 @@
 				C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */,
 				C4DF7A6726F9BCCE00DC7D04 /* BuyVoucherModel.swift in Sources */,
 				C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */,
+				C4BA72122717D4E100D73660 /* ResetPasswordViewModel.swift in Sources */,
 				C42F55C126F37670006F1CAC /* ListOfMerchantView.swift in Sources */,
 				C4E9D43726D4C86B00B223AC /* TabCurveShape.swift in Sources */,
 				C419868E26E46F7C00A877A5 /* LocalFileManager.swift in Sources */,
@@ -1448,6 +1464,7 @@
 				C472E4C226FD726B00D047BA /* MerchantVoucherDetailModel.swift in Sources */,
 				C472E4CC26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift in Sources */,
 				C472E4BB26FD609900D047BA /* MerchantVoucherDetailView.swift in Sources */,
+				C4BA720E2717D1B800D73660 /* ResetPasswordView.swift in Sources */,
 				C4F2A4FC26F040AC0090675A /* HTMLStringView.swift in Sources */,
 				C472E4C426FD763400D047BA /* MerchantVoucherDetailViewModel.swift in Sources */,
 				C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */,
@@ -1458,7 +1475,9 @@
 				C430AEBB26E6552100D3D29A /* AddCommentService.swift in Sources */,
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,
 				C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */,
+				C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */,
 				C4B3D58526E9FBAC003C6CA9 /* RoundedButton.swift in Sources */,
+				C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */,
 				C419868B26E46F5400A877A5 /* URLImageViewModel.swift in Sources */,
 				C41C8C6E26DC79C200AC1FA7 /* InternalNewsDetailView.swift in Sources */,
 				C45260BE271565B1007E945B /* View.swift in Sources */,
@@ -1482,6 +1501,7 @@
 				C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */,
 				C43C7BB626FAE3F00056D169 /* MyVoucherModel.swift in Sources */,
 				C48B6D1C271141DE00766804 /* HomeView.swift in Sources */,
+				C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */,
 				C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */,
 				C404F5BB270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift in Sources */,
 				C45260C0271565D8007E945B /* Model.swift in Sources */,

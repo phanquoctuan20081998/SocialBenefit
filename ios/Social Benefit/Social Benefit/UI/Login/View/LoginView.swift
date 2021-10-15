@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftyJSON
 
 struct LoginView: View {
     
@@ -40,11 +39,11 @@ struct LoginView: View {
                         .scaledToFit()
                         .frame(height: 50)
                     
-                    Spacer().frame(height: 70)
+                    Spacer()
                     
                     TextFieldView
                     
-                    Spacer().frame(height: 40)
+                    Spacer()
                     
                     VStack {
                         CheckBoxView
@@ -52,12 +51,13 @@ struct LoginView: View {
                         ForgotPassword
                     }
                     
-                    Spacer().frame(height: 40)
+                    Spacer()
                     
                     VStack(spacing: 20) {
                         WarningText
                         ChangeLanguageButton
                     }
+                    Spacer()
                 }
                 
                 
@@ -67,9 +67,23 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
-                NavigationLink(destination: HomeScreenView(selectedTab: "house").navigationBarHidden(true), isActive: $loginViewModel.isLogin) {
-                    EmptyView()
+                if loginViewModel.isLogin {
+                    NavigationLink(destination: HomeScreenView(selectedTab: "house").navigationBarHidden(true), isActive: $loginViewModel.isLogin) {
+                        EmptyView()
+                    }
                 }
+                
+                if loginViewModel.isLoading {
+                    VStack{
+                        Spacer()
+                        ActivityRep()
+                        Spacer()
+                    }
+                    .background(Color.black.opacity(0.2)
+                    .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
+                    .edgesIgnoringSafeArea(.all))
+                }
+                
             }.edgesIgnoringSafeArea(.all)
             .navigationBarHidden(true)
         }
@@ -79,14 +93,15 @@ struct LoginView: View {
 extension LoginView {
     
     var TextFieldView: some View {
-        VStack(spacing: 40) {
+        VStack(spacing: 25) {
             
             // Company Code textfield
             TextField("company".localized,
                       text: $loginViewModel.companyCode,
                       onEditingChanged: { (focus) in
                 loginViewModel.isFocus1 = focus })
-                .padding(10)
+                .font(.system(size: 15))
+                .padding(7)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(loginViewModel.isFocus1 ? Color.blue : Color.gray,
@@ -98,7 +113,8 @@ extension LoginView {
                       text: $loginViewModel.employeeId,
                       onEditingChanged: { (focus) in
                 loginViewModel.isFocus2 = focus })
-                .padding(10)
+                .font(.system(size: 15))
+                .padding(7)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(loginViewModel.isFocus2 ? Color.blue : Color.gray,
@@ -106,11 +122,13 @@ extension LoginView {
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
             
             // Company Code textfield
-            TextField("password".localized,
-                      text: $loginViewModel.password,
-                      onEditingChanged: { (focus) in
-                loginViewModel.isFocus3 = focus })
-                .padding(10)
+            SecureField("password".localized,
+                      text: $loginViewModel.password)
+                .onTapGesture {
+                    loginViewModel.isFocus3 = true
+                }
+                .font(.system(size: 15))
+                .padding(7)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(loginViewModel.isFocus3 ? Color.blue : Color.gray,
@@ -123,6 +141,7 @@ extension LoginView {
         HStack {
             CheckBox(checked: $loginViewModel.isChecked)
             Text("remember_me".localized)
+                .font(.system(size: 15))
         }
     }
     
@@ -130,21 +149,15 @@ extension LoginView {
         VStack {
             Button {
                 if loginViewModel.isAllTextAreTyped {
-                    loginViewModel.loginService.getAPI(companyCode: loginViewModel.companyCode, userLogin: loginViewModel.employeeId, password: loginViewModel.password) { data in
-                        
-                        let token = data["token"]
-                        let employeeDto = data["employeeDto"]
-                        let citizen = employeeDto["citizen"]
-                        
-                        updateUserInfor(userId: loginViewModel.employeeId, token: token.string!, employeeDto: employeeDto, citizen: citizen)
-                        
-                        loginViewModel.isLogin = true
-                    }
+                    
+                    loginViewModel.updateToRemember()
+                    loginViewModel.loadLoginData()
                     
                     // If cannot login
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        if !loginViewModel.isLogin {
-                            loginViewModel.isPresentWrongError.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                        if loginViewModel.isLoading {
+                            loginViewModel.isPresentCannotConnectServerError.toggle()
+                            loginViewModel.isLoading = false
                         }
                     }
                     
@@ -159,15 +172,17 @@ extension LoginView {
                     .background(
                         RoundedRectangle(cornerRadius: 10).fill(Color("nissho_light_blue"))
                     )
+                    .font(.system(size: 15))
             }
         }
     }
     
     var ForgotPassword: some View {
         NavigationLink {
-            Text("1")
+            ResetPasswordView().navigationBarHidden(true)
         } label: {
             Text("forgot_password".localized)
+                .font(.system(size: 15))
         }
         
     }
@@ -176,13 +191,14 @@ extension LoginView {
         VStack {
             Text("warning1".localized)
             Text("warning2".localized)
-        }
+        }.font(.system(size: 15))
     }
     
     var ChangeLanguageButton: some View {
         HStack(spacing: 20) {
             Button {
                 Bundle.setLanguage(lang: "vn")
+                UserDefaults.standard.set(Constants.LANGUAGE.VN, forKey: "language")
                 reload.toggle()
             } label: {
                 Image("pic_language1")
@@ -193,6 +209,7 @@ extension LoginView {
 
             Button {
                 Bundle.setLanguage(lang: "en")
+                UserDefaults.standard.set(Constants.LANGUAGE.ENG, forKey: "language")
                 reload.toggle()
             } label: {
                 Image("pic_language2")
@@ -206,6 +223,6 @@ extension LoginView {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView() 
     }
 }

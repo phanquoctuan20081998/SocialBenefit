@@ -28,6 +28,8 @@ extension LanguageSelectorPopUp {
                     .onTapGesture {
                         withAnimation {
                             settingsViewModel.selectedlanguage = i
+                            Bundle.setLanguage(lang: Constants.LANGUAGE_TAB[i])
+                            UserDefaults.standard.set(i, forKey: "language")
                             isPresentedPopup = false
                         }
                     }

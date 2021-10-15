@@ -5,8 +5,6 @@
 //  Created by Phan Quốc Tuấn on 13/10/2021.
 //
 
-import Foundation
-import SwiftUI
 import Alamofire
 import SwiftyJSON
 
@@ -21,13 +19,14 @@ class LoginService {
         let deviceType = "1" //For iPhone
         
         let params = ["companyCode": companyCode,
-                                  "userLogin": userLogin,
-                                  "password": passMd5,
-                                  "deviceId": deviceId,
-                                  "deviceToken": deviceToken,
-                                  "deviceType": deviceType]
+                      "userLogin": userLogin,
+                      "password": passMd5,
+                      "deviceId": deviceId,
+                      "deviceToken": deviceToken,
+                      "deviceType": deviceType]
 
         service.makeCall(endpoint: Config.API_LOGIN, method: "POST", header: ["":""], body: params as [String : Any], callback: { (result) in
+            print(result)
             returnCallBack(result)
         })
     }

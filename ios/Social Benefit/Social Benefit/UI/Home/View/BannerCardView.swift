@@ -58,7 +58,7 @@ struct InternalNewsBannerView: View {
                 
                 if !internalNewsViewModel.allInternalNews.isEmpty {
                     NavigationLink(
-                        destination: InternalNewsDetailView(internalNewData: internalNewsViewModel.allInternalNews[selectedIndex]).navigationBarHidden(true),
+                        destination: InternalNewsDetailView(internalNewData: internalNewsViewModel.allInternalNews[selectedIndex], isHiddenTabBarWhenBack: false).navigationBarHidden(true),
                         tag: 1,
                         selection: $selection,
                         label: { EmptyView() })

@@ -15,15 +15,24 @@ struct InternalNewsDetailView: View {
     @ObservedObject var reactViewModel: ReactViewModel
     
     var internalNewData: InternalNewsData
+    var isHiddenTabBarWhenBack: Bool
     
     @State var previousReaction: Int = 6
     @State private var proxy: AmzdScrollViewProxy? = nil
     @State private var webViewHeight: CGFloat = .zero
     
+    init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool) {
+        self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
+        self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
+        self.internalNewData = internalNewData
+        self.isHiddenTabBarWhenBack = isHiddenTabBarWhenBack
+    }
+    
     init(internalNewData: InternalNewsData) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
         self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
         self.internalNewData = internalNewData
+        self.isHiddenTabBarWhenBack = true
     }
     
     var body: some View {
@@ -42,7 +51,7 @@ struct InternalNewsDetailView: View {
             
             CommentBarView
             
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true))
+        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack))
     }
 }
 

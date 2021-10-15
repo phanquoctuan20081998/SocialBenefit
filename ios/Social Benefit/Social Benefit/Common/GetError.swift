@@ -20,6 +20,10 @@ func getError(errorCode: String) -> String {
         return "need_to_fill_all_data".localized
     case "wrong_data":
         return "wrong_data".localized
+    case "wrong_email_format":
+        return "wrong_email_format".localized
+    case "wrong_email":
+        return "wrong_email".localized
     default:
         return ""
     }

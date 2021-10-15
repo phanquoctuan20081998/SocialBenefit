@@ -45,7 +45,7 @@ struct Constants {
         static let VN = 1
     }
     
-    static let LANGUAGE_TAB = ["eng", "vn"]
+    static let LANGUAGE_TAB = ["en", "vn"]
     
     // Change Password Error
     struct ChangePasswordErrors {
@@ -81,3 +81,5 @@ struct BackgroundSearch {
     var icon: String
     var color: Color
 }
+
+
