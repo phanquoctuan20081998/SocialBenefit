@@ -18,6 +18,7 @@ struct HomeScreenView: View {
     @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
     @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
     @ObservedObject var searchViewModel = SearchViewModel()
+    @ObservedObject var homeViewModel = HomeViewModel()
     
     init(selectedTab: String) {
         homeScreenViewModel.selectedTab = selectedTab
@@ -57,6 +58,7 @@ struct HomeScreenView: View {
         .environmentObject(merchantVoucherDetailViewModel)
         .environmentObject(customerSupportViewModel)
         .environmentObject(searchViewModel)
+        .environmentObject(homeViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {

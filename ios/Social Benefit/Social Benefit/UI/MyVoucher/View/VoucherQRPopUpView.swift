@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+let QRTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 struct VoucherQRPopUpView: View {
     
@@ -54,7 +54,7 @@ extension VoucherQRPopUpView {
         .onAppear {
             self.timeRemaining = voucher.remainTime
         }
-        .onReceive(timer) { _ in
+        .onReceive(QRTimer) { _ in
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
             } else {

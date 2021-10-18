@@ -10,30 +10,61 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-    @ObservedObject var homeViewModel = HomeViewModel()
+    @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    
     
     var body: some View {
-        VStack {
-            Spacer()
-                .frame(height: 90)
-            
-            ScrollView {
-                VStack(spacing: 20) {
-                    MainCardView()
-                        .padding(.top, 10)
-                    
-                    InternalNewsBannerView()
-                    RecognitionsBannerView()
-                    PromotionsBannerView()
-                }
+        ZStack {
+            VStack {
                 Spacer()
-                    .frame(height: 100)
+                    .frame(height: 90)
+
+                ScrollView {
+                    VStack(spacing: 20) {
+                        MainCardView()
+                            .padding(.top, 10)
+
+                        InternalNewsBannerView()
+                        RecognitionsBannerView()
+                        PromotionsBannerView()
+                    }
+                    Spacer()
+                        .frame(height: 100)
+                }
+            }
+            .background(BackgroundViewWithNotiAndSearch())
+            .edgesIgnoringSafeArea(.all)
+                        
+            InternalNewDetailNavigationView(internalNews: homeViewModel.selectedInternalNew, isPresent: homeViewModel.isPresentInternalNewDetail)
+            
+            MerchantVoucherDetailNavigationView(voucherId: homeViewModel.selectedVoucherId, isPresent: homeViewModel.isPresentVoucherDetail)
+            
+        }
+    }
+    
+    @ViewBuilder
+    func InternalNewDetailNavigationView(internalNews: InternalNewsData?,  isPresent: Bool) -> some View {
+        if isPresent {
+            VStack {
+                if let internalNews = internalNews {
+                    InternalNewsDetailView(internalNewData: internalNews, isHiddenTabBarWhenBack: true)
+                        .background(Color.white)
+                }
             }
         }
-        .background(BackgroundViewWithNotiAndSearch())
-        .edgesIgnoringSafeArea(.all)
-        .environmentObject(homeViewModel)
+    }
 
+    @ViewBuilder
+    func MerchantVoucherDetailNavigationView(voucherId: Int?,  isPresent: Bool) -> some View {
+        if isPresent {
+            VStack {
+                if let voucherId = voucherId {
+                    MerchantVoucherDetailView(voucherId: voucherId)
+                        .background(Color.white)
+                }
+            }
+        }
     }
 }
 

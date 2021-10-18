@@ -95,20 +95,26 @@ class CommentViewModel: ObservableObject, Identifiable {
     
     func separateChildAndParent(allComment: [CommentData]) {
         
+        var tempParentComment = [ParentCommentData]()
+        var tempChildComment = [[CommentData]]()
+        
         for item in allComment {
             if item.parentId == -1 {
                 let tempParent = ParentCommentData(data: item, childIndex: -1)
-                self.parentComment.append(tempParent)
+                tempParentComment.append(tempParent)
             } else {
-                let sameParentIndex = self.findSameParent(Array: self.childComment, child: item)
+                let sameParentIndex = self.findSameParent(Array: tempChildComment, child: item)
                 
                 if sameParentIndex == -1 {
-                    self.childComment.append([item])
+                    tempChildComment.append([item])
                 } else {
-                    self.childComment[sameParentIndex].append(item)
+                    tempChildComment[sameParentIndex].append(item)
                 }
             }
         }
+        
+        self.parentComment = tempParentComment
+        self.childComment = tempChildComment
         
         if self.numOfComment != 0 {
             self.assignChildToParent()

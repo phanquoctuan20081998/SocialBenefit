@@ -8,20 +8,16 @@ import SwiftUI
 import SDWebImage
 import SDWebImageSwiftUI
 
+let ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+
 struct InternalNewsBannerView: View {
     
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
-    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
-    
     @State private var currentPage = 0
-    @State var selection: Int? = nil
-    @State var isAnimating: Bool = true
-    @State var selectedIndex: Int = 0
-    
-    
+    @State var isMove: Bool = false
     
     var body: some View {
         VStack {
@@ -34,18 +30,11 @@ struct InternalNewsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-                    
-                    let _ = print("News = \(currentPage)")
-                    
                     if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
-                        PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex), currentPage: $currentPage)
+                        PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, imageTapped: imageTapped), currentPage: $currentPage)
  
                         PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
-                            .onReceive(self.timer) { _ in
-                                DispatchQueue.main.async {
-                                    self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count
-                                }
-                            }
+                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
                     } else {
                         EmptyView()
                     }
@@ -54,31 +43,31 @@ struct InternalNewsBannerView: View {
             .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
             .background(Color.white)
             .cornerRadius(30)
+            .background(
+                ZStack {
+                    NavigationLink(
+                        destination: InternalNewsView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar).navigationBarHidden(true),
+                        isActive: $isMove,
+                        label: { EmptyView() })
+                }
+            )
         }
         .foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
-        .background(
-            ZStack {
-                NavigationLink(
-                    destination: InternalNewsView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar).navigationBarHidden(true),
-                    tag: 0,
-                    selection: $selection,
-                    label: { EmptyView() })
-                
-                if !internalNewsViewModel.allInternalNews.isEmpty {
-                    NavigationLink(
-                        destination: InternalNewsDetailView(internalNewData: internalNewsViewModel.allInternalNews[selectedIndex], isHiddenTabBarWhenBack: false).navigationBarHidden(true),
-                        tag: 1,
-                        selection: $selection,
-                        label: { EmptyView() })
-                }
-            }
-        )
     }
     
     func topTitleTapped() {
-        self.selection = 0
+        self.isMove = true
         homeScreenViewModel.isPresentedTabBar.toggle()
+    }
+    
+    func imageTapped() {
+        homeScreenViewModel.isPresentedTabBar = false
+        homeViewModel.isPresentInternalNewDetail.toggle()
+
+        if let index = homeViewModel.selectedIndex {
+            homeViewModel.selectedInternalNew = internalNewsViewModel.allInternalNews[index]
+        }
     }
 }
 
@@ -128,12 +117,7 @@ struct PromotionsBannerView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     @State private var currentPage = 0
-    @State var selection: Int? = nil
-    @State var isAnimating: Bool = true
-    @State var selectedIndex: Int = 0
     @State var data: [MerchantListData] = []
-    
-    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack {
@@ -144,12 +128,9 @@ struct PromotionsBannerView: View {
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
                     if data.count != 0 { //If Data can read
-                        
-                        let _ = print("Promotions = \(currentPage)")
-                        
-                        let pages = getPromotionData(data: data, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex)
+                        let pages = getPromotionData(data: data, imageTapped: imageTapped)
                         PageViewController(pages: pages, currentPage: $currentPage)
-                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
+                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
                         PageControl(numberOfPages: data.count, currentPage: $currentPage)
                     } else {
                         EmptyView()
@@ -169,22 +150,18 @@ struct PromotionsBannerView: View {
         }
         .foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
-        .background(
-            ZStack {
-                if !data.isEmpty {
-                    NavigationLink(
-                        destination: MerchantVoucherDetailView(voucherId: data[selectedIndex].id).navigationBarHidden(true),
-                        tag: 2,
-                        selection: $selection,
-                        label: { EmptyView() })
-                }
-            }
-        )
     }
     
     func toptitleTapped() {
-        DispatchQueue.main.async {
-            homeScreenViewModel.selectedTab = "tag"
+        homeScreenViewModel.selectedTab = "tag"
+    }
+    
+    func imageTapped() {
+        homeScreenViewModel.isPresentedTabBar = false
+        homeViewModel.isPresentVoucherDetail.toggle()
+
+        if let index = homeViewModel.selectedIndex {
+            homeViewModel.selectedVoucherId = data[index].id
         }
     }
 }
@@ -300,41 +277,40 @@ struct TopTitleView: View {
 
 struct BannerContentView: View {
     
-    @EnvironmentObject var homescreen: HomeScreenViewModel
-    
-    @Binding var isAnimating: Bool
-    @Binding var selection: Int?
-    @Binding var selectedIndex: Int
+    @EnvironmentObject var homeViewModel: HomeViewModel
     
     var image: String
     var index: Int
+    var imageTapped: () -> ()
     
     var body: some View {
         URLImageView(url: image)
             .onTapGesture {
-                homescreen.isPresentedTabBar = false
-                selection = 1
-                selectedIndex = index
+                DispatchQueue.main.async {
+                    homeViewModel.selectedIndex = index
+                    ImageSlideTimer.upstream.connect().cancel()
+                    imageTapped()
+                }
             }
     }
 }
 
-func getInternalNewsData(data: [InternalNewsData], isAnimating: Binding<Bool>, selection: Binding<Int?>, selectedIndex: Binding<Int>) -> [BannerContentView] {
+func getInternalNewsData(data: [InternalNewsData], imageTapped: @escaping () -> ()) -> [BannerContentView] {
     
     var result = [BannerContentView]()
     
     for i in data.indices {
-        result.append(BannerContentView(isAnimating: isAnimating, selection: selection, selectedIndex: selectedIndex, image: data[i].cover, index: i))
+        result.append(BannerContentView(image: data[i].cover, index: i, imageTapped: imageTapped))
     }
     return result
 }
 
-func getPromotionData(data: [MerchantListData], isAnimating: Binding<Bool>, selection: Binding<Int?>, selectedIndex: Binding<Int>) -> [BannerContentView] {
+func getPromotionData(data: [MerchantListData], imageTapped: @escaping () -> ()) -> [BannerContentView] {
 
     var result = [BannerContentView]()
     
     for i in data.indices {
-        result.append(BannerContentView(isAnimating: isAnimating, selection: selection, selectedIndex: selectedIndex, image: data[i].cover, index: i))
+        result.append(BannerContentView(image: data[i].cover, index: i, imageTapped: imageTapped))
     }
     return result
 }
