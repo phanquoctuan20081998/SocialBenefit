@@ -21,6 +21,7 @@ struct HomeView: View {
                 VStack(spacing: 20) {
                     MainCardView()
                         .padding(.top, 10)
+                    
                     InternalNewsBannerView()
                     RecognitionsBannerView()
                     PromotionsBannerView()

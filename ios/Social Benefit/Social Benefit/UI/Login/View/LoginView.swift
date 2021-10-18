@@ -67,6 +67,9 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $loginViewModel.isPresentCannotConnectServerError)
+                    .offset(y: 400)
+                
                 if loginViewModel.isLogin {
                     NavigationLink(destination: HomeScreenView(selectedTab: "house").navigationBarHidden(true), isActive: $loginViewModel.isLogin) {
                         EmptyView()

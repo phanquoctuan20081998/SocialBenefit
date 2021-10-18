@@ -14,12 +14,14 @@ struct InternalNewsBannerView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
     @State private var currentPage = 0
     @State var selection: Int? = nil
     @State var isAnimating: Bool = true
     @State var selectedIndex: Int = 0
     
-    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
     
     var body: some View {
         VStack {
@@ -32,11 +34,18 @@ struct InternalNewsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
+                    
+                    let _ = print("News = \(currentPage)")
+                    
                     if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
                         PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex), currentPage: $currentPage)
  
                         PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
-                            .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
+                            .onReceive(self.timer) { _ in
+                                DispatchQueue.main.async {
+                                    self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count
+                                }
+                            }
                     } else {
                         EmptyView()
                     }
@@ -85,7 +94,7 @@ struct RecognitionsBannerView: View {
     @State var isAnimating: Bool = true
     @State var selectedIndex: Int = 0
     
-    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+//    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack {
@@ -135,6 +144,9 @@ struct PromotionsBannerView: View {
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
                     if data.count != 0 { //If Data can read
+                        
+                        let _ = print("Promotions = \(currentPage)")
+                        
                         let pages = getPromotionData(data: data, isAnimating: $isAnimating, selection: $selection, selectedIndex: $selectedIndex)
                         PageViewController(pages: pages, currentPage: $currentPage)
                             .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
@@ -157,19 +169,23 @@ struct PromotionsBannerView: View {
         }
         .foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
-//        .background(
-//            if !data.isEmpty {
-//                NavigationLink(
-//                    destination: MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i]).navigationBarHidden(true),
-//                    tag: 1,
-//                    selection: $selection,
-//                    label: { EmptyView() })
-//            }
-//        )
+        .background(
+            ZStack {
+                if !data.isEmpty {
+                    NavigationLink(
+                        destination: MerchantVoucherDetailView(voucherId: data[selectedIndex].id).navigationBarHidden(true),
+                        tag: 2,
+                        selection: $selection,
+                        label: { EmptyView() })
+                }
+            }
+        )
     }
     
     func toptitleTapped() {
-        homeScreenViewModel.selectedTab = "tag"
+        DispatchQueue.main.async {
+            homeScreenViewModel.selectedTab = "tag"
+        }
     }
 }
 

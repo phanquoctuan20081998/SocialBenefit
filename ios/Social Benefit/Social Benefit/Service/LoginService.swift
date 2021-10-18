@@ -26,7 +26,6 @@ class LoginService {
                       "deviceType": deviceType]
 
         service.makeCall(endpoint: Config.API_LOGIN, method: "POST", header: ["":""], body: params as [String : Any], callback: { (result) in
-            print(result)
             returnCallBack(result)
         })
     }
