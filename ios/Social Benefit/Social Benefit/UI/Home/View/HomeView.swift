@@ -48,7 +48,7 @@ struct HomeView: View {
         if isPresent {
             VStack {
                 if let internalNews = internalNews {
-                    InternalNewsDetailView(internalNewData: internalNews, isHiddenTabBarWhenBack: true)
+                    InternalNewsDetailView(internalNewData: internalNews, isHiddenTabBarWhenBack: false, isNavigationFromHomeScreen: true)
                         .background(Color.white)
                 }
             }
@@ -60,7 +60,7 @@ struct HomeView: View {
         if isPresent {
             VStack {
                 if let voucherId = voucherId {
-                    MerchantVoucherDetailView(voucherId: voucherId)
+                    MerchantVoucherDetailView(isNavigationFromHomeScreen: true, voucherId: voucherId)
                         .background(Color.white)
                 }
             }

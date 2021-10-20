@@ -52,7 +52,8 @@ struct BackgroundViewWithNotiAndSearch: View {
                         .foregroundColor(.blue)
                         .padding(.trailing)
                         
-                    }.padding(.top, 50)
+                    }
+                        .padding(.top, ScreenInfor().screenHeight * 0.05)
                     , alignment: .top)
                 .edgesIgnoringSafeArea(.all)
             Spacer()
@@ -68,6 +69,8 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     var title: String
     var isHaveLogo: Bool
     var isHiddenTabBarWhenBack = true
+    
+    var backButtonTapped: () -> () = { }
     
     var body: some View {
         VStack {
@@ -85,12 +88,15 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                                 if !isHiddenTabBarWhenBack {
                                     homeScreen.isPresentedTabBar = true
                                 }
+                                
+                                backButtonTapped()
+                                
                             }, label: {
                                 VStack(alignment: .leading) {
                                     Image(systemName: "arrow.backward")
                                         .font(.headline)
                                         .foregroundColor(.blue)
-                                        .padding(.leading, 20)
+                                        .padding(.leading)
                                 }
                             }).padding()
                             
@@ -109,8 +115,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                                 .frame(height: 30, alignment: .trailing)
                                 .padding(.trailing, 25)
                         }
-                    }.padding(.top, 40)
-                    
+                    }.padding(.top, ScreenInfor().screenHeight * 0.05)
                     ,alignment: .top)
                 .edgesIgnoringSafeArea(.all)
             
@@ -122,7 +127,17 @@ struct BackgroundViewWithoutNotiAndSearch: View {
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundViewWithNotiAndSearch()
+//        BackgroundViewWithNotiAndSearch()
+        HomeScreenView(selectedTab: "tag")
+        
+//        MyVoucherView()
+//            .environmentObject(HomeScreenViewModel())
+//            .environmentObject(MyVoucherViewModel())
+//            .environmentObject(InternalNewsViewModel())
+////            .environmentObject(SpecialOffersViewModel())
+//            .environmentObject(MerchantCategoryItemViewModel())
+////            .environmentObject(OffersViewModel())
+//            .environmentObject(ConfirmInforBuyViewModel())
     }
 }
 

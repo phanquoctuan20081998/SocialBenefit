@@ -34,8 +34,8 @@
 "order" = "No.";
 "benefit" = "Benefit";
 "benefit_status" = "Appied?";
-"up_comming" = "Up comming";
-"on_going" = "On going";
+"up_comming" = "Upcomming";
+"on_going" = "Ongoing";
 "apply" = "Apply";
 "waiting_to_confirm" = "Waiting to confirm";
 "approved" = "Approved";

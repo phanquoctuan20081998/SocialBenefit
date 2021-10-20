@@ -22,24 +22,27 @@ struct InternalNewsCardView: View {
             }, label: {
                 HStack {
                     URLImageView(url: internalNewsData.cover)
+                        .scaledToFill()
                         .frame(width: 80, height: 80)
                         .cornerRadius(20)
                         .padding(.all, 15)
                     
-                    Spacer()
+                    Spacer().frame(width: 10)
 
                     VStack(alignment: .leading, spacing: 5) {
                         Text(internalNewsData.title.toUpperCase())
+                            .font(.system(size: 13))
                             .fontWeight(.semibold)
+                            .multilineTextAlignment(.leading)
                             .lineLimit(2)
                         
                         Text(internalNewsData.shortBody)
                             .font(.subheadline)
+                            .font(.system(size: 13))
                             .italic()
+                            .multilineTextAlignment(.leading)
                             .lineLimit(2)
-                    }.frame(width: ScreenInfor().screenWidth * 0.8 - 130, alignment: .leading)
-                    .padding(.trailing, 20)
-                    
+                    }
                     Spacer()
                 }.frame(height: 100)
             })
@@ -51,5 +54,12 @@ struct InternalNewsCardView: View {
         .padding(.horizontal)
         .fixedSize(horizontal: false, vertical: true)
         .shadow(color: .black.opacity(0.1), radius: 3, x: 3, y: 3)
+    }
+}
+
+struct InternalCardView_Previews : PreviewProvider {
+    static var previews: some View {
+        InternalNewsCardView(isActive: .constant(true), selectedInternalNew: .constant(InternalNewsData(id: 1, contentId: 1, title: "sad", shortBody: "fscs", body: "Svsv", cover: "", newsCategory: 1)), internalNewsData: InternalNewsData(id: 2, contentId: 1, title: "training quản lí thời gian tdcn", shortBody: "dzxcbsbchsbchjsdbchbshcbhsdbchdsbchbdschbdhcbhsdbchsbchbbcshdbchsbdchbsdhcbhjdsbchdsbchbdchbdhcbhjsbchsdbchsbdchsbchbshcbhbsv", body: "SDcs", cover: "/files/4077/chandung.png", newsCategory: 1))
+            .environmentObject(InternalNewsViewModel())
     }
 }

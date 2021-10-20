@@ -69,7 +69,7 @@ struct UserView: View {
                 Spacer().frame(height: 30)
                 
                 VStack {
-                    NavigationLink(destination: Text("9"), tag: 9, selection: $selection) {
+                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
                         FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
                     }
                 }

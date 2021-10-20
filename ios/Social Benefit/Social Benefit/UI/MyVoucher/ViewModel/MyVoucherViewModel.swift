@@ -10,8 +10,8 @@ import Combine
 
 class MyVoucherViewModel: ObservableObject, Identifiable {
     
-    @Published var allMyVoucher = [MyVoucherData]()
-//    @Published var allMyVoucher = myVoucherDeBug
+//    @Published var allMyVoucher = [MyVoucherData]()
+    @Published var allMyVoucher = myVoucherDeBug
     @Published var selectedVoucherCode = VoucherCodeData(voucherCode: "", remainTime: 0)
     
     // API controller...
@@ -21,7 +21,8 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     @Published var isSearching: Bool = false
     
     // PopUp controller...
-    @Published var isPresentedPopup: Bool = false
+    @Published var isPresentedQRPopup: Bool = false
+    @Published var isPresentedReBuyPopup: Bool = false
     
     // Refreshing and Loading
     
@@ -56,29 +57,33 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     
     func loadSearchData(searchPattern: String) {
         self.isLoading = true
-        myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: 0, status: status) { data in
+        myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: 0, status: status) { [weak self] data in
             DispatchQueue.main.async {
-                self.allMyVoucher = data
+                self?.allMyVoucher = data
                 
-                self.isLoading = false
-                self.isRefreshing = false
+                self?.isLoading = false
+                self?.isRefreshing = false
             }
         }
     }
     
     func loadStatus(status: Int) {
-        myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: 0, status: status) { data in
+        self.isLoading = true
+        myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: 0, status: status) {[weak self] data in
             DispatchQueue.main.async {
-                self.allMyVoucher = data
+                self?.allMyVoucher = data
+                
+                self?.isLoading = false
+                self?.isRefreshing = false
             }
         }
     }
     
     func reloadData() {
-        myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, status: status) { data in
+        myVoucherService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, status: status) { [weak self] data in
             DispatchQueue.main.async {
                 for item in data {
-                    self.allMyVoucher.append(item)
+                    self?.allMyVoucher.append(item)
                 }
             }
         }
@@ -92,5 +97,6 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
 }
 
 
-let myVoucherDeBug = [MyVoucherData(id: 1807, voucherOrderId: 5, title: "Chào hè ưu đãidfdfsasascascacascascascascascascacacacacacacdfgdfgdfgdfgdfgdgdfgdfgdgdgd khủng", cover: "", expriedDate: Date() + 1, merchantName: "Đệm Liên Á"),
-                      MyVoucherData(id: 1767, voucherOrderId: 5, title: "Voucher_16082021_3", cover: "/files/4180/images - Copy.png", expriedDate: Date(), merchantName: "Mỹ phầm Coco")]
+let myVoucherDeBug = [MyVoucherData(id: 1807, status: 1, voucherOrderId: 5, title: "Chào hè ưu đãidfdfsasascascacascascascascascascacacacacacacdfgdfgdfgdfgdfgdgdfgdfgdgdgd khủng", cover: "", expriedDate: Date() + 1, merchantName: "Đệm Liên Á"),
+                      MyVoucherData(id: 1767, status: 2, voucherOrderId: 5, title: "Voucher_16082021_3", cover: "/files/4180/images - Copy.png", expriedDate: Date(), merchantName: "Mỹ phầm Coco"),
+                      MyVoucherData(id: 1767, status: 3, voucherOrderId: 5, title: "Voucher_16082021_3", cover: "/files/4180/images - Copy.png", expriedDate: Date(), merchantName: "Mỹ phầm Coco")]

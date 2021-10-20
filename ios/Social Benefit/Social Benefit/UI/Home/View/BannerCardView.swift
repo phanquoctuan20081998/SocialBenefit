@@ -8,7 +8,7 @@ import SwiftUI
 import SDWebImage
 import SDWebImageSwiftUI
 
-let ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+var ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
 struct InternalNewsBannerView: View {
     

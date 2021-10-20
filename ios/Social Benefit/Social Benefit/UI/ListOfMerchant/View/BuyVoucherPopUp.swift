@@ -14,6 +14,7 @@ struct BuyVoucherPopUp: View {
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
     @State var buyNumber = 1
+    @Binding var isPresentPopUp: Bool
     
     var body: some View {
         ZStack {
@@ -135,8 +136,8 @@ extension BuyVoucherPopUp {
                             }
                         }
                         
-                        self.confirmInforBuyViewModel.isPresentedPopup = false
-                        
+//                        self.confirmInforBuyViewModel.isPresentedPopup = false
+                        self.isPresentPopUp = false
                         self.buyNumber = 1
                                                                         
                     }, label: {
@@ -151,7 +152,8 @@ extension BuyVoucherPopUp {
                     
     
                     Button(action: {
-                        self.confirmInforBuyViewModel.isPresentedPopup = false
+//                        self.confirmInforBuyViewModel.isPresentedPopup = false
+                        self.isPresentPopUp = false
                         self.buyNumber = 1
                     }, label: {
                         Text("cancel".localized)
@@ -183,7 +185,7 @@ extension BuyVoucherPopUp {
 
 struct BuyVoucherPopUp_Previews: PreviewProvider {
     static var previews: some View {
-        BuyVoucherPopUp()
+        BuyVoucherPopUp(isPresentPopUp: .constant(true))
             .environmentObject(ConfirmInforBuyViewModel())
     }
 }

@@ -39,7 +39,7 @@ struct HomeScreenView: View {
                 }
 
                 // Promotion - Buy Button and Other Category popup...
-                BuyVoucherPopUp()
+                BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup)
                 OtherPopUpView()
                 
                 // User - Customer support popup...

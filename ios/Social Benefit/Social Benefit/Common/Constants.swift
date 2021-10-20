@@ -47,7 +47,7 @@ struct Constants {
     
     static let LANGUAGE_TAB = ["en", "vn"]
     
-    // Change Password Error
+    // Change Password Error...
     struct ChangePasswordErrors {
         static let password_not_match = "password_not_match"
         static let password_6_to_15 = "password_6_to_15"
@@ -62,7 +62,7 @@ struct Constants {
         static let MOBILE_CHANGE_PASSWORD_OK = 0
     }
     
-    // Background Search Bar
+    // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple),
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white),
                                     BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red),
@@ -74,6 +74,7 @@ struct Constants {
                                     BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow),
                                     BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white),
                                     BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray)]
+    
 }
 
 struct BackgroundSearch {

@@ -18,7 +18,7 @@ struct ListOfMerchantView: View {
     var body: some View {
         
         VStack(spacing: 15) {
-            Spacer().frame(height: 25)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.05)
             SearchBarAndMyVoucherView()
             MerchantCategoryItemView()
             

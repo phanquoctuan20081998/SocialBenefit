@@ -21,50 +21,108 @@ struct VoucherCardView: View {
             
             URLImageView(url: myVoucher.cover)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .frame(width: 70, height: 70)
+                .frame(width: 80, height: 80)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("\(myVoucher.merchantName) | \(myVoucher.title)")
                     .font(.system(size: 13))
                     .multilineTextAlignment(.leading)
                 
-                Text("expriy".localized + ": " + getDate(myVoucher.expriedDate))
-                    .foregroundColor(isExpried(myVoucher.expriedDate) ? .red : .green)
-                    .font(.system(size: 13))
-                
-                Spacer(minLength: 0)
-                
-                if !isExpried(myVoucher.expriedDate) {
-                    HStack(spacing: 15) {
-                        Button(action: {
-                            copyCodeButtonTapped()
-                        }, label: {
-                            Text("copy".localized)
-                                .foregroundColor(.black)
-                                .font(.system(size: 13))
-                                .padding(.vertical, 3)
-                                .padding(.horizontal, 5)
-                                .background(RoundedRectangle(cornerRadius: 6).fill(Color(#colorLiteral(red: 0.680760622, green: 0.7776962519, blue: 0.9396142364, alpha: 1))))
-                            
-                        })
-                        
-                        Button(action: {
-                            QRButtonTapped()
-                            
-                        }, label: {
-                            Image(systemName: "qrcode.viewfinder")
-                                .resizable()
-                                .foregroundColor(.black)
-                                .scaledToFit()
-                                .frame(width: 20, height: 20)
-                        })
-                    }
+                if myVoucher.status == 1 {
+                    activeVoucherCardView
+                } else if myVoucher.status == 2 {
+                    usedVoucherCardView
+                } else if myVoucher.status == 3 {
+                    expriedVoucherCardView
                 }
                 
-            }.frame(width: ScreenInfor().screenHeight * 0.3, height: 70, alignment: .topLeading)
+                
+            }.frame(width: ScreenInfor().screenHeight * 0.3, height: 80, alignment: .topLeading)
         }
         .frame(width: ScreenInfor().screenWidth * 0.95, height: 100)
         .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
+    }
+    
+    // Active Voucher Card View...
+    var activeVoucherCardView: some View {
+        VStack(alignment: .leading) {
+            Text("expriy".localized + ": " + getDate(myVoucher.expriedDate))
+                .foregroundColor(.green)
+                .font(.system(size: 13))
+            
+            Spacer(minLength: 5)
+            
+            HStack(spacing: 15) {
+                Button(action: {
+                    copyCodeButtonTapped()
+                }, label: {
+                    Text("copy".localized)
+                        .foregroundColor(.black)
+                        .font(.system(size: 13))
+                        .padding(.vertical, 3)
+                        .padding(.horizontal, 5)
+                        .background(RoundedRectangle(cornerRadius: 6).fill(Color("nissho_blue")))
+                    
+                })
+                
+                Button(action: {
+                    QRButtonTapped()
+                    
+                }, label: {
+                    Image(systemName: "qrcode.viewfinder")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                })
+            }
+        }
+    }
+    
+    // Used Voucher Card View...
+    var usedVoucherCardView: some View {
+        VStack(alignment: .leading) {
+            Text("expriy".localized + ": " + getDate(myVoucher.expriedDate))
+                .foregroundColor(.gray)
+                .font(.system(size: 13))
+            
+            Spacer(minLength: 5)
+            
+            HStack(spacing: 15) {
+                
+                let isExpried = isExpried(myVoucher.expriedDate)
+                
+                Text("used".localized)
+                    .font(.system(size: 13))
+                
+                Button(action: {
+                    reBuyButtonTapped()
+                }, label: {
+                    Text("rebuy".localized)
+                        .foregroundColor(.black)
+                        .font(.system(size: 13))
+                        .padding(.vertical, 3)
+                        .padding(.horizontal, 5)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(isExpried ? Color.gray : Color("nissho_blue"))
+                        )
+                })
+//                .disabled(isExpried)
+                
+            }
+        }
+    }
+    
+    // Expried Voucher Card View...
+    var expriedVoucherCardView: some View {
+        VStack(alignment: .leading) {
+            Text("expriy".localized + ": " + getDate(myVoucher.expriedDate))
+                .foregroundColor(.red)
+                .font(.system(size: 13))
+            
+            Spacer(minLength: 0)
+        }
     }
     
     func copyCodeButtonTapped() {
@@ -81,9 +139,13 @@ struct VoucherCardView: View {
         myVoucherViewModel.generateCodeService.getAPI(voucherId: myVoucher.id, voucherOrderId: myVoucher.voucherOrderId) { data in
             DispatchQueue.main.async {
                 myVoucherViewModel.selectedVoucherCode = data
-                myVoucherViewModel.isPresentedPopup = true
+                myVoucherViewModel.isPresentedQRPopup = true
             }
         }
+    }
+    
+    func reBuyButtonTapped() {
+        myVoucherViewModel.isPresentedReBuyPopup = true
     }
     
     func getDate(_ day: Date) -> String {
@@ -137,6 +199,10 @@ struct VoucherCardView: View {
 
 struct MyVoucherCardView_Previews: PreviewProvider {
     static var previews: some View {
-        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgvghvgvvbhbhjb"), selectedTab: 2)
+        ScrollView {
+        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 2, voucherOrderId: 0, title: "bhjbhgdcdscsdcsdcsddcsdcsdsdcsdcscsdcscdvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgbhjb"), selectedTab: 2)
+        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 1, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgccxzczxczxczczxczxcbhjb"), selectedTab: 2)
+        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 3, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgbhjb"), selectedTab: 2)
+        }
     }
 }

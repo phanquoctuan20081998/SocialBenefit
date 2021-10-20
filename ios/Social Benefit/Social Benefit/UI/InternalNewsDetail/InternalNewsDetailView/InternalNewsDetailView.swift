@@ -14,12 +14,24 @@ struct InternalNewsDetailView: View {
     @ObservedObject var commentViewModel: CommentViewModel
     @ObservedObject var reactViewModel: ReactViewModel
     
-    var internalNewData: InternalNewsData
+    // For navigation from homescreen
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    var isNavigationFromHomeScreen: Bool = false
     var isHiddenTabBarWhenBack: Bool
+    
+    var internalNewData: InternalNewsData
     
     @State var previousReaction: Int = 6
     @State private var proxy: AmzdScrollViewProxy? = nil
     @State private var webViewHeight: CGFloat = .zero
+    
+    init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool, isNavigationFromHomeScreen: Bool) {
+        self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
+        self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
+        self.internalNewData = internalNewData
+        self.isHiddenTabBarWhenBack = isHiddenTabBarWhenBack
+        self.isNavigationFromHomeScreen = isNavigationFromHomeScreen
+    }
     
     init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
@@ -37,7 +49,7 @@ struct InternalNewsDetailView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 50)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
             RefreshableScrollView(height: 70, refreshing: self.$commentViewModel.isRefreshing) {
                 AmzdScrollViewReader { proxy in
@@ -51,7 +63,15 @@ struct InternalNewsDetailView: View {
             
             CommentBarView
             
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack))
+        }
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
+    }
+    
+    func backButtonTapped() {
+        if isNavigationFromHomeScreen {
+            homeViewModel.isPresentInternalNewDetail = false
+            ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+        }
     }
 }
 

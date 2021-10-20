@@ -8,14 +8,6 @@
 import SwiftUI
 import MobileCoreServices
 
-struct VOUCHER_TAB {
-    var ALL = 0
-    var ACTIVE = 1
-    var USED = 2
-    var EXPIRED = 3
-}
-
-
 struct MyVoucherView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
@@ -29,14 +21,14 @@ struct MyVoucherView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 40)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
             SearchView
             
             VStack {
                 TabView
                 VoucherListView
-            }.background(Color(#colorLiteral(red: 0.8864943981, green: 0.9303048253, blue: 0.9857663512, alpha: 1)))
+            }.background(Color("nissho_light_blue"))
                 .edgesIgnoringSafeArea(.bottom)
         }
         .onAppear {
@@ -46,9 +38,11 @@ struct MyVoucherView: View {
         
         //Pop-up overlay
         .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
-        .overlay(VoucherQRPopUpView(isPresentedPopup: $myVoucherViewModel.isPresentedPopup, voucher: myVoucherViewModel.selectedVoucherCode))
+        .overlay(VoucherQRPopUpView(isPresentedPopup: $myVoucherViewModel.isPresentedQRPopup, voucher: myVoucherViewModel.selectedVoucherCode))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $myVoucherViewModel.isPresentedReBuyPopup))
         
         .environmentObject(myVoucherViewModel)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -65,9 +59,9 @@ extension MyVoucherView {
                 Text(Constants.TABHEADER[i].localized)
                     .font(.system(size: 15))
                     .bold()
-                    .foregroundColor((myVoucherViewModel.status == i) ? Color(#colorLiteral(red: 0.2199586034, green: 0.4942095876, blue: 0.9028041363, alpha: 1)) : Color(#colorLiteral(red: 0.5607333779, green: 0.5608169436, blue: 0.5607150793, alpha: 1)))
+                    .foregroundColor((myVoucherViewModel.status == i) ? Color.blue : Color.gray)
                     .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.TABHEADER.count), height: 30)
-                    .background((myVoucherViewModel.status == i) ? Color(#colorLiteral(red: 0.8864943981, green: 0.9303048253, blue: 0.9857663512, alpha: 1)) : Color(#colorLiteral(red: 0.999904573, green: 1, blue: 0.9998808503, alpha: 1)))
+                    .background((myVoucherViewModel.status == i) ? Color("nissho_light_blue") : Color.white)
                     .onTapGesture {
                         withAnimation {
                             myVoucherViewModel.status = i
@@ -96,7 +90,7 @@ extension MyVoucherView {
                                 label: {
                                     VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
                                         .foregroundColor(Color.black)
-                                })
+                                }).buttonStyle(FlatLinkStyle())
                         }
                         
                         //Infinite Scroll View
@@ -145,11 +139,25 @@ extension MyVoucherView {
     }
 }
 
+struct FlatLinkStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+    }
+}
 
 struct MyVoucherView_Previews: PreviewProvider {
     static var previews: some View {
         MyVoucherView()
             .environmentObject(HomeScreenViewModel())
             .environmentObject(MyVoucherViewModel())
+            .environmentObject(InternalNewsViewModel())
+//            .environmentObject(SpecialOffersViewModel())
+            .environmentObject(MerchantCategoryItemViewModel())
+//            .environmentObject(OffersViewModel())
+            .environmentObject(ConfirmInforBuyViewModel())
+//            .environmentObject(homeScreenViewModel)
+//            .environmentObject(searchViewModel)
+//            .environmentObject(homeViewModel)
+//        HomeScreenView(selectedTab: "tag")
     }
 }
