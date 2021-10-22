@@ -42,6 +42,14 @@ struct ListOfMerchantView: View {
                 }
             }
         }
+//        .overlay (
+//            VStack {
+//                if merchantCategoryItemViewModel.selection {
+//                    ListOfMerchantViewByCategory()
+//                        .background(Color.white)
+//                }
+//            }
+//        )
         .background(BackgroundViewWithNotiAndSearch(), alignment: .top)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         .onAppear {

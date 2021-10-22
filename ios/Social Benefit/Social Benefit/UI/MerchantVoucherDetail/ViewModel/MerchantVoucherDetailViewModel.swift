@@ -26,6 +26,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     @Published var QRData = VoucherCodeData(voucherCode: "", remainTime: 0)
     
     // For refreshing
+    @Published var isLoading: Bool = false
     @Published var isRefreshingStoreList: Bool = false {
         didSet {
             if oldValue == false && isRefreshingStoreList == true {
@@ -48,10 +49,12 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     
     func getData(voucherId: Int) {
         self.selectedVoucherId = voucherId
+        self.isLoading = true
         
         merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
             DispatchQueue.main.async {
                 self.merchantVoucherDetail = data
+                self.isLoading = false
             }
         }
         

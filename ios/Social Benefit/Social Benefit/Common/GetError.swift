@@ -24,6 +24,10 @@ func getError(errorCode: String) -> String {
         return "wrong_email_format".localized
     case "wrong_email":
         return "wrong_email".localized
+    case "blank_email":
+        return "blank_email".localized
+    case "blank_phone":
+        return "blank_phone".localized
     case "can_connect_server":
         return "can_connect_server".localized
     default:

@@ -157,7 +157,7 @@ extension LoginView {
                     loginViewModel.loadLoginData()
                     
                     // If cannot login
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
                         if loginViewModel.isLoading {
                             loginViewModel.isPresentCannotConnectServerError.toggle()
                             loginViewModel.isLoading = false

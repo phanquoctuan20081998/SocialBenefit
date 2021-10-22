@@ -27,6 +27,7 @@ struct VoucherCardView: View {
                 Text("\(myVoucher.merchantName) | \(myVoucher.title)")
                     .font(.system(size: 13))
                     .multilineTextAlignment(.leading)
+                    .lineLimit(2)
                 
                 if myVoucher.status == 1 {
                     activeVoucherCardView
@@ -39,7 +40,8 @@ struct VoucherCardView: View {
                 
             }.frame(width: ScreenInfor().screenHeight * 0.3, height: 80, alignment: .topLeading)
         }
-        .frame(width: ScreenInfor().screenWidth * 0.95, height: 100)
+        .padding(.leading)
+        .frame(width: ScreenInfor().screenWidth * 0.95, height: 100, alignment: .leading)
         .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
     }
     
@@ -108,7 +110,7 @@ struct VoucherCardView: View {
                                 .fill(isExpried ? Color.gray : Color("nissho_blue"))
                         )
                 })
-//                .disabled(isExpried)
+                //                .disabled(isExpried)
                 
             }
         }
@@ -200,9 +202,9 @@ struct VoucherCardView: View {
 struct MyVoucherCardView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 2, voucherOrderId: 0, title: "bhjbhgdcdscsdcsdcsddcsdcsdsdcsdcscsdcscdvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgbhjb"), selectedTab: 2)
-        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 1, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgccxzczxczxczczxczxcbhjb"), selectedTab: 2)
-        VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 3, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgbhjb"), selectedTab: 2)
-        }
+            VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 2, voucherOrderId: 0, title: "bhjbhgdcdscsdcsdcsddcsdcsdsdcsdcscsdcscdvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgbhjb"), selectedTab: 2)
+            VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 1, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgccxzczxczxczczxczxcbhjb"), selectedTab: 2)
+            VoucherCardView(isShowCopiedPopUp: .constant(false), myVoucher: MyVoucherData(id: 0, status: 3, voucherOrderId: 0, title: "bhjbhgvgvgvgbhj", cover: "", expriedDate: Date(), merchantName: "hbsvgvgvghvgvgbhjb"), selectedTab: 2)
+        }.background(Color.blue)
     }
 }

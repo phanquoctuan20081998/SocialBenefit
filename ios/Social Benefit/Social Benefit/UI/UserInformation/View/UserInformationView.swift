@@ -17,11 +17,8 @@ struct UserInformationView: View {
     
     var body: some View {
         ZStack {
-            
-            BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "", isHaveLogo: true)
-            
             VStack {
-                Spacer().frame(height: 15)
+                Spacer().frame(height: 60)
                 
                 ScrollView {
                     BasicInformationView.padding(.top, 30)
@@ -34,8 +31,11 @@ struct UserInformationView: View {
                     Spacer().frame(height: 30)
                     
                     ButtonView
+                    Spacer().frame(height: 30)
                 }
-            }
+            }.background(
+                BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "", isHaveLogo: true)
+            )
             
             // Pop Up
             DatePickerPopupView()
@@ -146,15 +146,45 @@ extension UserInformationView {
             
             VStack (spacing: 20) {
                 InformationTextFieldView(text: $userInformationViewModel.emailText, title: "contact_email".localized, placeHolder: userInfor.email, showChevron: false, disable: false)
-                InformationTextFieldView(text: $userInformationViewModel.passportText, title: "telephone".localized, placeHolder: userInfor.phone, showChevron: false, disable: false)
+                    .onTapGesture {
+                        userInformationViewModel.resetError()
+                    }
+                    .overlay(
+                        VStack {
+                            if userInformationViewModel.isPresentEmailBlankError {
+                                TextFieldErrorView(error: "blank_email")
+                            } else if userInformationViewModel.isPresentWrongEmailError {
+                                TextFieldErrorView(error: "wrong_email")
+                            }
+                        }, alignment: .trailing
+                    )
+                
+                InformationTextFieldView(text: $userInformationViewModel.phoneText, title: "telephone".localized, placeHolder: userInfor.phone, showChevron: false, disable: false)
+                    .keyboardType(.numberPad)
+                    .overlay(
+                        VStack {
+                            if userInformationViewModel.isPresentPhoneBlankError {
+                                TextFieldErrorView(error: "blank_phone")
+                            }
+                        }, alignment: .trailing
+                    )
+                    .onTapGesture {
+                        userInformationViewModel.resetError()
+                    }
             }.padding(.top, 30)
             
             HStack {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.gray)
+                if userInfor.isLeader {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.blue)
+                } else {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                }
                 
                 Text("leader".localized)
                     .bold()
+                    .font(.system(size: 15))
             }.padding(.vertical, 15)
             
         }.frame(width: ScreenInfor().screenWidth*0.9, alignment: .leading)
@@ -172,24 +202,31 @@ extension UserInformationView {
         HStack {
             Button(action: {
                 
-                
+                userInformationViewModel.saveButtonTapped()
                 
             }, label: {
                 Text("save".localized)
-                    .foregroundColor(.black)
+                    .foregroundColor(userInformationViewModel.isEnableSaveButton ? .black : .gray)
             })
                 .frame(width: 60, height: 20)
                 .padding(.all, 10)
                 .background(Color.blue.opacity(0.3))
                 .cornerRadius(10)
                 .shadow(color: .black.opacity(0.3), radius: 3, x: 3, y: 3)
+                .disabled(!userInformationViewModel.isEnableSaveButton)
             
             Spacer()
                 .frame(width: 30)
             
             Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-                self.homeScreen.isPresentedTabBar.toggle()
+                if !userInformationViewModel.isEnableSaveButton {
+                    DispatchQueue.main.async {
+                        userInformationViewModel.isPresentConfirmPopUp = true
+                    }
+                } else {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.homeScreen.isPresentedTabBar.toggle()
+                }
             }, label: {
                 Text("cancel".localized)
                     .foregroundColor(.black)
@@ -201,10 +238,28 @@ extension UserInformationView {
                 .shadow(color: .black.opacity(0.3), radius: 3, x: 3, y: 3)
         }
     }
+    
+//    var ConfirmPopUp: some View {
+//        
+//    }
+    
+    @ViewBuilder
+    func TextFieldErrorView(error: String) -> some View {
+        Text(getError(errorCode: error))
+            .font(.system(size: 12))
+            .foregroundColor(.red)
+            .frame(height: 35)
+            .padding(.horizontal, 10)
+            .background(Color.white)
+            .padding(.horizontal, 10)
+    }
+    
 }
 
 //Normal Text Field
 struct InformationTextFieldView: View {
+    
+    @EnvironmentObject var userInformationViewModel: UserInformationViewModel
     
     @Binding var text: String
     
@@ -218,17 +273,19 @@ struct InformationTextFieldView: View {
             TextField(placeHolder, text: $text)
                 .font(.system(size: 15))
                 .padding()
-                .frame(width: ScreenInfor().screenWidth*0.75, height: 40)
-                .background(RoundedRectangle(cornerRadius: 13).stroke(Color.gray.opacity(0.2), lineWidth: 2
-                                                                     ))
+                .frame(width: ScreenInfor().screenWidth * 0.75, height: 40)
+                .background(RoundedRectangle(cornerRadius: 13).stroke(Color.gray.opacity(0.2), lineWidth: 2))
                 .overlay(TitleView(text: title))
-                .if(showChevron) {view in
-                    view.overlay(
-                        Image(systemName: "chevron.down")
-                            .foregroundColor(.gray)
-                            .offset(x: ScreenInfor().screenWidth * 0.32)
-                    )
-                }
+                .overlay(
+                    VStack {
+                        if showChevron {
+                            Image(systemName: "chevron.down")
+                                .foregroundColor(.gray)
+                                .offset(x: ScreenInfor().screenWidth * 0.32)
+                        }
+                    }
+                )
+                
                 .if(disable) { view in
                     view.foregroundColor(.gray.opacity(0.4))
                 }
@@ -283,7 +340,7 @@ struct LocationFieldView: View {
                     Text(userInformationViewModel.locationText)
                         .font(.system(size: 15))
                         .padding()
-                        .frame(width: ScreenInfor().screenWidth*0.75, height: 40, alignment: .leading)
+                        .frame(width: ScreenInfor().screenWidth * 0.75, height: 40, alignment: .leading)
                         .background(RoundedRectangle(cornerRadius: 13).stroke(Color.gray.opacity(0.2), lineWidth: 2
                                                                              ))
                         .overlay(TitleView(text: "address".localized))
@@ -326,8 +383,13 @@ func getDataFormatter() -> DateFormatter {
 
 struct UserInformationView_Previews: PreviewProvider {
     static var previews: some View {
+//        HomeScreenView(selectedTab: "")
+//        HomeScreenView(selectedTab: "house")
         UserInformationView()
             .environmentObject(HomeScreenViewModel())
             .environmentObject(UserInformationViewModel())
+            .environmentObject(MerchantVoucherDetailViewModel())
+            .environmentObject(HomeScreenViewModel())
+            .environmentObject(ConfirmInforBuyViewModel())
     }
 }

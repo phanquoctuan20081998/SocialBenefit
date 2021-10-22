@@ -24,12 +24,23 @@ struct MerchantVoucherDetailView: View {
     
     var body: some View {
         VStack {
-            VoucherHeadline
-            InformationBar()
+            if merchantVoucherDetailViewModel.isLoading {
+                ActivityRep()
+                    .frame(height: ScreenInfor().screenHeight * 0.3)
+            } else {
+                VoucherHeadline
+                InformationBar()
+            }
+            
             Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
+            
             ScrollableTabView
             BottomButtonView()
             
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
+
             Spacer().frame(height: 10)
             
         }.environmentObject(merchantVoucherDetailViewModel)

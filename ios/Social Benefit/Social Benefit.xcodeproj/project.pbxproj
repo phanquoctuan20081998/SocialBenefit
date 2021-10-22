@@ -85,6 +85,7 @@
 		C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16326F2E5E400933BBC /* VoucherFilterView.swift */; };
 		C462F16626F2E76700933BBC /* AllVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16526F2E76700933BBC /* AllVoucherView.swift */; };
 		C462F16926F3452C00933BBC /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16826F3452C00933BBC /* ProgressView.swift */; };
+		C46C55F02721660800B2613B /* TrimStringWithNChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C55EF2721660800B2613B /* TrimStringWithNChar.swift */; };
 		C46CD3C42716885F00A454CE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46CD3C32716885F00A454CE /* LoginView.swift */; };
 		C46CD3C62716888B00A454CE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46CD3C52716888B00A454CE /* LoginViewModel.swift */; };
 		C471A9CC2702AA0200C5F6EE /* BottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C471A9CB2702AA0200C5F6EE /* BottomButtonView.swift */; };
@@ -159,6 +160,7 @@
 		C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE2182704BFC5008E25DE /* InformationView.swift */; };
 		C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */; };
 		C4CAE21D2704C01E008E25DE /* SimiliarVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAE21C2704C01E008E25DE /* SimiliarVoucherView.swift */; };
+		C4CB7FD8272258F90094EE90 /* UserInformationUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */; };
 		C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD0D5F26D5FB79003D5BE7 /* BackgroundView.swift */; };
 		C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFE7B327055B22006C81C9 /* SettingsView.swift */; };
 		C4D02610270D3E790048B671 /* BackgroundSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D0260F270D3E790048B671 /* BackgroundSearchView.swift */; };
@@ -268,6 +270,7 @@
 		C462F16326F2E5E400933BBC /* VoucherFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherFilterView.swift; sourceTree = "<group>"; };
 		C462F16526F2E76700933BBC /* AllVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVoucherView.swift; sourceTree = "<group>"; };
 		C462F16826F3452C00933BBC /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		C46C55EF2721660800B2613B /* TrimStringWithNChar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimStringWithNChar.swift; sourceTree = "<group>"; };
 		C46CD3C32716885F00A454CE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C46CD3C52716888B00A454CE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C471A9CB2702AA0200C5F6EE /* BottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonView.swift; sourceTree = "<group>"; };
@@ -340,6 +343,7 @@
 		C4CAE2182704BFC5008E25DE /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		C4CAE21A2704BFFC008E25DE /* AppliedStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreView.swift; sourceTree = "<group>"; };
 		C4CAE21C2704C01E008E25DE /* SimiliarVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimiliarVoucherView.swift; sourceTree = "<group>"; };
+		C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationUpdateService.swift; sourceTree = "<group>"; };
 		C4CD0D5F26D5FB79003D5BE7 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		C4CFE7B327055B22006C81C9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C4D0260F270D3E790048B671 /* BackgroundSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSearchView.swift; sourceTree = "<group>"; };
@@ -456,6 +460,7 @@
 				C478889D270C2979009F5A25 /* ImagePicker.swift */,
 				C45260C427156782007E945B /* RefreshableScrollView.swift */,
 				C47EA7A52717E56300E91171 /* EmailValidation.swift */,
+				C46C55EF2721660800B2613B /* TrimStringWithNChar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				C45EDBA0270FF7B5004799B5 /* CustomerSupportService.swift */,
 				C4850B8A27172B1B0003AE71 /* LoginService.swift */,
 				C47EA7A32717E09400E91171 /* ResetPasswordService.swift */,
+				C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1376,6 +1382,7 @@
 				C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */,
 				C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */,
 				C497AA1426F82696006EFE0C /* BuyVoucherPopUp.swift in Sources */,
+				C4CB7FD8272258F90094EE90 /* UserInformationUpdateService.swift in Sources */,
 				C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */,
 				C4B3D58726EA02DD003C6CA9 /* ApplyPopupView.swift in Sources */,
 				C471A9CC2702AA0200C5F6EE /* BottomButtonView.swift in Sources */,
@@ -1463,6 +1470,7 @@
 				C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */,
 				C472E4C226FD726B00D047BA /* MerchantVoucherDetailModel.swift in Sources */,
 				C472E4CC26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift in Sources */,
+				C46C55F02721660800B2613B /* TrimStringWithNChar.swift in Sources */,
 				C472E4BB26FD609900D047BA /* MerchantVoucherDetailView.swift in Sources */,
 				C4BA720E2717D1B800D73660 /* ResetPasswordView.swift in Sources */,
 				C4F2A4FC26F040AC0090675A /* HTMLStringView.swift in Sources */,

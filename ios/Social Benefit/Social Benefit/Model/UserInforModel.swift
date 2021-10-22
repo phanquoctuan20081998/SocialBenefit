@@ -33,11 +33,13 @@ struct UserInfor {
     var department: String
     var isLeader: Bool
     var companyLogo: String
+    var citizenId: String
+    var locationId: String
 }
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
-                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png")
+                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png", citizenId: "", locationId: "")
 
 
 func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: JSON) {
@@ -72,6 +74,8 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     userInfor.CMND = citizen["idCard"].string ?? ""
     userInfor.passport = citizen["passport"].string ?? ""
     userInfor.insurance = citizen["socialInsurance"].string ?? ""
+    userInfor.citizenId = String(citizen["id"].int ?? 0)
+    userInfor.locationId = String(citizen["locationWard"]["id"].int ?? 0)
     
     print(userInfor)
 }

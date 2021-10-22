@@ -14,6 +14,11 @@ struct SimiliarVoucherView: View {
     
     var body: some View {
         VStack {
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
+            
             RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingSimiliarVoucher) {
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {

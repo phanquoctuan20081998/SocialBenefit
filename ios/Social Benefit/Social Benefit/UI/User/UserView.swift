@@ -73,9 +73,10 @@ struct UserView: View {
                         FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
                     }
                 }
+                
+                Spacer()
+                    .frame(height: 100)
             }
-            
-            
         }
         .background(BackgroundViewWithNotiAndSearch())
         
@@ -124,7 +125,7 @@ struct UserInforView: View {
                         .padding(.trailing, 10)
                 }
                 .frame(width: ScreenInfor().screenWidth - 50, alignment: .leading)
-                .padding(.leading, 30)
+                .padding(.leading)
                 .background(
                     Capsule()
                         .fill(Color.white)

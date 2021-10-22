@@ -15,6 +15,7 @@ class SplashViewController: UIViewController {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             let loginViewController = LoginView()
+//            let loginViewController = HomeScreenView(selectedTab: "house")
             let vc = UIHostingController(rootView: loginViewController)
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false, completion: nil)

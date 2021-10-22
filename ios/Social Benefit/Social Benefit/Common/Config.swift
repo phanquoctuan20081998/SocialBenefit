@@ -34,6 +34,7 @@ struct Config {
 
     static let API_INTERNEL_NEWS_LIST = "/internal_news/list"
     
+    static let API_EMPLOYEE_INFO_UPDATE = "/mobile/employee/update"
     static let API_LOCATION_LIST = "/location/list"
     
     static let API_COMMENT_LIST = "/comment/list"
@@ -43,4 +44,6 @@ struct Config {
     static let API_CONTENT_REACT = "/content/react"
     
     static let API_SEND_MAIL_CUSTOMER_SUPPORT = "/mobile/mail/customer_support"
+    
+    
 }

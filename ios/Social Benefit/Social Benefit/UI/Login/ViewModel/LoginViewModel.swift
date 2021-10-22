@@ -67,6 +67,12 @@ class LoginViewModel: ObservableObject {
     
     func loadLoginData(){
         self.isLoading = true
+        if UserDefaults.standard.bool(forKey: "isChecked") {
+            UserDefaults.standard.set(companyCode, forKey: "companyCode")
+            UserDefaults.standard.set(employeeId, forKey: "employeeId")
+            UserDefaults.standard.set(password, forKey: "password")
+        }
+        
         loginService.getAPI(companyCode: companyCode, userLogin: employeeId, password: password) { data in
             
             if data.isEmpty {

@@ -931,8 +931,8 @@
             filePath = "Social Benefit/UI/Splash/SplashViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -947,8 +947,8 @@
             filePath = "Social Benefit/UI/Splash/SplashViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25">
+            startingLineNumber = "26"
+            endingLineNumber = "26">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

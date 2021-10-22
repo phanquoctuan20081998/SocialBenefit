@@ -20,11 +20,15 @@ struct MerchantCategoryItemView: View {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
         }
         .background(
             NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
                            isActive: $merchantCategoryItemViewModel.selection,
-                           label: {EmptyView()})
+                           label: { EmptyView() })
         )
     }
 }
