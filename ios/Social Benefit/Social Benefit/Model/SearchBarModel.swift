@@ -13,4 +13,5 @@ struct SearchBarData: Hashable {
     var icon: String
     var title: String
     var color: Color
+    var destination: Int
 }

@@ -16,7 +16,7 @@ class InternalNewsService {
         let service = BaseAPI_Alamofire()
         var data = [InternalNewsData]()
         
-        let pageNum = 100
+        let pageNum = 10
         let companyId = userInfor.companyId
         let filter = "{\"companyId\":\"" + companyId + "\",\"approvalStatus\":\"2\"}"
         

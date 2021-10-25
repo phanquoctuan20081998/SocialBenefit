@@ -18,11 +18,11 @@ struct SearchContentView: View {
                 let filteredData = searchViewModel.allSearchData.filter({searchViewModel.searchText.isEmpty ? true : ($0.title.localized.localizedStandardContains(searchViewModel.searchText))})
                 
                 ForEach(filteredData.indices, id: \.self) { i in
-                    NavigationLink(destination: getDestinationView(selection: i)) {
+                    NavigationLink(destination: getDestinationView(selection: filteredData[i].destination)) {
                         SearchCardView(icon: filteredData[i].icon, color: filteredData[i].color, title: filteredData[i].title)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .foregroundColor(.black)
                     }
-                    
                 }
             }
         }.edgesIgnoringSafeArea(.all)

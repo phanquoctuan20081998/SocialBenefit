@@ -31,6 +31,9 @@ class LoginViewModel: ObservableObject {
     
     @Published var isLoading = false
     @Published var currentLanguage = previousUserLoginInfor.language
+    
+    @Published var isPresentResetPasswordView: Bool = false
+    
     private var cancellables = Set<AnyCancellable>()
     var loginService = LoginService()
     

@@ -11,7 +11,11 @@ import MobileCoreServices
 struct MyVoucherView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
+    
     @ObservedObject var myVoucherViewModel = MyVoucherViewModel()
+    
     
     @State var isShowCopiedPopUp = false
     
@@ -86,7 +90,10 @@ extension MyVoucherView {
                         }
                         ForEach(myVoucherViewModel.allMyVoucher.indices, id: \.self) {i in
                             NavigationLink(
-                                destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[i].id),
+                                destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[i].id)
+                                    .environmentObject(merchantVoucherDetailViewModel)
+                                    .environmentObject(confirmInforBuyViewModel)
+                                    .environmentObject(homeScreenViewModel),
                                 label: {
                                     VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
                                         .foregroundColor(Color.black)

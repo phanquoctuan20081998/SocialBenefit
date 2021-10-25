@@ -18,6 +18,7 @@ struct AppliedStoreView: View {
             RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingStoreList) {
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {
+                    
                     ForEach(merchantVoucherDetailViewModel.appliedStoreMerchantList.indices, id: \.self) { i in
                         AppliedStoreMerchantCardView(appliedStore: merchantVoucherDetailViewModel.appliedStoreMerchantList[i], index: i)
                             .padding(.horizontal)

@@ -32,13 +32,13 @@ extension CustomerSupportPopUp {
             Spacer().frame(height: 20)
             
             // Move to select report screen...
-            NavigationLink {
-                SearchSelectionView(selectedTab: $customerSupportViewModel.screenProblemText)
-                    .navigationBarHidden(true)
-            } label: {
-                FeedBackTextField(placeHolder: "select_screen_problem", text: $customerSupportViewModel.screenProblemText, height: 30)
-                    .disabled(true)
-            }
+            NavigationLink(
+                destination: SearchSelectionView(selectedTab: $customerSupportViewModel.screenProblemText)
+                    .navigationBarHidden(true),
+                label: {
+                    FeedBackTextField(placeHolder: "select_screen_problem", text: $customerSupportViewModel.screenProblemText, height: 30)
+                        .disabled(true)
+                })
 
             FeedBackTextField(placeHolder: "select_screen_problem", text: $customerSupportViewModel.feedBackText, height: 100)
             

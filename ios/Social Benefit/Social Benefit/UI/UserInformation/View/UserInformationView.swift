@@ -219,14 +219,14 @@ extension UserInformationView {
                 .frame(width: 30)
             
             Button(action: {
-                if !userInformationViewModel.isEnableSaveButton {
-                    DispatchQueue.main.async {
-                        userInformationViewModel.isPresentConfirmPopUp = true
-                    }
-                } else {
+//                if !userInformationViewModel.isEnableSaveButton {
+//                    DispatchQueue.main.async {
+//                        userInformationViewModel.isPresentConfirmPopUp = true
+//                    }
+//                } else {
                     self.presentationMode.wrappedValue.dismiss()
                     self.homeScreen.isPresentedTabBar.toggle()
-                }
+//                }
             }, label: {
                 Text("cancel".localized)
                     .foregroundColor(.black)

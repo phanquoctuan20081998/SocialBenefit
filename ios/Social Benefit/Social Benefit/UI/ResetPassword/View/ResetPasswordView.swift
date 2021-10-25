@@ -48,6 +48,10 @@ struct ResetPasswordView: View {
                         
                         BackToLogin
                         Spacer()
+                        
+                        NavigationLink(destination: EmptyView()) {
+                            EmptyView()
+                        }
                     }
                 }
                 

@@ -28,8 +28,8 @@ struct CustomTabBarView: View {
             Color.white
 //                .clipShape(TabCurveShape(tabPoint: getCurvePoint()))
 //                .background(Color.blue.opacity(0.2))
-//                .background(Color.white)
-//                .edgesIgnoringSafeArea(.bottom)
+                .background(Color.white)
+                .edgesIgnoringSafeArea(.bottom)
         )
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
     }

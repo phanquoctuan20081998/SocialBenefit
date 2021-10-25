@@ -27,15 +27,23 @@ struct MerchantVoucherDetailView: View {
             if merchantVoucherDetailViewModel.isLoading {
                 ActivityRep()
                     .frame(height: ScreenInfor().screenHeight * 0.3)
+                
+                Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
+                
+                ScrollableTabView
+                BottomButtonView()
+                
             } else {
                 VoucherHeadline
                 InformationBar()
+                
+                Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
+                
+                ScrollableTabView
+                BottomButtonView()
             }
             
-            Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
             
-            ScrollableTabView
-            BottomButtonView()
             
             NavigationLink(destination: EmptyView()) {
                 EmptyView()

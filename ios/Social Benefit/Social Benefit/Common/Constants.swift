@@ -63,17 +63,17 @@ struct Constants {
     }
     
     // Background Search Bar...
-    static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple),
-                                    BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white),
-                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red),
-                                    BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white),
-                                    BackgroundSearch(tab: "internal_news", icon: "newspaper.fill", color: Color.green),
-                                    BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue),
-                                    BackgroundSearch(tab: "merchant_voucher_list", icon: "cart.fill", color: Color.blue),
-                                    BackgroundSearch(tab: "my_vouchers", icon: "ic_my_voucher", color: Color.white),
-                                    BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow),
-                                    BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white),
-                                    BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray)]
+    static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),
+                                    BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),
+                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red, destination: 2),
+                                    BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white, destination: 3),
+                                    BackgroundSearch(tab: "internal_news", icon: "newspaper.fill", color: Color.green, destination: 4),
+                                    BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue, destination: 5),
+                                    BackgroundSearch(tab: "merchant_voucher_list", icon: "cart.fill", color: Color.blue, destination: 6),
+                                    BackgroundSearch(tab: "my_vouchers", icon: "ic_my_voucher", color: Color.white, destination: 7),
+                                    BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow, destination: 8),
+                                    BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white, destination: 9),
+                                    BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray, destination: 10)]
     
 }
 
@@ -81,6 +81,7 @@ struct BackgroundSearch {
     var tab: String
     var icon: String
     var color: Color
+    var destination: Int
 }
 
 

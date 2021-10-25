@@ -31,6 +31,10 @@ struct LoginView: View {
                 
                 VStack(spacing: 20) {
                     
+                    NavigationLink(destination: EmptyView()) {
+                        EmptyView()
+                    }
+                    
                     Spacer().frame(height: 100)
                     
                     //URLImageView(url: userInfor.companyLogo)
@@ -46,6 +50,9 @@ struct LoginView: View {
                     Spacer()
                     
                     VStack {
+                        NavigationLink(destination: EmptyView()) {
+                            EmptyView()
+                        }
                         CheckBoxView
                         LoginButton
                         ForgotPassword
@@ -181,13 +188,19 @@ extension LoginView {
     }
     
     var ForgotPassword: some View {
-        NavigationLink {
-            ResetPasswordView().navigationBarHidden(true)
-        } label: {
-            Text("forgot_password".localized)
-                .font(.system(size: 15))
-        }
         
+//        Text("forgot_password".localized)
+//            .font(.system(size: 15))
+//            .sheet(isPresented: $loginViewModel.isPresentResetPasswordView, content: {
+//                ResetPasswordView()
+//            }
+        
+        NavigationLink(
+            destination: ResetPasswordView().navigationBarHidden(true),
+            label: {
+                Text("forgot_password".localized)
+                    .font(.system(size: 15))
+            })
     }
     
     var WarningText: some View {

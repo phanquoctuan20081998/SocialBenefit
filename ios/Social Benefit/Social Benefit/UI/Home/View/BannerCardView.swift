@@ -34,7 +34,7 @@ struct InternalNewsBannerView: View {
                         PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, imageTapped: imageTapped), currentPage: $currentPage)
  
                         PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
-                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
+//                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
                     } else {
                         EmptyView()
                     }
@@ -130,7 +130,7 @@ struct PromotionsBannerView: View {
                     if data.count != 0 { //If Data can read
                         let pages = getPromotionData(data: data, imageTapped: imageTapped)
                         PageViewController(pages: pages, currentPage: $currentPage)
-                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
+//                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
                         PageControl(numberOfPages: data.count, currentPage: $currentPage)
                     } else {
                         EmptyView()

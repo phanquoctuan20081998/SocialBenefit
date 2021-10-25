@@ -17,7 +17,7 @@ class SearchViewModel: ObservableObject, Identifiable {
         let backgroundSearch = Constants.BACKGROUND_SEARCH.sorted(by: { $0.tab.localized.lowercased() < $1.tab.localized.lowercased() })
         
         for i in backgroundSearch.indices {
-            allSearchData.append(SearchBarData(id: i, icon: backgroundSearch[i].icon, title: backgroundSearch[i].tab, color: backgroundSearch[i].color))
+            allSearchData.append(SearchBarData(id: i, icon: backgroundSearch[i].icon, title: backgroundSearch[i].tab, color: backgroundSearch[i].color, destination: backgroundSearch[i].destination))
         }
     }
 }
