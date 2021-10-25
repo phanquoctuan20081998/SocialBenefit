@@ -41,6 +41,7 @@ struct UserInformationView: View {
             DatePickerPopupView()
             LocationPickerPopUpView()
             ImagePickerView()
+            PopUpView(isPresentedPopUp: $userInformationViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(ConfirmPopUp))
         }.environmentObject(userInformationViewModel)
     }
 }
@@ -219,14 +220,14 @@ extension UserInformationView {
                 .frame(width: 30)
             
             Button(action: {
-//                if !userInformationViewModel.isEnableSaveButton {
-//                    DispatchQueue.main.async {
-//                        userInformationViewModel.isPresentConfirmPopUp = true
-//                    }
-//                } else {
+                if userInformationViewModel.isEnableSaveButton {
+                    DispatchQueue.main.async {
+                        userInformationViewModel.isPresentConfirmPopUp = true
+                    }
+                } else {
                     self.presentationMode.wrappedValue.dismiss()
                     self.homeScreen.isPresentedTabBar.toggle()
-//                }
+                }
             }, label: {
                 Text("cancel".localized)
                     .foregroundColor(.black)
@@ -239,9 +240,49 @@ extension UserInformationView {
         }
     }
     
-//    var ConfirmPopUp: some View {
-//        
-//    }
+    var ConfirmPopUp: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            
+            Text("warning".localized)
+                .font(.system(size: 20))
+            Text("there_are_unsaved_changes".localized)
+                .font(.system(size: 15))
+                .multilineTextAlignment(.leading)
+            
+            Spacer()
+                .frame(height: 10)
+            
+            HStack {
+                Spacer()
+                
+                Button {
+                    self.userInformationViewModel.isPresentConfirmPopUp.toggle()
+                } label: {
+                    Text("cancel".localized.uppercased())
+                        .foregroundColor(.blue)
+                }
+                
+                Spacer()
+                    .frame(width: 20)
+                
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.homeScreen.isPresentedTabBar.toggle()
+                    self.userInformationViewModel.isPresentConfirmPopUp.toggle()
+                } label: {
+                    Text("confirm".localized.uppercased())
+                        .foregroundColor(.blue)
+                }
+
+            }
+        }
+        .padding(.horizontal, 40)
+        .background(
+            RoundedRectangle(cornerRadius: 30)
+                .fill(Color.white)
+                .frame(width: ScreenInfor().screenWidth * 0.9, height: 150)
+        )
+    }
     
     @ViewBuilder
     func TextFieldErrorView(error: String) -> some View {
@@ -254,6 +295,9 @@ extension UserInformationView {
             .padding(.horizontal, 10)
     }
     
+    func outOfPopUpAreaTapped() {
+        userInformationViewModel.isPresentConfirmPopUp = false
+    }
 }
 
 //Normal Text Field

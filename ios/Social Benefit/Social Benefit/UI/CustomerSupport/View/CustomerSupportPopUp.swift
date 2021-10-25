@@ -13,8 +13,24 @@ struct CustomerSupportPopUp: View {
     @State var isPresentComfirmPopUp = false
     
     var body: some View {
-        PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
-            .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp))
+        if customerSupportViewModel.isLoading {
+            PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp,
+                      outOfPopUpAreaTapped: outOfPopUpAreaTapped,
+                      popUpContent: AnyView(ActivityRep()
+                                                .background(RoundedRectangle(cornerRadius: 20)
+                                                                .fill(Color.white)
+                                                                .frame(width: ScreenInfor().screenWidth * 0.9, height: 300))))
+        } else if customerSupportViewModel.isSuccessed {
+            PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp,
+                      outOfPopUpAreaTapped: outOfPopUpAreaTapped,
+                      popUpContent: AnyView(SuccessedPopUp))
+
+            
+            
+        } else {
+            PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
+                .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp))
+        }
     }
 }
 
@@ -54,7 +70,7 @@ extension CustomerSupportPopUp {
                         .foregroundColor(customerSupportViewModel.feedBackText.isEmpty ? .gray : .black)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color(#colorLiteral(red: 0.6876488924, green: 0.7895539403, blue: 0.9556769729, alpha: 1)))
+                                        .fill(Color("nissho_light_blue"))
                                         .frame(width: 80))
                 }).disabled(customerSupportViewModel.feedBackText.isEmpty)
                 
@@ -82,6 +98,28 @@ extension CustomerSupportPopUp {
             }
         }
         .padding()
+        .background(RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.white)
+                        .frame(width: ScreenInfor().screenWidth * 0.9, height: 300))
+    }
+    
+    var SuccessedPopUp: some View {
+        VStack {
+            Text("we_have_received_your_feedback".localized)
+                .multilineTextAlignment(.center)
+                .font(.system(size: 15))
+            
+            Button {
+                
+                
+                
+                
+            } label: {
+                Text("close".localized)
+                    .font(.system(size: 15))
+            }
+
+        }
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .frame(width: ScreenInfor().screenWidth * 0.9, height: 300))
@@ -118,5 +156,6 @@ struct FeedBackTextField: View {
 struct CustomerSupportPopUp_Previews: PreviewProvider {
     static var previews: some View {
         CustomerSupportPopUp()
+            .environmentObject(CustomerSupportViewModel())
     }
 }

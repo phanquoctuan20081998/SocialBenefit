@@ -9,13 +9,16 @@ import Foundation
 import Combine
 
 class CustomerSupportViewModel: ObservableObject, Identifiable {
-    @Published var isPresentCustomerSupportPopUp: Bool = false
+    @Published var isPresentCustomerSupportPopUp: Bool = true
     
     @Published var screenProblemText: String = ""
     @Published var feedBackText: String = ""
     
     @Published var isAllTextFieldAreTyped = false
     @Published var isAllTextFieldAreBlank = true
+    
+    @Published var isLoading = false
+    @Published var isSuccessed = true
     
     private var cancellables = Set<AnyCancellable>()
     private var customerSupportService = CustomerSupportService()
@@ -54,9 +57,12 @@ class CustomerSupportViewModel: ObservableObject, Identifiable {
     }
     
     func sendButtonTapped() {
+        self.isLoading = true
         DispatchQueue.main.async {
             self.customerSupportService.getAPI(screen: self.screenProblemText, content: self.feedBackText) { id in
                 print(id)
+                self.isLoading = false
+                self.isSuccessed = true
             }
         }
     }

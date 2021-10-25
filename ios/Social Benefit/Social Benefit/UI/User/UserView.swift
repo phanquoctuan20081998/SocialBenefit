@@ -22,9 +22,7 @@ struct UserView: View {
             NavigationLink(destination: UserInformationView().navigationBarHidden(true),
                            tag: 1,
                            selection: $selection,
-                           label: {
-                UserInforView(selection: $selection)
-            })
+                           label: { UserInforView(selection: $selection) })
             
             Spacer()
                 .frame(height: 30)
@@ -100,11 +98,13 @@ struct UserInforView: View {
                 
             }, label: {
                 HStack(spacing: 20) {
+                    
                     URLImageView(url: userInfor.avatar)
                         .frame(width: 50, height: 50, alignment: .center)
                         .clipShape(Circle())
                         .padding(.all, 5)
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
+                        .padding(.leading, 5)
                     
                     VStack(alignment: .leading) {
                         Text(userInfor.name.uppercased())

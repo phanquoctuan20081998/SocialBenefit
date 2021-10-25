@@ -91,7 +91,8 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     }
     
     func checkEnableSendButton() {
-        if nicknameText != userInfor.nickname || emailText != userInfor.email || phoneText != userInfor.phone {
+        if nicknameText != userInfor.nickname || emailText != userInfor.email ||
+            phoneText != userInfor.phone  || locationText != userInfor.address {
             isEnableSaveButton = true
         } else {
             isEnableSaveButton = false
