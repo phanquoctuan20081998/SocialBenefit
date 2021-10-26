@@ -16,8 +16,15 @@ class InternalNewsService {
         let service = BaseAPI_Alamofire()
         var data = [InternalNewsData]()
         
-        let pageNum = 10
+        let pageNum = 100
         let companyId = userInfor.companyId
+        
+        // ApprovalStatus...
+        // 1: Pending
+        // 2: Approved
+        // 3: Rejected
+        // 4: Draft
+        
         let filter = "{\"companyId\":\"" + companyId + "\",\"approvalStatus\":\"2\"}"
         
         var order: Int = 0
@@ -34,7 +41,9 @@ class InternalNewsService {
         var cover: String?
         var newsCategory: Int?
         
-        service.makeCall(endpoint: Config.API_INTERNEL_NEWS_LIST, method: "GET", header: header, body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_INTERNAL_NEWS_LIST, method: "GET", header: header, body: params, callback: { result in
+            
+            print(result)
             
             for i in 0..<result.count {
                 contentId = result[i]["id"].int ?? 0

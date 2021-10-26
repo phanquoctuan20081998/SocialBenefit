@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class CustomerSupportViewModel: ObservableObject, Identifiable {
-    @Published var isPresentCustomerSupportPopUp: Bool = true
+    @Published var isPresentCustomerSupportPopUp: Bool = false
     
     @Published var screenProblemText: String = ""
     @Published var feedBackText: String = ""
@@ -18,7 +18,7 @@ class CustomerSupportViewModel: ObservableObject, Identifiable {
     @Published var isAllTextFieldAreBlank = true
     
     @Published var isLoading = false
-    @Published var isSuccessed = true
+    @Published var isSuccessed = false
     
     private var cancellables = Set<AnyCancellable>()
     private var customerSupportService = CustomerSupportService()
@@ -58,12 +58,19 @@ class CustomerSupportViewModel: ObservableObject, Identifiable {
     
     func sendButtonTapped() {
         self.isLoading = true
-        DispatchQueue.main.async {
-            self.customerSupportService.getAPI(screen: self.screenProblemText, content: self.feedBackText) { id in
-                print(id)
+        
+        self.customerSupportService.getAPI(screen: self.screenProblemText, content: self.feedBackText) { id in
+            DispatchQueue.main.async {
                 self.isLoading = false
                 self.isSuccessed = true
             }
+        }
+    }
+    
+    func resetValue() {
+        DispatchQueue.main.async {
+            self.isSuccessed = false
+            self.isPresentCustomerSupportPopUp = false
         }
     }
 }

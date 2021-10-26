@@ -40,7 +40,7 @@ struct SearchContentView: View {
         case 3:
             return AnyView(HomeScreenView(selectedTab: "house").navigationBarHidden(true))
         case 4:
-            return AnyView(InternalNewsView(isPresentedTabBar: $homeScreen.isPresentedTabBar).navigationBarHidden(true))
+            return AnyView(InternalNewsView().navigationBarHidden(true))
         case 5:
             return AnyView(ListOfBenefitsView().navigationBarHidden(true))
         case 6:
@@ -74,7 +74,7 @@ struct NavigationPageView: View {
         case 3:
             HomeScreenView(selectedTab: "house").navigationBarHidden(true)
         case 4:
-            InternalNewsView(isPresentedTabBar: $homeScreen.isPresentedTabBar).navigationBarHidden(true)
+            InternalNewsView().navigationBarHidden(true)
         case 5:
             ListOfBenefitsView().navigationBarHidden(true)
         case 6:

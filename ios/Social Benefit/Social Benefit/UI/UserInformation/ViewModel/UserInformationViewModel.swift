@@ -37,6 +37,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     @Published var locationText = userInfor.address
     @Published var curLocationText = ""
     @Published var locationId = userInfor.locationId
+    @Published var noStreet = ""
     
     // To control error...
     @Published var isPresentWrongEmailError: Bool = false
@@ -46,6 +47,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     
     // To control popup
     @Published var isPresentConfirmPopUp: Bool = false
+    @Published var isSuccessed: Bool = false
     
     private var userInformationService = UserInformationService()
     private var cancellables = Set<AnyCancellable>()
@@ -114,10 +116,6 @@ class UserInformationViewModel: ObservableObject, Identifiable {
             return
         }
         
-        
-        // Trim nickname...
-        self.nicknameText = nicknameText.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         // Update UserInfor...
         userInforUpdate()
     }
@@ -128,10 +126,26 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let birthday = dateFormatter.string(from: userInfor.birthday)
         
-        userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: self.locationText, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { data in
-//            print(data)
+        var noStreet = ""
+        if self.noStreet.isEmpty {
+            noStreet = userInfor.noStreet
+        } else {
+            noStreet = self.noStreet
+        }
+        
+        userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { isSuccessed in
+            
+            if isSuccessed {
+                self.isSuccessed = isSuccessed
+                userInfor.nickname = self.nicknameText
+                userInfor.noStreet = self.noStreet
+                userInfor.address = self.locationText
+                userInfor.email = self.emailText
+                userInfor.locationId = self.locationId
+            }
         }
     }
+    
     
     func resetError() {
         DispatchQueue.main.async {

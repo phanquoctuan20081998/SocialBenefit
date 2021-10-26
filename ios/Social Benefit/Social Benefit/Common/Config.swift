@@ -10,8 +10,8 @@ import Foundation
 
 struct Config {
     
-    static let baseURL = "http://172.20.109.102:8089"
-//    static let baseURL = "http://172.20.108.151:8066"
+//    static let baseURL = "http://172.20.109.102:8089"
+    static let baseURL = "http://172.20.108.151:8066"
     
     static let API_LOGIN = "/employee/login"
     static let API_EMPLOYEE_FORGOTPASS = "/employee/forgotpassword"
@@ -32,7 +32,7 @@ struct Config {
     static let API_APPLIED_STORE_MERCHANT_LIST = "/applied-store-merchant-list"
     static let API_MERCHANT_VOUCHER_LIST_BY_SIMILAR = "/merchant-voucher-list-by-similar"
 
-    static let API_INTERNEL_NEWS_LIST = "/internal_news/list"
+    static let API_INTERNAL_NEWS_LIST = "/internal_news/list"
     
     static let API_EMPLOYEE_INFO_UPDATE = "/mobile/employee/update"
     static let API_LOCATION_LIST = "/location/list"

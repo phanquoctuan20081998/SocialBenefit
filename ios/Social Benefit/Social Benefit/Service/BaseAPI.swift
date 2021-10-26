@@ -33,6 +33,7 @@ public class BaseAPI {
             }
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    
                     let error = json["error"] as? Bool
                     if (error == false) {
                         let result = JSON(json as Any)["result"]

@@ -46,7 +46,7 @@ struct InternalNewsBannerView: View {
             .background(
                 ZStack {
                     NavigationLink(
-                        destination: InternalNewsView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar).navigationBarHidden(true),
+                        destination: InternalNewsView().navigationBarHidden(true),
                         isActive: $isMove,
                         label: { EmptyView() })
                 }

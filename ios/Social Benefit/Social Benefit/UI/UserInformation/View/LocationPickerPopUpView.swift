@@ -21,7 +21,7 @@ struct LocationPickerPopUpView: View {
 struct LocationPickerView: View {
     
     @State var data: [LocationData] = []
-    @State var typedText = ""
+//    @State var typedText = ""
     @EnvironmentObject var userInformationViewModel: UserInformationViewModel
     
     var body: some View {
@@ -33,6 +33,9 @@ struct LocationPickerView: View {
             LocationPickerContent
         } else {
             LocationTyperContent
+                .onAppear {
+                    self.userInformationViewModel.noStreet = ""
+                }
         }
     }
     
@@ -42,9 +45,7 @@ struct LocationPickerView: View {
             HStack {
                 Button(action: {
                     userInformationViewModel.isPresentedLocationPickerView.toggle()
-                    if userInformationViewModel.curLocationText != "" {
-                        userInformationViewModel.locationText = userInformationViewModel.curLocationText
-                    }
+
                 }, label: {
                     Image(systemName: "xmark")
                 })
@@ -72,6 +73,8 @@ struct LocationPickerView: View {
                         
                         .onTapGesture {
                             userInformationViewModel.filter = item.id
+                            userInformationViewModel.locationId = item.id
+                            
                             if userInformationViewModel.curLocationText == "" {
                                 userInformationViewModel.curLocationText = item.name }
                             else { userInformationViewModel.curLocationText = item.name + ", " + userInformationViewModel.curLocationText}
@@ -105,9 +108,6 @@ struct LocationPickerView: View {
             HStack {
                 Button(action: {
                     userInformationViewModel.isPresentedLocationPickerView.toggle()
-                    if userInformationViewModel.curLocationText != "" {
-                        userInformationViewModel.locationText = userInformationViewModel.curLocationText
-                    }
                 }, label: {
                     Image(systemName: "xmark")
                 })
@@ -124,9 +124,9 @@ struct LocationPickerView: View {
             Divider()
             
             ZStack {
-                TextField("location_example".localized, text: $typedText, onCommit:  {
-                    if typedText != "" {
-                        userInformationViewModel.curLocationText = typedText + ", " + userInformationViewModel.curLocationText
+                TextField("location_example".localized, text: $userInformationViewModel.noStreet, onCommit:  {
+                    if userInformationViewModel.noStreet != "" {
+                        userInformationViewModel.curLocationText = userInformationViewModel.noStreet + ", " + userInformationViewModel.curLocationText
                     }
                     userInformationViewModel.isPresentedLocationPickerView.toggle()
                     

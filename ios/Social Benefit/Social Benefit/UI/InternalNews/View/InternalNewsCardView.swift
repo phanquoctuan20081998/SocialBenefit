@@ -20,7 +20,7 @@ struct InternalNewsCardView: View {
                 self.isActive.toggle()
                 self.selectedInternalNew = internalNewsData
             }, label: {
-                HStack {
+                HStack(alignment: .top) {
                     URLImageView(url: internalNewsData.cover)
                         .scaledToFill()
                         .frame(width: 80, height: 80)
@@ -42,7 +42,7 @@ struct InternalNewsCardView: View {
                             .italic()
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
-                    }
+                    }.padding(.vertical)
                     Spacer()
                 }.frame(height: 100)
             })
@@ -59,7 +59,7 @@ struct InternalNewsCardView: View {
 
 struct InternalCardView_Previews : PreviewProvider {
     static var previews: some View {
-        InternalNewsCardView(isActive: .constant(true), selectedInternalNew: .constant(InternalNewsData(id: 1, contentId: 1, title: "sad", shortBody: "fscs", body: "Svsv", cover: "", newsCategory: 1)), internalNewsData: InternalNewsData(id: 2, contentId: 1, title: "training quản lí thời gian tdcn", shortBody: "dzxcbsbchsbchjsdbchbshcbhsdbchdsbchbdschbdhcbhsdbchsbchbbcshdbchsbdchbsdhcbhjdsbchdsbchbdchbdhcbhjsbchsdbchsbdchsbchbshcbhbsv", body: "SDcs", cover: "/files/4077/chandung.png", newsCategory: 1))
+        InternalNewsCardView(isActive: .constant(true), selectedInternalNew: .constant(InternalNewsData(id: 1, contentId: 1, title: "sad", shortBody: "fscs", body: "Svsv", cover: "", newsCategory: 1)), internalNewsData: InternalNewsData(id: 2, contentId: 1, title: "training quản lí thời gian tdcn", shortBody: "dzxcbsbchsbchjsdb", body: "SDcs", cover: "/files/4077/chandung.png", newsCategory: 1))
             .environmentObject(InternalNewsViewModel())
     }
 }

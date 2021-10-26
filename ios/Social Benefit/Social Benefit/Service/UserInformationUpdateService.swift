@@ -14,6 +14,12 @@ class UserInformationService {
     
     func getAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, returnCallBack: @escaping (Bool) -> ()) {
         
+        // Trim white space...
+        let nickName = nickName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let address = address.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        let phone = phone.trimmingCharacters(in: .whitespacesAndNewlines)
+        
         let service = BaseAPI_Alamofire()
         
         let header: HTTPHeaders = ["token": userInfor.token,
@@ -29,7 +35,11 @@ class UserInformationService {
                                   "locationId": locationId]
         
         service.makeCall(endpoint: Config.API_EMPLOYEE_INFO_UPDATE, method: "POST", header: header, body: params, callback: { (result) in
-            print(result)
+            if result.isEmpty {
+                returnCallBack(false)
+            } else {
+                returnCallBack(true)
+            }
         })
     }
 }

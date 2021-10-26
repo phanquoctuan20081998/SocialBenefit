@@ -13,9 +13,10 @@ struct InternalNewsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)
     
-    @Binding var isPresentedTabBar: Bool
+//    @Binding var isPresentedTabBar: Bool
     
     @State private var selectedTabIndex = 0
     @State private var searchText = ""
@@ -27,16 +28,20 @@ struct InternalNewsView: View {
         VStack {
             InternalNewsUpperView
             
-            if selectedTabIndex == 0 {
-                AllTabView
-            } else if selectedTabIndex == 1 {
-                TrainingTabView
-            } else {
-                AnnoucementTabView
-            }
+            VStack {
+                TabView
+                
+                if selectedTabIndex == 0 {
+                    AllTabView
+                } else if selectedTabIndex == 1 {
+                    TrainingTabView
+                } else {
+                    AnnoucementTabView
+                }
+            }.background(Color.white)
         }
         .background(
-            BackgroundViewWithoutNotiAndSearch(isActive: $isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true)
+            BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true)
         )
         .background(
             NavigationLink(
@@ -49,12 +54,31 @@ struct InternalNewsView: View {
 
 extension InternalNewsView {
     
+    private var TabView: some View {
+        HStack(spacing: 0) {
+            ForEach(Constants.INTERNALNEWS_TABHEADER.indices, id:\.self) { i in
+                Text(Constants.INTERNALNEWS_TABHEADER[i].localized)
+                    .font(.system(size: 15))
+                    .bold()
+                    .foregroundColor((selectedTabIndex == i) ? Color.blue : Color.gray)
+                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.INTERNALNEWS_TABHEADER.count), height: 30)
+                    .background((selectedTabIndex == i) ? Color("nissho_light_blue") : Color.white)
+                    .onTapGesture {
+                        withAnimation {
+                            selectedTabIndex = i
+                        }
+                    }
+            }
+        }.frame(width: ScreenInfor().screenWidth)
+            .background(Color.white)
+    }
+    
     private var InternalNewsUpperView: some View {
         VStack {
             Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             
-            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
+//            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
         }
     }
     
@@ -65,12 +89,14 @@ extension InternalNewsView {
             } else {
                 RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
                     VStack (alignment: .leading, spacing: 10) {
-                        
+
                         let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.localizedStandardContains(searchText) || $0.shortBody.localizedStandardContains(searchText))})
-                        
+
                         ForEach(filteredData, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
+
+                        Spacer().frame(height: 50)
                     }
                 }
             }
@@ -90,6 +116,8 @@ extension InternalNewsView {
                         ForEach(filteredData, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
+                        
+                        Spacer().frame(height: 50)
                     }
                 }
             }
@@ -109,6 +137,8 @@ extension InternalNewsView {
                         ForEach(filteredData, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
+                        
+                        Spacer().frame(height: 50)
                     }
                 }
             }
@@ -119,7 +149,7 @@ extension InternalNewsView {
 
 struct SlidingTabView_Previews : PreviewProvider {
     static var previews: some View {
-        InternalNewsView(isPresentedTabBar: .constant(false))
+        InternalNewsView()
             .environmentObject(InternalNewsViewModel())
     }
 }

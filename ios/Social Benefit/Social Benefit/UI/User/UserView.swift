@@ -15,7 +15,7 @@ struct UserView: View {
     
     var body: some View {
         VStack {
-            
+        
             Spacer()
                 .frame(height: 70)
             
@@ -30,6 +30,11 @@ struct UserView: View {
             
             ScrollView (.vertical, showsIndicators: false) {
                 VStack(spacing: 8) {
+                    
+                    NavigationLink(destination: EmptyView()) {
+                        EmptyView()
+                    }
+                    
                     NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
                         FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
                     }

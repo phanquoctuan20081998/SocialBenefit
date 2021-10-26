@@ -15,7 +15,8 @@ struct Constants {
     static let SortDirectionType = ["ASC", "DESC"]
     
     // Header...
-    static let TABHEADER = ["all", "active", "used", "expried"]
+    static let INTERNALNEWS_TABHEADER = ["all", "training", "annoucement"]
+    static let MYVOUCHER_TABHEADER = ["all", "active", "used", "expried"]
     static let VOUCHER_DETAIL_TAB = ["information", "applied_stores", "similar_promotions"]
     
     // API load...

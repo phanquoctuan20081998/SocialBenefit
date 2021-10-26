@@ -23,10 +23,7 @@ struct CustomerSupportPopUp: View {
         } else if customerSupportViewModel.isSuccessed {
             PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp,
                       outOfPopUpAreaTapped: outOfPopUpAreaTapped,
-                      popUpContent: AnyView(SuccessedPopUp))
-
-            
-            
+                      popUpContent: AnyView(SuccessedPopUp))            
         } else {
             PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
                 .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp))
@@ -109,20 +106,30 @@ extension CustomerSupportPopUp {
                 .multilineTextAlignment(.center)
                 .font(.system(size: 15))
             
+            Spacer()
+            
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundColor(.green)
+                .font(.system(size: 60))
+            
+            Spacer()
+            
             Button {
-                
-                
-                
-                
+                self.customerSupportViewModel.resetValue()
             } label: {
                 Text("close".localized)
                     .font(.system(size: 15))
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 10)
+                    .background(RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(.gray.opacity(0.5)))
             }
-
         }
+        .padding(.vertical, 30)
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .frame(width: ScreenInfor().screenWidth * 0.9, height: 300))
+        .frame(width: ScreenInfor().screenWidth * 0.9, height: 300)
     }
     
     func outOfPopUpAreaTapped() {

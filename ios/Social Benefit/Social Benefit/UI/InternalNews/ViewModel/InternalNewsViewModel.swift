@@ -34,6 +34,7 @@ class InternalNewsViewModel: ObservableObject {
         var trainingInternalNews = [InternalNewsData]()
         
         self.isLoading = true
+        
         internalNewsService.getAPI { data in
             for item in data {
                 if item.newsCategory == 1 {

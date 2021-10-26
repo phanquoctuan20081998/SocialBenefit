@@ -18,6 +18,7 @@ struct UserInformationView: View {
     var body: some View {
         ZStack {
             VStack {
+                
                 Spacer().frame(height: 60)
                 
                 ScrollView {
@@ -42,6 +43,8 @@ struct UserInformationView: View {
             LocationPickerPopUpView()
             ImagePickerView()
             PopUpView(isPresentedPopUp: $userInformationViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(ConfirmPopUp))
+            SuccessedMessageView(successedMessage: "Updated!", color: Color.green, isPresented: $userInformationViewModel.isSuccessed)
+            
         }.environmentObject(userInformationViewModel)
     }
 }
@@ -202,9 +205,7 @@ extension UserInformationView {
     var ButtonView: some View {
         HStack {
             Button(action: {
-                
                 userInformationViewModel.saveButtonTapped()
-                
             }, label: {
                 Text("save".localized)
                     .foregroundColor(userInformationViewModel.isEnableSaveButton ? .black : .gray)
@@ -315,7 +316,7 @@ struct InformationTextFieldView: View {
     var body: some View {
         VStack {
             TextField(placeHolder, text: $text)
-                .font(.system(size: 15))
+                .font(.system(size: 13))
                 .padding()
                 .frame(width: ScreenInfor().screenWidth * 0.75, height: 40)
                 .background(RoundedRectangle(cornerRadius: 13).stroke(Color.gray.opacity(0.2), lineWidth: 2))
@@ -354,7 +355,7 @@ struct DateFieldView: View {
                     let strDate = dateFormatter.string(from: userInformationViewModel.dateText)
                     Text(strDate)
                         .foregroundColor(Color.gray)
-                        .font(.system(size: 15))
+                        .font(.system(size: 13))
                         .padding()
                         .frame(width: ScreenInfor().screenWidth*0.75, height: 40, alignment: .leading)
                         .background(RoundedRectangle(cornerRadius: 13).stroke(Color.gray.opacity(0.2), lineWidth: 2
@@ -382,7 +383,7 @@ struct LocationFieldView: View {
                     userInformationViewModel.curLocationText = ""
                 }, label: {
                     Text(userInformationViewModel.locationText)
-                        .font(.system(size: 15))
+                        .font(.system(size: 13))
                         .padding()
                         .frame(width: ScreenInfor().screenWidth * 0.75, height: 40, alignment: .leading)
                         .background(RoundedRectangle(cornerRadius: 13).stroke(Color.gray.opacity(0.2), lineWidth: 2
@@ -391,7 +392,11 @@ struct LocationFieldView: View {
                         .overlay (
                             Image(systemName: "chevron.down")
                                 .foregroundColor(.gray)
+                                .padding(10)
+                                .background(Rectangle().fill(Color.white))
+                                
                                 .offset(x: ScreenInfor().screenWidth * 0.32)
+                                
                         )
                 })
                     .foregroundColor(.black)

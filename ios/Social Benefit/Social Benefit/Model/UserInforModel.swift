@@ -55,7 +55,7 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     userInfor.name = employeeDto["citizen"]["fullName"].string ?? ""
     userInfor.avatar = employeeDto["avatar"].string ?? ""
     userInfor.position = employeeDto["position"]["name"].string ?? ""
-    userInfor.nickname = employeeDto["nickname"].string ?? ""
+    userInfor.nickname = employeeDto["nickName"].string ?? ""
     userInfor.email = employeeDto["email"].string ?? ""
     userInfor.phone = employeeDto["phone"].string ?? ""
     userInfor.department = employeeDto["department"]["name"].string ?? ""
@@ -75,7 +75,7 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     userInfor.passport = citizen["passport"].string ?? ""
     userInfor.insurance = citizen["socialInsurance"].string ?? ""
     userInfor.citizenId = String(citizen["id"].int ?? 0)
-    userInfor.locationId = String(citizen["locationWard"]["id"].int ?? 0)
+    userInfor.locationId = citizen["locationWard"]["id"].string ?? "00000"
     
     print(userInfor)
 }

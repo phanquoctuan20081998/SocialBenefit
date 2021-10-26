@@ -59,12 +59,12 @@ extension MyVoucherView {
     
     var TabView: some View {
         HStack(spacing: 0) {
-            ForEach(Constants.TABHEADER.indices, id:\.self) { i in
-                Text(Constants.TABHEADER[i].localized)
+            ForEach(Constants.MYVOUCHER_TABHEADER.indices, id:\.self) { i in
+                Text(Constants.MYVOUCHER_TABHEADER[i].localized)
                     .font(.system(size: 15))
                     .bold()
                     .foregroundColor((myVoucherViewModel.status == i) ? Color.blue : Color.gray)
-                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.TABHEADER.count), height: 30)
+                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.MYVOUCHER_TABHEADER.count), height: 30)
                     .background((myVoucherViewModel.status == i) ? Color("nissho_light_blue") : Color.white)
                     .onTapGesture {
                         withAnimation {

@@ -53,11 +53,12 @@ struct ErrorMessageView: View {
 
 struct SuccessedMessageView: View {
     var successedMessage: String
+    var color: Color = Color.black.opacity(0.7)
     @Binding var isPresented: Bool
     
     var body: some View {
         if isPresented {
-            PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.white, backgroundColor: Color.black.opacity(0.7))
+            PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.white, backgroundColor: color)
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         isPresented = false
