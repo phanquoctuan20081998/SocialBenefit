@@ -15,7 +15,7 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = UserDefaults.standard.bool(forKey: "isChecked") ? UserDefaults.standard.string(forKey: "password") ?? "" : ""
     
     @Published var currentLang = "en"
-    @Published var isChecked = previousUserLoginInfor.isRemember
+    @Published var isChecked = UserDefaults.standard.bool(forKey: "isChecked")
     @Published var isLogin = false
     
     @Published var isFocus1 = false
@@ -142,6 +142,16 @@ class LoginViewModel: ObservableObject {
         }
         
         UserDefaults.standard.set(isRemember, forKey: "isChecked")
+    }
+    
+    func resetState() {
+        isFocus1 = false
+        isFocus2 = false
+        isFocus3 = false
+        
+        isPresentAllTypedError = false
+        isPresentWrongError = false
+        isPresentCannotConnectServerError = false
     }
     
 }

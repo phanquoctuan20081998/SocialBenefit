@@ -35,35 +35,6 @@ struct HomeView: View {
             }
             .background(BackgroundViewWithNotiAndSearch())
             .edgesIgnoringSafeArea(.all)
-                        
-            InternalNewDetailNavigationView(internalNews: homeViewModel.selectedInternalNew, isPresent: homeViewModel.isPresentInternalNewDetail)
-            
-            MerchantVoucherDetailNavigationView(voucherId: homeViewModel.selectedVoucherId, isPresent: homeViewModel.isPresentVoucherDetail)
-            
-        }
-    }
-    
-    @ViewBuilder
-    func InternalNewDetailNavigationView(internalNews: InternalNewsData?,  isPresent: Bool) -> some View {
-        if isPresent {
-            VStack {
-                if let internalNews = internalNews {
-                    InternalNewsDetailView(internalNewData: internalNews, isHiddenTabBarWhenBack: false, isNavigationFromHomeScreen: true)
-                        .background(Color.white)
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    func MerchantVoucherDetailNavigationView(voucherId: Int?,  isPresent: Bool) -> some View {
-        if isPresent {
-            VStack {
-                if let voucherId = voucherId {
-                    MerchantVoucherDetailView(isNavigationFromHomeScreen: true, voucherId: voucherId)
-                        .background(Color.white)
-                }
-            }
         }
     }
 }

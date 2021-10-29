@@ -16,12 +16,10 @@ struct MyVoucherView: View {
     
     @ObservedObject var myVoucherViewModel = MyVoucherViewModel()
     
-    
     @State var isShowCopiedPopUp = false
     
     //Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
-    
     
     var body: some View {
         VStack {

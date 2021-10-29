@@ -117,6 +117,7 @@ struct BenefitUpperView: View {
             
             //Add title
             URLImageView(url: userInfor.companyLogo)
+                .scaledToFit()
                 .frame(height: 50)
             
             Text(text)

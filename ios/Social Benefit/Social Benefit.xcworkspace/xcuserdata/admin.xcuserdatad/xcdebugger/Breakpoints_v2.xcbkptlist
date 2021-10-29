@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "getAPI(userId:oldPass:newPass:)"
+            landmarkName = "getAPI(userId:oldPass:newPass:returnCallBack:)"
             landmarkType = "7">
             <Locations>
                <Location

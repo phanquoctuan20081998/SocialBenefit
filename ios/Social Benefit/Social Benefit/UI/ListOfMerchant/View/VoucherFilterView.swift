@@ -53,10 +53,18 @@ extension FilterView {
                                     
                                     if self.selectedFilterIndex == i {
                                         self.selectedFilterIndex = 0
-                                        self.offersViewModel.filterConditionItems = "[]"
+                                        
+                                        DispatchQueue.main.async {
+                                            self.offersViewModel.filterConditionItems = "[]"
+                                        }
+                                        
                                     } else {
                                         self.selectedFilterIndex = i
-                                        self.offersViewModel.filterConditionItems = "[{\"filterType\":\"\(Constants.FilterAndSortType[i])\",\"sortType\":\"\(Constants.SortDirectionType[0])\"}]"
+                                        
+                                        DispatchQueue.main.async {
+                                            self.offersViewModel.filterConditionItems = "[{\"filterType\":\"\(Constants.FilterAndSortType[i])\",\"sortType\":\"\(Constants.SortDirectionType[0])\"}]"
+                                        }
+                    
                                     }
                                     
                                     self.proxy?.scrollTo(self.selectedFilterIndex,

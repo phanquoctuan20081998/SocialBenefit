@@ -20,10 +20,6 @@ struct MerchantCategoryItemView: View {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
-            
-            NavigationLink(destination: EmptyView()) {
-                EmptyView()
-            }
         }
         .background(
             NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
@@ -93,11 +89,16 @@ struct MerchantCategoryItemCardView: View {
         }
         .frame(width: 70, height: 70, alignment: .top)
         .onTapGesture {
-            self.merchantCategoryItemViewModel.selectedId = self.data.id
-            self.specialOffersViewModel.categoryId = self.data.id
-            self.offersViewModel.categoryId = self.data.id
-            self.merchantCategoryItemViewModel.selection = true
-            self.merchantCategoryItemViewModel.isPresentPopUp = false
+            DispatchQueue.main.async {
+                self.merchantCategoryItemViewModel.selectedId = self.data.id
+                self.merchantCategoryItemViewModel.selection = true
+                self.merchantCategoryItemViewModel.isPresentPopUp = false
+                
+                self.specialOffersViewModel.categoryId = self.data.id
+                self.offersViewModel.categoryId = self.data.id
+                self.specialOffersViewModel.searchPattern = ""
+                self.offersViewModel.searchPattern = ""
+            }
         }
     }
 }

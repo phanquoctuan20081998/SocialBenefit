@@ -20,14 +20,31 @@ class MerchantCategoryItemViewModel: ObservableObject, Identifiable {
     // To control moving between screen using Navigation Link with selection
     @Published var selection: Bool = false
     
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshing == true {
+                self.refresh()
+            }
+        }
+    }
+    
     private let merchantCategoryItemService = MerchantCategoryItemService()
     
     init() {
+        loadData()
+    }
+    
+    func loadData() {
         merchantCategoryItemService.getAPI { data in
             DispatchQueue.main.async {
                 self.allMerchantCategoryItem = data
+                self.isRefreshing = false
             }
         }
+    }
+    
+    func refresh() {
+        loadData()
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var resetPasswordViewModel = ResetPasswordViewModel()
     
     var body: some View {
@@ -52,10 +53,14 @@ struct ResetPasswordView: View {
                         NavigationLink(destination: EmptyView()) {
                             EmptyView()
                         }
+                        
+                        NavigationLink(destination: ResetSuccessView().navigationBarHidden(true), isActive: $resetPasswordViewModel.isReseting) {
+                            EmptyView()
+                        }
                     }
                 }
                 
-                NavigationLink(destination: ResetSuccessView().navigationBarHidden(true), isActive: $resetPasswordViewModel.isReseting) {
+                NavigationLink(destination: EmptyView()) {
                     EmptyView()
                 }
                 
@@ -68,6 +73,8 @@ struct ResetPasswordView: View {
                 ErrorMessageView(error: "need_to_fill_all_data", isPresentedError: $resetPasswordViewModel.isPresentAllTypedError)
                     .offset(y: 400)
                 
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $resetPasswordViewModel.isPresentCannotConnectServerError)
+                    .offset(y: 400)
                 
                 if resetPasswordViewModel.isLoading {
                     VStack{
@@ -80,6 +87,9 @@ struct ResetPasswordView: View {
                     .edgesIgnoringSafeArea(.all))
                 }
             }.edgesIgnoringSafeArea(.all)
+            .onAppear {
+                resetPasswordViewModel.resetTextField()
+            }
         }
     }
 }
@@ -139,6 +149,14 @@ extension ResetPasswordView {
                 resetPasswordViewModel.isPresentWrongFormatEmail = true
             } else {
                 resetPasswordViewModel.resetPasswordRequest()
+                
+                // If cannot connect to server
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
+                    if resetPasswordViewModel.isLoading {
+                        resetPasswordViewModel.isPresentCannotConnectServerError.toggle()
+                        resetPasswordViewModel.isLoading = false
+                    }
+                }
             }
         } label: {
             RoundedRectangle(cornerRadius: 10)
@@ -155,11 +173,15 @@ extension ResetPasswordView {
     }
     
     var BackToLogin: some View {
-        NavigationLink(destination: LoginView().navigationBarHidden(true)) {
+        
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
             Text("back_login".localized)
                 .font(.system(size: 15))
                 .italic()
-        }
+        })
+        
     }
 }
 

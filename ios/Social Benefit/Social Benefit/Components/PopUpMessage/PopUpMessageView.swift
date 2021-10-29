@@ -35,6 +35,8 @@ struct PopUpMessageView: View {
     }
 }
 
+let PopUpTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+
 struct ErrorMessageView: View {
     var error: String
     @Binding var isPresentedError: Bool
@@ -42,10 +44,8 @@ struct ErrorMessageView: View {
     var body: some View {
         if isPresentedError {
             PopUpMessageView(text: getError(errorCode: error), isPresent: $isPresentedError, textColor: Color.white, backgroundColor: Color.red)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        isPresentedError = false
-                    }
+                .onReceive(PopUpTimer) { _ in
+                    isPresentedError = false
                 }
         }
     }
@@ -59,10 +59,8 @@ struct SuccessedMessageView: View {
     var body: some View {
         if isPresented {
             PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.white, backgroundColor: color)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        isPresented = false
-                    }
+                .onReceive(PopUpTimer) { _ in
+                    isPresented = false
                 }
         }
     }

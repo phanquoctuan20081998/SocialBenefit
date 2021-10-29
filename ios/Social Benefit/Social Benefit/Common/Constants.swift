@@ -21,6 +21,7 @@ struct Constants {
     
     // API load...
     static let MAX_NUM_API_LOAD = 10
+    static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(30)
     
     // Comment & React...
     struct ReactType {

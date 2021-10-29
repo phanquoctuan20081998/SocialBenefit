@@ -129,6 +129,7 @@ extension InternalNewsDetailView {
         
         VStack {
             URLImageView(url: Config.baseURL + internalNewData.cover)
+                .scaledToFit()
                 .frame(width: ScreenInfor().screenWidth * 0.8, height: 200)
                 .padding()
             

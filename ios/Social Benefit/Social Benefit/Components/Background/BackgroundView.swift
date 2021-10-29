@@ -21,6 +21,7 @@ struct BackgroundViewWithNotiAndSearch: View {
                 .overlay(
                     HStack {
                         URLImageView(url: userInfor.companyLogo)
+                            .scaledToFit()
                             .frame(height: 30)
                             .padding(.leading)
                             .onTapGesture {
@@ -112,6 +113,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                         
                         if isHaveLogo {
                             URLImageView(url: userInfor.companyLogo)
+                                .scaledToFit()
                                 .frame(height: 30, alignment: .trailing)
                                 .padding(.trailing, 25)
                         }

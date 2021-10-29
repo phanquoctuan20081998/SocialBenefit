@@ -14,6 +14,7 @@ struct ListOfMerchantViewByCategory: View {
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -22,6 +23,10 @@ struct ListOfMerchantViewByCategory: View {
     
     var body: some View {
         VStack {
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
             
             Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
@@ -32,22 +37,28 @@ struct ListOfMerchantViewByCategory: View {
             } else {
                 let binding = Binding<Bool>(
                     get: {
-                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing
+                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing && self.merchantCategoryItemViewModel.isRefreshing
                     },
                     
                     set: {
                         self.specialOffersViewModel.isRefreshing = $0
                         self.offersViewModel.isRefreshing = $0
+                        self.merchantCategoryItemViewModel.isRefreshing = $0
                     })
                 
-                RefreshableScrollView(height: 70, refreshing: binding) {
-                    SpecialOffersView()
-                    FilterView()
-                    AllOffersView()
-                }
+                NavigationView {
+                    RefreshableScrollView(height: 70, refreshing: binding) {
+                        SpecialOffersView()
+                        FilterView()
+                        AllOffersView()
+                    }.navigationBarHidden(true)
+                }.navigationViewStyle(StackNavigationViewStyle())
+                
             }
         }
         .background(BackGround)
+        .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
         .onAppear {
             self.merchantCategoryItemViewModel.isInCategoryView = true
             self.specialOffersViewModel.searchPattern = ""
@@ -89,7 +100,7 @@ extension ListOfMerchantViewByCategory {
                                 
                                 MyVoucherButtonView()
                             }.foregroundColor(.blue)
-                                .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
+                            .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
                             
                             Spacer()
                         }

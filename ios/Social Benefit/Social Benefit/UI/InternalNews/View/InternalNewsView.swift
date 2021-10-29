@@ -11,7 +11,6 @@ import SlidingTabView
 // Main
 struct InternalNewsView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)

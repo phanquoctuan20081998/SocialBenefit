@@ -12,7 +12,7 @@ struct ResetSuccessView: View {
     @State var isTapped = false
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack(alignment: .top) {
                 VStack {
                     Image("pic_background")
@@ -60,7 +60,7 @@ struct ResetSuccessView: View {
                     EmptyView()
                 }
             }.edgesIgnoringSafeArea(.all)
-        }
+//        }
     }
 }
 

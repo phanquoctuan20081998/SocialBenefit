@@ -25,13 +25,15 @@ struct MerchantVoucherDetailView: View {
     var body: some View {
         VStack {
             if merchantVoucherDetailViewModel.isLoading {
-                ActivityRep()
-                    .frame(height: ScreenInfor().screenHeight * 0.3)
+                VStack {
+                    ActivityRep()
+                        .frame(height: ScreenInfor().screenHeight * 0.3)
+                    
+                    Spacer()
+                        .background(Color.white.frame(width: ScreenInfor().screenWidth))
+                }
                 
-                Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
-                
-                ScrollableTabView
-                BottomButtonView()
+                .frame(width: ScreenInfor().screenWidth * 0.9)
                 
             } else {
                 VoucherHeadline
@@ -43,39 +45,39 @@ struct MerchantVoucherDetailView: View {
                 BottomButtonView()
             }
             
-            
-            
             NavigationLink(destination: EmptyView()) {
                 EmptyView()
             }
-
+            
             Spacer().frame(height: 10)
             
         }.environmentObject(merchantVoucherDetailViewModel)
-            .navigationBarHidden(true)
-            .overlay(
-                MyVoucherButtonView()
-                    .padding(.trailing)
-                    .padding(.top, ScreenInfor().screenHeight * 0.02)
-                ,alignment: .topTrailing)
+        .navigationBarHidden(true)
+        .overlay(
+            MyVoucherButtonView()
+                .padding(.trailing)
+                .padding(.top, ScreenInfor().screenHeight * 0.02)
+            ,alignment: .topTrailing)
         
         // PopUp overlay...
-            .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
-            .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
-            .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
+        .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
+        .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
+        .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         
         
-            .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false, backButtonTapped: backButtonTapped))
-            .onAppear {
-                self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
-                self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
-                self.homeScreenViewModel.isPresentedTabBar = false
-            }
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false, backButtonTapped: backButtonTapped))
+        .onAppear {
+            self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
+            self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
+            self.homeScreenViewModel.isPresentedTabBar = false
+        }
     }
     
     func backButtonTapped() {
         if isNavigationFromHomeScreen {
             homeViewModel.isPresentVoucherDetail = false
+            homeScreenViewModel.isPresentedTabBar = true
             ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
         }
     }
@@ -95,6 +97,7 @@ extension MerchantVoucherDetailView {
             Spacer().frame(height: 50)
             
             URLImageView(url: voucherDetail.imageURL)
+                .scaledToFit()
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 150)
                 .padding(.bottom, 20)
             
@@ -121,8 +124,6 @@ extension MerchantVoucherDetailView {
             }.edgesIgnoringSafeArea(.all)
         }
     }
-    
-    
 }
 
 struct InformationBar: View {
@@ -174,10 +175,10 @@ struct InformationBar: View {
             HStack(spacing: 5) {
                 Image(systemName: "dollarsign.circle")
                     .foregroundColor(.yellow)
-                Text("\(merchantVoucherDetailViewModel.merchantVoucherDetail.pointValue)")
+                Text("\(merchantVoucherDetailViewModel.merchantVoucherDetail.pointValue) VND")
             }
         }.font(.system(size: 13))
-            .frame(width: ScreenInfor().screenWidth * 0.9)
+        .frame(width: ScreenInfor().screenWidth * 0.9)
     }
 }
 
@@ -230,5 +231,7 @@ struct VoucherDetailView_Previews: PreviewProvider {
             .environmentObject(MerchantVoucherDetailViewModel())
             .environmentObject(HomeScreenViewModel())
             .environmentObject(ConfirmInforBuyViewModel())
+        
+//        HomeScreenView(selectedTab: "tag")
     }
 }

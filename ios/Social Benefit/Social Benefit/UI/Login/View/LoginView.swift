@@ -50,9 +50,6 @@ struct LoginView: View {
                     Spacer()
                     
                     VStack {
-                        NavigationLink(destination: EmptyView()) {
-                            EmptyView()
-                        }
                         CheckBoxView
                         LoginButton
                         ForgotPassword
@@ -106,10 +103,7 @@ extension LoginView {
         VStack(spacing: 25) {
             
             // Company Code textfield
-            TextField("company".localized,
-                      text: $loginViewModel.companyCode,
-                      onEditingChanged: { (focus) in
-                loginViewModel.isFocus1 = focus })
+            TextField("company".localized, text: $loginViewModel.companyCode)
                 .font(.system(size: 15))
                 .padding(7)
                 .background(
@@ -117,12 +111,15 @@ extension LoginView {
                         .stroke(loginViewModel.isFocus1 ? Color.blue : Color.gray,
                                 lineWidth: loginViewModel.isFocus1 ? 3 : 1))
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
+                .onTapGesture {
+                    loginViewModel.resetState()
+                    loginViewModel.isFocus1 = true
+                }
+            
             
             // Company Code textfield
             TextField("email".localized,
-                      text: $loginViewModel.employeeId,
-                      onEditingChanged: { (focus) in
-                loginViewModel.isFocus2 = focus })
+                      text: $loginViewModel.employeeId)
                 .font(.system(size: 15))
                 .padding(7)
                 .background(
@@ -130,13 +127,15 @@ extension LoginView {
                         .stroke(loginViewModel.isFocus2 ? Color.blue : Color.gray,
                                 lineWidth: loginViewModel.isFocus2 ? 3 : 1))
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
+                .onTapGesture {
+                    loginViewModel.resetState()
+                    loginViewModel.isFocus2 = true
+                }
+            
             
             // Company Code textfield
             SecureField("password".localized,
                       text: $loginViewModel.password)
-                .onTapGesture {
-                    loginViewModel.isFocus3 = true
-                }
                 .font(.system(size: 15))
                 .padding(7)
                 .background(
@@ -144,6 +143,10 @@ extension LoginView {
                         .stroke(loginViewModel.isFocus3 ? Color.blue : Color.gray,
                                 lineWidth: loginViewModel.isFocus3 ? 3 : 1))
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
+                .onTapGesture {
+                    loginViewModel.resetState()
+                    loginViewModel.isFocus3 = true
+                }
         }
     }
     
@@ -164,7 +167,7 @@ extension LoginView {
                     loginViewModel.loadLoginData()
                     
                     // If cannot login
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
                         if loginViewModel.isLoading {
                             loginViewModel.isPresentCannotConnectServerError.toggle()
                             loginViewModel.isLoading = false
@@ -189,18 +192,30 @@ extension LoginView {
     
     var ForgotPassword: some View {
         
-//        Text("forgot_password".localized)
-//            .font(.system(size: 15))
-//            .sheet(isPresented: $loginViewModel.isPresentResetPasswordView, content: {
-//                ResetPasswordView()
-//            }
+        //        Text("forgot_password".localized)
+        //            .font(.system(size: 15))
+        //            .sheet(isPresented: $loginViewModel.isPresentResetPasswordView, content: {
+        //                ResetPasswordView()
+        //            })
+        //            .onTapGesture {
+        //                loginViewModel.isPresentResetPasswordView.toggle()
+        //            }
         
-        NavigationLink(
-            destination: ResetPasswordView().navigationBarHidden(true),
-            label: {
-                Text("forgot_password".localized)
-                    .font(.system(size: 15))
-            })
+        Text("forgot_password".localized)
+            .font(.system(size: 15))
+            .foregroundColor(.blue)
+            .onTapGesture {
+                loginViewModel.isPresentResetPasswordView.toggle()
+                loginViewModel.resetState()
+            }
+            .background (
+                NavigationLink(
+                    destination: ResetPasswordView().navigationBarHidden(true),
+                    isActive: $loginViewModel.isPresentResetPasswordView,
+                    label: {
+                        EmptyView()
+                    }))
+        
     }
     
     var WarningText: some View {

@@ -36,10 +36,10 @@ struct URLImageView: View {
                             Image(systemName: "photo")
                                 .foregroundColor(.gray.opacity(0.5))
                         )
-                        .scaledToFill()
+//                        .scaledToFill()
                 }
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 
                             
             
@@ -67,6 +67,7 @@ struct URLImageView: View {
 struct URLImageView_Previews: PreviewProvider {
     static var previews: some View {
         URLImageView(url: "/files/3576/logo.png")
+            .frame(width: 300, height: 100)
             .padding()
             .previewLayout(.sizeThatFits)
     }

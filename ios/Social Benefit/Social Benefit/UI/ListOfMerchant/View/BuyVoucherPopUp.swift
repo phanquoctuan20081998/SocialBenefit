@@ -119,7 +119,7 @@ extension BuyVoucherPopUp {
             HStack {
                 HStack(spacing: 50) {
                     Button(action: {
-                        BuyVoucherService().getAPI(voucherId: self.confirmInforBuyViewModel.voucherId, number: self.buyNumber) { data in
+                        BuyVoucherService().getAPI(voucherId: self.confirmInforBuyViewModel.voucherId, number: self.buyNumber, beforeBuyVoucherOrderCount: confirmInforBuyViewModel.buyVoucher.orderedNumber ?? 0) { data in
                             DispatchQueue.main.async {
                                 self.confirmInforBuyViewModel.buyVoucherResponse = data
                                 if !data.errorCode.isEmpty {

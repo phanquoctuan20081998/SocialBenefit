@@ -47,26 +47,50 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     private let appliedStoreMerchantListService = AppliedStoreMerchantListService()
     private let similarVoucherService = SimilarVoucherService()
     
+//    func getData(voucherId: Int) {
+//        self.selectedVoucherId = voucherId
+//        self.isLoading = true
+//
+//        merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
+//            DispatchQueue.main.async {
+//                self.merchantVoucherDetail = data
+//                self.isLoading = false
+//            }
+//        }
+//
+//        appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: fromIndexAppliedStore) { data in
+//            DispatchQueue.main.async {
+//                self.appliedStoreMerchantList = data
+//            }
+//        }
+//
+//        similarVoucherService.getAPI(voucherId: voucherId, fromIndex: fromIndexSimilarVoucher) { data in
+//            DispatchQueue.main.async {
+//                self.similarVouchers = data
+//            }
+//        }
+//    }
+    
     func getData(voucherId: Int) {
         self.selectedVoucherId = voucherId
         self.isLoading = true
         
         merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
-            DispatchQueue.main.async {
-                self.merchantVoucherDetail = data
-                self.isLoading = false
-            }
-        }
-        
-        appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: fromIndexAppliedStore) { data in
-            DispatchQueue.main.async {
-                self.appliedStoreMerchantList = data
-            }
-        }
-        
-        similarVoucherService.getAPI(voucherId: voucherId, fromIndex: fromIndexSimilarVoucher) { data in
-            DispatchQueue.main.async {
-                self.similarVouchers = data
+            DispatchQueue.main.async { [weak self] in
+                self!.merchantVoucherDetail = data
+                
+                self!.appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: self!.fromIndexAppliedStore) { data in
+                    DispatchQueue.main.async { [weak self] in
+                        self!.appliedStoreMerchantList = data
+                        
+                        self!.similarVoucherService.getAPI(voucherId: voucherId, fromIndex: self!.fromIndexSimilarVoucher) { data in
+                            DispatchQueue.main.async {
+                                self!.similarVouchers = data
+                                self!.isLoading = false
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -15,9 +15,13 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
-    var body: some View {
-        
+    var body: some View { 
         VStack(spacing: 15) {
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
+            
             Spacer().frame(height: ScreenInfor().screenHeight * 0.05)
             SearchBarAndMyVoucherView()
             MerchantCategoryItemView()
@@ -27,37 +31,27 @@ struct ListOfMerchantView: View {
             } else {
                 let binding = Binding<Bool>(
                     get: {
-                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing
+                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing && self.merchantCategoryItemViewModel.isRefreshing
                     },
-                                              
+                    
                     set: {
                         self.specialOffersViewModel.isRefreshing = $0
                         self.offersViewModel.isRefreshing = $0
+                        self.merchantCategoryItemViewModel.isRefreshing = $0
                     })
                 
-                RefreshableScrollView(height: 70, refreshing: binding) {
-                    SpecialOffersView()
-                    FilterView()
-                    AllOffersView()
-                }
+                NavigationView {
+                    RefreshableScrollView(height: 70, refreshing: binding) {
+                        SpecialOffersView()
+                        FilterView()
+                        AllOffersView()
+                    }.navigationBarHidden(true)
+                }.navigationViewStyle(StackNavigationViewStyle())
             }
         }
-//        .overlay (
-//            VStack {
-//                if merchantCategoryItemViewModel.selection {
-//                    ListOfMerchantViewByCategory()
-//                        .background(Color.white)
-//                }
-//            }
-//        )
         .background(BackgroundViewWithNotiAndSearch(), alignment: .top)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-        .onAppear {
-            self.specialOffersViewModel.reset()
-            self.offersViewModel.reset()
-        }
     }
-    
 }
 
 struct ListOfMerchantView_Previews: PreviewProvider {

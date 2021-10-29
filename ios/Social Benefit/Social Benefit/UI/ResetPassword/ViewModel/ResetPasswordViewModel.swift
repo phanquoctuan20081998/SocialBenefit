@@ -22,6 +22,7 @@ class ResetPasswordViewModel: ObservableObject {
     @Published var isPresentWrongFormatEmail = false
     @Published var isPresentNotExistEmail = false
     @Published var isPresentAllTypedError = false
+    @Published var isPresentCannotConnectServerError = false
     
     @Published var isLoading = false
     @Published var isReseting = false
@@ -63,5 +64,10 @@ class ResetPasswordViewModel: ObservableObject {
                 self.isLoading = false
             }
         }
+    }
+    
+    func resetTextField() {
+        self.companyCode = ""
+        self.email = ""
     }
 }

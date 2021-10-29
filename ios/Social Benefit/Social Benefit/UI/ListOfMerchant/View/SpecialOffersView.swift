@@ -16,6 +16,7 @@ struct SpecialOffersView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
+            
             Text("special_offer".localized.uppercased())
                 .font(.system(size: 18, weight: .heavy, design: .default))
                 .padding(.leading)
@@ -89,8 +90,9 @@ struct SpecialOfferCardView: View {
     var body: some View {
         VStack {
             URLImageView(url: voucherData.imageURL)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .frame(width: 150, height: 110)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
                 
             Spacer().frame(height: 5)
             

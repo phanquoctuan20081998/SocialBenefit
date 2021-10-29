@@ -30,14 +30,33 @@ struct InternalNewsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-                    if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
-                        PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, imageTapped: imageTapped), currentPage: $currentPage)
- 
-                        PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
-//                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
-                    } else {
-                        EmptyView()
-                    }
+                    //                    if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
+                    //                        PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, imageTapped: imageTapped), currentPage: $currentPage)
+                    //
+                    //                        PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
+                    ////                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
+                    //                    } else {
+                    //                        EmptyView()
+                    //                    }
+                    
+                    if internalNewsViewModel.allInternalNews.count != 0 {
+                        
+                        PagingView(index: $currentPage.animation(), maxIndex: internalNewsViewModel.allInternalNews.count - 1) {
+                            ForEach(internalNewsViewModel.allInternalNews.indices, id: \.self) { index in
+                                URLImageView(url: internalNewsViewModel.allInternalNews[index].cover)
+                                    .scaledToFill()
+                                    .onTapGesture {
+                                        DispatchQueue.main.async {
+                                            homeViewModel.selectedIndex = index
+                                            ImageSlideTimer.upstream.connect().cancel()
+                                            imageTapped()
+                                        }
+                                    }
+                            }
+                        }
+                        .aspectRatio(4/3, contentMode: .fit)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                    } else { EmptyView() }
                 }
             }
             .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
@@ -64,7 +83,7 @@ struct InternalNewsBannerView: View {
     func imageTapped() {
         homeScreenViewModel.isPresentedTabBar = false
         homeViewModel.isPresentInternalNewDetail.toggle()
-
+        
         if let index = homeViewModel.selectedIndex {
             homeViewModel.selectedInternalNew = internalNewsViewModel.allInternalNews[index]
         }
@@ -73,7 +92,7 @@ struct InternalNewsBannerView: View {
 
 
 struct RecognitionsBannerView: View {
-
+    
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -83,15 +102,15 @@ struct RecognitionsBannerView: View {
     @State var isAnimating: Bool = true
     @State var selectedIndex: Int = 0
     
-//    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
-
+    //    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack {
             
             TopTitleView(title: "recognitions_in_company".localized, topTitleTapped: topTitleTapped)
-
+            
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-
+            
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
                     EmptyView()
@@ -112,35 +131,56 @@ struct RecognitionsBannerView: View {
 
 
 struct PromotionsBannerView: View {
-
+    
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     @State private var currentPage = 0
     @State var data: [MerchantListData] = []
-
+    
     var body: some View {
         VStack {
             TopTitleView(title: "promotions".localized, topTitleTapped: toptitleTapped)
-
+            
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-
+            
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-                    if data.count != 0 { //If Data can read
-                        let pages = getPromotionData(data: data, imageTapped: imageTapped)
-                        PageViewController(pages: pages, currentPage: $currentPage)
-//                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
-                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
-                    } else {
-                        EmptyView()
-                    }
+//                    if data.count != 0 { //If Data can read
+//                        let pages = getPromotionData(data: data, imageTapped: imageTapped)
+//                        PageViewController(pages: pages, currentPage: $currentPage)
+//                        //                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
+//                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
+//                    } else {
+//                        EmptyView()
+//                    }
+                    
+                    
+                    if data.count != 0 {
+                        
+                        PagingView(index: $currentPage.animation(), maxIndex: data.count - 1) {
+                            ForEach(data.indices, id: \.self) { index in
+                                URLImageView(url: data[index].cover)
+                                    .scaledToFill()
+                                    .onTapGesture {
+                                        DispatchQueue.main.async {
+                                            homeViewModel.selectedIndex = index
+                                            ImageSlideTimer.upstream.connect().cancel()
+                                            imageTapped()
+                                        }
+                                    }
+                            }
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                    } else { EmptyView() }
+                    
+                    
                 }
             }
             .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
             .background(Color.white)
             .cornerRadius(30)
-
+            
             //Get data from API
             .onAppear {
                 MerchantListService().getAPI { (data) in
@@ -159,7 +199,7 @@ struct PromotionsBannerView: View {
     func imageTapped() {
         homeScreenViewModel.isPresentedTabBar = false
         homeViewModel.isPresentVoucherDetail.toggle()
-
+        
         if let index = homeViewModel.selectedIndex {
             homeViewModel.selectedVoucherId = data[index].id
         }
@@ -206,10 +246,10 @@ struct MainCardView: View {
             }
             
         }.padding()
-            .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
-            .background(Color.white)
-            .cornerRadius(30)
-            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+        .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
+        .background(Color.white)
+        .cornerRadius(30)
+        .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
         
     }
 }
@@ -306,7 +346,7 @@ func getInternalNewsData(data: [InternalNewsData], imageTapped: @escaping () -> 
 }
 
 func getPromotionData(data: [MerchantListData], imageTapped: @escaping () -> ()) -> [BannerContentView] {
-
+    
     var result = [BannerContentView]()
     
     for i in data.indices {

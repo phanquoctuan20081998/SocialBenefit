@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class BuyVoucherService {
     
-    func getAPI(voucherId: Int, number: Int, returnCallBack: @escaping (BuyVoucherData) -> ()) {
+    func getAPI(voucherId: Int, number: Int, beforeBuyVoucherOrderCount: Int, returnCallBack: @escaping (BuyVoucherData) -> ()) {
         
         let service = BaseAPI()
         
@@ -20,7 +20,8 @@ class BuyVoucherService {
                       "employeeId": userInfor.employeeId]
         
         let params: Parameters = ["voucherId": voucherId,
-                                  "number": number]
+                                  "number": number,
+                                  "beforeBuyVoucherOrderCount": beforeBuyVoucherOrderCount]
         
         service.makeCall(endpoint: Config.API_BUY_VOUCHER, method: "POST", header: header as [String: String], body: params, callback: { result in
             
@@ -31,9 +32,7 @@ class BuyVoucherService {
             let errorCode = result["errorCode"].string ?? ""
             
             let data = BuyVoucherData(success: success, message: message, voucherOrderId: voucherOrderId, errorCode: errorCode)
-            
-            print("LALALALALA")
-            print(result)
+
             returnCallBack(data)
         })
     }

@@ -13,15 +13,14 @@ struct SimiliarVoucherView: View {
     @State var isShowProgressView: Bool = false
     
     var body: some View {
+        
         VStack {
             
-            NavigationLink(destination: EmptyView()) {
-                EmptyView()
-            }
-            
             RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingSimiliarVoucher) {
+                
                 Spacer().frame(height: 20)
                 VStack(spacing: 10) {
+                    
                     ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
                         NavigationLink(
                             destination: MerchantVoucherDetailView(voucherId: merchantVoucherDetailViewModel.similarVouchers[i].id),
