@@ -33,6 +33,7 @@ public class BaseAPI {
             }
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    
                     let error = json["error"] as? Bool
                     if (error == false) {
                         let result = JSON(json as Any)["result"]
@@ -41,6 +42,7 @@ public class BaseAPI {
                         //show error
                         if json["messages"] != nil {
                             print("Call API failed, Messages: ", json["messages"]!)
+                            callback(JSON())
                         }
                     }
                 }

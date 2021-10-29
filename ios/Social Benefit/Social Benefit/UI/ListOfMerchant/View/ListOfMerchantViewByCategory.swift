@@ -16,21 +16,35 @@ struct ListOfMerchantViewByCategory: View {
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     @State private var proxy: AmzdScrollViewProxy? = nil
     @State var isActive: Bool = false
     
     var body: some View {
         VStack {
             
-            Spacer().frame(height: 40)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
             VoucherCategoryList
             
-            ScrollView {
-                SpecialOffersView()
-                FilterView()
-                AllOffersView()
+            if (specialOffersViewModel.isLoading || offersViewModel.isLoading) && !(specialOffersViewModel.isRefreshing || offersViewModel.isRefreshing) {
+                LoadingPageView()
+            } else {
+                let binding = Binding<Bool>(
+                    get: {
+                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing
+                    },
+                    
+                    set: {
+                        self.specialOffersViewModel.isRefreshing = $0
+                        self.offersViewModel.isRefreshing = $0
+                    })
+                
+                RefreshableScrollView(height: 70, refreshing: binding) {
+                    SpecialOffersView()
+                    FilterView()
+                    AllOffersView()
+                }
             }
         }
         .background(BackGround)
@@ -53,29 +67,32 @@ extension ListOfMerchantViewByCategory {
                 .edgesIgnoringSafeArea([.top])
                 .frame(width: ScreenInfor().screenWidth)
                 .overlay(
-                    HStack {
-                        HStack(spacing: 10) {
-                            Button(action: {
-                                self.merchantCategoryItemViewModel.isInCategoryView = false
-                                self.presentationMode.wrappedValue.dismiss()
-                                self.specialOffersViewModel.reset()
-                                self.offersViewModel.reset()
-                                self.homeScreenViewModel.isPresentedTabBar = true
-                            }, label: {
-                                Image(systemName: "arrow.backward")
-                                    .font(.headline)
-                            })
-                            
-                            Text("promotion".localized)
-                                .bold()
+                    VStack {
+                        Spacer().frame(height: ScreenInfor().screenHeight * 0.03)
+                        HStack {
+                            HStack(spacing: 10) {
+                                Button(action: {
+                                    self.merchantCategoryItemViewModel.isInCategoryView = false
+                                    self.presentationMode.wrappedValue.dismiss()
+                                    self.specialOffersViewModel.reset()
+                                    self.offersViewModel.reset()
+                                    self.homeScreenViewModel.isPresentedTabBar = true
+                                }, label: {
+                                    Image(systemName: "arrow.backward")
+                                        .font(.headline)
+                                })
+                                
+                                Text("promotion".localized)
+                                    .bold()
+                                
+                                Spacer()
+                                
+                                MyVoucherButtonView()
+                            }.foregroundColor(.blue)
+                                .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
                             
                             Spacer()
-                            
-                            MyVoucherButtonView()
-                        }.foregroundColor(.blue)
-                        .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
-                        
-                        Spacer()
+                        }
                     }, alignment: .top)
             
             Spacer()
@@ -94,7 +111,7 @@ extension ListOfMerchantViewByCategory {
                     }
                     let _ = self.proxy?.scrollTo(self.merchantCategoryItemViewModel.selectedId,
                                                  alignment: .center,
-                                                     animated: true)
+                                                 animated: true)
                 }.onAppear { self.proxy = proxy }
             }
         }
@@ -102,6 +119,18 @@ extension ListOfMerchantViewByCategory {
 }
 struct ListOfMerchantViewByCategory_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        //        HomeScreenView(selectedTab: "house")
+        ListOfMerchantViewByCategory()
+            .environmentObject(InternalNewsViewModel())
+            .environmentObject(MerchantVoucherSpecialListViewModel())
+            .environmentObject(MerchantCategoryItemViewModel())
+            .environmentObject(MerchantVoucherListByCategoryViewModel())
+            .environmentObject(ConfirmInforBuyViewModel())
+            .environmentObject(HomeScreenViewModel())
+            .environmentObject(MerchantVoucherDetailViewModel())
+            .environmentObject(CustomerSupportViewModel())
+            .environmentObject(SearchViewModel())
+            .environmentObject(HomeViewModel())
+        
     }
 }

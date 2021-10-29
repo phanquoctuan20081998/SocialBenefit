@@ -12,15 +12,8 @@ import SwiftyJSON
 
 class AddCommentService {
     
-    @Published var newCommentId: Int = 0
-    
-    init(contentId: Int, parentId: Int, content: String) {
-        self.getAPI(contentId: contentId, parentId: parentId, content: content)
-    }
-    
-    private func getAPI(contentId: Int, parentId: Int, content: String) {
+    func getAPI(contentId: Int, parentId: Int, content: String, returnCallBack: @escaping (Int) -> ()) {
         let service = BaseAPI()
-        
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId]
@@ -42,10 +35,8 @@ class AddCommentService {
         
         
         service.makeCall(endpoint: Config.API_COMMENT_ADD, method: "POST", header: header as [String : String], body: params, callback: { result in
-            
-            DispatchQueue.main.async {
-                self.newCommentId = result["id"].int!
-            }
+            let newCommentId = result["id"].int ?? -1
+            returnCallBack(newCommentId)
         })
     }
 }

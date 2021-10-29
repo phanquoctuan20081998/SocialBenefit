@@ -16,24 +16,39 @@ struct HomeScreenView: View {
     @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
     @ObservedObject var homeScreenViewModel = HomeScreenViewModel()
     @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
+    @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
+    @ObservedObject var searchViewModel = SearchViewModel()
+    @ObservedObject var homeViewModel = HomeViewModel()
     
+    init(selectedTab: String) {
+        homeScreenViewModel.selectedTab = selectedTab
+    }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
-            getView(selectedTab: homeScreenViewModel.selectedTab)
-            
-            // Custom Tab Bar
-            if homeScreenViewModel.isPresentedTabBar {
-                CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
+        NavigationView {
+            ZStack(alignment: .bottom) {
+                
+                getView(selectedTab: homeScreenViewModel.selectedTab)
+              
+                // Search View...
+                SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
+                
+                // Custom Tab Bar...
+                if homeScreenViewModel.isPresentedTabBar {
+                    CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
+                }
+
+                // Promotion - Buy Button and Other Category popup...
+                BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup)
+                OtherPopUpView()
+                
+                // User - Customer support popup...
+                CustomerSupportPopUp()
+
             }
+            .navigationBarHidden(true)
         }
-        
-        // PopUp for Buy Button and Other Category...
-        // Promotion tab
-        .overlay(BuyVoucherPopUp())
-        .overlay(OtherPopUpView())
-        
+    
         .environmentObject(internalNewsViewModel)
         .environmentObject(specialOffersViewModel)
         .environmentObject(merchantCategoryItemViewModel)
@@ -41,6 +56,9 @@ struct HomeScreenView: View {
         .environmentObject(confirmInforBuyViewModel)
         .environmentObject(homeScreenViewModel)
         .environmentObject(merchantVoucherDetailViewModel)
+        .environmentObject(customerSupportViewModel)
+        .environmentObject(searchViewModel)
+        .environmentObject(homeViewModel)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {
@@ -50,42 +68,15 @@ struct HomeScreenView: View {
         case "star":
             Rectangle().fill(Color.white)
         case "tag":
-            ListOfMerchantView()
+            ListOfMerchantView().frame(width: ScreenInfor().screenWidth)
         default:
             UserView()
         }
     }
 }
 
-struct HomeView: View {
-    
-    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                    .frame(height: 40)
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        MainCardView()
-                            .padding(.top, 10)
-                        InternalNewsBannerView()
-                        RecognitionsBannerView()
-                        PromotionsBannerView()
-                    }
-                    Spacer()
-                        .frame(height: 100)
-                }
-            }.background(
-                BackgroundViewWithNotiAndSearch()
-            ).navigationBarHidden(true)
-        }
-    }
-}
 struct HomeScreenTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }

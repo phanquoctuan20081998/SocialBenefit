@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct ParentCommentData: Identifiable {
     let id = UUID()
@@ -33,38 +34,87 @@ class CommentViewModel: ObservableObject, Identifiable {
     @Published var contentId: Int
     @Published var numOfComment: Int = 0
     
-    private let commentService: CommentService
+    @Published var isReply: Bool = false
+    @Published var parentId: Int = -1
+    @Published var replyTo: String = ""
+    @Published var moveToPosition: Int = 0
+    
+    @Published var commentText = ""
+    
+    @Published var isLoading: Bool = false
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshing == true {
+                self.refresh()
+            }
+        }
+    }
+    
+    private let commentService = CommentService()
+    private var cancellables = Set<AnyCancellable>()
     
     init(contentId: Int) {
         self.contentId = contentId
-        self.commentService = CommentService(contentId: contentId)
-        initComment()
+        initComment(contentId: contentId)
+        addSubscribers()
     }
     
-    func initComment() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            self.allComment = self.commentService.allComment
-            self.numOfComment = self.commentService.allComment.count
-            self.separateChildAndParent()
+    func initComment(contentId: Int) {
+        self.isLoading = true
+        commentService.getAPI(contentId) { data in
+            DispatchQueue.main.async {
+                self.allComment = data
+                self.numOfComment = data.count
+                self.separateChildAndParent(allComment: data)
+                
+                self.isLoading = false
+                self.isRefreshing = false
+            }
         }
     }
     
-    func separateChildAndParent() {
+    func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.initComment(contentId: self.contentId)
+        }
+    }
+    
+    func addSubscribers() {
+        $commentText
+            .sink(receiveValue: loadCommentText(commentText:))
+            .store(in: &cancellables)
+    }
+    
+    func loadCommentText(commentText: String) {
+        if commentText.count > 250 {
+            DispatchQueue.main.async {
+                self.commentText = String(commentText.prefix(250))
+            }
+        }
+    }
+    
+    func separateChildAndParent(allComment: [CommentData]) {
         
-        for item in self.allComment {
+        var tempParentComment = [ParentCommentData]()
+        var tempChildComment = [[CommentData]]()
+        
+        for item in allComment {
             if item.parentId == -1 {
                 let tempParent = ParentCommentData(data: item, childIndex: -1)
-                self.parentComment.append(tempParent)
+                tempParentComment.append(tempParent)
             } else {
-                let sameParentIndex = self.findSameParent(Array: self.childComment, child: item)
+                let sameParentIndex = self.findSameParent(Array: tempChildComment, child: item)
                 
                 if sameParentIndex == -1 {
-                    self.childComment.append([item])
+                    tempChildComment.append([item])
                 } else {
-                    self.childComment[sameParentIndex].append(item)
+                    tempChildComment[sameParentIndex].append(item)
                 }
             }
         }
+        
+        self.parentComment = tempParentComment
+        self.childComment = tempChildComment
         
         if self.numOfComment != 0 {
             self.assignChildToParent()

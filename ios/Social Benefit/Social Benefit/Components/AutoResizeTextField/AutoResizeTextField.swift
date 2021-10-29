@@ -11,6 +11,7 @@ import SwiftUI
 struct DynamicHeightTextField: UIViewRepresentable {
     @Binding var text: String
     @Binding var height: CGFloat
+    @Binding var isFocus: Bool
     var onEnd: () -> ()
     
     func makeUIView(context: Context) -> UITextView {
@@ -23,7 +24,7 @@ struct DynamicHeightTextField: UIViewRepresentable {
         
         textView.text = text
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 17)
+        textView.font = UIFont.systemFont(ofSize: 13)
         
         context.coordinator.textView = textView
         textView.delegate = context.coordinator
@@ -51,19 +52,20 @@ struct DynamicHeightTextField: UIViewRepresentable {
 
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(dynamicSizeTextField: self)
+        return Coordinator(dynamicSizeTextField: self, isFocus: $isFocus)
     }
 }
 
 class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
     
     var dynamicHeightTextField: DynamicHeightTextField
-    
+    @Binding var isFocus: Bool
     weak var textView: UITextView?
 
     
-    init(dynamicSizeTextField: DynamicHeightTextField) {
+    init(dynamicSizeTextField: DynamicHeightTextField, isFocus: Binding<Bool>) {
         self.dynamicHeightTextField = dynamicSizeTextField
+        _isFocus = isFocus
     }
     
     //Keyboard closed
@@ -83,6 +85,17 @@ class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
         return true
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            self.isFocus = true
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            self.isFocus = false
+        }
+    }
     func layoutManager(_ layoutManager: NSLayoutManager, didCompleteLayoutFor textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
         
         DispatchQueue.main.async { [weak self] in
@@ -101,6 +114,8 @@ class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
 struct AutoResizeTextField: View {
 
     @Binding var text: String
+    @Binding var isFocus: Bool
+    
     var minHeight: CGFloat
     var maxHeight: CGFloat
     var placeholder: String
@@ -125,11 +140,12 @@ struct AutoResizeTextField: View {
             
             if text.isEmpty {
                 Text(placeholder)
+                    .font(.system(size: 13))
                     .foregroundColor(Color(UIColor.placeholderText))
                     .padding(10)
             }
             
-            DynamicHeightTextField(text: $text, height: $textHeight, onEnd: {
+            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, onEnd: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             })
         }
@@ -139,10 +155,11 @@ struct AutoResizeTextField: View {
 
 struct Test1View: View {
     @State var text = ""
+    @State var isFocus = false
     
     var body: some View {
         
-        AutoResizeTextField(text: $text, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+        AutoResizeTextField(text: $text, isFocus: $isFocus, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .padding(5)
             

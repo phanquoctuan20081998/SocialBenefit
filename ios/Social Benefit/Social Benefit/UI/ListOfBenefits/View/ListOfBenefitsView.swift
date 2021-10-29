@@ -25,38 +25,18 @@ struct ListOfBenefitsView: View {
                 
                 BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
                 
-                //Add header
-                let scale = [0.17, 0.6, 0.2]
+                HeaderView
                 
-                HStack(spacing: 0) {
-                    
-                    ForEach(headers.indices, id: \.self) { i in
-                        Text(headers[i])
-                            .bold()
-                            .font(.system(size: 15))
-                            .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
-                    }
+                if listOfBenefitsViewModel.isLoading && !listOfBenefitsViewModel.isRefreshing {
+                    LoadingPageView()
+        
+                } else {
+                    TableView
                 }
-                .padding(.vertical, 10)
-                .frame(width: ScreenInfor().screenWidth)
-                .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
                 
-                //Add tabble view
-                ScrollView {
-                    ForEach(listOfBenefitsViewModel.listOfBenefits, id: \.self) { item in
-                        TableCellView(benefitData: item)
-                            .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
-                            .padding(.top, 7)
-                            .onTapGesture {
-                                self.benefitDetailViewModel.getData(benefit: item)
-                                self.isTapDetail = true
-                            }
-                        Divider()
-                    }
-                }
             }.navigationBarHidden(true)
-            .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
-            .edgesIgnoringSafeArea(.all)
+                .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
+                .edgesIgnoringSafeArea(.all)
         }
         .background(
             NavigationLink(
@@ -70,6 +50,44 @@ struct ListOfBenefitsView: View {
         .environmentObject(listOfBenefitsViewModel)
         .environmentObject(benefitDetailViewModel)
     }
+    
+}
+
+extension ListOfBenefitsView {
+    
+    var HeaderView: some View {
+        let scale = [0.17, 0.6, 0.2]
+        
+        return HStack(spacing: 0) {
+            
+            ForEach(headers.indices, id: \.self) { i in
+                Text(headers[i])
+                    .bold()
+                    .font(.system(size: 15))
+                    .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
+            }
+        }
+        .padding(.vertical, 10)
+        .frame(width: ScreenInfor().screenWidth)
+        .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
+    }
+    
+    var TableView: some View {
+        //        ScrollView {
+        RefreshableScrollView(height: 70, refreshing: self.$listOfBenefitsViewModel.isRefreshing) {
+            ForEach(listOfBenefitsViewModel.listOfBenefits, id: \.self) { item in
+                TableCellView(benefitData: item)
+                    .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
+                    .padding(.top, 7)
+                    .onTapGesture {
+                        self.benefitDetailViewModel.getData(benefit: item)
+                        self.isTapDetail = true
+                    }
+                Divider()
+            }
+        }
+    }
+    //    }
 }
 
 struct BenefitUpperView: View {
@@ -96,7 +114,7 @@ struct BenefitUpperView: View {
                         .padding(.leading, 20)
                 })
             }.frame(width: ScreenInfor().screenWidth, height: 20, alignment: .leading)
-        
+            
             //Add title
             URLImageView(url: userInfor.companyLogo)
                 .frame(height: 50)

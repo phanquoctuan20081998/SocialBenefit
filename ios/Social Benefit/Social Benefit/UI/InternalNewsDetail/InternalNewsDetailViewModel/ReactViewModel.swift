@@ -21,39 +21,42 @@ class ReactViewModel: ObservableObject, Identifiable {
     
     @Published var isLike: Bool = false
     @Published var selectedReaction: Int = 6 // 6 is "" in reactions constant
+    @Published var isShowReactionBar: Bool = false
     
-    private let reactService: ReactService
+    private let reactService = ReactService()
     
     init(contentId: Int) {
-        self.reactService = ReactService(contentId: contentId)
-        initComment()
+        initComment(contentId: contentId)
     }
     
-    func initComment() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.allReact = self.reactService.allReact
-            
-            for react in self.allReact {
-                switch react.reactType {
-                case Constants.ReactType.LIKE:
-                    self.reactCount[0] += 1
-                case Constants.ReactType.LOVE:
-                    self.reactCount[1] += 1
-                case Constants.ReactType.LAUGH:
-                    self.reactCount[2] += 1
-                case Constants.ReactType.SAD:
-                    self.reactCount[4] += 1
-                case Constants.ReactType.ANGER:
-                    self.reactCount[5] += 1
-                default:
-                    // More react
-                    print("This \(String(describing: react.reactType)) reaction hasn't developed yet!")
+    func initComment(contentId: Int) {
+        reactService.getAPI(contentId: contentId) { data in
+            DispatchQueue.main.async {
+                self.allReact = data
+                
+                for react in data {
+                    switch react.reactType {
+                    case Constants.ReactType.LIKE:
+                        self.reactCount[0] += 1
+                    case Constants.ReactType.LOVE:
+                        self.reactCount[1] += 1
+                    case Constants.ReactType.LAUGH:
+                        self.reactCount[2] += 1
+                    case Constants.ReactType.SAD:
+                        self.reactCount[4] += 1
+                    case Constants.ReactType.ANGER:
+                        self.reactCount[5] += 1
+                    default:
+                        // More react
+                        print("This \(String(describing: react.reactType)) reaction hasn't developed yet!")
+                    }
                 }
+                
+                self.numOfReact = self.reactCount.reduce(0, +)
+                
+                self.getUserStatus()
+                
             }
-            
-            self.numOfReact = self.reactCount.reduce(0, +)
-            
-            self.getUserStatus()
         }
     }
     

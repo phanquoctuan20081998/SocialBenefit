@@ -90,7 +90,7 @@ struct SpecialOfferCardView: View {
         VStack {
             URLImageView(url: voucherData.imageURL)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .frame(height: 110)
+                .frame(width: 150, height: 110)
                 
             Spacer().frame(height: 5)
             
@@ -139,6 +139,23 @@ extension SpecialOfferCardView {
                 Text("\(voucherData.shoppingValue)")
                     .font(.system(size: 10))
             }
+            
+            Spacer()
+            
+            Button(action: {
+                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
+                self.confirmInforBuyViewModel.isPresentedPopup = true
+                
+            }, label: {
+                Text("buy".localized)
+                    .font(.system(size: 10))
+                    .foregroundColor(.white)
+                    .padding(3)
+                    .padding(.horizontal, 5)
+                    .background(RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color.blue)
+                                    .shadow(color: .black.opacity(0.2), radius: 2, x: -0.5, y: 0.5))
+            })
         }.padding(.horizontal, 7)
         .frame(width: 150, alignment: .leading)
     }
@@ -167,20 +184,6 @@ extension SpecialOfferCardView {
             
             Spacer()
             
-            Button(action: {
-                self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
-                self.confirmInforBuyViewModel.isPresentedPopup = true
-                
-            }, label: {
-                Text("buy".localized)
-                    .font(.system(size: 10))
-                    .foregroundColor(.white)
-                    .padding(3)
-                    .padding(.horizontal, 5)
-                    .background(RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color.blue)
-                                    .shadow(color: .black.opacity(0.2), radius: 2, x: -0.5, y: 0.5))
-            })
         }.padding(.horizontal, 7)
         .padding(.bottom, 10)
     }

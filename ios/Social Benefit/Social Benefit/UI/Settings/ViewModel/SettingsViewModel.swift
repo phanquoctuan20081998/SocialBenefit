@@ -11,7 +11,7 @@ import Combine
 class SettingsViewModel: ObservableObject, Identifiable {
     @Published var isAllowNotiSwitchOn: Bool = false
     @Published var isAllowSoundSwitchOn: Bool = false
-    @Published var selectedlanguage = Constants.LANGUAGE.ENG
+    @Published var selectedlanguage = UserDefaults.standard.integer(forKey: "language")
     @Published var isPresentedChangePasswordPopUp = false
     @Published var isPresentedLanguagePopup = false
     @Published var isPresentedAppinformationPopUp = false

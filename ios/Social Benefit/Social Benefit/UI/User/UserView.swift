@@ -9,78 +9,82 @@ import SwiftUI
 
 struct UserView: View {
     
-    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var homescreen: HomeScreenViewModel
+    @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
     @State var selection: Int? = nil
     
     var body: some View {
-        NavigationView {
-            VStack {
-                
-                Spacer()
-                    .frame(height: 70)
-                
-                NavigationLink(destination: UserInformationView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar).navigationBarHidden(true),
-                               tag: 1,
-                               selection: $selection,
-                               label: {
-                                UserInforView(selection: $selection, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar)
-                               })
+        VStack {
+        
+            Spacer()
+                .frame(height: 70)
+            
+            NavigationLink(destination: UserInformationView().navigationBarHidden(true),
+                           tag: 1,
+                           selection: $selection,
+                           label: { UserInforView(selection: $selection) })
+            
+            Spacer()
+                .frame(height: 30)
+            
+            
+            ScrollView (.vertical, showsIndicators: false) {
+                VStack(spacing: 8) {
+                    
+                    NavigationLink(destination: EmptyView()) {
+                        EmptyView()
+                    }
+                    
+                    NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
+                        FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
+                    }
+                    
+                    NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
+                        FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
+                    }
+                    
+                    NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
+                        FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
+                    }
+                    
+                    NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
+                        FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
+                    }
+                }.padding(.top, 10)
                 
                 Spacer()
                     .frame(height: 30)
                 
-                
-                ScrollView (.vertical, showsIndicators: false) {
-                    VStack(spacing: 8) {
-                        NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
-                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, selection: $selection, selectedNumber: 2)
-                        }
-                        
-                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, selection: $selection, selectedNumber: 3)
-                        }
-                        
-                        NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
-                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, selection: $selection, selectedNumber: 4)
-                        }
-                        
-                        NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
-                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, selection: $selection, selectedNumber: 5)
-                        }
-                    }.padding(.top, 10)
-                    
-                    Spacer()
-                        .frame(height: 30)
-                    
-                    VStack(spacing: 8) {
-                        NavigationLink(destination: SettingsView().navigationBarHidden(true), tag: 6, selection: $selection) {
-                            FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, selection: $selection, selectedNumber: 6)
-                        }
-                        
-                        NavigationLink(destination: Text("7"), tag: 7, selection: $selection) {
-                            FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, selection: $selection, selectedNumber: 7)
-                        }
-                        
-                        NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-                            FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, selection: $selection, selectedNumber: 8)
-                        }
+                VStack(spacing: 8) {
+                    NavigationLink(destination: SettingsView().navigationBarHidden(true), tag: 6, selection: $selection) {
+                        FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 6)
                     }
-                    //
-                    Spacer().frame(height: 30)
                     
-                    VStack {
-                        NavigationLink(destination: Text("9"), tag: 9, selection: $selection) {
-                            FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, selection: $selection, selectedNumber: 9)
-                        }
+                    
+                    FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7)
+                    
+                    
+                    NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
+                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8)
+                    }
+                }
+                //
+                Spacer().frame(height: 30)
+                
+                VStack {
+                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
+                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
                     }
                 }
                 
-                
-            }.background(
-                BackgroundViewWithNotiAndSearch()
-            )
-            .navigationBarHidden(true)
-            .navigationViewStyle(StackNavigationViewStyle())
+                Spacer()
+                    .frame(height: 100)
+            }
+        }
+        .background(BackgroundViewWithNotiAndSearch())
+        
+        .onAppear {
+            homescreen.isPresentedTabBar = true
         }
     }
 }
@@ -88,22 +92,24 @@ struct UserView: View {
 struct UserInforView: View {
     
     @Binding var selection: Int?
-    @Binding var isPresentedTabBar: Bool
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
         ZStack {
             Button(action: {
                 // Do something
                 self.selection = 1
-                self.isPresentedTabBar = false
+                self.homeScreenViewModel.isPresentedTabBar = false
                 
             }, label: {
                 HStack(spacing: 20) {
-                    URLImageView(url:  userInfor.avatar)
+                    
+                    URLImageView(url: userInfor.avatar)
                         .frame(width: 50, height: 50, alignment: .center)
                         .clipShape(Circle())
                         .padding(.all, 5)
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
+                        .padding(.leading, 5)
                     
                     VStack(alignment: .leading) {
                         Text(userInfor.name.uppercased())
@@ -124,7 +130,7 @@ struct UserInforView: View {
                         .padding(.trailing, 10)
                 }
                 .frame(width: ScreenInfor().screenWidth - 50, alignment: .leading)
-                .padding(.leading, 30)
+                .padding(.leading)
                 .background(
                     Capsule()
                         .fill(Color.white)
@@ -141,7 +147,7 @@ struct UserInforView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        HomeScreenView(selectedTab: "house")
     }
 }
 

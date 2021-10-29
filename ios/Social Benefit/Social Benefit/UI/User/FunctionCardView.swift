@@ -10,11 +10,13 @@ import SwiftUI
 struct FunctionCardView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
     
     var thumnail: String
     var thumailColor: Color
     var functionName: String
     var chevron: Bool
+    var isPresentTabBar: Bool
     
     @Binding var selection: Int?
     var selectedNumber: Int
@@ -24,7 +26,11 @@ struct FunctionCardView: View {
             Button(action: {
                 // Do something
                 self.selection = selectedNumber
-                self.homeScreenViewModel.isPresentedTabBar = false
+                self.homeScreenViewModel.isPresentedTabBar = isPresentTabBar
+                if selectedNumber == 7 {
+                    customerSupportViewModel.isPresentCustomerSupportPopUp = true
+                    customerSupportViewModel.resetText()
+                }
             }, label: {
                 HStack {
                     Image(systemName: thumnail)
@@ -53,10 +59,11 @@ struct FunctionCardView: View {
         }
         
     }
+    
 }
 
 struct FunctionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, selection: .constant(1), selectedNumber: 1)
+        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, isPresentTabBar: false, selection: .constant(1), selectedNumber: 1)
     }
 }

@@ -19,6 +19,16 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     @Published var categoryId: Int = -1
     @Published var filterConditionItems = "[]"
     
+    // Loading & refreshing
+    @Published var isLoading: Bool = false
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshing == true {
+                self.refresh()
+            }
+        }
+    }
+    
     private let offersService = MerchantVoucherListByCategoryService()
     private var cancellables = Set<AnyCancellable>()
     
@@ -42,11 +52,20 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     }
     
     func loadSearchData(searchPattern: String) {
+        self.isLoading = true
         offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
                 
+                self.isLoading = false
+                self.isRefreshing = false
             }
+        }
+    }
+    
+    func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.loadSearchData(searchPattern: "")
         }
     }
     

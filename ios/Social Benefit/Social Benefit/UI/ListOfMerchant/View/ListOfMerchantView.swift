@@ -16,28 +16,48 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                VStack(spacing: 15) {
-                    Spacer().frame(height: 25)
-                    SearchBarAndMyVoucherView()
-                    MerchantCategoryItemView()
-                    ScrollView {
-                        SpecialOffersView()
-                        FilterView()
-                        AllOffersView()
-                    }
-                }.navigationBarHidden(true)
-                    .background(BackgroundViewWithNotiAndSearch())
-            }
-            .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-            .onAppear {
-//                homeScreenViewModel.isPresentedTabBar = true
-                self.specialOffersViewModel.reset()
-                self.offersViewModel.reset()
+        
+        VStack(spacing: 15) {
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.05)
+            SearchBarAndMyVoucherView()
+            MerchantCategoryItemView()
+            
+            if (specialOffersViewModel.isLoading || offersViewModel.isLoading) && !(specialOffersViewModel.isRefreshing || offersViewModel.isRefreshing) {
+                LoadingPageView()
+            } else {
+                let binding = Binding<Bool>(
+                    get: {
+                        self.specialOffersViewModel.isRefreshing && self.offersViewModel.isRefreshing
+                    },
+                                              
+                    set: {
+                        self.specialOffersViewModel.isRefreshing = $0
+                        self.offersViewModel.isRefreshing = $0
+                    })
+                
+                RefreshableScrollView(height: 70, refreshing: binding) {
+                    SpecialOffersView()
+                    FilterView()
+                    AllOffersView()
+                }
             }
         }
+//        .overlay (
+//            VStack {
+//                if merchantCategoryItemViewModel.selection {
+//                    ListOfMerchantViewByCategory()
+//                        .background(Color.white)
+//                }
+//            }
+//        )
+        .background(BackgroundViewWithNotiAndSearch(), alignment: .top)
+        .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+        .onAppear {
+            self.specialOffersViewModel.reset()
+            self.offersViewModel.reset()
+        }
     }
+    
 }
 
 struct ListOfMerchantView_Previews: PreviewProvider {

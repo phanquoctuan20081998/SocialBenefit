@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
     
@@ -14,7 +15,8 @@ struct Constants {
     static let SortDirectionType = ["ASC", "DESC"]
     
     // Header...
-    static let TABHEADER = ["all", "active", "used", "expried"]
+    static let INTERNALNEWS_TABHEADER = ["all", "training", "annoucement"]
+    static let MYVOUCHER_TABHEADER = ["all", "active", "used", "expried"]
     static let VOUCHER_DETAIL_TAB = ["information", "applied_stores", "similar_promotions"]
     
     // API load...
@@ -44,9 +46,9 @@ struct Constants {
         static let VN = 1
     }
     
-    static let LANGUAGE_TAB = ["eng", "vn"]
+    static let LANGUAGE_TAB = ["en", "vn"]
     
-    // Change Password Error
+    // Change Password Error...
     struct ChangePasswordErrors {
         static let password_not_match = "password_not_match"
         static let password_6_to_15 = "password_6_to_15"
@@ -60,4 +62,27 @@ struct Constants {
         static let MOBILE_CHANGE_PASSWORD_FAIL = -1
         static let MOBILE_CHANGE_PASSWORD_OK = 0
     }
+    
+    // Background Search Bar...
+    static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),
+                                    BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),
+                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red, destination: 2),
+                                    BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white, destination: 3),
+                                    BackgroundSearch(tab: "internal_news", icon: "newspaper.fill", color: Color.green, destination: 4),
+                                    BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue, destination: 5),
+                                    BackgroundSearch(tab: "merchant_voucher_list", icon: "cart.fill", color: Color.blue, destination: 6),
+                                    BackgroundSearch(tab: "my_vouchers", icon: "ic_my_voucher", color: Color.white, destination: 7),
+                                    BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow, destination: 8),
+                                    BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white, destination: 9),
+                                    BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray, destination: 10)]
+    
 }
+
+struct BackgroundSearch {
+    var tab: String
+    var icon: String
+    var color: Color
+    var destination: Int
+}
+
+

@@ -26,8 +26,8 @@ struct CustomTabBarView: View {
         .edgesIgnoringSafeArea(.bottom)
         .background(
             Color.white
-                .clipShape(TabCurveShape(tabPoint: getCurvePoint()))
-                .background(Color.blue.opacity(0.2))
+//                .clipShape(TabCurveShape(tabPoint: getCurvePoint()))
+//                .background(Color.blue.opacity(0.2))
                 .background(Color.white)
                 .edgesIgnoringSafeArea(.bottom)
         )
@@ -105,7 +105,7 @@ struct TabBarButtonView: View {
 
 struct CustomTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(selectedTab: "house")
     }
 }
 

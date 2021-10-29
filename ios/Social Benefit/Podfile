@@ -9,5 +9,6 @@ target 'Social Benefit' do
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SDWebImageSwiftUI'
+#  pod 'Firebase/Analytics'
   
 end

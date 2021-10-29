@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @EnvironmentObject var homeScreen: HomeScreenViewModel
     @ObservedObject var settingsViewModel = SettingsViewModel()
     
     var body: some View {
@@ -56,7 +57,9 @@ struct SettingsView: View {
             }
             
             Spacer()
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true))
+        }.background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "", isHaveLogo: true))
+        
+        // Pop Up
         .overlay(LanguageSelectorPopUp(isPresentedPopup: $settingsViewModel.isPresentedLanguagePopup), alignment: .top)
         .overlay(AppInformationPopUp(isPresentedPopup: $settingsViewModel.isPresentedAppinformationPopUp, companyName: "nissho".localized, companyAddress: "324, tay Son"))
         .overlay(ChangePasswordPopUpView(isPresentedPopUp: $settingsViewModel.isPresentedChangePasswordPopUp)
@@ -77,10 +80,12 @@ struct SettingsView: View {
             Image(systemName: image)
                 .foregroundColor(color)
                 .font(.system(size: 20))
-                .if(title == "security".localized) { view in
+                .frame(width: 30, height: 30)
+                .if(image == "key.fill") { view in
                     view.rotationEffect(.degrees(-90))
                 }
             Text(title)
+                .padding(.leading, 5)
             Spacer()
             
             if trailingElement == "selector" {
@@ -109,6 +114,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        HomeScreenView(selectedTab: "")
     }
 }

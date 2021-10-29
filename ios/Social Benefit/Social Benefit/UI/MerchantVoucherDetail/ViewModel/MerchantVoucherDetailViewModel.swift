@@ -25,16 +25,36 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     // For store QR data
     @Published var QRData = VoucherCodeData(voucherCode: "", remainTime: 0)
     
+    // For refreshing
+    @Published var isLoading: Bool = false
+    @Published var isRefreshingStoreList: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshingStoreList == true {
+                self.reloadAppliedStore()
+            }
+        }
+    }
+    
+    @Published var isRefreshingSimiliarVoucher: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshingSimiliarVoucher == true {
+                self.reloadSimilarVoucher()
+            }
+        }
+    }
+    
     private let merchantVoucherDetailService = MerchantVoucherDetailService()
     private let appliedStoreMerchantListService = AppliedStoreMerchantListService()
     private let similarVoucherService = SimilarVoucherService()
     
     func getData(voucherId: Int) {
         self.selectedVoucherId = voucherId
+        self.isLoading = true
         
         merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
             DispatchQueue.main.async {
                 self.merchantVoucherDetail = data
+                self.isLoading = false
             }
         }
         
@@ -55,6 +75,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         appliedStoreMerchantListService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexAppliedStore) { data in
             DispatchQueue.main.async {
                 self.appliedStoreMerchantList = data
+                self.isRefreshingStoreList = false
             }
         }
     }
@@ -63,6 +84,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         similarVoucherService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexSimilarVoucher) { data in
             DispatchQueue.main.async {
                 self.similarVouchers = data
+                self.isRefreshingSimiliarVoucher = false
             }
         }
     }
@@ -77,6 +99,16 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 let merchantVoucherDetailDebug = MerchantVoucherDetailData(id: 1841, imageURL: "", name: "Ưu đãi giá tiền taxi", merchantName: "Công ty giầy thể thao Triệu Sơn", content: "<p>123</p>", favoriteValue: 2, outOfDate: "11/10/2021", shoppingValue: 11, pointValue: 900000, moneyValue: 1000000, discountValue: -10, hotlines: "", employeeLikeThis: true)
 

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct BackgroundViewWithNotiAndSearch: View {
-    
+    @EnvironmentObject var homeScreen: HomeScreenViewModel
+
     var body: some View {
         VStack {
+            
             Image("pic_background")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -21,29 +23,37 @@ struct BackgroundViewWithNotiAndSearch: View {
                         URLImageView(url: userInfor.companyLogo)
                             .frame(height: 30)
                             .padding(.leading)
+                            .onTapGesture {
+                                homeScreen.selectedTab = "house"
+                            }
                         
                         Spacer()
                         
                         HStack(spacing: 20) {
-                            Button(action: {
-                                // Do something
-
-                                
-                            }, label: {
-                                Image(systemName: "bell.fill")
-                            })
                             
-                            Button(action: {
+                            // Bell Button
+                            Button {
                                 // Do something
                                 
-                            }, label: {
+                                
+                            } label: {
+                                Image(systemName: "bell.fill")
+                            }
+                            
+                            // Search Button
+                            Button {
+                                withAnimation(.easeInOut) {
+                                    homeScreen.isPresentedSearchView = true
+                                }
+                            } label: {
                                 Image(systemName: "magnifyingglass")
-                            })
+                            }
                         }
                         .foregroundColor(.blue)
                         .padding(.trailing)
                         
-                    }.padding(.top, 50)
+                    }
+                        .padding(.top, ScreenInfor().screenHeight * 0.05)
                     , alignment: .top)
                 .edgesIgnoringSafeArea(.all)
             Spacer()
@@ -54,9 +64,13 @@ struct BackgroundViewWithNotiAndSearch: View {
 struct BackgroundViewWithoutNotiAndSearch: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var homeScreen: HomeScreenViewModel
     @Binding var isActive: Bool
     var title: String
     var isHaveLogo: Bool
+    var isHiddenTabBarWhenBack = true
+    
+    var backButtonTapped: () -> () = { }
     
     var body: some View {
         VStack {
@@ -71,12 +85,18 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                             Button(action: {
                                 self.presentationMode.wrappedValue.dismiss()
                                 self.isActive.toggle()
+                                if !isHiddenTabBarWhenBack {
+                                    homeScreen.isPresentedTabBar = true
+                                }
+                                
+                                backButtonTapped()
+                                
                             }, label: {
                                 VStack(alignment: .leading) {
                                     Image(systemName: "arrow.backward")
                                         .font(.headline)
                                         .foregroundColor(.blue)
-                                        .padding(.leading, 20)
+                                        .padding(.leading)
                                 }
                             }).padding()
                             
@@ -95,8 +115,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                                 .frame(height: 30, alignment: .trailing)
                                 .padding(.trailing, 25)
                         }
-                    }.padding(.top, 40)
-                    
+                    }.padding(.top, ScreenInfor().screenHeight * 0.05)
                     ,alignment: .top)
                 .edgesIgnoringSafeArea(.all)
             
@@ -108,7 +127,17 @@ struct BackgroundViewWithoutNotiAndSearch: View {
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundViewWithNotiAndSearch()
+//        BackgroundViewWithNotiAndSearch()
+        HomeScreenView(selectedTab: "tag")
+        
+//        MyVoucherView()
+//            .environmentObject(HomeScreenViewModel())
+//            .environmentObject(MyVoucherViewModel())
+//            .environmentObject(InternalNewsViewModel())
+////            .environmentObject(SpecialOffersViewModel())
+//            .environmentObject(MerchantCategoryItemViewModel())
+////            .environmentObject(OffersViewModel())
+//            .environmentObject(ConfirmInforBuyViewModel())
     }
 }
 

@@ -79,7 +79,7 @@ struct SecondCommentCardView: View {
     var body: some View {
         HStack(alignment: .top) {
             Spacer().frame(width: 70)
-            URLImageView(url: comment.avatar)
+            URLImageView(url: Config.baseURL + comment.avatar)
                 .clipShape(Circle())
                 .frame(width: 30, height: 30)
                 .padding(.all, 5)

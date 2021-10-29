@@ -20,6 +20,18 @@ class MerchantVoucherSpecialListViewModel: ObservableObject, Identifiable {
     
     @Published var selectedVoucherId: Int = -1
     
+    @Published var selection: Bool = false
+    
+    // Loading & refreshing
+    @Published var isLoading: Bool = false
+    @Published var isRefreshing: Bool = false {
+        didSet {
+            if oldValue == false && isRefreshing == true {
+                self.refresh()
+            }
+        }
+    }
+    
     private let specialOffersService = MerchantVoucherSpecialListService()
     private var cancellables = Set<AnyCancellable>()
     
@@ -38,10 +50,20 @@ class MerchantVoucherSpecialListViewModel: ObservableObject, Identifiable {
             .store(in: &cancellables)
     }
     
+    func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.loadSearchData(searchPattern: "")
+        }
+    }
+    
     func loadSearchData(searchPattern: String) {
+        self.isLoading = true
         specialOffersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId) { data in
             DispatchQueue.main.async {
                 self.allSpecialOffers = data
+                
+                self.isLoading = false
+                self.isRefreshing = false
             }
         }
     }

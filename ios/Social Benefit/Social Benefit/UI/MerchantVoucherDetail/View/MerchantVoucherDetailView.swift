@@ -13,6 +13,10 @@ struct MerchantVoucherDetailView: View {
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
+    // For navigation from homescreen
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    var isNavigationFromHomeScreen: Bool = false
+    
     var voucherId: Int
     
     @State var offset: CGFloat = 0
@@ -20,30 +24,60 @@ struct MerchantVoucherDetailView: View {
     
     var body: some View {
         VStack {
-            VoucherHeadline
-            InformationBar()
-            Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
-            ScrollableTabView
-            BottomButtonView()
+            if merchantVoucherDetailViewModel.isLoading {
+                ActivityRep()
+                    .frame(height: ScreenInfor().screenHeight * 0.3)
+                
+                Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
+                
+                ScrollableTabView
+                BottomButtonView()
+                
+            } else {
+                VoucherHeadline
+                InformationBar()
+                
+                Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
+                
+                ScrollableTabView
+                BottomButtonView()
+            }
+            
+            
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
+            }
+
+            Spacer().frame(height: 10)
+            
         }.environmentObject(merchantVoucherDetailViewModel)
             .navigationBarHidden(true)
             .overlay(
                 MyVoucherButtonView()
                     .padding(.trailing)
+                    .padding(.top, ScreenInfor().screenHeight * 0.02)
                 ,alignment: .topTrailing)
         
         // PopUp overlay...
-            .overlay(BuyVoucherPopUp())
+            .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
             .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
             .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
         
         
-            .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false))
+            .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false, backButtonTapped: backButtonTapped))
             .onAppear {
                 self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
                 self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
                 self.homeScreenViewModel.isPresentedTabBar = false
             }
+    }
+    
+    func backButtonTapped() {
+        if isNavigationFromHomeScreen {
+            homeViewModel.isPresentVoucherDetail = false
+            ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+        }
     }
 }
 

@@ -13,9 +13,10 @@ struct InternalNewsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)
     
-    @Binding var isPresentedTabBar: Bool
+//    @Binding var isPresentedTabBar: Bool
     
     @State private var selectedTabIndex = 0
     @State private var searchText = ""
@@ -24,8 +25,12 @@ struct InternalNewsView: View {
     @State var isActive = false
     
     var body: some View {
-        NavigationView {
+        VStack {
+            InternalNewsUpperView
+            
             VStack {
+                TabView
+                
                 if selectedTabIndex == 0 {
                     AllTabView
                 } else if selectedTabIndex == 1 {
@@ -33,76 +38,65 @@ struct InternalNewsView: View {
                 } else {
                     AnnoucementTabView
                 }
-            }
-            .padding(.top, 160)
-            .navigationBarHidden(true)
+            }.background(Color.white)
         }
-        .overlay(InternalNewsUpperView, alignment: .top)
-        .padding(.top, 0)
+        .background(
+            BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true)
+        )
         .background(
             NavigationLink(
                 destination: InternalNewsDetailView(internalNewData: selectedInternalNew).navigationBarHidden(true),
                 isActive: $isActive,
-                label: {EmptyView()})
+                label: { EmptyView() })
         )
     }
 }
 
 extension InternalNewsView {
     
+    private var TabView: some View {
+        HStack(spacing: 0) {
+            ForEach(Constants.INTERNALNEWS_TABHEADER.indices, id:\.self) { i in
+                Text(Constants.INTERNALNEWS_TABHEADER[i].localized)
+                    .font(.system(size: 15))
+                    .bold()
+                    .foregroundColor((selectedTabIndex == i) ? Color.blue : Color.gray)
+                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.INTERNALNEWS_TABHEADER.count), height: 30)
+                    .background((selectedTabIndex == i) ? Color("nissho_light_blue") : Color.white)
+                    .onTapGesture {
+                        withAnimation {
+                            selectedTabIndex = i
+                        }
+                    }
+            }
+        }.frame(width: ScreenInfor().screenWidth)
+            .background(Color.white)
+    }
+    
     private var InternalNewsUpperView: some View {
         VStack {
-            Spacer().frame(height: 50)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             
-            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
+//            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
         }
-        .background(Image("pic_background")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .edgesIgnoringSafeArea([.top])
-                        .frame(width: ScreenInfor().screenWidth)
-                        .overlay(
-                            HStack {
-                                HStack {
-                                    Button(action: {
-                                        //Do something
-                                        self.presentationMode.wrappedValue.dismiss()
-                                        self.isPresentedTabBar.toggle()
-                                    }, label: {
-                                        Image(systemName: "arrow.backward")
-                                            .font(.headline)
-                                            .foregroundColor(.blue)
-                                            .padding(.leading, 20)
-                                    }).padding(5)
-                                    
-                                    Text("internal_news".localized)
-                                        .font(.system(size: 15))
-                                        .foregroundColor(.blue)
-                                        .fontWeight(.bold)
-                                    
-                                    Spacer()
-                                }
-                                
-                                URLImageView(url: userInfor.companyLogo)
-                                    .frame(width: 30, height: 30)
-                                    .padding(.all, 15)
-                            }.padding(.top, 40)
-                            , alignment: .top)
-                        
-                        .edgesIgnoringSafeArea(.all)
-                        )
     }
     
     private var AllTabView: some View {
         ZStack {
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                    
-                    ForEach(filteredData, id: \.self) { item in
-                        InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
+                    VStack (alignment: .leading, spacing: 10) {
+
+                        let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.localizedStandardContains(searchText) || $0.shortBody.localizedStandardContains(searchText))})
+
+                        ForEach(filteredData, id: \.self) { item in
+                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
+
+                        Spacer().frame(height: 50)
                     }
                 }
             }
@@ -111,13 +105,19 @@ extension InternalNewsView {
     
     private var TrainingTabView: some View {
         ZStack {
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    let filteredData = internalNewsViewModel.trainingInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                    
-                    ForEach(filteredData, id: \.self) { item in
-                        InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
+                    VStack (alignment: .leading, spacing: 10) {
+                        
+                        let filteredData = internalNewsViewModel.trainingInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
+                        
+                        ForEach(filteredData, id: \.self) { item in
+                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
+                        
+                        Spacer().frame(height: 50)
                     }
                 }
             }
@@ -126,13 +126,19 @@ extension InternalNewsView {
     
     private var AnnoucementTabView: some View {
         ZStack {
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    let filteredData = internalNewsViewModel.announcementInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                    
-                    ForEach(filteredData, id: \.self) { item in
-                        InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
+                    VStack (alignment: .leading, spacing: 10) {
+                        
+                        let filteredData = internalNewsViewModel.announcementInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
+                        
+                        ForEach(filteredData, id: \.self) { item in
+                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
+                        
+                        Spacer().frame(height: 50)
                     }
                 }
             }
@@ -143,7 +149,7 @@ extension InternalNewsView {
 
 struct SlidingTabView_Previews : PreviewProvider {
     static var previews: some View {
-        InternalNewsView(isPresentedTabBar: .constant(false))
+        InternalNewsView()
             .environmentObject(InternalNewsViewModel())
     }
 }

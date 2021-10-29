@@ -14,30 +14,8 @@ struct ChangePasswordPopUpView: View {
     @State var isPresentComfirmPopUp = false
     
     var body: some View {
-        ZStack {
-            if isPresentedPopUp {
-                Color.black
-                    .opacity(0.5)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        if settingsViewModel.isAllTextFiledAreBlank {
-                            withAnimation {
-                                isPresentedPopUp = false
-                            }
-                        } else {
-                            isPresentComfirmPopUp = true
-                        }
-                    }
-                
-                PopUpContent
-                    .animation(.easeInOut)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
-        }
-        
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .foregroundColor(.black)
-        .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp))
+        PopUpView(isPresentedPopUp: $isPresentedPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
+            .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $settingsViewModel.isPresentedChangePasswordPopUp))
     }
 }
 
@@ -57,7 +35,7 @@ extension ChangePasswordPopUpView {
                 }
             }.frame(height: 20)
             
-            VStack(spacing: 25) {
+            VStack(spacing: 15) {
                 PasswordTextField(title: "old_password".localized, placeHolder: "enter_old_password", text: $settingsViewModel.oldPassword)
                     .onTapGesture {
                         settingsViewModel.resetError()
@@ -75,7 +53,7 @@ extension ChangePasswordPopUpView {
             Spacer()
             
             HStack {
-
+                
                 // Update button...
                 Button(action: {
                     settingsViewModel.updateButtontapped()
@@ -111,13 +89,24 @@ extension ChangePasswordPopUpView {
             }
             
         }.font(.system(size: 13))
-        .padding(.vertical, 30)
-        .frame(width: ScreenInfor().screenWidth * 0.9, height: 400)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-               .fill(Color.white))
+            .padding(.vertical, 25)
+            .frame(width: ScreenInfor().screenWidth * 0.9, height: 400)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.white))
+            .animation(.easeInOut)
+            .transition(.move(edge: .bottom).combined(with: .opacity))
     }
     
+    func outOfPopUpAreaTapped() {
+        if settingsViewModel.isAllTextFiledAreBlank {
+            withAnimation {
+                isPresentedPopUp = false
+            }
+        } else {
+            isPresentComfirmPopUp = true
+        }
+    }
     
     @ViewBuilder
     func PasswordTextField(title: String, placeHolder: String, text: Binding<String>) -> some View {
@@ -126,69 +115,16 @@ extension ChangePasswordPopUpView {
             SecureField(placeHolder, text: text)
                 .padding(10)
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-        
+            
         }.padding(.horizontal, 20)
     }
 }
 
-// Them ham common check password
-
-struct ConfirmPopUp: View {
-    
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
-    @Binding var isPresentedPopUp: Bool
-    
-    var body: some View {
-        ZStack {
-            if isPresentedPopUp {
-                Color.black
-                    .opacity(0.6)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        isPresentedPopUp = false
-                    }
-                
-                VStack {
-                    
-                    VStack(alignment: .leading) {
-                        Text("warning".localized)
-                        Text("confirm_message".localized)
-                    }.font(.system(size: 15))
-                    .padding(.init(top: 20, leading: 20, bottom: 0, trailing: 20))
-                    .frame(width: ScreenInfor().screenWidth * 0.8, height: 80, alignment: .topLeading)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 30) {
-                        Button("cancel".localized.uppercased()) {
-                            isPresentedPopUp = false
-                        }
-                        
-                        Button("confirm".localized.uppercased()) {
-                            isPresentedPopUp = false
-                            settingsViewModel.isPresentedChangePasswordPopUp = false
-                        }
-                    }.padding(20)
-                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .bottomTrailing)
-                    .foregroundColor(.blue)
-                    
-                }.font(.system(size: 13))
-                .frame(width: ScreenInfor().screenWidth * 0.8, height: 130)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                       .fill(Color.white)
-                        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 10))
-
-            }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .foregroundColor(.black)
-    }
-}
 
 struct ChangePasswordPopUpView_Previews: PreviewProvider {
     static var previews: some View {
-//        ChangePasswordPopUpView(isPresentedPopUp: .constant(true))
-//            .environmentObject(SettingsViewModel())
+        //        ChangePasswordPopUpView(isPresentedPopUp: .constant(true))
+        //            .environmentObject(SettingsViewModel())
         
         SettingsView()
     }

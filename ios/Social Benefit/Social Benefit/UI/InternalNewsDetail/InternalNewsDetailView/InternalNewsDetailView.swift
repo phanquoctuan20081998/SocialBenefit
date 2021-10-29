@@ -14,32 +14,47 @@ struct InternalNewsDetailView: View {
     @ObservedObject var commentViewModel: CommentViewModel
     @ObservedObject var reactViewModel: ReactViewModel
     
+    // For navigation from homescreen
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    var isNavigationFromHomeScreen: Bool = false
+    var isHiddenTabBarWhenBack: Bool
+    
     var internalNewData: InternalNewsData
     
-    @State var commentText = ""
-    @State var isReply: Bool = false
-    @State var parentId: Int = -1
-    @State var replyTo: String = ""
-    @State var isShowReactionBar: Bool = false
     @State var previousReaction: Int = 6
-    
     @State private var proxy: AmzdScrollViewProxy? = nil
-    @State private var moveToPosition: Int = 0
+    @State private var webViewHeight: CGFloat = .zero
+    
+    init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool, isNavigationFromHomeScreen: Bool) {
+        self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
+        self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
+        self.internalNewData = internalNewData
+        self.isHiddenTabBarWhenBack = isHiddenTabBarWhenBack
+        self.isNavigationFromHomeScreen = isNavigationFromHomeScreen
+    }
+    
+    init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool) {
+        self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
+        self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
+        self.internalNewData = internalNewData
+        self.isHiddenTabBarWhenBack = isHiddenTabBarWhenBack
+    }
     
     init(internalNewData: InternalNewsData) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
         self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
         self.internalNewData = internalNewData
+        self.isHiddenTabBarWhenBack = true
     }
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 50)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
-            ScrollView(.vertical, showsIndicators: false) {
+            RefreshableScrollView(height: 70, refreshing: self.$commentViewModel.isRefreshing) {
                 AmzdScrollViewReader { proxy in
                     ScrollViewContent
-                    .onAppear { self.proxy = proxy }
+                        .onAppear { self.proxy = proxy }
                 }
                 Spacer().frame(height: 30)
             }
@@ -48,7 +63,15 @@ struct InternalNewsDetailView: View {
             
             CommentBarView
             
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true))
+        }
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
+    }
+    
+    func backButtonTapped() {
+        if isNavigationFromHomeScreen {
+            homeViewModel.isPresentInternalNewDetail = false
+            ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+        }
     }
 }
 
@@ -61,13 +84,13 @@ extension InternalNewsDetailView {
                 VStack {
                     PostContentView
                     LikeAndCommentCount
-                    Divider().frame(width: ScreenInfor().screenWidth*0.9)
+                    Divider().frame(width: ScreenInfor().screenWidth * 0.9)
                     LikeAndCommentButton
                 }.zIndex(0)
                 
-                if isShowReactionBar {
-                    ReactionBarView(isShowReactionBar: $isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                        .offset(x: -30, y: 90)
+                if reactViewModel.isShowReactionBar {
+                    ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
+                        .offset(x: -30, y: 50 + webViewHeight)
                         .zIndex(1)
                 }
             }
@@ -76,48 +99,55 @@ extension InternalNewsDetailView {
             
             Spacer().frame(height: 110)
             
-            VStack(spacing: 10) {
-                
-                let parentCommentMax = commentViewModel.parentComment.indices
-                ForEach(parentCommentMax, id: \.self) { i in
+            
+            if commentViewModel.isLoading && !commentViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                VStack(spacing: 10) {
                     
-                    VStack {
-                        FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $isReply, parentId: $parentId, replyTo: $replyTo, moveToPosition: $moveToPosition)
+                    let parentCommentMax = commentViewModel.parentComment.indices
+                    ForEach(parentCommentMax, id: \.self) { i in
                         
-                        if commentViewModel.parentComment[i].childIndex != -1 {
-                            let childIndex = commentViewModel.parentComment[i].childIndex
+                        VStack {
+                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $commentViewModel.isReply, parentId: $commentViewModel.parentId, replyTo: $commentViewModel.replyTo, moveToPosition: $commentViewModel.moveToPosition)
                             
-                            ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
-                                SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
+                            if commentViewModel.parentComment[i].childIndex != -1 {
+                                let childIndex = commentViewModel.parentComment[i].childIndex
+                                
+                                ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
+                                    SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
+                                }
                             }
-                        }
-                    }.scrollId(i)
+                        }.scrollId(i)
+                    }
                 }
             }
         }
     }
     
     var PostContentView: some View {
+        
         VStack {
-            URLImageView(url: internalNewData.cover)
-                .frame(width: ScreenInfor().screenWidth*0.8, height: 150)
+            URLImageView(url: Config.baseURL + internalNewData.cover)
+                .frame(width: ScreenInfor().screenWidth * 0.8, height: 200)
                 .padding()
             
-            HStack {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(internalNewData.title.toUpperCase())
-                        .bold()
-                        .font(.system(size: 20))
-                        .lineLimit(2)
-                    
-                    HTMLView(htmlString: internalNewData.body)
-                }
-                Spacer()
-            }.padding(.horizontal)
-            .padding(.bottom)
-        }.frame(width: ScreenInfor().screenWidth*0.9)
-        .background(Color.white)
-        .cornerRadius(20)
+            VStack(alignment: .leading, spacing: 10) {
+                Text(internalNewData.title.toUpperCase())
+                    .bold()
+                    .font(.system(size: 19))
+                    .padding(.horizontal, 10)
+                
+                //                    HTMLView(htmlString: internalNewData.body)
+                Webview(dynamicHeight: $webViewHeight, htmlString: internalNewData.body, font: 22)
+                    .frame(width: ScreenInfor().screenWidth * 0.9, height: webViewHeight)
+            }
+            .padding(.bottom, 20)
+            
+            
+        }.frame(width: ScreenInfor().screenWidth * 0.9)
+            .background(Color.white)
+            .cornerRadius(20)
         
     }
     
@@ -127,27 +157,27 @@ extension InternalNewsDetailView {
             
             VStack(alignment: .leading, spacing: 3) {
                 
-                if self.isReply {
+                if commentViewModel.isReply {
                     HStack {
                         Text("reply_to".localized)
-                        Text(self.replyTo)
+                        Text(commentViewModel.replyTo)
                         Text(" - ")
                         
                         Button(action: {
-                            self.isReply = false
-                            self.parentId = -1
+                            commentViewModel.isReply = false
+                            commentViewModel.parentId = -1
                         }, label: {
                             Text("cancel".localized)
                                 .fontWeight(.bold)
                         })
                         
                     }.font(.system(size: 13))
-                    .foregroundColor(.gray)
-                    .padding(.leading, 70)
+                        .foregroundColor(.gray)
+                        .padding(.leading, 70)
                 }
                 
                 HStack {
-                    URLImageView(url: userInfor.avatar)
+                    URLImageView(url: Config.baseURL + userInfor.avatar)
                         .clipShape(Circle())
                         .frame(width: 30, height: 30)
                         .padding(.all, 7)
@@ -155,15 +185,15 @@ extension InternalNewsDetailView {
                     
                     Spacer().frame(width: 18)
                     
-                    AutoResizeTextField(text: $commentText, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                    AutoResizeTextField(text: $commentViewModel.commentText, isFocus: .constant(false), minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding(5)
-                        
+                    
                         .overlay(RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.blue.opacity(0.5), lineWidth: 2))
                     
                     
-                    SendCommentButtonView(commentViewModel: commentViewModel, isReply: $isReply, commentText: $commentText, moveToPosition: $moveToPosition, proxy: $proxy, contentId: internalNewData.contentId, parentId: parentId, content: commentText)
+                    SendCommentButtonView(commentViewModel: commentViewModel, isReply: $commentViewModel.isReply, commentText: $commentViewModel.commentText, moveToPosition: $commentViewModel.moveToPosition, proxy: $proxy, contentId: internalNewData.contentId, parentId: commentViewModel.parentId, content: commentViewModel.commentText)
                 }
             }.padding(.top, 5)
         }.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
@@ -236,6 +266,7 @@ extension InternalNewsDetailView {
                         HStack {
                             Image(systemName: "hand.thumbsup")
                             Text("\((reactViewModel.getTop3React().count == 0) ? "be_the_first".localized : "like".localized)")
+                                .font(.system(size: 12))
                         }.foregroundColor(.black)
                         
                     } else {
@@ -243,55 +274,58 @@ extension InternalNewsDetailView {
                             HStack {
                                 Image(systemName: "hand.thumbsup.fill")
                                 Text("liked".localized)
+                                    .font(.system(size: 12))
                             }.foregroundColor(.blue)
                             
                         } else if self.reactViewModel.selectedReaction == 0 {
                             HStack {
                                 Image(systemName: "hand.thumbsup.fill")
                                 Text("liked".localized)
+                                    .font(.system(size: 12))
                             }.foregroundColor(.blue)
                             
                         } else {
                             HStack {
                                 Image("ic_fb_" + reactions[self.reactViewModel.selectedReaction])
-                                    //                                AnimatedImage(name: reactions[self.reactViewModel.selectedReaction] + ".gif")
-                                    //                                    .customLoopCount(2)
+                                //                                AnimatedImage(name: reactions[self.reactViewModel.selectedReaction] + ".gif")
+                                //                                    .customLoopCount(2)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 30,
                                            height: 30)
                                 Text(reactions[self.reactViewModel.selectedReaction].localized)
                                     .foregroundColor(reactionColors[self.reactViewModel.selectedReaction])
+                                    .font(.system(size: 12))
                             }
                         }
                     }
                 }.frame(height: 40)
-                .onTapGesture {
-                    if self.reactViewModel.isLike {
+                    .onTapGesture {
+                        if self.reactViewModel.isLike {
+                            
+                            //Update delete reaction on server
+                            AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: Constants.ReactContentType.INTERNAL_NEWS, reactType: self.reactViewModel.selectedReaction)
+                            
+                            self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] -= 1
+                            self.reactViewModel.numOfReact -= 1
+                            self.reactViewModel.selectedReaction = 6
+                            
+                        } else {
+                            
+                            self.reactViewModel.selectedReaction = 0
+                            self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] += 1
+                            self.reactViewModel.numOfReact += 1
+                            
+                            //Update delete uncheck reaction on server
+                            AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
+                            self.previousReaction = self.reactViewModel.selectedReaction
+                        }
+                        self.reactViewModel.isLike.toggle()
                         
-                        //Update delete reaction on server
-                        AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: Constants.ReactContentType.INTERNAL_NEWS, reactType: self.reactViewModel.selectedReaction)
-                        
-                        self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] -= 1
-                        self.reactViewModel.numOfReact -= 1
-                        self.reactViewModel.selectedReaction = 6
-                        
-                    } else {
-                        
-                        self.reactViewModel.selectedReaction = 0
-                        self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] += 1
-                        self.reactViewModel.numOfReact += 1
-                        
-                        //Update delete uncheck reaction on server
-                        AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
-                        self.previousReaction = self.reactViewModel.selectedReaction
                     }
-                    self.reactViewModel.isLike.toggle()
-                    
-                }
-                .gesture(DragGesture(minimumDistance: 0)
-                            .onChanged(onChangedValue(value:))
-                            .onEnded(onEndValue(value:)))
+                    .gesture(DragGesture(minimumDistance: 0)
+                                .onChanged(onChangedValue(value:))
+                                .onEnded(onEndValue(value:)))
             }
             
             Spacer()
@@ -299,12 +333,13 @@ extension InternalNewsDetailView {
             HStack {
                 Image(systemName: "bubble.left")
                 Text("comment".localized)
+                    .font(.system(size: 12))
             }
         }.padding(.horizontal)
     }
     
     func onChangedValue(value: DragGesture.Value) {
-        withAnimation(.easeIn) {self.isShowReactionBar = true}
+        withAnimation(.easeIn) {reactViewModel.isShowReactionBar = true}
         withAnimation(Animation.linear(duration: 0.15)) {
             let x = value.location.x
             
@@ -327,8 +362,8 @@ extension InternalNewsDetailView {
                 self.reactViewModel.reactCount[self.previousReaction] -= 1
             }
             
-            self.isShowReactionBar = false
-            self.reactViewModel.isLike = true
+            reactViewModel.isShowReactionBar = false
+            reactViewModel.isLike = true
             
             //Update reaction on server
             AddReactService().getAPI(contentId: commentViewModel.contentId, contentType: 1, reactType: self.reactViewModel.selectedReaction)
@@ -353,34 +388,34 @@ struct SendCommentButtonView: View {
     
     var body: some View {
         Button(action: {
-            let addCommnetService = AddCommentService(contentId: contentId, parentId: parentId, content: content)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let newComment = CommentData(id: addCommnetService.newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
-                
-                commentViewModel.updateComment(newComment: newComment)
-            }
-            
-            // Move to the latest comment...
-            // if comment not reply anything
-            if parentId == -1 {
-                if let proxy = proxy {
-                    DispatchQueue.main.async {
-                        proxy.scrollTo(.bottom, animated: true)
+            AddCommentService().getAPI(contentId: contentId, parentId: parentId, content: content, returnCallBack: { newCommentId in
+                DispatchQueue.main.async {
+                    let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
+                    
+                    commentViewModel.updateComment(newComment: newComment)
+                    
+                    // Move to the latest comment...
+                    // if comment not reply anything
+                    if parentId == -1 {
+                        if let proxy = proxy {
+                            DispatchQueue.main.async {
+                                proxy.scrollTo(.bottom, animated: true)
+                            }
+                        }
+                    } else {
+                        if let proxy = proxy {
+                            DispatchQueue.main.async {
+                                proxy.scrollTo(self.moveToPosition,
+                                               alignment: .bottom,
+                                               animated: true)
+                            }
+                        }
                     }
+                    
+                    self.commentText = ""
+                    self.commentViewModel.numOfComment += 1
                 }
-            } else {
-                if let proxy = proxy {
-                    DispatchQueue.main.async {
-                        proxy.scrollTo(self.moveToPosition,
-                                       alignment: .bottom,
-                                       animated: true)
-                    }
-                }
-            }
-            
-            self.commentText = ""
-            self.commentViewModel.numOfComment += 1
+            })
         }, label: {
             Image(systemName: "paperplane.circle.fill")
                 .padding(.trailing, 3)
@@ -388,14 +423,14 @@ struct SendCommentButtonView: View {
                 .font(.system(size: 35))
                 .background(Color.white)
         })
-        .disabled(content.isEmpty)
+            .disabled(content.isEmpty)
     }
 }
 
 
 struct InternalNewsDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>Test</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
+        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>それでは申し訳ございません が、 　５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
 
