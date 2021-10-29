@@ -74,9 +74,7 @@ class CommentViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            self.initComment(contentId: self.contentId)
-        }
+        self.initComment(contentId: self.contentId)
     }
     
     func addSubscribers() {
