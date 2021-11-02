@@ -15,6 +15,9 @@ struct BenefitDetailView: View {
     var body: some View {
         VStack {
             VStack {
+                
+                Spacer().frame(height: 30)
+                
                 // Upper view...
                 // Reference at ListOfBenefitsView.swift...
                 BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "condition".localized, isShowTabBar: false)
@@ -37,13 +40,14 @@ struct BenefitDetailView: View {
                     .padding(30)
                 
                 getApplyButton()
+                    .padding(.bottom, 20)
             }
         }.overlay(ApplyPopupView())
     }
     
     @ViewBuilder
     func getApplyButton() -> some View {
-        
+        let _ = print(self.benefitDetailViewModel.applyStatus)
         switch self.benefitDetailViewModel.applyStatus {
         
         case 0:

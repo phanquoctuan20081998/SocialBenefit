@@ -15,6 +15,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     @Published var selectedVoucherId = -1
     @Published var fromIndexAppliedStore = 0
     @Published var fromIndexSimilarVoucher = 0
+    @Published var voucherId = -1
     
     // For display 3 bottom button controller...
     @Published var isBuy = false
@@ -78,6 +79,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
             DispatchQueue.main.async { [weak self] in
                 self!.merchantVoucherDetail = data
+                self!.voucherId = voucherId
                 
                 self!.appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: self!.fromIndexAppliedStore) { data in
                     DispatchQueue.main.async { [weak self] in

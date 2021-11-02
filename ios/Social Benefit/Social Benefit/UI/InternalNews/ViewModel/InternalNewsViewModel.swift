@@ -35,7 +35,7 @@ class InternalNewsViewModel: ObservableObject {
         
         self.isLoading = true
         
-        internalNewsService.getAPI { data in
+        internalNewsService.getAPI(fromIndex: 0, searchText: "", category: 0) { data in
             for item in data {
                 if item.newsCategory == 1 {
                     announcementInternalNews.append(item)

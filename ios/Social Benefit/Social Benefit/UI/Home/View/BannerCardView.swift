@@ -15,9 +15,10 @@ struct InternalNewsBannerView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
-    
+
     @State private var currentPage = 0
     @State var isMove: Bool = false
+    @State var data: [InternalNewsData] = []
     
     var body: some View {
         VStack {
@@ -39,12 +40,12 @@ struct InternalNewsBannerView: View {
                     //                        EmptyView()
                     //                    }
                     
-                    if internalNewsViewModel.allInternalNews.count != 0 {
+                    if data.count != 0 {
                         
-                        PagingView(index: $currentPage.animation(), maxIndex: internalNewsViewModel.allInternalNews.count - 1) {
-                            ForEach(internalNewsViewModel.allInternalNews.indices, id: \.self) { index in
-                                URLImageView(url: internalNewsViewModel.allInternalNews[index].cover)
-                                    .scaledToFill()
+                        PagingView(index: $currentPage.animation(), maxIndex: data.count - 1) {
+                            ForEach(data.indices, id: \.self) { index in
+                                URLImageView(url: data[index].cover)
+                                    .scaledToFit()
                                     .onTapGesture {
                                         DispatchQueue.main.async {
                                             homeViewModel.selectedIndex = index
@@ -70,6 +71,13 @@ struct InternalNewsBannerView: View {
                         label: { EmptyView() })
                 }
             )
+            .onAppear {
+                if internalNewsViewModel.allInternalNews.count < 6 {
+                    self.data = internalNewsViewModel.allInternalNews
+                } else {
+                    self.data = Array(internalNewsViewModel.allInternalNews[0..<5])
+                }
+            }
         }
         .foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
@@ -143,7 +151,7 @@ struct PromotionsBannerView: View {
             TopTitleView(title: "promotions".localized, topTitleTapped: toptitleTapped)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-            
+   
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
 //                    if data.count != 0 { //If Data can read
@@ -161,7 +169,7 @@ struct PromotionsBannerView: View {
                         PagingView(index: $currentPage.animation(), maxIndex: data.count - 1) {
                             ForEach(data.indices, id: \.self) { index in
                                 URLImageView(url: data[index].cover)
-                                    .scaledToFill()
+                                    .scaledToFit()
                                     .onTapGesture {
                                         DispatchQueue.main.async {
                                             homeViewModel.selectedIndex = index
@@ -184,7 +192,11 @@ struct PromotionsBannerView: View {
             //Get data from API
             .onAppear {
                 MerchantListService().getAPI { (data) in
-                    self.data = data
+                    if data.count < 6 {
+                        self.data = data
+                    } else {
+                        self.data = Array(data[0..<5])
+                    }
                 }
             }
         }

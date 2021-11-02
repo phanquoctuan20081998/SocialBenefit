@@ -193,10 +193,9 @@ struct OtherPopUpView: View {
                 Spacer().frame(height: 30)
             }
             
-            Spacer().frame(height: 30)
             
         }.padding(.vertical, 5)
-            .frame(height: 420)
+//            .frame(height: 420)
             .background(Color.white)
             .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
     }

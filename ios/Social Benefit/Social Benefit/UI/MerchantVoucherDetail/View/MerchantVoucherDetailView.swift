@@ -33,7 +33,7 @@ struct MerchantVoucherDetailView: View {
                         .background(Color.white.frame(width: ScreenInfor().screenWidth))
                 }
                 
-                .frame(width: ScreenInfor().screenWidth * 0.9)
+                .frame(width: ScreenInfor().screenWidth)
                 
             } else {
                 VoucherHeadline
@@ -129,21 +129,39 @@ extension MerchantVoucherDetailView {
 struct InformationBar: View {
     
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
+    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
     var body: some View {
         HStack {
             HStack(spacing: 5) {
                 Button(action: {
                     
-                    merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis.toggle()
+                    DispatchQueue.main.async {
+                        
+                        merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis.toggle()
+                        specialOffersViewModel.allSpecialOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[0]].employeeLikeThis.toggle()
+                        offersViewModel.allOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[1]].employeeLikeThis.toggle()
+                        
+                        if merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis {
+                            
+                            merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue += 1
+                            specialOffersViewModel.allSpecialOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[0]].favoriteValue += 1
+                            offersViewModel.allOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[1]].favoriteValue += 1
+                            
+                        } else {
+                            
+                            merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue -= 1
+                            specialOffersViewModel.allSpecialOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[0]].favoriteValue -= 1
+                            offersViewModel.allOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[1]].favoriteValue -= 1
+                            
+                        }
+                    }
                     
+            
                     AddReactService().getAPI(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ReactContentType.VOUCHER, reactType: Constants.ReactType.LOVE)
                     
-                    if merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis {
-                        merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue += 1
-                    } else {
-                        merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue -= 1
-                    }
+                    
                     
                 }, label: {
                     Image(systemName: "heart\(merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis ? ".fill" : "")")
@@ -179,6 +197,18 @@ struct InformationBar: View {
             }
         }.font(.system(size: 13))
         .frame(width: ScreenInfor().screenWidth * 0.9)
+    }
+    
+    func getIndex(_ id: Int) -> [Int] {
+        var index: [Int] = []
+        let i1 = specialOffersViewModel.allSpecialOffers.firstIndex(where: { $0.id == id })
+        let i2 = offersViewModel.allOffers.firstIndex(where: { $0.id == id })
+        
+        index.append(i1 ?? -1)
+        index.append(i2 ?? -1)
+        
+        return index
+        
     }
 }
 

@@ -12,11 +12,24 @@ import SwiftyJSON
     
 class InternalNewsService {
     
-    func getAPI(returnCallBack: @escaping ([InternalNewsData]) -> ()) {
+    func getAPI(fromIndex: Int, searchText: String, category: Int, returnCallBack: @escaping ([InternalNewsData]) -> ()) {
         let service = BaseAPI_Alamofire()
         var data = [InternalNewsData]()
         
-        let pageNum = 10
+        // 3 things should be consider: pageIndex, category, searchText...
+        
+        // 1 - pageIndex
+        let pageSize = 10
+        let page = fromIndex / pageSize
+        
+        // 2 - searchText
+        var filterSearchText = ""
+        
+        if !searchText.isEmpty {
+            filterSearchText = "\"title\":\"" + searchText + "\","
+        }
+        
+        // 3 - category, sort
         let companyId = userInfor.companyId
         
         // ApprovalStatus...
@@ -25,14 +38,18 @@ class InternalNewsService {
         // 3: Rejected
         // 4: Draft
         
-        let filter = "{\"companyId\":\"" + companyId + "\",\"approvalStatus\":\"2\"}"
+        let filter = "{\(filterSearchText)\"companyId\":\"\(companyId)\",\"approvalStatus\":\"2\", \"newsCategory\":\"\(category)\"}"
+        let sort = "[\"postDate\",\"DESC\",\"approveRejectDate\",\"DESC\"]"
         
+        // API
         var order: Int = 0
         
         let header: HTTPHeaders = ["token": userInfor.token]
-        let params: Parameters = ["page" : 0,
-                                  "size" : pageNum,
-                                  "filter" : filter]
+        let params: Parameters = ["page" : page,
+                                  "size" : pageSize,
+                                  "filter" : filter,
+                                  "sort": sort,
+                                  "mobile": 1]
         
         var contentId: Int?
         var title: String?
@@ -42,7 +59,7 @@ class InternalNewsService {
         var newsCategory: Int?
         
         service.makeCall(endpoint: Config.API_INTERNAL_NEWS_LIST, method: "GET", header: header, body: params, callback: { result in
-            
+            print(result)
             for i in 0..<result.count {
                 contentId = result[i]["id"].int ?? 0
                 title = result[i]["title"].string ?? ""
@@ -61,8 +78,3 @@ class InternalNewsService {
         })
     }
 }
-    
-
-
-
-

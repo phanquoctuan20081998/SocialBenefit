@@ -10,8 +10,8 @@ import Foundation
 
 struct Config {
     
-//    static let baseURL = "http://172.20.109.102:8089"
-    static let baseURL = "http://localhost:8089"
+    static let baseURL = "http://172.20.109.63:8089"
+//    static let baseURL = "http://localhost:8089"
     
     static let API_LOGIN = "/employee/login"
     static let API_EMPLOYEE_FORGOTPASS = "/employee/forgotpassword"
