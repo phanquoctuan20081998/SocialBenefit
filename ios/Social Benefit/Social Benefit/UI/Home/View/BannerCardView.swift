@@ -219,6 +219,9 @@ struct PromotionsBannerView: View {
 }
 
 struct MainCardView: View {
+    
+    @State var moveToWebView = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -251,10 +254,11 @@ struct MainCardView: View {
             Spacer()
             
             HStack (spacing: 5) {
-                mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
-                mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
-                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"))
-                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"))
+                mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"), buttonTapped: recognizeButtonTapped)
+                mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"), buttonTapped: myVoucherButtonTapped)
+//                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"), buttonTapped: myOrderButtonTapped)
+                mainButton(text: "VNPT".localized, image: "ic_vnpt", color: Color("nissho_blue"), buttonTapped: VNPTButtonTapped)
+                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"), buttonTapped: otherButtonTapped)
             }
             
         }.padding()
@@ -262,6 +266,31 @@ struct MainCardView: View {
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+        .background(
+            NavigationLink(destination: FullWebView().navigationBarHidden(true), isActive: $moveToWebView, label: {
+                EmptyView()
+            })
+        )
+        
+    }
+    
+    func recognizeButtonTapped() {
+        
+    }
+    
+    func myVoucherButtonTapped() {
+        
+    }
+    
+    func myOrderButtonTapped() {
+        
+    }
+    
+    func VNPTButtonTapped() {
+        self.moveToWebView.toggle()
+    }
+    
+    func otherButtonTapped() {
         
     }
 }
@@ -270,12 +299,14 @@ struct mainButton: View {
     var text: String
     var image: String
     var color: Color
+    var buttonTapped: () -> ()
     
     var body: some View {
         VStack {
             
             Button(action: {
                 // Do something
+                buttonTapped()
                 
             }, label: {
                 Circle()
