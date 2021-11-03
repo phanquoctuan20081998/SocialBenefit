@@ -56,9 +56,7 @@ class InternalNewsViewModel: ObservableObject {
     }
     
     func refresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            self.loadData()
-        }
+        self.loadData()
     }
 }
 

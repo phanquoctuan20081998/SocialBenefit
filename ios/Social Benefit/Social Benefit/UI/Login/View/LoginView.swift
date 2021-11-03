@@ -13,7 +13,7 @@ struct LoginView: View {
     @State var reload = false
     
     var body: some View {
-        NavigationView {
+        if !loginViewModel.isLogin {
             ZStack(alignment: .top) {
                 
                 // This for reload page after changing language...
@@ -30,10 +30,6 @@ struct LoginView: View {
                 }
                 
                 VStack(spacing: 20) {
-                    
-                    NavigationLink(destination: EmptyView()) {
-                        EmptyView()
-                    }
                     
                     Spacer().frame(height: 100)
                     
@@ -74,10 +70,9 @@ struct LoginView: View {
                 ErrorMessageView(error: "can_connect_server", isPresentedError: $loginViewModel.isPresentCannotConnectServerError)
                     .offset(y: 400)
                 
-                if loginViewModel.isLogin {
-                    NavigationLink(destination: HomeScreenView(selectedTab: "house").navigationBarHidden(true), isActive: $loginViewModel.isLogin) {
-                        EmptyView()
-                    }
+                if loginViewModel.isPresentResetPasswordView {
+                    ResetPasswordView()
+                        .environmentObject(loginViewModel)
                 }
                 
                 if loginViewModel.isLoading {
@@ -92,7 +87,10 @@ struct LoginView: View {
                 }
                 
             }.edgesIgnoringSafeArea(.all)
-            .navigationBarHidden(true)
+//            .navigationBarHidden(true)
+//        }
+        } else {
+            HomeScreenView(selectedTab: "house")
         }
     }
 }
@@ -208,13 +206,13 @@ extension LoginView {
                 loginViewModel.isPresentResetPasswordView.toggle()
                 loginViewModel.resetState()
             }
-            .background (
-                NavigationLink(
-                    destination: ResetPasswordView().navigationBarHidden(true),
-                    isActive: $loginViewModel.isPresentResetPasswordView,
-                    label: {
-                        EmptyView()
-                    }))
+//            .background (
+//                NavigationLink(
+//                    destination: ResetPasswordView().navigationBarHidden(true),
+//                    isActive: $loginViewModel.isPresentResetPasswordView,
+//                    label: {
+//                        EmptyView()
+//                    }))
         
     }
     

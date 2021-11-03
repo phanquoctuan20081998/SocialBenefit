@@ -11,6 +11,7 @@ struct ResetPasswordView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var resetPasswordViewModel = ResetPasswordViewModel()
+    @EnvironmentObject var loginViewModel: LoginViewModel
     
     var body: some View {
         NavigationView {
@@ -175,7 +176,7 @@ extension ResetPasswordView {
     var BackToLogin: some View {
         
         Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
+            self.loginViewModel.isPresentResetPasswordView = false
         }, label: {
             Text("back_login".localized)
                 .font(.system(size: 15))
