@@ -18,7 +18,6 @@ struct InternalNewsView: View {
 //    @Binding var isPresentedTabBar: Bool
     
     @State private var selectedTabIndex = 0
-    @State private var searchText = ""
     @State private var isSearching = false
     @State private var selectedInternalNew = InternalNewsData()
     @State var isActive = false
@@ -65,6 +64,13 @@ extension InternalNewsView {
                     .onTapGesture {
                         withAnimation {
                             selectedTabIndex = i
+                            if i == 0 {
+                                internalNewsViewModel.category = Constants.InternalNewsType.ALL
+                            } else if i == 1 {
+                                internalNewsViewModel.category = Constants.InternalNewsType.TRAINING
+                            } else if i == 2 {
+                                internalNewsViewModel.category = Constants.InternalNewsType.ANNOUCEMENT
+                            }
                         }
                     }
             }
@@ -75,7 +81,7 @@ extension InternalNewsView {
     private var InternalNewsUpperView: some View {
         VStack {
             Spacer().frame(height: ScreenInfor().screenHeight * 0.05 + 30)
-            SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
+            SearchBarView(searchText: $internalNewsViewModel.searchPattern, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             
 //            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
         }
@@ -89,9 +95,7 @@ extension InternalNewsView {
                 RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
                     VStack (alignment: .leading, spacing: 10) {
 
-                        let filteredData = internalNewsViewModel.allInternalNews.filter({searchText.isEmpty ? true : ($0.title.localizedStandardContains(searchText) || $0.shortBody.localizedStandardContains(searchText))})
-
-                        ForEach(filteredData, id: \.self) { item in
+                        ForEach(internalNewsViewModel.allInternalNews, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
 
@@ -110,9 +114,7 @@ extension InternalNewsView {
                 RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
                     VStack (alignment: .leading, spacing: 10) {
                         
-                        let filteredData = internalNewsViewModel.trainingInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                        
-                        ForEach(filteredData, id: \.self) { item in
+                        ForEach(internalNewsViewModel.trainingInternalNews, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
                         
@@ -130,10 +132,8 @@ extension InternalNewsView {
             } else {
                 RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
                     VStack (alignment: .leading, spacing: 10) {
-                        
-                        let filteredData = internalNewsViewModel.announcementInternalNews.filter({searchText.isEmpty ? true : ($0.title.contains(searchText) || $0.shortBody.contains(searchText))})
-                        
-                        ForEach(filteredData, id: \.self) { item in
+                    
+                        ForEach(internalNewsViewModel.announcementInternalNews, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
                         

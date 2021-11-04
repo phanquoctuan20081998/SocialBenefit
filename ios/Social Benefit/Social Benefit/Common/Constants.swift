@@ -23,6 +23,14 @@ struct Constants {
     static let MAX_NUM_API_LOAD = 10
     static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(30)
     
+    // Internal News Type
+    struct InternalNewsType {
+        static let ALL = 0
+        static let BLANK = 1
+        static let ANNOUCEMENT = 2
+        static let TRAINING = 3
+    }
+    
     // Comment & React...
     struct ReactType {
         static var LIKE = 0
@@ -85,5 +93,3 @@ struct BackgroundSearch {
     var color: Color
     var destination: Int
 }
-
-
