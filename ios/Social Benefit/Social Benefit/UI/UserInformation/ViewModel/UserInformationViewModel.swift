@@ -87,7 +87,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     
     func verifyPhoneNumber(phoneText: String) {
         DispatchQueue.main.async { [self] in
-            self.phoneText = trimStringWithNChar(10, string: phoneText)
+            self.phoneText = trimStringWithNChar(15, string: phoneText)
             checkEnableSendButton()
         }
     }
@@ -134,6 +134,8 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         }
         
         userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { isSuccessed in
+            
+            print(isSuccessed)
             
             if isSuccessed {
                 self.isSuccessed = isSuccessed

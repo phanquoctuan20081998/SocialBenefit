@@ -39,7 +39,7 @@ struct SimiliarVoucherView: View {
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
                                 if self.merchantVoucherDetailViewModel.similarVouchers.count % Constants.MAX_NUM_API_LOAD == 0 {
-                                    self.merchantVoucherDetailViewModel.reloadSimilarVoucher()
+                                    self.merchantVoucherDetailViewModel.loadMoreSimilarVoucher()
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

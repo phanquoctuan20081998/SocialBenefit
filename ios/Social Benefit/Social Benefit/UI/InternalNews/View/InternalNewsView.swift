@@ -74,7 +74,7 @@ extension InternalNewsView {
     
     private var InternalNewsUpperView: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.05 + 30)
             SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             
 //            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])

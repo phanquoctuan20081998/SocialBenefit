@@ -115,6 +115,29 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func loadMoreAppliedStore() {
+        appliedStoreMerchantListService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexAppliedStore) { data in
+            DispatchQueue.main.async {
+                for item in data {
+                    self.appliedStoreMerchantList.append(item)
+                    self.isRefreshingStoreList = false
+                }
+                
+            }
+        }
+    }
+    
+    func loadMoreSimilarVoucher() {
+        similarVoucherService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexSimilarVoucher) { data in
+            DispatchQueue.main.async {
+                for item in data {
+                    self.similarVouchers.append(item)
+                    self.isRefreshingSimiliarVoucher = false
+                }
+            }
+        }
+    }
+    
     func loadButtonController(buyVoucherInfor: BuyVoucherInforData) {
         DispatchQueue.main.async {
             if buyVoucherInfor.canUseNumber ?? 0 > 0 { self.isBuy = true }

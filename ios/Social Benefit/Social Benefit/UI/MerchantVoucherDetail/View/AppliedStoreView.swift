@@ -31,7 +31,7 @@ struct AppliedStoreView: View {
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
                                 if self.merchantVoucherDetailViewModel.appliedStoreMerchantList.count % Constants.MAX_NUM_API_LOAD == 0 {
-                                    self.merchantVoucherDetailViewModel.reloadAppliedStore()
+                                    self.merchantVoucherDetailViewModel.loadMoreAppliedStore()
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

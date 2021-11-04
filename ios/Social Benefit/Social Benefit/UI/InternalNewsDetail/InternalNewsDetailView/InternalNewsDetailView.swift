@@ -64,6 +64,7 @@ struct InternalNewsDetailView: View {
             CommentBarView
             
         }
+        .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
     }
     

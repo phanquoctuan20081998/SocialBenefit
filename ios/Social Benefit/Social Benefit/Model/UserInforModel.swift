@@ -47,8 +47,7 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
 
-    
-    userInfor.userId = userId
+    userInfor.userId = employeeDto["employeeCode"].string ?? ""
     userInfor.employeeId = String(employeeDto["id"].int ?? 0)
     userInfor.token = token
     userInfor.companyId = String(employeeDto["company"]["id"].int ?? 0)

@@ -18,9 +18,7 @@ struct ListOfMerchantView: View {
     var body: some View { 
         VStack(spacing: 15) {
             
-            NavigationLink(destination: EmptyView()) {
-                EmptyView()
-            }
+            
             
             Spacer().frame(height: ScreenInfor().screenHeight * 0.05)
             SearchBarAndMyVoucherView()
@@ -40,13 +38,17 @@ struct ListOfMerchantView: View {
                         self.merchantCategoryItemViewModel.isRefreshing = $0
                     })
                 
-                NavigationView {
+//                NavigationView {
                     RefreshableScrollView(height: 70, refreshing: binding) {
                         SpecialOffersView()
                         FilterView()
                         AllOffersView()
                     }.navigationBarHidden(true)
-                }.navigationViewStyle(StackNavigationViewStyle())
+//                }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            
+            NavigationLink(destination: EmptyView()) {
+                EmptyView()
             }
         }
         .background(BackgroundViewWithNotiAndSearch(), alignment: .top)

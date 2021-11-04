@@ -50,8 +50,8 @@ struct SearchBarView: View {
                 }.padding(.horizontal, 13)
                 .foregroundColor(.gray)
             )
-            .transition(.move(edge: .trailing))
-            .animation(.spring())
+//            .transition(.move(edge: .trailing))
+//            .animation(.spring())
         
             if isSearching && isShowCancelButton {
                 Spacer().frame(width: 15)
