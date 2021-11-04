@@ -22,7 +22,7 @@ struct InternalNewsBannerView: View {
     
     var body: some View {
         VStack {
-            
+
             TopTitleView(title: "internal_news".localized, topTitleTapped: topTitleTapped)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
@@ -31,20 +31,12 @@ struct InternalNewsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-                    //                    if internalNewsViewModel.allInternalNews.count != 0 { //If Data can read
-                    //                        PageViewController(pages: getInternalNewsData(data: internalNewsViewModel.allInternalNews, imageTapped: imageTapped), currentPage: $currentPage)
-                    //
-                    //                        PageControl(numberOfPages: internalNewsViewModel.allInternalNews.count, currentPage: $currentPage)
-                    ////                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % internalNewsViewModel.allInternalNews.count }
-                    //                    } else {
-                    //                        EmptyView()
-                    //                    }
-                    
-                    if data.count != 0 {
+
+                    if internalNewsViewModel.allInternalNewsBanner.count != 0 {
                         
-                        PagingView(index: $currentPage.animation(), maxIndex: data.count - 1) {
-                            ForEach(data.indices, id: \.self) { index in
-                                URLImageView(url: data[index].cover)
+                        PagingView(index: $currentPage.animation(), maxIndex: internalNewsViewModel.allInternalNewsBanner.count - 1) {
+                            ForEach(internalNewsViewModel.allInternalNewsBanner.indices, id: \.self) { index in
+                                URLImageView(url: internalNewsViewModel.allInternalNewsBanner[index].cover)
                                     .scaledToFit()
                                     .onTapGesture {
                                         DispatchQueue.main.async {
@@ -71,13 +63,6 @@ struct InternalNewsBannerView: View {
                         label: { EmptyView() })
                 }
             )
-            .onAppear {
-                if internalNewsViewModel.allInternalNews.count < 6 {
-                    self.data = internalNewsViewModel.allInternalNews
-                } else {
-                    self.data = Array(internalNewsViewModel.allInternalNews[0..<5])
-                }
-            }
         }
         .foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
@@ -266,11 +251,11 @@ struct MainCardView: View {
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-        .background(
-            NavigationLink(destination: FullWebView().navigationBarHidden(true), isActive: $moveToWebView, label: {
-                EmptyView()
-            })
-        )
+//        .background(
+//            NavigationLink(destination: FullWebView().navigationBarHidden(true), isActive: $moveToWebView, label: {
+//                EmptyView()
+//            })
+//        )
         
     }
     

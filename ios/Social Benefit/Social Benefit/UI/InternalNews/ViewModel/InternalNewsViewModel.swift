@@ -13,6 +13,9 @@ class InternalNewsViewModel: ObservableObject {
     @Published var trainingInternalNews: [InternalNewsData] = []
     @Published var announcementInternalNews: [InternalNewsData] = []
     
+    // For show image at home screen
+    @Published var allInternalNewsBanner: [InternalNewsData] = []
+    
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
         didSet {
@@ -48,6 +51,13 @@ class InternalNewsViewModel: ObservableObject {
                 self.allInternalNews = data
                 self.trainingInternalNews = trainingInternalNews
                 self.announcementInternalNews = announcementInternalNews
+                
+                if data.count < 6 {
+                    self.allInternalNewsBanner = data
+                } else {
+                    self.allInternalNewsBanner = Array(data[0..<5])
+                }
+                
                 
                 self.isLoading = false
                 self.isRefreshing = false
