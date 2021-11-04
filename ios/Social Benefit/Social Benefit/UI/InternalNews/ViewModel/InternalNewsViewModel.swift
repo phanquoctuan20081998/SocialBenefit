@@ -11,14 +11,11 @@ import Combine
 class InternalNewsViewModel: ObservableObject {
     
     @Published var allInternalNews: [InternalNewsData] = []
-    @Published var trainingInternalNews: [InternalNewsData] = []
-    @Published var announcementInternalNews: [InternalNewsData] = []
+    @Published var searchPattern = ""
+    @Published var category = Constants.InternalNewsType.ALL
     
     // For show image at home screen
     @Published var allInternalNewsBanner: [InternalNewsData] = []
-    
-    @Published var searchPattern = ""
-    @Published var category = Constants.InternalNewsType.ALL
     
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
@@ -60,48 +57,33 @@ class InternalNewsViewModel: ObservableObject {
         self.isLoading = true
         
         internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category) { data in
-            
-            switch category {
-            case Constants.InternalNewsType.ALL: do {
-                DispatchQueue.main.async {
-                    self.allInternalNews = data
-                    
+  
+            DispatchQueue.main.async {
+                self.allInternalNews = data
+                
+                if category == Constants.InternalNewsType.ALL {
                     if data.count < 6 {
                         self.allInternalNewsBanner = data
                     } else {
                         self.allInternalNewsBanner = Array(data[0..<5])
                     }
                 }
+                
+                self.isLoading = false
+                self.isRefreshing = false
             }
-            case Constants.InternalNewsType.ANNOUCEMENT: do {
-                DispatchQueue.main.async {
-                    self.announcementInternalNews = data
-                }
-            }
-            case Constants.InternalNewsType.TRAINING: do {
-                DispatchQueue.main.async {
-                    self.trainingInternalNews = data
-                }
-            }
-            default: do {
-                // Reset
-                DispatchQueue.main.async {
-                    self.allInternalNews = []
-                    self.announcementInternalNews = []
-                    self.trainingInternalNews = []
-                    self.allInternalNewsBanner = []
-                }
-            }
-            }
-            
-            self.isLoading = false
-            self.isRefreshing = false
         }
     }
     
     
     func refresh() {
         self.loadData(fromIndex: 0, searchPattern: searchPattern, category: category)
+    }
+    
+    func reset() {
+        self.searchPattern = ""
+        self.category = Constants.InternalNewsType.ALL
+        self.allInternalNews = []
     }
 }
 

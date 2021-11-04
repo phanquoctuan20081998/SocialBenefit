@@ -28,18 +28,14 @@ struct InternalNewsView: View {
             
             VStack {
                 TabView
-                
-                if selectedTabIndex == 0 {
-                    AllTabView
-                } else if selectedTabIndex == 1 {
-                    TrainingTabView
-                } else {
-                    AnnoucementTabView
-                }
+                TabContentView
             }.background(Color.white)
         }
+        .onAppear(perform: {
+            internalNewsViewModel.reset()
+        })
         .background(
-            BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true)
+            BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true, backButtonTapped: internalNewsViewModel.reset)
         )
         .background(
             NavigationLink(
@@ -87,7 +83,7 @@ extension InternalNewsView {
         }
     }
     
-    private var AllTabView: some View {
+    private var TabContentView: some View {
         ZStack {
             if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
                 LoadingPageView()
@@ -105,44 +101,6 @@ extension InternalNewsView {
             }
         }
     }
-    
-    private var TrainingTabView: some View {
-        ZStack {
-            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
-                LoadingPageView()
-            } else {
-                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
-                    VStack (alignment: .leading, spacing: 10) {
-                        
-                        ForEach(internalNewsViewModel.trainingInternalNews, id: \.self) { item in
-                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
-                        }
-                        
-                        Spacer().frame(height: 50)
-                    }
-                }
-            }
-        }
-    }
-    
-    private var AnnoucementTabView: some View {
-        ZStack {
-            if internalNewsViewModel.isLoading && !internalNewsViewModel.isRefreshing {
-                LoadingPageView()
-            } else {
-                RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
-                    VStack (alignment: .leading, spacing: 10) {
-                    
-                        ForEach(internalNewsViewModel.announcementInternalNews, id: \.self) { item in
-                            InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
-                        }
-                        
-                        Spacer().frame(height: 50)
-                    }
-                }
-            }
-        }
-    }
 }
 
 
@@ -152,3 +110,4 @@ struct SlidingTabView_Previews : PreviewProvider {
             .environmentObject(InternalNewsViewModel())
     }
 }
+
