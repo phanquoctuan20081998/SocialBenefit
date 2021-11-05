@@ -22,6 +22,9 @@ struct InternalNewsView: View {
     @State private var selectedInternalNew = InternalNewsData()
     @State var isActive = false
     
+    //Infinite ScrollView controller
+    @State var isShowProgressView: Bool = false
+    
     var body: some View {
         VStack {
             InternalNewsUpperView
@@ -93,6 +96,46 @@ extension InternalNewsView {
 
                         ForEach(internalNewsViewModel.allInternalNews, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
+                        }
+                        
+                        //Infinite Scroll View
+                        
+                        if (internalNewsViewModel.fromIndex == internalNewsViewModel.allInternalNews.count && self.isShowProgressView) {
+                            
+                            ActivityIndicator(isAnimating: true)
+                                .frame(width: ScreenInfor().screenWidth, alignment: .center)
+                                .onAppear {
+                                    
+                                    // Because the maximum length of the result returned from the API is 10...
+                                    // So if length % 10 != 0 will be the last queue...
+                                    // We only send request if it have more data to load...
+                                    if self.internalNewsViewModel.allInternalNews.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                        self.internalNewsViewModel.loadMoreData()
+                                    }
+                                    
+                                    // Otherwise just delete the ProgressView after 1 seconds...
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        self.isShowProgressView = false
+                                    }
+                                    
+                                }
+                            
+                        } else {
+                            GeometryReader { reader -> Color in
+                                let minY = reader.frame(in: .global).minY
+                                let height = ScreenInfor().screenHeight / 1.3
+                                
+                                if !self.internalNewsViewModel.allInternalNews.isEmpty && minY < height && internalNewsViewModel.allInternalNews.count >= Constants.MAX_NUM_API_LOAD  {
+                                    
+                                    DispatchQueue.main.async {
+                                        self.internalNewsViewModel.fromIndex = self.internalNewsViewModel.allInternalNews.count
+                                        self.isShowProgressView = true
+                                    }
+                                }
+                                return Color.clear
+                            }
+                            .frame(width: 20, height: 20)
                         }
 
                         Spacer().frame(height: 50)

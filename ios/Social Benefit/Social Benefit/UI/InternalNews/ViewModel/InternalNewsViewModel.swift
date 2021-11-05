@@ -11,6 +11,7 @@ import Combine
 class InternalNewsViewModel: ObservableObject {
     
     @Published var allInternalNews: [InternalNewsData] = []
+    @Published var fromIndex = 0
     @Published var searchPattern = ""
     @Published var category = Constants.InternalNewsType.ALL
     
@@ -77,10 +78,26 @@ class InternalNewsViewModel: ObservableObject {
     
     
     func refresh() {
-        self.loadData(fromIndex: 0, searchPattern: searchPattern, category: category)
+        DispatchQueue.main.async {
+            self.fromIndex = 0
+            self.loadData(fromIndex: 0, searchPattern: self.searchPattern, category: self.category)
+        }
+    }
+    
+    func loadMoreData() {
+        
+        internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category) { data in
+  
+            DispatchQueue.main.async {
+                for item in data {
+                    self.allInternalNews.append(item)
+                }
+            }
+        }
     }
     
     func reset() {
+        self.fromIndex = 0
         self.searchPattern = ""
         self.category = Constants.InternalNewsType.ALL
         self.allInternalNews = []

@@ -19,7 +19,7 @@ class InternalNewsService {
         // 3 things should be consider: pageIndex, category, searchText...
         
         // 1 - pageIndex
-        let pageSize = 10
+        let pageSize = Constants.MAX_NUM_API_LOAD
         let page = fromIndex / pageSize
         
         // 2 - searchText
