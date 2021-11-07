@@ -100,6 +100,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     func reloadAppliedStore() {
         appliedStoreMerchantListService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexAppliedStore) { data in
             DispatchQueue.main.async {
+                self.fromIndexAppliedStore = 0
                 self.appliedStoreMerchantList = data
                 self.isRefreshingStoreList = false
             }
@@ -109,6 +110,7 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     func reloadSimilarVoucher() {
         similarVoucherService.getAPI(voucherId: selectedVoucherId, fromIndex: fromIndexSimilarVoucher) { data in
             DispatchQueue.main.async {
+                self.fromIndexSimilarVoucher = 0
                 self.similarVouchers = data
                 self.isRefreshingSimiliarVoucher = false
             }

@@ -51,7 +51,10 @@ class MerchantVoucherSpecialListViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        self.loadSearchData(searchPattern: "")
+        DispatchQueue.main.async {
+            self.fromIndex = 0
+            self.loadSearchData(searchPattern: "")
+        }
     }
     
     func loadSearchData(searchPattern: String) {

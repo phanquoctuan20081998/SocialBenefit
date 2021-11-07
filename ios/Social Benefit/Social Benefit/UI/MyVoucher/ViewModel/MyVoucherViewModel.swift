@@ -90,7 +90,10 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        self.loadSearchData(searchPattern: "")
+        DispatchQueue.main.async {
+            self.fromIndex = 0
+            self.loadSearchData(searchPattern: "")
+        }
     }
 }
 

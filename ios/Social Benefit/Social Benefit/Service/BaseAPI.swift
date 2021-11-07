@@ -9,6 +9,17 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+// TO CONTROL SESSION EXPIRED
+public class SessionController: ObservableObject {
+    static let shared = SessionController()
+    init()  { }
+    
+    @Published var isExpried = false
+}
+
+var sessionController = SessionController.shared
+
+
 // Call API using URLSession
 public class BaseAPI {
     private var session: URLSession
@@ -48,6 +59,16 @@ public class BaseAPI {
                 }
             } catch let error {
                 print(error.localizedDescription)
+                
+                // When session expired
+                DispatchQueue.main.async {
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if(401...402).contains(httpResponse.statusCode) {
+                            sessionController.isExpried = true
+                        }
+                    }
+                        
+                }
             }
         }
         

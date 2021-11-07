@@ -10,10 +10,11 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject var loginViewModel = LoginViewModel()
+    @ObservedObject var sessionCOntroller = SessionController.shared
     @State var reload = false
     
     var body: some View {
-        if !loginViewModel.isLogin {
+        if !loginViewModel.isLogin || sessionController.isExpried {
             ZStack(alignment: .top) {
                 
                 // This for reload page after changing language...
@@ -91,6 +92,7 @@ struct LoginView: View {
 //        }
         } else {
             HomeScreenView(selectedTab: "house")
+                .environmentObject(loginViewModel)
         }
     }
 }
@@ -163,6 +165,7 @@ extension LoginView {
                     
                     loginViewModel.updateToRemember()
                     loginViewModel.loadLoginData()
+                    sessionController.isExpried = false
                     
                     // If cannot login
                     DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
