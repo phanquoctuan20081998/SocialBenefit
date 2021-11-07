@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject var loginViewModel = LoginViewModel()
-    @ObservedObject var sessionCOntroller = SessionController.shared
+    @ObservedObject var sessionController = SessionController.shared
     @State var reload = false
     
     var body: some View {
@@ -68,7 +68,7 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $loginViewModel.isPresentCannotConnectServerError)
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isConnectToServer)
                     .offset(y: 400)
                 
                 if loginViewModel.isPresentResetPasswordView {
@@ -170,7 +170,7 @@ extension LoginView {
                     // If cannot login
                     DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
                         if loginViewModel.isLoading {
-                            loginViewModel.isPresentCannotConnectServerError.toggle()
+//                            loginViewModel.isPresentCannotConnectServerError.toggle()
                             loginViewModel.isLoading = false
                         }
                     }

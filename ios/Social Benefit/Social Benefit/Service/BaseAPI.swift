@@ -15,6 +15,7 @@ public class SessionController: ObservableObject {
     init()  { }
     
     @Published var isExpried = false
+    @Published var isConnectToServer = false
 }
 
 var sessionController = SessionController.shared
@@ -70,6 +71,11 @@ public class BaseAPI {
                         
                 }
             }
+        }
+        
+        // When cannot connect to server
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
+            sessionController.isConnectToServer = true
         }
         
         task.resume()

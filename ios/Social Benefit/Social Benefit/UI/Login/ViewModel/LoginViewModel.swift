@@ -27,7 +27,7 @@ class LoginViewModel: ObservableObject {
     
     @Published var isPresentAllTypedError = false
     @Published var isPresentWrongError = false
-    @Published var isPresentCannotConnectServerError = false
+//    @Published var isPresentCannotConnectServerError = false
     
     @Published var isLoading = false
     @Published var currentLanguage = previousUserLoginInfor.language
@@ -151,7 +151,7 @@ class LoginViewModel: ObservableObject {
         
         isPresentAllTypedError = false
         isPresentWrongError = false
-        isPresentCannotConnectServerError = false
+//        isPresentCannotConnectServerError = false
     }
     
 }
