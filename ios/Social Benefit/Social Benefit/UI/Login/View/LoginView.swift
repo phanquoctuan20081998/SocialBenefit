@@ -10,12 +10,13 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject var loginViewModel = LoginViewModel()
-    @ObservedObject var sessionController = SessionController.shared
+    @ObservedObject var monitor = NetworkMonitor()
+    
+//    @ObservedObject var sessionController = SessionController.shared
     @State var reload = false
     
     var body: some View {
         
-        let _ = print(loginViewModel.isLogin)
         if !loginViewModel.isLogin || sessionController.isExpried {
             ZStack(alignment: .top) {
                 
@@ -70,7 +71,7 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isFailConnectToServer)
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $monitor.isConnected)
                     .offset(y: 400)
                 
                 if loginViewModel.isPresentResetPasswordView {
@@ -98,8 +99,8 @@ struct LoginView: View {
                 HomeScreenView(selectedTab: "house")
                     .environmentObject(loginViewModel)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isFailConnectToServer)
-                    .offset(y: 400)
+//                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isFailConnectToServer)
+//                    .offset(y: 400)
             }
             
         }

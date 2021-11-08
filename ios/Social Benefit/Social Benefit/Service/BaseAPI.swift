@@ -24,9 +24,11 @@ var sessionController = SessionController.shared
 // Call API using URLSession
 public class BaseAPI {
     private var session: URLSession
+    var sessionController: SessionController
     
     public init() {
         session = URLSession.shared
+        sessionController = SessionController.shared
     }
     
     public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback: @escaping (JSON) -> Void) {
@@ -70,10 +72,9 @@ public class BaseAPI {
                 DispatchQueue.main.async {
                     if let httpResponse = response as? HTTPURLResponse {
                         if(401...402).contains(httpResponse.statusCode) {
-                            sessionController.isExpried = true
+                            self.sessionController.isExpried = true
                         }
                     }
-                        
                 }
             }
         }
@@ -81,8 +82,7 @@ public class BaseAPI {
         // When cannot connect to server
         DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
             if !isSuccessed {
-                print("LALALALA")
-                sessionController.isFailConnectToServer = true
+                self.sessionController.isFailConnectToServer = true
             }
         }
         
