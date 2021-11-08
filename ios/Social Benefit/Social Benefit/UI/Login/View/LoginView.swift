@@ -68,7 +68,7 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isConnectToServer)
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isFailConnectToServer)
                     .offset(y: 400)
                 
                 if loginViewModel.isPresentResetPasswordView {
@@ -91,8 +91,14 @@ struct LoginView: View {
 //            .navigationBarHidden(true)
 //        }
         } else {
-            HomeScreenView(selectedTab: "house")
-                .environmentObject(loginViewModel)
+            ZStack(alignment: .top) {
+                HomeScreenView(selectedTab: "house")
+                    .environmentObject(loginViewModel)
+                
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isFailConnectToServer)
+                    .offset(y: 400)
+            }
+            
         }
     }
 }

@@ -15,7 +15,7 @@ public class SessionController: ObservableObject {
     init()  { }
     
     @Published var isExpried = false
-    @Published var isConnectToServer = false
+    @Published var isFailConnectToServer = false
 }
 
 var sessionController = SessionController.shared
@@ -30,6 +30,9 @@ public class BaseAPI {
     }
     
     public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback: @escaping (JSON) -> Void) {
+        
+        var isSuccessed = false
+        
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
         let url = URL(string: Config.baseURL +  endpoint)!
         var request = URLRequest(url: url)
@@ -39,6 +42,8 @@ public class BaseAPI {
         request.httpBody = jsonData
         
         let task = session.dataTask(with: request) { (data, response, error) in
+            isSuccessed = true
+            
             guard let data = data, error == nil else {
                 print("Call API failed:  ",error?.localizedDescription ?? "No data")
                 return
@@ -75,7 +80,10 @@ public class BaseAPI {
         
         // When cannot connect to server
         DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
-            sessionController.isConnectToServer = true
+            if !isSuccessed {
+                print("LALALALA")
+                sessionController.isFailConnectToServer = true
+            }
         }
         
         task.resume()
