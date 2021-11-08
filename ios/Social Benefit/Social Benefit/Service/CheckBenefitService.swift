@@ -13,7 +13,7 @@ import SwiftyJSON
     
 class CheckBenefitService {
    
-    func getAPI(benefitId: Int, returnCallBack: @escaping (Int) -> ()) {
+    func getAPI(benefitId: Int, returnCallBack: @escaping (BenefitData) -> ()) {
         let service = BaseAPI()
         
         let header = ["token": userInfor.token,
@@ -25,9 +25,17 @@ class CheckBenefitService {
         
         service.makeCall(endpoint: Config.API_BENEFIT_CHECK, method: "POST", header: header as [String : String], body: params, callback: { result in
             
+            let id = result["id"].int ?? -1
+            let title = result["title"].string ?? ""
             let status =  result["status"].int ?? -1
+            let body = result["body"].string ?? ""
+            let logo = result["logo"].string ?? ""
+            let typeMember = result["typeMember"].int ?? -1
+            let mobileStatus = result["mobileStatus"].int ?? -1
             
-            returnCallBack(status)
+            let data = BenefitData(id: id, title: title, body: body, logo: logo, typeMember: typeMember, status: status, mobileStatus: mobileStatus)
+            
+            returnCallBack(data)
         })
     }
 }

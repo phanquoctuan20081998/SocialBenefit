@@ -14,6 +14,8 @@ struct LoginView: View {
     @State var reload = false
     
     var body: some View {
+        
+        let _ = print(loginViewModel.isLogin)
         if !loginViewModel.isLogin || sessionController.isExpried {
             ZStack(alignment: .top) {
                 
@@ -89,6 +91,7 @@ struct LoginView: View {
                 
             }.edgesIgnoringSafeArea(.all)
 //            .navigationBarHidden(true)
+
 //        }
         } else {
             ZStack(alignment: .top) {
@@ -172,6 +175,12 @@ extension LoginView {
                     loginViewModel.updateToRemember()
                     loginViewModel.loadLoginData()
                     sessionController.isExpried = false
+                    
+                    
+                    
+                    
+                    print(loginViewModel.companyCode)
+                    print(loginViewModel.isLogin)
                     
                     // If cannot login
                     DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {

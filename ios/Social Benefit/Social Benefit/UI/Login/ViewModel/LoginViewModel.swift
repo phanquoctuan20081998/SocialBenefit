@@ -92,6 +92,7 @@ class LoginViewModel: ObservableObject {
                 updateUserInfor(userId: self.employeeId, token: token.string!, employeeDto: employeeDto, citizen: citizen)
                 
                 DispatchQueue.main.async {
+                    print("LALALALA")
                     self.isLogin = true
                     self.isLoading = false
                 }
@@ -152,6 +153,18 @@ class LoginViewModel: ObservableObject {
         isPresentAllTypedError = false
         isPresentWrongError = false
 //        isPresentCannotConnectServerError = false
+    }
+    
+    func reset() {
+        isLogin = false
+        
+        resetState()
+        
+        isAllTextAreTyped = false
+        isAllTextAreBlank = true
+      
+        
+        isLoading = false
     }
     
 }

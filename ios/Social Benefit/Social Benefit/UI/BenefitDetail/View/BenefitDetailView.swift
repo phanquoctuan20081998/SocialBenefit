@@ -35,7 +35,7 @@ struct BenefitDetailView: View {
             Spacer()
             
             VStack {
-//                Text(self.benefitDetailViewModel.benefit.body)
+                //                Text(self.benefitDetailViewModel.benefit.body)
                 HTMLView(htmlString: self.benefitDetailViewModel.benefit.body, font: 13)
                     .padding(30)
                 
@@ -47,26 +47,23 @@ struct BenefitDetailView: View {
     
     @ViewBuilder
     func getApplyButton() -> some View {
-        let _ = print(self.benefitDetailViewModel.applyStatus)
-        switch self.benefitDetailViewModel.applyStatus {
-        
-        case 0:
-            applyButtonView(text: "waiting_to_confirm".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.9607003331, green: 0.9608382583, blue: 0.9606701732, alpha: 1)), disable: true)
-        case 1:
-            applyButtonView(text: "approved".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: true)
-        case 2:
-            applyButtonView(text: "rejected".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: true)
-        case 3:
-            applyButtonView(text: "recieved".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: true)
-        default: do {
-            // Check member type...
-            if self.benefitDetailViewModel.benefit.typeMember == MEMBER_TYPE().BENEFIT_TYPE_REGISTER_MEMBER {
+        if self.benefitDetailViewModel.typeMember == MEMBER_TYPE().BENEFIT_TYPE_REGISTER_MEMBER {
+            switch self.benefitDetailViewModel.applyStatus {
+            
+            case 0:
+                applyButtonView(text: "waiting_to_confirm".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.9607003331, green: 0.9608382583, blue: 0.9606701732, alpha: 1)), disable: true)
+            case 1:
+                applyButtonView(text: "approved".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: true)
+            case 2:
+                applyButtonView(text: "rejected".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: true)
+            case 3:
+                applyButtonView(text: "recieved".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: true)
+            default: do {
                 applyButtonView(text: "register_now".localized, textColor: Color(#colorLiteral(red: 0.2712115049, green: 0.5014922023, blue: 0.91060853, alpha: 1)), backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)), disable: false)
             }
-        }
+            }
         }
     }
-    
     func applyButtonView(text: String, textColor: Color, backgroundColor: Color, disable: Bool) -> some View {
         Button(action: {
             self.benefitDetailViewModel.isPresentedPopup = true

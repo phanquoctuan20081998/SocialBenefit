@@ -98,9 +98,16 @@ extension UserInformationView {
             }
             
             HStack {
-                Text(userInfor.position)
-                Text("-")
-                Text(userInfor.department)
+                if !userInfor.position.isEmpty && !userInfor.department.isEmpty {
+                    Text(userInfor.position)
+                    Text("-")
+                    Text(userInfor.department)
+                } else if userInfor.position.isEmpty {
+                    Text(userInfor.department)
+                } else {
+                    Text(userInfor.position)
+                }
+                
             }.font(.system(size: 12))
         }
     }

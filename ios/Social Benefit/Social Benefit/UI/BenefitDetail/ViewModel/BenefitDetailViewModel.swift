@@ -10,6 +10,7 @@ import Foundation
 class BenefitDetailViewModel: ObservableObject, Identifiable {
     
     @Published var applyStatus = -1
+    @Published var typeMember = -1
     @Published var isPresentedPopup: Bool = false
     @Published var benefit: BenefitData = BenefitData()
     
@@ -23,7 +24,8 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     func initApplyStatus() {
         checkBenefitService.getAPI(benefitId: benefit.id) { data in
             DispatchQueue.main.async {
-                self.applyStatus = data
+                self.applyStatus = data.status
+                self.typeMember = data.typeMember
             }
         }
     }
