@@ -92,7 +92,7 @@ struct LoginView: View {
                 
             }
             .edgesIgnoringSafeArea(.all)
-            .alert(isPresented: $monitor.isConnected, content: {
+            .alert(isPresented: $monitor.isNotConnected, content: {
                 return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
             })
 //            .navigationBarHidden(true)
@@ -100,11 +100,13 @@ struct LoginView: View {
 //        }
         } else {
             ZStack(alignment: .top) {
+                
                 HomeScreenView(selectedTab: "house")
                     .environmentObject(loginViewModel)
+
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
+                    .offset(y: 400)
                 
-//                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionController.isFailConnectToServer)
-//                    .offset(y: 400)
             }
             
         }
