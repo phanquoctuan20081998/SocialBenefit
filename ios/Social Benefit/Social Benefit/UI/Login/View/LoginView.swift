@@ -12,7 +12,7 @@ struct LoginView: View {
     @ObservedObject var loginViewModel = LoginViewModel()
     @ObservedObject var monitor = NetworkMonitor()
     
-//    @ObservedObject var sessionController = SessionController.shared
+    @ObservedObject var sessionTimeOut = SessionTimeOut.shared
     @State var reload = false
     
     var body: some View {
@@ -71,7 +71,7 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $monitor.isConnected)
+                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
                     .offset(y: 400)
                 
                 if loginViewModel.isPresentResetPasswordView {
@@ -90,7 +90,11 @@ struct LoginView: View {
                     .edgesIgnoringSafeArea(.all))
                 }
                 
-            }.edgesIgnoringSafeArea(.all)
+            }
+            .edgesIgnoringSafeArea(.all)
+            .alert(isPresented: $monitor.isConnected, content: {
+                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
+            })
 //            .navigationBarHidden(true)
 
 //        }

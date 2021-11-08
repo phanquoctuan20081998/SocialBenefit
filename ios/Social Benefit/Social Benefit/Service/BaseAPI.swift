@@ -10,25 +10,35 @@ import Alamofire
 import SwiftyJSON
 
 // TO CONTROL SESSION EXPIRED
-public class SessionController: ObservableObject {
-    static let shared = SessionController()
+public class SessionExpired: ObservableObject {
+    static let shared = SessionExpired()
     init()  { }
     
     @Published var isExpried = false
-    @Published var isFailConnectToServer = false
 }
 
-var sessionController = SessionController.shared
+public class SessionTimeOut: ObservableObject {
+    static let shared = SessionTimeOut()
+    init()  { }
+    
+    @Published var isTimeOut = false
+}
+
+var sessionController = SessionExpired.shared
+var sessionTimeOut = SessionTimeOut.shared
 
 
 // Call API using URLSession
 public class BaseAPI {
     private var session: URLSession
-    var sessionController: SessionController
+    var sessionExpired: SessionExpired
+    var sessionTimeOut: SessionTimeOut
+    
     
     public init() {
         session = URLSession.shared
-        sessionController = SessionController.shared
+        sessionExpired = SessionExpired.shared
+        sessionTimeOut = SessionTimeOut.shared
     }
     
     public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback: @escaping (JSON) -> Void) {
@@ -72,7 +82,7 @@ public class BaseAPI {
                 DispatchQueue.main.async {
                     if let httpResponse = response as? HTTPURLResponse {
                         if(401...402).contains(httpResponse.statusCode) {
-                            self.sessionController.isExpried = true
+                            self.sessionExpired.isExpried = true
                         }
                     }
                 }
@@ -82,7 +92,7 @@ public class BaseAPI {
         // When cannot connect to server
         DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
             if !isSuccessed {
-                self.sessionController.isFailConnectToServer = true
+                self.sessionTimeOut.isTimeOut = true
             }
         }
         
