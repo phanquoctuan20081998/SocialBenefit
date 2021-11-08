@@ -92,7 +92,7 @@ struct LoginView: View {
                 
             }
             .edgesIgnoringSafeArea(.all)
-            .alert(isPresented: $monitor.isNotConnected, content: {
+            .alert(isPresented: $monitor.isPresentPopUp, content: {
                 return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
             })
 //            .navigationBarHidden(true)
@@ -108,6 +108,10 @@ struct LoginView: View {
                     .offset(y: 400)
                 
             }
+            
+//            .alert(isPresented: $monitor.isPresentPopUp, content: {
+//                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
+//            })
             
         }
     }
