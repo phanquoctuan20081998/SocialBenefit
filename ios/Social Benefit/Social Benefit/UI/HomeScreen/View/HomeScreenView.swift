@@ -20,6 +20,8 @@ struct HomeScreenView: View {
     @ObservedObject var searchViewModel = SearchViewModel()
     @ObservedObject var homeViewModel = HomeViewModel()
     
+    @EnvironmentObject var monitor: NetworkMonitor
+    
     init(selectedTab: String) {
         homeScreenViewModel.selectedTab = selectedTab
     }
@@ -52,6 +54,9 @@ struct HomeScreenView: View {
                 MerchantVoucherDetailNavigationView(voucherId: homeViewModel.selectedVoucherId, isPresent: homeViewModel.isPresentVoucherDetail)
 
             }
+            .alert(isPresented: $monitor.isPresentPopUp, content: {
+                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
+            })
             .navigationBarHidden(true)
         }
     

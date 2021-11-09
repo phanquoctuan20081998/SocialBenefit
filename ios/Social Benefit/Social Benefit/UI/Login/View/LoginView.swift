@@ -103,6 +103,7 @@ struct LoginView: View {
                 
                 HomeScreenView(selectedTab: "house")
                     .environmentObject(loginViewModel)
+                    .environmentObject(monitor)
 
                 ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
                     .offset(y: 400)
