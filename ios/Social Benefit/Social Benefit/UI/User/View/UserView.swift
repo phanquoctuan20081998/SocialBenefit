@@ -75,10 +75,7 @@ struct UserView: View {
                 Spacer().frame(height: 30)
                 
                 VStack {
-                    
                     Button {
-                        
-                        print("hbfhjsbhjahjbahj")
                         self.userViewModel.logout()
                         homescreen.selectedTab = "house"
                         
@@ -103,15 +100,10 @@ struct UserView: View {
                         .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
                         
                     }
-                    
-                    
-                    //                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
-                    //                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
-                    //                    }
                 }
-                //                .background(
-                //                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) { EmptyView() }
-                //                )
+                .background(
+                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) { EmptyView() }
+                )
                 
                 Spacer()
                     .frame(height: 100)

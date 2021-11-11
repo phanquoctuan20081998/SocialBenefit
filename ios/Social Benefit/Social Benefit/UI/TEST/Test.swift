@@ -8,106 +8,85 @@
 import SwiftUI
 import WebKit
 import SDWebImageSwiftUI
+import Alamofire
 
 
 
+class Test {
+    func callsendImageAPI(param: [String: Any], image: UIImage, imageName: String, imageKey: String, URlName: String, withblock:@escaping (_ response: AnyObject?)->Void){
+        
+        let headers: HTTPHeaders
+        headers = ["Content-type": "multipart/form-data",
+                   "Content-Disposition" : "form-data",
+                   "token": userInfor.token,
+                   "companyId": userInfor.companyId]
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            for (key, value) in param {
+                multipartFormData.append((value as! String).data(using: String.Encoding.utf8)!, withName: key)
+            }
+            
+            guard let imgData = image.jpegData(compressionQuality: 1) else { return }
+            multipartFormData.append(imgData, withName: imageKey, fileName: imageName + ".jpeg", mimeType: "image/jpeg")
+            
+            
+            
+        },to: URL.init(string: URlName)!, usingThreshold: UInt64.init(),
+                  method: .post,
+                  headers: headers).response{ response in
+            
+            if((response.error != nil)){
+                do{
+                    if let jsonData = response.data{
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        
+                    } else {
+                        print("error message")
+                    }
+                    
+                }catch{
+                    print("error message")
+                }
+                
+            }else{
+                print(response.error!.localizedDescription)
+            }
+        }
+    }
+}
 
-struct Test: View {
-    @State var index = 0
+struct Test1: View {
     
-    @State var isMove = false
-    var images = ["htt://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif", "https://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif", "https://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"]
+    var test = Test()
     
     var body: some View {
-        VStack(spacing: 20) {
-            PagingView(index: $index.animation(), maxIndex: images.count - 1) {
-                ForEach(self.images, id: \.self) { imageName in
-                    URLImageView(url: imageName)
-//                    WebImage(url: URL(string: imageName), isAnimating: $isAnimating)
-                        .scaledToFill()
+        VStack {
+            Button {
+                let params: Parameters = ["id": userInfor.employeeId,
+                                          "nickName": userInfor.nickname,
+                                          "address": userInfor.noStreet,
+                                          "citizenId": userInfor.citizenId,
+                                          "email": userInfor.email,
+                                          "phone": userInfor.phone,
+                                          "birthday": userInfor.birthday,
+                                          "locationId": userInfor.locationId]
+                
+                let image = UIImage(named: "home_my_profile.jpg")!
+                
+                let URLName = Config.baseURL + Config.API_EMPLOYEE_INFO_UPDATE
+                
+                test.callsendImageAPI(param: params, image: image, imageName: "home_my_profile", imageKey: "file", URlName: URLName) { result in
+                    print(result)
                 }
+            } label: {
+                Text("Click")
             }
-            .aspectRatio(4/3, contentMode: .fit)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
-            
-            
-            
-//            Stepper("Index: \(index)", value: $index.animation(.easeInOut), in: 0...images.count-1)
-//                            .font(Font.body.monospacedDigit())
         }
-        .padding()
-        
-        
-//        NavigationView {
-//            VStack {
-//                ScrollView {
-//                    ZStack(alignment: .bottom) {
-//                        ImageGallery(isMove: $isMove, images: images)
-//                    }
-//                    .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
-//                    .cornerRadius(30)
-//                }
-//                Spacer()
-//                    .frame(height: 100)
-//                //                }
-//
-//            }
-//            .background(BackgroundViewWithNotiAndSearch())
-//            .background(
-//                NavigationLink(destination: Text("shsa"), isActive: $isMove, label: {
-//                    EmptyView()
-//                })
-//            )
-//        }
-    }
-    
-    
-}
-
-//struct ImageGallery: View {
-//    @State var isAnimating: Bool = true
-//    @Binding var isMove: Bool
-//    var images: [String]
-//    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
-//    @State private var currentPage = 0
-//    
-//    var body: some View {
-//        if images.count != 0 { //If Data can read
-//            PageViewController(pages: getData(data: images), currentPage: $currentPage)
-//                .onReceive(self.timer) { _ in self.currentPage = (self.currentPage + 1) % images.count }
-//            PageControl(numberOfPages: images.count, currentPage: $currentPage)
-//                
-//        } else {
-//            EmptyView()
-//        }
-//    }
-//    
-//    func getData(data: [String]) -> [AnyView] {
-//        var a = [AnyView]()
-//        for image in images {
-//            a.append(
-//                AnyView(
-//                    
-//                    WebImage(url: URL(string: image), isAnimating: $isAnimating)
-//                        .placeholder(Image(systemName: "photo")) // Placeholder Image
-//                    // Supports ViewBuilder as well
-//                        .placeholder {
-//                            Circle().foregroundColor(.gray)
-//                        }
-//                        .resizable()
-//                        .scaledToFill()
-//                        .onTapGesture {
-//                            isMove = true
-//                        }
-//                )
-//            )
-//        }
-//        return a
-//    }
-//}
-
-struct Test_Previews: PreviewProvider {
-    static var previews: some View {
-        Test()
     }
 }
+
+
+
+

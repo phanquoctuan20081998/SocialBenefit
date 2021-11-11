@@ -34,8 +34,6 @@ class UserInformationService {
                                   "birthday": birthday,
                                   "locationId": locationId]
         
-        print(params)
-        
         service.makeCall(endpoint: Config.API_EMPLOYEE_INFO_UPDATE, method: "POST", header: header, body: params, callback: { (result) in
             if result.isEmpty {
                 returnCallBack(false)
