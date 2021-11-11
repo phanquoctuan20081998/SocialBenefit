@@ -18,7 +18,7 @@ struct UserView: View {
     
     var body: some View {
         VStack {
-        
+            
             Spacer()
                 .frame(height: 70)
             
@@ -77,23 +77,41 @@ struct UserView: View {
                 VStack {
                     
                     Button {
-                        DispatchQueue.main.async {
-                            self.userViewModel.logout()
-                            homescreen.selectedTab = "house"
-                            self.selection = 9
-                        }
-                
+                        
+                        print("hbfhjsbhjahjbahj")
+                        self.userViewModel.logout()
+                        homescreen.selectedTab = "house"
+                        
                     } label: {
-                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
+                        
+                        HStack {
+                            Image(systemName: "arrow.right.doc.on.clipboard")
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .padding(.leading, 10)
+                                .foregroundColor(Color.blue)
+                            
+                            Text("logout".localized)
+                                .foregroundColor(.black)
+                            Spacer()
+                            
+                        }
+                        .frame(width: ScreenInfor().screenWidth - 22*2, height: 50, alignment: .leading)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
+                        
                     }
-                    .background(
-                        NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) { EmptyView() }
-                    )
-
-//                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
-//                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
-//                    }
+                    
+                    
+                    //                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
+                    //                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
+                    //                    }
                 }
+                //                .background(
+                //                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) { EmptyView() }
+                //                )
                 
                 Spacer()
                     .frame(height: 100)
@@ -160,8 +178,6 @@ struct UserInforView: View {
         }
     }
 }
-
-
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
