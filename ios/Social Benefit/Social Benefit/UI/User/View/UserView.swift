@@ -11,7 +11,9 @@ struct UserView: View {
     
     @EnvironmentObject var homescreen: HomeScreenViewModel
     @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
-    var sessionExpired = SessionExpired.shared
+    
+    @ObservedObject var userViewModel = UserViewModel()
+    
     @State var selection: Int? = nil
     
     var body: some View {
@@ -75,11 +77,11 @@ struct UserView: View {
                 VStack {
                     
                     Button {
-//                        DispatchQueue.main.async {
-                            self.sessionExpired.isExpried = true
+                        DispatchQueue.main.async {
+                            self.userViewModel.logout()
                             homescreen.selectedTab = "house"
                             self.selection = 9
-//                        }
+                        }
                 
                     } label: {
                         FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
