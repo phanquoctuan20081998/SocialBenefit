@@ -185,6 +185,8 @@ struct OtherPopUpView: View {
                 })
             }.padding()
             
+            Spacer().frame(height: 5)
+            
             ScrollView {
                 UIGrid(columns: 5, list: merchantCategoryItemViewModel.allMerchantCategoryItem) { item in
                     MerchantCategoryItemCardView(data: item)

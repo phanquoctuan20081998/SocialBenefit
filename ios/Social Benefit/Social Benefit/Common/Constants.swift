@@ -21,7 +21,7 @@ struct Constants {
     
     // API load...
     static let MAX_NUM_API_LOAD = 10
-    static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(10)
+    static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(5)
     
     // Internal News Type
     struct InternalNewsType {

@@ -11,13 +11,15 @@ struct LoginView: View {
     
     @ObservedObject var loginViewModel = LoginViewModel()
     @ObservedObject var monitor = NetworkMonitor()
-    
+    @ObservedObject var sessionExpired = SessionExpired.shared
     @ObservedObject var sessionTimeOut = SessionTimeOut.shared
+    
+    
     @State var reload = false
     
     var body: some View {
-        
-        if !loginViewModel.isLogin || sessionController.isExpried {
+        let _ = print(sessionExpired.isExpried)
+        if !sessionExpired.isLogin || sessionExpired.isExpried {
             ZStack(alignment: .top) {
                 
                 // This for reload page after changing language...
@@ -71,8 +73,11 @@ struct LoginView: View {
                 ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
-                    .offset(y: 400)
+//                if sessionTimeOut.isTimeOut {
+                    ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
+                        .offset(y: 400)
+//                }
+               
                 
                 if loginViewModel.isPresentResetPasswordView {
                     ResetPasswordView()
@@ -107,12 +112,12 @@ struct LoginView: View {
 
                 ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
                     .offset(y: 400)
+
                 
             }
-            
-//            .alert(isPresented: $monitor.isPresentPopUp, content: {
-//                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
-//            })
+            .alert(isPresented: $monitor.isPresentPopUp, content: {
+                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
+            })
             
         }
     }
@@ -186,22 +191,27 @@ extension LoginView {
                     
                     loginViewModel.updateToRemember()
                     loginViewModel.loadLoginData()
-                    sessionController.isExpried = false
+                    sessionExpired.isExpried = false
                     
-                    
-                    
-                    
-                    print(loginViewModel.companyCode)
-                    print(loginViewModel.isLogin)
-                    
-                    // If cannot login
-                    DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
-                        if loginViewModel.isLoading {
-//                            loginViewModel.isPresentCannotConnectServerError.toggle()
-                            loginViewModel.isLoading = false
+                    // Waiting for sending api
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        // If get error instantly display error
+                        if sessionTimeOut.isTimeOut {
+                            DispatchQueue.main.async {
+                                loginViewModel.isLoading = false
+                            }
+                        }
+                        
+                        // Ortherwise waiting for a while
+                        else {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
+                                if loginViewModel.isLoading {
+        //                            loginViewModel.isPresentCannotConnectServerError.toggle()
+                                    loginViewModel.isLoading = false
+                                }
+                            }
                         }
                     }
-                    
                 } else {
                     // If textfiled are blank
                     loginViewModel.isPresentAllTypedError.toggle()

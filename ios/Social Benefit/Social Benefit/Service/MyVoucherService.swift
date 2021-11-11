@@ -21,7 +21,7 @@ class MyVoucherService {
         let service = BaseAPI()
         var data = [MyVoucherData]()
         
-        let header = ["token": userInfor.token,
+        let header = ["token": "userInfor.token",
                       "employeeId": userInfor.employeeId]
         
         let params: Parameters = ["searchPattern": searchPattern,

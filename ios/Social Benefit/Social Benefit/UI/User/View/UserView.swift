@@ -11,6 +11,7 @@ struct UserView: View {
     
     @EnvironmentObject var homescreen: HomeScreenViewModel
     @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
+    var sessionExpired = SessionExpired.shared
     @State var selection: Int? = nil
     
     var body: some View {
@@ -72,9 +73,24 @@ struct UserView: View {
                 Spacer().frame(height: 30)
                 
                 VStack {
-                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
+                    
+                    Button {
+//                        DispatchQueue.main.async {
+                            self.sessionExpired.isExpried = true
+                            homescreen.selectedTab = "house"
+                            self.selection = 9
+//                        }
+                
+                    } label: {
                         FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
                     }
+                    .background(
+                        NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) { EmptyView() }
+                    )
+
+//                    NavigationLink(destination: LoginView().navigationBarHidden(true), tag: 9, selection: $selection) {
+//                        FunctionCardView(thumnail: "arrow.right.doc.on.clipboard", thumailColor: Color.blue, functionName: "logout".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 9)
+//                    }
                 }
                 
                 Spacer()

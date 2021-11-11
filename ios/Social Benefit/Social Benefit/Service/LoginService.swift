@@ -13,8 +13,8 @@ class LoginService {
     func getAPI(companyCode: String, userLogin: String, password: String, returnCallBack: @escaping (JSON) -> ()) {
         let service = BaseAPI()
         
-        let passMd5 = MD5(password)
-//        let passMd5 = password
+//        let passMd5 = MD5(password)
+        let passMd5 = password
         let deviceId = UIDevice.current.identifierForVendor?.uuidString
         let deviceToken = "abcd"
         let deviceType = "1" //For iPhone

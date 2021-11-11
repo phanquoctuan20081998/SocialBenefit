@@ -16,7 +16,7 @@ class LoginViewModel: ObservableObject {
     
     @Published var currentLang = "en"
     @Published var isChecked = UserDefaults.standard.bool(forKey: "isChecked")
-    @Published var isLogin = false
+//    @Published var isLogin = false
     
     @Published var isFocus1 = false
     @Published var isFocus2 = false
@@ -27,7 +27,7 @@ class LoginViewModel: ObservableObject {
     
     @Published var isPresentAllTypedError = false
     @Published var isPresentWrongError = false
-//    @Published var isPresentCannotConnectServerError = false
+    @Published var isPresentCannotConnectServerError = false
     
     @Published var isLoading = false
     @Published var currentLanguage = previousUserLoginInfor.language
@@ -36,6 +36,7 @@ class LoginViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     var loginService = LoginService()
+    var sessionExpired = SessionExpired.shared
     
     
     init() {
@@ -92,8 +93,7 @@ class LoginViewModel: ObservableObject {
                 updateUserInfor(userId: self.employeeId, token: token.string!, employeeDto: employeeDto, citizen: citizen)
                 
                 DispatchQueue.main.async {
-                    print("LALALALA")
-                    self.isLogin = true
+                    self.sessionExpired.isLogin = true
                     self.isLoading = false
                 }
             }
@@ -156,7 +156,7 @@ class LoginViewModel: ObservableObject {
     }
     
     func reset() {
-        isLogin = false
+        sessionExpired.isLogin = false
         
         resetState()
         
