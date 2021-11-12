@@ -45,7 +45,7 @@ class UserInformationService {
                   method: .post,
                   headers: headers).response { response in
             
-            if (response.error != nil) {
+            if (response.error == nil) {
                 do {
                     if let jsonData = response.data{
                         let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
