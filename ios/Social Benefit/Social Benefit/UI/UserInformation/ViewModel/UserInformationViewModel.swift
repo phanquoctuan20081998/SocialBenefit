@@ -134,15 +134,17 @@ class UserInformationViewModel: ObservableObject, Identifiable {
             noStreet = self.noStreet
         }
         
-        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image, imageName: self.imageName) { isSuccessed in
+        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image, imageName: self.imageName) { data in
             
-            if isSuccessed {
-                self.isSuccessed = isSuccessed
-                userInfor.nickname = self.nicknameText
-                userInfor.noStreet = self.noStreet
-                userInfor.address = self.locationText
-                userInfor.email = self.emailText
-                userInfor.locationId = self.locationId
+            if !data.isEmpty {
+                self.isSuccessed = true
+                
+                let employeeId = String(data["employeeDto"]["id"].int ?? 0)
+                let token = data["token"]
+                let employeeDto = data["employeeDto"]
+                let citizen = employeeDto["citizen"]
+                
+                updateUserInfor(userId: employeeId, token: token.string!, employeeDto: employeeDto, citizen: citizen)
             }
         }
         

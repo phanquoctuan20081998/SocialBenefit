@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class UserInformationService {
     
-    func sendImageAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, image: UIImage?, imageName: String, returnCallBack: @escaping (Bool) -> ()) {
+    func sendImageAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, image: UIImage?, imageName: String, returnCallBack: @escaping (JSON) -> ()) {
         
         let URLName = Config.baseURL + Config.API_EMPLOYEE_INFO_UPDATE
         
@@ -48,23 +48,18 @@ class UserInformationService {
             if (response.error == nil) {
                 do {
                     if let jsonData = response.data{
-                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
-                        print(parsedData["id"] as Any)
-                        returnCallBack(true)
+                        let parsedData = JSON(jsonData as Any)["result"]
+                        returnCallBack(parsedData)
                         
                     } else {
                         print("error message")
-                        returnCallBack(false)
+                        returnCallBack(JSON())
                     }
-                    
-                } catch {
-                    print("error message")
-                    returnCallBack(false)
                 }
                 
             } else {
                 print(response.error!.localizedDescription)
-                returnCallBack(false)
+                returnCallBack(JSON())
             }
         }
     }
