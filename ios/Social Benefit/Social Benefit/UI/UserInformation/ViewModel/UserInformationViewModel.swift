@@ -21,6 +21,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     // To control Image Picker...
     @Published var isPresentedImagePicker = false
     @Published var image = UIImage(named: userInfor.avatar)
+    @Published var imageName = userInfor.avatar
     @Published var showGallery: Bool = false
     @Published var showCamera: Bool = false
     
@@ -133,7 +134,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
             noStreet = self.noStreet
         }
         
-        userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { isSuccessed in
+        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image, imageName: self.imageName) { isSuccessed in
             
             if isSuccessed {
                 self.isSuccessed = isSuccessed
@@ -144,6 +145,18 @@ class UserInformationViewModel: ObservableObject, Identifiable {
                 userInfor.locationId = self.locationId
             }
         }
+        
+//        userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { isSuccessed in
+//
+//            if isSuccessed {
+//                self.isSuccessed = isSuccessed
+//                userInfor.nickname = self.nicknameText
+//                userInfor.noStreet = self.noStreet
+//                userInfor.address = self.locationText
+//                userInfor.email = self.emailText
+//                userInfor.locationId = self.locationId
+//            }
+//        }
     }
     
     

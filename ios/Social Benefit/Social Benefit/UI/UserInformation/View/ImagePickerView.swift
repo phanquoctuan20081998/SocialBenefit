@@ -10,6 +10,11 @@ import SwiftUI
 struct ImagePickerView: View {
     
     @EnvironmentObject var userInformationViewModel: UserInformationViewModel
+    let timeFormatter = DateFormatter()
+    
+    init() {
+        timeFormatter.dateFormat = "yyyy-MM-dd_HH:mm:ssZZZZZ"
+    }
     
     var body: some View {
         
@@ -17,13 +22,17 @@ struct ImagePickerView: View {
         
             .sheet(isPresented: $userInformationViewModel.showGallery) {
                 ImagePicker(sourceType: .photoLibrary) { image in
+                    let strDate = timeFormatter.string(from: Date())
                     userInformationViewModel.image = image
+                    userInformationViewModel.imageName = "IMG_IOS_" + strDate
                 }
             }
         
             .sheet(isPresented: $userInformationViewModel.showCamera) {
                 ImagePicker(sourceType: .camera) { image in
+                    let strDate = timeFormatter.string(from: Date())
                     userInformationViewModel.image = image
+                    userInformationViewModel.imageName = "IMG_IOS_" + strDate
                 }
             }
     }

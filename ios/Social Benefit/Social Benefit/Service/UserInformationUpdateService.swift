@@ -12,6 +12,63 @@ import SwiftyJSON
 
 class UserInformationService {
     
+    func sendImageAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, image: UIImage?, imageName: String, returnCallBack: @escaping (Bool) -> ()) {
+        
+        let URLName = Config.baseURL + Config.API_EMPLOYEE_INFO_UPDATE
+        
+        let headers: HTTPHeaders = ["Content-type": "multipart/form-data",
+                                    "Content-Disposition" : "form-data",
+                                    "token": userInfor.token,
+                                    "companyId": userInfor.companyId]
+        
+        let params: Parameters = ["id": id,
+                                  "nickName": nickName,
+                                  "address": address,
+                                  "citizenId": citizenId,
+                                  "email": email,
+                                  "phone": phone,
+                                  "birthday": birthday,
+                                  "locationId": locationId]
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            for (key, value) in params {
+                multipartFormData.append((value as! String).data(using: String.Encoding.utf8)!, withName: key)
+            }
+            
+            guard let imgData = image!.jpegData(compressionQuality: 1) else { return }
+            multipartFormData.append(imgData, withName: "file", fileName: imageName + ".jpeg", mimeType: "image/jpeg")
+            
+            
+            
+        },to: URL.init(string: URLName)!, usingThreshold: UInt64.init(),
+                  method: .post,
+                  headers: headers).response { response in
+            
+            if (response.error != nil) {
+                do {
+                    if let jsonData = response.data{
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData["id"] as Any)
+                        returnCallBack(true)
+                        
+                    } else {
+                        print("error message")
+                        returnCallBack(false)
+                    }
+                    
+                } catch {
+                    print("error message")
+                    returnCallBack(false)
+                }
+                
+            } else {
+                print(response.error!.localizedDescription)
+                returnCallBack(false)
+            }
+        }
+    }
+    
     func getAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, returnCallBack: @escaping (Bool) -> ()) {
         
         // Trim white space...
