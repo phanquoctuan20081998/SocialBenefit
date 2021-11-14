@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class UserInformationService {
     
-    func sendImageAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, image: UIImage?, imageName: String, returnCallBack: @escaping (JSON) -> ()) {
+    func sendImageAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, image: UIImage, imageName: String, returnCallBack: @escaping (JSON) -> ()) {
         
         let URLName = Config.baseURL + Config.API_EMPLOYEE_INFO_UPDATE
         
@@ -36,7 +36,7 @@ class UserInformationService {
                 multipartFormData.append((value as! String).data(using: String.Encoding.utf8)!, withName: key)
             }
             
-            guard let imgData = image!.jpegData(compressionQuality: 1) else { return }
+            guard let imgData = image.jpegData(compressionQuality: 1) else { return }
             multipartFormData.append(imgData, withName: "file", fileName: imageName + ".jpeg", mimeType: "image/jpeg")
             
             

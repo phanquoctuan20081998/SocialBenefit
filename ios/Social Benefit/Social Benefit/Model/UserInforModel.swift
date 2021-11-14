@@ -67,8 +67,8 @@ func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: 
     userInfor.city = citizen["locationCity"]["name"].string ?? ""
     userInfor.address = userInfor.noStreet + ", " + userInfor.ward + ", " + userInfor.district + ", " + userInfor.city
     userInfor.birthday = dateFormatter.date(from: citizen["birthDayStr"].string ?? "01/01/0001") ?? Date()
-    if (citizen["sex"].int! == 0) {userInfor.gender = "male"}
-    else if(citizen["sex"].int! == 1) {userInfor.gender = "female"}
+    if (citizen["sex"].int ?? 0 == 0) {userInfor.gender = "male"}
+    else if(citizen["sex"].int ?? 0 == 1) {userInfor.gender = "female"}
     else {userInfor.gender = "other"}
     userInfor.CMND = citizen["idCard"].string ?? ""
     userInfor.passport = citizen["passport"].string ?? ""

@@ -20,7 +20,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     
     // To control Image Picker...
     @Published var isPresentedImagePicker = false
-    @Published var image = UIImage(named: userInfor.avatar)
+    @Published var image = UIImage(named: "") ?? UIImage(color: .white)
     @Published var imageName = userInfor.avatar
     @Published var showGallery: Bool = false
     @Published var showCamera: Bool = false
@@ -55,7 +55,13 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     
     
     init() {
-        addSubscribers()
+        
+        guard let url = URL(string: Config.baseURL + userInfor.avatar) else { return }
+        UIImage.loadFrom(url: url) { image in
+            self.image = image!
+        }
+        
+        self.addSubscribers()
     }
     
     func addSubscribers() {
@@ -95,7 +101,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     
     func checkEnableSendButton() {
         if nicknameText != userInfor.nickname || emailText != userInfor.email ||
-            phoneText != userInfor.phone  || locationText != userInfor.address {
+            phoneText != userInfor.phone  || locationText != userInfor.address || imageName != userInfor.avatar {
             isEnableSaveButton = true
         } else {
             isEnableSaveButton = false
@@ -134,19 +140,22 @@ class UserInformationViewModel: ObservableObject, Identifiable {
             noStreet = self.noStreet
         }
         
-        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image, imageName: self.imageName) { data in
+
+        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image!, imageName: self.imageName) { data in
             
             if !data.isEmpty {
                 self.isSuccessed = true
                 
-                let employeeId = String(data["employeeDto"]["id"].int ?? 0)
-                let token = data["token"]
-                let employeeDto = data["employeeDto"]
+                let employeeDto = data
                 let citizen = employeeDto["citizen"]
-                
-                updateUserInfor(userId: employeeId, token: token.string!, employeeDto: employeeDto, citizen: citizen)
+
+                DispatchQueue.main.async {
+                    updateUserInfor(userId: userInfor.employeeId, token: userInfor.token, employeeDto: employeeDto, citizen: citizen)
+                    self.imageName = employeeDto["avatar"].string ?? ""
+                }
             }
         }
+
         
 //        userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { isSuccessed in
 //
@@ -170,3 +179,17 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         }
     }
 }
+
+public extension UIImage {
+      convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+      }
+    }

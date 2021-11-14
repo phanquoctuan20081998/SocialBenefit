@@ -123,7 +123,7 @@ extension UserInformationView {
             
             VStack(spacing: 20) {
                 
-                InformationTextFieldView(text: $userInformationViewModel.nicknameText, title: "nickname".localized, placeHolder: (userInfor.nickname == "") ? "nickname_placeholder".localized : userInfor.nickname, showChevron: false, disable: false)
+                InformationTextFieldView(text: $userInformationViewModel.nicknameText, title: "nickname".localized, placeHolder:  "nickname_placeholder".localized, showChevron: false, disable: false)
                 
                 LocationFieldView()
                 
