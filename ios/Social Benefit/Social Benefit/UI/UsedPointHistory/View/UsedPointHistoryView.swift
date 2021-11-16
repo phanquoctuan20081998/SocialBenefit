@@ -16,8 +16,6 @@ struct UsedPointHistoryView: View {
             Spacer().frame(height: 50)
             UpperView
             
-            let _ = print(usedPointHistoryViewModel.sameDateGroup)
-            let _ = print(usedPointHistoryViewModel.dateHistoryName)
         }
     }
 }
@@ -59,7 +57,22 @@ extension UsedPointHistoryView {
                     .onTapGesture {
                         usedPointHistoryViewModel.selectedTab = index
                     }
-                    
+            }
+        }
+    }
+    
+    var TransactionView: some View {
+        VStack {
+            ForEach(usedPointHistoryViewModel.allUsedPointsHistoryData.indices, id:\.self) { index in
+                
+                if usedPointHistoryViewModel.sameDateGroup.contains(index) {
+                    Text(usedPointHistoryViewModel.dateHistoryName[index])
+                }
+                
+                TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
+                                    time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
+                                    sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
+                                    point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
             }
         }
     }

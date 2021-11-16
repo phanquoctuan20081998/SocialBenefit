@@ -38,7 +38,6 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         self.isLoading = true
         usedPointsHistoryService.getAPI(pointActionType: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex) { [weak self] data in
             DispatchQueue.main.async {
-                print(data)
                 self?.allUsedPointsHistoryData = data
                 self?.countData()
                 self?.getDateHistoryName()
@@ -54,20 +53,15 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         if self.allUsedPointsHistoryData.count == 1 {
             self.sameDateGroup.append(1)
         } else {
-            var count = 1
+            
+            self.sameDateGroup.append(0)
             
             for i in 1..<self.allUsedPointsHistoryData.count {
-                if self.allUsedPointsHistoryData[i].mDate == self.allUsedPointsHistoryData[i - 1].mDate {
-                    count += 1
-                } else {
-                    self.sameDateGroup.append(count)
-                    count = 1
+                if self.allUsedPointsHistoryData[i].mDate != self.allUsedPointsHistoryData[i - 1].mDate {
+                    self.sameDateGroup.append(i)
                 }
             }
-            
-            self.sameDateGroup.append(count)
         }
-        
     }
     
     func getDateHistoryName() {
@@ -76,9 +70,6 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         
         let todayEnglishFormat = convertToEnglishFormat(day: today.day, month: today.month, year: today.year)
         let yesterdayEnglishFormat = convertToEnglishFormat(day: yesterday.day, month: yesterday.month, year: yesterday.year)
-        
-        print(todayEnglishFormat)
-        print(yesterdayEnglishFormat)
         
         var index = 0
         for i in 0 ..< self.sameDateGroup.count {
@@ -89,7 +80,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
             } else {
                 self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
             }
-            index += self.sameDateGroup[i]
+            index = self.sameDateGroup[i]
         }
     }
     
