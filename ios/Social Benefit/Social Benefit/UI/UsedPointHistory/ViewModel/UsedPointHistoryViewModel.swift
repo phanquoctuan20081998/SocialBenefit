@@ -37,6 +37,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     func loadData() {
         self.isLoading = true
         usedPointsHistoryService.getAPI(pointActionType: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex) { [weak self] data in
+            print(data)
             DispatchQueue.main.async {
                 self?.allUsedPointsHistoryData = data
                 self?.countData()

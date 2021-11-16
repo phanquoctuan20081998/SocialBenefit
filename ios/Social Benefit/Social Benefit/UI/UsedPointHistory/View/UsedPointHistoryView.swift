@@ -15,7 +15,7 @@ struct UsedPointHistoryView: View {
         VStack {
             Spacer().frame(height: 50)
             UpperView
-            
+            TransactionView
         }
     }
 }
