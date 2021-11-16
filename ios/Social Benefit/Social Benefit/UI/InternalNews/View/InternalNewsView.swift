@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SlidingTabView
 
 // Main
 struct InternalNewsView: View {

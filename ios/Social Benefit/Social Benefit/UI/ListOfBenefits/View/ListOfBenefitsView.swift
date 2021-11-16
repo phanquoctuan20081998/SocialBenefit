@@ -13,9 +13,7 @@ struct ListOfBenefitsView: View {
     
     @ObservedObject var listOfBenefitsViewModel = ListOfBenefitsViewModel()
     @ObservedObject var benefitDetailViewModel = BenefitDetailViewModel()
-    @State var isTapDetail: Bool = false
-    
-    let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
+    @State var isTapDetail: Bool = false 
     
     var body: some View {
         
@@ -57,6 +55,7 @@ extension ListOfBenefitsView {
     
     var HeaderView: some View {
         let scale = [0.17, 0.6, 0.2]
+        let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
         
         return HStack(spacing: 0) {
             

@@ -44,7 +44,7 @@ class CommentService {
                 commentDetail = result[i]["commentDetail"].string ?? ""
                 let commentTimeInt = result[i]["commentTime"].int ?? 0
                 
-                commentTime = self.getDate(date: commentTimeInt)
+                commentTime = getFullDateSince1970(date: commentTimeInt)
                 
                 let tempCommentData = CommentData(id: id!, contentId: contentId!, parentId: parentId!, avatar: avatar!, commentBy: commentBy!, commentDetail: commentDetail!, commentTime: commentTime!)
                 data.append(tempCommentData)
@@ -52,24 +52,5 @@ class CommentService {
             
             returnCallBack(data)
         })
-    }
-    
-    func getDate(date: Int) -> String {
-        let commentDate = Date(timeIntervalSince1970: Double(date / 1000))
-        let diffirent = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: commentDate, to: Date())
-        
-        if diffirent.year != 0 {
-            return "\(String(describing: diffirent.year!)) " + ((diffirent.year == 1) ? "year".localized : "years".localized)
-        } else if diffirent.month != 0 {
-            return "\(String(describing: diffirent.month!)) " + ((diffirent.month == 1) ? "month".localized : "months".localized)
-        } else if diffirent.day != 0 {
-            return "\(String(describing: diffirent.day!)) " + ((diffirent.day == 1) ? "day".localized : "days".localized)
-        } else if diffirent.hour != 0 {
-            return "\(String(describing: diffirent.hour!)) " + ((diffirent.hour == 1) ? "hour".localized : "hours".localized)
-        } else if diffirent.minute != 0 {
-            return "\(String(describing: diffirent.minute!)) " + ((diffirent.minute == 1) ? "minute".localized : "minutes".localized)
-        } else {
-            return "\(String(describing: diffirent.second!)) " + ((diffirent.second == 1) ? "second".localized : "seconds".localized)
-        }
     }
 }

@@ -92,7 +92,7 @@ class MyVoucherViewModel: ObservableObject, Identifiable {
     func refresh() {
         DispatchQueue.main.async {
             self.fromIndex = 0
-            self.loadSearchData(searchPattern: "")
+            self.loadSearchData(searchPattern: self.searchPattern)
         }
     }
 }

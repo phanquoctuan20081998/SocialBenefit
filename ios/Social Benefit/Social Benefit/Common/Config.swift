@@ -46,5 +46,5 @@ struct Config {
     
     static let API_SEND_MAIL_CUSTOMER_SUPPORT = "/mobile/mail/customer_support"
     
-    
+    static let API_USED_POINTS_HISTORY_GET = "/used-points-history"
 }
