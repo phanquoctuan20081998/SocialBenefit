@@ -72,6 +72,14 @@ struct Constants {
         static let MOBILE_CHANGE_PASSWORD_OK = 0
     }
     
+    // Used Pints History
+    struct UsedPointsHistory {
+        static let FROMCOMPLIMENT = 0
+        static let TOCOMPLIMENT = 1
+        static let FROMBENEFIT = 2
+        static let TOVOUCHER = 3
+    }
+    
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),

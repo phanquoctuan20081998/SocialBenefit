@@ -13,7 +13,10 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     @Published var isSearch = false
     @Published var selectedTab = 0
     @Published var fromIndex: Int = 0
-    @Published var usedPointsHistoryData = UsedPointsHistoryData(id: 1, mDate: "3rd March 2021", mTime: "20:23", mAction: 0, mDestination: "AAA", mPoint: 100)
+    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
+    
+    var sameDateGroup = [Int]() // Count number of transaction in the same day
+    var dateHistoryName = [String]() // Store date history name
     
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
@@ -27,15 +30,60 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     private var usedPointsHistoryService = UsedPointHistoryService()
     private var cancellables = Set<AnyCancellable>()
     
+    init() {
+        loadData()
+    }
+    
     func loadData() {
         self.isLoading = true
         usedPointsHistoryService.getAPI(pointActionType: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex) { [weak self] data in
             DispatchQueue.main.async {
-                self?.usedPointsHistoryData = data
+                self?.allUsedPointsHistoryData = data
+                self?.countData()
+                self?.getDateHistoryName()
                 
                 self?.isLoading = false
                 self?.isRefreshing = false
             }
+        }
+    }
+    
+    func countData() {
+        
+        if self.allUsedPointsHistoryData.count == 1 {
+            self.sameDateGroup.append(1)
+        } else {
+            var count = 1
+            
+            for i in 1..<self.allUsedPointsHistoryData.count {
+                if self.allUsedPointsHistoryData[i].mDate == self.allUsedPointsHistoryData[i - 1].mDate {
+                    count += 1
+                } else {
+                    self.sameDateGroup.append(count)
+                    count = 1
+                }
+            }
+        }
+        
+    }
+    
+    func getDateHistoryName() {
+        let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        let yesterday = Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
+        
+        let todayEnglishFormat = convertToEnglishFormat(day: today.day, month: today.month, year: today.year)
+        let yesterdayEnglishFormat = convertToEnglishFormat(day: yesterday.day, month: yesterday.month, year: yesterday.year)
+        
+        var index = 0
+        for i in 0 ..< self.sameDateGroup.count {
+            if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
+                self.dateHistoryName.append("today")
+            } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
+                self.dateHistoryName.append("yesterday")
+            } else {
+                self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
+            }
+            index += self.sameDateGroup[i]
         }
     }
     

@@ -26,11 +26,11 @@ func getFullDateSince1970(date: Int) -> String {
     }
 }
 
-func getDateElementSince1970(date: Int) -> DateComponents {
-    let commentDate = Date(timeIntervalSince1970: Double(date / 1000))
-    let diffirent = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: commentDate, to: Date())
+func getDateElementSince1970(_ date1970: Int) -> DateComponents {
+    let date = Date(timeIntervalSince1970: Double(date1970 / 1000))
+    let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
     
-    return diffirent
+    return dateComponents
 }
 
 func convertToEnglishFormat(day: Int?, month: Int?, year: Int?) -> String {

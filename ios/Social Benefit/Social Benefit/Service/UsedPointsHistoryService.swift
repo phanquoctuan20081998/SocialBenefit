@@ -12,8 +12,9 @@ import SwiftyJSON
 
 class UsedPointHistoryService {
     
-    func getAPI(pointActionType: Int, searchPattern: String, fromIndex: Int, returnCallBack: @escaping (UsedPointsHistoryData) -> ()) {
+    func getAPI(pointActionType: Int, searchPattern: String, fromIndex: Int, returnCallBack: @escaping ([UsedPointsHistoryData]) -> ()) {
         let service = BaseAPI()
+        var data = [UsedPointsHistoryData]()
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
@@ -24,17 +25,22 @@ class UsedPointHistoryService {
                                   "fromIndex": fromIndex]
 
         service.makeCall(endpoint: Config.API_USED_POINTS_HISTORY_GET, method: "POST", header: header, body: params, callback: { (result) in
-            let id = result["id"].int ?? -1
-            let mAction = result["mAction"].int ?? -1
-            let mDestination = result["mDestination"].string ?? ""
-            let mPoint = result["mPoint"].int ?? 0
             
-            let issueTime = result["issueTime"].int ?? 0
-            let date = getDateElementSince1970(date: issueTime)
-            let mDate = convertToEnglishFormat(day: date.day, month: date.month, year: date.year)
-            let mTime = String(format: "%02d:%02d", date.hour ?? 0, date.minute ?? 0)
-        
-            let data = UsedPointsHistoryData(id: id, mDate: mDate, mTime: mTime, mAction: mAction, mDestination: mDestination, mPoint: mPoint)
+            for i in 0..<result.count {
+                let id = result[i]["id"].int ?? -1
+                let mAction = result[i]["mAction"].int ?? -1
+                let mDestination = result[i]["mDestination"].string ?? ""
+                let mPoint = result[i]["mPoint"].int ?? 0
+                
+                let issueTime = result[i]["issueTime"].int ?? 0
+                let date = getDateElementSince1970(date: issueTime)
+                let mDate = convertToEnglishFormat(day: date.day, month: date.month, year: date.year)
+                let mTime = String(format: "%02d:%02d", date.hour ?? 0, date.minute ?? 0)
+            
+                let temp = UsedPointsHistoryData(id: id, mDate: mDate, mTime: mTime, mAction: mAction, mDestination: mDestination, mPoint: mPoint)
+                
+                data.append(temp)
+            }
             
             returnCallBack(data)
         })
