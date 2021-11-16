@@ -13,7 +13,10 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     @Published var isSearch = false
     @Published var selectedTab = 0
     @Published var fromIndex: Int = 0
-    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
+//    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
+    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData(id: 7, mDate: "25th October 2021", mTime: "16:28", mAction: 3, mDestination: "Vinasoy", mPoint: -50),
+                                               UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
+                                               UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
     
     var sameDateGroup = [Int]() // Count number of transaction in the same day
     var dateHistoryName = [String]() // Store date history name

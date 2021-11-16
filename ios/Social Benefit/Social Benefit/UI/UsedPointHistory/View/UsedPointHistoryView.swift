@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Network
 
 struct UsedPointHistoryView: View {
     
     @ObservedObject var usedPointHistoryViewModel = UsedPointHistoryViewModel()
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer().frame(height: 50)
             UpperView
             TransactionView
@@ -62,19 +63,34 @@ extension UsedPointHistoryView {
     }
     
     var TransactionView: some View {
-        VStack {
-            ForEach(usedPointHistoryViewModel.allUsedPointsHistoryData.indices, id:\.self) { index in
+        ScrollView {
+            VStack {
                 
-                if usedPointHistoryViewModel.sameDateGroup.contains(index) {
-                    Text(usedPointHistoryViewModel.dateHistoryName[index])
+                ForEach(usedPointHistoryViewModel.allUsedPointsHistoryData.indices, id:\.self) { index in
+                    
+                    if usedPointHistoryViewModel.sameDateGroup.contains(index) {
+                        Text(usedPointHistoryViewModel.dateHistoryName[index])
+                            .background(RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.white)
+                                            .offset(y: 20))
+                    }
+                    
+                    TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
+                                        time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
+                                        sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
+                                        point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
+                    
+                    if usedPointHistoryViewModel.sameDateGroup.contains(index + 1) {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
+                    }
                 }
-                
-                TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
-                                    time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
-                                    sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
-                                    point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
             }
         }
+        .frame(width: ScreenInfor().screenWidth)
+        .background(Color("nissho_light_blue"))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
