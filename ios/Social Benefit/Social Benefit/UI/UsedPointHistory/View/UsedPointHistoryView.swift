@@ -15,6 +15,9 @@ struct UsedPointHistoryView: View {
         VStack {
             Spacer().frame(height: 50)
             UpperView
+            
+            let _ = print(usedPointHistoryViewModel.sameDateGroup)
+            let _ = print(usedPointHistoryViewModel.dateHistoryName)
         }
     }
 }

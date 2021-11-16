@@ -20,7 +20,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     
     // To control Image Picker...
     @Published var isPresentedImagePicker = false
-    @Published var image = UIImage(named: "") ?? UIImage(color: .white)
+    @Published var image = UIImage(color: .white)
     @Published var imageName = userInfor.avatar
     @Published var showGallery: Bool = false
     @Published var showCamera: Bool = false
@@ -58,7 +58,11 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         
         guard let url = URL(string: Config.baseURL + userInfor.avatar) else { return }
         UIImage.loadFrom(url: url) { image in
-            self.image = image!
+            guard let image = image else {
+                self.image = UIImage(color: .white)
+                return
+            }
+            self.image = image
         }
         
         self.addSubscribers()

@@ -33,7 +33,7 @@ class UsedPointHistoryService {
                 let mPoint = result[i]["mPoint"].int ?? 0
                 
                 let issueTime = result[i]["issueTime"].int ?? 0
-                let date = getDateElementSince1970(date: issueTime)
+                let date = getDateElementSince1970(issueTime)
                 let mDate = convertToEnglishFormat(day: date.day, month: date.month, year: date.year)
                 let mTime = String(format: "%02d:%02d", date.hour ?? 0, date.minute ?? 0)
             

@@ -38,6 +38,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         self.isLoading = true
         usedPointsHistoryService.getAPI(pointActionType: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex) { [weak self] data in
             DispatchQueue.main.async {
+                print(data)
                 self?.allUsedPointsHistoryData = data
                 self?.countData()
                 self?.getDateHistoryName()
@@ -63,6 +64,8 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                     count = 1
                 }
             }
+            
+            self.sameDateGroup.append(count)
         }
         
     }
@@ -73,6 +76,9 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         
         let todayEnglishFormat = convertToEnglishFormat(day: today.day, month: today.month, year: today.year)
         let yesterdayEnglishFormat = convertToEnglishFormat(day: yesterday.day, month: yesterday.month, year: yesterday.year)
+        
+        print(todayEnglishFormat)
+        print(yesterdayEnglishFormat)
         
         var index = 0
         for i in 0 ..< self.sameDateGroup.count {

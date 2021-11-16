@@ -38,7 +38,7 @@ struct UserView: View {
                         EmptyView()
                     }
                     
-                    NavigationLink(destination: Text("2"), tag: 2, selection: $selection) {
+                    NavigationLink(destination: UsedPointHistoryView().navigationBarHidden(true), tag: 2, selection: $selection) {
                         FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
                     }
                     
