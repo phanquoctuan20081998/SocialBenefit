@@ -66,62 +66,33 @@ extension UsedPointHistoryView {
     var TransactionView: some View {
         ScrollView {
             VStack {
-                
-                ForEach(0 ..< usedPointHistoryViewModel.sameDateGroup.count - 1) { i in
+                ForEach(usedPointHistoryViewModel.allUsedPointsHistoryData.indices, id:\.self) { index in
+                    if usedPointHistoryViewModel.sameDateGroup.contains(index) {
+                        Text(usedPointHistoryViewModel.dateHistoryName[index])
+                            .background(RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.white)
+                                            .offset(y: 20))
+                    }
                     
-                    Text(usedPointHistoryViewModel.dateHistoryName[usedPointHistoryViewModel.sameDateGroup[i]])
-                        .background(RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.white)
-                                        .offset(y: 20))
+                    TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
+                                        time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
+                                        sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
+                                        point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
+                        .background(Color.white)
                     
-                    VStack {
-                        ForEach(usedPointHistoryViewModel.sameDateGroup[i]..<usedPointHistoryViewModel.sameDateGroup[i + 1]) { index in
-                            TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
-                                                time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
-                                                sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
-                                                point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
-                        }
-                    }.background(Color.white)
-                    
-                    VStack {
-                        ForEach(usedPointHistoryViewModel.sameDateGroup[i]..<usedPointHistoryViewModel.allUsedPointsHistoryData.count) { index in
-                            TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
-                                                time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
-                                                sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
-                                                point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
-                        }
-                    }.background(Color.white)
+                    // Display separate line except for last one
+                    if !usedPointHistoryViewModel.sameDateGroup.contains(index + 1) && (index != usedPointHistoryViewModel.allUsedPointsHistoryData.count - 1) {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
+                    }
                 }
-                
-                
-                //                ForEach(usedPointHistoryViewModel.allUsedPointsHistoryData.indices, id:\.self) { index in
-                //                    let _ = print(usedPointHistoryViewModel.sameDateGroup)
-                //                    if usedPointHistoryViewModel.sameDateGroup.contains(index) {
-                //                        Text(usedPointHistoryViewModel.dateHistoryName[index])
-                //                            .background(RoundedRectangle(cornerRadius: 10)
-                //                                            .fill(Color.white)
-                //                                            .offset(y: 20))
-                //                    }
-                //
-                //                    TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
-                //                                        time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
-                //                                        sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
-                //                                        point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
-                //
-                //                    // Display separate line except for last one
-                //                    if !usedPointHistoryViewModel.sameDateGroup.contains(index + 1) && (index != usedPointHistoryViewModel.allUsedPointsHistoryData.count - 1) {
-                //                        Rectangle()
-                //                            .fill(Color.gray)
-                //                            .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
-                //                    }
-                //                }
             }
         }
         .frame(width: ScreenInfor().screenWidth)
         .background(Color("nissho_light_blue"))
         .edgesIgnoringSafeArea(.all)
     }
-}
 }
 
 struct UsedPointHistoryView_Previews: PreviewProvider {
