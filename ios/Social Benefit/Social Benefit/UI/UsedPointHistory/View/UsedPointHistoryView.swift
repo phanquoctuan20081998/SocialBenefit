@@ -74,18 +74,20 @@ extension UsedPointHistoryView {
                                             .offset(y: 20))
                     }
                     
-                    TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
-                                        time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
-                                        sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
-                                        point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
-                        .background(Color.white)
-                    
-                    // Display separate line except for last one
-                    if !usedPointHistoryViewModel.sameDateGroup.contains(index + 1) && (index != usedPointHistoryViewModel.allUsedPointsHistoryData.count - 1) {
-                        Rectangle()
-                            .fill(Color.gray)
-                            .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
-                    }
+                    VStack {
+                        TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction,
+                                            time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime,
+                                            sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
+                                            point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
+                        
+                        
+                        // Display separate line except for last one
+                        if !usedPointHistoryViewModel.sameDateGroup.contains(index + 1) && (index != usedPointHistoryViewModel.allUsedPointsHistoryData.count - 1) {
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
+                        }
+                    }.background(Color.white)
                 }
             }
         }
