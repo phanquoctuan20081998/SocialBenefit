@@ -8,6 +8,11 @@
 import Foundation
 import Combine
 
+struct HeadTailIndex: Hashable {
+    var head: Int
+    var tail: Int
+}
+
 class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     @Published var searchText = ""
     @Published var isSearch = false
@@ -18,7 +23,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                                                UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
                                                UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
     
-    var sameDateGroup = [Int]() // Store the first index of transaction  of each date group
+    var sameDateGroup = [HeadTailIndex]() // Store the first index of transaction  of each date group
     var dateHistoryName = [String]() // Store date history name
     
     @Published var isLoading: Bool = false
@@ -55,16 +60,23 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     func countData() {
         
         if self.allUsedPointsHistoryData.count == 1 {
-            self.sameDateGroup.append(1)
+            self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
         } else {
             
-            self.sameDateGroup.append(0)
+            var tempHead = 0
+            var tempTail = 0
             
             for i in 1..<self.allUsedPointsHistoryData.count {
                 if self.allUsedPointsHistoryData[i].mDate != self.allUsedPointsHistoryData[i - 1].mDate {
-                    self.sameDateGroup.append(i)
+                    tempTail = i - 1
+                    
+                    self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
+                    tempHead = i
                 }
             }
+            
+            tempTail = self.allUsedPointsHistoryData.count - 1
+            self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
         }
     }
     
@@ -84,7 +96,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
             } else {
                 self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
             }
-            index = self.sameDateGroup[i]
+            index = self.sameDateGroup[i].head
         }
     }
     
