@@ -69,8 +69,10 @@ extension UsedPointHistoryView {
                 ForEach(usedPointHistoryViewModel.sameDateGroup.indices, id:\.self) { i in
                     
                     Text(usedPointHistoryViewModel.dateHistoryName[i])
+                        .bold()
                         .font(.system(size: 14))
                         .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+                        .padding(.vertical)
                     
                     let item = usedPointHistoryViewModel.sameDateGroup[i]
                     

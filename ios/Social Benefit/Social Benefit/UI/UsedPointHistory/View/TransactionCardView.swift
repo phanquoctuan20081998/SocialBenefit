@@ -16,7 +16,7 @@ struct TransactionCardView: View {
     
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
 
             Text(time).frame(width: 50)
                 
@@ -35,18 +35,18 @@ struct TransactionCardView: View {
                         .frame(width: 16, height: 16)
                 }
             }
-            .frame(width: 40)
-            
+            .frame(width: 50)
             
             
             TransactionContentView
-                .frame(width: 170, alignment: .leading)
+//                .frame(width: 170, alignment: .leading)
             
             Spacer()
             
             Text(String(point))
                 .bold()
                 .foregroundColor(point > 0 ? Color.blue : Color.gray)
+                .frame(width: 50)
             
         }
         .font(.system(size: 14))
@@ -78,8 +78,8 @@ struct TransactionCardView: View {
 struct TransactionCardView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-        TransactionCardView(transactionType: 1, time: "10:23", sourceName: "Yuri", point: 50)
-        TransactionCardView(transactionType: 0, time: "10:23", sourceName: "Yudcdvvggvgvgvgscri", point: -50)
+        TransactionCardView(transactionType: 1, time: "10:23", sourceName: "i", point: 50)
+        TransactionCardView(transactionType: 0, time: "10:23", sourceName: "Yudcdvvggvgvgvgscri", point: -500)
         }
     }
 }
