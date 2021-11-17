@@ -18,7 +18,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                                                UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
                                                UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
     
-    var sameDateGroup = [Int]() // Count number of transaction in the same day
+    var sameDateGroup = [Int]() // Store the first index of transaction  of each date group
     var dateHistoryName = [String]() // Store date history name
     
     @Published var isLoading: Bool = false

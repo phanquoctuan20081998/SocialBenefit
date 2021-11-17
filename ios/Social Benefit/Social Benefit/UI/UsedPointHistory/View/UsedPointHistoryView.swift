@@ -67,7 +67,7 @@ extension UsedPointHistoryView {
             VStack {
                 
                 ForEach(usedPointHistoryViewModel.allUsedPointsHistoryData.indices, id:\.self) { index in
-                    
+                    let _ = print(usedPointHistoryViewModel.sameDateGroup)
                     if usedPointHistoryViewModel.sameDateGroup.contains(index) {
                         Text(usedPointHistoryViewModel.dateHistoryName[index])
                             .background(RoundedRectangle(cornerRadius: 10)
@@ -80,7 +80,8 @@ extension UsedPointHistoryView {
                                         sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination,
                                         point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
                     
-                    if usedPointHistoryViewModel.sameDateGroup.contains(index + 1) {
+                    // Display separate line except for last one
+                    if !usedPointHistoryViewModel.sameDateGroup.contains(index + 1) && (index != usedPointHistoryViewModel.allUsedPointsHistoryData.count - 1) {
                         Rectangle()
                             .fill(Color.gray)
                             .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
