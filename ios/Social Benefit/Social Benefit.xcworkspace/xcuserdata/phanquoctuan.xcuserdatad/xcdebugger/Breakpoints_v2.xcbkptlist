@@ -993,8 +993,8 @@
             filePath = "Social Benefit/UI/UsedPointHistory/ViewModel/UsedPointHistoryViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "getDateHistoryName()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1009,9 +1009,9 @@
             filePath = "Social Benefit/UI/UsedPointHistory/View/UsedPointHistoryView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "TransactionView"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1045,22 +1045,6 @@
             endingLineNumber = "128"
             landmarkName = "UsedPointHistoryViewModel"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8FAB118F-56D1-4CE7-AC34-59B6FBB295C9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social Benefit/UI/UsedPointHistory/ViewModel/UsedPointHistoryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "loadSearchData(searchText:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

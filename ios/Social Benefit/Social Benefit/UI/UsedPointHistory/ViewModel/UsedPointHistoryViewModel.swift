@@ -63,7 +63,6 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                 
                 self?.isLoading = false
                 self?.isRefreshing = false
-                print("DONE")
             }
         }
     }
@@ -118,8 +117,9 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     }
     
     func loadSearchData(searchText: String) {
-//        self.searchText = searchText
-        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+            self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
+        }
     }
     
     func loadSelectedTab(selectedTab: Int) {

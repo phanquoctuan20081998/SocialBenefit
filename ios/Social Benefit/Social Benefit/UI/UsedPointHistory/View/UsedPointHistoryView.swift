@@ -12,6 +12,7 @@ import SwiftyJSON
 struct UsedPointHistoryView: View {
     
     @ObservedObject var usedPointHistoryViewModel = UsedPointHistoryViewModel()
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -27,13 +28,14 @@ struct UsedPointHistoryView: View {
                 TransactionView
             }
         }
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: true))
     }
 }
 
 extension UsedPointHistoryView {
     
     var UpperView: some View {
-        VStack {
+        VStack (spacing: 20) {
             
             Text("your_used_points_hictory".localized.uppercased())
                 .bold()
