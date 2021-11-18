@@ -109,31 +109,36 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         
         var index = 0
         for i in 0 ..< self.sameDateGroup.count {
-            DispatchQueue.main.async {
-                if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
+            
+            if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
+                DispatchQueue.main.async {
                     self.dateHistoryName.append("today")
-                } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
+                }
+            } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
+                DispatchQueue.main.async {
                     self.dateHistoryName.append("yesterday")
-                } else {
+                }
+            } else {
+                DispatchQueue.main.async {
                     self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
                 }
             }
-            index = self.sameDateGroup[i].head
-        }
+        index = self.sameDateGroup[i].head
     }
-    
-    func loadSearchData(searchText: String) {
-        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+}
+
+func loadSearchData(searchText: String) {
+    self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+}
+
+func loadSelectedTab(selectedTab: Int) {
+    self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+}
+
+func refresh() {
+    DispatchQueue.main.async {
+        self.fromIndex = 0
+        self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
     }
-    
-    func loadSelectedTab(selectedTab: Int) {
-        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
-    }
-    
-    func refresh() {
-        DispatchQueue.main.async {
-            self.fromIndex = 0
-            self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
-        }
-    }
+}
 }
