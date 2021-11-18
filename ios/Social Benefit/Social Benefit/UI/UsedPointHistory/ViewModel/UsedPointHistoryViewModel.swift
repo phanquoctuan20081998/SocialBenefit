@@ -40,9 +40,10 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     
     init() {
         loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
+        addSubscribers()
     }
     
-    func addSubcriber() {
+    func addSubscribers() {
         $searchText
             .sink(receiveValue: loadSearchData(searchText:))
             .store(in: &cancellables)
@@ -68,7 +69,9 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     
     func countData() {
         
-        if self.allUsedPointsHistoryData.count == 1 {
+        if self.allUsedPointsHistoryData.count == 0 {
+            return
+        } else if self.allUsedPointsHistoryData.count == 1 {
             self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
         } else {
             
