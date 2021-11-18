@@ -18,7 +18,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     @Published var isSearch = false
     @Published var selectedTab = 0
     @Published var fromIndex: Int = 0
-//    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
+    //    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
     @Published var allUsedPointsHistoryData = [UsedPointsHistoryData(id: 7, mDate: "25th October 2021", mTime: "16:28", mAction: 3, mDestination: "Vinasoy", mPoint: -50),
                                                UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
                                                UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
@@ -72,7 +72,9 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         if self.allUsedPointsHistoryData.count == 0 {
             return
         } else if self.allUsedPointsHistoryData.count == 1 {
-            self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
+            DispatchQueue.main.async {
+                self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
+            }
         } else {
             
             var tempHead = 0
@@ -82,13 +84,19 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                 if self.allUsedPointsHistoryData[i].mDate != self.allUsedPointsHistoryData[i - 1].mDate {
                     tempTail = i - 1
                     
-                    self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
+                    DispatchQueue.main.async {
+                        self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
+                    }
+                    
                     tempHead = i
                 }
             }
             
             tempTail = self.allUsedPointsHistoryData.count - 1
-            self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
+            
+            DispatchQueue.main.async {
+                self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
+            }
         }
     }
     
@@ -101,12 +109,14 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         
         var index = 0
         for i in 0 ..< self.sameDateGroup.count {
-            if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
-                self.dateHistoryName.append("today")
-            } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
-                self.dateHistoryName.append("yesterday")
-            } else {
-                self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
+            DispatchQueue.main.async {
+                if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
+                    self.dateHistoryName.append("today")
+                } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
+                    self.dateHistoryName.append("yesterday")
+                } else {
+                    self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
+                }
             }
             index = self.sameDateGroup[i].head
         }

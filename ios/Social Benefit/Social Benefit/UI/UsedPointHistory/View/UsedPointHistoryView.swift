@@ -78,9 +78,11 @@ extension UsedPointHistoryView {
                     
                     VStack {
                         ForEach(item.head ..< item.tail + 1) { index in
+                            
                             let _ = print("LALALA")
                             let _ = print(usedPointHistoryViewModel.allUsedPointsHistoryData)
                             let _ = print(index)
+                            
                             TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction, time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime, sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination, point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
                             
                             // Display separate line except for last one
