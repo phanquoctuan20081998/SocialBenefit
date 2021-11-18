@@ -17,7 +17,15 @@ struct UsedPointHistoryView: View {
         VStack(spacing: 0) {
             Spacer().frame(height: 50)
             UpperView
-            TransactionView
+            
+            if usedPointHistoryViewModel.isLoading && !usedPointHistoryViewModel.isRefreshing {
+                LoadingPageView()
+                    .frame(width: ScreenInfor().screenWidth)
+                    .background(Color("nissho_light_blue"))
+                    .edgesIgnoringSafeArea(.all)
+            } else {
+                TransactionView
+            }
         }
     }
 }
@@ -64,7 +72,8 @@ extension UsedPointHistoryView {
     }
     
     var TransactionView: some View {
-        ScrollView {
+        ScrollView(.vertical, showsIndicators: false) {
+            let _ = print(usedPointHistoryViewModel.allUsedPointsHistoryData)
             VStack {
                 ForEach(usedPointHistoryViewModel.sameDateGroup.indices, id:\.self) { i in
                     
@@ -75,14 +84,9 @@ extension UsedPointHistoryView {
                         .padding(.vertical)
                     
                     let item = usedPointHistoryViewModel.sameDateGroup[i]
-                    
+
                     VStack {
-                        ForEach(item.head ..< item.tail + 1) { index in
-                            
-                            let _ = print("LALALA")
-                            let _ = print(usedPointHistoryViewModel.allUsedPointsHistoryData)
-                            let _ = print(index)
-                            
+                        ForEach(item.head ..< item.tail + 1, id:\.self) { index in
                             TransactionCardView(transactionType: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mAction, time: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mTime, sourceName: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mDestination, point: usedPointHistoryViewModel.allUsedPointsHistoryData[index].mPoint)
                             
                             // Display separate line except for last one
@@ -97,6 +101,8 @@ extension UsedPointHistoryView {
                     .background(RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.white))
                 }
+                
+                Spacer().frame(height: 50)
             }
         }
         .frame(width: ScreenInfor().screenWidth)

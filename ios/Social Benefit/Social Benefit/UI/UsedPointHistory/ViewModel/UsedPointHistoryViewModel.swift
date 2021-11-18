@@ -18,7 +18,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     @Published var isSearch = false
     @Published var selectedTab = 0
     @Published var fromIndex: Int = 0
-    //    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
+//    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
     @Published var allUsedPointsHistoryData = [UsedPointsHistoryData(id: 7, mDate: "25th October 2021", mTime: "16:28", mAction: 3, mDestination: "Vinasoy", mPoint: -50),
                                                UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
                                                UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
@@ -63,18 +63,19 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                 
                 self?.isLoading = false
                 self?.isRefreshing = false
+                print("DONE")
             }
         }
     }
     
     func countData() {
         
+        self.sameDateGroup = []
+        
         if self.allUsedPointsHistoryData.count == 0 {
             return
         } else if self.allUsedPointsHistoryData.count == 1 {
-            DispatchQueue.main.async {
-                self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
-            }
+            self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
         } else {
             
             var tempHead = 0
@@ -84,23 +85,19 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
                 if self.allUsedPointsHistoryData[i].mDate != self.allUsedPointsHistoryData[i - 1].mDate {
                     tempTail = i - 1
                     
-                    DispatchQueue.main.async {
-                        self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
-                    }
-                    
+                    self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
                     tempHead = i
                 }
             }
             
             tempTail = self.allUsedPointsHistoryData.count - 1
-            
-            DispatchQueue.main.async {
-                self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
-            }
+            self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
         }
     }
     
     func getDateHistoryName() {
+        self.dateHistoryName = []
+        
         let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
         let yesterday = Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
         
@@ -109,36 +106,36 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         
         var index = 0
         for i in 0 ..< self.sameDateGroup.count {
-            
             if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
-                DispatchQueue.main.async {
-                    self.dateHistoryName.append("today")
-                }
+                self.dateHistoryName.append("today")
             } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
-                DispatchQueue.main.async {
-                    self.dateHistoryName.append("yesterday")
-                }
+                self.dateHistoryName.append("yesterday")
             } else {
-                DispatchQueue.main.async {
-                    self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
-                }
+                self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
             }
-        index = self.sameDateGroup[i].head
+            index = self.sameDateGroup[i].head
+        }
     }
-}
-
-func loadSearchData(searchText: String) {
-    self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
-}
-
-func loadSelectedTab(selectedTab: Int) {
-    self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
-}
-
-func refresh() {
-    DispatchQueue.main.async {
-        self.fromIndex = 0
-        self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
+    
+    func loadSearchData(searchText: String) {
+//        self.searchText = searchText
+        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
     }
-}
+    
+    func loadSelectedTab(selectedTab: Int) {
+        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+    }
+    
+    func refresh() {
+        DispatchQueue.main.async {
+            self.fromIndex = 0
+            self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
+        }
+    }
+    
+    func reset() {
+        self.allUsedPointsHistoryData = []
+        self.sameDateGroup = []
+        self.dateHistoryName = []
+    }
 }
