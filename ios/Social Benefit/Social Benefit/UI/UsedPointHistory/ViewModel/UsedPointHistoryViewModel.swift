@@ -39,13 +39,22 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        loadData()
+        loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
     }
     
-    func loadData() {
+    func addSubcriber() {
+        $searchText
+            .sink(receiveValue: loadSearchData(searchText:))
+            .store(in: &cancellables)
+        
+        $selectedTab
+            .sink(receiveValue: loadSelectedTab(selectedTab:))
+            .store(in: &cancellables)
+    }
+    
+    func loadData(selectedTab: Int, searchPattern: String, fromIndex: Int) {
         self.isLoading = true
-        usedPointsHistoryService.getAPI(pointActionType: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex) { [weak self] data in
-            print(data)
+        usedPointsHistoryService.getAPI(pointActionType: selectedTab, searchPattern: searchText, fromIndex: fromIndex) { [weak self] data in
             DispatchQueue.main.async {
                 self?.allUsedPointsHistoryData = data
                 self?.countData()
@@ -100,10 +109,18 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func loadSearchData(searchText: String) {
+        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+    }
+    
+    func loadSelectedTab(selectedTab: Int) {
+        self.loadData(selectedTab: selectedTab, searchPattern: searchText, fromIndex: fromIndex)
+    }
+    
     func refresh() {
         DispatchQueue.main.async {
             self.fromIndex = 0
-            self.loadData()
+            self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
         }
     }
 }

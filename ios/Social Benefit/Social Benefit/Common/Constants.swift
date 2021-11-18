@@ -72,12 +72,19 @@ struct Constants {
         static let MOBILE_CHANGE_PASSWORD_OK = 0
     }
     
-    // Used Pints History
+    // Used Points History
     struct UsedPointsHistory {
         static let FROMCOMPLIMENT = 0
         static let TOCOMPLIMENT = 1
         static let FROMBENEFIT = 2
         static let TOVOUCHER = 3
+    }
+    
+    // Used Points History - Point Action Type
+    struct PointActionType {
+        static let ALL = 0
+        static let RECEIVED = 1
+        static let COMSUMED = 2
     }
     
     // Background Search Bar...
