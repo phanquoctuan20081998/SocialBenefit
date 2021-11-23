@@ -38,7 +38,7 @@ struct Constants {
         static var LAUGH = 2
         static var SURPRISE = 3
         static var SAD = 4
-        static var ANGER = 5
+        static var ANGRY = 5
     }
     
     struct ReactContentType {

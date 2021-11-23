@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
 class ReactViewModel: ObservableObject, Identifiable {
     
@@ -13,20 +15,46 @@ class ReactViewModel: ObservableObject, Identifiable {
     @Published var numOfReact: Int = 0
     @Published var reactCount = [0, 0, 0, 0, 0, 0, 0, 0]
     
-//    @Published var numOfLike: Int = 0 // reactType = 0
-//    @Published var numOfLove: Int = 0 // reactType = 1
-//    @Published var numOfLaugh: Int = 0 // reactType = 2
-//    @Published var numOfSad: Int = 0 // reactType = 4
-//    @Published var numOfAngry: Int = 0 // reactType = 5
-    
     @Published var isLike: Bool = false
     @Published var selectedReaction: Int = 6 // 6 is "" in reactions constant
     @Published var isShowReactionBar: Bool = false
+    @Published var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     
     private let reactService = ReactService()
+    private var cancellables = Set<AnyCancellable>()
     
+    // For Recognition..
+    @Published var reactTop1: Int = 6
+    @Published var reactTop2: Int = 6
+    
+    // INIT
+    // Internal News...
     init(contentId: Int) {
         initComment(contentId: contentId)
+    }
+    
+    // Recognition...
+    init(myReact: Int, reactTop1: Int, reactTop2: Int) {
+        if myReact != -1 {
+            if myReact == 0 { isLike = true }
+            selectedReaction = myReact 
+        }
+        
+        self.reactTop1 = reactTop1
+        self.reactTop2 = reactTop2
+        
+        if self.reactTop1 == -1 {
+            self.reactTop1 = 6
+        }
+        
+        if self.reactTop2 == -1 {
+            self.reactTop2 = 6
+        }
+        
+        self.reactCount[self.reactTop1] += 1
+        self.reactCount[self.reactTop2] += 1
+        
+        self.addSubscribers()
     }
     
     func initComment(contentId: Int) {
@@ -44,7 +72,7 @@ class ReactViewModel: ObservableObject, Identifiable {
                         self.reactCount[2] += 1
                     case Constants.ReactType.SAD:
                         self.reactCount[4] += 1
-                    case Constants.ReactType.ANGER:
+                    case Constants.ReactType.ANGRY:
                         self.reactCount[5] += 1
                     default:
                         // More react
@@ -60,6 +88,13 @@ class ReactViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func addSubscribers() {
+        $selectedReaction
+            .sink(receiveValue: updateTopReact(selectedReaction:))
+            .store(in: &cancellables)
+    }
+    
+    // For internal news...
     func getUserStatus() {
         for react in self.allReact {
             if String(react.employeeId) == userInfor.employeeId {
@@ -69,33 +104,59 @@ class ReactViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func getTop3React() -> [String] {
-        var top3React = [String]()
-        
+    func getTop2React() -> [String] {
+        var top2React = [String]()
         var react = self.reactCount
         
-        for _ in 0..<3 {
+        for _ in 0..<2 {
             let max = react.max()
             let maxIndex = react.firstIndex(of: max!)!
             if max != 0 {
-                switch maxIndex {
-                case Constants.ReactType.LIKE:
-                    top3React.append("ic_fb_like")
-                case Constants.ReactType.LOVE:
-                    top3React.append("ic_fb_love")
-                case Constants.ReactType.LAUGH:
-                    top3React.append("ic_fb_laugh")
-                case Constants.ReactType.SAD:
-                    top3React.append("ic_fb_sad")
-                case Constants.ReactType.ANGER:
-                    top3React.append("ic_fb_angry")
-                default:
-                    //Do nothing
-                    print("")
+                let imgName = convertReactCodeToImageName(maxIndex)
+                if !imgName.isEmpty {
+                    top2React.append(convertReactCodeToImageName(maxIndex))
                 }
             }
             react[maxIndex] = 0
         }
-        return top3React
+    
+        return top2React
+    }
+    
+    func convertReactCodeToImageName(_ react: Int) -> String {
+        switch react {
+        case Constants.ReactType.LIKE:
+            return "ic_fb_like"
+        case Constants.ReactType.LOVE:
+            return "ic_fb_love"
+        case Constants.ReactType.LAUGH:
+            return "ic_fb_laugh"
+        case Constants.ReactType.SAD:
+            return "ic_fb_sad"
+        case Constants.ReactType.ANGRY:
+            return "ic_fb_angry"
+        default:
+            //Do nothing
+            return ""
+        }
+    }
+    
+    // For recognition...
+    func updateTopReact(selectedReaction: Int) {
+        DispatchQueue.main.async {
+            if selectedReaction != 6 {
+                if self.reactTop1 == 6 {
+                    self.reactTop1 = selectedReaction
+                } else if self.reactTop2 == 6 {
+                    self.reactTop2 = selectedReaction
+                }
+            } else {
+                if self.reactTop2 == self.previousReaction {
+                    self.reactTop2 = 6
+                } else if self.reactTop1 == self.previousReaction {
+                    self.reactTop1 = 6
+                }
+            }
+        }
     }
 }

@@ -73,7 +73,7 @@ struct HomeScreenView: View {
         case "house":
             HomeView()
         case "star":
-            Rectangle().fill(Color.white)
+            RecognitionView()
         case "tag":
             ListOfMerchantView().frame(width: ScreenInfor().screenWidth)
         default:

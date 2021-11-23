@@ -133,6 +133,12 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func reload() {
+        DispatchQueue.main.async {
+            self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
+        }
+    }
+    
     func reset() {
         self.allUsedPointsHistoryData = []
         self.sameDateGroup = []

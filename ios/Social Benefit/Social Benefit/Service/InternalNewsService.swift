@@ -44,7 +44,8 @@ class InternalNewsService {
         // API
         var order: Int = 0
         
-        let header: HTTPHeaders = ["token": userInfor.token]
+        let header: HTTPHeaders = ["token": userInfor.token,
+                                   "timezoneOffset": "0"]
         let params: Parameters = ["page" : page,
                                   "size" : pageSize,
                                   "filter" : filter,

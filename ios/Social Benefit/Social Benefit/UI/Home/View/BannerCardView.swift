@@ -210,11 +210,6 @@ struct MainCardView: View {
     var body: some View {
         VStack {
             HStack {
-                Image("confetti_1")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 50, height: 50, alignment: .leading)
-                
                 Spacer()
                 
                 VStack {
@@ -229,12 +224,9 @@ struct MainCardView: View {
                 }
                 
                 Spacer()
-                
-                Image("confetti_2")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 50, height: 50, alignment: .trailing)
-            }
+            }.background(Image("bum")
+                            .resizable()
+                            .scaledToFill())
             
             Spacer()
             

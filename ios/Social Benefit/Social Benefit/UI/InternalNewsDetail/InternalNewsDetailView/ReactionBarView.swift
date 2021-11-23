@@ -18,15 +18,15 @@ struct ReactionBarView: View {
     
     var body: some View {
         HStack(spacing: 5) {
-            ForEach(reactions, id: \.self) {reaction in
-                if !reaction.isEmpty {
-                    AnimatedImage(name: (reaction + ".gif"))
+            ForEach(reactions.indices, id: \.self) {index in
+                if !reactions[index].isEmpty {
+                    AnimatedImage(name: (reactions[index] + ".gif"))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: (reactions[self.selectedReaction] == reaction) ? 150 : 50,
-                               height: (reactions[self.selectedReaction] == reaction) ? 150 : 50)
-                        .padding((reactions[self.selectedReaction] == reaction) ? -40 : 0)
-                        .offset(y: (reactions[self.selectedReaction] == reaction) ? -20 : 0)
+                        .frame(width: (reactions[self.selectedReaction] == reactions[index]) ? 150 : 50,
+                               height: (reactions[self.selectedReaction] == reactions[index]) ? 150 : 50)
+                        .padding((reactions[self.selectedReaction] == reactions[index]) ? -40 : 0)
+                        .offset(y: (reactions[self.selectedReaction] == reactions[index]) ? -20 : 0)
                 }
             }
         }.padding(.horizontal, 10)
