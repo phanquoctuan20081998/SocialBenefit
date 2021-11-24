@@ -88,6 +88,7 @@ struct HomeScreenView: View {
                 if let internalNews = internalNews {
                     InternalNewsDetailView(internalNewData: internalNews, isHiddenTabBarWhenBack: false, isNavigationFromHomeScreen: true)
                         .background(Color.white)
+                        .edgesIgnoringSafeArea(.all)
                 }
             }
         }
@@ -100,6 +101,7 @@ struct HomeScreenView: View {
                 if let voucherId = voucherId {
                     MerchantVoucherDetailView(isNavigationFromHomeScreen: true, voucherId: voucherId)
                         .background(Color.white)
+                        .edgesIgnoringSafeArea(.all)
                 }
             }
         }

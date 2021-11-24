@@ -95,6 +95,5 @@ struct LikeAndCommentCountBarView: View {
                     .bold()
             }
         }
-        .padding(.horizontal)
     }
 }

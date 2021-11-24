@@ -21,7 +21,6 @@ struct CommentBarView: View {
     
     var body: some View {
         VStack {
-            Divider().frame(width: ScreenInfor().screenWidth*0.9)
             
             VStack(alignment: .leading, spacing: 3) {
                 
@@ -41,19 +40,18 @@ struct CommentBarView: View {
                         
                     }.font(.system(size: 13))
                         .foregroundColor(.gray)
-                        .padding(.leading, 70)
                 }
                 
                 HStack {
                     URLImageView(url: Config.baseURL + userInfor.avatar)
                         .clipShape(Circle())
-                        .frame(width: 30, height: 30)
+                        .frame(width: 20, height: 20)
                         .padding(.all, 7)
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                     
                     Spacer().frame(width: 18)
                     
-                    AutoResizeTextField(text: $commentText, isFocus: .constant(false), minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                    AutoResizeTextField(text: $commentText, isFocus: .constant(false), minHeight: 20, maxHeight: 80, placeholder: "type_comment".localized)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .padding(5)
                     
@@ -62,8 +60,8 @@ struct CommentBarView: View {
                     
                     SendButtonView
                 }
-            }.padding(.top, 5)
-        }.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
+            }
+        }
     }
 }
 

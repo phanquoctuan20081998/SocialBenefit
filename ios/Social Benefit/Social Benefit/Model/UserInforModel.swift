@@ -35,6 +35,71 @@ struct UserInfor {
     var companyLogo: String
     var citizenId: String
     var locationId: String
+    
+    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String) {
+        
+        self.userId = userId
+        self.employeeId = employeeId
+        self.token = token
+        self.companyId = companyId
+        self.name = name
+        self.avatar = avatar
+        self.position = position
+        self.nickname = nickname
+        self.email = email
+        self.phone = phone
+        self.noStreet = noStreet
+        self.ward = ward
+        self.district = district
+        self.city = city
+        self.address = address
+        self.birthday = birthday
+        self.gender = gender
+        self.CMND = CMND
+        self.passport = passport
+        self.insurance = insurance
+        self.department = department
+        self.isLeader = isLeader
+        self.companyLogo = companyLogo
+        self.citizenId = citizenId
+        self.locationId = locationId
+        
+    }
+    
+    // For initialize User Information without token infor
+    init(employeeDto: JSON, citizen: JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+
+        self.userId = employeeDto["employeeCode"].string ?? ""
+        self.employeeId = String(employeeDto["id"].int ?? 0)
+        self.token = ""
+        self.companyId = String(employeeDto["company"]["id"].int ?? 0)
+        self.name = employeeDto["citizen"]["fullName"].string ?? ""
+        self.avatar = employeeDto["avatar"].string ?? ""
+        self.position = employeeDto["position"]["name"].string ?? ""
+        self.nickname = employeeDto["nickName"].string ?? ""
+        self.email = employeeDto["email"].string ?? ""
+        self.phone = employeeDto["phone"].string ?? ""
+        self.department = employeeDto["department"]["name"].string ?? ""
+        self.isLeader = employeeDto["isPointManager"].bool ?? false
+        self.companyLogo = employeeDto["company"]["logo"].string ?? ""
+        
+        self.noStreet = citizen["noStreet"].string ?? ""
+        self.ward = citizen["locationWard"]["name"].string ?? ""
+        self.district = citizen["locationDistrict"]["name"].string ?? ""
+        self.city = citizen["locationCity"]["name"].string ?? ""
+        self.address = self.noStreet + ", " + self.ward + ", " + self.district + ", " + self.city
+        self.birthday = dateFormatter.date(from: citizen["birthDayStr"].string ?? "01/01/0001") ?? Date()
+        if (citizen["sex"].int ?? 0 == 0) {self.gender = "male"}
+        else if(citizen["sex"].int ?? 0 == 1) {self.gender = "female"}
+        else {self.gender = "other"}
+        self.CMND = citizen["idCard"].string ?? ""
+        self.passport = citizen["passport"].string ?? ""
+        self.insurance = citizen["socialInsurance"].string ?? ""
+        self.citizenId = String(citizen["id"].int ?? 0)
+        self.locationId = citizen["locationWard"]["id"].string ?? "00000"
+    }
 }
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "", avatar: "", position: "", nickname: "",
@@ -42,7 +107,7 @@ var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", 
                           CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png", citizenId: "", locationId: "")
 
 
-func updateUserInfor(userId: String, token: String, employeeDto: JSON, citizen: JSON) {
+func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON) {
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"

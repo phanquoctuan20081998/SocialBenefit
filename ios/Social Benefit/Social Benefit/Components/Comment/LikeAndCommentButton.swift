@@ -26,7 +26,7 @@ struct LikeAndCommentButton: View {
                                 Image(systemName: "hand.thumbsup")
                                 Text("\((reactViewModel.getTop2React().count == 0) ? "be_the_first".localized : "like".localized)")
                                     .font(.system(size: 12))
-                            }.foregroundColor(.black)
+                            }.foregroundColor(.blue)
                             
                         } else {
                             if self.reactViewModel.selectedReaction == 6 {
@@ -94,8 +94,8 @@ struct LikeAndCommentButton: View {
                     Image(systemName: "bubble.left")
                     Text("comment".localized)
                         .font(.system(size: 12))
-                }
-            }.padding(.horizontal)
+                }.foregroundColor(.blue)
+            }
             
             // Reaction Bar
             if reactViewModel.isShowReactionBar {
@@ -104,7 +104,6 @@ struct LikeAndCommentButton: View {
                     .zIndex(2)
             }
         }
-        .frame(height: 40)
     }
     
     func onChangedValue(value: DragGesture.Value) {

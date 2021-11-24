@@ -199,6 +199,7 @@
 		C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F0097226D8BCFD001B9972 /* PageControl.swift */; };
 		C4F2A4FC26F040AC0090675A /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F2A4FB26F040AC0090675A /* HTMLStringView.swift */; };
 		C4F2A4FE26F04BAE0090675A /* UpperCaseText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F2A4FD26F04BAE0090675A /* UpperCaseText.swift */; };
+		C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */; };
 		C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -401,6 +402,7 @@
 		C4F0097226D8BCFD001B9972 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		C4F2A4FB26F040AC0090675A /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		C4F2A4FD26F04BAE0090675A /* UpperCaseText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCaseText.swift; sourceTree = "<group>"; };
+		C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentButton.swift; sourceTree = "<group>"; };
 		F1DE47683E48ABB3E7D7C5B6 /* Pods-Social Benefit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -730,6 +732,7 @@
 			children = (
 				C419868D26E46F7C00A877A5 /* LocalFileManager.swift */,
 				C419868F26E46F9000A877A5 /* NetworkingManager.swift */,
+				C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1555,6 +1558,7 @@
 				C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */,
 				C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */,
 				C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */,
+				C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */,
 				C4AB352D270AD7B000A186F5 /* SearchView.swift in Sources */,
 				84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */,
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,

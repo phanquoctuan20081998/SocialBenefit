@@ -11,7 +11,7 @@ struct RecognitionView: View {
     @ObservedObject var recognitionViewModel = RecognitionViewModel()
     
     var body: some View {
-        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], contentId: 8)
+        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], contentId: 8, commentText: .constant(""), commentCount: .constant(1))
     }
 }
 

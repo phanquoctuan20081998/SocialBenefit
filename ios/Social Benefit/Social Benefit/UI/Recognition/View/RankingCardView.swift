@@ -9,11 +9,28 @@ import SwiftUI
 
 struct RankingCardView: View {
     var body: some View {
-        RankingBackgroud
+        VStack(spacing: 0) {
+            
+            VStack(alignment: .leading, spacing: 0) {
+                TopTitleView(title: "recognitions_ranking".localized, topTitleTapped: topTitledTapped, isSeeAll: false)
+                    .font(.system(size: 14, weight: .heavy))
+                    .foregroundColor(.blue)
+                
+                Rectangle()
+                    .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
+                    .foregroundColor(Color.blue.opacity(0.2))
+                    .padding(.leading)
+            }
+            
+            Spacer().frame(height: 20)
+            
+            RankingBackgroud
+        }
     }
 }
 
 extension RankingCardView {
+    
     var RankingBackgroud: some View {
         ZStack(alignment: .bottom) {
             Image("bg_ranking")
@@ -85,6 +102,10 @@ extension RankingCardView {
                         .offset(x: 125, y: -20)
                 )
         }
+    }
+    
+    func topTitledTapped() {
+        
     }
 }
 

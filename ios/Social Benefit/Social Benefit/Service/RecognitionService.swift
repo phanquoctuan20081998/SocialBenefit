@@ -54,5 +54,30 @@ class RecognitionService {
             returnCallBack(data)
         })
     }
+    
+    func getTop3Recognition(returnCallBack: @escaping ([UserInfor]) -> ()) {
+        let service = BaseAPI()
+        var data = [UserInfor]()
+        
+        let header = ["token": userInfor.token,
+                      "employeeId": userInfor.employeeId,
+                      "companyId": userInfor.companyId,
+                      "timezoneOffset": "0"]
+        
+        let params: Parameters = ["": ""]
+
+        service.makeCall(endpoint: Config.API_RECOGNITION_TOP_RANK, method: "POST", header: header, body: params, callback: { (result) in
+            let result = result["top3Recognition"]
+            
+            for i in 0..<result.count {
+                let employeeDto = result[i]
+                let citizen = result[i]["citizen"]
+                
+                data.append(UserInfor(employeeDto: employeeDto, citizen: citizen))
+            }
+            
+            returnCallBack(data)
+        })
+    }
 }
 

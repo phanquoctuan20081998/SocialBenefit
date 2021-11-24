@@ -49,4 +49,5 @@ struct Config {
     static let API_USED_POINTS_HISTORY_GET = "/used-points-history"
     
     static let API_RECOGNITION_LIST_BY_COMPANY = "/mobile/recognition/company/list"
+    static let API_RECOGNITION_TOP_RANK = "/mobile/recognition/top"
 }

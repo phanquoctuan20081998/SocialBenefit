@@ -311,6 +311,7 @@ struct TopTitleView: View {
     
     var title: String
     var topTitleTapped: () -> ()
+    var isSeeAll: Bool = true
     
     var body: some View {
         
@@ -325,10 +326,13 @@ struct TopTitleView: View {
                     .background(Color.blue.opacity(0.2))
                     .clipShape(BannerCurveShape())
                 Spacer()
-                HStack {
-                    Text("see_all".localized)
-                        .font(.system(size: 13))
-                    Image(systemName: "chevron.right")
+                
+                if isSeeAll {
+                    HStack {
+                        Text("see_all".localized)
+                            .font(.system(size: 13))
+                        Image(systemName: "chevron.right")
+                    }
                 }
             }.padding(.horizontal, 15)
         })

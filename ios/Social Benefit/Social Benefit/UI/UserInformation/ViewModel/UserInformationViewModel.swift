@@ -154,7 +154,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
                 let citizen = employeeDto["citizen"]
 
                 DispatchQueue.main.async {
-                    updateUserInfor(userId: userInfor.employeeId, token: userInfor.token, employeeDto: employeeDto, citizen: citizen)
+                    updateUserInfor(token: userInfor.token, employeeDto: employeeDto, citizen: citizen)
                     self.imageName = employeeDto["avatar"].string ?? ""
                 }
             }

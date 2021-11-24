@@ -13,6 +13,7 @@ struct InternalNewsDetailView: View {
     
     @ObservedObject var commentViewModel: CommentViewModel
     @ObservedObject var reactViewModel: ReactViewModel
+    @ObservedObject var keyboardHandler = KeyboardHandler()
     
     // For navigation from homescreen
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -60,13 +61,18 @@ struct InternalNewsDetailView: View {
             
             Spacer()
             
+            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+            
             CommentBarView(isReply: $commentViewModel.isReply,
                            replyTo: $commentViewModel.replyTo,
                            parentId: $commentViewModel.parentId,
                            commentText: $commentViewModel.commentText,
                            SendButtonView: AnyView(SendCommentButtonView(commentViewModel: commentViewModel, isReply: $commentViewModel.isReply, commentText: $commentViewModel.commentText, moveToPosition: $commentViewModel.moveToPosition, proxy: $proxy, contentId: internalNewData.contentId, parentId: commentViewModel.parentId, content: commentViewModel.commentText)))
+                .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
             
+            Spacer()
         }
+        .padding(.bottom, keyboardHandler.keyboardHeight)
         .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
     }
@@ -88,8 +94,11 @@ extension InternalNewsDetailView {
                 VStack {
                     PostContentView
                     LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
+                        .padding(.horizontal, 10)
                     Divider().frame(width: ScreenInfor().screenWidth * 0.9)
                     LikeAndCommentButton(contentId: commentViewModel.contentId)
+                        .frame(height: 20)
+                        .padding(.horizontal, 10)
                 }
                 .zIndex(1)
                 .environmentObject(reactViewModel)
