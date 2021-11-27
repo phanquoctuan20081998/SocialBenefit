@@ -21,7 +21,7 @@ struct LikeAndCommentButton: View {
             HStack {
                 HStack {
                     HStack {
-                        if !self.reactViewModel.isLike {
+                        if !self.reactViewModel.isReacted {
                             HStack {
                                 Image(systemName: "hand.thumbsup")
                                 Text("\((reactViewModel.getTop2React().count == 0) ? "be_the_first".localized : "like".localized)")
@@ -46,8 +46,6 @@ struct LikeAndCommentButton: View {
                             } else {
                                 HStack {
                                     Image("ic_fb_" + reactions[self.reactViewModel.selectedReaction])
-                                    //                                AnimatedImage(name: reactions[self.reactViewModel.selectedReaction] + ".gif")
-                                    //                                    .customLoopCount(2)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 20,
@@ -61,7 +59,7 @@ struct LikeAndCommentButton: View {
                     }
                     
                     .onTapGesture {
-                        if self.reactViewModel.isLike {
+                        if self.reactViewModel.isReacted {
                             
                             //Update delete reaction on server
                             AddReactService().getAPI(contentId: contentId, contentType: contentType, reactType: self.reactViewModel.selectedReaction)
@@ -80,7 +78,7 @@ struct LikeAndCommentButton: View {
                             AddReactService().getAPI(contentId: contentId, contentType: contentType, reactType: self.reactViewModel.selectedReaction)
                             self.reactViewModel.previousReaction = self.reactViewModel.selectedReaction
                         }
-                        self.reactViewModel.isLike.toggle()
+                        self.reactViewModel.isReacted.toggle()
                         
                     }
                     .gesture(DragGesture(minimumDistance: 0)
@@ -97,12 +95,12 @@ struct LikeAndCommentButton: View {
                 }.foregroundColor(.blue)
             }
             
-            // Reaction Bar
-            if reactViewModel.isShowReactionBar {
-                ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                    .offset(x: -30, y: 50)
-                    .zIndex(2)
-            }
+//            // Reaction Bar
+//            if reactViewModel.isShowReactionBar {
+//                ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
+//                    .offset(x: -30, y: 50)
+//                    .zIndex(2)
+//            }
         }
     }
     
@@ -121,7 +119,7 @@ struct LikeAndCommentButton: View {
     
     func onEndValue(value: DragGesture.Value) {
         withAnimation(Animation.easeOut.delay(0.2)) {
-            if !self.reactViewModel.isLike {
+            if !self.reactViewModel.isReacted {
                 self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] += 1
                 self.reactViewModel.numOfReact += 1
             }
@@ -131,7 +129,7 @@ struct LikeAndCommentButton: View {
             }
             
             reactViewModel.isShowReactionBar = false
-            reactViewModel.isLike = true
+            reactViewModel.isReacted = true
             
             //Update reaction on server
             AddReactService().getAPI(contentId: contentId, contentType: contentType, reactType: self.reactViewModel.selectedReaction)

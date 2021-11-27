@@ -89,8 +89,8 @@ struct InternalNewsDetailView: View {
 extension InternalNewsDetailView {
     
     var ScrollViewContent: some View {
-        ZStack {
-            VStack {
+        VStack {
+            ZStack {
                 VStack {
                     PostContentView
                     LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
@@ -103,37 +103,44 @@ extension InternalNewsDetailView {
                 .zIndex(1)
                 .environmentObject(reactViewModel)
                 
-                Divider().frame(width: ScreenInfor().screenWidth*0.9)
-                
-                Spacer().frame(height: 50)
-                
-                if commentViewModel.isLoading && !commentViewModel.isRefreshing {
-                    LoadingPageView()
-                } else {
-                    VStack(spacing: 10) {
+                if reactViewModel.isShowReactionBar {
+                    ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
+                        .offset(x: -30, y: 100 + webViewHeight)
+                        .zIndex(1)
+                }
+            }
+            
+            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+            
+            Spacer().frame(height: 50)
+            
+            if commentViewModel.isLoading && !commentViewModel.isRefreshing {
+                LoadingPageView()
+            } else {
+                VStack(spacing: 10) {
+                    
+                    Spacer().frame(height: 50)
+                    
+                    let parentCommentMax = commentViewModel.parentComment.indices
+                    ForEach(parentCommentMax, id: \.self) { i in
                         
-                        Spacer().frame(height: 50)
-                        
-                        let parentCommentMax = commentViewModel.parentComment.indices
-                        ForEach(parentCommentMax, id: \.self) { i in
+                        VStack {
+                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $commentViewModel.isReply, parentId: $commentViewModel.parentId, replyTo: $commentViewModel.replyTo, moveToPosition: $commentViewModel.moveToPosition)
                             
-                            VStack {
-                                FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $commentViewModel.isReply, parentId: $commentViewModel.parentId, replyTo: $commentViewModel.replyTo, moveToPosition: $commentViewModel.moveToPosition)
+                            if commentViewModel.parentComment[i].childIndex != -1 {
+                                let childIndex = commentViewModel.parentComment[i].childIndex
                                 
-                                if commentViewModel.parentComment[i].childIndex != -1 {
-                                    let childIndex = commentViewModel.parentComment[i].childIndex
-                                    
-                                    ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
-                                        SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
-                                    }
+                                ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
+                                    SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
                                 }
-                            }.scrollId(i)
-                        }
+                            }
+                        }.scrollId(i)
                     }
                 }
             }
         }
     }
+    
     
     var PostContentView: some View {
         
@@ -178,7 +185,14 @@ struct SendCommentButtonView: View {
     
     var body: some View {
         Button(action: {
-            AddCommentService().getAPI(contentId: contentId, parentId: parentId, content: content, returnCallBack: { newCommentId in
+            
+            // Check content for reply or non-reply comment
+            var contentType = Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS
+            if parentId != -1 {
+                contentType = Constants.CommentContentType.COMMENT_TYPE_COMMENT
+            }
+            
+            AddCommentService().getAPI(contentId: contentId, contentType: contentType, parentId: parentId, content: content, returnCallBack: { newCommentId in
                 DispatchQueue.main.async {
                     let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
                     

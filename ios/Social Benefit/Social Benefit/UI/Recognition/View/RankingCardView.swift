@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct RankingCardView: View {
+    
+    @EnvironmentObject var recognitionViewModel: RecognitionViewModel
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -20,7 +23,7 @@ struct RankingCardView: View {
                     .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
                     .foregroundColor(Color.blue.opacity(0.2))
                     .padding(.leading)
-            }
+            }.padding(.horizontal, 20)
             
             Spacer().frame(height: 20)
             
@@ -53,54 +56,65 @@ extension RankingCardView {
     @ViewBuilder
     func ImageFrame(rank: Int) -> some View {
         
-        if rank == 1 {
-            Image("pic_user_profile")
-                .resizable()
-                .clipShape(Circle())
-                .frame(width: 60, height: 60)
-                .padding(.all, 7)
-                .background(Color.white)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color("color_top1"), lineWidth: 3))
-                .offset(x: 0, y: -60)
-                .overlay(
-                    Image("ic_medal_gold")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .offset(x: 30, y: -40)
-                )
-        } else if rank == 2 {
-            Image("pic_user_profile")
-                .resizable()
-                .clipShape(Circle())
-                .frame(width: 45, height: 45)
-                .padding(.all, 7)
-                .background(Color.white)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color("color_top2"), lineWidth: 3))
-                .offset(x: -100, y: -40)
-                .overlay(
-                    Image("ic_medal_sliver")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .offset(x: -80, y: -20)
-                )
-        } else if rank == 3 {
-            Image("pic_user_profile")
-                .resizable()
-                .clipShape(Circle())
-                .frame(width: 45, height: 45)
-                .padding(.all, 7)
-                .background(Color.white)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color("color_top3"), lineWidth: 3))
-                .offset(x: 100, y: -40)
-                .overlay(
-                    Image("ic_medal_brass")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .offset(x: 125, y: -20)
-                )
+        if rank == 1 && recognitionViewModel.top3Recognition.count >= 1 {
+            VStack(spacing: 5) {
+                URLImageView(url: recognitionViewModel.top3Recognition[0].avatar)
+                    .clipShape(Circle())
+                    .frame(width: 60, height: 60)
+                    .padding(.all, 7)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color("color_top1"), lineWidth: 3))
+                
+                    .overlay(
+                        Image("ic_medal_gold")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .offset(x: 30, y: 20)
+                    )
+                
+                Text(recognitionViewModel.top3Recognition[0].name)
+                    .font(.system(size: 18, weight: .medium))
+            }.offset(x: 0, y: -40)
+        } else if rank == 2 && recognitionViewModel.top3Recognition.count >= 2 {
+            VStack(spacing: 5) {
+                URLImageView(url: recognitionViewModel.top3Recognition[1].avatar)
+                    .clipShape(Circle())
+                    .frame(width: 45, height: 45)
+                    .padding(.all, 7)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color("color_top2"), lineWidth: 3))
+                
+                    .overlay(
+                        Image("ic_medal_sliver")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .offset(x: 30, y: 16)
+                    )
+                
+                Text(recognitionViewModel.top3Recognition[1].name)
+                    .font(.system(size: 14, weight: .medium))
+            }.offset(x: -120, y: -20)
+        } else if rank == 3 && recognitionViewModel.top3Recognition.count >= 3 {
+            VStack(spacing: 5) {
+                URLImageView(url: recognitionViewModel.top3Recognition[2].avatar)
+                    .clipShape(Circle())
+                    .frame(width: 45, height: 45)
+                    .padding(.all, 7)
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color("color_top3"), lineWidth: 3))
+                    .overlay(
+                        Image("ic_medal_brass")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .offset(x: 30, y: 16)
+                    )
+                Text(recognitionViewModel.top3Recognition[2].name)
+                    .font(.system(size: 14, weight: .medium))
+            }
+            .offset(x: 120, y: -20)
         }
     }
     
@@ -111,6 +125,6 @@ extension RankingCardView {
 
 struct RankingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        RankingCardView()
+        RecognitionView()
     }
 }

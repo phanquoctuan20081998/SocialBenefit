@@ -22,7 +22,7 @@ class CommentService {
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
                       "contentId": String(contentId),
-                      "contentType": "1"]
+                      "contentType": "\(Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS)"]
     
         let params: Parameters = ["": ""]
         
@@ -49,6 +49,8 @@ class CommentService {
                 let tempCommentData = CommentData(id: id!, contentId: contentId!, parentId: parentId!, avatar: avatar!, commentBy: commentBy!, commentDetail: commentDetail!, commentTime: commentTime!)
                 data.append(tempCommentData)
             }
+            
+            print(data)
             
             returnCallBack(data)
         })

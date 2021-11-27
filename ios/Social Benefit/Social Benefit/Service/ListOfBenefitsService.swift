@@ -17,7 +17,8 @@ class ListOfBenefitsService {
         let header = ["token": userInfor.token,
                       "user_id": userInfor.userId,
                       "companyId": userInfor.companyId,
-                      "employeeId": userInfor.employeeId]
+                      "employeeId": userInfor.employeeId,
+                      "timezoneOffset": "0"]
         
         var id: Int?
         var title: String?

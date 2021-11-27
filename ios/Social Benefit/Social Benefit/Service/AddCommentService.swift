@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class AddCommentService {
     
-    func getAPI(contentId: Int, parentId: Int, content: String, returnCallBack: @escaping (Int) -> ()) {
+    func getAPI(contentId: Int, contentType: Int, parentId: Int, content: String, returnCallBack: @escaping (Int) -> ()) {
         let service = BaseAPI()
         
         let header = ["token": userInfor.token,
@@ -23,12 +23,12 @@ class AddCommentService {
         if parentId == -1 {
             params = ["employeeId": userInfor.employeeId,
                       "contentId": contentId,
-                      "contentType": 1,
+                      "contentType": contentType,
                       "content": content]
         } else {
             params = ["employeeId": userInfor.employeeId,
                       "contentId": contentId,
-                      "contentType": 2,
+                      "contentType": contentType,
                       "parentId": parentId,
                       "content": content]
         }

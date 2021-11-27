@@ -15,7 +15,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     @Published var numOfReact: Int = 0
     @Published var reactCount = [0, 0, 0, 0, 0, 0, 0, 0]
     
-    @Published var isLike: Bool = false
+    @Published var isReacted: Bool = false
     @Published var selectedReaction: Int = 6 // 6 is "" in reactions constant
     @Published var isShowReactionBar: Bool = false
     @Published var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
@@ -36,8 +36,8 @@ class ReactViewModel: ObservableObject, Identifiable {
     // Recognition...
     init(myReact: Int, reactTop1: Int, reactTop2: Int) {
         if myReact != -1 {
-            if myReact == 0 { isLike = true }
-            selectedReaction = myReact 
+            isReacted = true 
+            selectedReaction = myReact
         }
         
         self.reactTop1 = reactTop1
@@ -98,7 +98,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     func getUserStatus() {
         for react in self.allReact {
             if String(react.employeeId) == userInfor.employeeId {
-                self.isLike = true
+                self.isReacted = true
                 self.selectedReaction = react.reactType ?? 6
             }
         }

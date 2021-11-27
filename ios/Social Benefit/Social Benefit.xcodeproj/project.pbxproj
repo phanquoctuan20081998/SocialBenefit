@@ -140,6 +140,8 @@
 		C49B0B71270DF10D002C3D9F /* SearchSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B0B70270DF10D002C3D9F /* SearchSelectionView.swift */; };
 		C49C4C3127434D7500ED3213 /* UsedPointsHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49C4C3027434D7500ED3213 /* UsedPointsHistoryService.swift */; };
 		C49C4C332743536800ED3213 /* UsedPointsHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49C4C322743536800ED3213 /* UsedPointsHistoryModel.swift */; };
+		C49F5E68274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; };
+		C49F5E69274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */; };
 		C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A4C439271957C700C306EE /* MyVoucherCardView.swift */; };
 		C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */; };
@@ -168,7 +170,6 @@
 		C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */; };
 		C4BA720E2717D1B800D73660 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA720D2717D1B800D73660 /* ResetPasswordView.swift */; };
 		C4BA72122717D4E100D73660 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA72112717D4E100D73660 /* ResetPasswordViewModel.swift */; };
-		C4BAD396F91BE1969BB34C52 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; };
 		C4BBFFEE270AE20000A92109 /* IsSystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BBFFED270AE20000A92109 /* IsSystemImage.swift */; };
 		C4C8115C270E8A4A002D7220 /* ConfirmPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8115B270E8A4A002D7220 /* ConfirmPopUp.swift */; };
 		C4C8334E2711475A0058E8E3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C8334D2711475A0058E8E3 /* HomeViewModel.swift */; };
@@ -202,6 +203,20 @@
 		C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */; };
 		C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C49F5E69274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		21B5600D4966E23460C26448 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -413,7 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48BA34826EEE83A006C4F27 /* ScrollViewProxy in Frameworks */,
-				C4BAD396F91BE1969BB34C52 /* Pods_Social_Benefit.framework in Frameworks */,
+				C49F5E68274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1380,7 @@
 				84DA60642696DAC80012F55B /* Frameworks */,
 				84DA60652696DAC80012F55B /* Resources */,
 				9FDA66E63511CC44E190C72D /* [CP] Embed Pods Frameworks */,
+				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -6,12 +6,159 @@
 //
 
 import SwiftUI
+import ScrollViewProxy
 
 struct RecognitionView: View {
     @ObservedObject var recognitionViewModel = RecognitionViewModel()
     
+    @State private var proxy: AmzdScrollViewProxy? = nil
+    
+    //Infinite ScrollView controller
+    @State var isShowProgressView: Bool = false
+    
     var body: some View {
-        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], contentId: 8, commentText: .constant(""), commentCount: .constant(1))
+        VStack {
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+            RefreshableScrollView(height: 70, refreshing: self.$recognitionViewModel.isRefreshing) {
+                AmzdScrollViewReader { proxy in
+                    VStack (spacing: 30) {
+                        RankingCardView()
+                        MyRankView
+                        NewsFeedTabView
+                    }.onAppear { self.proxy = proxy }
+                }
+            }            
+        }
+        
+        .environmentObject(recognitionViewModel)
+        .background(BackgroundViewWithNotiAndSearch())
+        .edgesIgnoringSafeArea(.all)
+        
+    }
+}
+
+extension RecognitionView {
+    
+    var MyRankView: some View {
+        VStack {
+            Text("this_month_you_are_on_top %d".localizeWithFormat(arguments: recognitionViewModel.myRank))
+            
+            Text("detail_recognition_rank".localized)
+                .foregroundColor(.blue)
+        }
+        .font(.system(size: 14))
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(
+                    LinearGradient(gradient: Gradient(colors: [Color("nissho_light_blue"), .white]), startPoint: .top, endPoint: .bottom))
+                .frame(width: ScreenInfor().screenWidth * 0.92)
+        )
+    }
+    
+    var NewsFeedTabView: some View {
+        VStack {
+            
+            // Top title view
+            VStack(alignment: .leading, spacing: 0) {
+                TopTitleView(title: "recognitions_news_feed".localized, topTitleTapped: topTitledTapped, isSeeAll: false)
+                    .font(.system(size: 14, weight: .heavy))
+                    .foregroundColor(.blue)
+                
+                Rectangle()
+                    .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
+                    .foregroundColor(Color.blue.opacity(0.2))
+                    .padding(.leading)
+            }.padding(.horizontal, 20)
+            
+            VStack(spacing: 0) {
+                
+                // Tab header
+                HStack(spacing: 0) {
+                    ForEach(recognitionViewModel.header.indices, id: \.self) { index in
+                        let isSelect = index == recognitionViewModel.selectedTab
+                        Text(recognitionViewModel.header[index].localized)
+                            .foregroundColor(isSelect ? .blue : .gray)
+                            .font(.system(size: 14))
+                            .frame(width: ScreenInfor().screenWidth / 2)
+                            .padding(10)
+                            .background(
+                                Rectangle()
+                                    .fill(isSelect ? Color("nissho_light_blue") : .white)
+                            )
+                            .onTapGesture {
+                                DispatchQueue.main.async {
+                                    recognitionViewModel.selectedTab = index
+                                }
+                            }
+                    }
+                }
+                
+                Spacer().frame(height: 20)
+                
+                
+                // Content
+                if recognitionViewModel.isLoading {
+                    LoadingPageView()
+                } else {
+                    ForEach(recognitionViewModel.allCompanyList.indices, id: \.self) { index in
+                        VStack {
+                            RecognitionNewsCardView(companyData: recognitionViewModel.allCompanyList[index], index: index, proxy: $proxy, commentCount: $recognitionViewModel.allCompanyList[index].commentCountDisplay)
+                            
+                            Spacer().frame(height: 20)
+                            
+                        }
+                        .scrollId(index)
+                        
+                    }
+                    
+                    //Infinite Scroll View
+                    
+                    if (recognitionViewModel.fromIndex == recognitionViewModel.allCompanyList.count && isShowProgressView) {
+                        
+                        ActivityIndicator(isAnimating: true)
+                            .onAppear {
+                                
+                                // Because the maximum length of the result returned from the API is 10...
+                                // So if length % 10 != 0 will be the last queue...
+                                // We only send request if it have more data to load...
+                                if recognitionViewModel.allCompanyList.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                    self.recognitionViewModel.reloadData()
+                                }
+                                
+                                // Otherwise just delete the ProgressView after 1 seconds...
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    self.isShowProgressView = false
+                                }
+                                
+                            }
+                        
+                    } else {
+                        GeometryReader { reader -> Color in
+                            let minY = reader.frame(in: .global).minY
+                            let height = ScreenInfor().screenHeight / 1.3
+                            
+                            if !recognitionViewModel.allCompanyList.isEmpty && minY < height && recognitionViewModel.allCompanyList.count >= Constants.MAX_NUM_API_LOAD  {
+                                
+                                DispatchQueue.main.async {
+                                    recognitionViewModel.fromIndex = recognitionViewModel.allCompanyList.count
+                                    self.isShowProgressView = true
+                                }
+                            }
+                            return Color.clear
+                        }
+                        .frame(width: 20, height: 20)
+                    }
+                }
+                
+                Spacer().frame(height: 500)
+            }
+            .background(Color("nissho_light_blue"))
+        }
+    }
+    
+    func topTitledTapped() {
+        
     }
 }
 

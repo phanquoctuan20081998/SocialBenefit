@@ -28,7 +28,7 @@ struct LikeAndCommentCountBarView: View {
                     // If it have some react
                 } else {
                     HStack {
-                        HStack(spacing: 4) {
+                        HStack(spacing: 2) {
                             if reactCount > 0 {
                                 Image(reactViewModel.getTop2React()[0])
                                     .resizable()
@@ -39,15 +39,10 @@ struct LikeAndCommentCountBarView: View {
                                     .resizable()
                                     .frame(width: 15, height: 15)
                             }
-                            if reactCount > 2 {
-                                Image(reactViewModel.getTop2React()[2])
-                                    .resizable()
-                                    .frame(width: 15, height: 15)
-                            }
                         }.scaledToFit()
                         
                         if contentType == Constants.ReactContentType.INTERNAL_NEWS {
-                            if self.reactViewModel.isLike {
+                            if self.reactViewModel.isReacted {
                                 Text(self.reactViewModel.numOfReact == 1 ? "you".localized : "you_and %d".localizeWithFormat(arguments: self.reactViewModel.numOfReact - 1))
                                     .font(.system(size: 12))
                                     .bold()

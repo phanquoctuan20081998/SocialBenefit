@@ -25,6 +25,8 @@ struct RecognitionData: Identifiable, Hashable {
     private var totalOtherReact: Int
     private var commentCount: Int
     
+    public var commentCountDisplay: Int
+    
     public init(id: Int, createdTime: Date, time: String, date: String, from: String, to: String, message: String, point: Int, myReact: Int, reactTop1: Int, reactTop2: Int, totalOtherReact: Int, commentCount: Int) {
         self.id = id
         self.createdTime = createdTime
@@ -40,6 +42,7 @@ struct RecognitionData: Identifiable, Hashable {
         self.reactTop2 = reactTop2
         self.totalOtherReact = totalOtherReact
         self.commentCount = commentCount
+        self.commentCountDisplay = commentCount
     }
     
     public func getId() -> Int {

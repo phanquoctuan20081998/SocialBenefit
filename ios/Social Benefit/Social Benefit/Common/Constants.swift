@@ -49,6 +49,13 @@ struct Constants {
         static var RECOGNIZE = 4
     }
     
+    struct CommentContentType {
+        static var COMMENT_TYPE_RECOGNITION = 0
+        static var COMMENT_TYPE_INTERNAL_NEWS = 1
+        static var COMMENT_TYPE_COMMENT = 2
+        static var COMMENT_TYPE_SURVEY = 3
+    }
+    
     // Language...
     struct LANGUAGE {
         static let ENG = 0

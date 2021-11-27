@@ -19,6 +19,7 @@ struct HomeScreenView: View {
     @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
     @ObservedObject var searchViewModel = SearchViewModel()
     @ObservedObject var homeViewModel = HomeViewModel()
+//    @ObservedObject var keyboardHandler = KeyboardHandler()
     
     init(selectedTab: String) {
         homeScreenViewModel.selectedTab = selectedTab
@@ -66,6 +67,7 @@ struct HomeScreenView: View {
         .environmentObject(customerSupportViewModel)
         .environmentObject(searchViewModel)
         .environmentObject(homeViewModel)
+//        .environmentObject(keyboardHandler)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {
@@ -73,7 +75,7 @@ struct HomeScreenView: View {
         case "house":
             HomeView()
         case "star":
-            RecognitionView()
+            RecognitionView().frame(width: ScreenInfor().screenWidth)
         case "tag":
             ListOfMerchantView().frame(width: ScreenInfor().screenWidth)
         default:

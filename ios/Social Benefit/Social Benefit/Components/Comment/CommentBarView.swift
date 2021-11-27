@@ -51,9 +51,9 @@ struct CommentBarView: View {
                     
                     Spacer().frame(width: 18)
                     
-                    AutoResizeTextField(text: $commentText, isFocus: .constant(false), minHeight: 20, maxHeight: 80, placeholder: "type_comment".localized)
+                    AutoResizeTextField(text: $commentText, isFocus: .constant(false), minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .padding(5)
+//                        .padding(5)
                     
                         .overlay(RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.blue.opacity(0.5), lineWidth: 2))
