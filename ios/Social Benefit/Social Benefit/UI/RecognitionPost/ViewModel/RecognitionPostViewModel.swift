@@ -1,32 +1,20 @@
 //
-//  InternalNewsDetailViewModel.swift
+//  RecognitionPostViewModel.swift
 //  Social Benefit
 //
-//  Created by Phan Quốc Tuấn on 04/09/2021.
+//  Created by Phan Quốc Tuấn on 29/11/2021.
 //
 
 import Foundation
 import Combine
 
-struct ParentCommentData: Identifiable {
-    let id = UUID()
+class RecognitionPostViewModel: ObservableObject, Identifiable {
     
-    var data: CommentData
-    var childIndex: Int
+    // For post content controller
+    @Published var recognitionDetailData = RecognitionDetailData.sampleData
+    @Published var recognitionData = RecognitionData.sampleData[0]
     
-    init() {
-        self.data = CommentData(id: 0, contentId: 0, parentId: 0, avatar: "", commentBy: "", commentDetail: "", commentTime: "")
-        self.childIndex = 0
-    }
-    
-    init(data: CommentData, childIndex: Int) {
-        self.data = data
-        self.childIndex = childIndex
-    }
-}
-
-class CommentViewModel: ObservableObject, Identifiable {
-    
+    // For comment controller
     @Published var parentComment = [ParentCommentData]()
     @Published var childComment = [[CommentData]]()
     @Published var allComment = [CommentData]()
@@ -41,6 +29,7 @@ class CommentViewModel: ObservableObject, Identifiable {
     
     @Published var commentText = ""
     
+    // For loading, refresh controller
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
         didSet {
@@ -50,18 +39,59 @@ class CommentViewModel: ObservableObject, Identifiable {
         }
     }
     
+    private var recognitionService = RecognitionService()
     private let commentService = CommentService()
     private var cancellables = Set<AnyCancellable>()
+    private let dateFomatter = DateFormatter()
     
-    init(contentId: Int) {
-        self.contentId = contentId
-        initComment(contentId: contentId)
+    init(id: Int) {
+        self.contentId = id
+        
+        // Load data
+        loadRecognitionDetailData(id: id)
+        loadRecognitionData(id: id)
+        loadComment(id: id)
+        
+        // Initial
         addSubscribers()
+        dateFomatter.dateFormat = "hh:mm dd/MM/yyyy"
     }
     
-    func initComment(contentId: Int) {
+    func addSubscribers() {
+        $commentText
+            .sink(receiveValue: loadCommentText(commentText:))
+            .store(in: &cancellables)
+    }
+    
+    func loadRecognitionDetailData(id: Int) {
         self.isLoading = true
-        commentService.getAPI(contentId: contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { data in
+        
+        recognitionService.getPostDetail(id: id) { [weak self] data in
+            DispatchQueue.main.async {
+                self?.recognitionDetailData = data
+                
+                self?.isLoading = false
+                self?.isRefreshing = false
+            }
+        }
+    }
+    
+    func loadRecognitionData(id: Int) {
+        self.isLoading = true
+        
+        recognitionService.getPostReaction(id: id) { [weak self] data in
+            DispatchQueue.main.async {
+                self?.recognitionData = data
+                
+                self?.isLoading = false
+                self?.isRefreshing = false
+            }
+        }
+    }
+    
+    func loadComment(id: Int) {
+        self.isLoading = true
+        commentService.getAPI(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION) { data in
             DispatchQueue.main.async {
                 self.allComment = data
                 self.numOfComment = data.count
@@ -74,13 +104,17 @@ class CommentViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        self.initComment(contentId: self.contentId)
+        loadRecognitionDetailData(id: self.contentId)
+        loadRecognitionData(id: self.contentId)
+        loadComment(id: self.contentId)
     }
     
-    func addSubscribers() {
-        $commentText
-            .sink(receiveValue: loadCommentText(commentText:))
-            .store(in: &cancellables)
+    func reloadData() {
+        
+    }
+    
+    func getDate(date: Date) -> String {
+        dateFomatter.string(from: date)
     }
     
     func loadCommentText(commentText: String) {

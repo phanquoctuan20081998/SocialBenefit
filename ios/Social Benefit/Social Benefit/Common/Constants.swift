@@ -94,6 +94,12 @@ struct Constants {
         static let COMSUMED = 2
     }
     
+    // Recognition News Feed
+    struct RecognitionNewsFeedType {
+        static let ALL = 0
+        static let YOUR_HISTORY = 1
+    }
+    
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),

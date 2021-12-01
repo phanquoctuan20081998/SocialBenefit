@@ -67,7 +67,18 @@ struct InternalNewsDetailView: View {
                            replyTo: $commentViewModel.replyTo,
                            parentId: $commentViewModel.parentId,
                            commentText: $commentViewModel.commentText,
-                           SendButtonView: AnyView(SendCommentButtonView(commentViewModel: commentViewModel, isReply: $commentViewModel.isReply, commentText: $commentViewModel.commentText, moveToPosition: $commentViewModel.moveToPosition, proxy: $proxy, contentId: internalNewData.contentId, parentId: commentViewModel.parentId, content: commentViewModel.commentText)))
+                           SendButtonView: AnyView(
+                            SendCommentButtonView(
+                                isReply: $commentViewModel.isReply,
+                                commentText: $commentViewModel.commentText,
+                                moveToPosition: $commentViewModel.moveToPosition,
+                                numOfComment: $commentViewModel.numOfComment,
+                                proxy: $proxy,
+                                contentId: internalNewData.contentId,
+                                parentId: commentViewModel.parentId,
+                                content: commentViewModel.commentText,
+                                contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
+                                updateComment: commentViewModel.updateComment(newComment:))))
                 .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
             
             Spacer()
@@ -172,31 +183,42 @@ extension InternalNewsDetailView {
 
 struct SendCommentButtonView: View {
     
-    @ObservedObject var commentViewModel: CommentViewModel
-    
     @Binding var isReply: Bool
     @Binding var commentText: String
     @Binding var moveToPosition: Int
+    @Binding var numOfComment: Int
     @Binding var proxy: AmzdScrollViewProxy?
     
     var contentId: Int
     var parentId: Int
     var content: String
+    var contentType: Int
+    
+    var updateComment: (_ newComment: CommentData) -> ()
     
     var body: some View {
         Button(action: {
             
             // Check content for reply or non-reply comment
-            var contentType = Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS
-            if parentId != -1 {
-                contentType = Constants.CommentContentType.COMMENT_TYPE_COMMENT
+            var type = 0
+            
+            if self.contentType == Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS {
+                type = Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS
+                if parentId != -1 {
+                    type = Constants.CommentContentType.COMMENT_TYPE_COMMENT
+                }
+            } else {
+                type = Constants.CommentContentType.COMMENT_TYPE_RECOGNITION
+                if parentId != -1 {
+                    type = Constants.CommentContentType.COMMENT_TYPE_COMMENT
+                }
             }
             
-            AddCommentService().getAPI(contentId: contentId, contentType: contentType, parentId: parentId, content: content, returnCallBack: { newCommentId in
+            AddCommentService().getAPI(contentId: contentId, contentType: type, parentId: parentId, content: content, returnCallBack: { newCommentId in
                 DispatchQueue.main.async {
                     let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
                     
-                    commentViewModel.updateComment(newComment: newComment)
+                    updateComment(newComment)
                     
                     // Move to the latest comment...
                     // if comment not reply anything
@@ -217,7 +239,7 @@ struct SendCommentButtonView: View {
                     }
                     
                     self.commentText = ""
-                    self.commentViewModel.numOfComment += 1
+                    self.numOfComment += 1
                 }
             })
         }, label: {

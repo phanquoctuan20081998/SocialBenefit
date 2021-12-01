@@ -15,14 +15,14 @@ class CommentService {
     
 //    @Published var allComment: [CommentData] = []
     
-    func getAPI(_ contentId: Int, returnCallBack: @escaping ([CommentData]) -> ()) {
+    func getAPI(contentId: Int, contentType: Int, returnCallBack: @escaping ([CommentData]) -> ()) {
         let service = BaseAPI()
         var data = [CommentData]()
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
                       "contentId": String(contentId),
-                      "contentType": "\(Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS)"]
+                      "contentType": "\(contentType)"]
     
         let params: Parameters = ["": ""]
         
@@ -49,8 +49,6 @@ class CommentService {
                 let tempCommentData = CommentData(id: id!, contentId: contentId!, parentId: parentId!, avatar: avatar!, commentBy: commentBy!, commentDetail: commentDetail!, commentTime: commentTime!)
                 data.append(tempCommentData)
             }
-            
-            print(data)
             
             returnCallBack(data)
         })

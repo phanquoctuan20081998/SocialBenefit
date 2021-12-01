@@ -10,20 +10,24 @@ import SwiftUI
 struct RankingCardView: View {
     
     @EnvironmentObject var recognitionViewModel: RecognitionViewModel
+    var isHaveTopTitle = true
     
     var body: some View {
         VStack(spacing: 0) {
             
-            VStack(alignment: .leading, spacing: 0) {
-                TopTitleView(title: "recognitions_ranking".localized, topTitleTapped: topTitledTapped, isSeeAll: false)
-                    .font(.system(size: 14, weight: .heavy))
-                    .foregroundColor(.blue)
-                
-                Rectangle()
-                    .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
-                    .foregroundColor(Color.blue.opacity(0.2))
-                    .padding(.leading)
-            }.padding(.horizontal, 20)
+            if isHaveTopTitle {
+                VStack(alignment: .leading, spacing: 0) {
+                    
+                    TopTitleView(title: "recognitions_ranking".localized, topTitleTapped: topTitledTapped, isSeeAll: false)
+                        .font(.system(size: 14, weight: .heavy))
+                        .foregroundColor(.blue)
+                    
+                    Rectangle()
+                        .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
+                        .foregroundColor(Color.blue.opacity(0.2))
+                        .padding(.leading)
+                }.padding(.horizontal, 20)
+            }
             
             Spacer().frame(height: 20)
             

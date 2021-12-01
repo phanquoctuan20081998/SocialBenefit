@@ -13,7 +13,7 @@ struct RecognitionView: View {
     
     @State private var proxy: AmzdScrollViewProxy? = nil
     
-    //Infinite ScrollView controller
+    // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
     
     var body: some View {
@@ -22,9 +22,22 @@ struct RecognitionView: View {
             RefreshableScrollView(height: 70, refreshing: self.$recognitionViewModel.isRefreshing) {
                 AmzdScrollViewReader { proxy in
                     VStack (spacing: 30) {
-                        RankingCardView()
-                        MyRankView
+                        
+                        NavigationLink(destination: RankingOfRecognitionView()
+                                        .environmentObject(recognitionViewModel)
+                                        .navigationBarHidden(true)) {
+                            RankingCardView()
+                        }.buttonStyle(NavigationLinkNoAffectButtonStyle())
+                        
+                        NavigationLink(destination: RankingOfRecognitionView()
+                                        .environmentObject(recognitionViewModel)
+                                        .navigationBarHidden(true)) {
+                            MyRankView
+                                .foregroundColor(.black)
+                        }
+                        
                         NewsFeedTabView
+                        
                     }.onAppear { self.proxy = proxy }
                 }
             }            
@@ -101,9 +114,13 @@ extension RecognitionView {
                 if recognitionViewModel.isLoading {
                     LoadingPageView()
                 } else {
-                    ForEach(recognitionViewModel.allCompanyList.indices, id: \.self) { index in
+                    ForEach(recognitionViewModel.allRecognitionPost.indices, id: \.self) { index in
                         VStack {
-                            RecognitionNewsCardView(companyData: recognitionViewModel.allCompanyList[index], index: index, proxy: $proxy, commentCount: $recognitionViewModel.allCompanyList[index].commentCountDisplay)
+                            
+                            NavigationLink(destination: RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[index]).navigationBarHidden(true)) {
+                                RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab)
+                                    .foregroundColor(.black)
+                            }.buttonStyle(NavigationLinkNoAffectButtonStyle())
                             
                             Spacer().frame(height: 20)
                             
@@ -114,7 +131,7 @@ extension RecognitionView {
                     
                     //Infinite Scroll View
                     
-                    if (recognitionViewModel.fromIndex == recognitionViewModel.allCompanyList.count && isShowProgressView) {
+                    if (recognitionViewModel.fromIndex == recognitionViewModel.allRecognitionPost.count && isShowProgressView) {
                         
                         ActivityIndicator(isAnimating: true)
                             .onAppear {
@@ -122,7 +139,7 @@ extension RecognitionView {
                                 // Because the maximum length of the result returned from the API is 10...
                                 // So if length % 10 != 0 will be the last queue...
                                 // We only send request if it have more data to load...
-                                if recognitionViewModel.allCompanyList.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                if recognitionViewModel.allRecognitionPost.count % Constants.MAX_NUM_API_LOAD == 0 {
                                     self.recognitionViewModel.reloadData()
                                 }
                                 
@@ -138,10 +155,10 @@ extension RecognitionView {
                             let minY = reader.frame(in: .global).minY
                             let height = ScreenInfor().screenHeight / 1.3
                             
-                            if !recognitionViewModel.allCompanyList.isEmpty && minY < height && recognitionViewModel.allCompanyList.count >= Constants.MAX_NUM_API_LOAD  {
+                            if !recognitionViewModel.allRecognitionPost.isEmpty && minY < height && recognitionViewModel.allRecognitionPost.count >= Constants.MAX_NUM_API_LOAD  {
                                 
                                 DispatchQueue.main.async {
-                                    recognitionViewModel.fromIndex = recognitionViewModel.allCompanyList.count
+                                    recognitionViewModel.fromIndex = recognitionViewModel.allRecognitionPost.count
                                     self.isShowProgressView = true
                                 }
                             }

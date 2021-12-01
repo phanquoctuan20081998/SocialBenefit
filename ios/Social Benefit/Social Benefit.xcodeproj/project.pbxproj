@@ -51,6 +51,9 @@
 		C4042E24274D26B8003A88A7 /* CommentBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4042E23274D26B8003A88A7 /* CommentBarView.swift */; };
 		C404F5BB270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404F5BA270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift */; };
 		C410A467274B3177006069E3 /* RecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410A466274B3177006069E3 /* RecognitionViewModel.swift */; };
+		C4119B512754871D0093542F /* RecognitionPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4119B502754871D0093542F /* RecognitionPostView.swift */; };
+		C4119B53275487340093542F /* PostBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4119B52275487340093542F /* PostBannerView.swift */; };
+		C4119B552754891E0093542F /* RecognitionDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4119B542754891E0093542F /* RecognitionDetailModel.swift */; };
 		C412CA1826BBEDE300501D96 /* RoundedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C412CA1726BBEDE300501D96 /* RoundedStyle.swift */; };
 		C419868926E46F3900A877A5 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419868826E46F3900A877A5 /* URLImageView.swift */; };
 		C419868B26E46F5400A877A5 /* URLImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419868A26E46F5400A877A5 /* URLImageViewModel.swift */; };
@@ -79,6 +82,7 @@
 		C43C7BB626FAE3F00056D169 /* MyVoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C7BB526FAE3F00056D169 /* MyVoucherModel.swift */; };
 		C43C7BB826FB019B0056D169 /* MyVoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C7BB726FB019B0056D169 /* MyVoucherViewModel.swift */; };
 		C440878127421BF4009079EF /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440878027421BF4009079EF /* TransactionCardView.swift */; };
+		C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */; };
 		C4492A5E26F18E98008B26C9 /* MerchantVoucherItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A5D26F18E98008B26C9 /* MerchantVoucherItemModel.swift */; };
 		C4492A6026F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A5F26F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift */; };
 		C4492A6226F19916008B26C9 /* MerchantVoucherSpecialListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */; };
@@ -91,6 +95,7 @@
 		C45490352741F51300175E09 /* UsedPointHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45490342741F51200175E09 /* UsedPointHistoryView.swift */; };
 		C45490372742069100175E09 /* UsedPointHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45490362742069100175E09 /* UsedPointHistoryViewModel.swift */; };
 		C45EDBA1270FF7B5004799B5 /* CustomerSupportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EDBA0270FF7B5004799B5 /* CustomerSupportService.swift */; };
+		C45EE1322753242C00FEA235 /* RankingOfRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EE1312753242C00FEA235 /* RankingOfRecognitionViewModel.swift */; };
 		C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16326F2E5E400933BBC /* VoucherFilterView.swift */; };
 		C462F16626F2E76700933BBC /* AllVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16526F2E76700933BBC /* AllVoucherView.swift */; };
 		C462F16926F3452C00933BBC /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16826F3452C00933BBC /* ProgressView.swift */; };
@@ -112,11 +117,16 @@
 		C472E4CC26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472E4CB26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift */; };
 		C4750073270B40B000FE75EB /* SearchBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4750072270B40B000FE75EB /* SearchBarModel.swift */; };
 		C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4750076270B413100FE75EB /* SearchViewModel.swift */; };
+		C476C5B327561FC200D93AA7 /* NoHightLightClickAffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C476C5B227561FC200D93AA7 /* NoHightLightClickAffect.swift */; };
+		C476C5B927562BAF00D93AA7 /* EmployeeRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C476C5B827562BAF00D93AA7 /* EmployeeRankingView.swift */; };
 		C478889A270BFF65009F5A25 /* UserInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4788899270BFF65009F5A25 /* UserInformationViewModel.swift */; };
 		C478889C270C2749009F5A25 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478889B270C2749009F5A25 /* ImagePickerView.swift */; };
 		C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478889D270C2979009F5A25 /* ImagePicker.swift */; };
 		C47888A0270C2BF7009F5A25 /* DragPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478889F270C2BF7009F5A25 /* DragPopUpView.swift */; };
 		C4792A5B27017DF5006D71AD /* MyVoucherButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792A5A27017DF5006D71AD /* MyVoucherButtonView.swift */; };
+		C47AEC312757077B00DF8A60 /* EmployeeInforService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47AEC302757077B00DF8A60 /* EmployeeInforService.swift */; };
+		C47AEC332757094F00DF8A60 /* EmployeeRankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47AEC322757094F00DF8A60 /* EmployeeRankingViewModel.swift */; };
+		C47AEC352757269000DF8A60 /* GetPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47AEC342757269000DF8A60 /* GetPoint.swift */; };
 		C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47EA7A32717E09400E91171 /* ResetPasswordService.swift */; };
 		C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47EA7A52717E56300E91171 /* EmailValidation.swift */; };
 		C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4850B8A27172B1B0003AE71 /* LoginService.swift */; };
@@ -144,6 +154,7 @@
 		C49F5E69274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */; };
 		C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A4C439271957C700C306EE /* MyVoucherCardView.swift */; };
+		C4A9890327550D9B00E22760 /* RecognitionPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9890227550D9B00E22760 /* RecognitionPostViewModel.swift */; };
 		C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */; };
 		C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA6DEA26C4B85A00203CB9 /* InternalNewsView.swift */; };
 		C4AAEBAC274647860091EF7F /* RecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAEBAB274647860091EF7F /* RecognitionView.swift */; };
@@ -184,6 +195,8 @@
 		C4D02615270D3F8A0048B671 /* CustomerSupportPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D02614270D3F8A0048B671 /* CustomerSupportPopUp.swift */; };
 		C4D02618270D44140048B671 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D02617270D44140048B671 /* PopUpView.swift */; };
 		C4D2606F26E475B2002E475C /* SlideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D2606E26E475B2002E475C /* SlideBar.swift */; };
+		C4D510DA2752741C0007BE48 /* RankingOfRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D510D92752741C0007BE48 /* RankingOfRecognitionView.swift */; };
+		C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D510DB275278800007BE48 /* RankingOfRecognitionModel.swift */; };
 		C4DB9689271598EA0073382C /* LoadingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB9688271598EA0073382C /* LoadingPageView.swift */; };
 		C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DF7A6426F9BC5200DC7D04 /* BuyVoucherService.swift */; };
 		C4DF7A6726F9BCCE00DC7D04 /* BuyVoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DF7A6626F9BCCE00DC7D04 /* BuyVoucherModel.swift */; };
@@ -270,6 +283,9 @@
 		C4042E23274D26B8003A88A7 /* CommentBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentBarView.swift; sourceTree = "<group>"; };
 		C404F5BA270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSupportPopUpViewModel.swift; sourceTree = "<group>"; };
 		C410A466274B3177006069E3 /* RecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionViewModel.swift; sourceTree = "<group>"; };
+		C4119B502754871D0093542F /* RecognitionPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionPostView.swift; sourceTree = "<group>"; };
+		C4119B52275487340093542F /* PostBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBannerView.swift; sourceTree = "<group>"; };
+		C4119B542754891E0093542F /* RecognitionDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionDetailModel.swift; sourceTree = "<group>"; };
 		C412CA1726BBEDE300501D96 /* RoundedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedStyle.swift; sourceTree = "<group>"; };
 		C419868826E46F3900A877A5 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		C419868A26E46F5400A877A5 /* URLImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageViewModel.swift; sourceTree = "<group>"; };
@@ -298,6 +314,7 @@
 		C43C7BB526FAE3F00056D169 /* MyVoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoucherModel.swift; sourceTree = "<group>"; };
 		C43C7BB726FB019B0056D169 /* MyVoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoucherViewModel.swift; sourceTree = "<group>"; };
 		C440878027421BF4009079EF /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardView.swift; sourceTree = "<group>"; };
+		C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNewsFeedHaveSameDateFirstIndex.swift; sourceTree = "<group>"; };
 		C4492A5D26F18E98008B26C9 /* MerchantVoucherItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherItemModel.swift; sourceTree = "<group>"; };
 		C4492A5F26F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherSpecialListViewModel.swift; sourceTree = "<group>"; };
 		C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherSpecialListService.swift; sourceTree = "<group>"; };
@@ -310,6 +327,7 @@
 		C45490342741F51200175E09 /* UsedPointHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedPointHistoryView.swift; sourceTree = "<group>"; };
 		C45490362742069100175E09 /* UsedPointHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedPointHistoryViewModel.swift; sourceTree = "<group>"; };
 		C45EDBA0270FF7B5004799B5 /* CustomerSupportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSupportService.swift; sourceTree = "<group>"; };
+		C45EE1312753242C00FEA235 /* RankingOfRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingOfRecognitionViewModel.swift; sourceTree = "<group>"; };
 		C462F16326F2E5E400933BBC /* VoucherFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherFilterView.swift; sourceTree = "<group>"; };
 		C462F16526F2E76700933BBC /* AllVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVoucherView.swift; sourceTree = "<group>"; };
 		C462F16826F3452C00933BBC /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -331,11 +349,16 @@
 		C472E4CB26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreMerchantCardView.swift; sourceTree = "<group>"; };
 		C4750072270B40B000FE75EB /* SearchBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModel.swift; sourceTree = "<group>"; };
 		C4750076270B413100FE75EB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C476C5B227561FC200D93AA7 /* NoHightLightClickAffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHightLightClickAffect.swift; sourceTree = "<group>"; };
+		C476C5B827562BAF00D93AA7 /* EmployeeRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRankingView.swift; sourceTree = "<group>"; };
 		C4788899270BFF65009F5A25 /* UserInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewModel.swift; sourceTree = "<group>"; };
 		C478889B270C2749009F5A25 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		C478889D270C2979009F5A25 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C478889F270C2BF7009F5A25 /* DragPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragPopUpView.swift; sourceTree = "<group>"; };
 		C4792A5A27017DF5006D71AD /* MyVoucherButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoucherButtonView.swift; sourceTree = "<group>"; };
+		C47AEC302757077B00DF8A60 /* EmployeeInforService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeInforService.swift; sourceTree = "<group>"; };
+		C47AEC322757094F00DF8A60 /* EmployeeRankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRankingViewModel.swift; sourceTree = "<group>"; };
+		C47AEC342757269000DF8A60 /* GetPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPoint.swift; sourceTree = "<group>"; };
 		C47EA7A32717E09400E91171 /* ResetPasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordService.swift; sourceTree = "<group>"; };
 		C47EA7A52717E56300E91171 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		C4850B8A27172B1B0003AE71 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
@@ -360,6 +383,7 @@
 		C49C4C322743536800ED3213 /* UsedPointsHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedPointsHistoryModel.swift; sourceTree = "<group>"; };
 		C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerPopUpView.swift; sourceTree = "<group>"; };
 		C4A4C439271957C700C306EE /* MyVoucherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoucherCardView.swift; sourceTree = "<group>"; };
+		C4A9890227550D9B00E22760 /* RecognitionPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionPostViewModel.swift; sourceTree = "<group>"; };
 		C4AA6DE826C421D800203CB9 /* InternalNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsCardView.swift; sourceTree = "<group>"; };
 		C4AA6DEA26C4B85A00203CB9 /* InternalNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNewsView.swift; sourceTree = "<group>"; };
 		C4AAEBAB274647860091EF7F /* RecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionView.swift; sourceTree = "<group>"; };
@@ -400,6 +424,8 @@
 		C4D02614270D3F8A0048B671 /* CustomerSupportPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSupportPopUp.swift; sourceTree = "<group>"; };
 		C4D02617270D44140048B671 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		C4D2606E26E475B2002E475C /* SlideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideBar.swift; sourceTree = "<group>"; };
+		C4D510D92752741C0007BE48 /* RankingOfRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingOfRecognitionView.swift; sourceTree = "<group>"; };
+		C4D510DB275278800007BE48 /* RankingOfRecognitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingOfRecognitionModel.swift; sourceTree = "<group>"; };
 		C4DB9688271598EA0073382C /* LoadingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPageView.swift; sourceTree = "<group>"; };
 		C4DE23E126CAC2C70061C098 /* vi */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = vi; path = vi.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4DF7A6426F9BC5200DC7D04 /* BuyVoucherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVoucherService.swift; sourceTree = "<group>"; };
@@ -523,6 +549,8 @@
 				C46C55EF2721660800B2613B /* TrimStringWithNChar.swift */,
 				84571C06273969CF00F4AB32 /* NetworkMonitor.swift */,
 				C42BD5E72743584E00E99840 /* ConvertDateSince1970.swift */,
+				C47AEC342757269000DF8A60 /* GetPoint.swift */,
+				C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -559,6 +587,7 @@
 				C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */,
 				C49C4C3027434D7500ED3213 /* UsedPointsHistoryService.swift */,
 				C46BD88C27477E3200E8715F /* RecognitionService.swift */,
+				C47AEC302757077B00DF8A60 /* EmployeeInforService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -567,6 +596,9 @@
 			isa = PBXGroup;
 			children = (
 				C412B0DE26D7521800A669A1 /* TEST */,
+				C476C5B427562A2D00D93AA7 /* EmployeeRanking */,
+				C4119B4D275486FB0093542F /* RecognitionPost */,
+				C4D510D6275273DF0007BE48 /* RankingOfRecognition */,
 				C4AAEBA8274647090091EF7F /* Recognition */,
 				C45490312741F4C900175E09 /* UsedPointHistory */,
 				C4D02611270D3F1D0048B671 /* CustomerSupport */,
@@ -681,8 +713,36 @@
 				C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */,
 				C49C4C322743536800ED3213 /* UsedPointsHistoryModel.swift */,
 				C46BD88E2747822500E8715F /* RecognitionModel.swift */,
+				C4D510DB275278800007BE48 /* RankingOfRecognitionModel.swift */,
+				C4119B542754891E0093542F /* RecognitionDetailModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C4119B4D275486FB0093542F /* RecognitionPost */ = {
+			isa = PBXGroup;
+			children = (
+				C4119B4F275487080093542F /* ViewModel */,
+				C4119B4E275487030093542F /* View */,
+			);
+			path = RecognitionPost;
+			sourceTree = "<group>";
+		};
+		C4119B4E275487030093542F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4119B502754871D0093542F /* RecognitionPostView.swift */,
+				C4119B52275487340093542F /* PostBannerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4119B4F275487080093542F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C4A9890227550D9B00E22760 /* RecognitionPostViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C412B0DE26D7521800A669A1 /* TEST */ = {
@@ -706,6 +766,7 @@
 				C4F2A4FB26F040AC0090675A /* HTMLStringView.swift */,
 				C4F2A4FD26F04BAE0090675A /* UpperCaseText.swift */,
 				84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */,
+				C476C5B227561FC200D93AA7 /* NoHightLightClickAffect.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -968,6 +1029,31 @@
 			isa = PBXGroup;
 			children = (
 				C4750076270B413100FE75EB /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C476C5B427562A2D00D93AA7 /* EmployeeRanking */ = {
+			isa = PBXGroup;
+			children = (
+				C476C5B627562A4300D93AA7 /* ViewModel */,
+				C476C5B527562A3E00D93AA7 /* View */,
+			);
+			path = EmployeeRanking;
+			sourceTree = "<group>";
+		};
+		C476C5B527562A3E00D93AA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C476C5B827562BAF00D93AA7 /* EmployeeRankingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C476C5B627562A4300D93AA7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C47AEC322757094F00DF8A60 /* EmployeeRankingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1305,6 +1391,31 @@
 			path = PopUp;
 			sourceTree = "<group>";
 		};
+		C4D510D6275273DF0007BE48 /* RankingOfRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				C4D510D8275274010007BE48 /* ViewModel */,
+				C4D510D7275273FB0007BE48 /* View */,
+			);
+			path = RankingOfRecognition;
+			sourceTree = "<group>";
+		};
+		C4D510D7275273FB0007BE48 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4D510D92752741C0007BE48 /* RankingOfRecognitionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4D510D8275274010007BE48 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C45EE1312753242C00FEA235 /* RankingOfRecognitionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C4DB9687271598CC0073382C /* LoadingPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1510,6 +1621,7 @@
 				84DA60CB269ECB6A0012F55B /* StringUtils.swift in Sources */,
 				C4D02615270D3F8A0048B671 /* CustomerSupportPopUp.swift in Sources */,
 				C48C6AFF2718064000BFAF34 /* ResetSuccessView.swift in Sources */,
+				C47AEC312757077B00DF8A60 /* EmployeeInforService.swift in Sources */,
 				C48BA35426EF016E006C4F27 /* MerchantCategoryItemModel.swift in Sources */,
 				C478889A270BFF65009F5A25 /* UserInformationViewModel.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
@@ -1542,6 +1654,7 @@
 				C4792A5B27017DF5006D71AD /* MyVoucherButtonView.swift in Sources */,
 				84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */,
 				C4DF7A6A26F9CB0500DC7D04 /* PopUpMessageView.swift in Sources */,
+				C45EE1322753242C00FEA235 /* RankingOfRecognitionViewModel.swift in Sources */,
 				C4B9BF7526FC23680022DA55 /* GenerateCodeService.swift in Sources */,
 				C49C4C3127434D7500ED3213 /* UsedPointsHistoryService.swift in Sources */,
 				C497AA1626F83936006EFE0C /* ConfirmInforBuyService.swift in Sources */,
@@ -1580,6 +1693,7 @@
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
 				C45490372742069100175E09 /* UsedPointHistoryViewModel.swift in Sources */,
 				C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */,
+				C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */,
 				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
 				C45EDBA1270FF7B5004799B5 /* CustomerSupportService.swift in Sources */,
@@ -1590,6 +1704,7 @@
 				C472E4CA26FDA5DC00D047BA /* AppliedStoreMerchantListService.swift in Sources */,
 				C4974ABD26F5D916002AED6C /* MerchantVoucherListByCategoryViewModel.swift in Sources */,
 				C49285552716B89300F5BCBB /* CheckBox.swift in Sources */,
+				C476C5B327561FC200D93AA7 /* NoHightLightClickAffect.swift in Sources */,
 				C497AA1826F83A6D006EFE0C /* BuyVoucherInforModel.swift in Sources */,
 				C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */,
 				C4DF7A6726F9BCCE00DC7D04 /* BuyVoucherModel.swift in Sources */,
@@ -1614,12 +1729,14 @@
 				C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */,
 				C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */,
 				C4AB352F270AD8E200A186F5 /* SearchCardView.swift in Sources */,
+				C4119B552754891E0093542F /* RecognitionDetailModel.swift in Sources */,
 				C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */,
 				C403670526DB85D700381888 /* BannerCardView.swift in Sources */,
 				8487535B2705A9670061D4E1 /* LanguageSelectorPopUp.swift in Sources */,
 				C462F16926F3452C00933BBC /* ProgressView.swift in Sources */,
 				C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,
+				C4D510DA2752741C0007BE48 /* RankingOfRecognitionView.swift in Sources */,
 				C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */,
 				C472E4C226FD726B00D047BA /* MerchantVoucherDetailModel.swift in Sources */,
 				C472E4CC26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift in Sources */,
@@ -1641,9 +1758,11 @@
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,
 				C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */,
 				C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */,
+				C47AEC352757269000DF8A60 /* GetPoint.swift in Sources */,
 				C4B3D58526E9FBAC003C6CA9 /* RoundedButton.swift in Sources */,
 				C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */,
 				C419868B26E46F5400A877A5 /* URLImageViewModel.swift in Sources */,
+				C4119B53275487340093542F /* PostBannerView.swift in Sources */,
 				C41C8C6E26DC79C200AC1FA7 /* InternalNewsDetailView.swift in Sources */,
 				C45260BE271565B1007E945B /* View.swift in Sources */,
 				C472E4C026FD723000D047BA /* MerchantVoucherDetailService.swift in Sources */,
@@ -1655,20 +1774,24 @@
 				C45490352741F51300175E09 /* UsedPointHistoryView.swift in Sources */,
 				C4E3442F26F627BD00B343E8 /* Constants.swift in Sources */,
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
+				C4119B512754871D0093542F /* RecognitionPostView.swift in Sources */,
 				C42BD5E82743584E00E99840 /* ConvertDateSince1970.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
 				C43C7BB426FAE3800056D169 /* MyVoucherService.swift in Sources */,
 				848753692706BAA60061D4E1 /* ChangePasswordService.swift in Sources */,
 				C4CAE21D2704C01E008E25DE /* SimiliarVoucherView.swift in Sources */,
 				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,
+				C4A9890327550D9B00E22760 /* RecognitionPostViewModel.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
 				C4750073270B40B000FE75EB /* SearchBarModel.swift in Sources */,
 				C4492A6026F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift in Sources */,
+				C47AEC332757094F00DF8A60 /* EmployeeRankingViewModel.swift in Sources */,
 				C40366FF26DB278100381888 /* MerchantListService.swift in Sources */,
 				C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */,
 				C43C7BB626FAE3F00056D169 /* MyVoucherModel.swift in Sources */,
 				C48B6D1C271141DE00766804 /* HomeView.swift in Sources */,
 				C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */,
+				C476C5B927562BAF00D93AA7 /* EmployeeRankingView.swift in Sources */,
 				C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */,
 				C404F5BB270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift in Sources */,
 				C434AF3A274CC72A002A026E /* LikeAndCommentCountBarView.swift in Sources */,
@@ -1679,6 +1802,7 @@
 				C43C7BB226FAD04D0056D169 /* MyVoucherView.swift in Sources */,
 				84DA60C4269ECA130012F55B /* HomeViewController.swift in Sources */,
 				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
+				C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1831,6 +1955,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U552P5B227;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
@@ -1852,6 +1977,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U552P5B227;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";

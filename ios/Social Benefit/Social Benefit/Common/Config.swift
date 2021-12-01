@@ -36,6 +36,7 @@ struct Config {
     static let API_INTERNAL_NEWS_LIST = "/internal_news/list"
     
     static let API_EMPLOYEE_INFO_UPDATE = "/mobile/employee/update"
+    static let API_EMPLOYEE_INFO = "/employee/get"
     static let API_LOCATION_LIST = "/location/list"
     
     static let API_COMMENT_LIST = "/comment/list"
@@ -51,4 +52,9 @@ struct Config {
     static let API_RECOGNITION_LIST_BY_COMPANY = "/mobile/recognition/company/list"
     static let API_RECOGNITION_LIST_BY_EMPLOYEE = "/mobile/recognition/employee/list"
     static let API_RECOGNITION_TOP_RANK = "/mobile/recognition/top"
+    static let API_RECOGNITION_RANKING_LIST = "/mobile/recognition/ranking/list"
+    static let API_RECOGNITION_RANKING_EMPLOYEE_GET = "/mobile/recognition/ranking/employee/get"
+    static let API_RECOGNITION_DETAIL_GET = "/mobile/recognition/detail/get"
+    static let API_RECOGNITION_GET = "/mobile/recognition/get"
+    
 }

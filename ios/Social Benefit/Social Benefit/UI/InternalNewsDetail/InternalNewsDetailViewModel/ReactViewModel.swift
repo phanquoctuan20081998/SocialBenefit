@@ -27,10 +27,13 @@ class ReactViewModel: ObservableObject, Identifiable {
     @Published var reactTop1: Int = 6
     @Published var reactTop2: Int = 6
     
+    private var contentType = 0
+    
     // INIT
     // Internal News...
     init(contentId: Int) {
         initComment(contentId: contentId)
+        self.contentType = Constants.ReactContentType.INTERNAL_NEWS
     }
     
     // Recognition...
@@ -51,10 +54,13 @@ class ReactViewModel: ObservableObject, Identifiable {
             self.reactTop2 = 6
         }
         
+        
         self.reactCount[self.reactTop1] += 1
         self.reactCount[self.reactTop2] += 1
         
         self.addSubscribers()
+        
+        self.contentType = Constants.ReactContentType.RECOGNIZE
     }
     
     func initComment(contentId: Int) {
@@ -105,21 +111,36 @@ class ReactViewModel: ObservableObject, Identifiable {
     }
     
     func getTop2React() -> [String] {
-        var top2React = [String]()
-        var react = self.reactCount
         
-        for _ in 0..<2 {
-            let max = react.max()
-            let maxIndex = react.firstIndex(of: max!)!
-            if max != 0 {
-                let imgName = convertReactCodeToImageName(maxIndex)
-                if !imgName.isEmpty {
-                    top2React.append(convertReactCodeToImageName(maxIndex))
+        var top2React = [String]()
+        
+        if contentType == Constants.ReactContentType.INTERNAL_NEWS {
+            
+            var react = self.reactCount
+            
+            for _ in 0..<2 {
+                let max = react.max()
+                let maxIndex = react.firstIndex(of: max!)!
+                if max != 0 {
+                    let imgName = convertReactCodeToImageName(maxIndex)
+                    if !imgName.isEmpty {
+                        top2React.append(convertReactCodeToImageName(maxIndex))
+                    }
                 }
+                react[maxIndex] = 0
             }
-            react[maxIndex] = 0
+            
+            
+        } else {
+            if self.reactTop1 != 6 {
+                top2React.append(convertReactCodeToImageName(reactTop1))
+            }
+            if self.reactTop2 != 6 {
+                top2React.append(convertReactCodeToImageName(reactTop2))
+            }
+            
         }
-    
+        
         return top2React
     }
     
@@ -143,11 +164,12 @@ class ReactViewModel: ObservableObject, Identifiable {
     
     // For recognition...
     func updateTopReact(selectedReaction: Int) {
+        
         DispatchQueue.main.async {
-            if selectedReaction != 6 {
+            if selectedReaction != 6  {
                 if self.reactTop1 == 6 {
                     self.reactTop1 = selectedReaction
-                } else if self.reactTop2 == 6 {
+                } else if self.reactTop2 == 6 && self.reactTop1 != selectedReaction {
                     self.reactTop2 = selectedReaction
                 }
             } else {

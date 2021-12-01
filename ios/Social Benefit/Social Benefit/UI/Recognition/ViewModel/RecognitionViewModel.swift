@@ -10,8 +10,7 @@ import Combine
 
 class RecognitionViewModel: ObservableObject, Identifiable {
     @Published var fromIndex: Int = 0
-    @Published var allCompanyList = [RecognitionData]()
-    //    @Published var allCompanyList = RecognitionData.sampleData
+    @Published var allRecognitionPost = [RecognitionData]() //    @Published var allCompanyList = RecognitionData.sampleData
     @Published var top3Recognition = [UserInfor]()
     @Published var myRank: Int = 0
     @Published var selectedTab: Int = 0
@@ -24,6 +23,10 @@ class RecognitionViewModel: ObservableObject, Identifiable {
             }
         }
     }
+    
+    // For display date
+    @Published var newsFeedHaveSameDateFirstIndex = [Int]()
+    @Published var newsFeedDate = [String]()
     
     var header = ["all", "your_history"]
     
@@ -49,7 +52,7 @@ class RecognitionViewModel: ObservableObject, Identifiable {
         if selectedTab == 0 {
             recognitionService.getListByCompany(fromIndex: fromIndex) { [weak self] data in
                 DispatchQueue.main.async {
-                    self?.allCompanyList = data
+                    self?.allRecognitionPost = data
                     
                     self?.isLoading = false
                     self?.isRefreshing = false
@@ -58,7 +61,7 @@ class RecognitionViewModel: ObservableObject, Identifiable {
         } else {
             recognitionService.getListByEmployee(fromIndex: fromIndex) { [weak self] data in
                 DispatchQueue.main.async {
-                    self?.allCompanyList = data
+                    self?.allRecognitionPost = data
                     
                     self?.isLoading = false
                     self?.isRefreshing = false
@@ -99,14 +102,46 @@ class RecognitionViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        loadData(fromIndex: 0)
+        DispatchQueue.main.async {
+            self.fromIndex = 0
+            self.loadData(fromIndex: self.fromIndex)
+            self.loadMyRank()
+            self.loadTop3Recognition()
+        }
+    }
+    
+    func reloadData() {
+        
+        self.isLoading = true
+        
+        if selectedTab == 0 {
+            recognitionService.getListByCompany(fromIndex: fromIndex) { [weak self] data in
+                
+                DispatchQueue.main.async {
+                    for i in data {
+                        self?.allRecognitionPost.append(i)
+                    }
+                    
+                    self?.isLoading = false
+                    self?.isRefreshing = false
+                }
+            }
+        } else {
+            recognitionService.getListByEmployee(fromIndex: fromIndex) { [weak self] data in
+                DispatchQueue.main.async {
+                    for i in data {
+                        self?.allRecognitionPost.append(i)
+                    }
+                    
+                    self?.isLoading = false
+                    self?.isRefreshing = false
+                }
+            }
+        }
+        
         loadMyRank()
         loadTop3Recognition()
     }
     
-    func reloadData() {
-        loadData(fromIndex: fromIndex)
-        loadMyRank()
-        loadTop3Recognition()
-    }
+    
 }

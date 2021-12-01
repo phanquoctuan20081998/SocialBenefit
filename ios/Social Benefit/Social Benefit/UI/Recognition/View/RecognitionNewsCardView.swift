@@ -14,31 +14,30 @@ struct RecognitionNewsCardView: View {
     
     @State var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     @State var commentText: String = ""
+    @State var commentCount: Int = 0
     
-    @Binding var commentCount: Int
     @Binding private var proxy: AmzdScrollViewProxy?
     
     var companyData: RecognitionData = RecognitionData.sampleData[0]
     var index: Int = 0
+    var newsFeedType: Int = 0
     
-    init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, commentCount: Binding<Int>) {
-        
+    init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, newsFeedType: Int) {
         self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
             
         _proxy = proxy
-        _commentCount = commentCount
         
         self.companyData = companyData
         self.commentCount = companyData.getCommentCount()
-        
         self.index = index
+        self.newsFeedType = newsFeedType
     }
     
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 10) {
                 ContentView
-
+                
                 LikeAndCommentCountBarView(numOfComment: commentCount, contentType: Constants.ReactContentType.RECOGNIZE, totalOtherReact: companyData.getTotalOtherReact())
                 Rectangle()
                     .foregroundColor(Color("nissho_blue"))
@@ -68,6 +67,8 @@ struct RecognitionNewsCardView: View {
                     .offset(x: -30, y: -30)
                     .zIndex(2)
             }
+        }.onAppear {
+            self.commentCount = self.companyData.getCommentCount()
         }
     }
 }
@@ -77,7 +78,12 @@ extension RecognitionNewsCardView {
     var ContentView: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text("\(companyData.getTime()) \(companyData.getDate())")
+                
+                if newsFeedType == Constants.RecognitionNewsFeedType.ALL {
+                    Text("\(companyData.getTime()) \(companyData.getDate())")
+                } else {
+                    Text("\(companyData.getTime())")
+                }
                 
                 Spacer()
                 
@@ -110,12 +116,11 @@ extension RecognitionNewsCardView {
         })
             .disabled(commentText.isEmpty)
     }
-    
 }
 
 
 struct RecognitionNewsCardView_Previews: PreviewProvider {
     static var previews: some View {
-        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], index: 0, proxy: .constant(nil), commentCount: .constant(1))
+        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], index: 0, proxy: .constant(nil), newsFeedType: 0)
     }
 }

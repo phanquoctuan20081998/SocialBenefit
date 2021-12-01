@@ -67,7 +67,6 @@ struct LikeAndCommentButton: View {
                             self.reactViewModel.reactCount[self.reactViewModel.selectedReaction] -= 1
                             self.reactViewModel.numOfReact -= 1
                             self.reactViewModel.selectedReaction = 6
-                            
                         } else {
                             
                             self.reactViewModel.selectedReaction = 0
