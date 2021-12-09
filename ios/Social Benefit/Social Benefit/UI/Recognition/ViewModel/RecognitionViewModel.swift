@@ -10,7 +10,7 @@ import Combine
 
 class RecognitionViewModel: ObservableObject, Identifiable {
     @Published var fromIndex: Int = 0
-    @Published var allRecognitionPost = [RecognitionData]() //    @Published var allCompanyList = RecognitionData.sampleData
+    @Published var allRecognitionPost = [RecognitionData]()
     @Published var top3Recognition = [UserInfor]()
     @Published var myRank: Int = 0
     @Published var selectedTab: Int = 0
@@ -25,8 +25,7 @@ class RecognitionViewModel: ObservableObject, Identifiable {
     }
     
     // For display date
-    @Published var newsFeedHaveSameDateFirstIndex = [Int]()
-    @Published var newsFeedDate = [String]()
+    @Published var sameDateGroup = [SeparateByDateData]()
     
     var header = ["all", "your_history"]
     
@@ -59,7 +58,7 @@ class RecognitionViewModel: ObservableObject, Identifiable {
                 }
             }
         } else {
-            recognitionService.getListByEmployee(fromIndex: fromIndex) { [weak self] data in
+            recognitionService.getListByEmployee(employeeId: userInfor.employeeId, fromIndex: fromIndex) { [weak self] data in
                 DispatchQueue.main.async {
                     self?.allRecognitionPost = data
                     
@@ -68,6 +67,8 @@ class RecognitionViewModel: ObservableObject, Identifiable {
                 }
             }
         }
+        
+        countData()
     }
     
     func loadTop3Recognition() {
@@ -92,6 +93,18 @@ class RecognitionViewModel: ObservableObject, Identifiable {
                 self?.isRefreshing = false
             }
         }
+    }
+    
+    func countData() {
+        
+        // Convert to only time array...
+        var timeArray = [String]()
+        for data in self.allRecognitionPost {
+            timeArray.append(data.getDate())
+        }
+        
+        self.sameDateGroup = FindNewsFeedHaveSameDateFirstIndex(timeArray: timeArray)
+        
     }
     
     func loadSelectedTab(selectedTab: Int) {
@@ -127,7 +140,7 @@ class RecognitionViewModel: ObservableObject, Identifiable {
                 }
             }
         } else {
-            recognitionService.getListByEmployee(fromIndex: fromIndex) { [weak self] data in
+            recognitionService.getListByEmployee(employeeId: userInfor.employeeId, fromIndex: fromIndex) { [weak self] data in
                 DispatchQueue.main.async {
                     for i in data {
                         self?.allRecognitionPost.append(i)
@@ -143,5 +156,8 @@ class RecognitionViewModel: ObservableObject, Identifiable {
         loadTop3Recognition()
     }
     
+    func isNewDate(index: Int) -> Int {
+        self.sameDateGroup.firstIndex( where: { $0.head == index } ) ?? -1
+    }
     
 }

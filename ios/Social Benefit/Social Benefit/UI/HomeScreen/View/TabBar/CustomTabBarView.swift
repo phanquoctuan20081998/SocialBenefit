@@ -17,8 +17,12 @@ struct CustomTabBarView: View {
             
             // Tab Bar Buttons
             TabBarButtonView(buttonImage: "house", buttonName: "home".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
-            TabBarButtonView(buttonImage: "star", buttonName: "recognition".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
-            TabBarButtonView(buttonImage: "tag", buttonName: "promotion".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
+            
+            if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                TabBarButtonView(buttonImage: "star", buttonName: "recognition".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
+                TabBarButtonView(buttonImage: "tag", buttonName: "promotion".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
+            }
+            
             TabBarButtonView(buttonImage: "person.circle", buttonName: "user".localized, selectedTab: $selectedTab, tabPoint: $tabPoint)
             
         }

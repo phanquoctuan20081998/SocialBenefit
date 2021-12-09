@@ -24,7 +24,7 @@ struct PopUpMessageView: View {
             })
             
             Text(text)
-                .foregroundColor(.white)
+                .foregroundColor(textColor)
                 .font(.system(size: 15))
         }
         .padding()
@@ -53,12 +53,28 @@ struct ErrorMessageView: View {
 
 struct SuccessedMessageView: View {
     var successedMessage: String
-    var color: Color = Color.black.opacity(0.7)
+    var color: Color = Color.black.opacity(0.9)
     @Binding var isPresented: Bool
     
     var body: some View {
         if isPresented {
             PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.white, backgroundColor: color)
+                .onReceive(PopUpTimer) { _ in
+                    isPresented = false
+                }
+                
+        }
+    }
+}
+
+struct WarningMessageView: View {
+    var successedMessage: String
+    var color: Color = Color.white
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        if isPresented {
+            PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.black, backgroundColor: color)
                 .onReceive(PopUpTimer) { _ in
                     isPresented = false
                 }
@@ -68,6 +84,7 @@ struct SuccessedMessageView: View {
 
 struct ErrorMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        SuccessedMessageView(successedMessage: "sbchdbcshdbfgdhbsjhbdshcbdhsbchsdbchhdsbfhbsdhfhdbhsbdchbsdhbcshdbcsbdchsbhcbhbshdbfhbsdhfbsdhfbsbfhsssdfssbc", isPresented: .constant(true))
+        WarningMessageView(successedMessage: "zddsacascs", isPresented: .constant(true))
+            .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
     }
 }

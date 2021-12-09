@@ -12,6 +12,7 @@ struct DynamicHeightTextField: UIViewRepresentable {
     @Binding var text: String
     @Binding var height: CGFloat
     @Binding var isFocus: Bool
+    var textfieldType: Int
     var onEnd: () -> ()
     
     func makeUIView(context: Context) -> UITextView {
@@ -24,7 +25,12 @@ struct DynamicHeightTextField: UIViewRepresentable {
         
         textView.text = text
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 13)
+        
+        if textfieldType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION {
+            textView.font = UIFont.systemFont(ofSize: 20)
+        } else {
+            textView.font = UIFont.systemFont(ofSize: 13)
+        }
         
         context.coordinator.textView = textView
         textView.delegate = context.coordinator
@@ -119,6 +125,7 @@ struct AutoResizeTextField: View {
     var minHeight: CGFloat
     var maxHeight: CGFloat
     var placeholder: String
+    var textfiledType: Int = Constants.AutoResizeTextfieldType.DEFAULT
 
     @State var textHeight: CGFloat = 0
 
@@ -137,17 +144,22 @@ struct AutoResizeTextField: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            
             if text.isEmpty {
-                Text(placeholder)
-                    .font(.system(size: 13))
-                    .foregroundColor(Color(UIColor.placeholderText))
-                    .padding(5)
+                if textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION {
+                    Text(placeholder)
+                        .foregroundColor(Color.gray)
+                        .padding(15)
+                } else {
+                    Text(placeholder)
+                        .font(.system(size: 13))
+                        .foregroundColor(Color(UIColor.placeholderText))
+                        .padding(5)
+                }
             }
             
-            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, onEnd: {
+            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, textfieldType: textfiledType, onEnd: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            })
+            }).padding(textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION ? 10 : 5)
         }
         .frame(height: textFieldHeight)
     }

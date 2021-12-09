@@ -19,8 +19,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
 //                                               UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
 //                                               UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
     
-    var sameDateGroup = [HeadTailIndex]() // Store the first index of transaction  of each date group
-    var dateHistoryName = [String]() // Store date history name
+    var sameDateGroup = [SeparateByDateData]() // Store the first index of transaction  of each date group
     
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
@@ -55,7 +54,6 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
             DispatchQueue.main.async {
                 self?.allUsedPointsHistoryData = data
                 self?.countData()
-                self?.getDateHistoryName()
                 
                 self?.isLoading = false
                 self?.isRefreshing = false
@@ -65,51 +63,14 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     
     func countData() {
         
-        self.sameDateGroup = []
-        
-        if self.allUsedPointsHistoryData.count == 0 {
-            return
-        } else if self.allUsedPointsHistoryData.count == 1 {
-            self.sameDateGroup.append(HeadTailIndex(head: 0, tail: 0))
-        } else {
-            
-            var tempHead = 0
-            var tempTail = 0
-            
-            for i in 1..<self.allUsedPointsHistoryData.count {
-                if self.allUsedPointsHistoryData[i].mDate != self.allUsedPointsHistoryData[i - 1].mDate {
-                    tempTail = i - 1
-                    
-                    self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
-                    tempHead = i
-                }
-            }
-            
-            tempTail = self.allUsedPointsHistoryData.count - 1
-            self.sameDateGroup.append(HeadTailIndex(head: tempHead, tail: tempTail))
+        // Convert to only time array...
+        var timeArray = [String]()
+        for data in self.allUsedPointsHistoryData {
+            timeArray.append(data.mDate)
         }
-    }
-    
-    func getDateHistoryName() {
-        self.dateHistoryName = []
         
-        let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        let yesterday = Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
+        self.sameDateGroup = FindNewsFeedHaveSameDateFirstIndex(timeArray: timeArray)
         
-        let todayEnglishFormat = convertToEnglishFormat(day: today.day, month: today.month, year: today.year)
-        let yesterdayEnglishFormat = convertToEnglishFormat(day: yesterday.day, month: yesterday.month, year: yesterday.year)
-        
-        var index = 0
-        for i in 0 ..< self.sameDateGroup.count {
-            if self.allUsedPointsHistoryData[index].mDate == todayEnglishFormat {
-                self.dateHistoryName.append("today")
-            } else if self.allUsedPointsHistoryData[index].mDate == yesterdayEnglishFormat {
-                self.dateHistoryName.append("yesterday")
-            } else {
-                self.dateHistoryName.append(self.allUsedPointsHistoryData[index].mDate)
-            }
-            index = self.sameDateGroup[i].head
-        }
     }
     
     func loadSearchData(searchText: String) {
@@ -138,6 +99,5 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     func reset() {
         self.allUsedPointsHistoryData = []
         self.sameDateGroup = []
-        self.dateHistoryName = []
     }
 }

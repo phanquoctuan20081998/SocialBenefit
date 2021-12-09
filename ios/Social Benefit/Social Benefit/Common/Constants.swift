@@ -19,6 +19,14 @@ struct Constants {
     static let MYVOUCHER_TABHEADER = ["all", "active", "used", "expried"]
     static let VOUCHER_DETAIL_TAB = ["information", "applied_stores", "similar_promotions"]
     
+    // Function ID...
+    struct FuctionId {
+        static let BENEFIT = "benefit"
+        static let INTERNAL_NEWS = "internal_news"
+        static let SURVEY = "survey"
+        static let COMPANY_BUDGET_POINT = "company_budget_point"
+    }
+    
     // API load...
     static let MAX_NUM_API_LOAD = 10
     static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(5)
@@ -79,7 +87,7 @@ struct Constants {
         static let MOBILE_CHANGE_PASSWORD_OK = 0
     }
     
-    // Used Points History
+    // Used Points History...
     struct UsedPointsHistory {
         static let FROMCOMPLIMENT = 0
         static let TOCOMPLIMENT = 1
@@ -87,18 +95,25 @@ struct Constants {
         static let TOVOUCHER = 3
     }
     
-    // Used Points History - Point Action Type
+    // Used Points History - Point Action Type...
     struct PointActionType {
         static let ALL = 0
         static let RECEIVED = 1
         static let COMSUMED = 2
     }
     
-    // Recognition News Feed
+    // Recognition News Feed...
     struct RecognitionNewsFeedType {
         static let ALL = 0
         static let YOUR_HISTORY = 1
     }
+    
+    // Auto Resize Textfield...
+    struct AutoResizeTextfieldType {
+        static let DEFAULT = 0
+        static let RECOGNITION_ACTION = 1
+    }
+    
     
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),

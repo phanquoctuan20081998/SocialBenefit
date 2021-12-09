@@ -15,14 +15,14 @@ struct InternalNewsBannerView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
-
+    
     @State private var currentPage = 0
     @State var isMove: Bool = false
     @State var data: [InternalNewsData] = []
     
     var body: some View {
         VStack {
-
+            
             TopTitleView(title: "internal_news".localized, topTitleTapped: topTitleTapped)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
@@ -31,7 +31,7 @@ struct InternalNewsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-
+                    
                     if internalNewsViewModel.allInternalNewsBanner.count != 0 {
                         
                         PagingView(index: $currentPage.animation(), maxIndex: internalNewsViewModel.allInternalNewsBanner.count - 1) {
@@ -136,17 +136,17 @@ struct PromotionsBannerView: View {
             TopTitleView(title: "promotions".localized, topTitleTapped: toptitleTapped)
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-   
+            
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-//                    if data.count != 0 { //If Data can read
-//                        let pages = getPromotionData(data: data, imageTapped: imageTapped)
-//                        PageViewController(pages: pages, currentPage: $currentPage)
-//                        //                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
-//                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
-//                    } else {
-//                        EmptyView()
-//                    }
+                    //                    if data.count != 0 { //If Data can read
+                    //                        let pages = getPromotionData(data: data, imageTapped: imageTapped)
+                    //                        PageViewController(pages: pages, currentPage: $currentPage)
+                    //                        //                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
+                    //                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
+                    //                    } else {
+                    //                        EmptyView()
+                    //                    }
                     
                     
                     if data.count != 0 {
@@ -207,6 +207,9 @@ struct MainCardView: View {
     
     @State var moveToWebView = false
     
+    @State var isRecognitonClick = false
+    @State var isMyVoucherClick = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -230,29 +233,48 @@ struct MainCardView: View {
             
             Spacer()
             
-            HStack (spacing: 5) {
-                mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"), buttonTapped: recognizeButtonTapped)
-                mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"), buttonTapped: myVoucherButtonTapped)
-//                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"), buttonTapped: myOrderButtonTapped)
-                mainButton(text: "VNPT".localized, image: "ic_vnpt", color: Color("nissho_blue"), buttonTapped: VNPTButtonTapped)
-                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"), buttonTapped: otherButtonTapped)
-            }
+            HStack {
+                
+                Spacer()
+                
+                if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                    
+                    // Reconigion Button
+                    NavigationLink {
+                        RecognitionActionView().navigationBarHidden(true)
+                    } label: {
+                        mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
+                            .foregroundColor(.black)
+                    }
+                    
+                    Spacer()
+                    
+                    mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
+                    
+                    Spacer()
+                }
+                //                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"), buttonTapped: myOrderButtonTapped)
+                
+                
+                
+                mainButton(text: "VNPT".localized, image: "ic_vnpt", color: Color("nissho_blue"))
+                
+                Spacer()
+                
+                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"))
+                
+                Spacer()
+            }.padding(.horizontal, 30)
             
         }.padding()
-        .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
-        .background(Color.white)
-        .cornerRadius(30)
-        .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-//        .background(
-//            NavigationLink(destination: FullWebView().navigationBarHidden(true), isActive: $moveToWebView, label: {
-//                EmptyView()
-//            })
-//        )
-        
+            .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
+            .background(Color.white)
+            .cornerRadius(30)
+            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
     }
     
     func recognizeButtonTapped() {
-        
+        self.isRecognitonClick = true
     }
     
     func myVoucherButtonTapped() {
@@ -276,33 +298,25 @@ struct mainButton: View {
     var text: String
     var image: String
     var color: Color
-    var buttonTapped: () -> ()
     
     var body: some View {
         VStack {
-            
-            Button(action: {
-                // Do something
-                buttonTapped()
-                
-            }, label: {
-                Circle()
-                    .fill(
-                        LinearGradient(gradient: Gradient(colors: [color, .white]), startPoint: .top, endPoint: .bottom)
-                    )
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .overlay(
-                        Image(image)
-                            .resizable()
-                            .frame(width: 35, height: 35, alignment: .center)
-                            .padding(.all, 5)
-                    )
-            })
+
+            Circle()
+                .fill(
+                    LinearGradient(gradient: Gradient(colors: [color, .white]), startPoint: .top, endPoint: .bottom)
+                )
+                .frame(width: 50, height: 50, alignment: .center)
+                .overlay(
+                    Image(image)
+                        .resizable()
+                        .frame(width: 35, height: 35, alignment: .center)
+                        .padding(.all, 5)
+                )
             
             Text(text)
                 .bold()
                 .font(.system(size: 12))
-            
         }.frame(width: 80)
     }
 }

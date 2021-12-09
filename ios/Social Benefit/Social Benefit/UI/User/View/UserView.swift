@@ -38,20 +38,27 @@ struct UserView: View {
                         EmptyView()
                     }
                     
-                    NavigationLink(destination: UsedPointHistoryView().navigationBarHidden(true), tag: 2, selection: $selection) {
-                        FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
+                    if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                        NavigationLink(destination: UsedPointHistoryView().navigationBarHidden(true), tag: 2, selection: $selection) {
+                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
+                        }
+                        
+                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
+                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
+                        }
                     }
                     
-                    NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-                        FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
+                    if isDisplayFunction(Constants.FuctionId.BENEFIT) {
+                        NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
+                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
+                        }
                     }
                     
-                    NavigationLink(destination: ListOfBenefitsView().navigationBarHidden(true), tag: 4, selection: $selection) {
-                        FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
-                    }
                     
-                    NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
-                        FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
+                    if isDisplayFunction(Constants.FuctionId.SURVEY) {
+                        NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
+                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
+                        }
                     }
                 }.padding(.top, 10)
                 

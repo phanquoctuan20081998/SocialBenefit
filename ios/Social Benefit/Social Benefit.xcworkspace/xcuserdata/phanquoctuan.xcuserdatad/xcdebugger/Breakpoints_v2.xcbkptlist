@@ -986,22 +986,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9ADB9F0C-4289-4B14-B95C-8477E7CDD12C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social Benefit/UI/UsedPointHistory/ViewModel/UsedPointHistoryViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "getDateHistoryName()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7E42ADE4-8D96-4DB5-A6E5-DE80CDDF35B5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1025,8 +1009,8 @@
             filePath = "Social Benefit/UI/UsedPointHistory/ViewModel/UsedPointHistoryViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "loadSelectedTab(selectedTab:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1041,8 +1025,8 @@
             filePath = "Social Benefit/UI/UsedPointHistory/ViewModel/UsedPointHistoryViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "UsedPointHistoryViewModel"
             landmarkType = "3">
          </BreakpointContent>

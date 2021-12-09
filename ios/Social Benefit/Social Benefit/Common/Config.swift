@@ -57,4 +57,9 @@ struct Config {
     static let API_RECOGNITION_DETAIL_GET = "/mobile/recognition/detail/get"
     static let API_RECOGNITION_GET = "/mobile/recognition/get"
     
+    static let API_RECOGNITION_FIND_EMPLOYEE = "/mobile/recognition/employee/find"
+    static let API_RECENT_TRANSACTION_LIST = "/mobile/recent_transaction/list"
+    static let API_EMPLOYEE_WALLET_INFO_GET = "/mobile/employee/wallet/get"
+    static let API_RECOGNITION_SEND  = "/mobile/recognition/send"
+    
 }

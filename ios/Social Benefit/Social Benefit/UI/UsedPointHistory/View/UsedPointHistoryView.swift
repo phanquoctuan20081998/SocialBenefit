@@ -82,7 +82,7 @@ extension UsedPointHistoryView {
                 VStack {
                     ForEach(usedPointHistoryViewModel.sameDateGroup.indices, id:\.self) { i in
                         
-                        Text(usedPointHistoryViewModel.dateHistoryName[i])
+                        Text(usedPointHistoryViewModel.sameDateGroup[i].date)
                             .bold()
                             .font(.system(size: 14))
                             .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)

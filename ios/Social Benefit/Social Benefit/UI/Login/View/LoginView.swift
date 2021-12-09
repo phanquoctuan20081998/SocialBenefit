@@ -18,7 +18,7 @@ struct LoginView: View {
     @State var reload = false
     
     var body: some View {
-        let _ = print(sessionExpired.isExpried)
+        
         if !sessionExpired.isLogin || sessionExpired.isExpried {
             ZStack(alignment: .top) {
                 
@@ -230,15 +230,6 @@ extension LoginView {
     
     var ForgotPassword: some View {
         
-        //        Text("forgot_password".localized)
-        //            .font(.system(size: 15))
-        //            .sheet(isPresented: $loginViewModel.isPresentResetPasswordView, content: {
-        //                ResetPasswordView()
-        //            })
-        //            .onTapGesture {
-        //                loginViewModel.isPresentResetPasswordView.toggle()
-        //            }
-        
         Text("forgot_password".localized)
             .font(.system(size: 15))
             .foregroundColor(.blue)
@@ -246,14 +237,6 @@ extension LoginView {
                 loginViewModel.isPresentResetPasswordView.toggle()
                 loginViewModel.resetState()
             }
-//            .background (
-//                NavigationLink(
-//                    destination: ResetPasswordView().navigationBarHidden(true),
-//                    isActive: $loginViewModel.isPresentResetPasswordView,
-//                    label: {
-//                        EmptyView()
-//                    }))
-        
     }
     
     var WarningText: some View {

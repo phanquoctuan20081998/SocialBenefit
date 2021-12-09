@@ -26,6 +26,7 @@ struct SearchBarView: View {
                 TextField(placeHolder, text: $searchText)
                     .padding(.leading, 35)
                     .font(.system(size: CGFloat(fontSize)))
+                    .frame(height: CGFloat(height))
             }
             .padding(.all, 7)
             .background(Color.white)
@@ -69,7 +70,7 @@ struct SearchBarView: View {
                 .animation(.easeInOut(duration: 0.1))
             }
         }.padding(.vertical, 5)
-        .frame(width: CGFloat(width), height: CGFloat(height), alignment: .leading)
+        .frame(width: CGFloat(width), alignment: .leading)
     }
 }
 

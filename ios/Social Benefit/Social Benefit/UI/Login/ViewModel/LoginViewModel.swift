@@ -86,11 +86,12 @@ class LoginViewModel: ObservableObject {
                 }
             } else {
 
-                let token = data["token"]
+                let token = data["token"].string ?? ""
                 let employeeDto = data["employeeDto"]
+                let functionNames = data["functionNames"].arrayValue.map { $0.stringValue }
                 let citizen = employeeDto["citizen"]
                 
-                updateUserInfor(token: token.string!, employeeDto: employeeDto, citizen: citizen)
+                updateUserInfor(token: token, employeeDto: employeeDto, citizen: citizen, functionNames: functionNames)
                 
                 DispatchQueue.main.async {
                     self.sessionExpired.isLogin = true

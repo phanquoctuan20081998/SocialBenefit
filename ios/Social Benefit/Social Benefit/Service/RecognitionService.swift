@@ -56,7 +56,7 @@ class RecognitionService {
         })
     }
     
-    func getListByEmployee(fromIndex: Int, returnCallBack: @escaping ([RecognitionData]) -> ()) {
+    func getListByEmployee(employeeId: String, fromIndex: Int, returnCallBack: @escaping ([RecognitionData]) -> ()) {
         let service = BaseAPI()
         var data = [RecognitionData]()
         
@@ -65,7 +65,7 @@ class RecognitionService {
                       "companyId": userInfor.companyId]
         
         let params: Parameters = ["fromIndex": fromIndex,
-                                  "employeeId": userInfor.employeeId]
+                                  "employeeId": employeeId]
         
         service.makeCall(endpoint: Config.API_RECOGNITION_LIST_BY_EMPLOYEE, method: "POST", header: header, body: params, callback: { (result) in
             

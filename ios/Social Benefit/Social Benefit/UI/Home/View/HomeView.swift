@@ -22,12 +22,18 @@ struct HomeView: View {
 
                 ScrollView {
                     VStack(spacing: 20) {
+                        
                         MainCardView()
                             .padding(.top, 10)
+                        
+                        if isDisplayFunction(Constants.FuctionId.INTERNAL_NEWS) {
+                            InternalNewsBannerView()
+                        }
 
-                        InternalNewsBannerView()
-                        RecognitionsBannerView()
-                        PromotionsBannerView()
+                        if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                            RecognitionsBannerView()
+                            PromotionsBannerView()
+                        }
                     }
                     Spacer()
                         .frame(height: 100)

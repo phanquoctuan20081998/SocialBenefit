@@ -35,8 +35,9 @@ struct UserInfor {
     var companyLogo: String
     var citizenId: String
     var locationId: String
+    var functionNames: [String]
     
-    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String) {
+    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String, functionNames: [String]) {
         
         self.userId = userId
         self.employeeId = employeeId
@@ -63,7 +64,7 @@ struct UserInfor {
         self.companyLogo = companyLogo
         self.citizenId = citizenId
         self.locationId = locationId
-        
+        self.functionNames = functionNames
     }
     
     // For initialize User Information without token infor
@@ -99,15 +100,16 @@ struct UserInfor {
         self.insurance = citizen["socialInsurance"].string ?? ""
         self.citizenId = String(citizen["id"].int ?? 0)
         self.locationId = citizen["locationWard"]["id"].string ?? "00000"
+        self.functionNames = []
     }
 }
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
-                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png", citizenId: "", locationId: "")
+                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png", citizenId: "", locationId: "", functionNames: [])
 
 
-func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON) {
+func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNames: [String]) {
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -140,6 +142,7 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON) {
     userInfor.insurance = citizen["socialInsurance"].string ?? ""
     userInfor.citizenId = String(citizen["id"].int ?? 0)
     userInfor.locationId = citizen["locationWard"]["id"].string ?? "00000"
+    userInfor.functionNames = functionNames
     
     print(userInfor)
 }

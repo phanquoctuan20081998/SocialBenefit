@@ -30,6 +30,12 @@ func getError(errorCode: String) -> String {
         return "blank_phone".localized
     case "can_connect_server":
         return "can_connect_server".localized
+    case "this_person_is_exist":
+        return "this_person_is_exist".localized
+    case "C00177_E":
+        return "no_point_has_been_tranferred".localized
+    case "C00168_E":
+        return "not_enough_personal_point".localized
     default:
         return ""
     }

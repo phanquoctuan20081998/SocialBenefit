@@ -94,7 +94,7 @@ public class BaseAPI {
                         //show error
                         if json["messages"] != nil {
                             print("Call API failed, Messages: ", json["messages"]!)
-                            callback(JSON())
+                            callback(JSON(["errors": json["messages"]]))
                         }
                     }
                 }

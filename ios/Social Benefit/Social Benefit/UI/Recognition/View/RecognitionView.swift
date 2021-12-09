@@ -117,6 +117,17 @@ extension RecognitionView {
                     ForEach(recognitionViewModel.allRecognitionPost.indices, id: \.self) { index in
                         VStack {
                             
+                            // Print date
+                            let i = self.recognitionViewModel.isNewDate(index: index)
+                            
+                            if self.recognitionViewModel.selectedTab == Constants.RecognitionNewsFeedType.YOUR_HISTORY && i != -1 {
+                                Text(recognitionViewModel.sameDateGroup[i].date)
+                                    .bold()
+                                    .font(.system(size: 14))
+                                    .frame(width: ScreenInfor().screenWidth * 0.9, alignment: .leading)
+                                    .padding(.vertical)
+                            }
+                            
                             NavigationLink(destination: RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[index]).navigationBarHidden(true)) {
                                 RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab)
                                     .foregroundColor(.black)

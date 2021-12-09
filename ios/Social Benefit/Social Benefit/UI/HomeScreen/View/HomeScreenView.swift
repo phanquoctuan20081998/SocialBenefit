@@ -19,7 +19,7 @@ struct HomeScreenView: View {
     @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
     @ObservedObject var searchViewModel = SearchViewModel()
     @ObservedObject var homeViewModel = HomeViewModel()
-//    @ObservedObject var keyboardHandler = KeyboardHandler()
+    //    @ObservedObject var keyboardHandler = KeyboardHandler()
     
     init(selectedTab: String) {
         homeScreenViewModel.selectedTab = selectedTab
@@ -30,7 +30,7 @@ struct HomeScreenView: View {
             ZStack(alignment: .bottom) {
                 
                 getView(selectedTab: homeScreenViewModel.selectedTab)
-              
+                
                 // Search View...
                 SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
                 
@@ -38,7 +38,7 @@ struct HomeScreenView: View {
                 if homeScreenViewModel.isPresentedTabBar {
                     CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
                 }
-
+                
                 // Promotion - Buy Button and Other Category popup...
                 BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup)
                 OtherPopUpView()
@@ -51,12 +51,12 @@ struct HomeScreenView: View {
                 InternalNewDetailNavigationView(internalNews: homeViewModel.selectedInternalNew, isPresent: homeViewModel.isPresentInternalNewDetail)
                 
                 MerchantVoucherDetailNavigationView(voucherId: homeViewModel.selectedVoucherId, isPresent: homeViewModel.isPresentVoucherDetail)
-
+                
             }
-
+            
             .navigationBarHidden(true)
         }
-    
+        
         .environmentObject(internalNewsViewModel)
         .environmentObject(specialOffersViewModel)
         .environmentObject(merchantCategoryItemViewModel)
@@ -67,7 +67,7 @@ struct HomeScreenView: View {
         .environmentObject(customerSupportViewModel)
         .environmentObject(searchViewModel)
         .environmentObject(homeViewModel)
-//        .environmentObject(keyboardHandler)
+        //        .environmentObject(keyboardHandler)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {
@@ -95,7 +95,7 @@ struct HomeScreenView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     func MerchantVoucherDetailNavigationView(voucherId: Int?,  isPresent: Bool) -> some View {
         if isPresent {

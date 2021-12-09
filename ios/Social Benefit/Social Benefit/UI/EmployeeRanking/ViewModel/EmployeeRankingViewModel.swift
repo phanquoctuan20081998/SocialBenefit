@@ -9,11 +9,13 @@ import Foundation
 import Combine
 
 class EmployeeRankingViewModel: ObservableObject, Identifiable {
-    @Published var employeeInfor = UserInfor(userId: "23546548489", employeeId: "", token: "", companyId: "123", name: "Bé khoẻ", avatar: "/files/558/pokemon_PNG73.png", position: "", nickname: "", email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "", CMND: "", passport: "", insurance: "", department: "Truyền thông", isLeader: true, companyLogo: "", citizenId: "", locationId: "")
-    
+    @Published var employeeInfor = userInfor
     @Published var employeeRank = RankingOfRecognitionData.sampleData[0]
+    @Published var employeeRecognitionList = RecognitionData.sampleData
     
     @Published var employeeId: Int = 0
+    @Published var fromIndex: Int = 0
+    @Published var sameDateGroup = [SeparateByDateData]()
     
     // For loading, refresh controller
     @Published var isLoading: Bool = false
@@ -33,6 +35,7 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
         
         self.loadEmployeeInfor(employeeId: employeeId)
         self.loadEmployeeRank(employeeId: employeeId)
+        self.loadRecognitionData(employeeId: employeeId, fromIndex: fromIndex)
     }
     
     func loadEmployeeInfor(employeeId: Int) {
@@ -62,7 +65,44 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func loadRecognitionData(employeeId: Int, fromIndex: Int) {
+        self.isLoading = true
+        let employeeIdString = String(employeeId)
+        
+        recognitionService.getListByEmployee(employeeId: employeeIdString, fromIndex: fromIndex) { [weak self] data in
+            DispatchQueue.main.async {
+                
+                self?.employeeRecognitionList = data
+                
+                self?.isLoading = false
+                self?.isRefreshing = false
+            }
+        }
+        
+        countData()
+    }
+    
+    func countData() {
+        
+        // Convert to only time array...
+        var timeArray = [String]()
+        for data in self.employeeRecognitionList {
+            timeArray.append(data.getDate())
+        }
+        
+        self.sameDateGroup = FindNewsFeedHaveSameDateFirstIndex(timeArray: timeArray)
+        
+    }
+    
     func refresh() {
         
+    }
+    
+    func reloadData() {
+        self.loadRecognitionData(employeeId: employeeId, fromIndex: fromIndex)
+    }
+    
+    func isNewDate(index: Int) -> Int {
+        self.sameDateGroup.firstIndex( where: { $0.head == index } ) ?? -1
     }
 }
