@@ -49,7 +49,7 @@ struct SettingsView: View {
             }
             
             VStack(alignment: .leading) {
-                settingTitle(text: "other".localized)
+                settingTitle(text: "other_setting".localized)
                 settingOption(image: "info.circle.fill", color: Color.blue, title: "application_information".localized, trailingElement: "", switchOnVariable: .constant(false))
                 Spacer().frame(height: 30)
             }.onTapGesture {
@@ -61,7 +61,7 @@ struct SettingsView: View {
         
         // Pop Up
         .overlay(LanguageSelectorPopUp(isPresentedPopup: $settingsViewModel.isPresentedLanguagePopup), alignment: .top)
-        .overlay(AppInformationPopUp(isPresentedPopup: $settingsViewModel.isPresentedAppinformationPopUp, companyName: "nissho".localized, companyAddress: "324, tay Son"))
+        .overlay(AppInformationPopUp(isPresentedPopup: $settingsViewModel.isPresentedAppinformationPopUp, companyName: "NISSHO ELECTRONICS VIETNAM", companyAddress: "324, Tây Sơn, Đống Đa, Hà Nội, Việt Nam"))
         .overlay(ChangePasswordPopUpView(isPresentedPopUp: $settingsViewModel.isPresentedChangePasswordPopUp)
         )
         .environmentObject(settingsViewModel)
@@ -95,7 +95,7 @@ struct SettingsView: View {
                     Image(systemName: "chevron.down")
                 }
                 .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .frame(width: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: 130, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.gray, lineWidth: 1))
                 .onTapGesture {

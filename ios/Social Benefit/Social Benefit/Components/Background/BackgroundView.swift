@@ -73,6 +73,9 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     
     var backButtonTapped: () -> () = { }
     
+    var isHaveDiffirentHandle: Bool = false
+    var diffirentHandle: () -> () = { }
+    
     var body: some View {
         VStack {
             Image("pic_background")
@@ -84,13 +87,17 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                     HStack {
                         HStack {
                             Button(action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                                self.isActive.toggle()
-                                if !isHiddenTabBarWhenBack {
-                                    homeScreen.isPresentedTabBar = true
+                                if !isHaveDiffirentHandle {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                    self.isActive.toggle()
+                                    if !isHiddenTabBarWhenBack {
+                                        homeScreen.isPresentedTabBar = true
+                                    }
+                                    
+                                    backButtonTapped()
+                                } else {
+                                    diffirentHandle()
                                 }
-                                
-                                backButtonTapped()
                                 
                             }, label: {
                                 VStack(alignment: .leading) {

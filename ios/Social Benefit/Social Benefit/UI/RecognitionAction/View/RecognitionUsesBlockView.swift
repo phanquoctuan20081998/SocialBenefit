@@ -93,7 +93,7 @@ extension RecognitionUsesBlockView {
     
     var SendWishes: some View {
         VStack {
-            AutoResizeTextField(text: $recognitionActionViewModel.wishesText, isFocus: $recognitionActionViewModel.isWishesTextFocus, minHeight: 80, maxHeight: 500, placeholder: "send_wishes".localized, textfiledType: Constants.AutoResizeTextfieldType.RECOGNITION_ACTION)
+            AutoResizeTextField(text: $recognitionActionViewModel.wishesText[index], isFocus: .constant(false), minHeight: 80, maxHeight: 500, placeholder: "send_wishes".localized, textfiledType: Constants.AutoResizeTextfieldType.RECOGNITION_ACTION)
         }
         .background(RoundedRectangle(cornerRadius: 10)
                         .strokeBorder(Color.gray.opacity(0.4), lineWidth: 1)
@@ -125,6 +125,7 @@ extension RecognitionUsesBlockView {
                     
                     Button {
                         self.recognitionActionViewModel.allSelectedUser[index] = UserData()
+                        self.recognitionActionViewModel.removeTextControl(index: index)
                         self.isPresentPopUp = false
                         
                         if self.recognitionActionViewModel.realCount > 0 {
@@ -142,16 +143,16 @@ extension RecognitionUsesBlockView {
     
     var PointsView: some View {
         VStack(spacing: 10) {
-            HStack {
-                TextFieldDynamicWidth(title: "0", text: $recognitionActionViewModel.pointText)
+            HStack {                
+                TextFieldDynamicWidth(title: "0", text: $recognitionActionViewModel.pointText[index])
                     .keyboardType(.numberPad)
                     .font(.system(size: 35))
                     .frame(height: 30)
                 
-                Text("\((recognitionActionViewModel.enterPoint == 0 || recognitionActionViewModel.enterPoint == 1) ? "point" : "points")")
+                Text("\((recognitionActionViewModel.pointInt[index] == 0 || recognitionActionViewModel.pointInt[index] == 1) ? "point" : "points")")
                 
                 Spacer()
-            }.foregroundColor(recognitionActionViewModel.enterPoint == 0 ? .gray : .black)
+            }.foregroundColor(recognitionActionViewModel.pointInt[index] == 0 ? .gray : .black)
             
             Rectangle()
                 .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)

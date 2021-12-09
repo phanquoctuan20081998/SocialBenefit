@@ -23,25 +23,29 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     @Published var personalPoint = 0
     
     @Published var isShowRecentTransferList = true
-    @Published var wishesText: String = ""
-    @Published var pointText: String = ""
-    @Published var isWishesTextFocus: Bool = false
+    @Published var wishesText = [String]()
+    @Published var pointText = [String]()
+    @Published var pointInt = [Int]()
     
     @Published var allSelectedUser: [UserData] = [UserData()]
     @Published var selectedUserIndex: Int = 0
     @Published var isAddMoreClick: Bool = false
     @Published var realCount: Int = 0
-    @Published var enterPoint: Int = 0
+    
+    // Control confirm popup
+    @Published var isModified = false
+    @Published var isPresentConfirmPopUp = false
     
     // Control search bar
     @Published var isSearching: Bool = false
     @Published var searchText: String = ""
     
     // Control error
-    @Published var userIsExistError: Bool = false
-    @Published var carefullError: Bool = false
-    @Published var serverError: Bool = false
-    @Published var errorCode: String = ""
+    @Published var isPresentError: Bool = false
+    @Published var errorText: String = ""
+    
+    @Published var isPresentWarning: Bool = false
+    @Published var warningText: String = ""
     
     // Control switching between company and personal budget
     // Only for point manager
@@ -69,6 +73,10 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
         loadRecentTransferData(fromIndex: 0)
         loadUserData(keyword: "", fromIndex: 0)
         
+        self.pointText.append("")
+        self.wishesText.append("")
+        self.pointInt.append(0)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.companyPoint = self.walletInfor.getCompanyPoint()
             self.personalPoint = self.walletInfor.getPersonalPoint()
@@ -81,7 +89,7 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     
     func addsubscribers() {
         $pointText
-            .sink(receiveValue: updatePoint(pointText:))
+            .sink(receiveValue: updatePoint(pointTextArray:))
             .store(in: &cancellables)
         
         $searchText
@@ -89,7 +97,7 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
             .store(in: &cancellables)
         
         $wishesText
-            .sink(receiveValue: updateWishes(wishes:))
+            .sink(receiveValue: updateWishes(wishesTextArray:))
             .store(in: &cancellables)
     }
     
@@ -176,36 +184,52 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func updatePoint(pointText: String) {
-        DispatchQueue.main.async {
-            if pointText.count > 15 {
-                self.pointText = trimStringWithNChar(15, string: pointText)
-            }
-            
-            self.enterPoint = Int(self.pointText) ?? 0
-            
-            if self.selectedTab == 0 {
-                withAnimation {
-                    self.companyPoint = self.walletInfor.getCompanyPoint() - self.enterPoint
-                    if self.companyPoint < 0 {
-                        self.carefullError = true
-                    }
+    func updatePoint(pointTextArray: [String]) {
+        for i in 0 ..< pointTextArray.count {
+            DispatchQueue.main.async {
+                if pointTextArray[i].count > 15 {
+                    self.pointText[i] = trimStringWithNChar(15, string: pointTextArray[i])
                 }
-            } else {
-                withAnimation {
-                    self.personalPoint = self.walletInfor.getPersonalPoint() - self.enterPoint
-                    if self.personalPoint < 0 {
-                        self.carefullError = true
+                
+                self.pointInt[i] = Int(self.pointText[i]) ?? 0
+                
+                if self.pointInt[i] != 0 {
+                    self.isModified = true
+                }
+                
+                if self.selectedTab == 0 {
+                    withAnimation {
+                        self.companyPoint = self.walletInfor.getCompanyPoint() - self.pointInt.reduce(0, +)
+                        if self.companyPoint < 0 {
+                            self.isPresentWarning = true
+                            self.warningText = "be_careful_with_your_budget".localized
+                        }
+                    }
+                } else {
+                    withAnimation {
+                        self.personalPoint = self.walletInfor.getPersonalPoint() - self.pointInt.reduce(0, +)
+                        if self.personalPoint < 0 {
+                            self.isPresentWarning = true
+                            self.warningText = "be_careful_with_your_budget".localized
+                        }
                     }
                 }
             }
         }
     }
     
-    func updateWishes(wishes: String){
-        if wishes.count > 200 {
-            DispatchQueue.main.async {
-                self.wishesText = trimStringWithNChar(200, string: wishes)
+    func updateWishes(wishesTextArray: [String]){
+        for i in 0 ..< wishesTextArray.count {
+            if wishesTextArray[i].count > 200 {
+                DispatchQueue.main.async {
+                    self.wishesText[i] = trimStringWithNChar(200, string: wishesTextArray[i])
+                }
+            }
+            
+            if !wishesTextArray[i].isEmpty {
+                DispatchQueue.main.async {
+                    self.isModified = true
+                }
             }
         }
     }
@@ -215,21 +239,65 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     }
     
     func sendButtonClick() {
-//        let a = WalletInforData(companyPoint: 0, personalPoint: 0)
-        let b = [PointTransactionRequestData(employeeId: 136, point: 1, message: "abc")]
+        //        let a = WalletInforData(companyPoint: 0, personalPoint: 0)
+        //        let b = [PointTransactionRequestData(employeeId: 136, point: 1, message: "abc")]
         
+        let pointType = selectedTab == 0 ? 1: 2
         var pointTransaction = [PointTransactionRequestData]()
-        for user in self.allSelectedUser {
-//            pointTransaction.append(PointTransactionRequestData(employeeId: user.getId(), point: , message: <#T##String#>))
+        
+        for i in 0..<self.allSelectedUser.count {
+            
+            if allSelectedUser[i].getId() != -1 {
+                if wishesText[i].isEmpty {
+                    self.isPresentError = true
+                    self.errorText = "need_to_fill_wish"
+                    
+                    return
+                }
+                
+                pointTransaction.append(PointTransactionRequestData(employeeId: allSelectedUser[i].getId(), point: pointInt[i], message: wishesText[i]))
+            }
         }
         
-        self.sendRecognitionService.getAPI(pointType: 2, walletInfor: self.walletInfor, pointTransactions: b) { walletInfor, error in
+        
+        
+        self.sendRecognitionService.getAPI(pointType: pointType, walletInfor: walletInfor, pointTransactions: pointTransaction) { walletInfor, error in
             if !error.isEmpty {
                 DispatchQueue.main.async {
-                    self.serverError = true
-                    self.errorCode = error
+                    self.isPresentError = true
+                    self.errorText = error
                 }
             }
+        }
+    }
+    
+    func addTextControl() {
+        self.wishesText.append("")
+        self.pointText.append("")
+        self.pointInt.append(0)
+    }
+    
+    func removeTextControl(index: Int) {
+        self.wishesText[index] = ""
+        self.pointText[index] = ""
+        self.pointInt[index] = 0
+    }
+    
+    func resetViewModel() {
+        DispatchQueue.main.async {
+            for i in 0..<self.allSelectedUser.count {
+                self.wishesText[i] = ""
+                self.pointText[i] = ""
+                self.pointInt[i] = 0
+                
+                self.allSelectedUser[i] = UserData()
+                self.selectedUserIndex = 0
+                self.isAddMoreClick = false
+                self.realCount = 0
+                
+                self.isModified = false
+            }
+            
         }
     }
 }

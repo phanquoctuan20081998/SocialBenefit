@@ -50,6 +50,7 @@
 "training" = "Đào tạo";
 "annoucement" = "Thông báo";
 "cancel" = "Huỷ";
+"confirm" = "Xác nhận";
 
 // User Screen
 "point_history" = "Lịch sử tiêu dùng điểm";
@@ -190,6 +191,43 @@
 "applied_stores" = "Địa điểm áp dụng";
 "similar_promotions" = "Ưu đãi tương tự";
 
+// Recognition Action
+"personal_budget" = "Điểm của tôi";
+"company_budget" = "Company Budget";
+"send_point" = "Chuyển điểm";
+"warning" = "Cảnh báo";
+"there_are_unsaved_changes" = "Thông tin đã được thay đổi, bạn có muốn thoát màn hình không?";
+"compliments_to" = "Gửi tới";
+"send_wishes" = "Nhập lời nhắn*";
+"change_person" = "Thay đồi";
+"remove" = "Xoá";
+"recent_transfers" = "Giao dịch gần đây";
+"hide" = "Ẩn";
+"show" = "Hiện";
+"type_to_search" = "Gõ để tìm kiếm";
+"add_more_person" = "+ Thêm người";
+"point" = "điểm";
+"points" = "điểm";
+"be_careful_with_your_budget" = "Điểm dường như không đủ";
+
+// Setting
+"settings" = "Cài đặt";
+"security" = "Bảo mật";
+"change_password" = "Thay đổi mật khẩu";
+"select_language" = "Lựa chọn ngôn ngữ";
+"current_language" = "Ngôn ngữ hiện tại";
+"notification" = "Thông báo";
+"allow_popup_notification" = "Cho phép thông báo";
+"allow_sound_on_notification" = "Cho phép âm thanh thông báo";
+"other_setting" = "Mục khác";
+"application_information" = "Thông tin ứng dụng";
+"social_benefits" = "Phúc lợi nhân viên";
+"version" = "Phiên bản 1.0.0";
+"close" = "Đóng";
+"developed_by" = "Phát triển bời";
+"vn" = "Tiếng Việt";
+"en" = "Tiếng Anh";
+
 // Month
 "january" = "tháng 1";
 "february" = "tháng 2";
@@ -203,3 +241,21 @@
 "october" = "tháng 10";
 "november" = "tháng 11";
 "december" = "tháng 12";
+
+// Error
+
+"M00136_E" = "buy_over_error";
+"M00137_E" = "not_enough_voucher_error";
+"M00121_E" = "not_exist";
+"C00177_E" = "Không có điểm nào được chuyển";
+"C00168_E" = "Quỹ điểm không đủ, vui lòng kiểm tra lại";
+
+"need_to_fill_all_data" = "need_to_fill_all_data";
+"wrong_data" = "wrong_data";
+"wrong_email_format" = "wrong_email_format";
+"wrong_email" = "wrong_email";
+"blank_email" = "blank_email";
+"blank_phone" = "blank_phone";
+"can_connect_server" = "can_connect_server";
+"this_person_is_exist" = "Người này đã tồn tại trong danh sách";
+"need_to_fill_wish" = "Vui lòng nhập lời nhắn của bạn";

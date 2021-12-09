@@ -11,6 +11,7 @@ import Alamofire
 struct RecognitionActionView: View {
     
     @ObservedObject var recognitionActionViewModel = RecognitionActionViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
@@ -36,15 +37,18 @@ struct RecognitionActionView: View {
             }
             
             // Error Present
-            ErrorMessageView(error: "this_person_is_exist", isPresentedError: $recognitionActionViewModel.userIsExistError)
+            ErrorMessageView(error: "this_person_is_exist", isPresentedError: $recognitionActionViewModel.isPresentError)
             
-            ErrorMessageView(error: recognitionActionViewModel.errorCode, isPresentedError: $recognitionActionViewModel.serverError)
+            ErrorMessageView(error: recognitionActionViewModel.errorText, isPresentedError: $recognitionActionViewModel.isPresentError)
             
-            WarningMessageView(successedMessage: "be_careful_with_your_budget".localized, isPresented: $recognitionActionViewModel.carefullError)
+            WarningMessageView(successedMessage: recognitionActionViewModel.warningText, isPresented: $recognitionActionViewModel.isPresentWarning)
                 .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
             
+            // Confirm Popup
+            PopUpView(isPresentedPopUp: $recognitionActionViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: self.outOfPopupClick, popUpContent: AnyView(ConfirmPopUpView))
+            
         }
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
         .edgesIgnoringSafeArea(.all)
         .background(
             NavigationLink(destination: UserSearchView().navigationBarHidden(true)
@@ -194,7 +198,7 @@ extension RecognitionActionView {
     }
     
     var AddMorePersonButton: some View {
-        Text("add_more_person")
+        Text("add_more_person".localized)
             .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .trailing)
             .foregroundColor(.blue)
             .onTapGesture {
@@ -202,6 +206,65 @@ extension RecognitionActionView {
                 addMoreClick = true
             }
         
+    }
+    
+    var ConfirmPopUpView: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("warning".localized)
+                .font(.system(size: 20))
+                .padding(.top, 10)
+            
+            Text("there_are_unsaved_changes".localized)
+            
+            Spacer(minLength: 0)
+            
+            HStack {
+                Button {
+                    DispatchQueue.main.async {
+                        recognitionActionViewModel.isPresentConfirmPopUp = false
+                    }
+                } label: {
+                    Text("cancel".localized.uppercased())
+                }
+                
+                Spacer().frame(width: 20)
+
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                    DispatchQueue.main.async {
+                        recognitionActionViewModel.resetViewModel()
+                        recognitionActionViewModel.isPresentConfirmPopUp = false
+                    }
+                    
+                } label: {
+                    Text("confirm".localized.uppercased())
+                }
+
+            }
+            .foregroundColor(.blue)
+            .frame(width: ScreenInfor().screenWidth * 0.7, alignment: .trailing)
+        }
+        .padding()
+        .frame(width: ScreenInfor().screenWidth * 0.8, height: 170)
+        .background(Color.white.cornerRadius(20))
+        
+    }
+    
+    func outOfPopupClick() {
+        DispatchQueue.main.async {
+            self.recognitionActionViewModel.isPresentConfirmPopUp = false
+        }
+    }
+    
+    func backButtonClick() {
+        if recognitionActionViewModel.isModified {
+            DispatchQueue.main.async {
+                recognitionActionViewModel.isPresentConfirmPopUp = true
+            }
+        } else {
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 

@@ -43,7 +43,7 @@ struct ErrorMessageView: View {
     
     var body: some View {
         if isPresentedError {
-            PopUpMessageView(text: getError(errorCode: error), isPresent: $isPresentedError, textColor: Color.white, backgroundColor: Color.red)
+            PopUpMessageView(text: error.localized, isPresent: $isPresentedError, textColor: Color.white, backgroundColor: Color.red)
                 .onReceive(PopUpTimer) { _ in
                     isPresentedError = false
                 }

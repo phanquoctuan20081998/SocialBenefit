@@ -55,10 +55,13 @@ extension UserSearchView {
                                 .onTapGesture {
                                     DispatchQueue.main.async {
                                         if recognitionActionViewModel.isAddMoreClick {
+                                            
+                                            // Create new element
                                             recognitionActionViewModel.allSelectedUser.append(recognitionActionViewModel.allUserList[index])
-                                            recognitionActionViewModel.isAddMoreClick = false
+                                            recognitionActionViewModel.addTextControl()
                                             
                                             recognitionActionViewModel.realCount += 1
+                                            recognitionActionViewModel.isAddMoreClick = false
                                         } else {
                                             if self.recognitionActionViewModel.allSelectedUser[recognitionActionViewModel.selectedUserIndex].getId() == -1 {
                                                 recognitionActionViewModel.realCount += 1
@@ -67,6 +70,7 @@ extension UserSearchView {
                                             self.recognitionActionViewModel.allSelectedUser[recognitionActionViewModel.selectedUserIndex] = recognitionActionViewModel.allUserList[index]
                                         }
                                         
+                                        self.recognitionActionViewModel.isModified = true
                                         self.presentationMode.wrappedValue.dismiss()
                                     }
                                 }

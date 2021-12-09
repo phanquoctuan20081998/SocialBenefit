@@ -36,6 +36,8 @@ func getError(errorCode: String) -> String {
         return "no_point_has_been_tranferred".localized
     case "C00168_E":
         return "not_enough_personal_point".localized
+    case "need_to_fill_wish":
+        return "need_to_fill_wish".localized
     default:
         return ""
     }

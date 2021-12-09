@@ -41,7 +41,8 @@ extension RecognitionActionView {
                                         
                                         // If user is added
                                         if recognitionActionViewModel.isUserInUserList(user: recognitionActionViewModel.allTransfersList[i]) {
-                                            recognitionActionViewModel.userIsExistError = true
+                                            recognitionActionViewModel.isPresentError = true
+                                            recognitionActionViewModel.errorText = "this_person_is_exist"
                                             
                                         // Else add user to list
                                         } else {
@@ -52,6 +53,7 @@ extension RecognitionActionView {
                                                 recognitionActionViewModel.allSelectedUser.append(recognitionActionViewModel.allTransfersList[i])
                                             }
                                             
+                                            recognitionActionViewModel.isModified = true
                                             recognitionActionViewModel.realCount += 1
                                         }
                                     }

@@ -50,6 +50,7 @@
 "training" = "Training";
 "annoucement" = "Annoucement";
 "cancel" = "Cancel";
+"confirm" = "Confirm";
 
 // User Screen
 "point_history" = "Used points history";
@@ -190,6 +191,42 @@
 "applied_stores" = "Applied stores";
 "similar_promotions" = "Similar promotions";
 
+// Recognition Action
+"personal_budget" = "Personal Budget";
+"company_budget" = "Company Budget";
+"send_point" = "Send Point";
+"warning" = "Warning";
+"there_are_unsaved_changes" = "There are unsaved changes, do you still want to go back?";
+"compliments_to" = "Compliments to";
+"send_wishes" = "Send Wishes*";
+"change_person" = "Change person";
+"remove" = "Remove";
+"recent_transfers" = "Recent transfers";
+"hide" = "Hide";
+"show" = "Show";
+"type_to_search" = "Type to search";
+"add_more_person" = "+ Add more person";
+"point" = "point";
+"points" = "points";
+"be_careful_with_your_budget" = "Be careful with your budget";
+
+// Setting
+"settings" = "Settings";
+"security" = "Security";
+"change_password" = "Change password";
+"select_language" = "Select Language";
+"current_language" = "Current language";
+"notification" = "Notification";
+"allow_popup_notification" = "Allow popup notification";
+"allow_sound_on_notification" = "Allow sound on notification";
+"other_setting" = "Other";
+"application_information" = "Application information";
+"social_benefits" = "Social Benefits";
+"version" = "Version 1.0.0";
+"close" = "Close";
+"developed_by" = "Developed by";
+"vn" = "Vietnamese";
+"en" = "English";
 
 // Month
 "january" = "January";
@@ -204,3 +241,21 @@
 "october" = "October";
 "november" = "November";
 "december" = "December";
+
+// Error
+
+"M00136_E" = "buy_over_error";
+"M00137_E" = "not_enough_voucher_error";
+"M00121_E" = "not_exist";
+"C00177_E" = "No point has been tranferred";
+"C00168_E" = "Not enough personal point";
+
+"need_to_fill_all_data" = "need_to_fill_all_data";
+"wrong_data" = "wrong_data";
+"wrong_email_format" = "wrong_email_format";
+"wrong_email" = "wrong_email";
+"blank_email" = "blank_email";
+"blank_phone" = "blank_phone";
+"can_connect_server" = "can_connect_server";
+"this_person_is_exist" = "This person already exists";
+"need_to_fill_wish" = "Please fill your wish";
