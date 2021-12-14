@@ -86,7 +86,6 @@
 "save" = "Lưu";
 
 // Banner Card View
-
 "recognitions_in_company" = "Bảng tin khen thưởng";
 "promotions" = "Khuyến mãi đừng bỏ lỡ";
 "total_point" = "Tổng điểm của bạn";
@@ -95,6 +94,7 @@
 "my_order" = "Đơn đặt hàng";
 "others" = "Khác";
 "see_all" = "Xem thêm";
+"hello" = "Xin chào";
 
 // Tab Bar
 "home" = "Trang chủ";
@@ -233,6 +233,22 @@
 
 // Recognition
 "ranking_of_month %@" = "Xếp hạng %@";
+"this_month_you_are_on_top %d" = "Tháng này bạn nằm trong top %d. Cố gắng hơn nhé!";
+"detail_recognition_rank" = "Chi tiết xếp hạng >>";
+"recognitions_news_feed" = "Bảng tin khen thưởng";
+"your_history" = "Lịch sử của tôi";
+"recognitions_ranking" = "Xếp hạng khen thưởng";
+"to" = "đến";
+
+// Ranking of recognition
+"ranking_of_the_month" = "Xếp hạng tháng";
+"rank" = "Thứ hạng";
+"employee" = "Nhân viên";
+"total_received_points" = "Tổng điểm thưởng";
+"your_rank" = "Hạng của bạn";
+"total_received_points" = "Tổng điểm thưởng";
+
+//
 
 // Month
 "january" = "tháng 1";

@@ -45,16 +45,19 @@ class RecognitionPostViewModel: ObservableObject, Identifiable {
     private let dateFomatter = DateFormatter()
     
     init(id: Int) {
+        
         self.contentId = id
         
         // Load data
+        loadComment(id: id)
         loadRecognitionDetailData(id: id)
         loadRecognitionData(id: id)
-        loadComment(id: id)
         
         // Initial
         addSubscribers()
         dateFomatter.dateFormat = "hh:mm dd/MM/yyyy"
+        
+        sleep(1)
     }
     
     func addSubscribers() {

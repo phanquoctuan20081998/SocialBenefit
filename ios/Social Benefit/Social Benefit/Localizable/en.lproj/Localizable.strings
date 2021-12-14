@@ -86,7 +86,6 @@
 "save" = "Save";
 
 // Banner Card View
-
 "recognitions_in_company" = "Recognitions in Company";
 "promotions" = "Your promotions, check them out!";
 "total_point" = "Your total points";
@@ -95,6 +94,7 @@
 "my_order" = "My order";
 "others" = "Others";
 "see_all" = "See all";
+"hello" = "Hello";
 
 // Tab Bar
 "home" = "Home";
@@ -233,6 +233,24 @@
 
 // Recognition
 "ranking_of_month %@" = "%@ ranking";
+"this_month_you_are_on_top %d" = "This month, you are on top %d. Try more!";
+"detail_recognition_rank" = "Detail recognition rank >>";
+"recognitions_news_feed" = "Recognitions news feed";
+"your_history" = "Your history";
+"recognitions_ranking" = "Recognitions ranking";
+"to" = "to";
+
+// Ranking of recognition
+"ranking_of_the_month" = "Ranking of the month";
+"rank" = "Rank";
+"employee" = "Employee";
+"total_received_points" = "Total received points";
+"your_rank" = "Your rank";
+"total_received_points" = "Total received points";
+
+// Recognition post
+"no_comment" = "No comment";
+
 
 // Month
 "january" = "January";

@@ -11,7 +11,7 @@ import Combine
 class RecognitionViewModel: ObservableObject, Identifiable {
     @Published var fromIndex: Int = 0
     @Published var allRecognitionPost = [RecognitionData]()
-    @Published var top3Recognition = [userInfor, userInfor, UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "Duong Quoc Khanh", avatar: "", position: "", nickname: "", email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "", CMND: "", passport: "", insurance: "", department: "", isLeader: true, companyLogo: "", citizenId: "", locationId: "", functionNames: [])]
+    @Published var top3Recognition = [UserInfor]()
     @Published var myRank: Int = 0
     @Published var selectedTab: Int = 0
     

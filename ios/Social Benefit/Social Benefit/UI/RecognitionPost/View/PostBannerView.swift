@@ -70,7 +70,7 @@ extension PostBannerView {
             
             HStack(spacing: 15) {
                 HStack(spacing: 0) {
-                    Text("\("recgonize".localized) : ")
+                    Text("\("recognize".localized) : ")
                     Text("\(recognitionPostViewModel.recognitionDetailData.getReceiverFullName())")
                         .bold()
                 }
