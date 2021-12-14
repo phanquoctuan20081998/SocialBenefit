@@ -23,8 +23,8 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         
-                        MainCardView()
-                            .padding(.top, 10)
+                        MainCardView(personalPoint: homeViewModel.walletInfor.getPersonalPoint())
+                            .padding()
                         
                         if isDisplayFunction(Constants.FuctionId.INTERNAL_NEWS) {
                             InternalNewsBannerView()

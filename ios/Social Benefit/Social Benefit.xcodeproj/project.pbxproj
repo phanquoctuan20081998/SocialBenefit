@@ -73,6 +73,7 @@
 		C434AF3A274CC72A002A026E /* LikeAndCommentCountBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C434AF39274CC72A002A026E /* LikeAndCommentCountBarView.swift */; };
 		C436562826CB4BB800148796 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436562726CB4BB800148796 /* UserView.swift */; };
 		C436562A26CB4C0700148796 /* FunctionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436562926CB4C0700148796 /* FunctionCardView.swift */; };
+		C436CF0B2768443400EFF9DF /* MessageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436CF0A2768443400EFF9DF /* MessageID.swift */; };
 		C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4393D2826E90F2200C02D43 /* AutoResizeTextField.swift */; };
 		C43B21C626DDCDB800E2E451 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B21C526DDCDB800E2E451 /* CommentModel.swift */; };
 		C43B21C826DDD0F600E2E451 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B21C726DDD0F600E2E451 /* CommentService.swift */; };
@@ -319,6 +320,7 @@
 		C434AF39274CC72A002A026E /* LikeAndCommentCountBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentCountBarView.swift; sourceTree = "<group>"; };
 		C436562726CB4BB800148796 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		C436562926CB4C0700148796 /* FunctionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionCardView.swift; sourceTree = "<group>"; };
+		C436CF0A2768443400EFF9DF /* MessageID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageID.swift; sourceTree = "<group>"; };
 		C4393D2826E90F2200C02D43 /* AutoResizeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoResizeTextField.swift; sourceTree = "<group>"; };
 		C43B21C526DDCDB800E2E451 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		C43B21C726DDD0F600E2E451 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				C47AEC342757269000DF8A60 /* GetPoint.swift */,
 				C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */,
 				C4413F1B2759B64400FDA3E7 /* CheckIsDisplayFunction.swift */,
+				C436CF0A2768443400EFF9DF /* MessageID.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -587,40 +590,40 @@
 		84DA60812696DB3E0012F55B /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				84DA60C8269ECB410012F55B /* BaseAPI.swift */,
-				C419869126E46FC200A877A5 /* URLImageService.swift */,
-				C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */,
-				C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */,
-				C40366FE26DB278100381888 /* MerchantListService.swift */,
-				C43B21C726DDD0F600E2E451 /* CommentService.swift */,
 				C430AEBA26E6552100D3D29A /* AddCommentService.swift */,
-				C402B26D26E76E5500A41288 /* ReactService.swift */,
 				C44F131426E87A19003156A6 /* AddReactService.swift */,
-				C4B3D58826EA0995003C6CA9 /* LocationService.swift */,
-				C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */,
-				C426926F26EB005C0089A5B8 /* CheckBenefitService.swift */,
-				C48BA35126EF0137006C4F27 /* MerchantCategoryItemService.swift */,
-				C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */,
-				C4974ABA26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift */,
-				C497AA1526F83936006EFE0C /* ConfirmInforBuyService.swift */,
-				C4DF7A6426F9BC5200DC7D04 /* BuyVoucherService.swift */,
-				C43C7BB326FAE3800056D169 /* MyVoucherService.swift */,
-				C4B9BF7426FC23680022DA55 /* GenerateCodeService.swift */,
-				C472E4BF26FD723000D047BA /* MerchantVoucherDetailService.swift */,
 				C472E4C926FDA5DC00D047BA /* AppliedStoreMerchantListService.swift */,
-				C42255DE26FE0E5200A4416F /* SimilarVoucherService.swift */,
+				C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */,
+				84DA60C8269ECB410012F55B /* BaseAPI.swift */,
+				C4DF7A6426F9BC5200DC7D04 /* BuyVoucherService.swift */,
 				848753682706BAA60061D4E1 /* ChangePasswordService.swift */,
+				C426926F26EB005C0089A5B8 /* CheckBenefitService.swift */,
+				C43B21C726DDD0F600E2E451 /* CommentService.swift */,
+				C497AA1526F83936006EFE0C /* ConfirmInforBuyService.swift */,
 				C45EDBA0270FF7B5004799B5 /* CustomerSupportService.swift */,
-				C4850B8A27172B1B0003AE71 /* LoginService.swift */,
-				C47EA7A32717E09400E91171 /* ResetPasswordService.swift */,
-				C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */,
-				C49C4C3027434D7500ED3213 /* UsedPointsHistoryService.swift */,
-				C46BD88C27477E3200E8715F /* RecognitionService.swift */,
 				C47AEC302757077B00DF8A60 /* EmployeeInforService.swift */,
+				C4B9BF7426FC23680022DA55 /* GenerateCodeService.swift */,
+				C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */,
+				C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */,
+				C4B3D58826EA0995003C6CA9 /* LocationService.swift */,
+				C4850B8A27172B1B0003AE71 /* LoginService.swift */,
+				C48BA35126EF0137006C4F27 /* MerchantCategoryItemService.swift */,
+				C40366FE26DB278100381888 /* MerchantListService.swift */,
+				C472E4BF26FD723000D047BA /* MerchantVoucherDetailService.swift */,
+				C4974ABA26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift */,
+				C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */,
+				C43C7BB326FAE3800056D169 /* MyVoucherService.swift */,
+				C402B26D26E76E5500A41288 /* ReactService.swift */,
 				C48790B52759D716002E97F0 /* RecentTranferService.swift */,
-				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
-				C456C460275DAD0800406C8D /* UserService.swift */,
+				C46BD88C27477E3200E8715F /* RecognitionService.swift */,
+				C47EA7A32717E09400E91171 /* ResetPasswordService.swift */,
 				C4E288D527608C1200A0BBF7 /* SendRecognitionService.swift */,
+				C42255DE26FE0E5200A4416F /* SimilarVoucherService.swift */,
+				C419869126E46FC200A877A5 /* URLImageService.swift */,
+				C49C4C3027434D7500ED3213 /* UsedPointsHistoryService.swift */,
+				C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */,
+				C456C460275DAD0800406C8D /* UserService.swift */,
+				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1235,8 +1238,8 @@
 		C4AA6DE726C4208400203CB9 /* InternalNews */ = {
 			isa = PBXGroup;
 			children = (
-				C4520AB126E34FEB00E4B6A5 /* View */,
 				C4520AB026E34FDD00E4B6A5 /* ViewModel */,
+				C4520AB126E34FEB00E4B6A5 /* View */,
 			);
 			path = InternalNews;
 			sourceTree = "<group>";
@@ -1832,6 +1835,7 @@
 				C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */,
 				C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */,
 				C47AEC352757269000DF8A60 /* GetPoint.swift in Sources */,
+				C436CF0B2768443400EFF9DF /* MessageID.swift in Sources */,
 				C48028DF2758783E00645213 /* RecognitionActionViewModel.swift in Sources */,
 				C4B3D58526E9FBAC003C6CA9 /* RoundedButton.swift in Sources */,
 				C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */,

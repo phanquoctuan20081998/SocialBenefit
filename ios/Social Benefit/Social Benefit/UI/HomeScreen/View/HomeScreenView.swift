@@ -73,13 +73,13 @@ struct HomeScreenView: View {
     @ViewBuilder func getView(selectedTab: String) -> some View {
         switch selectedTab {
         case "house":
-            HomeView()
+            HomeView().frame(width: ScreenInfor().screenWidth)
         case "star":
             RecognitionView().frame(width: ScreenInfor().screenWidth)
         case "tag":
             ListOfMerchantView().frame(width: ScreenInfor().screenWidth)
         default:
-            UserView()
+            UserView().frame(width: ScreenInfor().screenWidth)
         }
     }
     

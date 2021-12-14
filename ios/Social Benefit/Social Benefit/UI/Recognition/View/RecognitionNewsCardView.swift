@@ -22,7 +22,9 @@ struct RecognitionNewsCardView: View {
     var index: Int = 0
     var newsFeedType: Int = 0
     
-    init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, newsFeedType: Int) {
+    var isHaveReactAndCommentButton: Bool = true
+    
+    init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, newsFeedType: Int, isHaveReactAndCommentButton: Bool) {
         self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
             
         _proxy = proxy
@@ -31,6 +33,7 @@ struct RecognitionNewsCardView: View {
         self.commentCount = companyData.getCommentCount()
         self.index = index
         self.newsFeedType = newsFeedType
+        self.isHaveReactAndCommentButton = isHaveReactAndCommentButton
     }
     
     var body: some View {
@@ -39,27 +42,32 @@ struct RecognitionNewsCardView: View {
                 ContentView
                 
                 LikeAndCommentCountBarView(numOfComment: commentCount, contentType: Constants.ReactContentType.RECOGNIZE, totalOtherReact: companyData.getTotalOtherReact())
-                Rectangle()
-                    .foregroundColor(Color("nissho_blue"))
-                    .frame(width: ScreenInfor().screenWidth * 0.8, height:  1)
                 
-                LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE)
-                    .frame(height: 10)
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 5)
                 
-                CommentBarView(isReply: .constant(false), replyTo: .constant(""), parentId: .constant(-1), commentText: $commentText, SendButtonView: AnyView(SendCommentButtonView))
-                    .onTapGesture {
-                        self.proxy?.scrollTo(self.index, alignment: .top, animated: true)
-                    }
+                if isHaveReactAndCommentButton {
+                    
+                    Rectangle()
+                        .foregroundColor(Color("nissho_blue"))
+                        .frame(width: ScreenInfor().screenWidth * 0.8, height:  1)
+                    
+                    LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE)
+                        .frame(height: 10)
+                        .padding(.horizontal, 10)
+                        .padding(.bottom, 5)
+                    
+                    CommentBarView(isReply: .constant(false), replyTo: .constant(""), parentId: .constant(-1), commentText: $commentText, SendButtonView: AnyView(SendCommentButtonView))
+                        .onTapGesture {
+                            self.proxy?.scrollTo(self.index, alignment: .top, animated: true)
+                        }
+                }
             }
             .environmentObject(reactViewModel)
             .padding()
             .font(.system(size: 14))
-            .frame(width: ScreenInfor().screenWidth * 0.93, alignment: .bottom)
-            .background(Color.white)
-            .cornerRadius(20)
-            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+//            .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
+//            .background(Color.white)
+//            .cornerRadius(20)
+//            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
             
             // Reaction Bar
             if reactViewModel.isShowReactionBar {
@@ -121,6 +129,6 @@ extension RecognitionNewsCardView {
 
 struct RecognitionNewsCardView_Previews: PreviewProvider {
     static var previews: some View {
-        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], index: 0, proxy: .constant(nil), newsFeedType: 0)
+        RecognitionNewsCardView(companyData: RecognitionData.sampleData[0], index: 0, proxy: .constant(nil), newsFeedType: 0, isHaveReactAndCommentButton: true)
     }
 }

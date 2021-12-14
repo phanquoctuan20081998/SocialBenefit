@@ -31,7 +31,9 @@ struct InternalNewsView: View {
             VStack {
                 TabView
                 TabContentView
-            }.background(Color.white)
+            }
+            .background(Color("nissho_light_blue"))
+            .edgesIgnoringSafeArea(.all)
         }
         .onAppear(perform: {
             internalNewsViewModel.reset()
@@ -54,10 +56,11 @@ extension InternalNewsView {
         HStack(spacing: 0) {
             ForEach(Constants.INTERNALNEWS_TABHEADER.indices, id:\.self) { i in
                 Text(Constants.INTERNALNEWS_TABHEADER[i].localized)
-                    .font(.system(size: 15))
+                    .font(.system(size: 13))
                     .bold()
                     .foregroundColor((selectedTabIndex == i) ? Color.blue : Color.gray)
-                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.INTERNALNEWS_TABHEADER.count), height: 30)
+                    .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.INTERNALNEWS_TABHEADER.count), height: 40)
+                    .multilineTextAlignment(.center)
                     .background((selectedTabIndex == i) ? Color("nissho_light_blue") : Color.white)
                     .onTapGesture {
                         withAnimation {
@@ -68,6 +71,8 @@ extension InternalNewsView {
                                 internalNewsViewModel.category = Constants.InternalNewsType.TRAINING
                             } else if i == 2 {
                                 internalNewsViewModel.category = Constants.InternalNewsType.ANNOUCEMENT
+                            } else {
+                                internalNewsViewModel.category = Constants.InternalNewsType.OTHER
                             }
                         }
                     }

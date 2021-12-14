@@ -129,7 +129,11 @@ extension RecognitionView {
                             }
                             
                             NavigationLink(destination: RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[index]).navigationBarHidden(true)) {
-                                RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab)
+                                RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab, isHaveReactAndCommentButton: true)
+                                    .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
+                                    .background(Color.white)
+                                    .cornerRadius(20)
+                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
                                     .foregroundColor(.black)
                             }.buttonStyle(NavigationLinkNoAffectButtonStyle())
                             

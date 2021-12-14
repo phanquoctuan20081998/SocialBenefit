@@ -25,6 +25,8 @@ struct URLImageView: View {
         } else {
             self.url = Config.baseURL + url
         }
+        
+        self.url = self.url.replacingOccurrences(of: " ", with: "%20")
     }
     
     var body: some View {

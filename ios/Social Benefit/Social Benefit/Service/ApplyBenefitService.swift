@@ -13,7 +13,7 @@ import SwiftyJSON
     
 class ApplyBenefitService {
     
-    func getAPI(benefitId: Int) {
+    func getAPI(benefitId: Int, returnCallBack: @escaping (String) -> ()) {
         let service = BaseAPI()
         
         let header = ["token": userInfor.token,
@@ -24,7 +24,14 @@ class ApplyBenefitService {
         let params: Parameters = ["":""]
         
         service.makeCall(endpoint: Config.API_BENEFIT_APPLY, method: "POST", header: header as [String : String], body: params, callback: { result in
-            print("Apply id = \(result["id"])")
+            
+            let error = result["errors"][0].string ?? ""
+            
+            if error.isEmpty {
+                print("Apply id = \(result["id"])")
+            }
+            
+            returnCallBack(error)
         })
     }
 }

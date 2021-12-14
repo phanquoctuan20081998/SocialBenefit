@@ -165,7 +165,7 @@ extension SpecialOfferCardView {
     var DiscountView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("\(voucherData.pointValue) VND")
+                Text(getPointString(point: Int(voucherData.pointValue)))
                     .bold()
                     .foregroundColor(.blue)
                     .font(.system(size: 10))

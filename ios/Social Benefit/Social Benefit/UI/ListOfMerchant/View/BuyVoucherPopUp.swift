@@ -31,7 +31,6 @@ struct BuyVoucherPopUp: View {
                     outOfStockContent
                 } else {
                     popupContent
-                        
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -44,7 +43,6 @@ extension BuyVoucherPopUp {
     var outOfStockContent: some View {
         VStack(spacing: 20) {
             Text("voucher_is_out_of_stock".localized)
-            
             
             Button(action: {
                 self.confirmInforBuyViewModel.isPresentedPopup = false
@@ -67,8 +65,26 @@ extension BuyVoucherPopUp {
     var popupContent: some View {
         VStack() {
             VStack(spacing: 2) {
-                Text("buy_button_notification %d".localizeWithFormat(arguments: confirmInforBuyViewModel.buyVoucher.orderedNumber!))
-                Text("would_like_buy_more".localized)
+                
+                HStack {
+                    Text("you_are_having".localized)
+                    + Text(" \(confirmInforBuyViewModel.walletInfor.getPersonalPoint()) ")
+                        .bold()
+                        .foregroundColor(.blue)
+                    + Text(getPointStringOnly(point: confirmInforBuyViewModel.walletInfor.getPersonalPoint()))
+                }.multilineTextAlignment(.center)
+                
+                HStack {
+                    Text("\("would_like_to_spend".localized)")
+                    + Text(" \(confirmInforBuyViewModel.walletInfor.getPersonalPoint()) ")
+                        .bold()
+                        .foregroundColor(.blue)
+                    + Text(getPointStringOnly(point: confirmInforBuyViewModel.walletInfor.getPersonalPoint()))
+                    + Text(" ")
+                    + Text("to_buy_this_voucher".localized)
+                    + Text("?")
+                }.multilineTextAlignment(.center)
+                
             }.font(.system(size: 15))
             .padding()
             
@@ -187,6 +203,8 @@ struct BuyVoucherPopUp_Previews: PreviewProvider {
     static var previews: some View {
         BuyVoucherPopUp(isPresentPopUp: .constant(true))
             .environmentObject(ConfirmInforBuyViewModel())
+            .environmentObject(MerchantVoucherSpecialListViewModel())
+            .environmentObject(MerchantVoucherListByCategoryViewModel())
     }
 }
 

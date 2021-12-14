@@ -10,7 +10,10 @@ import Foundation
 class ListOfBenefitsViewModel: ObservableObject, Identifiable {
     
     @Published var listOfBenefits = [BenefitData]()
+    
     @Published var isLoading: Bool = false
+    @Published var isPresentApplyPopUp: Bool = false
+    
     @Published var isRefreshing: Bool = false {
         didSet {
             if oldValue == false && isRefreshing == true {
@@ -18,7 +21,7 @@ class ListOfBenefitsViewModel: ObservableObject, Identifiable {
             }
         }
     }
-     
+    
     var listOfBenefitsService = ListOfBenefitsService()
     
     init() {

@@ -803,8 +803,8 @@
             filePath = "Social Benefit/UI/ListOfMerchant/View/BuyVoucherPopUp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "popupContent"
             landmarkType = "24">
             <Locations>
@@ -845,7 +845,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "78E5E7EE-C2F9-4087-880D-208BCFC63B31"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social Benefit/Service/ApplyBenefitService.swift"
@@ -853,7 +853,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "getAPI(benefitId:)"
+            landmarkName = "getAPI(benefitId:returnCallBack:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -883,8 +883,8 @@
             filePath = "Social Benefit/UI/ListOfMerchant/View/BuyVoucherPopUp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "outOfStockContent"
             landmarkType = "24">
          </BreakpointContent>
@@ -1025,8 +1025,8 @@
             filePath = "Social Benefit/UI/Recognition/View/RecognitionNewsCardView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1109,6 +1109,22 @@
             endingLineNumber = "277"
             landmarkName = "addTextControl()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E428484-C6FA-4F16-B709-8D8D0487F54E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social Benefit/UI/Home/View/BannerCardView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

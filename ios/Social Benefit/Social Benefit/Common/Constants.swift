@@ -15,7 +15,7 @@ struct Constants {
     static let SortDirectionType = ["ASC", "DESC"]
     
     // Header...
-    static let INTERNALNEWS_TABHEADER = ["all", "training", "annoucement"]
+    static let INTERNALNEWS_TABHEADER = ["all", "training", "annoucement", "other"]
     static let MYVOUCHER_TABHEADER = ["all", "active", "used", "expried"]
     static let VOUCHER_DETAIL_TAB = ["information", "applied_stores", "similar_promotions"]
     
@@ -29,14 +29,14 @@ struct Constants {
     
     // API load...
     static let MAX_NUM_API_LOAD = 10
-    static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(5)
+    static let MAX_API_LOAD_SECOND = DispatchTimeInterval.seconds(100)
     
     // Internal News Type
     struct InternalNewsType {
         static let ALL = 0
-        static let BLANK = 1
-        static let ANNOUCEMENT = 2
-        static let TRAINING = 3
+        static let ANNOUCEMENT = 1
+        static let TRAINING = 2
+        static let OTHER = 3
     }
     
     // Comment & React...

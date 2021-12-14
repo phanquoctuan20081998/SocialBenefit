@@ -7,6 +7,7 @@
 import SwiftUI
 import SDWebImage
 import SDWebImageSwiftUI
+import ScrollViewProxy
 
 var ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
@@ -86,7 +87,6 @@ struct InternalNewsBannerView: View {
 
 struct RecognitionsBannerView: View {
     
-    @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
@@ -94,8 +94,7 @@ struct RecognitionsBannerView: View {
     @State var selection: Int? = nil
     @State var isAnimating: Bool = true
     @State var selectedIndex: Int = 0
-    
-    //    private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    @State private var proxy: AmzdScrollViewProxy? = nil
     
     var body: some View {
         VStack {
@@ -106,11 +105,22 @@ struct RecognitionsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-                    EmptyView()
+                    if homeViewModel.allRecognitionPost.count != 0 {
+                        PagingView(index: $currentPage.animation(), maxIndex: homeViewModel.allRecognitionPost.count - 1) {
+                            ForEach(homeViewModel.allRecognitionPost.indices, id: \.self) { index in
+                                RecognitionNewsCardView(companyData: homeViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: 0, isHaveReactAndCommentButton: false)
+                                    .onTapGesture {
+                                        DispatchQueue.main.async {
+                                            homeScreenViewModel.selectedTab = "star"
+                                        }
+                                    }
+                            }
+                        }
+                    } else { EmptyView() }
                 }
             }
-            .frame(width: ScreenInfor().screenWidth * 0.92, height: 100)
-            .background(Color.white)
+            .frame(width: ScreenInfor().screenWidth * 0.92, height: 140)
+            .background(homeViewModel.allRecognitionPost.count != 0 ? Color("nissho_light_blue") : Color.white)
             .cornerRadius(30)
         }
         .foregroundColor(.black)
@@ -118,7 +128,9 @@ struct RecognitionsBannerView: View {
     }
     
     func topTitleTapped() {
-        
+        DispatchQueue.main.async {
+            homeScreenViewModel.selectedTab = "star"
+        }
     }
 }
 
@@ -203,96 +215,177 @@ struct PromotionsBannerView: View {
     }
 }
 
+//struct MainCardView: View {
+//
+//    @State var moveToWebView = false
+//
+//    @State var isRecognitonClick = false
+//    @State var isMyVoucherClick = false
+//
+//    var body: some View {
+//        VStack {
+//            HStack {
+//                Spacer()
+//
+//                VStack {
+//                    Text("total_point".localized)
+//
+//                    Spacer()
+//
+//                    Text("2,568")
+//                        .foregroundColor(.blue)
+//                        .bold()
+//                        .font(.system(size: 35))
+//                }
+//
+//                Spacer()
+//            }.background(Image("bum")
+//                            .resizable()
+//                            .scaledToFill())
+//
+//            Spacer()
+//
+//            HStack {
+//
+//                Spacer()
+//
+//                if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+//
+//                    // Reconigion Button
+//                    NavigationLink {
+//                        RecognitionActionView().navigationBarHidden(true)
+//                    } label: {
+//                        mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
+//                            .foregroundColor(.black)
+//                    }
+//
+//                    Spacer()
+//
+//                    mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
+//
+//                    Spacer()
+//                }
+//                //                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"), buttonTapped: myOrderButtonTapped)
+//
+//
+//
+//                mainButton(text: "VNPT".localized, image: "ic_vnpt", color: Color("nissho_blue"))
+//
+//                Spacer()
+//
+//                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"))
+//
+//                Spacer()
+//            }.padding(.horizontal, 30)
+//
+//        }.padding()
+//            .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
+//            .background(Color.white)
+//            .cornerRadius(30)
+//            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+//    }
+//
+//    func recognizeButtonTapped() {
+//        self.isRecognitonClick = true
+//    }
+//
+//    func myVoucherButtonTapped() {
+//
+//    }
+//
+//    func myOrderButtonTapped() {
+//
+//    }
+//
+//    func VNPTButtonTapped() {
+//        self.moveToWebView.toggle()
+//    }
+//
+//    func otherButtonTapped() {
+//
+//    }
+//}
+
 struct MainCardView: View {
     
-    @State var moveToWebView = false
-    
-    @State var isRecognitonClick = false
-    @State var isMyVoucherClick = false
+    var personalPoint: Int
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                VStack {
-                    Text("total_point".localized)
+        ZStack {
+            Image("background")
+                .resizable()
+                .scaledToFill()
+            
+            VStack {
+                HStack {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("hello".localized)
+                            .font(.system(size: 15))
+                        Text(userInfor.name)
+                            .bold()
+                            .font(.system(size: 20))
+                            .foregroundColor(.blue)
+                        
+                        if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                            HStack {
+                                Text("\(self.personalPoint)")
+                                    .bold()
+                                    .foregroundColor(.orange)
+                                    .font(.system(size: 20))
+                                Image("ic_coin")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            }
+                        }
+                    }.padding(.leading, 30)
                     
                     Spacer()
                     
-                    Text("2,568")
-                        .foregroundColor(.blue)
-                        .bold()
-                        .font(.system(size: 35))
+                    URLImageView(url: userInfor.avatar)
+                        .clipShape(Circle())
+                        .frame(width: 70, height: 70)
+                        .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 2))
+                        .padding(.trailing, 40)
+                    
                 }
                 
-                Spacer()
-            }.background(Image("bum")
-                            .resizable()
-                            .scaledToFill())
-            
-            Spacer()
-            
-            HStack {
-                
-                Spacer()
-                
-                if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
-                    
-                    // Reconigion Button
-                    NavigationLink {
-                        RecognitionActionView().navigationBarHidden(true)
-                    } label: {
-                        mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
-                            .foregroundColor(.black)
+                HStack {
+                    if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                        
+                        Spacer()
+                        
+                        // Reconigion Button
+                        NavigationLink {
+                            RecognitionActionView().navigationBarHidden(true)
+                        } label: {
+                            mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
+                                .foregroundColor(.black)
+                        }
+                        
+                        Spacer()
+                        
+                        // Reconigion Button
+                        NavigationLink {
+                            MyVoucherView().navigationBarHidden(true)
+                        } label: {
+                            mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
+                                .foregroundColor(.black)
+                        }
+                        
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
-                    
-                    mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
-                    
-                    Spacer()
                 }
-                //                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"), buttonTapped: myOrderButtonTapped)
-                
-                
-                
-                mainButton(text: "VNPT".localized, image: "ic_vnpt", color: Color("nissho_blue"))
-                
-                Spacer()
-                
-                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"))
-                
-                Spacer()
-            }.padding(.horizontal, 30)
-            
-        }.padding()
-            .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
-            .background(Color.white)
-            .cornerRadius(30)
-            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-    }
-    
-    func recognizeButtonTapped() {
-        self.isRecognitonClick = true
-    }
-    
-    func myVoucherButtonTapped() {
+            }
+        }
+        .frame(width: ScreenInfor().screenWidth * 0.93, height: isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) ? 200 : 150)
         
-    }
-    
-    func myOrderButtonTapped() {
-        
-    }
-    
-    func VNPTButtonTapped() {
-        self.moveToWebView.toggle()
-    }
-    
-    func otherButtonTapped() {
-        
+        .background(Color.white)
+        .cornerRadius(30)
+        .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
     }
 }
+
 
 struct mainButton: View {
     var text: String
@@ -301,7 +394,7 @@ struct mainButton: View {
     
     var body: some View {
         VStack {
-
+            
             Circle()
                 .fill(
                     LinearGradient(gradient: Gradient(colors: [color, .white]), startPoint: .top, endPoint: .bottom)
@@ -334,11 +427,14 @@ struct TopTitleView: View {
         }, label: {
             HStack {
                 Text(title)
+                    .bold()
                     .frame(height: 40, alignment: .trailing)
                     .font(.system(size: 13))
-                    .padding(.horizontal, 10)
+                    .padding(.trailing, 20)
+                    .padding(.leading, 10)
                     .background(Color.blue.opacity(0.2))
                     .clipShape(BannerCurveShape())
+                
                 Spacer()
                 
                 if isSeeAll {
@@ -348,7 +444,9 @@ struct TopTitleView: View {
                         Image(systemName: "chevron.right")
                     }
                 }
-            }.padding(.horizontal, 15)
+            }
+            .padding(.horizontal, 20)
+            .foregroundColor(.blue)
         })
     }
 }
@@ -395,6 +493,8 @@ func getPromotionData(data: [MerchantListData], imageTapped: @escaping () -> ())
 
 struct BannerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView(selectedTab: "house")
+        //        HomeScreenView(selectedTab: "house")
+        //        MainCardView(personalPoint: 100)
+        RecognitionsBannerView()
     }
 }

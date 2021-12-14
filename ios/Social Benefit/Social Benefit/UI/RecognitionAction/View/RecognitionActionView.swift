@@ -41,7 +41,7 @@ struct RecognitionActionView: View {
             
             ErrorMessageView(error: recognitionActionViewModel.errorText, isPresentedError: $recognitionActionViewModel.isPresentError)
             
-            WarningMessageView(successedMessage: recognitionActionViewModel.warningText, isPresented: $recognitionActionViewModel.isPresentWarning)
+            WhiteWarningMessageView(message: recognitionActionViewModel.warningText, isPresented: $recognitionActionViewModel.isPresentWarning)
                 .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
             
             // Confirm Popup
@@ -76,7 +76,7 @@ extension RecognitionActionView {
             VStack(spacing: 7) {
                 Text("personal_budget".localized)
                 
-                getPointString(point: recognitionActionViewModel.personalPoint)
+                getPointView(point: recognitionActionViewModel.personalPoint)
                     .font(.system(size: 20))
             }.foregroundColor(.white)
         }
@@ -120,7 +120,7 @@ extension RecognitionActionView {
                 VStack(spacing: 7) {
                     Text("company_budget".localized)
                     
-                    getPointString(point: recognitionActionViewModel.companyPoint)
+                    getPointView(point: recognitionActionViewModel.companyPoint)
                         .font(.system(size: 20))
                 }
                 .foregroundColor(recognitionActionViewModel.selectedTab == 0 ? .white : .gray)
@@ -129,7 +129,7 @@ extension RecognitionActionView {
                 VStack(spacing: 7) {
                     Text("personal_budget".localized)
                     
-                    getPointString(point: recognitionActionViewModel.personalPoint)
+                    getPointView(point: recognitionActionViewModel.personalPoint)
                         .font(.system(size: 20))
                 }
                 .foregroundColor(recognitionActionViewModel.selectedTab == 1 ? .white : .gray)

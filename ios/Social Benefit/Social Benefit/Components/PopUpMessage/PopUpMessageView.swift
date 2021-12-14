@@ -28,7 +28,7 @@ struct PopUpMessageView: View {
                 .font(.system(size: 15))
         }
         .padding()
-        //        .frame(width: ScreenInfor().screenWidth * 0.8)
+        .frame(width: ScreenInfor().screenWidth * 0.8)
         .background(RoundedRectangle(cornerRadius: 25).fill(backgroundColor))
         .padding(.horizontal)
         .offset(x: 0, y: ScreenInfor().screenHeight * 0.3)
@@ -67,14 +67,29 @@ struct SuccessedMessageView: View {
     }
 }
 
-struct WarningMessageView: View {
-    var successedMessage: String
+struct WhiteWarningMessageView: View {
+    var message: String
     var color: Color = Color.white
     @Binding var isPresented: Bool
     
     var body: some View {
         if isPresented {
-            PopUpMessageView(text: successedMessage, isPresent: $isPresented, textColor: Color.black, backgroundColor: color)
+            PopUpMessageView(text: message.localized, isPresent: $isPresented, textColor: Color.black, backgroundColor: color)
+                .onReceive(PopUpTimer) { _ in
+                    isPresented = false
+                }
+        }
+    }
+}
+
+struct WarningMessageView: View {
+    var message: String
+    var color: Color = Color.yellow
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        if isPresented {
+            PopUpMessageView(text: message.localized, isPresent: $isPresented, textColor: Color.black, backgroundColor: color)
                 .onReceive(PopUpTimer) { _ in
                     isPresented = false
                 }
@@ -84,7 +99,7 @@ struct WarningMessageView: View {
 
 struct ErrorMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        WarningMessageView(successedMessage: "zddsacascs", isPresented: .constant(true))
+        WhiteWarningMessageView(message: "zdvdvsdghvcgsdvcghvsdgchvsgcvgsdvcgvsdgcvsghcvgsvcgvgcvgvcdgscvgsvcgsdvcgvsdgcvsgdvcgsdvcghdsvhgcvsghdcvghsvcgvsdsacascs", isPresented: .constant(true))
             .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
     }
 }

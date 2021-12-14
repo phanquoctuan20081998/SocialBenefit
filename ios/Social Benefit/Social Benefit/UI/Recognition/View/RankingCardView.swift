@@ -48,13 +48,16 @@ extension RankingCardView {
                 .scaledToFit()
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 150)
             
+            RankingOfMonthView
+                .padding(.bottom, 135)
+            
             ImageFrame(rank: 1)
             ImageFrame(rank: 2)
             ImageFrame(rank: 3)
         }
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-        .frame(width: ScreenInfor().screenWidth * 0.93, height: 150, alignment: .bottom)
+        .frame(width: ScreenInfor().screenWidth * 0.93, height: 190, alignment: .bottom)
     }
     
     @ViewBuilder
@@ -79,6 +82,8 @@ extension RankingCardView {
                 
                 Text(recognitionViewModel.top3Recognition[0].name)
                     .font(.system(size: 18, weight: .medium))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 80, height: 20)
             }.offset(x: 0, y: -40)
         } else if rank == 2 && recognitionViewModel.top3Recognition.count >= 2 {
             VStack(spacing: 5) {
@@ -99,6 +104,8 @@ extension RankingCardView {
                 
                 Text(recognitionViewModel.top3Recognition[1].name)
                     .font(.system(size: 14, weight: .medium))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 80, height: 20)
             }.offset(x: -120, y: -20)
         } else if rank == 3 && recognitionViewModel.top3Recognition.count >= 3 {
             VStack(spacing: 5) {
@@ -117,6 +124,8 @@ extension RankingCardView {
                     )
                 Text(recognitionViewModel.top3Recognition[2].name)
                     .font(.system(size: 14, weight: .medium))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 80, height: 20)
             }
             .offset(x: 120, y: -20)
         }
@@ -124,6 +133,24 @@ extension RankingCardView {
     
     func topTitledTapped() {
         
+    }
+    
+    var RankingOfMonthView: some View {
+        ZStack {
+            let curMonth = Calendar.current.dateComponents([.month], from: Date()).month
+            
+            Image("rankingribbon")
+                .resizable()
+                .frame(width: 270, height: 50)
+            
+//            Text(String(format: NSLocalizedString("startCustom %.1f", comment: ""),
+//                        self.customDistance)
+            Text("ranking_of_month %@".localizeWithFormat(arguments: getMonthEnlishFormat(month: curMonth ?? 0)).uppercased())
+                .bold()
+                .font(.system(size: 14))
+                .foregroundColor(.white)
+                .padding(.bottom, 3)
+        }
     }
 }
 

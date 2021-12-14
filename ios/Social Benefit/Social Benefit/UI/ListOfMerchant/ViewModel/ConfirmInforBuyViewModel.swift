@@ -9,15 +9,16 @@ import Foundation
 
 class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
     
-//    @Published var buyVoucher = BuyVoucherInforData()
-    
     @Published var buyVoucher = popUpDebug
+    @Published var walletInfor = WalletInforData(companyPoint: 0, personalPoint: 0)
+    
     @Published var isPresentedPopup = false
     @Published var voucherId = 0
     @Published var buyVoucherResponse = BuyVoucherData()
     @Published var isPresentedError = false
     
     private var confirmInforBuyService: ConfirmInforBuyService
+    private var walletInforService = WalletInforService()
     
     init() {
         self.confirmInforBuyService = ConfirmInforBuyService(voucherId: 0)
@@ -31,10 +32,19 @@ class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func getWallInfor() {
+        self.walletInforService.getAPI { data in
+            DispatchQueue.main.async {
+                self.walletInfor = data
+            }
+        }
+    }
+    
     func loadData(voucherId: Int) {
         self.voucherId = voucherId
         self.confirmInforBuyService = ConfirmInforBuyService(voucherId: voucherId)
         getBuyVoucherInfor()
+        getWallInfor()
     }
 }
 

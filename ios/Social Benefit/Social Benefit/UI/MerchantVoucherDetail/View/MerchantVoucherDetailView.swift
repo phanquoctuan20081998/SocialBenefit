@@ -191,9 +191,10 @@ struct InformationBar: View {
                 .padding(.horizontal, 5)
             
             HStack(spacing: 5) {
-                Image(systemName: "dollarsign.circle")
-                    .foregroundColor(.yellow)
-                Text("\(merchantVoucherDetailViewModel.merchantVoucherDetail.pointValue) VND")
+                Image("ic_coin")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                Text(getPointString(point: Int(merchantVoucherDetailViewModel.merchantVoucherDetail.pointValue)))
             }
         }.font(.system(size: 13))
         .frame(width: ScreenInfor().screenWidth * 0.9)

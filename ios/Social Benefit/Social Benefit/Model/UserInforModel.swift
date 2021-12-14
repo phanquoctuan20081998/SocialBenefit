@@ -104,7 +104,7 @@ struct UserInfor {
     }
 }
 
-var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "", avatar: "", position: "", nickname: "",
+var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "ABCD", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
                           CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png", citizenId: "", locationId: "", functionNames: [])
 

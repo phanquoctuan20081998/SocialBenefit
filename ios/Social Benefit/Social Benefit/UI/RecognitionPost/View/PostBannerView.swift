@@ -82,7 +82,7 @@ extension PostBannerView {
                 
             }
             
-            getPointString(point: recognitionPostViewModel.recognitionDetailData.getPoint())
+            getPointView(point: recognitionPostViewModel.recognitionDetailData.getPoint())
                 .font(.system(size: 25))
                 .foregroundColor(.blue)
             

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TableCellView: View {
     
+    @Binding var isPresentedApplyPopUp: Bool
     let benefitData: BenefitData
     
     var body: some View {
@@ -21,48 +22,63 @@ struct TableCellView: View {
                 .frame(width: ScreenInfor().screenWidth * 0.5, alignment: .leading)
 
             switch benefitData.mobileStatus {
-            case 0: do {
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_ON_GOING: do {
                 Text("on_going".localized)
                     .italic()
                     .multilineTextAlignment(.center)
                     .frame(width: ScreenInfor().screenWidth * 0.2)
             }
-            case 1: do {
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_UP_COMMING: do {
                 Text("up_comming".localized)
                     .italic()
                     .multilineTextAlignment(.center)
                     .frame(width: ScreenInfor().screenWidth * 0.2)
             }
-            case 2: do {
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_RECEIVED: do {
                 Image(systemName: "checkmark")
                     .font(.headline)
                     .foregroundColor(.green)
                     .frame(width: ScreenInfor().screenWidth * 0.2)
             }
-            case 3: do {
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_NOT_REGISTER: do {
                 
                 Button(action: {
                     //do something
-                    
+                    self.isPresentedApplyPopUp = true
                     
                 }, label: {
+                
                     RoundedButton(text: "apply".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
-                        .font(.system(size: 15, weight: .black, design: .default))
-                        .frame(width: ScreenInfor().screenWidth * 0.2, height: 20)
+                            .font(.system(size: 15, weight: .black, design: .default))
+                            .frame(width: ScreenInfor().screenWidth * 0.2, height: 20)
                 })
             }
-            case 4: do {
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_REGISTER: do {
                 Text("waiting".localized)
                     .italic()
                     .multilineTextAlignment(.center)
                     .frame(width: ScreenInfor().screenWidth * 0.2)
             }
-            case 6: do {
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_REJECTED: do {
                 Image(systemName: "xmark")
                     .font(.headline)
                     .foregroundColor(.red)
                     .frame(width: ScreenInfor().screenWidth * 0.2)
             }
+                
+            case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_PENDING_REGISTER: do {
+                RoundedButton(text: "pending".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.gray.opacity(0.2), textColor: Color.blue, cornerRadius: 10)
+                    .font(.system(size: 15, weight: .black, design: .default))
+                    .frame(width: ScreenInfor().screenWidth * 0.2, height: 20)
+                    .disabled(true)
+            }
+                
             default: do {
                 //Do something
                 Text("".localized)
@@ -98,19 +114,19 @@ struct TableCellView_Previews: PreviewProvider {
             .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
             
             ScrollView {
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcasgdvasgdvasvdvasdvvsadjhasvjdasdvasvdhjasvdjhvasjhdvahsvdhasvdasvdjasvjdvasdvasvdavdhavhdvashjdvahjsvdahsvdavdhjavdavhdvahdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0))
+                TableCellView(isPresentedApplyPopUp: .constant(true), benefitData: BenefitData(id: 0, title: "dcasgdvasgdvasvdvasdvvsadjhasvjdasdvasvdhjasvdjhvasjhdvahsvdhasvdasvdjasvjdvasdvasvdavdhavhdvashjdvahjsvdahsvdavdhjavdavhdvahdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0))
                 Divider()
                 
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 1, mobileStatus: 1))
+                TableCellView(isPresentedApplyPopUp: .constant(true), benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 1, mobileStatus: 1))
                 Divider()
                 
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 2, mobileStatus: 2))
+                TableCellView(isPresentedApplyPopUp: .constant(true), benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 2, mobileStatus: 2))
                 Divider()
                 
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdsdfsdfsfsdfssdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 4, mobileStatus: 3))
+                TableCellView(isPresentedApplyPopUp: .constant(true), benefitData: BenefitData(id: 0, title: "dcdsdfsdfsfsdfssdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 4, mobileStatus: 3))
                 Divider()
                 
-                TableCellView(benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: -1, status: -1, mobileStatus: 6))
+                TableCellView(isPresentedApplyPopUp: .constant(true), benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: -1, status: -1, mobileStatus: 6))
                 
                 Divider()
                 

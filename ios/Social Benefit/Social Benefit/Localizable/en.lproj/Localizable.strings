@@ -182,6 +182,9 @@
 "the_code_will_be_expried_after" = "The code will be expried after";
 "(s)" = "(s)";
 "thank_you_for_using_our_service" = "Thank you for using our service!";
+"you_are_having" = "You are having";
+"would_like_to_spend" = "Would you like to spend";
+"to_buy_this_voucher" = "to buy this voucher";
 
 // Merchant Voucher Detail
 "share/copy" = "Share/Copy";
@@ -228,6 +231,9 @@
 "vn" = "Vietnamese";
 "en" = "English";
 
+// Recognition
+"ranking_of_month %@" = "%@ ranking";
+
 // Month
 "january" = "January";
 "february" = "February";
@@ -248,7 +254,21 @@
 "M00137_E" = "not_enough_voucher_error";
 "M00121_E" = "not_exist";
 "C00177_E" = "No point has been tranferred";
-"C00168_E" = "Not enough personal point";
+"C00168_E" = "Not enough personal point, please check again";
+
+"C00169_E" = "Not enough company point, please check again";
+"C00174_E" = "Can not send point to yourself";
+"C00175_E" = "At least one employee can not receive point";
+"C00176_E" = "Transaction fail due to abnormal while checking remain point";
+"C00177_E" = "No point has been transferred";
+"A00028_C" = "Do not have permission to execute function";
+"C00024_I" = "Can not found data";
+
+"C00187_E" = "The point budget limit has been exceeded";
+"C00188_E" = "The allowed number of registrations has been exceeded";
+"C00189_E" = "Temporarily stopping registration because there are enough requests to join";
+"C00190_E" = "Registration deadline has passed";
+
 
 "need_to_fill_all_data" = "need_to_fill_all_data";
 "wrong_data" = "wrong_data";

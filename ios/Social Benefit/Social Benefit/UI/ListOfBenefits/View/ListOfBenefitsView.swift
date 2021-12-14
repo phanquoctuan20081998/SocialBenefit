@@ -39,12 +39,17 @@ struct ListOfBenefitsView: View {
         .background(
             NavigationLink(
                 destination: BenefitDetailView().navigationBarHidden(true)
-                    .environmentObject(benefitDetailViewModel),
+                    .environmentObject(benefitDetailViewModel)
+                    .environmentObject(listOfBenefitsViewModel),
                 isActive: $isTapDetail,
                 label: {
                     EmptyView()
                 })
         )
+        
+        .overlay(WarningMessageView(message: self.benefitDetailViewModel.errorCode, isPresented: $benefitDetailViewModel.isPresentError))
+        .overlay(ApplyPopupView())
+
         .environmentObject(listOfBenefitsViewModel)
         .environmentObject(benefitDetailViewModel)
     }
@@ -72,21 +77,19 @@ extension ListOfBenefitsView {
     }
     
     var TableView: some View {
-        //        ScrollView {
         RefreshableScrollView(height: 70, refreshing: self.$listOfBenefitsViewModel.isRefreshing) {
-            ForEach(listOfBenefitsViewModel.listOfBenefits, id: \.self) { item in
-                TableCellView(benefitData: item)
+            ForEach(listOfBenefitsViewModel.listOfBenefits.indices, id: \.self) { index in
+                TableCellView(isPresentedApplyPopUp: $benefitDetailViewModel.isPresentedPopup, benefitData: listOfBenefitsViewModel.listOfBenefits[index])
                     .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
                     .padding(.top, 7)
                     .onTapGesture {
-                        self.benefitDetailViewModel.getData(benefit: item)
+                        self.benefitDetailViewModel.getData(benefit: listOfBenefitsViewModel.listOfBenefits[index], index: index)
                         self.isTapDetail = true
                     }
                 Divider()
             }
         }
     }
-    //    }
 }
 
 struct BenefitUpperView: View {
@@ -131,6 +134,9 @@ struct BenefitUpperView: View {
 
 struct ListOfBenefitView_Previews: PreviewProvider {
     static var previews: some View {
-        BenefitUpperView(isPresentedTabBar: .constant(true), text: "dsad", isShowTabBar: false)
+        ListOfBenefitsView()
+            .environmentObject(ListOfBenefitsViewModel())
+            .environmentObject(BenefitDetailViewModel())
+            .environmentObject(HomeScreenViewModel())
     }
 }

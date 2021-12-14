@@ -7,41 +7,7 @@
 
 import Foundation
     
-// This is status of benefit...
-// Look at benefit table...
-struct STATUS {
-    let ON_GOING = 0
-    let PASSED = 1
-    let CANCELLED = 2
-}
 
-// This is status of approval benefit...
-// Look at employee_benefit table...
-struct APPROVAL_STATUS {
-    let REGISTERED = 0
-    let APPROVED = 1
-    let REJECTED = 2
-    let RECEIVED = 3
-    
-}
-
-struct MEMBER_TYPE {
-    let BENEFIT_TYPE_ALL_MEMBER = 0
-    let BENEFIT_TYPE_WOMAN_MEMBER = 1
-    let BENEFIT_TYPE_REGISTER_MEMBER = 2
-    let BENEFIT_TYPE_UNION_MEMBER = 3
-    let BENEFIT_TYPE_SPECIAL_CHOSE = 5
-}
-
-struct MOBILE_STATUS {
-    let MOBILE_BENEFIT_STATUS_ON_GOING = 0      // Display "on going"
-    let MOBILE_BENEFIT_STATUS_UP_COMMING = 1    // Display "up comming"
-    let MOBILE_BENEFIT_STATUS_RECEIVED = 2      // Display tick mark
-    let MOBILE_BENEFIT_STATUS_NOT_REGISTER = 3  // Display aplly buton
-    let MOBILE_BENEFIT_STATUS_REGISTER = 4      // Display "waitting to confirm"
-    let MOBILE_BENEFIT_STATUS_APPROVED = 5      // Display nothing
-    let MOBILE_BENEFIT_STATUS_REJECTED = 6      // Display X
-}
 
 struct BenefitData: Identifiable, Hashable {
     
@@ -71,5 +37,42 @@ struct BenefitData: Identifiable, Hashable {
         self.typeMember = typeMember
         self.status = status
         self.mobileStatus = mobileStatus
+    }
+    
+    // This is status of benefit...
+    // Look at benefit table...
+    struct STATUS {
+        static let ON_GOING = 0
+        static let PASSED = 1
+        static let CANCELLED = 2
+    }
+
+    // This is status of approval benefit...
+    // Look at employee_benefit table...
+    struct APPROVAL_STATUS {
+        static let REGISTERED = 0
+        static let APPROVED = 1
+        static let REJECTED = 2
+        static let RECEIVED = 3
+        
+    }
+
+    struct MEMBER_TYPE {
+        static let BENEFIT_TYPE_ALL_MEMBER = 0
+        static let BENEFIT_TYPE_WOMAN_MEMBER = 1
+        static let BENEFIT_TYPE_REGISTER_MEMBER = 2
+        static let BENEFIT_TYPE_UNION_MEMBER = 3
+        static let BENEFIT_TYPE_SPECIAL_CHOSE = 5
+    }
+
+    struct MOBILE_STATUS {
+        static let MOBILE_BENEFIT_STATUS_ON_GOING = 0      // Display "on going"
+        static let MOBILE_BENEFIT_STATUS_UP_COMMING = 1    // Display "up comming"
+        static let MOBILE_BENEFIT_STATUS_RECEIVED = 2      // Display tick mark
+        static let MOBILE_BENEFIT_STATUS_NOT_REGISTER = 3  // Display aplly buton
+        static let MOBILE_BENEFIT_STATUS_REGISTER = 4      // Display "waitting to confirm"
+        static let MOBILE_BENEFIT_STATUS_APPROVED = 5      // Display nothing
+        static let MOBILE_BENEFIT_STATUS_REJECTED = 6      // Display X
+        static let MOBILE_BENEFIT_STATUS_PENDING_REGISTER = 7 // Display pending
     }
 }

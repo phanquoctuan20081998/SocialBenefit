@@ -70,7 +70,7 @@ extension EmployeeRankingView {
                     Text("\("ranking_of_this_month".localized): ")
                     Text("\("top".localized.uppercased()) \(employeeRankingViewModel.employeeRank.getRank()) - ")
                         .foregroundColor(.blue)
-                    getPointString(point: employeeRankingViewModel.employeeRank.getTotalScore())
+                    getPointView(point: employeeRankingViewModel.employeeRank.getTotalScore())
                         .foregroundColor(.blue)
                 }
                 
@@ -98,7 +98,7 @@ extension EmployeeRankingView {
                         }
                         
  
-                        RecognitionNewsCardView(companyData: employeeRankingViewModel.employeeRecognitionList[index], index: index, proxy: $proxy, newsFeedType: Constants.RecognitionNewsFeedType.YOUR_HISTORY)
+                        RecognitionNewsCardView(companyData: employeeRankingViewModel.employeeRecognitionList[index], index: index, proxy: $proxy, newsFeedType: Constants.RecognitionNewsFeedType.YOUR_HISTORY, isHaveReactAndCommentButton: true)
                                 .foregroundColor(.black)
                        
                         

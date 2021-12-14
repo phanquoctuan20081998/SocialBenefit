@@ -182,6 +182,9 @@
 "the_code_will_be_expried_after" = "Mã sẽ hết hiệu lực sau";
 "(s)" = "(giây)";
 "thank_you_for_using_our_service" = "Cảm ơn đã sử dụng dịch vụ!";
+"you_are_having" = "Bạn đang có";
+"would_like_to_spend" = "Bạn có muốn sử dụng";
+"to_buy_this_voucher" = "để mua ưu đãi này không";
 
 // Merchant Voucher Detail
 "share/copy" = "Chia sẻ";
@@ -228,6 +231,9 @@
 "vn" = "Tiếng Việt";
 "en" = "Tiếng Anh";
 
+// Recognition
+"ranking_of_month %@" = "Xếp hạng %@";
+
 // Month
 "january" = "tháng 1";
 "february" = "tháng 2";
@@ -249,6 +255,19 @@
 "M00121_E" = "not_exist";
 "C00177_E" = "Không có điểm nào được chuyển";
 "C00168_E" = "Quỹ điểm không đủ, vui lòng kiểm tra lại";
+
+"C00169_E" = "Quỹ điểm phòng ban đã bị hết, liên hệ Quản lý công ty";
+"C00174_E" = "Không thể gửi điểm cho bản thân";
+"C00175_E" = "Có ít nhất một nhân viên không thể nhận điểm";
+"C00176_E" = "Giao dịch không thành công do phát hiện bất thường về điểm còn lại sau giao dịch";
+"C00177_E" = "Không có điểm nào được chuyển";
+"A00028_C" = "Bạn không có quyền thực hiện chức năng này";
+"C00024_I" = "Không tìm thấy thông tin phù hợp";
+
+"C00187_E" = "Đã vượt giới hạn ngân sách điểm cho phép";
+"C00188_E" = "Đã vượt giới hạn số lượng đăng ký cho phép";
+"C00189_E" = "Tạm thời dừng đăng ký do đã có đủ số lượng yêu cầu tham gia";
+"C00190_E" = "Đã quá thời hạn đăng ký";
 
 "need_to_fill_all_data" = "need_to_fill_all_data";
 "wrong_data" = "wrong_data";
