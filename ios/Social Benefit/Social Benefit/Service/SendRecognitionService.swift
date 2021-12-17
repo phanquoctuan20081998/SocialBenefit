@@ -42,8 +42,6 @@ class SendRecognitionService {
                 data = WalletInforData(companyPoint: companyPoint ?? 0, personalPoint: personalPoint ?? 0)
             }
             
-            print(data)
-            print(error)
             returnCallBack(data, error)
         })
     }

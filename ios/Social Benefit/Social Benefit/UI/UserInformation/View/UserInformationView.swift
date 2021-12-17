@@ -213,6 +213,7 @@ extension UserInformationView {
         HStack {
             Button(action: {
                 userInformationViewModel.saveButtonTapped()
+                countClick()
             }, label: {
                 Text("save".localized)
                     .foregroundColor(userInformationViewModel.isEnableSaveButton ? .black : .gray)

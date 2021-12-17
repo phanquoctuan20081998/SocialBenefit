@@ -114,6 +114,16 @@ struct Constants {
         static let RECOGNITION_ACTION = 1
     }
     
+    // Click counting...
+    struct ViewContent {
+        static let TYPE_VOUCHER = 0
+        static let TYPE_INTERNAL_NEWS = 1
+        static let TYPE_BENEFIT = 2
+        static let TYPE_SURVEY = 3
+        static let TYPE_RECOGNITION = 4
+        static let TYPE_OTHER = 5
+        static let TYPE_COMMENT = 6
+    }
     
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),

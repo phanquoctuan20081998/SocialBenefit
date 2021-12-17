@@ -62,4 +62,5 @@ struct Config {
     static let API_EMPLOYEE_WALLET_INFO_GET = "/mobile/employee/wallet/get"
     static let API_RECOGNITION_SEND  = "/mobile/recognition/send"
     
+    static let API_MOBILE_VIEW_CLICK = "/mobile/view_click"
 }
