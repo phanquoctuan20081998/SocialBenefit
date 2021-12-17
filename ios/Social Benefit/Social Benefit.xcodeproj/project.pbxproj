@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -142,7 +142,6 @@
 		C48790B82759D7AA002E97F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790B72759D7AA002E97F0 /* UserModel.swift */; };
 		C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4884DF026CCA4DC006BC3C1 /* UserInformationView.swift */; };
 		C48B6D1C271141DE00766804 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B6D1B271141DE00766804 /* HomeView.swift */; };
-		C48BA34826EEE83A006C4F27 /* ScrollViewProxy in Frameworks */ = {isa = PBXBuildFile; productRef = C48BA34726EEE83A006C4F27 /* ScrollViewProxy */; };
 		C48BA34A26EEEBE1006C4F27 /* CommentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */; };
 		C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA34F26EEFC6E006C4F27 /* MerchantCategoryView.swift */; };
 		C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BA35126EF0137006C4F27 /* MerchantCategoryItemService.swift */; };
@@ -489,7 +488,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C48BA34826EEE83A006C4F27 /* ScrollViewProxy in Frameworks */,
 				C49F5E68274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1576,17 +1574,14 @@
 				84DA60632696DAC80012F55B /* Sources */,
 				84DA60642696DAC80012F55B /* Frameworks */,
 				84DA60652696DAC80012F55B /* Resources */,
-				9FDA66E63511CC44E190C72D /* [CP] Embed Pods Frameworks */,
 				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
+				6F5B2D66C93E015C508DC6CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Social Benefit";
-			packageProductDependencies = (
-				C48BA34726EEE83A006C4F27 /* ScrollViewProxy */,
-			);
 			productName = "Social Benefit";
 			productReference = 84DA60672696DAC80012F55B /* Social Benefit.app */;
 			productType = "com.apple.product-type.application";
@@ -1615,9 +1610,6 @@
 				vi,
 			);
 			mainGroup = 84DA605E2696DAC80012F55B;
-			packageReferences = (
-				C48BA34626EEE83A006C4F27 /* XCRemoteSwiftPackageReference "ScrollViewProxy" */,
-			);
 			productRefGroup = 84DA60682696DAC80012F55B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1672,7 +1664,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9FDA66E63511CC44E190C72D /* [CP] Embed Pods Frameworks */ = {
+		6F5B2D66C93E015C508DC6CB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1986,7 +1978,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2043,7 +2035,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2119,25 +2111,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C48BA34626EEE83A006C4F27 /* XCRemoteSwiftPackageReference "ScrollViewProxy" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Amzd/ScrollViewProxy.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C48BA34726EEE83A006C4F27 /* ScrollViewProxy */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C48BA34626EEE83A006C4F27 /* XCRemoteSwiftPackageReference "ScrollViewProxy" */;
-			productName = ScrollViewProxy;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 84DA605F2696DAC80012F55B /* Project object */;
 }

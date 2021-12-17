@@ -1,0 +1,6 @@
+framework module ScrollViewProxy {
+  umbrella header "ScrollViewProxy-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Introspect.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Social Benefit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,6 +25,11 @@
 			<false/>
 		</dict>
 		<key>SDWebImageSwiftUI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ScrollViewProxy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
