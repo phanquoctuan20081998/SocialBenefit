@@ -308,6 +308,9 @@ struct PromotionsBannerView: View {
 
 struct MainCardView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToRecognition = false
+    @State var moveToMyVoucher = false
+    
     var personalPoint: Int
     
     var body: some View {
@@ -336,7 +339,9 @@ struct MainCardView: View {
                                     .resizable()
                                     .frame(width: 20, height: 20)
                             }.onTapGesture {
-                                homeScreenViewModel.selectedTab = "star"
+                                withAnimation {
+                                    homeScreenViewModel.selectedTab = "star"
+                                }
                                 countClick()
                             }
                         }
@@ -358,8 +363,9 @@ struct MainCardView: View {
                         Spacer()
                         
                         // Reconigion Button
-                        NavigationLink {
-                            RecognitionActionView().navigationBarHidden(true)
+                        Button {
+                            self.moveToRecognition = true
+                            countClick()
                         } label: {
                             mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
                                 .foregroundColor(.black)
@@ -368,17 +374,23 @@ struct MainCardView: View {
                         Spacer()
                         
                         // Reconigion Button
-                        NavigationLink {
-                            MyVoucherView().navigationBarHidden(true)
+                        Button {
+                            self.moveToRecognition = true
+                            countClick()
                         } label: {
                             mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
                                 .foregroundColor(.black)
                         }
                         
-                        
                         Spacer()
                     }
                 }
+                .background (
+                    ZStack {
+                        NavigationLink(destination: RecognitionActionView().navigationBarHidden(true), isActive: $moveToRecognition, label: { EmptyView() })
+                        NavigationLink(destination: MyVoucherView().navigationBarHidden(true), isActive: $moveToMyVoucher, label: { EmptyView() })
+                    }
+                )
             }
         }
         .frame(width: ScreenInfor().screenWidth * 0.93, height: isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) ? 200 : 150)
