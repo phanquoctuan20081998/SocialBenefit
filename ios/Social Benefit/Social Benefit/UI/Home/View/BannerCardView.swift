@@ -45,6 +45,7 @@ struct InternalNewsBannerView: View {
                                             ImageSlideTimer.upstream.connect().cancel()
                                             imageTapped()
                                         }
+                                        countClick(contentId: internalNewsViewModel.allInternalNewsBanner[index].contentId, contentType: Constants.ViewContent.TYPE_BENEFIT)
                                     }
                             }
                         }
@@ -113,6 +114,7 @@ struct RecognitionsBannerView: View {
                                         DispatchQueue.main.async {
                                             homeScreenViewModel.selectedTab = "star"
                                         }
+                                        countClick(contentId: homeViewModel.allRecognitionPost[index].getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)
                                     }
                             }
                         }
@@ -151,15 +153,6 @@ struct PromotionsBannerView: View {
             
             VStack(spacing: 15) {
                 ZStack(alignment: .bottom) {
-                    //                    if data.count != 0 { //If Data can read
-                    //                        let pages = getPromotionData(data: data, imageTapped: imageTapped)
-                    //                        PageViewController(pages: pages, currentPage: $currentPage)
-                    //                        //                            .onReceive(ImageSlideTimer) { _ in self.currentPage = (self.currentPage + 1) % data.count }
-                    //                        PageControl(numberOfPages: data.count, currentPage: $currentPage)
-                    //                    } else {
-                    //                        EmptyView()
-                    //                    }
-                    
                     
                     if data.count != 0 {
                         
@@ -173,6 +166,7 @@ struct PromotionsBannerView: View {
                                             ImageSlideTimer.upstream.connect().cancel()
                                             imageTapped()
                                         }
+                                        countClick(contentId: data[index].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                                     }
                             }
                         }
@@ -214,97 +208,6 @@ struct PromotionsBannerView: View {
         }
     }
 }
-
-//struct MainCardView: View {
-//
-//    @State var moveToWebView = false
-//
-//    @State var isRecognitonClick = false
-//    @State var isMyVoucherClick = false
-//
-//    var body: some View {
-//        VStack {
-//            HStack {
-//                Spacer()
-//
-//                VStack {
-//                    Text("total_point".localized)
-//
-//                    Spacer()
-//
-//                    Text("2,568")
-//                        .foregroundColor(.blue)
-//                        .bold()
-//                        .font(.system(size: 35))
-//                }
-//
-//                Spacer()
-//            }.background(Image("bum")
-//                            .resizable()
-//                            .scaledToFill())
-//
-//            Spacer()
-//
-//            HStack {
-//
-//                Spacer()
-//
-//                if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
-//
-//                    // Reconigion Button
-//                    NavigationLink {
-//                        RecognitionActionView().navigationBarHidden(true)
-//                    } label: {
-//                        mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
-//                            .foregroundColor(.black)
-//                    }
-//
-//                    Spacer()
-//
-//                    mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
-//
-//                    Spacer()
-//                }
-//                //                mainButton(text: "my_order".localized, image: "ic_my_order", color: Color("light_orange"), buttonTapped: myOrderButtonTapped)
-//
-//
-//
-//                mainButton(text: "VNPT".localized, image: "ic_vnpt", color: Color("nissho_blue"))
-//
-//                Spacer()
-//
-//                mainButton(text: "others".localized, image: "ic_others", color: Color("light_blue"))
-//
-//                Spacer()
-//            }.padding(.horizontal, 30)
-//
-//        }.padding()
-//            .frame(width: ScreenInfor().screenWidth*0.93, height: 170)
-//            .background(Color.white)
-//            .cornerRadius(30)
-//            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-//    }
-//
-//    func recognizeButtonTapped() {
-//        self.isRecognitonClick = true
-//    }
-//
-//    func myVoucherButtonTapped() {
-//
-//    }
-//
-//    func myOrderButtonTapped() {
-//
-//    }
-//
-//    func VNPTButtonTapped() {
-//        self.moveToWebView.toggle()
-//    }
-//
-//    func otherButtonTapped() {
-//
-//    }
-//}
 
 struct MainCardView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
@@ -375,7 +278,7 @@ struct MainCardView: View {
                         
                         // Reconigion Button
                         Button {
-                            self.moveToRecognition = true
+                            self.moveToMyVoucher = true
                             countClick()
                         } label: {
                             mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
