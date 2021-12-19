@@ -307,7 +307,7 @@ struct PromotionsBannerView: View {
 //}
 
 struct MainCardView: View {
-    
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     var personalPoint: Int
     
     var body: some View {
@@ -335,6 +335,9 @@ struct MainCardView: View {
                                 Image("ic_coin")
                                     .resizable()
                                     .frame(width: 20, height: 20)
+                            }.onTapGesture {
+                                homeScreenViewModel.selectedTab = "star"
+                                countClick()
                             }
                         }
                     }.padding(.leading, 30)
