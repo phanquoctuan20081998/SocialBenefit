@@ -36,13 +36,11 @@ struct ListOfMerchantView: View {
                         self.merchantCategoryItemViewModel.isRefreshing = $0
                     })
                 
-//                NavigationView {
                     RefreshableScrollView(height: 70, refreshing: binding) {
                         SpecialOffersView()
                         FilterView()
                         AllOffersView()
                     }.navigationBarHidden(true)
-//                }.navigationViewStyle(StackNavigationViewStyle())
             }
             
             NavigationLink(destination: EmptyView()) {

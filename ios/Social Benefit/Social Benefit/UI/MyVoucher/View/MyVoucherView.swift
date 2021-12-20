@@ -104,6 +104,7 @@ extension MyVoucherView {
                                 .foregroundColor(Color.black)
                                 .buttonStyle(FlatLinkStyle())
                                 .onTapGesture {
+    
                                     self.isMoveToNextPage.toggle()
                                     self.selectedIndex = i
                                     
