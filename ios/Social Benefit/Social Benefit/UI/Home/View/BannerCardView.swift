@@ -45,6 +45,8 @@ struct InternalNewsBannerView: View {
                                             ImageSlideTimer.upstream.connect().cancel()
                                             imageTapped()
                                         }
+                                        
+                                        //Click count
                                         countClick(contentId: internalNewsViewModel.allInternalNewsBanner[index].contentId, contentType: Constants.ViewContent.TYPE_BENEFIT)
                                     }
                             }
@@ -115,6 +117,8 @@ struct RecognitionsBannerView: View {
                                         DispatchQueue.main.async {
                                             homeScreenViewModel.selectedTab = "star"
                                         }
+                                        
+                                        // Click count
                                         countClick(contentId: homeViewModel.allRecognitionPost[index].getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)
                                     }
                             }
@@ -168,6 +172,8 @@ struct PromotionsBannerView: View {
                                             ImageSlideTimer.upstream.connect().cancel()
                                             imageTapped()
                                         }
+                                        
+                                        //Click count
                                         countClick(contentId: data[index].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                                     }
                             }
@@ -271,6 +277,7 @@ struct MainCardView: View {
                         // Reconigion Button
                         Button {
                             self.moveToRecognition = true
+                            self.homeScreenViewModel.isPresentedTabBar = false
                             countClick()
                         } label: {
                             mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))

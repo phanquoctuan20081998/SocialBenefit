@@ -39,7 +39,6 @@ class HomeViewModel: ObservableObject, Identifiable {
         recognitionService.getListByCompany(fromIndex: 0) { [weak self] data in
             DispatchQueue.main.async {
                 self?.allRecognitionPost = data
-                print(data)
             }
         }
     }

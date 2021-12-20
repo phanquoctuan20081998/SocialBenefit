@@ -19,7 +19,6 @@ struct HomeScreenView: View {
     @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
     @ObservedObject var searchViewModel = SearchViewModel()
     @ObservedObject var homeViewModel = HomeViewModel()
-    //    @ObservedObject var keyboardHandler = KeyboardHandler()
     
     init(selectedTab: String) {
         homeScreenViewModel.selectedTab = selectedTab
@@ -53,10 +52,9 @@ struct HomeScreenView: View {
                 MerchantVoucherDetailNavigationView(voucherId: homeViewModel.selectedVoucherId, isPresent: homeViewModel.isPresentVoucherDetail)
                 
             }
-            
             .navigationBarHidden(true)
         }
-        
+        .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(internalNewsViewModel)
         .environmentObject(specialOffersViewModel)
         .environmentObject(merchantCategoryItemViewModel)
@@ -103,7 +101,6 @@ struct HomeScreenView: View {
                 if let voucherId = voucherId {
                     MerchantVoucherDetailView(isNavigationFromHomeScreen: true, voucherId: voucherId)
                         .background(Color.white)
-                        .edgesIgnoringSafeArea(.all)
                 }
             }
         }

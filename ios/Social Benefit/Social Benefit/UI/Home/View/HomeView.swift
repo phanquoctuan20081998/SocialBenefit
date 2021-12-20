@@ -13,13 +13,12 @@ struct HomeView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
-    
     var body: some View {
         ZStack {
             VStack {
                 Spacer()
                     .frame(height: 90)
-
+                
                 ScrollView {
                     VStack(spacing: 20) {
                         
@@ -29,7 +28,7 @@ struct HomeView: View {
                         if isDisplayFunction(Constants.FuctionId.INTERNAL_NEWS) {
                             InternalNewsBannerView()
                         }
-
+                        
                         if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
                             RecognitionsBannerView()
                             PromotionsBannerView()
@@ -41,7 +40,7 @@ struct HomeView: View {
             }
             .background(BackgroundViewWithNotiAndSearch())
             .edgesIgnoringSafeArea(.all)
-        }
+        }.navigationBarHidden(true)
     }
 }
 

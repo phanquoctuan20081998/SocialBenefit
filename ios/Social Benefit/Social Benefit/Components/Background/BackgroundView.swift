@@ -90,13 +90,14 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                                 if !isHaveDiffirentHandle {
                                     self.presentationMode.wrappedValue.dismiss()
                                     self.isActive.toggle()
-                                    if !isHiddenTabBarWhenBack {
-                                        homeScreen.isPresentedTabBar = true
-                                    }
-                                    
+ 
                                     backButtonTapped()
                                 } else {
                                     diffirentHandle()
+                                }
+                                
+                                if !isHiddenTabBarWhenBack {
+                                    homeScreen.isPresentedTabBar = true
                                 }
                                 
                             }, label: {

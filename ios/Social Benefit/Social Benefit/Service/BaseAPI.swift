@@ -142,7 +142,7 @@ public class BaseAPI_Alamofire {
             METHOD = .post
         }
         
-        let task = AF.request(strURL, method: METHOD, parameters: body, headers: header).responseJSON { response in
+        let task = AF.request(strURL, method: METHOD, parameters: body, headers: header).responseDecodable { (response: AFDataResponse<JSON>) in
             switch response.result {
             case .success:
                 print("Validation Successful")

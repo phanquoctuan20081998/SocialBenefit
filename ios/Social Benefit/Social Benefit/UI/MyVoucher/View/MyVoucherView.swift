@@ -45,7 +45,9 @@ struct MyVoucherView: View {
                     NavigationLink(destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[self.selectedIndex].id)
                                     .environmentObject(merchantVoucherDetailViewModel)
                                     .environmentObject(confirmInforBuyViewModel)
-                                    .environmentObject(homeScreenViewModel), isActive: $isMoveToNextPage, label: { EmptyView() })
+                                    .environmentObject(homeScreenViewModel),
+                                   isActive: $isMoveToNextPage,
+                                   label: { EmptyView() })
                 }
             }
         )

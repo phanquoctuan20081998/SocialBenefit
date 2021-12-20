@@ -159,8 +159,6 @@
 		C49B0B71270DF10D002C3D9F /* SearchSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B0B70270DF10D002C3D9F /* SearchSelectionView.swift */; };
 		C49C4C3127434D7500ED3213 /* UsedPointsHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49C4C3027434D7500ED3213 /* UsedPointsHistoryService.swift */; };
 		C49C4C332743536800ED3213 /* UsedPointsHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49C4C322743536800ED3213 /* UsedPointsHistoryModel.swift */; };
-		C49F5E68274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; };
-		C49F5E69274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C159D6F7FA647BC221819E6 /* Pods_Social_Benefit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A26D7026CE62E00015CE05 /* LocationPickerPopUpView.swift */; };
 		C4A4C43A271957C700C306EE /* MyVoucherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A4C439271957C700C306EE /* MyVoucherCardView.swift */; };
 		C4A519C1276995E60065E047 /* ViewClickItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A519C0276995E60065E047 /* ViewClickItem.swift */; };
@@ -241,7 +239,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C49F5E69274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,7 +485,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49F5E68274F1B5F00798EB2 /* Pods_Social_Benefit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2053,13 +2049,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U552P5B227;
+				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2075,13 +2072,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U552P5B227;
+				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

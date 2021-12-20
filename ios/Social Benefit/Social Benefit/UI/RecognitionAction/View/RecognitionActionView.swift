@@ -48,7 +48,7 @@ struct RecognitionActionView: View {
             PopUpView(isPresentedPopUp: $recognitionActionViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: self.outOfPopupClick, popUpContent: AnyView(ConfirmPopUpView))
             
         }
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: false, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
         .edgesIgnoringSafeArea(.all)
         .background(
             NavigationLink(destination: UserSearchView().navigationBarHidden(true)
