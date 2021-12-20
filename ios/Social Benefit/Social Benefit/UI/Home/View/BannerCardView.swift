@@ -73,6 +73,7 @@ struct InternalNewsBannerView: View {
     func topTitleTapped() {
         self.isMove = true
         homeScreenViewModel.isPresentedTabBar.toggle()
+        countClick()
     }
     
     func imageTapped() {
@@ -133,6 +134,7 @@ struct RecognitionsBannerView: View {
         DispatchQueue.main.async {
             homeScreenViewModel.selectedTab = "star"
         }
+        countClick()
     }
 }
 
@@ -197,6 +199,7 @@ struct PromotionsBannerView: View {
     
     func toptitleTapped() {
         homeScreenViewModel.selectedTab = "tag"
+        countClick()
     }
     
     func imageTapped() {

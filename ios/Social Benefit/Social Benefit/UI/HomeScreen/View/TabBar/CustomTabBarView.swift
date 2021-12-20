@@ -81,10 +81,15 @@ struct TabBarButtonView: View {
             
             return AnyView(
                 Button(action: {
+                    
                     // Changing tab
                     withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.5, blendDuration: 0.5)) {
                         selectedTab = buttonImage
                     }
+                    
+                    // CLick count
+                    countClick()
+                    
                 }, label: {
                     
                     VStack(spacing: 3) {
