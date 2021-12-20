@@ -16,6 +16,9 @@ struct MyVoucherView: View {
     
     @ObservedObject var myVoucherViewModel = MyVoucherViewModel()
     
+    @State var isMoveToNextPage = false
+    @State var selectedIndex = -1
+    
     @State var isShowCopiedPopUp = false
     
     //Infinite ScrollView controller
@@ -36,6 +39,16 @@ struct MyVoucherView: View {
         .onAppear {
             homeScreenViewModel.isPresentedTabBar = false
         }
+        .background(
+            ZStack {
+                if self.selectedIndex != -1 {
+                    NavigationLink(destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[self.selectedIndex].id)
+                                    .environmentObject(merchantVoucherDetailViewModel)
+                                    .environmentObject(confirmInforBuyViewModel)
+                                    .environmentObject(homeScreenViewModel), isActive: $isMoveToNextPage, label: { EmptyView() })
+                }
+            }
+        )
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "my_vouchers".localized, isHaveLogo: true))
         
         //Pop-up overlay
@@ -87,15 +100,16 @@ extension MyVoucherView {
                             Text("no_voucher".localized).font(.system(size: 13))
                         }
                         ForEach(myVoucherViewModel.allMyVoucher.indices, id: \.self) {i in
-                            NavigationLink(
-                                destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[i].id)
-                                    .environmentObject(merchantVoucherDetailViewModel)
-                                    .environmentObject(confirmInforBuyViewModel)
-                                    .environmentObject(homeScreenViewModel),
-                                label: {
-                                    VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
-                                        .foregroundColor(Color.black)
-                                }).buttonStyle(FlatLinkStyle())
+                            VoucherCardView(isShowCopiedPopUp: $isShowCopiedPopUp, myVoucher: myVoucherViewModel.allMyVoucher[i], selectedTab: myVoucherViewModel.status)
+                                .foregroundColor(Color.black)
+                                .buttonStyle(FlatLinkStyle())
+                                .onTapGesture {
+                                    self.isMoveToNextPage.toggle()
+                                    self.selectedIndex = i
+                                    
+                                    // Click count
+                                    countClick(contentId: myVoucherViewModel.allMyVoucher[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                                }
                         }
                         
                         //Infinite Scroll View

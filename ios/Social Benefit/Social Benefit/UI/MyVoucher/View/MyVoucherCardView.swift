@@ -57,6 +57,9 @@ struct VoucherCardView: View {
             HStack(spacing: 15) {
                 Button(action: {
                     copyCodeButtonTapped()
+                    
+                    // Click count
+                    countClick(contentId: myVoucher.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                 }, label: {
                     Text("copy".localized)
                         .foregroundColor(.black)
@@ -70,6 +73,8 @@ struct VoucherCardView: View {
                 Button(action: {
                     QRButtonTapped()
                     
+                    // Click count
+                    countClick(contentId: myVoucher.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                 }, label: {
                     Image(systemName: "qrcode.viewfinder")
                         .resizable()

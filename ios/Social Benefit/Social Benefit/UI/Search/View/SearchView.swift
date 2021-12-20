@@ -65,53 +65,13 @@ struct SearchContentView: View {
         case 8:
             return AnyView(RecognitionActionView().navigationBarHidden(true))
         case 9:
-            return AnyView(RecognitionView().navigationBarHidden(true))
+            return AnyView(HomeScreenView(selectedTab: "star").navigationBarHidden(true))
         default:
             return AnyView(UsedPointHistoryView().navigationBarHidden(true))
         }
         
     }
 }
-
-struct NavigationPageView: View {
-    
-    @EnvironmentObject var homeScreen: HomeScreenViewModel
-    var selection: Int
-    
-    var body: some View {
-        switch selection {
-        case 0:
-            Text("0")
-        case 1:
-            UserInformationView().navigationBarHidden(true)
-//        case 2:
-//            // Favorate merchant
-//            // 今、開発しません
-        case 3:
-            HomeScreenView(selectedTab: "house").navigationBarHidden(true)
-        case 4:
-            InternalNewsView().navigationBarHidden(true)
-        case 5:
-            ListOfBenefitsView().navigationBarHidden(true)
-        case 6:
-            ListOfMerchantView()
-                .navigationBarHidden(true)
-                .onAppear {
-                    homeScreen.selectedTab = "tag"
-                    homeScreen.isPresentedTabBar = true
-                }
-        case 7:
-            MyVoucherView().navigationBarHidden(true)
-        case 8:
-            RecognitionActionView().navigationBarHidden(true)
-        case 9:
-            RecognitionView().navigationBarHidden(true)
-        default:
-            UsedPointHistoryView().navigationBarHidden(true)
-        }
-    }
-}
-
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

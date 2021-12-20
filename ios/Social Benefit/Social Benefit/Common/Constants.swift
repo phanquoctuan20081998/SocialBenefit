@@ -128,7 +128,7 @@ struct Constants {
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),
-                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red, destination: 2),
+//                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red, destination: 2),
                                     BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white, destination: 3),
                                     BackgroundSearch(tab: "internal_news", icon: "newspaper.fill", color: Color.green, destination: 4),
                                     BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue, destination: 5),

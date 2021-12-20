@@ -220,9 +220,9 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     
     func updateWishes(wishesTextArray: [String]){
         for i in 0 ..< wishesTextArray.count {
-            if wishesTextArray[i].count > 200 {
+            if wishesTextArray[i].count > 500 {
                 DispatchQueue.main.async {
-                    self.wishesText[i] = trimStringWithNChar(200, string: wishesTextArray[i])
+                    self.wishesText[i] = trimStringWithNChar(500, string: wishesTextArray[i])
                 }
             }
             

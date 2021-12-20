@@ -37,7 +37,7 @@ struct RecognitionActionView: View {
             }
             
             // Error Present
-            ErrorMessageView(error: "this_person_is_exist", isPresentedError: $recognitionActionViewModel.isPresentError)
+            ErrorMessageView(error: "this_person_is_exist".localized, isPresentedError: $recognitionActionViewModel.isPresentError)
             
             ErrorMessageView(error: recognitionActionViewModel.errorText, isPresentedError: $recognitionActionViewModel.isPresentError)
             
@@ -184,6 +184,10 @@ extension RecognitionActionView {
     var SendPointButton: some View {
         Button {
             self.recognitionActionViewModel.sendButtonClick()
+            
+            // Click count
+            countClick()
+            
         } label: {
             Text("send_point".localized.uppercased())
                 .foregroundColor(.white)
