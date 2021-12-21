@@ -41,12 +41,14 @@ struct SettingsView: View {
                 Spacer().frame(height: 30)
             }
             
-            VStack(alignment: .leading) {
-                settingTitle(text: "notification".localized)
-                settingOption(image: "bell.fill", color: Color.blue, title: "allow_popup_notification".localized, trailingElement: "switch", switchOnVariable: $settingsViewModel.isAllowNotiSwitchOn)
-                settingOption(image: "speaker.slash.fill", color: Color.red, title: "allow_sound_on_notification".localized, trailingElement: "switch", switchOnVariable: $settingsViewModel.isAllowSoundSwitchOn)
-                Spacer().frame(height: 30)
-            }
+            // Notification setting
+            
+//            VStack(alignment: .leading) {
+//                settingTitle(text: "notification".localized)
+//                settingOption(image: "bell.fill", color: Color.blue, title: "allow_popup_notification".localized, trailingElement: "switch", switchOnVariable: $settingsViewModel.isAllowNotiSwitchOn)
+//                settingOption(image: "speaker.slash.fill", color: Color.red, title: "allow_sound_on_notification".localized, trailingElement: "switch", switchOnVariable: $settingsViewModel.isAllowSoundSwitchOn)
+//                Spacer().frame(height: 30)
+//            }
             
             VStack(alignment: .leading) {
                 settingTitle(text: "other_setting".localized)
@@ -54,6 +56,9 @@ struct SettingsView: View {
                 Spacer().frame(height: 30)
             }.onTapGesture {
                 settingsViewModel.isPresentedAppinformationPopUp = true
+                
+                // Click count
+                countClick()
             }
             
             Spacer()
@@ -100,6 +105,9 @@ struct SettingsView: View {
                                 .stroke(Color.gray, lineWidth: 1))
                 .onTapGesture {
                     settingsViewModel.isPresentedLanguagePopup = true
+                    
+                    // Click count
+                    countClick()
                 }
             } else if trailingElement == "switch" {
                 Toggle(isOn: switchOnVariable) {}
@@ -114,6 +122,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView(selectedTab: "")
+        SettingsView()
+            .environmentObject(HomeScreenViewModel())
     }
 }

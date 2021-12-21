@@ -20,6 +20,7 @@ struct FunctionCardView: View {
     
     @Binding var selection: Int?
     var selectedNumber: Int
+    var isCountClick = true
     
     var body: some View {
         ZStack {
@@ -30,6 +31,11 @@ struct FunctionCardView: View {
                 if selectedNumber == 7 {
                     customerSupportViewModel.isPresentCustomerSupportPopUp = true
                     customerSupportViewModel.resetText()
+                }
+                
+                // Click count
+                if isCountClick {
+                    countClick()
                 }
             }, label: {
                 HStack {

@@ -95,7 +95,7 @@ extension RecognitionNewsCardView {
                 
                 Spacer()
                 
-                Text("+\(companyData.getPoint())")
+                Text("\(companyData.getPoint() > 0 ? "+" : "")\(companyData.getPoint())")
                     .bold()
                     .foregroundColor(.blue)
             }
@@ -115,6 +115,9 @@ extension RecognitionNewsCardView {
                     self.commentCount += 1
                 }
             })
+            
+            // Click count
+            countClick(contentId: companyData.getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)
         }, label: {
             Image(systemName: "paperplane.circle.fill")
                 .padding(.trailing, 3)

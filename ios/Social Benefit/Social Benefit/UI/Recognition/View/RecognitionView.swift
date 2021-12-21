@@ -12,6 +12,10 @@ struct RecognitionView: View {
     @ObservedObject var recognitionViewModel = RecognitionViewModel()
     
     @State private var proxy: AmzdScrollViewProxy? = nil
+    @State var isTop3RankingClick = false
+    
+    @State var isRecognitionPostClick = false
+    @State var selectedPost = -1
     
     // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
@@ -23,11 +27,14 @@ struct RecognitionView: View {
                 AmzdScrollViewReader { proxy in
                     VStack (spacing: 30) {
                         
-                        NavigationLink(destination: RankingOfRecognitionView()
-                                        .environmentObject(recognitionViewModel)
-                                        .navigationBarHidden(true)) {
-                            RankingCardView()
-                        }.buttonStyle(NavigationLinkNoAffectButtonStyle())
+                         RankingCardView()
+                            .onTapGesture {
+                                self.isTop3RankingClick = true
+                                
+                                // Click count
+                                countClick()
+                            }
+                            .buttonStyle(NavigationLinkNoAffectButtonStyle())
                         
                         NavigationLink(destination: RankingOfRecognitionView()
                                         .environmentObject(recognitionViewModel)
@@ -42,6 +49,23 @@ struct RecognitionView: View {
                 }
             }            
         }
+        .background(
+            ZStack {
+                NavigationLink(destination: RankingOfRecognitionView()
+                                .environmentObject(recognitionViewModel)
+                                .navigationBarHidden(true),
+                               isActive: $isTop3RankingClick, label: { EmptyView() })
+            }
+        )
+        .background(
+            ZStack {
+                if self.selectedPost != -1 {
+                    NavigationLink(destination: RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[selectedPost]).navigationBarHidden(true),
+                                   isActive: $isRecognitionPostClick,
+                                   label: { EmptyView() })
+                }
+            }
+        )
         
         .environmentObject(recognitionViewModel)
         .background(BackgroundViewWithNotiAndSearch())
@@ -128,14 +152,21 @@ extension RecognitionView {
                                     .padding(.vertical)
                             }
                             
-                            NavigationLink(destination: RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[index]).navigationBarHidden(true)) {
-                                RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab, isHaveReactAndCommentButton: true)
-                                    .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
-                                    .background(Color.white)
-                                    .cornerRadius(20)
-                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                                    .foregroundColor(.black)
-                            }.buttonStyle(NavigationLinkNoAffectButtonStyle())
+                            
+                            RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab, isHaveReactAndCommentButton: true)
+                                .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
+                                .background(Color.white)
+                                .cornerRadius(20)
+                                .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+                                .foregroundColor(.black)
+                                .onTapGesture(perform: {
+                                    self.isRecognitionPostClick = true
+                                    self.selectedPost = index
+                                    
+                                    // Click count
+                                    countClick(contentId: recognitionViewModel.allRecognitionPost[index].getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)
+                                })
+                                .buttonStyle(NavigationLinkNoAffectButtonStyle())
                             
                             Spacer().frame(height: 20)
                             

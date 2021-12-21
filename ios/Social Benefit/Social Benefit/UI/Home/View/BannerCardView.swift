@@ -47,7 +47,7 @@ struct InternalNewsBannerView: View {
                                         }
                                         
                                         //Click count
-                                        countClick(contentId: internalNewsViewModel.allInternalNewsBanner[index].contentId, contentType: Constants.ViewContent.TYPE_BENEFIT)
+                                        countClick(contentId: internalNewsViewModel.allInternalNewsBanner[index].contentId, contentType: Constants.ViewContent.TYPE_INTERNAL_NEWS)
                                     }
                             }
                         }
@@ -75,6 +75,8 @@ struct InternalNewsBannerView: View {
     func topTitleTapped() {
         self.isMove = true
         homeScreenViewModel.isPresentedTabBar.toggle()
+        
+        // Click count
         countClick()
     }
     
@@ -138,6 +140,8 @@ struct RecognitionsBannerView: View {
         DispatchQueue.main.async {
             homeScreenViewModel.selectedTab = "star"
         }
+        
+        // Click count
         countClick()
     }
 }
@@ -180,8 +184,6 @@ struct PromotionsBannerView: View {
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     } else { EmptyView() }
-                    
-                    
                 }
             }
             .frame(width: ScreenInfor().screenWidth * 0.92, height: 200)
@@ -205,6 +207,8 @@ struct PromotionsBannerView: View {
     
     func toptitleTapped() {
         homeScreenViewModel.selectedTab = "tag"
+        
+        // Click count
         countClick()
     }
     

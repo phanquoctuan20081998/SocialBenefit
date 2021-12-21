@@ -242,6 +242,14 @@ struct SendCommentButtonView: View {
                     self.numOfComment += 1
                 }
             })
+            
+            // Click count
+            if contentType == Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS {
+                countClick(contentId: contentId, contentType: Constants.ViewContent.TYPE_INTERNAL_NEWS)
+            } else if contentType == Constants.CommentContentType.COMMENT_TYPE_RECOGNITION {
+                countClick(contentId: contentId, contentType: Constants.ViewContent.TYPE_RECOGNITION)
+            }
+            
         }, label: {
             Image(systemName: "paperplane.circle.fill")
                 .padding(.trailing, 3)

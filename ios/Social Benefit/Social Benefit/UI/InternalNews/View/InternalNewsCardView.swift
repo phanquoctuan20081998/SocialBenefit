@@ -19,6 +19,9 @@ struct InternalNewsCardView: View {
             Button(action: {
                 self.isActive.toggle()
                 self.selectedInternalNew = internalNewsData
+                
+                // Click count
+                countClick(contentId: self.internalNewsData.contentId, contentType: Constants.ViewContent.TYPE_INTERNAL_NEWS)
             }, label: {
                 HStack(alignment: .top) {
                     URLImageView(url: internalNewsData.cover)

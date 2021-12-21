@@ -161,7 +161,8 @@ struct InformationBar: View {
             
                     AddReactService().getAPI(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ReactContentType.VOUCHER, reactType: Constants.ReactType.LOVE)
                     
-                    
+                    // Click count
+                    countClick(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                     
                 }, label: {
                     Image(systemName: "heart\(merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis ? ".fill" : "")")

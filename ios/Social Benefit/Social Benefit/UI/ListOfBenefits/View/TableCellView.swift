@@ -50,6 +50,9 @@ struct TableCellView: View {
                     //do something
                     self.isPresentedApplyPopUp = true
                     
+                    // Click count
+                    countClick(contentId: benefitData.id, contentType: Constants.ViewContent.TYPE_BENEFIT)
+                    
                 }, label: {
                 
                     RoundedButton(text: "apply".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)

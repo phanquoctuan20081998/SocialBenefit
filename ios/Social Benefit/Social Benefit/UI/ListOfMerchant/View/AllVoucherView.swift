@@ -10,6 +10,10 @@ import SwiftUI
 struct AllOffersView: View {
     
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    
+    @State var isMoveToMerchantDetail = false
+    
+    // Infine scroll view
     @State var isShowProgressView: Bool = false
     
     var body: some View {
@@ -23,11 +27,18 @@ struct AllOffersView: View {
                         
                         NavigationLink(
                             destination: MerchantVoucherDetailView(voucherId: self.offersViewModel.allOffers[i].id),
+                            isActive: $isMoveToMerchantDetail,
                             label: {
-                                AllOfferCardView(voucherData: self.offersViewModel.allOffers[i])
-                                    .foregroundColor(.black)
-                            })
-                        
+                                Button {
+                                    self.isMoveToMerchantDetail = true
+                                    
+                                    // Click count
+                                    countClick(contentId: offersViewModel.allOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                                } label: {
+                                    AllOfferCardView(voucherData: self.offersViewModel.allOffers[i])
+                                        .foregroundColor(.black)
+                                }.buttonStyle(NavigationLinkNoAffectButtonStyle())
+                            }).buttonStyle(NavigationLinkNoAffectButtonStyle())
                     }
                     
                     //Infinite Scroll View
@@ -170,6 +181,9 @@ extension AllOfferCardView {
             Button(action: {
                 self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
                 self.confirmInforBuyViewModel.isPresentedPopup = true
+                
+                // Click count
+                countClick(contentId: voucherData.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
             }, label: {
                 Text("buy".localized)
                     .font(.system(size: 15))

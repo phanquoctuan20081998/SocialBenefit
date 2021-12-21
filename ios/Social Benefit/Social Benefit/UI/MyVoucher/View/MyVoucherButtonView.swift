@@ -9,23 +9,34 @@ import SwiftUI
 
 struct MyVoucherButtonView: View {
     
+    @State var isMoveToNextPage = false
+    
     var body: some View {
-        NavigationLink(destination: MyVoucherView().navigationBarHidden(true)) {
-            HStack() {
-                Image("ic_my_voucher")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 27)
+        NavigationLink(destination: MyVoucherView().navigationBarHidden(true),
+                       isActive: $isMoveToNextPage,
+                       label: {
+            Button {
+                self.isMoveToNextPage = true
                 
-                Text("my_voucher".localized)
-                    .font(.system(size: 9))
-                    .frame(width: 40)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.black)
+                // Click count
+                countClick()
+            } label: {
+                HStack() {
+                    Image("ic_my_voucher")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 27)
+                    
+                    Text("my_voucher".localized)
+                        .font(.system(size: 9))
+                        .frame(width: 40)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
+                }
+                .padding(.horizontal, 7)
+                .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
             }
-            .padding(.horizontal, 7)
-            .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
-        }
+        })
     }
 }
 

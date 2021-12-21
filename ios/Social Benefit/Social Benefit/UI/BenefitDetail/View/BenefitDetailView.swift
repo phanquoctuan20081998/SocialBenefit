@@ -73,6 +73,9 @@ struct BenefitDetailView: View {
     func applyButtonView(text: String, textColor: Color, backgroundColor: Color, disable: Bool) -> some View {
         Button(action: {
             self.benefitDetailViewModel.isPresentedPopup = true
+            
+            // Click count
+            countClick(contentId: benefitDetailViewModel.benefit.id, contentType: Constants.ViewContent.TYPE_BENEFIT)
         }, label: {
             Text(text)
                 .foregroundColor(textColor)

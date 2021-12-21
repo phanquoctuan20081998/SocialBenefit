@@ -99,6 +99,9 @@ struct MerchantCategoryItemCardView: View {
                 self.specialOffersViewModel.searchPattern = ""
                 self.offersViewModel.searchPattern = ""
             }
+            
+            // Click count
+            countClick()
         }
     }
 }
@@ -143,6 +146,9 @@ struct MerchantCategoryItemCardLocalView: View {
                 self.merchantCategoryItemViewModel.isPresentPopUp = true
                 self.homeScreenViewModel.isPresentedTabBar = false
             }
+            
+            // Click count
+            countClick()
         }
     }
 }
@@ -197,7 +203,6 @@ struct OtherPopUpView: View {
             
             
         }.padding(.vertical, 5)
-//            .frame(height: 420)
             .background(Color.white)
             .cornerRadius(radius: 30, corners: [.topLeft, .topRight])
     }

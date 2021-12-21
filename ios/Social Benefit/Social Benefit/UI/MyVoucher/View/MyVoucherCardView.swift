@@ -104,6 +104,9 @@ struct VoucherCardView: View {
                 
                 Button(action: {
                     reBuyButtonTapped()
+                    
+                    // Click count
+                    countClick(contentId: myVoucher.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                 }, label: {
                     Text("rebuy".localized)
                         .foregroundColor(.black)
@@ -115,8 +118,6 @@ struct VoucherCardView: View {
                                 .fill(isExpried ? Color.gray : Color("nissho_blue"))
                         )
                 })
-                //                .disabled(isExpried)
-                
             }
         }
     }

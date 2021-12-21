@@ -70,6 +70,9 @@ extension FilterView {
                                     self.proxy?.scrollTo(self.selectedFilterIndex,
                                                          alignment: .leading,
                                                            animated: true)
+                                    
+                                    // Click count
+                                    countClick()
                                 }
                                 .scrollId(i)
                         }

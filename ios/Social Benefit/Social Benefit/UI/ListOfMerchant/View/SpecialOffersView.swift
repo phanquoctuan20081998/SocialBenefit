@@ -12,6 +12,9 @@ struct SpecialOffersView: View {
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     
+    @State var isMoveToMerchantDetail = false
+    
+    // Infine Scroll View
     @State var isShowProgressView = false
     
     var body: some View {
@@ -27,10 +30,18 @@ struct SpecialOffersView: View {
                     ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
                         NavigationLink(
                             destination: MerchantVoucherDetailView(voucherId: self.specialOffersViewModel.allSpecialOffers[i].id),
+                            isActive: $isMoveToMerchantDetail,
                             label: {
-                                SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
-                                    .foregroundColor(.black)
-                            })
+                                Button {
+                                    self.isMoveToMerchantDetail = true
+                                    
+                                    // Click count
+                                    countClick(contentId: self.specialOffersViewModel.allSpecialOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                                } label: {
+                                    SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
+                                        .foregroundColor(.black)
+                                }.buttonStyle(NavigationLinkNoAffectButtonStyle())
+                            }).buttonStyle(NavigationLinkNoAffectButtonStyle())
                     }
 
                     //Infinite Scroll View
@@ -148,6 +159,8 @@ extension SpecialOfferCardView {
                 self.confirmInforBuyViewModel.loadData(voucherId: voucherData.id)
                 self.confirmInforBuyViewModel.isPresentedPopup = true
                 
+                // Click count
+                countClick(contentId: voucherData.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
             }, label: {
                 Text("buy".localized)
                     .font(.system(size: 10))

@@ -213,6 +213,8 @@ extension UserInformationView {
         HStack {
             Button(action: {
                 userInformationViewModel.saveButtonTapped()
+                
+                // Click count
                 countClick()
             }, label: {
                 Text("save".localized)

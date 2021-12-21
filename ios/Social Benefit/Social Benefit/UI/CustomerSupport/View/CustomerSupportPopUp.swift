@@ -62,6 +62,9 @@ extension CustomerSupportPopUp {
                 // Send button...
                 Button(action: {
                     customerSupportViewModel.sendButtonTapped()
+                    
+                    // Click count
+                    countClick()
                 }, label: {
                     Text("send".localized)
                         .foregroundColor(customerSupportViewModel.feedBackText.isEmpty ? .gray : .black)

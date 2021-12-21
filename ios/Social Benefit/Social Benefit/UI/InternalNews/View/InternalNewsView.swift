@@ -14,8 +14,6 @@ struct InternalNewsView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)
     
-//    @Binding var isPresentedTabBar: Bool
-    
     @State private var selectedTabIndex = 0
     @State private var isSearching = false
     @State private var selectedInternalNew = InternalNewsData()
@@ -85,8 +83,6 @@ extension InternalNewsView {
         VStack {
             Spacer().frame(height: ScreenInfor().screenHeight * 0.05 + 30)
             SearchBarView(searchText: $internalNewsViewModel.searchPattern, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
-            
-//            SlidingTabView(selection: self.$selectedTabIndex, tabs: ["all".localized, "training".localized, "annoucement".localized])
         }
     }
     

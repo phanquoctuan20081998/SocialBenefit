@@ -22,10 +22,16 @@ struct BottomButtonView: View {
                 ButtonView(image: "square.and.arrow.up.on.square", text: "share/copy".localized)
                     .onTapGesture {
                         copyCodeButtonTapped()
+                        
+                        // Click count
+                        countClick(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                     }
                 ButtonView(image: "qrcode", text: "qrcode".localized)
                     .onTapGesture {
                         QRButtonTapped()
+                        
+                        // Click count
+                        countClick(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                     }
             }
             
@@ -34,6 +40,9 @@ struct BottomButtonView: View {
                     .onTapGesture {
                         self.confirmInforBuyViewModel.loadData(voucherId: merchantVoucherDetailViewModel.merchantVoucherDetail.id)
                         self.confirmInforBuyViewModel.isPresentedPopup = true
+                        
+                        // Click count
+                        countClick(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                     }
             }
         }

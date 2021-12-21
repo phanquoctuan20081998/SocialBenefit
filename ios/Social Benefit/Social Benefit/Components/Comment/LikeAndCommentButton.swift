@@ -79,6 +79,12 @@ struct LikeAndCommentButton: View {
                         }
                         self.reactViewModel.isReacted.toggle()
                         
+                        // Click count
+                        if contentType == Constants.ReactContentType.INTERNAL_NEWS {
+                            countClick(contentId: self.contentId, contentType: Constants.ViewContent.TYPE_INTERNAL_NEWS)
+                        } else if contentType == Constants.ReactContentType.RECOGNIZE {
+                            countClick(contentId: self.contentId, contentType: Constants.ViewContent.TYPE_RECOGNITION)
+                        }
                     }
                     .gesture(DragGesture(minimumDistance: 0)
                                 .onChanged(onChangedValue(value:))
@@ -93,13 +99,6 @@ struct LikeAndCommentButton: View {
                         .font(.system(size: 12))
                 }.foregroundColor(.blue)
             }
-            
-//            // Reaction Bar
-//            if reactViewModel.isShowReactionBar {
-//                ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-//                    .offset(x: -30, y: 50)
-//                    .zIndex(2)
-//            }
         }
     }
     

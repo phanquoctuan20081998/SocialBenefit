@@ -85,6 +85,9 @@ extension ListOfBenefitsView {
                     .onTapGesture {
                         self.benefitDetailViewModel.getData(benefit: listOfBenefitsViewModel.listOfBenefits[index], index: index)
                         self.isTapDetail = true
+                        
+                        // Click count
+                        countClick(contentId: listOfBenefitsViewModel.listOfBenefits[index].id, contentType: Constants.ViewContent.TYPE_BENEFIT)
                     }
                 Divider()
             }

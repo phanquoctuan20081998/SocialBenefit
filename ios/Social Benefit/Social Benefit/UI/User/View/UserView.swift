@@ -71,11 +71,11 @@ struct UserView: View {
                     }
                     
                     
-                    FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7)
+                    FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7, isCountClick: false)
                     
                     
                     NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8)
+                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8, isCountClick: false)
                     }
                 }
                 //
@@ -135,6 +135,9 @@ struct UserInforView: View {
                 // Do something
                 self.selection = 1
                 self.homeScreenViewModel.isPresentedTabBar = false
+                
+                // Click count
+                countClick()
                 
             }, label: {
                 HStack(spacing: 20) {
