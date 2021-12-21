@@ -251,6 +251,25 @@
 // Recognition post
 "no_comment" = "No comment";
 
+// Survey
+"finished" = "Finished";
+"deadline_soon" = "Deadline is coming";
+"deadline_ed" = "Deadline";
+"deadline" = "Deadline";
+"search_for_survey" = "Search survey";
+"send" = "Send";
+"question" = "Question";
+"your_survey_option" = "Your opinion";
+"show_more" = "Show more";
+"sending" = "Sending";
+"answer" = "answer";
+"total" = "Total";
+"no_like" = "Become first people like it";
+"need_fill_all_data" = "Please fill full form";
+"network_error" = "Network connection error try again later.";
+"unkown_error" = "An error occurred, please try again later.";
+"wrong_login_data" = "The ID or password is incorrect.";
+"session_expired" = "Session expired please login again.";
 
 // Month
 "january" = "January";

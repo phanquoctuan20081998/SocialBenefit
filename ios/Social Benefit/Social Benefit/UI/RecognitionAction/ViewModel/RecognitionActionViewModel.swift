@@ -187,8 +187,8 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     func updatePoint(pointTextArray: [String]) {
         for i in 0 ..< pointTextArray.count {
             DispatchQueue.main.async {
-                if pointTextArray[i].count > 15 {
-                    self.pointText[i] = trimStringWithNChar(15, string: pointTextArray[i])
+                if pointTextArray[i].count > 5 {
+                    self.pointText[i] = trimStringWithNChar(5, string: pointTextArray[i])
                 }
                 
                 self.pointInt[i] = Int(self.pointText[i]) ?? 0

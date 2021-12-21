@@ -10,175 +10,85 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject var loginViewModel = LoginViewModel()
-    @ObservedObject var monitor = NetworkMonitor()
-    @ObservedObject var sessionExpired = SessionExpired.shared
-    @ObservedObject var sessionTimeOut = SessionTimeOut.shared
-    
     
     @State var reload = false
     
     var body: some View {
-        
-        if !sessionExpired.isLogin || sessionExpired.isExpried {
-            ZStack(alignment: .top) {
+        ZStack(alignment: .top) {
+            
+            // This for reload page after changing language...
+            if reload {
+                EmptyView()
+            }
+            
+            // Display background...
+            VStack {
+                Image("pic_background")
+                    .resizable()
+                    .scaledToFit()
+                Spacer()
+            }
+            
+            VStack(spacing: 10) {
                 
-                // This for reload page after changing language...
-                if reload {
-                    EmptyView()
-                }
+                Spacer()
+                    .frame(minHeight: 50, maxHeight: 100)
                 
-                // Display background...
+                //URLImageView(url: userInfor.companyLogo)
+                Image("pic_company_logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 50)
+                
+                Spacer()
+                
+                TextFieldView
+                
+                Spacer()
+                
                 VStack {
-                    Image("pic_background")
-                        .resizable()
-                        .scaledToFit()
-                    Spacer()
+                    CheckBoxView
+                    LoginButton
+                    ForgotPassword
                 }
+                
+                Spacer()
                 
                 VStack(spacing: 20) {
-                    
-                    Spacer().frame(height: 100)
-                    
-                    //URLImageView(url: userInfor.companyLogo)
-                    Image("pic_company_logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 50)
-                    
-                    Spacer()
-                    
-                    TextFieldView
-                    
-                    Spacer()
-                    
-                    VStack {
-                        CheckBoxView
-                        LoginButton
-                        ForgotPassword
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(spacing: 20) {
-                        WarningText
-                        ChangeLanguageButton
-                    }
-                    Spacer()
+                    WarningText
+                    ChangeLanguageButton
                 }
-                
-                
-                ErrorMessageView(error: "need_to_fill_all_data", isPresentedError: $loginViewModel.isPresentAllTypedError)
-                    .offset(y: 400)
-                
-                ErrorMessageView(error: "wrong_data", isPresentedError: $loginViewModel.isPresentWrongError)
-                    .offset(y: 400)
-                
-//                if sessionTimeOut.isTimeOut {
-                    ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
-                        .offset(y: 400)
-//                }
-               
-                
-                if loginViewModel.isPresentResetPasswordView {
-                    ResetPasswordView()
-                        .environmentObject(loginViewModel)
-                }
-                
-                if loginViewModel.isLoading {
-                    VStack{
-                        Spacer()
-                        ActivityRep()
-                        Spacer()
-                    }
-                    .background(Color.black.opacity(0.2)
-                    .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-                    .edgesIgnoringSafeArea(.all))
-                }
-                
+                Spacer()
             }
-            .edgesIgnoringSafeArea(.all)
-            .alert(isPresented: $monitor.isPresentPopUp, content: {
-                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
-            })
-//            .navigationBarHidden(true)
-
-//        }
-        } else {
-            ZStack(alignment: .top) {
-                
-                HomeScreenView(selectedTab: "house")
+            
+            if loginViewModel.isPresentResetPasswordView {
+                ResetPasswordView()
                     .environmentObject(loginViewModel)
-                    .environmentObject(monitor)
-
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $sessionTimeOut.isTimeOut)
-                    .offset(y: 400)
-
-                
             }
-            .alert(isPresented: $monitor.isPresentPopUp, content: {
-                return Alert(title: Text("No Internet Connection"), message: Text("Please enable Wifi or Celluar data"), dismissButton: .default(Text("Cancel")))
-            })
             
         }
+        .edgesIgnoringSafeArea(.all)
+        .loadingView(isLoading: $loginViewModel.isLoading)
+        .errorPopup($loginViewModel.error)
     }
 }
 
 extension LoginView {
     
     var TextFieldView: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 10) {
             
-            // Company Code textfield
-            TextField("company".localized, text: $loginViewModel.companyCode)
-                .font(.system(size: 15))
-                .padding(7)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(loginViewModel.isFocus1 ? Color.blue : Color.gray,
-                                lineWidth: loginViewModel.isFocus1 ? 3 : 1))
-                .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
-                .onTapGesture {
-                    loginViewModel.resetState()
-                    loginViewModel.isFocus1 = true
-                }
+            LoginTextField.init(text: $loginViewModel.companyCode, isSecure: false, placeholder: "company".localized)
             
+            LoginTextField.init(text: $loginViewModel.employeeId, isSecure: false, placeholder: "email".localized)
             
-            // Company Code textfield
-            TextField("email".localized,
-                      text: $loginViewModel.employeeId)
-                .font(.system(size: 15))
-                .padding(7)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(loginViewModel.isFocus2 ? Color.blue : Color.gray,
-                                lineWidth: loginViewModel.isFocus2 ? 3 : 1))
-                .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
-                .onTapGesture {
-                    loginViewModel.resetState()
-                    loginViewModel.isFocus2 = true
-                }
-            
-            
-            // Company Code textfield
-            SecureField("password".localized,
-                      text: $loginViewModel.password)
-                .font(.system(size: 15))
-                .padding(7)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(loginViewModel.isFocus3 ? Color.blue : Color.gray,
-                                lineWidth: loginViewModel.isFocus3 ? 3 : 1))
-                .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
-                .onTapGesture {
-                    loginViewModel.resetState()
-                    loginViewModel.isFocus3 = true
-                }
+            LoginTextField.init(text: $loginViewModel.password, isSecure: true, placeholder: "password".localized)
         }
     }
     
     var CheckBoxView: some View {
         HStack {
-            CheckBox(checked: $loginViewModel.isChecked)
+            CheckBox(checked: $loginViewModel.isRemember)
             Text("remember_me".localized)
                 .font(.system(size: 15))
         }
@@ -187,35 +97,8 @@ extension LoginView {
     var LoginButton: some View {
         VStack {
             Button {
-                if loginViewModel.isAllTextAreTyped {
-                    
-                    loginViewModel.updateToRemember()
-                    loginViewModel.loadLoginData()
-                    sessionExpired.isExpried = false
-                    
-                    // Waiting for sending api
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        // If get error instantly display error
-                        if sessionTimeOut.isTimeOut {
-                            DispatchQueue.main.async {
-                                loginViewModel.isLoading = false
-                            }
-                        }
-                        
-                        // Ortherwise waiting for a while
-                        else {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.MAX_API_LOAD_SECOND) {
-                                if loginViewModel.isLoading {
-        //                            loginViewModel.isPresentCannotConnectServerError.toggle()
-                                    loginViewModel.isLoading = false
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    // If textfiled are blank
-                    loginViewModel.isPresentAllTypedError.toggle()
-                }
+                Utils.dismissKeyboard()
+                loginViewModel.login()
             } label: {
                 Text("login".localized)
                     .foregroundColor(.black)
@@ -230,13 +113,30 @@ extension LoginView {
     
     var ForgotPassword: some View {
         
+        //        Text("forgot_password".localized)
+        //            .font(.system(size: 15))
+        //            .sheet(isPresented: $loginViewModel.isPresentResetPasswordView, content: {
+        //                ResetPasswordView()
+        //            })
+        //            .onTapGesture {
+        //                loginViewModel.isPresentResetPasswordView.toggle()
+        //            }
+        
         Text("forgot_password".localized)
             .font(.system(size: 15))
             .foregroundColor(.blue)
             .onTapGesture {
                 loginViewModel.isPresentResetPasswordView.toggle()
-                loginViewModel.resetState()
+                loginViewModel.clearError()
             }
+        //            .background (
+        //                NavigationLink(
+        //                    destination: ResetPasswordView().navigationBarHidden(true),
+        //                    isActive: $loginViewModel.isPresentResetPasswordView,
+        //                    label: {
+        //                        EmptyView()
+        //                    }))
+        
     }
     
     var WarningText: some View {
@@ -249,32 +149,34 @@ extension LoginView {
     var ChangeLanguageButton: some View {
         HStack(spacing: 20) {
             Button {
-                Bundle.setLanguage(lang: "vn")
-                UserDefaults.standard.set(Constants.LANGUAGE.VN, forKey: "language")
+                Bundle.setLanguage(lang: AppLanguage.vn)
                 reload.toggle()
+                loginViewModel.clearError()
             } label: {
                 Image("pic_language1")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 40, height: 15)
             }
-
+            .buttonStyle(PlainButtonStyle())
+            
             Button {
-                Bundle.setLanguage(lang: "en")
-                UserDefaults.standard.set(Constants.LANGUAGE.ENG, forKey: "language")
+                Bundle.setLanguage(lang: AppLanguage.en)
                 reload.toggle()
+                loginViewModel.clearError()
             } label: {
                 Image("pic_language2")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 40, height: 15)
             }
+            .buttonStyle(PlainButtonStyle())
         }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView() 
+        LoginView()
     }
 }

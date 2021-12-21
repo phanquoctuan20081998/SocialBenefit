@@ -23,7 +23,7 @@ struct SearchView: View {
         if isPresent {
             VStack {
                 HStack(spacing: 15) {
-                    SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "your_searching_screen".localized, width: ScreenInfor().screenWidth * 0.8, height: 50, fontSize: 15, isShowCancelButton: false)
+                    SearchBarView(searchText: $searchText, isSearching: $isSearching, placeHolder: "your_searching_screen".localized, width: ScreenInfor().screenWidth * 0.8, height: 30, fontSize: 15, isShowCancelButton: false)
                     
                     Button {
                         withAnimation(.easeInOut) {

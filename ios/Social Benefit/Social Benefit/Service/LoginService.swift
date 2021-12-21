@@ -8,27 +8,18 @@
 import Alamofire
 import SwiftyJSON
 
-class LoginService {
+class LoginService: APIServiceProtocol {
+    let apiRequest = APIRequest()
     
-    func getAPI(companyCode: String, userLogin: String, password: String, returnCallBack: @escaping (JSON) -> ()) {
-        let service = BaseAPI()
-        
+    func getAPI(companyCode: String, userLogin: String, password: String, completion: @escaping (Result<LoginModel, AppError>) -> Void) {
 //        let passMd5 = MD5(password)
-        let passMd5 = password
-        let deviceId = UIDevice.current.identifierForVendor?.uuidString
-        let deviceToken = "abcd"
-        let deviceType = "1" //For iPhone
         
-        let params = ["companyCode": companyCode,
-                      "userLogin": userLogin,
-                      "password": passMd5,
-                      "deviceId": deviceId,
-                      "deviceToken": deviceToken,
-                      "deviceType": deviceType]
-
-        service.makeCall(endpoint: Config.API_LOGIN, method: "POST", header: ["":""], body: params as [String : Any], callback: { (result) in
-            returnCallBack(result)
-        })
+        let passMd5 = password
+        let body = LoginRequestModel.init(companyCode: companyCode, userLogin: userLogin, password: passMd5)
+        
+        apiRequest.request(url: Config.API_LOGIN, method: .post, httpBody: body, type: LoginModel.self, customError: "wrong_login_data".localized) { response in
+            completion(response)
+        }
     }
 }
 

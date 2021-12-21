@@ -30,7 +30,6 @@ struct UserView: View {
             Spacer()
                 .frame(height: 30)
             
-            
             ScrollView (.vertical, showsIndicators: false) {
                 VStack(spacing: 8) {
                     
@@ -43,9 +42,9 @@ struct UserView: View {
                             FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
                         }
                         
-                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
-                        }
+//                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
+//                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
+//                        }
                     }
                     
                     if isDisplayFunction(Constants.FuctionId.BENEFIT) {
@@ -56,7 +55,7 @@ struct UserView: View {
                     
                     
                     if isDisplayFunction(Constants.FuctionId.SURVEY) {
-                        NavigationLink(destination: Text("5"), tag: 5, selection: $selection) {
+                        NavigationLink(destination: ListSurveyView(), tag: 5, selection: $selection) {
                             FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
                         }
                     }

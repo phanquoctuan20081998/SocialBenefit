@@ -147,3 +147,40 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNa
     print(userInfor)
 }
 
+func updateUserInfor(model: LoginModel) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy"
+    userInfor.userId = model.result?.employeeDto?.employeeCode ?? ""
+    userInfor.employeeId = model.result?.employeeDto?.id?.string ?? "0"
+    userInfor.token = model.result?.token ?? ""
+    userInfor.companyId = model.result?.employeeDto?.company?.id?.string ?? "0"
+    userInfor.name = model.result?.employeeDto?.citizen?.fullName ?? ""
+    userInfor.avatar = model.result?.employeeDto?.avatar ?? ""
+    userInfor.position = model.result?.employeeDto?.position?.name ?? ""
+    userInfor.nickname = model.result?.employeeDto?.nickName ?? ""
+    userInfor.email = model.result?.employeeDto?.email ?? ""
+    userInfor.phone = model.result?.employeeDto?.phone ?? ""
+    userInfor.department = model.result?.employeeDto?.department?.name ?? ""
+    userInfor.isLeader = model.result?.employeeDto?.isPointManager ?? false
+    userInfor.companyLogo = model.result?.employeeDto?.company?.logo ?? ""
+    userInfor.noStreet = model.result?.employeeDto?.citizen?.noStreet ?? ""
+    userInfor.ward = model.result?.employeeDto?.citizen?.locationWard?.name ?? ""
+    userInfor.district = model.result?.employeeDto?.citizen?.locationDistrict?.name ?? ""
+    userInfor.city = model.result?.employeeDto?.citizen?.locationCity?.name ?? ""
+    userInfor.address = userInfor.noStreet + ", " + userInfor.ward + ", " + userInfor.district + ", " + userInfor.city
+    if let birthDay = model.result?.employeeDto?.citizen?.birthDayStr {
+        userInfor.birthday = dateFormatter.date(from: birthDay) ?? Date()
+    }
+    if model.result?.employeeDto?.citizen?.sex == 0 {
+        userInfor.gender = "male"
+    } else if model.result?.employeeDto?.citizen?.sex == 1 {
+        userInfor.gender = "female"
+    } else {
+        userInfor.gender = "other"
+    }
+    userInfor.CMND = model.result?.employeeDto?.citizen?.idCard ?? ""
+    userInfor.passport = model.result?.employeeDto?.citizen?.passport ?? ""
+    userInfor.insurance = model.result?.employeeDto?.citizen?.socialInsurance ?? ""
+    userInfor.citizenId = model.result?.employeeDto?.citizen?.id?.string ?? "0"
+    userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
+}

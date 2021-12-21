@@ -140,6 +140,11 @@ struct Constants {
     
 }
 
+enum AppLanguage: String, CaseIterable {
+    case en
+    case vn
+}
+
 struct BackgroundSearch {
     var tab: String
     var icon: String

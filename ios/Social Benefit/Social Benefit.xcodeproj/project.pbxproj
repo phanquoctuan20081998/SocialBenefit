@@ -85,6 +85,44 @@
 		C440878127421BF4009079EF /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440878027421BF4009079EF /* TransactionCardView.swift */; };
 		C4413F1C2759B64400FDA3E7 /* CheckIsDisplayFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4413F1B2759B64400FDA3E7 /* CheckIsDisplayFunction.swift */; };
 		C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */; };
+		C446BE7C2771B35C00925F5E /* UITextFieldRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE7B2771B35C00925F5E /* UITextFieldRep.swift */; };
+		C446BE7E2771B38400925F5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE7D2771B38400925F5E /* Utils.swift */; };
+		C446BE802771B39900925F5E /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE7F2771B39900925F5E /* UserDefaultsUtils.swift */; };
+		C446BE822771B46800925F5E /* ListSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE812771B46800925F5E /* ListSurveyModel.swift */; };
+		C446BE842771B48400925F5E /* ListSurveyRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE832771B48400925F5E /* ListSurveyRequestModel.swift */; };
+		C446BE862771B4A800925F5E /* APIModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE852771B4A800925F5E /* APIModelProtocol.swift */; };
+		C446BE882771B4BF00925F5E /* SurveyGetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE872771B4BF00925F5E /* SurveyGetModel.swift */; };
+		C446BE8A2771B4DE00925F5E /* SurveyChoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE892771B4DE00925F5E /* SurveyChoiceModel.swift */; };
+		C446BE8C2771B4F600925F5E /* SurveyChoiceResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE8B2771B4F600925F5E /* SurveyChoiceResultModel.swift */; };
+		C446BE8E2771B50700925F5E /* ListCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE8D2771B50700925F5E /* ListCommentModel.swift */; };
+		C446BE902771B51B00925F5E /* AddCommentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE8F2771B51B00925F5E /* AddCommentRequestModel.swift */; };
+		C446BE922771B52D00925F5E /* AddCommentResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE912771B52D00925F5E /* AddCommentResultModel.swift */; };
+		C446BE942771B54300925F5E /* ReactSuveryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE932771B54300925F5E /* ReactSuveryModel.swift */; };
+		C446BE962771B56700925F5E /* AddReactResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE952771B56700925F5E /* AddReactResultModel.swift */; };
+		C446BE982771B58200925F5E /* LoginRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE972771B58200925F5E /* LoginRequestModel.swift */; };
+		C446BE9A2771B59800925F5E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE992771B59800925F5E /* LoginModel.swift */; };
+		C446BE9C2771B5B100925F5E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE9B2771B5B100925F5E /* AppError.swift */; };
+		C446BE9E2771B6B700925F5E /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE9D2771B6B700925F5E /* APIRequest.swift */; };
+		C446BEA02771B6D800925F5E /* ListSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BE9F2771B6D800925F5E /* ListSurveySerive.swift */; };
+		C446BEA22771B6FA00925F5E /* SurveyGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEA12771B6FA00925F5E /* SurveyGetService.swift */; };
+		C446BEA42771B71700925F5E /* SurveyChoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEA32771B71700925F5E /* SurveyChoiceService.swift */; };
+		C446BEA62771B72B00925F5E /* ListCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEA52771B72B00925F5E /* ListCommentService.swift */; };
+		C446BEA82771B74000925F5E /* AddCommentSurveyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEA72771B74000925F5E /* AddCommentSurveyService.swift */; };
+		C446BEAA2771B75500925F5E /* ListReactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEA92771B75500925F5E /* ListReactService.swift */; };
+		C446BEAC2771B76A00925F5E /* AddReactSurveyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEAB2771B76A00925F5E /* AddReactSurveyService.swift */; };
+		C446BEAE2771B87900925F5E /* ExtenBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEAD2771B87900925F5E /* ExtenBinding.swift */; };
+		C446BEB02771B88900925F5E /* StringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEAF2771B88900925F5E /* StringValue.swift */; };
+		C446BEB32771B98000925F5E /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEB22771B98000925F5E /* Popup.swift */; };
+		C446BEB52771B9B500925F5E /* InforTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEB42771B9B500925F5E /* InforTextView.swift */; };
+		C446BEB72771B9CA00925F5E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEB62771B9CA00925F5E /* LoadingView.swift */; };
+		C446BEB92771B9DD00925F5E /* ErrorPupup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEB82771B9DD00925F5E /* ErrorPupup.swift */; };
+		C446BEC02771C48300925F5E /* SurveyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEBF2771C48300925F5E /* SurveyDetailView.swift */; };
+		C446BEC22771C49500925F5E /* RadioButtonOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEC12771C49500925F5E /* RadioButtonOptional.swift */; };
+		C446BEC42771C4A100925F5E /* CheckBoxOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEC32771C4A100925F5E /* CheckBoxOptional.swift */; };
+		C446BEC62771C4B800925F5E /* ReactionCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEC52771C4B800925F5E /* ReactionCommentView.swift */; };
+		C446BEC82771C4D200925F5E /* SurveyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BEC72771C4D200925F5E /* SurveyDetailViewModel.swift */; };
+		C446BECC2771C5F100925F5E /* ListSurveyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BECB2771C5F100925F5E /* ListSurveyViewModel.swift */; };
+		C446BECE2771C61800925F5E /* ListSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446BECD2771C61800925F5E /* ListSurveyView.swift */; };
 		C4492A5E26F18E98008B26C9 /* MerchantVoucherItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A5D26F18E98008B26C9 /* MerchantVoucherItemModel.swift */; };
 		C4492A6026F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A5F26F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift */; };
 		C4492A6226F19916008B26C9 /* MerchantVoucherSpecialListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */; };
@@ -330,6 +368,44 @@
 		C440878027421BF4009079EF /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardView.swift; sourceTree = "<group>"; };
 		C4413F1B2759B64400FDA3E7 /* CheckIsDisplayFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIsDisplayFunction.swift; sourceTree = "<group>"; };
 		C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNewsFeedHaveSameDateFirstIndex.swift; sourceTree = "<group>"; };
+		C446BE7B2771B35C00925F5E /* UITextFieldRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldRep.swift; sourceTree = "<group>"; };
+		C446BE7D2771B38400925F5E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C446BE7F2771B39900925F5E /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
+		C446BE812771B46800925F5E /* ListSurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSurveyModel.swift; sourceTree = "<group>"; };
+		C446BE832771B48400925F5E /* ListSurveyRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSurveyRequestModel.swift; sourceTree = "<group>"; };
+		C446BE852771B4A800925F5E /* APIModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModelProtocol.swift; sourceTree = "<group>"; };
+		C446BE872771B4BF00925F5E /* SurveyGetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyGetModel.swift; sourceTree = "<group>"; };
+		C446BE892771B4DE00925F5E /* SurveyChoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyChoiceModel.swift; sourceTree = "<group>"; };
+		C446BE8B2771B4F600925F5E /* SurveyChoiceResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyChoiceResultModel.swift; sourceTree = "<group>"; };
+		C446BE8D2771B50700925F5E /* ListCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentModel.swift; sourceTree = "<group>"; };
+		C446BE8F2771B51B00925F5E /* AddCommentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentRequestModel.swift; sourceTree = "<group>"; };
+		C446BE912771B52D00925F5E /* AddCommentResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentResultModel.swift; sourceTree = "<group>"; };
+		C446BE932771B54300925F5E /* ReactSuveryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactSuveryModel.swift; sourceTree = "<group>"; };
+		C446BE952771B56700925F5E /* AddReactResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactResultModel.swift; sourceTree = "<group>"; };
+		C446BE972771B58200925F5E /* LoginRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestModel.swift; sourceTree = "<group>"; };
+		C446BE992771B59800925F5E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		C446BE9B2771B5B100925F5E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		C446BE9D2771B6B700925F5E /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		C446BE9F2771B6D800925F5E /* ListSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSurveySerive.swift; sourceTree = "<group>"; };
+		C446BEA12771B6FA00925F5E /* SurveyGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyGetService.swift; sourceTree = "<group>"; };
+		C446BEA32771B71700925F5E /* SurveyChoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyChoiceService.swift; sourceTree = "<group>"; };
+		C446BEA52771B72B00925F5E /* ListCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentService.swift; sourceTree = "<group>"; };
+		C446BEA72771B74000925F5E /* AddCommentSurveyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentSurveyService.swift; sourceTree = "<group>"; };
+		C446BEA92771B75500925F5E /* ListReactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListReactService.swift; sourceTree = "<group>"; };
+		C446BEAB2771B76A00925F5E /* AddReactSurveyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactSurveyService.swift; sourceTree = "<group>"; };
+		C446BEAD2771B87900925F5E /* ExtenBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtenBinding.swift; sourceTree = "<group>"; };
+		C446BEAF2771B88900925F5E /* StringValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValue.swift; sourceTree = "<group>"; };
+		C446BEB22771B98000925F5E /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		C446BEB42771B9B500925F5E /* InforTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InforTextView.swift; sourceTree = "<group>"; };
+		C446BEB62771B9CA00925F5E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C446BEB82771B9DD00925F5E /* ErrorPupup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPupup.swift; sourceTree = "<group>"; };
+		C446BEBF2771C48300925F5E /* SurveyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailView.swift; sourceTree = "<group>"; };
+		C446BEC12771C49500925F5E /* RadioButtonOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonOptional.swift; sourceTree = "<group>"; };
+		C446BEC32771C4A100925F5E /* CheckBoxOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxOptional.swift; sourceTree = "<group>"; };
+		C446BEC52771C4B800925F5E /* ReactionCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionCommentView.swift; sourceTree = "<group>"; };
+		C446BEC72771C4D200925F5E /* SurveyDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailViewModel.swift; sourceTree = "<group>"; };
+		C446BECB2771C5F100925F5E /* ListSurveyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSurveyViewModel.swift; sourceTree = "<group>"; };
+		C446BECD2771C61800925F5E /* ListSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSurveyView.swift; sourceTree = "<group>"; };
 		C4492A5D26F18E98008B26C9 /* MerchantVoucherItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherItemModel.swift; sourceTree = "<group>"; };
 		C4492A5F26F1965A008B26C9 /* MerchantVoucherSpecialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherSpecialListViewModel.swift; sourceTree = "<group>"; };
 		C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantVoucherSpecialListService.swift; sourceTree = "<group>"; };
@@ -573,6 +649,8 @@
 				C441BBFB27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift */,
 				C4413F1B2759B64400FDA3E7 /* CheckIsDisplayFunction.swift */,
 				C436CF0A2768443400EFF9DF /* MessageID.swift */,
+				C446BE7D2771B38400925F5E /* Utils.swift */,
+				C446BE7F2771B39900925F5E /* UserDefaultsUtils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -615,6 +693,14 @@
 				C456C460275DAD0800406C8D /* UserService.swift */,
 				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
 				C4A519C2276996B70065E047 /* ViewClickService.swift */,
+				C446BE9D2771B6B700925F5E /* APIRequest.swift */,
+				C446BE9F2771B6D800925F5E /* ListSurveySerive.swift */,
+				C446BEA12771B6FA00925F5E /* SurveyGetService.swift */,
+				C446BEA32771B71700925F5E /* SurveyChoiceService.swift */,
+				C446BEA52771B72B00925F5E /* ListCommentService.swift */,
+				C446BEA72771B74000925F5E /* AddCommentSurveyService.swift */,
+				C446BEA92771B75500925F5E /* ListReactService.swift */,
+				C446BEAB2771B76A00925F5E /* AddReactSurveyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -623,6 +709,7 @@
 			isa = PBXGroup;
 			children = (
 				C412B0DE26D7521800A669A1 /* TEST */,
+				C446BEBA2771BCDA00925F5E /* Survey */,
 				C4ADDE5D276C2A2A00B24F6A /* ClickCounter */,
 				C4FB94AA27586DB000E9324C /* RecognitionAction */,
 				C476C5B427562A2D00D93AA7 /* EmployeeRanking */,
@@ -748,6 +835,20 @@
 				C456C45E275DA1D600406C8D /* WalletInforModel.swift */,
 				C4E288D327608B0A00A0BBF7 /* PointTransactionRequestModel.swift */,
 				C4A519C0276995E60065E047 /* ViewClickItem.swift */,
+				C446BE812771B46800925F5E /* ListSurveyModel.swift */,
+				C446BE832771B48400925F5E /* ListSurveyRequestModel.swift */,
+				C446BE852771B4A800925F5E /* APIModelProtocol.swift */,
+				C446BE872771B4BF00925F5E /* SurveyGetModel.swift */,
+				C446BE892771B4DE00925F5E /* SurveyChoiceModel.swift */,
+				C446BE8B2771B4F600925F5E /* SurveyChoiceResultModel.swift */,
+				C446BE8D2771B50700925F5E /* ListCommentModel.swift */,
+				C446BE8F2771B51B00925F5E /* AddCommentRequestModel.swift */,
+				C446BE912771B52D00925F5E /* AddCommentResultModel.swift */,
+				C446BE932771B54300925F5E /* ReactSuveryModel.swift */,
+				C446BE952771B56700925F5E /* AddReactResultModel.swift */,
+				C446BE972771B58200925F5E /* LoginRequestModel.swift */,
+				C446BE992771B59800925F5E /* LoginModel.swift */,
+				C446BE9B2771B5B100925F5E /* AppError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -800,6 +901,8 @@
 				C4F2A4FD26F04BAE0090675A /* UpperCaseText.swift */,
 				84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */,
 				C476C5B227561FC200D93AA7 /* NoHightLightClickAffect.swift */,
+				C446BEAD2771B87900925F5E /* ExtenBinding.swift */,
+				C446BEAF2771B88900925F5E /* StringValue.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -807,6 +910,7 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C446BEB12771B96500925F5E /* ViewModifier */,
 				C4F410F5274B8D0600BEF6DF /* Comment */,
 				C49285532716B88000F5BCBB /* CheckBox */,
 				C4DB9687271598CC0073382C /* LoadingPage */,
@@ -925,6 +1029,79 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C446BEB12771B96500925F5E /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				C446BEB22771B98000925F5E /* Popup.swift */,
+				C446BEB42771B9B500925F5E /* InforTextView.swift */,
+				C446BEB62771B9CA00925F5E /* LoadingView.swift */,
+				C446BEB82771B9DD00925F5E /* ErrorPupup.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		C446BEBA2771BCDA00925F5E /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				C446BEBC2771BCF100925F5E /* List Survey */,
+				C446BEBB2771BCE400925F5E /* Survey Detail */,
+			);
+			path = Survey;
+			sourceTree = "<group>";
+		};
+		C446BEBB2771BCE400925F5E /* Survey Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C446BEBE2771C46D00925F5E /* ViewModel */,
+				C446BEBD2771C46800925F5E /* View */,
+			);
+			path = "Survey Detail";
+			sourceTree = "<group>";
+		};
+		C446BEBC2771BCF100925F5E /* List Survey */ = {
+			isa = PBXGroup;
+			children = (
+				C446BECA2771C54F00925F5E /* ViewModel */,
+				C446BEC92771C54900925F5E /* View */,
+			);
+			path = "List Survey";
+			sourceTree = "<group>";
+		};
+		C446BEBD2771C46800925F5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C446BEBF2771C48300925F5E /* SurveyDetailView.swift */,
+				C446BEC12771C49500925F5E /* RadioButtonOptional.swift */,
+				C446BEC32771C4A100925F5E /* CheckBoxOptional.swift */,
+				C446BEC52771C4B800925F5E /* ReactionCommentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C446BEBE2771C46D00925F5E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C446BEC72771C4D200925F5E /* SurveyDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C446BEC92771C54900925F5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C446BECD2771C61800925F5E /* ListSurveyView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C446BECA2771C54F00925F5E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C446BECB2771C5F100925F5E /* ListSurveyViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C447E4C5270C393400ECBB3E /* DragPopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1000,6 +1177,7 @@
 			isa = PBXGroup;
 			children = (
 				C46CD3C32716885F00A454CE /* LoginView.swift */,
+				C446BE7B2771B35C00925F5E /* UITextFieldRep.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1677,6 +1855,7 @@
 				C472E4C826FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift in Sources */,
 				C48BA35626EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift in Sources */,
 				C40161C526F08D44003A1EEF /* SpecialOffersView.swift in Sources */,
+				C446BE842771B48400925F5E /* ListSurveyRequestModel.swift in Sources */,
 				C4B9BF7726FC25170022DA55 /* VoucherCodeModel.swift in Sources */,
 				C424F73926CDFCBD00BD441E /* ConditionInViewModifier.swift in Sources */,
 				C440878127421BF4009079EF /* TransactionCardView.swift in Sources */,
@@ -1687,8 +1866,10 @@
 				C48C6AFF2718064000BFAF34 /* ResetSuccessView.swift in Sources */,
 				C47AEC312757077B00DF8A60 /* EmployeeInforService.swift in Sources */,
 				C48BA35426EF016E006C4F27 /* MerchantCategoryItemModel.swift in Sources */,
+				C446BE7C2771B35C00925F5E /* UITextFieldRep.swift in Sources */,
 				C478889A270BFF65009F5A25 /* UserInformationViewModel.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
+				C446BEC22771C49500925F5E /* RadioButtonOptional.swift in Sources */,
 				C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */,
 				C4B3D58226E9DDED003C6CA9 /* ListOfBenefitsViewModel.swift in Sources */,
 				C43B21CB26DE141900E2E451 /* SearchBarView.swift in Sources */,
@@ -1702,8 +1883,10 @@
 				C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */,
 				C4393D2926E90F2200C02D43 /* AutoResizeTextField.swift in Sources */,
 				C497AA1426F82696006EFE0C /* BuyVoucherPopUp.swift in Sources */,
+				C446BE922771B52D00925F5E /* AddCommentResultModel.swift in Sources */,
 				C4CB7FD8272258F90094EE90 /* UserInformationUpdateService.swift in Sources */,
 				C4AAEBAC274647860091EF7F /* RecognitionView.swift in Sources */,
+				C446BE962771B56700925F5E /* AddReactResultModel.swift in Sources */,
 				C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */,
 				C4B3D58726EA02DD003C6CA9 /* ApplyPopupView.swift in Sources */,
 				C471A9CC2702AA0200C5F6EE /* BottomButtonView.swift in Sources */,
@@ -1711,6 +1894,7 @@
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
 				848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
+				C446BE982771B58200925F5E /* LoginRequestModel.swift in Sources */,
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
 				C4B9BF7926FC2AC50022DA55 /* GeneratorQRCode.swift in Sources */,
 				C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */,
@@ -1725,6 +1909,7 @@
 				C4B9BF7526FC23680022DA55 /* GenerateCodeService.swift in Sources */,
 				C49C4C3127434D7500ED3213 /* UsedPointsHistoryService.swift in Sources */,
 				C497AA1626F83936006EFE0C /* ConfirmInforBuyService.swift in Sources */,
+				C446BEA62771B72B00925F5E /* ListCommentService.swift in Sources */,
 				C49C4C332743536800ED3213 /* UsedPointsHistoryModel.swift in Sources */,
 				84DA60C3269ECA130012F55B /* UserViewController.swift in Sources */,
 				C403ECB726CD4E97001E3009 /* DatePickerPopUpView.swift in Sources */,
@@ -1737,11 +1922,15 @@
 				C43C7BB826FB019B0056D169 /* MyVoucherViewModel.swift in Sources */,
 				84DA606B2696DAC80012F55B /* AppDelegate.swift in Sources */,
 				C4D02618270D44140048B671 /* PopUpView.swift in Sources */,
+				C446BE9A2771B59800925F5E /* LoginModel.swift in Sources */,
 				C4413F1C2759B64400FDA3E7 /* CheckIsDisplayFunction.swift in Sources */,
+				C446BEA42771B71700925F5E /* SurveyChoiceService.swift in Sources */,
 				C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */,
 				C402B26A26E76C5300A41288 /* ReactViewModel.swift in Sources */,
 				C4492A5E26F18E98008B26C9 /* MerchantVoucherItemModel.swift in Sources */,
 				C46CD3C42716885F00A454CE /* LoginView.swift in Sources */,
+				C446BEB52771B9B500925F5E /* InforTextView.swift in Sources */,
+				C446BEAA2771B75500925F5E /* ListReactService.swift in Sources */,
 				C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */,
 				C4BBFFEE270AE20000A92109 /* IsSystemImage.swift in Sources */,
 				C426927026EB005C0089A5B8 /* CheckBenefitService.swift in Sources */,
@@ -1753,12 +1942,15 @@
 				C4E9D43526D4A04E00B223AC /* CustomTabBarView.swift in Sources */,
 				C43B21C826DDD0F600E2E451 /* CommentService.swift in Sources */,
 				C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */,
+				C446BEA82771B74000925F5E /* AddCommentSurveyService.swift in Sources */,
 				C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */,
 				C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */,
+				C446BEA22771B6FA00925F5E /* SurveyGetService.swift in Sources */,
 				C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */,
 				C4AB352D270AD7B000A186F5 /* SearchView.swift in Sources */,
 				84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */,
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
+				C446BEAE2771B87900925F5E /* ExtenBinding.swift in Sources */,
 				C45490372742069100175E09 /* UsedPointHistoryViewModel.swift in Sources */,
 				C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */,
 				C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */,
@@ -1769,7 +1961,9 @@
 				C456C463275DB34E00406C8D /* UserSearchView.swift in Sources */,
 				C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */,
 				84DA60872696DB720012F55B /* SplashViewController.swift in Sources */,
+				C446BE8C2771B4F600925F5E /* SurveyChoiceResultModel.swift in Sources */,
 				C4D02610270D3E790048B671 /* BackgroundSearchView.swift in Sources */,
+				C446BEB32771B98000925F5E /* Popup.swift in Sources */,
 				C472E4CA26FDA5DC00D047BA /* AppliedStoreMerchantListService.swift in Sources */,
 				C4974ABD26F5D916002AED6C /* MerchantVoucherListByCategoryViewModel.swift in Sources */,
 				C49285552716B89300F5BCBB /* CheckBox.swift in Sources */,
@@ -1777,12 +1971,16 @@
 				C497AA1826F83A6D006EFE0C /* BuyVoucherInforModel.swift in Sources */,
 				C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */,
 				C456C45D275DA14F00406C8D /* WalletInforService.swift in Sources */,
+				C446BEB02771B88900925F5E /* StringValue.swift in Sources */,
 				C4DF7A6726F9BCCE00DC7D04 /* BuyVoucherModel.swift in Sources */,
 				C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */,
 				C4BA72122717D4E100D73660 /* ResetPasswordViewModel.swift in Sources */,
+				C446BEC02771C48300925F5E /* SurveyDetailView.swift in Sources */,
 				C42F55C126F37670006F1CAC /* ListOfMerchantView.swift in Sources */,
 				C4E9D43726D4C86B00B223AC /* TabCurveShape.swift in Sources */,
 				C419868E26E46F7C00A877A5 /* LocalFileManager.swift in Sources */,
+				C446BEAC2771B76A00925F5E /* AddReactSurveyService.swift in Sources */,
+				C446BE9C2771B5B100925F5E /* AppError.swift in Sources */,
 				C49B0B71270DF10D002C3D9F /* SearchSelectionView.swift in Sources */,
 				C4E9D43D26D4D4A400B223AC /* BannerCurverShape.swift in Sources */,
 				C410A467274B3177006069E3 /* RecognitionViewModel.swift in Sources */,
@@ -1793,11 +1991,17 @@
 				C4EC104326F23B670064C3B3 /* GridView.swift in Sources */,
 				C4B9BF7B26FC53540022DA55 /* VoucherQRPopUpView.swift in Sources */,
 				C478889C270C2749009F5A25 /* ImagePickerView.swift in Sources */,
+				C446BE8A2771B4DE00925F5E /* SurveyChoiceModel.swift in Sources */,
 				C4ADDE5F276C2A7400B24F6A /* ClickCounterViewModel.swift in Sources */,
+				C446BEA02771B6D800925F5E /* ListSurveySerive.swift in Sources */,
 				C426927326EB02130089A5B8 /* BenefitDetailViewModel.swift in Sources */,
+				C446BE902771B51B00925F5E /* AddCommentRequestModel.swift in Sources */,
 				C419869226E46FC200A877A5 /* URLImageService.swift in Sources */,
 				C4A519C3276996B70065E047 /* ViewClickService.swift in Sources */,
+				C446BE862771B4A800925F5E /* APIModelProtocol.swift in Sources */,
 				C42255DF26FE0E5200A4416F /* SimilarVoucherService.swift in Sources */,
+				C446BE7E2771B38400925F5E /* Utils.swift in Sources */,
+				C446BE882771B4BF00925F5E /* SurveyGetModel.swift in Sources */,
 				C43B21C626DDCDB800E2E451 /* CommentModel.swift in Sources */,
 				C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */,
 				C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */,
@@ -1810,6 +2014,7 @@
 				C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,
 				C4D510DA2752741C0007BE48 /* RankingOfRecognitionView.swift in Sources */,
+				C446BE822771B46800925F5E /* ListSurveyModel.swift in Sources */,
 				C4953EF626E3A9A900295583 /* CommentViewModel.swift in Sources */,
 				C4A519C1276995E60065E047 /* ViewClickItem.swift in Sources */,
 				C472E4C226FD726B00D047BA /* MerchantVoucherDetailModel.swift in Sources */,
@@ -1817,6 +2022,7 @@
 				C46C55F02721660800B2613B /* TrimStringWithNChar.swift in Sources */,
 				C472E4BB26FD609900D047BA /* MerchantVoucherDetailView.swift in Sources */,
 				C4BA720E2717D1B800D73660 /* ResetPasswordView.swift in Sources */,
+				C446BEC42771C4A100925F5E /* CheckBoxOptional.swift in Sources */,
 				C4F2A4FC26F040AC0090675A /* HTMLStringView.swift in Sources */,
 				C46BD8892747545500E8715F /* RankingCardView.swift in Sources */,
 				C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */,
@@ -1840,25 +2046,33 @@
 				C419868B26E46F5400A877A5 /* URLImageViewModel.swift in Sources */,
 				C4119B53275487340093542F /* PostBannerView.swift in Sources */,
 				C41C8C6E26DC79C200AC1FA7 /* InternalNewsDetailView.swift in Sources */,
+				C446BECE2771C61800925F5E /* ListSurveyView.swift in Sources */,
+				C446BECC2771C5F100925F5E /* ListSurveyViewModel.swift in Sources */,
 				C45260BE271565B1007E945B /* View.swift in Sources */,
 				C472E4C026FD723000D047BA /* MerchantVoucherDetailService.swift in Sources */,
 				C4C8334E2711475A0058E8E3 /* HomeViewModel.swift in Sources */,
+				C446BEC62771C4B800925F5E /* ReactionCommentView.swift in Sources */,
 				C4F2A4FE26F04BAE0090675A /* UpperCaseText.swift in Sources */,
 				C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */,
 				C4D2606F26E475B2002E475C /* SlideBar.swift in Sources */,
+				C446BEB92771B9DD00925F5E /* ErrorPupup.swift in Sources */,
 				C4DB9689271598EA0073382C /* LoadingPageView.swift in Sources */,
 				C456C45F275DA1D600406C8D /* WalletInforModel.swift in Sources */,
+				C446BEC82771C4D200925F5E /* SurveyDetailViewModel.swift in Sources */,
 				C45490352741F51300175E09 /* UsedPointHistoryView.swift in Sources */,
 				C4E3442F26F627BD00B343E8 /* Constants.swift in Sources */,
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
 				C4119B512754871D0093542F /* RecognitionPostView.swift in Sources */,
 				C42BD5E82743584E00E99840 /* ConvertDateSince1970.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
+				C446BE802771B39900925F5E /* UserDefaultsUtils.swift in Sources */,
+				C446BE942771B54300925F5E /* ReactSuveryModel.swift in Sources */,
 				C43C7BB426FAE3800056D169 /* MyVoucherService.swift in Sources */,
 				848753692706BAA60061D4E1 /* ChangePasswordService.swift in Sources */,
 				C4CAE21D2704C01E008E25DE /* SimiliarVoucherView.swift in Sources */,
 				C4B854F2275FAD6B001B274B /* TextFieldDynamicWidth.swift in Sources */,
 				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,
+				C446BE9E2771B6B700925F5E /* APIRequest.swift in Sources */,
 				C4A9890327550D9B00E22760 /* RecognitionPostViewModel.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
 				C4750073270B40B000FE75EB /* SearchBarModel.swift in Sources */,
@@ -1873,6 +2087,7 @@
 				C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */,
 				C476C5B927562BAF00D93AA7 /* EmployeeRankingView.swift in Sources */,
 				C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */,
+				C446BE8E2771B50700925F5E /* ListCommentModel.swift in Sources */,
 				C404F5BB270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift in Sources */,
 				C48790B62759D716002E97F0 /* RecentTranferService.swift in Sources */,
 				C434AF3A274CC72A002A026E /* LikeAndCommentCountBarView.swift in Sources */,
@@ -1884,6 +2099,7 @@
 				84DA60C4269ECA130012F55B /* HomeViewController.swift in Sources */,
 				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
 				C456C461275DAD0800406C8D /* UserService.swift in Sources */,
+				C446BEB72771B9CA00925F5E /* LoadingView.swift in Sources */,
 				C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

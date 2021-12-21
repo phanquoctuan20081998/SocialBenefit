@@ -66,7 +66,7 @@ struct MyVoucherView: View {
 extension MyVoucherView {
     
     var SearchView: some View {
-        SearchBarView(searchText: $myVoucherViewModel.searchPattern, isSearching: $myVoucherViewModel.isSearching, placeHolder: "search_your_voucher".localized, width: ScreenInfor().screenWidth * 0.9, height: 50, fontSize: 13, isShowCancelButton: true)
+        SearchBarView(searchText: $myVoucherViewModel.searchPattern, isSearching: $myVoucherViewModel.isSearching, placeHolder: "search_your_voucher".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             .font(.system(size: 13))
     }
     

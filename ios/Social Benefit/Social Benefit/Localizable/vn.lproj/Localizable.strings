@@ -248,7 +248,29 @@
 "your_rank" = "Hạng của bạn";
 "total_received_points" = "Tổng điểm thưởng";
 
-//
+//Recognition post
+"no_comment" = "Không có bình luận";
+
+// Survey
+"finished" = "Đã kết thúc";
+"deadline_soon" = "Sắp hết hạn";
+"deadline_ed" = "Đã hết hạn";
+"deadline" = "Hạn chót";
+"search_for_survey" = "Tìm kiếm khảo sát";
+"send" = "Gửi";
+"question" = "Câu hỏi";
+"your_survey_option" = "Ý kiến của bạn";
+"show_more" = "Hiển thị nhiều hơn";
+"sending" = "Đang gửi";
+"answer" = "trả lời";
+"total" = "Tổng";
+"other" = "Khác";
+"no_like" = "Trở thành người đầu tiên";
+"need_fill_all_data" = "Bạn chưa điền đủ thông tin";
+"network_error" = "Lỗi kết nối, vui lòng thử lại sau.";
+"unkown_error" = "Có lỗi xảy ra, vui lòng thử lại sau.";
+"wrong_login_data" = "Sai ID hoặc mật khẩu.";
+"session_expired" = "Phiên hết hạn vui lòng đăng nhập lại.";
 
 // Month
 "january" = "tháng 1";

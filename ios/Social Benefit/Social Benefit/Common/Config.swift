@@ -63,4 +63,8 @@ struct Config {
     static let API_RECOGNITION_SEND  = "/mobile/recognition/send"
     
     static let API_MOBILE_VIEW_CLICK = "/mobile/view_click"
+    
+    static let API_SURVEY_LIST = "/mobile/survey/list"
+    static let API_SURVEY_CHOICE = "/mobile/survey/choice"
+    static let API_SURVEY_GET = "/survey/get"
 }
