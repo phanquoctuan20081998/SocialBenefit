@@ -82,8 +82,7 @@ struct UserView: View {
                 
                 VStack {
                     Button {
-                        self.userViewModel.logout()
-                        homescreen.selectedTab = "house"
+                        Utils.setLoginIsRoot()
                         
                     } label: {
                         
