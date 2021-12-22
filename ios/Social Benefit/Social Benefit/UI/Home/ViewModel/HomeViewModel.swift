@@ -38,7 +38,11 @@ class HomeViewModel: ObservableObject, Identifiable {
     func loadRecognitionData() {
         recognitionService.getListByCompany(fromIndex: 0) { [weak self] data in
             DispatchQueue.main.async {
-                self?.allRecognitionPost = data
+                if data.count > 5 {
+                    self?.allRecognitionPost = Array(data[0..<5])
+                } else {
+                    self?.allRecognitionPost = data
+                }
             }
         }
     }
