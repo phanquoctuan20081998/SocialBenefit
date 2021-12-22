@@ -97,5 +97,6 @@ struct ConditionOfBenefitView_Previews: PreviewProvider {
         BenefitDetailView()
             .environmentObject(BenefitDetailViewModel())
             .environmentObject(HomeScreenViewModel())
+            .environmentObject(ListOfBenefitsViewModel())
     }
 }

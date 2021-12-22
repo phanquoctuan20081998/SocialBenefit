@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Social Benefit
 
@@ -49,7 +49,7 @@
 "all" = "Tất cả";
 "training" = "Đào tạo";
 "annoucement" = "Thông báo";
-"cancel" = "Huỷ";
+"cancel" = "Huỷ bỏ";
 "confirm" = "Xác nhận";
 
 // User Screen
@@ -84,6 +84,10 @@
 "telephone" = "Số điện thoại";
 "leader" = "Là quản lý?";
 "save" = "Lưu";
+"upload_picture_option" = "Cách thức nhập ảnh";
+"how_do_you_want_to_set" = "Bạn muốn nhập ảnh bằng cách nào?";
+"add_from_camera" = "MÁY ẢNH";
+"add_from_gallery" = "BỘ SƯU TẬP";
 
 // Banner Card View
 "recognitions_in_company" = "Bảng tin khen thưởng";
@@ -145,7 +149,6 @@
 //Merchant List
 "promotion" = "Ưu đãi";
 "search_voucher" = "Tìm kiếm ưu đãi";
-"other" = "Khác";
 "all_categories" = "Tất cả thể loại";
 "special_offer" = "Ưu đãi đặc biệt";
 "buy" = "Mua";
@@ -161,7 +164,6 @@
 "ENUM_BESTSELLER" = "Bán chạy nhất";
 "ENUM_BEST_REVIEW" = "Đánh giá tốt nhất";
 "yes" = "Có";
-"cancel" = "Huỷ";
 "voucher_is_out_of_stock" = "Số lượng ưu đãi đã hết!";
 "buy_button_notification %d" = "Bạn đang có %d ưu đãi này.";
 "would_like_buy_more" = "Bạn có muốn mua thêm không?";
@@ -212,6 +214,16 @@
 "point" = "điểm";
 "points" = "điểm";
 "be_careful_with_your_budget" = "Điểm dường như không đủ";
+
+// Search
+"company_surveys" = "Khảo sát công ty";
+"employee_information" = "Hồ sơ cá nhân";
+"search_internal_news" = "Bảng tin nội bộ";
+"list_of_your_benefits" = "Danh sách phúc lợi của bạn";
+"merchant_voucher_list" = "Danh sách ưu đãi từ cửa hàng";
+"recognize_ranking" = "Xếp hạng khen thưởng";
+"used_points_history" = "Lịch sử tiêu dùng điểm";
+"your_searching_screen" = "Nhập nội dung tìm kiếm";
 
 // Setting
 "settings" = "Cài đặt";
@@ -264,13 +276,19 @@
 "sending" = "Đang gửi";
 "answer" = "trả lời";
 "total" = "Tổng";
-"other" = "Khác";
 "no_like" = "Trở thành người đầu tiên";
 "need_fill_all_data" = "Bạn chưa điền đủ thông tin";
 "network_error" = "Lỗi kết nối, vui lòng thử lại sau.";
 "unkown_error" = "Có lỗi xảy ra, vui lòng thử lại sau.";
 "wrong_login_data" = "Sai ID hoặc mật khẩu.";
 "session_expired" = "Phiên hết hạn vui lòng đăng nhập lại.";
+
+// Customer Support
+"how_can_we_help" = "Chúng tôi có thể giúp gì cho bạn?";
+"select_screen_problem" = "Hãy chọn vấn đề trên màn hình của bạn (Tuỳ chọn)";
+"describe_your_problem" = "Vui lòng mô tả vấn đề bạn đang gặp phải";
+"we_have_received_your_feedback" = "Chúng tôi đã nhận phản hồi của bạn và sẽ trả lời trong thời gian sớm nhất";
+"confirm_message" = "Thông tin đã được thay đổi, bạn có muốn thoát màn hình không?";
 
 // Month
 "january" = "tháng 1";

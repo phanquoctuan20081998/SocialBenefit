@@ -9,11 +9,9 @@ import Foundation
 
 func isDisplayFunction(_ functionName: String) -> Bool {
     
-    return true
+    if userInfor.functionNames.isEmpty {
+        return false
+    }
     
-//    if userInfor.functionNames.isEmpty {
-//        return false
-//    }
-//    
-//    return userInfor.functionNames.contains(functionName)
+    return userInfor.functionNames.contains(functionName)
 }

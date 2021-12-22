@@ -19,7 +19,7 @@ struct UserInformationView: View {
         ZStack {
             VStack {
                 
-                Spacer().frame(height: 60)
+                Spacer().frame(height: ScreenInfor().screenHeight * 0.05)
                 
                 ScrollView {
                     BasicInformationView.padding(.top, 30)

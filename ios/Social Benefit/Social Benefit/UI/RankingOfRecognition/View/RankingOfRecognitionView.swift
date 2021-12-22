@@ -179,5 +179,6 @@ extension RankingOfRecognitionView {
 struct RankingOfRecognitionView_Previews: PreviewProvider {
     static var previews: some View {
         RankingOfRecognitionView()
+            .environmentObject(RecognitionViewModel())
     }
 }

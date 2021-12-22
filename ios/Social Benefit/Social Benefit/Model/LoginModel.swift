@@ -15,6 +15,7 @@ struct LoginModel: APIResponseProtocol {
 struct LoginResultMode: APIModelProtocol {
     var token: String?
     var employeeDto: LoginEmployeeDto?
+    var functionNames: [String]?
 }
 
 struct LoginEmployeeDto: APIModelProtocol {

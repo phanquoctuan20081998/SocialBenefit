@@ -22,7 +22,7 @@ struct EmployeeRankingView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             EmployeeInforView
             Spacer()
             RefreshableScrollView(height: 70, refreshing: self.$employeeRankingViewModel.isRefreshing) {

@@ -29,8 +29,6 @@
 		84DA60882696DB720012F55B /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60862696DB720012F55B /* SplashViewController.xib */; };
 		84DA608F2696DB950012F55B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DA608E2696DB950012F55B /* Media.xcassets */; };
 		84DA60AF269EC9280012F55B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60AD269EC9280012F55B /* Config.swift */; };
-		84DA60BB269EC9C40012F55B /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60B9269EC9C40012F55B /* en.lproj */; };
-		84DA60BC269EC9C40012F55B /* vn.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 84DA60BA269EC9C40012F55B /* vn.lproj */; };
 		84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60BD269ECA120012F55B /* PromotionViewController.swift */; };
 		84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60BE269ECA120012F55B /* RecognitionViewController.swift */; };
 		84DA60C3269ECA130012F55B /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA60BF269ECA130012F55B /* UserViewController.swift */; };
@@ -172,6 +170,7 @@
 		C47AEC332757094F00DF8A60 /* EmployeeRankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47AEC322757094F00DF8A60 /* EmployeeRankingViewModel.swift */; };
 		C47AEC352757269000DF8A60 /* GetPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47AEC342757269000DF8A60 /* GetPoint.swift */; };
 		C47CA9AD2759F0E000F25771 /* RecentTransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CA9AC2759F0E000F25771 /* RecentTransferListView.swift */; };
+		C47E1BEA27737F8000011586 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C47E1BEC27737F8000011586 /* Localizable.strings */; };
 		C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47EA7A32717E09400E91171 /* ResetPasswordService.swift */; };
 		C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47EA7A52717E56300E91171 /* EmailValidation.swift */; };
 		C48028DF2758783E00645213 /* RecognitionActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48028DE2758783E00645213 /* RecognitionActionViewModel.swift */; };
@@ -311,8 +310,6 @@
 		84DA608E2696DB950012F55B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		84DA609E269E98470012F55B /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		84DA60AD269EC9280012F55B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		84DA60B9269EC9C40012F55B /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
-		84DA60BA269EC9C40012F55B /* vn.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vn.lproj; sourceTree = "<group>"; };
 		84DA60BD269ECA120012F55B /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		84DA60BE269ECA120012F55B /* RecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionViewController.swift; sourceTree = "<group>"; };
 		84DA60BF269ECA130012F55B /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -455,6 +452,8 @@
 		C47AEC322757094F00DF8A60 /* EmployeeRankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRankingViewModel.swift; sourceTree = "<group>"; };
 		C47AEC342757269000DF8A60 /* GetPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPoint.swift; sourceTree = "<group>"; };
 		C47CA9AC2759F0E000F25771 /* RecentTransferListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTransferListView.swift; sourceTree = "<group>"; };
+		C47E1BEB27737F8000011586 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C47E1BED27737F8400011586 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C47EA7A32717E09400E91171 /* ResetPasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordService.swift; sourceTree = "<group>"; };
 		C47EA7A52717E56300E91171 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		C48028DE2758783E00645213 /* RecognitionActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionActionViewModel.swift; sourceTree = "<group>"; };
@@ -772,8 +771,7 @@
 		84DA60A0269E98A20012F55B /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				84DA60B9269EC9C40012F55B /* en.lproj */,
-				84DA60BA269EC9C40012F55B /* vn.lproj */,
+				C47E1BEC27737F8000011586 /* Localizable.strings */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1788,13 +1786,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84DA60BB269EC9C40012F55B /* en.lproj in Resources */,
 				848753662706A46F0061D4E1 /* like.gif in Resources */,
+				C47E1BEA27737F8000011586 /* Localizable.strings in Resources */,
 				848753652706A46F0061D4E1 /* laugh.gif in Resources */,
 				848753632706A46F0061D4E1 /* love.gif in Resources */,
 				84DA60772696DACA0012F55B /* LaunchScreen.storyboard in Resources */,
 				84DA60742696DACA0012F55B /* Assets.xcassets in Resources */,
-				84DA60BC269EC9C40012F55B /* vn.lproj in Resources */,
 				848753642706A46F0061D4E1 /* angry.gif in Resources */,
 				84DA60722696DAC80012F55B /* Main.storyboard in Resources */,
 				84DA608F2696DB950012F55B /* Media.xcassets in Resources */,
@@ -2125,6 +2122,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		C47E1BEC27737F8000011586 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C47E1BEB27737F8000011586 /* en */,
+				C47E1BED27737F8400011586 /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -2277,8 +2283,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2289,7 +2295,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TuanPQ-Test";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

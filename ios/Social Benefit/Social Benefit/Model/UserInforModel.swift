@@ -183,4 +183,8 @@ func updateUserInfor(model: LoginModel) {
     userInfor.insurance = model.result?.employeeDto?.citizen?.socialInsurance ?? ""
     userInfor.citizenId = model.result?.employeeDto?.citizen?.id?.string ?? "0"
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
+    userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
+    userInfor.functionNames = model.result?.functionNames ?? []
+    
+    print(userInfor)
 }

@@ -46,7 +46,7 @@ struct CommentBarView: View {
                     URLImageView(url: Config.baseURL + userInfor.avatar)
                         .clipShape(Circle())
                         .frame(width: 20, height: 20)
-                        .padding(.all, 7)
+                        .padding(.all, 2)
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                     
                     Spacer().frame(width: 18)

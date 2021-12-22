@@ -38,6 +38,7 @@ extension CustomerSupportPopUp {
             Image(systemName: "text.bubble.fill")
                 .foregroundColor(.green)
                 .font(.system(size: 30))
+                .padding(.bottom, 5)
             
             Text("how_can_we_help".localized)
                 .font(.system(size: 15))
@@ -49,11 +50,11 @@ extension CustomerSupportPopUp {
                 destination: SearchSelectionView(selectedTab: $customerSupportViewModel.screenProblemText)
                     .navigationBarHidden(true),
                 label: {
-                    FeedBackTextField(placeHolder: "select_screen_problem", text: $customerSupportViewModel.screenProblemText, height: 30)
+                    FeedBackTextField(placeHolder: "select_screen_problem".localized, text: $customerSupportViewModel.screenProblemText, height: 40)
                         .disabled(true)
                 })
 
-            FeedBackTextField(placeHolder: "select_screen_problem", text: $customerSupportViewModel.feedBackText, height: 100)
+            FeedBackTextField(placeHolder: "describe_your_problem".localized, text: $customerSupportViewModel.feedBackText, height: 100)
             
             Spacer().frame(height: 20)
             
@@ -100,7 +101,7 @@ extension CustomerSupportPopUp {
         .padding()
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
-                        .frame(width: ScreenInfor().screenWidth * 0.9, height: 300))
+                        .frame(width: ScreenInfor().screenWidth * 0.9, height: 320))
     }
     
     var SuccessedPopUp: some View {
@@ -154,7 +155,7 @@ struct FeedBackTextField: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            AutoResizeTextField(text: text, isFocus: $isFocus, minHeight: height, maxHeight: height, placeholder: placeHolder)
+            AutoResizeTextField(text: text, isFocus: $isFocus, minHeight: height, maxHeight: height, placeholder: placeHolder, textfiledType: Constants.AutoResizeTextfieldType.CUSTOMER_SUPPORT)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(isFocus ? Color.blue : Color.gray, lineWidth: isFocus ? 3 : 1))

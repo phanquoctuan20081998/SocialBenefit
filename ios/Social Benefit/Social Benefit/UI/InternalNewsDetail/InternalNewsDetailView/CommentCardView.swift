@@ -22,7 +22,7 @@ struct FirstCommentCardView: View {
             URLImageView(url: comment.avatar)
                 .clipShape(Circle())
                 .frame(width: 30, height: 30)
-                .padding(.all, 5)
+                .padding(.all, 2)
                 .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
             
             Spacer().frame(width: 10)
@@ -82,7 +82,7 @@ struct SecondCommentCardView: View {
             URLImageView(url: Config.baseURL + comment.avatar)
                 .clipShape(Circle())
                 .frame(width: 30, height: 30)
-                .padding(.all, 5)
+                .padding(.all, 2)
                 .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
             
             Spacer().frame(width: 10)

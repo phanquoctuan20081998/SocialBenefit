@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Social Benefit
 
@@ -84,6 +84,10 @@
 "telephone" = "Telephone number";
 "leader" = "Is the leader?";
 "save" = "Save";
+"upload_picture_option" = "Upload Pictures Option";
+"how_do_you_want_to_set" = "How do you want to set your picture?";
+"add_from_camera" = "CAMERA";
+"add_from_gallery" = "GALLERY";
 
 // Banner Card View
 "recognitions_in_company" = "Recognitions in Company";
@@ -145,7 +149,6 @@
 //Merchant List
 "promotion" = "Promotion";
 "search_voucher" = "Search voucher";
-"other" = "Others";
 "all_categories" = "All categories";
 "special_offer" = "Special offers";
 "buy" = "Buy";
@@ -161,7 +164,6 @@
 "ENUM_BESTSELLER" = "Best seller";
 "ENUM_BEST_REVIEW" = "Best review";
 "yes" = "Yes";
-"cancel" = "Cancel";
 "voucher_is_out_of_stock" = "Voucher is out of stock!";
 "buy_button_notification %d" = "You have owned %d of this voucher.";
 "would_like_buy_more" = "Would you like to buy some more?";
@@ -212,6 +214,16 @@
 "point" = "point";
 "points" = "points";
 "be_careful_with_your_budget" = "Be careful with your budget";
+
+// Search
+"company_surveys" = "Company surveys";
+"employee_information" = "Employee information";
+"search_internal_news" = "Internal news";
+"list_of_your_benefits" = "List of your benefits";
+"merchant_voucher_list" = "Merchant voucher list";
+"recognize_ranking" = "Recognize ranking";
+"used_points_history" = "Used points history";
+"your_searching_screen" = "Your searching screen";
 
 // Setting
 "settings" = "Settings";
@@ -271,6 +283,13 @@
 "wrong_login_data" = "The ID or password is incorrect.";
 "session_expired" = "Session expired please login again.";
 
+// Customer Support
+"how_can_we_help" = "How can we help you today?";
+"select_screen_problem" = "Please select screen problem (optional)";
+"describe_your_problem" = "Please describe your problem";
+"we_have_received_your_feedback" = "We have received your feedback and will reply to you as soon as possible!";
+"confirm_message" = "There are unsaved changes, do you still want to go back?";
+
 // Month
 "january" = "January";
 "february" = "February";
@@ -305,7 +324,6 @@
 "C00188_E" = "The allowed number of registrations has been exceeded";
 "C00189_E" = "Temporarily stopping registration because there are enough requests to join";
 "C00190_E" = "Registration deadline has passed";
-
 
 "need_to_fill_all_data" = "need_to_fill_all_data";
 "wrong_data" = "wrong_data";

@@ -19,7 +19,7 @@ struct UsedPointHistoryView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Spacer().frame(height: 50)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             UpperView
             
             if usedPointHistoryViewModel.isLoading && !usedPointHistoryViewModel.isRefreshing {
@@ -159,5 +159,6 @@ extension UsedPointHistoryView {
 struct UsedPointHistoryView_Previews: PreviewProvider {
     static var previews: some View {
         UsedPointHistoryView()
+            .environmentObject(HomeScreenViewModel())
     }
 }

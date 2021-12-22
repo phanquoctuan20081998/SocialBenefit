@@ -112,6 +112,7 @@ struct Constants {
     struct AutoResizeTextfieldType {
         static let DEFAULT = 0
         static let RECOGNITION_ACTION = 1
+        static let CUSTOMER_SUPPORT = 2
     }
     
     // Click counting...
@@ -130,7 +131,7 @@ struct Constants {
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),
 //                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red, destination: 2),
                                     BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white, destination: 3),
-                                    BackgroundSearch(tab: "internal_news", icon: "newspaper.fill", color: Color.green, destination: 4),
+                                    BackgroundSearch(tab: "search_internal_news", icon: "newspaper.fill", color: Color.green, destination: 4),
                                     BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue, destination: 5),
                                     BackgroundSearch(tab: "merchant_voucher_list", icon: "cart.fill", color: Color.blue, destination: 6),
                                     BackgroundSearch(tab: "my_vouchers", icon: "ic_my_voucher", color: Color.white, destination: 7),

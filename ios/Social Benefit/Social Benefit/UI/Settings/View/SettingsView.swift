@@ -15,7 +15,7 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             
-            Spacer().frame(height: 50)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
             Text("settings".localized.uppercased())
                 .bold()

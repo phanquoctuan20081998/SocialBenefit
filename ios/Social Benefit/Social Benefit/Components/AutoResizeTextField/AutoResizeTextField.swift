@@ -149,6 +149,11 @@ struct AutoResizeTextField: View {
                     Text(placeholder)
                         .foregroundColor(Color.gray)
                         .padding(15)
+                } else if textfiledType == Constants.AutoResizeTextfieldType.CUSTOMER_SUPPORT {
+                    Text(placeholder)
+                        .font(.system(size: 15))
+                        .foregroundColor(Color(UIColor.placeholderText))
+                        .padding(10)
                 } else {
                     Text(placeholder)
                         .font(.system(size: 13))
@@ -182,7 +187,9 @@ struct Test1View: View {
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        Test1View()
+//        Test1View()
+        CustomerSupportPopUp()
+            .environmentObject(CustomerSupportViewModel())
     }
 }
 

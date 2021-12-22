@@ -81,7 +81,7 @@ extension InternalNewsView {
     
     private var InternalNewsUpperView: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.05 + 30)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.05 + 20)
             SearchBarView(searchText: $internalNewsViewModel.searchPattern, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
         }
     }
@@ -93,7 +93,7 @@ extension InternalNewsView {
             } else {
                 RefreshableScrollView(height: 70, refreshing: self.$internalNewsViewModel.isRefreshing) {
                     VStack (alignment: .leading, spacing: 10) {
-
+                        Spacer().frame(height: 10)
                         ForEach(internalNewsViewModel.allInternalNews, id: \.self) { item in
                             InternalNewsCardView(isActive: $isActive, selectedInternalNew: $selectedInternalNew, internalNewsData: item)
                         }
@@ -151,6 +151,7 @@ struct SlidingTabView_Previews : PreviewProvider {
     static var previews: some View {
         InternalNewsView()
             .environmentObject(InternalNewsViewModel())
+            .environmentObject(HomeScreenViewModel())
     }
 }
 

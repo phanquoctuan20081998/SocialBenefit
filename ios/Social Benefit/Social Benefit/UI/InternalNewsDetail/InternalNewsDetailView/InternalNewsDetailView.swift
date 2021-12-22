@@ -49,7 +49,7 @@ struct InternalNewsDetailView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
             
             RefreshableScrollView(height: 70, refreshing: self.$commentViewModel.isRefreshing) {
                 AmzdScrollViewReader { proxy in

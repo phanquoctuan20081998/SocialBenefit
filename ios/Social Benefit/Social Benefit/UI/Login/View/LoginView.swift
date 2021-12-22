@@ -152,6 +152,7 @@ extension LoginView {
                 Bundle.setLanguage(lang: AppLanguage.vn)
                 reload.toggle()
                 loginViewModel.clearError()
+                UserDefaults.standard.set(1, forKey: "language")
             } label: {
                 Image("pic_language1")
                     .resizable()
@@ -164,6 +165,7 @@ extension LoginView {
                 Bundle.setLanguage(lang: AppLanguage.en)
                 reload.toggle()
                 loginViewModel.clearError()
+                UserDefaults.standard.set(0, forKey: "language")
             } label: {
                 Image("pic_language2")
                     .resizable()

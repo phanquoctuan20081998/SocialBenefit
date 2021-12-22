@@ -16,8 +16,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             VStack {
-                Spacer()
-                    .frame(height: 90)
+                Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
                 
                 ScrollView {
                     VStack(spacing: 20) {

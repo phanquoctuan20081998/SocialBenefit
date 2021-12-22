@@ -26,12 +26,13 @@ struct ConfirmPopUp: View {
                     
                     VStack(alignment: .leading) {
                         Text("warning".localized)
+                            .bold()
+                            .font(.system(size: 20))
+                            .padding(.bottom, 1)
                         Text("confirm_message".localized)
                     }.font(.system(size: 15))
-                        .padding(.init(top: 20, leading: 20, bottom: 0, trailing: 20))
-                        .frame(width: ScreenInfor().screenWidth * 0.8, height: 80, alignment: .topLeading)
-                    
-                    Spacer()
+                        .padding(.init(top: 10, leading: 30, bottom: 0, trailing: 30))
+                        .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .topLeading)
                     
                     HStack(spacing: 30) {
                         Button("cancel".localized.uppercased()) {
@@ -42,9 +43,10 @@ struct ConfirmPopUp: View {
                             isPresentedPopUp = false
                             isPresentedPreviousPopUp = false
                         }
-                    }.padding(20)
-                        .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .bottomTrailing)
-                        .foregroundColor(.blue)
+                    }
+                    .padding(.init(top: 2, leading: 20, bottom: 10, trailing: 30))
+                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .bottomTrailing)
+                    .foregroundColor(.blue)
                     
                 }.font(.system(size: 13))
                     .frame(width: ScreenInfor().screenWidth * 0.8, height: 130)
@@ -56,5 +58,11 @@ struct ConfirmPopUp: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .foregroundColor(.black)
+    }
+}
+
+struct ConfirmPopUp_Previews: PreviewProvider {
+    static var previews: some View {
+        ConfirmPopUp(isPresentedPopUp: .constant(true), isPresentedPreviousPopUp: .constant(true))
     }
 }

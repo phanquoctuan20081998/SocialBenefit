@@ -19,8 +19,7 @@ struct UserView: View {
     var body: some View {
         VStack {
             
-            Spacer()
-                .frame(height: 70)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
             
             NavigationLink(destination: UserInformationView().navigationBarHidden(true),
                            tag: 1,
@@ -73,9 +72,9 @@ struct UserView: View {
                     FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7, isCountClick: false)
                     
                     
-                    NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8, isCountClick: false)
-                    }
+//                    NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
+//                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8, isCountClick: false)
+//                    }
                 }
                 //
                 Spacer().frame(height: 30)
