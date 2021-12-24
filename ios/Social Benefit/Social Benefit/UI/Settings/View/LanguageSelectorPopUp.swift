@@ -31,7 +31,7 @@ extension LanguageSelectorPopUp {
                             
                             switch settingsViewModel.selectedlanguage {
                             case 0: Bundle.setLanguage(lang: AppLanguage.en)
-                            case 1: Bundle.setLanguage(lang: AppLanguage.vn)
+                            case 1: Bundle.setLanguage(lang: AppLanguage.vi)
                             default: Bundle.setLanguage(lang: AppLanguage.en)
                             }
 //                            Bundle.setLanguage(lang: Constants.LANGUAGE_TAB[i])

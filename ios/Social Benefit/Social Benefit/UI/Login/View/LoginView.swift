@@ -149,7 +149,7 @@ extension LoginView {
     var ChangeLanguageButton: some View {
         HStack(spacing: 20) {
             Button {
-                Bundle.setLanguage(lang: AppLanguage.vn)
+                Bundle.setLanguage(lang: AppLanguage.vi)
                 reload.toggle()
                 loginViewModel.clearError()
                 UserDefaults.standard.set(1, forKey: "language")

@@ -143,7 +143,7 @@ struct Constants {
 
 enum AppLanguage: String, CaseIterable {
     case en
-    case vn
+    case vi
 }
 
 struct BackgroundSearch {

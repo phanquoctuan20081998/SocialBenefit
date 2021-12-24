@@ -290,6 +290,15 @@
 "we_have_received_your_feedback" = "We have received your feedback and will reply to you as soon as possible!";
 "confirm_message" = "There are unsaved changes, do you still want to go back?";
 
+// Change password
+"old_password" = "Old password";
+"enter_old_password" = "Please enter your old password";
+"new_password" = "New password";
+"enter_new_password" = "Please enter your new password";
+"retype_password" = "Retype new password";
+"retype_new_password" = "Please retype your new password";
+"update" = "Update";
+
 // Month
 "january" = "January";
 "february" = "February";

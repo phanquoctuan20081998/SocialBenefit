@@ -290,6 +290,15 @@
 "we_have_received_your_feedback" = "Chúng tôi đã nhận phản hồi của bạn và sẽ trả lời trong thời gian sớm nhất";
 "confirm_message" = "Thông tin đã được thay đổi, bạn có muốn thoát màn hình không?";
 
+// Change password
+"old_password" = "Mật khẩu cũ";
+"enter_old_password" = "Vui lòng điền mật khẩu cũ";
+"new_password" = "Mật khẩu mới";
+"enter_new_password" = "Vui lòng điền mật khẩu mới";
+"retype_password" = "Nhập lại mật khẩu mới";
+"retype_new_password" = "Vui lòng nhập lại mật khẩu mới";
+"update" = "Cập nhật";
+
 // Month
 "january" = "tháng 1";
 "february" = "tháng 2";
