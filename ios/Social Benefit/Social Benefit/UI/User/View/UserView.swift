@@ -27,7 +27,7 @@ struct UserView: View {
                            label: { UserInforView(selection: $selection) })
             
             Spacer()
-                .frame(height: 30)
+                .frame(height: 20)
             
             ScrollView (.vertical, showsIndicators: false) {
                 VStack(spacing: 8) {
@@ -41,9 +41,9 @@ struct UserView: View {
                             FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
                         }
                         
-//                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
-//                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
-//                        }
+                        //                        NavigationLink(destination: Text("3"), tag: 3, selection: $selection) {
+                        //                            FunctionCardView(thumnail: "heart.fill", thumailColor: Color.red, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 3)
+                        //                        }
                     }
                     
                     if isDisplayFunction(Constants.FuctionId.BENEFIT) {
@@ -72,9 +72,9 @@ struct UserView: View {
                     FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7, isCountClick: false)
                     
                     
-//                    NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
-//                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8, isCountClick: false)
-//                    }
+                    //                    NavigationLink(destination: Text("8"), tag: 8, selection: $selection) {
+                    //                        FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: false, selection: $selection, selectedNumber: 8, isCountClick: false)
+                    //                    }
                 }
                 //
                 Spacer().frame(height: 30)
@@ -127,16 +127,17 @@ struct UserInforView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
     var body: some View {
-        ZStack {
-            Button(action: {
-                // Do something
-                self.selection = 1
-                self.homeScreenViewModel.isPresentedTabBar = false
-                
-                // Click count
-                countClick()
-                
-            }, label: {
+        
+        Button(action: {
+            // Do something
+            self.selection = 1
+            self.homeScreenViewModel.isPresentedTabBar = false
+            
+            // Click count
+            countClick()
+            
+        }, label: {
+            HStack {
                 HStack(spacing: 20) {
                     
                     URLImageView(url: userInfor.avatar)
@@ -144,7 +145,7 @@ struct UserInforView: View {
                         .clipShape(Circle())
                         .padding(.all, 5)
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-                        .padding(.leading, 5)
+                        .padding(.leading, 10)
                     
                     VStack(alignment: .leading) {
                         Text(userInfor.name.uppercased())
@@ -158,29 +159,35 @@ struct UserInforView: View {
                     }
                     
                     Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 15, weight: .bold, design: .default))
-                        .padding(.trailing, 10)
-                }
-                .frame(width: ScreenInfor().screenWidth - 50, alignment: .leading)
-                .padding(.leading)
-                .background(
-                    Capsule()
-                        .fill(Color.white)
-                        .padding(.leading, 83)
-                        .frame(width: 500, height: 80, alignment: .center)
-                        .shadow(color: .black.opacity(0.15), radius: 10, x: -3, y: 3)
-                )
-            })
-        }
+            
+                }.frame(width: ScreenInfor().screenWidth * 0.9)
+                Spacer()
+            }
+            .overlay(
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 15, weight: .bold, design: .default))
+                    .padding(.trailing, 43)
+                , alignment: .trailing
+            )
+            .background(
+                Capsule()
+                    .fill(Color.white)
+                    .frame(width: ScreenInfor().screenWidth * 1.5, height: 80, alignment: .leading)
+                    .shadow(color: .black.opacity(0.15), radius: 10, x: -3, y: 3),
+                alignment: .leading
+            )
+            
+            .padding(.leading, 57)
+        })
+        
     }
 }
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView(selectedTab: "house")
+        UserView()
+            .environmentObject(HomeScreenViewModel())
     }
 }
 

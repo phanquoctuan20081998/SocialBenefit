@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class CustomerSupportViewModel: ObservableObject, Identifiable {
-    @Published var isPresentCustomerSupportPopUp: Bool = false
+    @Published var isPresentCustomerSupportPopUp: Bool = true
     
     @Published var screenProblemText: String = ""
     @Published var feedBackText: String = ""

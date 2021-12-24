@@ -160,7 +160,9 @@ struct FeedBackTextField: View {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(isFocus ? Color.blue : Color.gray, lineWidth: isFocus ? 3 : 1))
             
-        }.padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
+        .frame(width: ScreenInfor().screenWidth * 0.9)
     }
 }
 

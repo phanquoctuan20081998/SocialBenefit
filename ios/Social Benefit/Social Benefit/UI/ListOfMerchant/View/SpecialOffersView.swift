@@ -13,6 +13,7 @@ struct SpecialOffersView: View {
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     
     @State var isMoveToMerchantDetail = false
+    @State var selectedVoucherId = 0
     
     // Infine Scroll View
     @State var isShowProgressView = false
@@ -29,12 +30,12 @@ struct SpecialOffersView: View {
                 HStack(spacing: 20) {
                     ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
                         NavigationLink(
-                            destination: MerchantVoucherDetailView(voucherId: self.specialOffersViewModel.allSpecialOffers[i].id),
+                            destination: MerchantVoucherDetailView(voucherId: self.selectedVoucherId),
                             isActive: $isMoveToMerchantDetail,
                             label: {
                                 Button {
                                     self.isMoveToMerchantDetail = true
-                                    
+                                    self.selectedVoucherId = specialOffersViewModel.allSpecialOffers[i].id
                                     // Click count
                                     countClick(contentId: self.specialOffersViewModel.allSpecialOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
                                 } label: {

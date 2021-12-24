@@ -11,6 +11,7 @@ struct AllOffersView: View {
     
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
+    @State var selectedVoucherId = 0
     @State var isMoveToMerchantDetail = false
     
     // Infine scroll view
@@ -26,11 +27,12 @@ struct AllOffersView: View {
                     ForEach(self.offersViewModel.allOffers.indices, id: \.self) { i in
                         
                         NavigationLink(
-                            destination: MerchantVoucherDetailView(voucherId: self.offersViewModel.allOffers[i].id),
+                            destination: MerchantVoucherDetailView(voucherId: self.selectedVoucherId),
                             isActive: $isMoveToMerchantDetail,
                             label: {
                                 Button {
                                     self.isMoveToMerchantDetail = true
+                                    self.selectedVoucherId = offersViewModel.allOffers[i].id
                                     
                                     // Click count
                                     countClick(contentId: offersViewModel.allOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
