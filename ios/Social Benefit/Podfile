@@ -10,6 +10,8 @@ target 'Social Benefit' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SDWebImageSwiftUI'
   pod 'ScrollViewProxy', '~> 1.0'
-#  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
   
 end
+

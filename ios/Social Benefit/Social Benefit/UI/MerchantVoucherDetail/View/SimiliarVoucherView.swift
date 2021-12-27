@@ -10,69 +10,68 @@ import SwiftUI
 struct SimiliarVoucherView: View {
     
     @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    
+    // Infine controller
     @State var isShowProgressView: Bool = false
     
     var body: some View {
-        NavigationView {
-            VStack {
+        
+        VStack {
+            
+            RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingSimiliarVoucher) {
                 
-                RefreshableScrollView(height: 70, refreshing: self.$merchantVoucherDetailViewModel.isRefreshingSimiliarVoucher) {
+                Spacer().frame(height: 20)
+                VStack(spacing: 10) {
                     
-                    Spacer().frame(height: 20)
-                    VStack(spacing: 10) {
-                        
-                        ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
-                            NavigationLink(
-                                destination: MerchantVoucherDetailView(voucherId: merchantVoucherDetailViewModel.similarVouchers[i].id),
-                                label: {
-                                    AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i])
-                                        .foregroundColor(.black)
-                                        .padding(.horizontal)
-                                })
-                        }
-                        
-                        
-                        //Infinite Scroll View
-                        
-                        if (self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher == self.merchantVoucherDetailViewModel.similarVouchers.count && self.isShowProgressView) {
-                            
-                            ActivityIndicator(isAnimating: true)
-                                .onAppear {
-                                    if self.merchantVoucherDetailViewModel.similarVouchers.count % Constants.MAX_NUM_API_LOAD == 0 {
-                                        self.merchantVoucherDetailViewModel.loadMoreSimilarVoucher()
-                                    }
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                        self.isShowProgressView = false
-                                    }
-                                    
-                                }
-                            
-                        } else {
-                            GeometryReader { reader -> Color in
-                                let minY = reader.frame(in: .global).minY
-                                let height = ScreenInfor().screenHeight / 1.3
-                                
-                                if !self.merchantVoucherDetailViewModel.similarVouchers.isEmpty && minY < height && self.merchantVoucherDetailViewModel.similarVouchers.count >= Constants.MAX_NUM_API_LOAD {
-                                    
-                                    DispatchQueue.main.async {
-                                        self.self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher = self.merchantVoucherDetailViewModel.similarVouchers.count
-                                        self.isShowProgressView = true
-                                    }
-                                }
-                                return Color.clear
-                            }
-                            .frame(width: 20, height: 20)
-                        }
-                        
-                        Spacer().frame(height: 40)
+                    ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
+                        NavigationLink(
+                            destination: MerchantVoucherDetailView(voucherId: merchantVoucherDetailViewModel.similarVouchers[i].id),
+                            label: {
+                                AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i])
+                                    .foregroundColor(.black)
+                                    .padding(.horizontal)
+                            })
                     }
-                    Spacer().frame(height: 20)
+                    
+                    
+                    //Infinite Scroll View
+                    
+                    if (self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher == self.merchantVoucherDetailViewModel.similarVouchers.count && self.isShowProgressView) {
+                        
+                        ActivityIndicator(isAnimating: true)
+                            .onAppear {
+                                if self.merchantVoucherDetailViewModel.similarVouchers.count % Constants.MAX_NUM_API_LOAD == 0 {
+                                    self.merchantVoucherDetailViewModel.loadMoreSimilarVoucher()
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    self.isShowProgressView = false
+                                }
+                                
+                            }
+                        
+                    } else {
+                        GeometryReader { reader -> Color in
+                            let minY = reader.frame(in: .global).minY
+                            let height = ScreenInfor().screenHeight / 1.3
+                            
+                            if !self.merchantVoucherDetailViewModel.similarVouchers.isEmpty && minY < height && self.merchantVoucherDetailViewModel.similarVouchers.count >= Constants.MAX_NUM_API_LOAD {
+                                
+                                DispatchQueue.main.async {
+                                    self.self.merchantVoucherDetailViewModel.fromIndexSimilarVoucher = self.merchantVoucherDetailViewModel.similarVouchers.count
+                                    self.isShowProgressView = true
+                                }
+                            }
+                            return Color.clear
+                        }
+                        .frame(width: 20, height: 20)
+                    }
+                    
+                    Spacer().frame(height: 40)
                 }
+                Spacer().frame(height: 20)
             }
-            .frame(width: ScreenInfor().screenWidth)
-            .navigationBarHidden(true)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .frame(width: ScreenInfor().screenWidth)
     }
 }

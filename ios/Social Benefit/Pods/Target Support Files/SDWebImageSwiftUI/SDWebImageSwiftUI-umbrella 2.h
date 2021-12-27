@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "SDWebImageSwiftUI 2.h"
 #import "SDWebImageSwiftUI.h"
 
 FOUNDATION_EXPORT double SDWebImageSwiftUIVersionNumber;

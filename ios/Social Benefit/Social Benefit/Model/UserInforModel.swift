@@ -144,7 +144,7 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNa
     userInfor.locationId = citizen["locationWard"]["id"].string ?? "00000"
     userInfor.functionNames = functionNames
     
-    print(userInfor)
+//    print(userInfor)
 }
 
 func updateUserInfor(model: LoginModel) {
@@ -185,6 +185,4 @@ func updateUserInfor(model: LoginModel) {
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
     userInfor.functionNames = model.result?.functionNames ?? []
-    
-    print(userInfor)
 }

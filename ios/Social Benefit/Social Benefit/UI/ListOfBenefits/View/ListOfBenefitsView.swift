@@ -19,7 +19,7 @@ struct ListOfBenefitsView: View {
         
         VStack {
             VStack(spacing: 0) {
-                Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+                Spacer().frame(height: ScreenInfor().screenHeight * 0.07)
                 
                 BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
                 

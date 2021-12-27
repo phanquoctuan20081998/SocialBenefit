@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
 		84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */; };
@@ -157,6 +158,7 @@
 		C472E4C826FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472E4C726FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift */; };
 		C472E4CA26FDA5DC00D047BA /* AppliedStoreMerchantListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472E4C926FDA5DC00D047BA /* AppliedStoreMerchantListService.swift */; };
 		C472E4CC26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472E4CB26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift */; };
+		C473D0FB27796B7B00895575 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C473D0FA27796B7B00895575 /* GoogleService-Info.plist */; };
 		C4750073270B40B000FE75EB /* SearchBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4750072270B40B000FE75EB /* SearchBarModel.swift */; };
 		C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4750076270B413100FE75EB /* SearchViewModel.swift */; };
 		C476C5B327561FC200D93AA7 /* NoHightLightClickAffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C476C5B227561FC200D93AA7 /* NoHightLightClickAffect.swift */; };
@@ -283,8 +285,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		21B5600D4966E23460C26448 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
-		2CF4DF6F2EA6B52C13EB39A4 /* Pods-Social Benefits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefits.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefits/Pods-Social Benefits.debug.xcconfig"; sourceTree = "<group>"; };
+		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -316,7 +317,7 @@
 		84DA60C0269ECA130012F55B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		84DA60C8269ECB410012F55B /* BaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		84DA60CA269ECB6A0012F55B /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
-		9528C4FCF0AF49DA34DA6C12 /* Pods-Social Benefits.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefits.release.xcconfig"; path = "Target Support Files/Pods-Social Benefits/Pods-Social Benefits.release.xcconfig"; sourceTree = "<group>"; };
+		852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Benefit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40161C426F08D44003A1EEF /* SpecialOffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOffersView.swift; sourceTree = "<group>"; };
 		C402B26926E76C5300A41288 /* ReactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactViewModel.swift; sourceTree = "<group>"; };
 		C402B26B26E76C5F00A41288 /* ReactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactModel.swift; sourceTree = "<group>"; };
@@ -439,6 +440,8 @@
 		C472E4C726FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreMerchantListModel.swift; sourceTree = "<group>"; };
 		C472E4C926FDA5DC00D047BA /* AppliedStoreMerchantListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreMerchantListService.swift; sourceTree = "<group>"; };
 		C472E4CB26FDAA5700D047BA /* AppliedStoreMerchantCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedStoreMerchantCardView.swift; sourceTree = "<group>"; };
+		C473D0F7277952AE00895575 /* Social Benefit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Social Benefit.entitlements"; sourceTree = "<group>"; };
+		C473D0FA27796B7B00895575 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4750072270B40B000FE75EB /* SearchBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModel.swift; sourceTree = "<group>"; };
 		C4750076270B413100FE75EB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C476C5B227561FC200D93AA7 /* NoHightLightClickAffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHightLightClickAffect.swift; sourceTree = "<group>"; };
@@ -551,7 +554,7 @@
 		C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentButton.swift; sourceTree = "<group>"; };
 		C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionActionView.swift; sourceTree = "<group>"; };
-		F1DE47683E48ABB3E7D7C5B6 /* Pods-Social Benefit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release.xcconfig"; sourceTree = "<group>"; };
+		CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -559,12 +562,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		640D96DEBE36BA1BC6786580 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84571C08273CB57800F4AB32 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +611,7 @@
 				84DA60692696DAC80012F55B /* Social Benefit */,
 				84DA60682696DAC80012F55B /* Products */,
 				EB0BB67FC17D285CAAD4A5A5 /* Pods */,
+				640D96DEBE36BA1BC6786580 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -613,6 +626,8 @@
 		84DA60692696DAC80012F55B /* Social Benefit */ = {
 			isa = PBXGroup;
 			children = (
+				C473D0FA27796B7B00895575 /* GoogleService-Info.plist */,
+				C473D0F7277952AE00895575 /* Social Benefit.entitlements */,
 				84DA60782696DACA0012F55B /* Info.plist */,
 				C419868C26E46F6D00A877A5 /* Utilities */,
 				C419868626E46EFC00A877A5 /* Components */,
@@ -1717,10 +1732,8 @@
 		EB0BB67FC17D285CAAD4A5A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				21B5600D4966E23460C26448 /* Pods-Social Benefit.debug.xcconfig */,
-				F1DE47683E48ABB3E7D7C5B6 /* Pods-Social Benefit.release.xcconfig */,
-				2CF4DF6F2EA6B52C13EB39A4 /* Pods-Social Benefits.debug.xcconfig */,
-				9528C4FCF0AF49DA34DA6C12 /* Pods-Social Benefits.release.xcconfig */,
+				00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */,
+				CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1732,12 +1745,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84DA607B2696DACA0012F55B /* Build configuration list for PBXNativeTarget "Social Benefit" */;
 			buildPhases = (
-				2FED88CB61AE924BE41D5950 /* [CP] Check Pods Manifest.lock */,
+				763D9D9685954D966225CC75 /* [CP] Check Pods Manifest.lock */,
 				84DA60632696DAC80012F55B /* Sources */,
 				84DA60642696DAC80012F55B /* Frameworks */,
 				84DA60652696DAC80012F55B /* Resources */,
 				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
-				6F5B2D66C93E015C508DC6CB /* [CP] Embed Pods Frameworks */,
+				ACF2D37FD412D91E23836C33 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1791,6 +1804,7 @@
 				848753652706A46F0061D4E1 /* laugh.gif in Resources */,
 				848753632706A46F0061D4E1 /* love.gif in Resources */,
 				84DA60772696DACA0012F55B /* LaunchScreen.storyboard in Resources */,
+				C473D0FB27796B7B00895575 /* GoogleService-Info.plist in Resources */,
 				84DA60742696DACA0012F55B /* Assets.xcassets in Resources */,
 				848753642706A46F0061D4E1 /* angry.gif in Resources */,
 				84DA60722696DAC80012F55B /* Main.storyboard in Resources */,
@@ -1803,7 +1817,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2FED88CB61AE924BE41D5950 /* [CP] Check Pods Manifest.lock */ = {
+		763D9D9685954D966225CC75 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1825,7 +1839,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6F5B2D66C93E015C508DC6CB /* [CP] Embed Pods Frameworks */ = {
+		ACF2D37FD412D91E23836C33 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2255,11 +2269,12 @@
 		};
 		84DA607C2696DACA0012F55B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21B5600D4966E23460C26448 /* Pods-Social Benefit.debug.xcconfig */;
+			baseConfigurationReference = 00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
@@ -2278,11 +2293,12 @@
 		};
 		84DA607D2696DACA0012F55B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1DE47683E48ABB3E7D7C5B6 /* Pods-Social Benefit.release.xcconfig */;
+			baseConfigurationReference = CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VMRFA854RH;
