@@ -60,7 +60,7 @@ class InternalNewsService {
         var newsCategory: Int?
         
         service.makeCall(endpoint: Config.API_INTERNAL_NEWS_LIST, method: "GET", header: header, body: params, callback: { result in
-
+            
             for i in 0..<result.count {
                 contentId = result[i]["id"].int ?? 0
                 title = result[i]["title"].string ?? ""

@@ -45,6 +45,7 @@ struct BenefitDetailView: View {
         }
         .overlay(ApplyPopupView())
         .overlay(BenefitErrorPopUpView().environmentObject(listOfBenefitsViewModel))
+        .navigationBarHidden(true)
 //        .overlay(WarningMessageView(message: self.benefitDetailViewModel.errorCode, isPresented: $benefitDetailViewModel.isPresentError))
     }
     

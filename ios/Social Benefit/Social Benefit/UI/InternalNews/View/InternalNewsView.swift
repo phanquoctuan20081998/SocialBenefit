@@ -41,7 +41,7 @@ struct InternalNewsView: View {
         )
         .background(
             NavigationLink(
-                destination: InternalNewsDetailView(internalNewData: selectedInternalNew).navigationBarHidden(true),
+                destination: NavigationLazyView(InternalNewsDetailView(internalNewData: selectedInternalNew)),
                 isActive: $isActive,
                 label: { EmptyView() })
         )
@@ -82,7 +82,7 @@ extension InternalNewsView {
     private var InternalNewsUpperView: some View {
         VStack {
             Spacer().frame(height: ScreenInfor().screenHeight * 0.05 + 20)
-            SearchBarView(searchText: $internalNewsViewModel.searchPattern, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
+            SearchBarView(searchText: $internalNewsViewModel.searchPattern, isSearching: $isSearching, placeHolder: "search_news".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: false)
         }
     }
     

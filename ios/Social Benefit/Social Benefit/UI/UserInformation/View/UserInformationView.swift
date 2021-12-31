@@ -19,10 +19,10 @@ struct UserInformationView: View {
         ZStack {
             VStack {
                 
-                Spacer().frame(height: ScreenInfor().screenHeight * 0.05)
+                Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
                 
                 ScrollView {
-                    BasicInformationView.padding(.top, 30)
+                    BasicInformationView.padding(.top, 10)
                     Spacer().frame(height: 15)
                     
                     PresentationView
@@ -43,11 +43,18 @@ struct UserInformationView: View {
             LocationPickerPopUpView()
             ImagePickerView()
             PopUpView(isPresentedPopUp: $userInformationViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(ConfirmPopUp))
-            SuccessedMessageView(successedMessage: "Updated!", color: Color.green, isPresented: $userInformationViewModel.isSuccessed)
-            
-        }.environmentObject(userInformationViewModel)
+            SuccessedMessageView(successedMessage: "updated".localized, color: Color.green, isPresented: $userInformationViewModel.isSuccessed)
+        }
+        .loadingView(isLoading: $userInformationViewModel.isUpdating)
+        .environmentObject(userInformationViewModel)
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .navigationBarHidden(true)
     }
 }
+
+
 
 extension UserInformationView {
     
@@ -156,26 +163,26 @@ extension UserInformationView {
                 .padding(.top)
             
             VStack (spacing: 20) {
-                InformationTextFieldView(text: $userInformationViewModel.emailText, title: "contact_email".localized, placeHolder: userInfor.email, showChevron: false, disable: false)
+                InformationTextFieldView(text: $userInformationViewModel.emailText, title: "contact_email".localized, placeHolder: "", showChevron: false, disable: false)
                     .onTapGesture {
                         userInformationViewModel.resetError()
                     }
                     .overlay(
                         VStack {
                             if userInformationViewModel.isPresentEmailBlankError {
-                                TextFieldErrorView(error: "blank_email")
+                                TextFieldErrorView(error: "blank_email".localized)
                             } else if userInformationViewModel.isPresentWrongEmailError {
-                                TextFieldErrorView(error: "wrong_email")
+                                TextFieldErrorView(error: "wrong_email".localized)
                             }
                         }, alignment: .trailing
                     )
                 
-                InformationTextFieldView(text: $userInformationViewModel.phoneText, title: "telephone".localized, placeHolder: userInfor.phone, showChevron: false, disable: false)
+                InformationTextFieldView(text: $userInformationViewModel.phoneText, title: "telephone".localized, placeHolder: "", showChevron: false, disable: false)
                     .keyboardType(.numberPad)
                     .overlay(
                         VStack {
                             if userInformationViewModel.isPresentPhoneBlankError {
-                                TextFieldErrorView(error: "blank_phone")
+                                TextFieldErrorView(error: "blank_phone".localized)
                             }
                         }, alignment: .trailing
                     )
@@ -213,7 +220,7 @@ extension UserInformationView {
         HStack {
             Button(action: {
                 userInformationViewModel.saveButtonTapped()
-                
+
                 // Click count
                 countClick()
             }, label: {

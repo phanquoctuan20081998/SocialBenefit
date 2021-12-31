@@ -31,6 +31,7 @@ class ListOfBenefitsViewModel: ObservableObject, Identifiable {
     func loadData() {
         self.isLoading = true
         listOfBenefitsService.getAPI { data in
+            
             DispatchQueue.main.async {
                 self.listOfBenefits = data
                 self.isLoading = false

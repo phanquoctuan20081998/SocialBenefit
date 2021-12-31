@@ -73,6 +73,7 @@ struct RecognitionPostView: View {
             .onAppear {
                 recognitionPostViewModel.numOfComment = self.companyData.getCommentCount()
             }
+            .navigationBarHidden(true)
             
             // Reaction Bar
             if reactViewModel.isShowReactionBar {

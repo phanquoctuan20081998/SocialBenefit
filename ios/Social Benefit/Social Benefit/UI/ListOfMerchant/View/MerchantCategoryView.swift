@@ -22,7 +22,7 @@ struct MerchantCategoryItemView: View {
             }
         }
         .background(
-            NavigationLink(destination: ListOfMerchantViewByCategory().navigationBarHidden(true),
+            NavigationLink(destination: NavigationLazyView(ListOfMerchantViewByCategory()),
                            isActive: $merchantCategoryItemViewModel.selection,
                            label: { EmptyView() })
         )

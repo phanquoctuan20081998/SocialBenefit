@@ -86,6 +86,7 @@ struct InternalNewsDetailView: View {
         .padding(.bottom, keyboardHandler.keyboardHeight)
         .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
+        .navigationBarHidden(true)
     }
     
     func backButtonTapped() {
@@ -116,7 +117,7 @@ extension InternalNewsDetailView {
                 
                 if reactViewModel.isShowReactionBar {
                     ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                        .offset(x: -30, y: 100 + webViewHeight)
+                        .offset(x: 100 - ScreenInfor().screenWidth / 3, y: 100 + webViewHeight / 2)
                         .zIndex(1)
                 }
             }
@@ -264,7 +265,7 @@ struct SendCommentButtonView: View {
 
 struct InternalNewsDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>それでは申し訳ございません が、 　５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
+        InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>それでは申し訳ございません が、 　５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
 

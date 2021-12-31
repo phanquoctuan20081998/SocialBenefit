@@ -28,11 +28,13 @@ struct SearchSelectionView: View {
                 let filteredData = searchViewModel.allSearchData.filter({searchViewModel.searchText.isEmpty ? true : ($0.title.localized.localizedStandardContains(searchViewModel.searchText))})
                 
                 ForEach(filteredData.indices, id: \.self) { i in
-                    SearchCardView(icon: filteredData[i].icon, color: filteredData[i].color, title: filteredData[i].title)
-                        .onTapGesture {
-                            selectedTab = filteredData[i].title.localized
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
+                    if filteredData[i].functionId.isEmpty || isDisplayFunction(filteredData[i].functionId) {
+                        SearchCardView(icon: filteredData[i].icon, color: filteredData[i].color, title: filteredData[i].title)
+                            .onTapGesture {
+                                selectedTab = filteredData[i].title.localized
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                    }
                 }
             }.edgesIgnoringSafeArea(.all)
                 .frame(width: ScreenInfor().screenWidth)

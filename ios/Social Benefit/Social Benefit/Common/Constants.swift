@@ -126,18 +126,37 @@ struct Constants {
         static let TYPE_COMMENT = 6
     }
     
+    // Notification log type
+    struct NotificationLogType {
+        static let NOTIFICATION_HR = 0
+        static let SURVEY = 1
+        static let COMMENT = 2
+        static let COMMENT_RECOGNITION = 20
+        static let BENEFIT = 3
+        static let RECOGNIZE = 4
+        static let SYSTEM = 5
+        static let INTERNAL_NEWS = 6
+        static let BENEFIT_REQUEST = 7
+        static let BENEFIT_APPROVE = 8
+        static let SURVEY_REMIND = 9
+        static let REACT_RECOGNITION = 10
+        static let VOUCHER_REMIND = 11
+        static let VOUCHER_EXPIRED = 12
+        static let NEW_VOUCHER = 13
+    }
+    
     // Background Search Bar...
-    static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0),
-                                    BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1),
+    static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0, functionId: FuctionId.SURVEY),
+                                    BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1, functionId: ""),
 //                                    BackgroundSearch(tab:  "favorite merchants", icon: "heart.fill", color: Color.red, destination: 2),
-                                    BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white, destination: 3),
-                                    BackgroundSearch(tab: "search_internal_news", icon: "newspaper.fill", color: Color.green, destination: 4),
-                                    BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue, destination: 5),
-                                    BackgroundSearch(tab: "merchant_voucher_list", icon: "cart.fill", color: Color.blue, destination: 6),
-                                    BackgroundSearch(tab: "my_vouchers", icon: "ic_my_voucher", color: Color.white, destination: 7),
-                                    BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow, destination: 8),
-                                    BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white, destination: 9),
-                                    BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray, destination: 10)]
+                                    BackgroundSearch(tab: "home", icon: "ic_home", color: Color.white, destination: 3, functionId: ""),
+                                    BackgroundSearch(tab: "search_internal_news", icon: "newspaper.fill", color: Color.green, destination: 4, functionId: FuctionId.INTERNAL_NEWS),
+                                    BackgroundSearch(tab: "list_of_your_benefits", icon: "list.number", color: Color.blue, destination: 5, functionId: FuctionId.BENEFIT),
+                                    BackgroundSearch(tab: "merchant_voucher_list", icon: "cart.fill", color: Color.blue, destination: 6, functionId: FuctionId.COMPANY_BUDGET_POINT),
+                                    BackgroundSearch(tab: "my_vouchers", icon: "ic_my_voucher", color: Color.white, destination: 7, functionId: FuctionId.COMPANY_BUDGET_POINT),
+                                    BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow, destination: 8, functionId: FuctionId.COMPANY_BUDGET_POINT),
+                                    BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white, destination: 9, functionId: FuctionId.COMPANY_BUDGET_POINT),
+                                    BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray, destination: 10, functionId: FuctionId.COMPANY_BUDGET_POINT)]
     
 }
 
@@ -151,4 +170,5 @@ struct BackgroundSearch {
     var icon: String
     var color: Color
     var destination: Int
+    var functionId: String
 }

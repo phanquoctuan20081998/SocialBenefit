@@ -19,7 +19,7 @@
 
 // Reset Password Screen
 "forgot_password" = "Quên mật khẩu";
-"infor" = "Vui lòng điền email của bạn, hệ thống sẽ gửi hướng dẫn lấy lại mật khẩu.";
+"infor" = "Vui lòng điền mã công ty và email của bạn";
 "company_code" = "Nhập mã công ty";
 "email_reset" = "Email của bạn";
 "reset_password" = "Lấy lại mật khẩu";
@@ -36,7 +36,7 @@
 "benefit_status" = "Trạng thái";
 "up_comming" = "Sắp diễn ra";
 "on_going" = "Đang diễn ra";
-"apply" = "Đăng kí";
+"apply" = "Đăng ký";
 "waiting_to_confirm" = "Chờ xác nhận";
 "approved" = "Đã phê duyệt";
 "rejected" = "Đã từ chối";
@@ -70,7 +70,7 @@
 "choose_city" = "Chọn tỉnh/ thành phố";
 "enter_address" = "Vui lòng nhập địa chỉ";
 "location_example" = "324, Tây Sơn";
-"nickname" = "Tên thân mật (0/90)";
+"nickname" = "Tên thân mật (tối đa 90 kí tự)";
 "nickname_placeholder" = "Nhập tên thân mật";
 "address" = "Bạn đang sống tại?";
 "birthday" = "Sinh nhật";
@@ -88,6 +88,10 @@
 "how_do_you_want_to_set" = "Bạn muốn nhập ảnh bằng cách nào?";
 "add_from_camera" = "MÁY ẢNH";
 "add_from_gallery" = "BỘ SƯU TẬP";
+"blank_email" = "Vui lòng điền email của bạn";
+"wrong_email" = "Sai định dạng";
+"blank_phone" = "Vui lòng nhập số điện thoại";
+"updated" = "Đã cập nhật";
 
 // Banner Card View
 "recognitions_in_company" = "Bảng tin khen thưởng";
@@ -107,7 +111,7 @@
 "user" = "Người dùng";
 
 // Internal News Detail
-"reply" = "Trả lởi";
+"reply" = "Trả lời";
 "a_few_seconds" = "vài giây...";
 "reply_to" = "Trả lời";
 "type_comment" = "Nhập bình luận";
@@ -139,11 +143,11 @@
 "%d others" = "%d người khác";
 
 // Benefit Detail
-"apply_this_benefit" = "Đăng kí";
-"want_to_apply" = "Bạn muốn đăng kí?";
+"apply_this_benefit" = "Đăng ký";
+"want_to_apply" = "Bạn muốn đăng ký?";
 "cancel_button" = "HỦY";
 "ok_button" = "OK";
-"register_now" = "Đăng kí ngay";
+"register_now" = "Đăng ký ngay";
 "condition" = "ĐIỀU KIỆN ÁP DỤNG";
 
 //Merchant List
@@ -239,9 +243,14 @@
 "social_benefits" = "Phúc lợi nhân viên";
 "version" = "Phiên bản 1.0.0";
 "close" = "Đóng";
-"developed_by" = "Phát triển bời";
+"developed_by" = "Phát triển bởi";
 "vn" = "Tiếng Việt";
 "en" = "Tiếng Anh";
+"password_not_match" = "Mật khẩu không khớp";
+"password_6_to_15" = "Mật khẩu mới phải có độ dài 6 ~ 15 ký tự";
+"wrong_old_password" = "Thông tin mật khẩu cũ chưa đúng";
+"api_call_failed" = "Không thể kết nối với máy chủ";
+"company_address" = "324, Tây Sơn, Đống Đa, Hà Nội, Việt Nam";
 
 // Recognition
 "ranking_of_month %@" = "Xếp hạng %@";
@@ -299,6 +308,41 @@
 "retype_new_password" = "Vui lòng nhập lại mật khẩu mới";
 "update" = "Cập nhật";
 
+// Used Points History
+"your_used_points_hictory" = "Lịch sử tiêu dùng điểm";
+"search_the_transaction" = "Tìm kiếm giao dịch";
+"consumed" = "Tiêu dùng";
+"compliments_from" = "Nhận từ";
+"compliments_to" = "Gửi tới";
+"benefits_from" = "Nhận từ phúc lợi";
+"voucher_at" = "Ưu đãi tại";
+
+// Notification
+"C00193_I" = "<b> %1$@</b>. Hãy đăng ký tham gia trước ngày %2$@";
+"C00194_I" = "Bạn có khảo sát mới <b> %1$@</b>";
+"C00195_I" = "Bạn còn khảo sát <b> %1$@</b> chưa thực hiện. Hãy tham gia trả lời nhé";
+"C00196_I" = "<b> %1$@</b> đã thể hiện cảm xúc trên bài khen thưởng của bạn";
+"C00197_I" = "<b> %1$@</b> đã bình luận trong bài khen thưởng của bạn";
+"C00198_I" = "Các ưu đãi của bạn sắp hết hạn, hãy sử dụng ngay hôm nay nhé!";
+"C00199_I" = "Ưu đãi <b> %1$@</b> đã hết hạn";
+"C00200_I" = "Uu đãi mới: <b>%1$@</b>";
+
+"C00150_I" = "Yêu cầu tham gia phúc lợi <b> %1$@</b> của bạn đã bị từ chối do phúc lợi đã hết hạn";
+"S00110_I" = "Quản trị viên đã từ chối yêu cầu phúc lợi: <b> %1$@</b> &lt;br /&gt;Lý do: <b>%2$@</b>";
+"S00111_I" = "Quản trị viên đã chấp thuận yêu cầu phúc lợi: <b> %1$@ </b>";
+"S00155_I" = "Bạn nhận được phúc lợi <b> %1$@ </b>";
+"S00112_I" = "<b> %1$@ </b> đã trả lời bình luận của bạn trong <b> %2$@ </b>";
+"C00201_I" = "<b> %1$@ </b> đã trả lời bình luận của bạn trong bài khen thưởng của <b> %2$@ </b>";
+"S00113_I" = "Bạn nhận được điểm từ <b> %1$@ </b>";
+"C00159_I" = "%1$@<br />%2$@";
+"S00109_I" = "Bạn nhận được lời khen từ <b>%1$@</b>";
+
+"survey" = "Khảo sát";
+"system" = "Hệ thống";
+"at" = "lúc";
+"react" = "Cảm xúc";
+"loading" = "Đang tải";
+
 // Month
 "january" = "tháng 1";
 "february" = "tháng 2";
@@ -334,12 +378,13 @@
 "C00189_E" = "Tạm thời dừng đăng ký do đã có đủ số lượng yêu cầu tham gia";
 "C00190_E" = "Đã quá thời hạn đăng ký";
 
-"need_to_fill_all_data" = "need_to_fill_all_data";
+"need_to_fill_all_data" = "Cần nhập đầy đủ thông tin";
 "wrong_data" = "wrong_data";
-"wrong_email_format" = "wrong_email_format";
-"wrong_email" = "wrong_email";
-"blank_email" = "blank_email";
-"blank_phone" = "blank_phone";
-"can_connect_server" = "can_connect_server";
+"wrong_email_format" = "Địa chỉ email không hợp lệ";
+"wrong_email" = "Công ty không tồn tại";
+"blank_email" = "Email không được để trống";
+"blank_phone" = "Điện thoại không được để trống";
+"can_connect_server" = "Không thể kết nối với máy chủ";
 "this_person_is_exist" = "Người này đã tồn tại trong danh sách";
 "need_to_fill_wish" = "Vui lòng nhập lời nhắn của bạn";
+"there_is_no_camera_on_this_device" = "Không có camera trên thiết bị của bạn";

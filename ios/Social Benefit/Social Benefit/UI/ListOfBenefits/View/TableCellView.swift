@@ -27,14 +27,14 @@ struct TableCellView: View {
                 Text("on_going".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2)
+                    .frame(width: ScreenInfor().screenWidth * 0.2, alignment: .leading)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_UP_COMMING: do {
                 Text("up_comming".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2)
+                    .frame(width: ScreenInfor().screenWidth * 0.2, alignment: .leading)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_RECEIVED: do {
@@ -65,7 +65,7 @@ struct TableCellView: View {
                 Text("waiting".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2)
+                    .frame(width: ScreenInfor().screenWidth * 0.2, alignment: .leading)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_REJECTED: do {
@@ -78,7 +78,7 @@ struct TableCellView: View {
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_PENDING_REGISTER: do {
                 RoundedButton(text: "pending".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.gray.opacity(0.2), textColor: Color.blue, cornerRadius: 10)
                     .font(.system(size: 15, weight: .black, design: .default))
-                    .frame(width: ScreenInfor().screenWidth * 0.2, height: 20)
+                    .frame(width: ScreenInfor().screenWidth * 0.2, height: 20, alignment: .leading)
                     .disabled(true)
             }
                 

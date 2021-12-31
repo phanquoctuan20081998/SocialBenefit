@@ -95,7 +95,10 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        
+        DispatchQueue.main.async {
+            self.fromIndex = 0
+            self.loadRecognitionData(employeeId: self.employeeId, fromIndex: self.fromIndex)
+        }
     }
     
     func reloadData() {

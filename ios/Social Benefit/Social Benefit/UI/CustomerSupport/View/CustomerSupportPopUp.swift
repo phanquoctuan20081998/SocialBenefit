@@ -26,7 +26,7 @@ struct CustomerSupportPopUp: View {
                       popUpContent: AnyView(SuccessedPopUp))            
         } else {
             PopUpView(isPresentedPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
-                .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp))
+                .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $customerSupportViewModel.isPresentCustomerSupportPopUp, variable: .constant(true)))
         }
     }
 }
@@ -68,12 +68,12 @@ extension CustomerSupportPopUp {
                     countClick()
                 }, label: {
                     Text("send".localized)
-                        .foregroundColor(customerSupportViewModel.feedBackText.isEmpty ? .gray : .black)
+                        .foregroundColor(customerSupportViewModel.feedBackText.trimmingCharacters(in: .whitespaces).isEmpty ? .gray : .black)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 5)
                                         .fill(Color("nissho_light_blue"))
                                         .frame(width: 80))
-                }).disabled(customerSupportViewModel.feedBackText.isEmpty)
+                }).disabled(customerSupportViewModel.feedBackText.trimmingCharacters(in: .whitespaces).isEmpty)
                 
                 Spacer().frame(width: 80)
                 
@@ -109,6 +109,7 @@ extension CustomerSupportPopUp {
             Text("we_have_received_your_feedback".localized)
                 .multilineTextAlignment(.center)
                 .font(.system(size: 15))
+                .frame(width: ScreenInfor().screenWidth * 0.7)
             
             Spacer()
             

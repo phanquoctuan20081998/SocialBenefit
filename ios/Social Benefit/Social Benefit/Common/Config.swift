@@ -35,6 +35,7 @@ struct Config {
     static let API_MERCHANT_VOUCHER_LIST_BY_SIMILAR = "/merchant-voucher-list-by-similar"
 
     static let API_INTERNAL_NEWS_LIST = "/internal_news/list"
+    static let API_INTERNAL_NEWS_GET = "/internal_news/get"
     
     static let API_EMPLOYEE_INFO_UPDATE = "/mobile/employee/update"
     static let API_EMPLOYEE_INFO = "/employee/get"
@@ -68,4 +69,6 @@ struct Config {
     static let API_SURVEY_LIST = "/mobile/survey/list"
     static let API_SURVEY_CHOICE = "/mobile/survey/choice"
     static let API_SURVEY_GET = "/survey/get"
+    
+    static let API_NOTIFICATION_LIST = "/notification_log/list"
 }

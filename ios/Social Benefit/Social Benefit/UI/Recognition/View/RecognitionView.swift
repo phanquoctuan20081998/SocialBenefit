@@ -36,9 +36,9 @@ struct RecognitionView: View {
                             }
                             .buttonStyle(NavigationLinkNoAffectButtonStyle())
                         
-                        NavigationLink(destination: RankingOfRecognitionView()
+                        NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
                                         .environmentObject(recognitionViewModel)
-                                        .navigationBarHidden(true)) {
+                                        .navigationBarHidden(true))) {
                             MyRankView
                                 .foregroundColor(.black)
                         }
@@ -51,16 +51,16 @@ struct RecognitionView: View {
         }
         .background(
             ZStack {
-                NavigationLink(destination: RankingOfRecognitionView()
+                NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
                                 .environmentObject(recognitionViewModel)
-                                .navigationBarHidden(true),
+                                .navigationBarHidden(true)),
                                isActive: $isTop3RankingClick, label: { EmptyView() })
             }
         )
         .background(
             ZStack {
                 if self.selectedPost != -1 {
-                    NavigationLink(destination: RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[selectedPost]).navigationBarHidden(true),
+                    NavigationLink(destination: NavigationLazyView(RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[selectedPost])),
                                    isActive: $isRecognitionPostClick,
                                    label: { EmptyView() })
                 }
@@ -135,7 +135,7 @@ extension RecognitionView {
                 
                 
                 // Content
-                if recognitionViewModel.isLoading {
+                if recognitionViewModel.isLoading && recognitionViewModel.isRefreshing {
                     LoadingPageView()
                 } else {
                     ForEach(recognitionViewModel.allRecognitionPost.indices, id: \.self) { index in

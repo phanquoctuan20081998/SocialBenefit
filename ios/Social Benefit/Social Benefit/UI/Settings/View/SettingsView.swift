@@ -66,10 +66,11 @@ struct SettingsView: View {
         
         // Pop Up
         .overlay(LanguageSelectorPopUp(isPresentedPopup: $settingsViewModel.isPresentedLanguagePopup), alignment: .top)
-        .overlay(AppInformationPopUp(isPresentedPopup: $settingsViewModel.isPresentedAppinformationPopUp, companyName: "NISSHO ELECTRONICS VIETNAM", companyAddress: "324, Tây Sơn, Đống Đa, Hà Nội, Việt Nam"))
+        .overlay(AppInformationPopUp(isPresentedPopup: $settingsViewModel.isPresentedAppinformationPopUp, companyName: "NISSHO ELECTRONICS VIETNAM", companyAddress: "company_address".localized))
         .overlay(ChangePasswordPopUpView(isPresentedPopUp: $settingsViewModel.isPresentedChangePasswordPopUp)
         )
         .environmentObject(settingsViewModel)
+        .navigationBarHidden(true)
     }
     
     @ViewBuilder

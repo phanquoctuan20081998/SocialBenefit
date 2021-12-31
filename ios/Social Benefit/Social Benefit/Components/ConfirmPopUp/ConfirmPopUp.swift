@@ -12,6 +12,8 @@ struct ConfirmPopUp: View {
     @Binding var isPresentedPopUp: Bool
     @Binding var isPresentedPreviousPopUp: Bool
     
+    @Binding var variable: Bool
+    
     var body: some View {
         ZStack {
             if isPresentedPopUp {
@@ -42,6 +44,7 @@ struct ConfirmPopUp: View {
                         Button("confirm".localized.uppercased()) {
                             isPresentedPopUp = false
                             isPresentedPreviousPopUp = false
+                            variable.toggle()
                         }
                     }
                     .padding(.init(top: 2, leading: 20, bottom: 10, trailing: 30))
@@ -63,6 +66,6 @@ struct ConfirmPopUp: View {
 
 struct ConfirmPopUp_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmPopUp(isPresentedPopUp: .constant(true), isPresentedPreviousPopUp: .constant(true))
+        ConfirmPopUp(isPresentedPopUp: .constant(true), isPresentedPreviousPopUp: .constant(true), variable: .constant(true))
     }
 }

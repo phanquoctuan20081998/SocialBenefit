@@ -12,7 +12,7 @@ struct MyVoucherButtonView: View {
     @State var isMoveToNextPage = false
     
     var body: some View {
-        NavigationLink(destination: MyVoucherView().navigationBarHidden(true),
+        NavigationLink(destination: NavigationLazyView(MyVoucherView()),
                        isActive: $isMoveToNextPage,
                        label: {
             Button {

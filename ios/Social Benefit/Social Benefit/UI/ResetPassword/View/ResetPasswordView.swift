@@ -65,16 +65,16 @@ struct ResetPasswordView: View {
                     EmptyView()
                 }
                 
-                ErrorMessageView(error: "wrong_email_format", isPresentedError: $resetPasswordViewModel.isPresentWrongFormatEmail)
+                ErrorMessageView(error: "wrong_email_format".localized, isPresentedError: $resetPasswordViewModel.isPresentWrongFormatEmail)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "wrong_email", isPresentedError: $resetPasswordViewModel.isPresentNotExistEmail)
+                ErrorMessageView(error: "wrong_email".localized, isPresentedError: $resetPasswordViewModel.isPresentNotExistEmail)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "need_to_fill_all_data", isPresentedError: $resetPasswordViewModel.isPresentAllTypedError)
+                ErrorMessageView(error: "need_to_fill_all_data".localized, isPresentedError: $resetPasswordViewModel.isPresentAllTypedError)
                     .offset(y: 400)
                 
-                ErrorMessageView(error: "can_connect_server", isPresentedError: $resetPasswordViewModel.isPresentCannotConnectServerError)
+                ErrorMessageView(error: "can_connect_server".localized, isPresentedError: $resetPasswordViewModel.isPresentCannotConnectServerError)
                     .offset(y: 400)
                 
                 if resetPasswordViewModel.isLoading {
@@ -84,7 +84,7 @@ struct ResetPasswordView: View {
                         Spacer()
                     }
                     .background(Color.black.opacity(0.2)
-                    .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
+                    .frame(width: ScreenInfor().screenWidth + 100, height: ScreenInfor().screenHeight + 100)
                     .edgesIgnoringSafeArea(.all))
                 }
             }.edgesIgnoringSafeArea(.all)

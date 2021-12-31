@@ -10,6 +10,9 @@ import SwiftUI
 struct ImagePickerView: View {
     
     @EnvironmentObject var userInformationViewModel: UserInformationViewModel
+    
+    @State var isNoCameraError = false
+    
     let timeFormatter = DateFormatter()
     
     init() {
@@ -33,8 +36,16 @@ struct ImagePickerView: View {
                     let strDate = timeFormatter.string(from: Date())
                     userInformationViewModel.image = image
                     userInformationViewModel.imageName = "IMG_IOS_" + strDate
-                }
+                }.edgesIgnoringSafeArea(.all)
             }
+        
+            .overlay(
+                ZStack {
+                    if isNoCameraError {
+                        ErrorMessageView(error: "there_is_no_camera_on_this_device".localized, isPresentedError: $isNoCameraError)
+                    }
+                }
+            )
     }
     
     var contentView: some View {
@@ -56,8 +67,12 @@ struct ImagePickerView: View {
                 Text("add_from_camera".localized)
             }.frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
                 .onTapGesture {
-                    userInformationViewModel.showCamera.toggle()
-                    userInformationViewModel.isPresentedImagePicker.toggle()
+                    if checkPermissions() {
+                        userInformationViewModel.showCamera.toggle()
+                        userInformationViewModel.isPresentedImagePicker.toggle()
+                    } else {
+                        self.isNoCameraError = true
+                    }
                 }
             
             HStack(spacing: 20) {
@@ -81,6 +96,14 @@ struct ImagePickerView: View {
                         .edgesIgnoringSafeArea(.bottom)
                         .offset(y: 50)
                         .foregroundColor(.white))
+    }
+    
+    func checkPermissions() -> Bool {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            return true
+        } else {
+            return false
+        }
     }
 }
 

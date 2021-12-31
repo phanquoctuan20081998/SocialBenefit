@@ -14,4 +14,5 @@ struct SearchBarData: Hashable {
     var title: String
     var color: Color
     var destination: Int
+    var functionId: String
 }

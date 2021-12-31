@@ -38,9 +38,9 @@ struct ListOfBenefitsView: View {
         }
         .background(
             NavigationLink(
-                destination: BenefitDetailView().navigationBarHidden(true)
+                destination: NavigationLazyView(BenefitDetailView()
                     .environmentObject(benefitDetailViewModel)
-                    .environmentObject(listOfBenefitsViewModel),
+                    .environmentObject(listOfBenefitsViewModel)),
                 isActive: $isTapDetail,
                 label: {
                     EmptyView()
@@ -52,6 +52,7 @@ struct ListOfBenefitsView: View {
 
         .environmentObject(listOfBenefitsViewModel)
         .environmentObject(benefitDetailViewModel)
+        .navigationBarHidden(true)
     }
     
 }
@@ -59,8 +60,8 @@ struct ListOfBenefitsView: View {
 extension ListOfBenefitsView {
     
     var HeaderView: some View {
-        let scale = [0.17, 0.6, 0.2]
-        let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
+        let scale = [0.17, 0.55, 0.25]
+        let headers = ["", "benefit".localized, "benefit_status".localized]
         
         return HStack(spacing: 0) {
             
@@ -68,7 +69,7 @@ extension ListOfBenefitsView {
                 Text(headers[i])
                     .bold()
                     .font(.system(size: 15))
-                    .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
+                    .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20, alignment: .leading)
             }
         }
         .padding(.vertical, 10)

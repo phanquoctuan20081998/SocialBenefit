@@ -44,15 +44,15 @@ class CustomerSupportViewModel: ObservableObject, Identifiable {
     
     func loadScreenProblemText(screenProblemText: String) {
         DispatchQueue.main.async {
-            self.isAllTextFieldAreTyped = !screenProblemText.isEmpty && !self.feedBackText.isEmpty
-            self.isAllTextFieldAreBlank = screenProblemText.isEmpty && self.feedBackText.isEmpty
+            self.isAllTextFieldAreTyped = !screenProblemText.isEmpty && !self.feedBackText.trimmingCharacters(in: .whitespaces).isEmpty
+            self.isAllTextFieldAreBlank = screenProblemText.isEmpty && self.feedBackText.trimmingCharacters(in: .whitespaces).isEmpty
         }
     }
     
     func loadfeedBackText(feedBackText: String) {
         DispatchQueue.main.async {
-            self.isAllTextFieldAreTyped = !self.screenProblemText.isEmpty && !feedBackText.isEmpty
-            self.isAllTextFieldAreBlank = self.screenProblemText.isEmpty && feedBackText.isEmpty
+            self.isAllTextFieldAreTyped = !self.screenProblemText.isEmpty && !feedBackText.trimmingCharacters(in: .whitespaces).isEmpty
+            self.isAllTextFieldAreBlank = self.screenProblemText.isEmpty && feedBackText.trimmingCharacters(in: .whitespaces).isEmpty
         }
     }
     

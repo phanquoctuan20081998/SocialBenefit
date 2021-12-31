@@ -32,6 +32,7 @@ struct UsedPointHistoryView: View {
             }
         }
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: true))
+        .navigationBarHidden(true)
     }
 }
 
@@ -51,7 +52,7 @@ extension UsedPointHistoryView {
     }
     
     var HeaderTab: some View {
-        let header = ["all", "received", "consummed"]
+        let header = ["all", "received", "consumed"]
         return HStack(spacing: 0) {
             ForEach(header.indices, id: \.self) { index in
                 Text(header[index].localized)

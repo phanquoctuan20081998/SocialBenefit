@@ -58,6 +58,10 @@ class InternalNewsViewModel: ObservableObject {
         self.isLoading = true
         
         internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category) { data in
+            
+//            for item in data {
+//                print(item.title)
+//            }
   
             DispatchQueue.main.async {
                 self.allInternalNews = data

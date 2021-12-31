@@ -41,7 +41,10 @@ struct SearchBarView: View {
                     Spacer()
                     
                     if isSearching {
-                        Button(action: { searchText = "" }, label: {
+                        Button(action: {
+                            searchText = ""
+                            isSearching = false
+                        }, label: {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.system(size: CGFloat(fontSize)))
                                 .padding(.vertical)

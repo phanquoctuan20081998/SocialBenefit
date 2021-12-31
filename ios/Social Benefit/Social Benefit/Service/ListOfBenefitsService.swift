@@ -38,7 +38,7 @@ class ListOfBenefitsService {
                 id = resultDic["id"].int ?? 0
                 title = resultDic["title"].string ?? ""
                 body = resultDic["body"].string ?? ""
-                logo = resultDic["company"]["logo"].string ?? ""
+                logo = resultDic["company"]["logo"].string ?? userInfor.avatar
                 typeMember = resultDic["typeMember"].int ?? 0
                 status = resultDic["status"].int ?? 0
                 mobileStatus = resultDic["mobileStatus"].int ?? 0

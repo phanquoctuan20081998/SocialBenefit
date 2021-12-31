@@ -28,9 +28,9 @@ struct PopUpMessageView: View {
                 .font(.system(size: 15))
         }
         .padding()
-        .frame(width: ScreenInfor().screenWidth * 0.8)
+//        .frame(width: ScreenInfor().screenWidth * 0.8)
         .background(RoundedRectangle(cornerRadius: 25).fill(backgroundColor))
-        .padding(.horizontal)
+        .padding(.horizontal, 30)
         .offset(x: 0, y: ScreenInfor().screenHeight * 0.3)
     }
 }
@@ -99,7 +99,6 @@ struct WarningMessageView: View {
 
 struct ErrorMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        WhiteWarningMessageView(message: "zdvdvsdghvcgsdvcghvsdgchvsgcvgsdvcgvsdgcvsghcvgsvcgvgcvgvcdgscvgsvcgsdvcgvsdgcvsgdvcgsdvcghdsvhgcvsghdcvghsvcgvsdsacascs", isPresented: .constant(true))
-            .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
+        SuccessedMessageView(successedMessage: "Update", color: .green, isPresented: .constant(true))
     }
 }

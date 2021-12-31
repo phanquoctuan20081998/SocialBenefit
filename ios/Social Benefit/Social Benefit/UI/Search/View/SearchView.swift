@@ -22,14 +22,16 @@ struct SearchContentView: View {
         ScrollView {
             VStack {
                 ForEach(filteredData.indices, id: \.self) { i in
-                    SearchCardView(icon: filteredData[i].icon, color: filteredData[i].color, title: filteredData[i].title)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .foregroundColor(.black)
-                        .onTapGesture {
-                            self.isMoveToNextPage.toggle()
-                            self.selectedTab = i
-                            countClick()
-                        }
+                    if filteredData[i].functionId.isEmpty || isDisplayFunction(filteredData[i].functionId) {
+                        SearchCardView(icon: filteredData[i].icon, color: filteredData[i].color, title: filteredData[i].title)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .foregroundColor(.black)
+                            .onTapGesture {
+                                self.isMoveToNextPage.toggle()
+                                self.selectedTab = i
+                                countClick()
+                            }
+                    }
                 }
             }
         }
@@ -47,7 +49,7 @@ struct SearchContentView: View {
         
         switch selection {
         case 0:
-            return AnyView(Text("0"))
+            return AnyView(ListSurveyView())
         case 1:
             return AnyView(UserInformationView().navigationBarHidden(true))
 //        case 2:

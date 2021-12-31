@@ -56,13 +56,13 @@ struct TransactionCardView: View {
     var TransactionContentView: some View {
         HStack {
             if transactionType == Constants.UsedPointsHistory.FROMCOMPLIMENT {
-                TextContentView(text: "compliments_from")
+                TextContentView(text: "compliments_from".localized)
             } else if transactionType == Constants.UsedPointsHistory.TOCOMPLIMENT {
-                TextContentView(text: "compliments_to")
+                TextContentView(text: "compliments_to".localized)
             } else if transactionType == Constants.UsedPointsHistory.FROMBENEFIT {
-                TextContentView(text: "benefits_from")
+                TextContentView(text: "benefits_from".localized)
             } else if transactionType == Constants.UsedPointsHistory.TOVOUCHER {
-                TextContentView(text: "voucher_at")
+                TextContentView(text: "voucher_at".localized)
             }
         }
     }

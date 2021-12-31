@@ -51,10 +51,9 @@ struct RecognitionActionView: View {
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: false, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
         .edgesIgnoringSafeArea(.all)
         .background(
-            NavigationLink(destination: UserSearchView().navigationBarHidden(true)
-                            .environmentObject(recognitionActionViewModel), isActive: $addMoreClick, label: {
-                                EmptyView()
-                            })
+            NavigationLink(destination: NavigationLazyView(UserSearchView().environmentObject(recognitionActionViewModel)),
+                           isActive: $addMoreClick,
+                           label: { EmptyView() })
         )
     }
 }

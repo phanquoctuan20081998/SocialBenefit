@@ -25,7 +25,7 @@ struct SimiliarVoucherView: View {
                     
                     ForEach(merchantVoucherDetailViewModel.similarVouchers.indices, id: \.self) { i in
                         NavigationLink(
-                            destination: MerchantVoucherDetailView(voucherId: merchantVoucherDetailViewModel.similarVouchers[i].id),
+                            destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: merchantVoucherDetailViewModel.similarVouchers[i].id)),
                             label: {
                                 AllOfferCardView(voucherData: merchantVoucherDetailViewModel.similarVouchers[i])
                                     .foregroundColor(.black)

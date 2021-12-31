@@ -66,6 +66,7 @@ struct ListOfMerchantViewByCategory: View {
             self.offersViewModel.searchPattern = ""
             self.homeScreenViewModel.isPresentedTabBar = false
         }
+        .navigationBarHidden(true)
     }
 }
 

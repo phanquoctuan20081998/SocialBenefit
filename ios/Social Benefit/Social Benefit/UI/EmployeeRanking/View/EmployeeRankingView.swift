@@ -22,7 +22,7 @@ struct EmployeeRankingView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+            Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
             EmployeeInforView
             Spacer()
             RefreshableScrollView(height: 70, refreshing: self.$employeeRankingViewModel.isRefreshing) {
@@ -80,7 +80,7 @@ extension EmployeeRankingView {
     
     var EmployeeListView: some View {
         VStack {
-            if employeeRankingViewModel.isLoading {
+            if employeeRankingViewModel.isLoading && !employeeRankingViewModel.isRefreshing {
                 LoadingPageView()
             } else {
                 ForEach(employeeRankingViewModel.employeeRecognitionList.indices, id: \.self) { index in

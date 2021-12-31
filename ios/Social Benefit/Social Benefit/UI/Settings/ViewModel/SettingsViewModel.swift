@@ -50,6 +50,10 @@ class SettingsViewModel: ObservableObject, Identifiable {
         DispatchQueue.main.async {
             self.isAllTextFieldAreTyped = !oldPassword.isEmpty && !self.newPassword.isEmpty && !self.retypePassword.isEmpty
             self.isAllTextFiledAreBlank = oldPassword.isEmpty && self.newPassword.isEmpty && self.retypePassword.isEmpty
+            
+            if oldPassword.count > 15 {
+                self.oldPassword = trimStringWithNChar(15, string: oldPassword)
+            }
         }
     }
     
@@ -57,6 +61,10 @@ class SettingsViewModel: ObservableObject, Identifiable {
         DispatchQueue.main.async {
             self.isAllTextFieldAreTyped = !self.oldPassword.isEmpty && !newPassword.isEmpty && !self.retypePassword.isEmpty
             self.isAllTextFiledAreBlank = self.oldPassword.isEmpty && newPassword.isEmpty && self.retypePassword.isEmpty
+            
+            if newPassword.count > 15 {
+                self.newPassword = trimStringWithNChar(15, string: newPassword)
+            }
         }
     }
     
@@ -64,6 +72,10 @@ class SettingsViewModel: ObservableObject, Identifiable {
         DispatchQueue.main.async {
             self.isAllTextFieldAreTyped = !self.oldPassword.isEmpty && !self.newPassword.isEmpty && !retypePassword.isEmpty
             self.isAllTextFiledAreBlank = self.oldPassword.isEmpty && self.newPassword.isEmpty && retypePassword.isEmpty
+            
+            if retypePassword.count > 15 {
+                self.retypePassword = trimStringWithNChar(15, string: retypePassword)
+            }
         }
     }
     
@@ -93,14 +105,14 @@ class SettingsViewModel: ObservableObject, Identifiable {
         } else {
             self.updatePassword { [self] code in
                 if code == Constants.ChangePasswordErrorCodeResponse.MOBILE_WRONG_OLD_PASSWORD {
-                    getError(Constants.ChangePasswordErrors.wrong_old_password)
+                    getError(Constants.ChangePasswordErrors.wrong_old_password.localized)
                 } else if code == Constants.ChangePasswordErrorCodeResponse.MOBILE_CHANGE_PASSWORD_OK {
                     DispatchQueue.main.async {
                         self.isShowError = false
                         self.isPresentedChangePasswordPopUp = false
                     }
                 } else {
-                    getError(Constants.ChangePasswordErrors.api_call_failed)
+                    getError(Constants.ChangePasswordErrors.api_call_failed.localized)
                 }
             }
         }

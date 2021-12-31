@@ -32,16 +32,13 @@ struct BackgroundViewWithNotiAndSearch: View {
                         
                         HStack(spacing: 20) {
                             
-                            // Bell Button
-                            Button {
-                                // Do something
-                                
-                                
+                            NavigationLink {
+                                NotificationView()
                             } label: {
                                 Image(systemName: "bell.fill")
                             }
+
                             
-                            // Search Button
                             Button {
                                 withAnimation(.easeInOut) {
                                     homeScreen.isPresentedSearchView = true
@@ -66,7 +63,10 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var homeScreen: HomeScreenViewModel
+    
     @Binding var isActive: Bool
+    @State var isMoveToHomeScreen = false
+    
     var title: String
     var isHaveLogo: Bool
     var isHiddenTabBarWhenBack = true
@@ -120,17 +120,25 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                         }
                         
                         if isHaveLogo {
+                            
                             URLImageView(url: userInfor.companyLogo)
                                 .scaledToFit()
                                 .frame(height: 30, alignment: .trailing)
                                 .padding(.trailing, 25)
+                                .onTapGesture {
+                                    self.isMoveToHomeScreen = true
+                                }
                         }
                     }.padding(.top, ScreenInfor().screenHeight * 0.05)
                     ,alignment: .top)
                 .edgesIgnoringSafeArea(.all)
             
             Spacer()
-        }
+        }.background(
+            NavigationLink(destination: HomeScreenView(selectedTab: "house").navigationBarHidden(true), isActive: $isMoveToHomeScreen, label: {
+                EmptyView()
+            })
+        )
     }
 }
 

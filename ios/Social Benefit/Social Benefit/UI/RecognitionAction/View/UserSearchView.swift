@@ -24,7 +24,7 @@ struct UserSearchView: View {
                 .padding(.vertical, 15)
             
             UserListView 
-        }
+        }.navigationBarHidden(true)
     }
 }
 

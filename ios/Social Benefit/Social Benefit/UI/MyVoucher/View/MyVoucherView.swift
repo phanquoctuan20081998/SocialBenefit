@@ -42,10 +42,10 @@ struct MyVoucherView: View {
         .background(
             ZStack {
                 if self.selectedIndex != -1 {
-                    NavigationLink(destination: MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[self.selectedIndex].id)
+                    NavigationLink(destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[self.selectedIndex].id)
                                     .environmentObject(merchantVoucherDetailViewModel)
                                     .environmentObject(confirmInforBuyViewModel)
-                                    .environmentObject(homeScreenViewModel),
+                                    .environmentObject(homeScreenViewModel)),
                                    isActive: $isMoveToNextPage,
                                    label: { EmptyView() })
                 }
@@ -60,6 +60,7 @@ struct MyVoucherView: View {
         
         .environmentObject(myVoucherViewModel)
         .edgesIgnoringSafeArea(.all)
+        .navigationBarHidden(true)
     }
 }
 

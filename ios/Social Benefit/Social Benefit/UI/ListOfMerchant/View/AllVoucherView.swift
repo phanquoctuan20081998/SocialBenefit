@@ -27,7 +27,7 @@ struct AllOffersView: View {
                     ForEach(self.offersViewModel.allOffers.indices, id: \.self) { i in
                         
                         NavigationLink(
-                            destination: MerchantVoucherDetailView(voucherId: self.selectedVoucherId),
+                            destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
                             isActive: $isMoveToMerchantDetail,
                             label: {
                                 Button {

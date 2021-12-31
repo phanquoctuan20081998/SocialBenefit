@@ -15,14 +15,14 @@ struct ChangePasswordPopUpView: View {
     
     var body: some View {
         PopUpView(isPresentedPopUp: $isPresentedPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
-            .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $settingsViewModel.isPresentedChangePasswordPopUp))
+            .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $settingsViewModel.isPresentedChangePasswordPopUp, variable: $settingsViewModel.isShowError))
     }
 }
 
 extension ChangePasswordPopUpView {
     
     var PopUpContent: some View {
-        VStack {
+        VStack(spacing: 5) {
             Image(systemName: "key.fill")
                 .foregroundColor(.purple)
                 .font(.system(size: 30))
@@ -32,8 +32,10 @@ extension ChangePasswordPopUpView {
                 if settingsViewModel.isShowError {
                     Text(settingsViewModel.errorMeg)
                         .foregroundColor(.red)
+                        .frame(width: ScreenInfor().screenWidth * 0.7, height: 40)
+                        .multilineTextAlignment(.center)
                 }
-            }.frame(height: 20)
+            }.frame(height: 30)
             
             VStack(spacing: 15) {
                 PasswordTextField(title: "old_password".localized, placeHolder: "enter_old_password".localized, text: $settingsViewModel.oldPassword)
@@ -57,6 +59,7 @@ extension ChangePasswordPopUpView {
                 // Update button...
                 Button(action: {
                     settingsViewModel.updateButtontapped()
+                    settingsViewModel.isShowError = false
                 }, label: {
                     Text("update".localized)
                         .foregroundColor(settingsViewModel.isAllTextFieldAreTyped ? .black : .gray)
@@ -74,6 +77,7 @@ extension ChangePasswordPopUpView {
                     withAnimation {
                         if settingsViewModel.isAllTextFiledAreBlank {
                             isPresentedPopUp = false
+                            settingsViewModel.isShowError = false
                         } else {
                             isPresentComfirmPopUp = true
                         }
@@ -102,6 +106,7 @@ extension ChangePasswordPopUpView {
         if settingsViewModel.isAllTextFiledAreBlank {
             withAnimation {
                 isPresentedPopUp = false
+                settingsViewModel.isShowError = false
             }
         } else {
             isPresentComfirmPopUp = true

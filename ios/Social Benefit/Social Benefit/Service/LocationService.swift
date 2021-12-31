@@ -25,7 +25,8 @@ class LocationService {
         
         
         let header: HTTPHeaders = ["token": userInfor.token,
-                                   "user_id": userInfor.userId]
+                                   "user_id": userInfor.userId,
+                                   "timezoneOffset": "0"]
         
         let params: Parameters = ["filter" : filter]
         
@@ -33,6 +34,7 @@ class LocationService {
         var cityId: String?
         
         service.makeCall(endpoint: Config.API_LOCATION_LIST, method: "POST", header: header, body: params, callback: { result in
+            
             for i in 0..<result.count {
                 cityName = result[i]["name"].string
                 cityId = result[i]["id"].string

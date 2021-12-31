@@ -25,8 +25,10 @@ struct ListSurveyView: View {
                 .bold()
                 .font(.system(size: 20))
                 .foregroundColor(.blue)
-            SearchBarView(searchText: $viewModel.keyword, isSearching: $isSearching, placeHolder: "search_for_survey".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
+            
+            SearchBarView(searchText: $viewModel.keyword, isSearching: $isSearching, placeHolder: "search_for_survey".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: false)
                 .font(.system(size: 13))
+            
             Picker("", selection: $tabSelection.onChange(segmentOnChange(_:))) {
                 Text("on_going".localized).tag(0)
                 Text("finished".localized).tag(1)

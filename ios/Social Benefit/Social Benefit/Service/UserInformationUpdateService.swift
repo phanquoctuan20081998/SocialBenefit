@@ -16,6 +16,13 @@ class UserInformationService {
         
         let URLName = Config.baseURL + Config.API_EMPLOYEE_INFO_UPDATE
         
+        // Trim white space...
+        let nickName = nickName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let address = address.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        let phone = phone.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        
         let headers: HTTPHeaders = ["Content-type": "multipart/form-data",
                                     "Content-Disposition" : "form-data",
                                     "token": userInfor.token,
@@ -36,7 +43,11 @@ class UserInformationService {
                 multipartFormData.append((value as! String).data(using: String.Encoding.utf8)!, withName: key)
             }
             
-            guard let imgData = image.jpegData(compressionQuality: 1) else { return }
+            // Scale image
+//            let targeSize = CGSize(width: 200, height: 200)
+//            let resizedImage = image.scalePreservingAspectRatio(targetSize: targeSize)
+            
+            guard let imgData = image.jpegData(compressionQuality: 0.5) else { return }
             multipartFormData.append(imgData, withName: "file", fileName: imageName + ".jpeg", mimeType: "image/jpeg")
             
             
@@ -44,7 +55,7 @@ class UserInformationService {
         },to: URL.init(string: URLName)!, usingThreshold: UInt64.init(),
                   method: .post,
                   headers: headers).response { response in
-            
+            print(response)
             if (response.error == nil) {
                 do {
                     if let jsonData = response.data{
@@ -87,6 +98,9 @@ class UserInformationService {
                                   "locationId": locationId]
         
         service.makeCall(endpoint: Config.API_EMPLOYEE_INFO_UPDATE, method: "POST", header: header, body: params, callback: { (result) in
+            
+            print(result)
+            
             if result.isEmpty {
                 returnCallBack(false)
             } else {

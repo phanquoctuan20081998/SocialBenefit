@@ -41,10 +41,9 @@ struct RecognitionUsesBlockView: View {
                 
             }
             .background(
-                NavigationLink(destination: UserSearchView().navigationBarHidden(true)
-                                .environmentObject(recognitionActionViewModel), isActive: $addMoreClick, label: {
-                                    EmptyView()
-                                })
+                NavigationLink(destination: NavigationLazyView(UserSearchView().environmentObject(recognitionActionViewModel)),
+                               isActive: $addMoreClick,
+                               label: { EmptyView() })
             )
         }
     }

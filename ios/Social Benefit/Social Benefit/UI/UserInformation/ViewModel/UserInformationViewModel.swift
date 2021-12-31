@@ -50,6 +50,10 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     @Published var isPresentConfirmPopUp: Bool = false
     @Published var isSuccessed: Bool = false
     
+    // Loading controller
+    
+    @Published var isUpdating: Bool = false
+    
     private var userInformationService = UserInformationService()
     private var cancellables = Set<AnyCancellable>()
     
@@ -115,19 +119,24 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     func saveButtonTapped() {
         
         // Check email fommat...
+        let emailText = emailText.trimmingCharacters(in: .whitespaces)
+        let phoneText = phoneText.trimmingCharacters(in: .whitespaces)
         
-        if self.emailText.isEmpty || self.phoneText.isEmpty {
+        print(emailText)
+        
+        if emailText.isEmpty || phoneText.isEmpty {
             if self.phoneText.isEmpty { self.isPresentPhoneBlankError = true }
             if self.emailText.isEmpty { self.isPresentEmailBlankError = true }
             return
         }
         
-        if !textFieldValidatorEmail(self.emailText) {
+        if !textFieldValidatorEmail(emailText) {
             isPresentWrongEmailError = true
             return
         }
         
         // Update UserInfor...
+        
         userInforUpdate()
     }
     
@@ -144,36 +153,44 @@ class UserInformationViewModel: ObservableObject, Identifiable {
             noStreet = self.noStreet
         }
         
-
-        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image!, imageName: self.imageName) { data in
-            
-            if !data.isEmpty {
-                self.isSuccessed = true
+        
+        self.isUpdating = true
+        
+        if image == UIImage(color: .white) {
+            userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image!, imageName: self.imageName) { data in
                 
-                let employeeDto = data
-                let citizen = employeeDto["citizen"]
-
-                DispatchQueue.main.async {
-                    updateUserInfor(token: userInfor.token, employeeDto: employeeDto, citizen: citizen, functionNames: userInfor.functionNames)
-                    self.imageName = employeeDto["avatar"].string ?? ""
+                if !data.isEmpty {
+                    self.isSuccessed = true
+                    
+                    let employeeDto = data
+                    let citizen = employeeDto["citizen"]
+                    
+                    DispatchQueue.main.async {
+                        updateUserInfor(token: userInfor.token, employeeDto: employeeDto, citizen: citizen, functionNames: userInfor.functionNames)
+                        self.imageName = employeeDto["avatar"].string ?? ""
+                        
+                        self.isUpdating = false
+                    }
                 }
             }
-        }
-
-        
-//        userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { isSuccessed in
+        } else {
+            userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { data in
+//                if !data.isEmpty {
+//                    self.isSuccessed = true
 //
-//            if isSuccessed {
-//                self.isSuccessed = isSuccessed
-//                userInfor.nickname = self.nicknameText
-//                userInfor.noStreet = self.noStreet
-//                userInfor.address = self.locationText
-//                userInfor.email = self.emailText
-//                userInfor.locationId = self.locationId
-//            }
-//        }
+//                    let employeeDto = data
+//                    let citizen = employeeDto["citizen"]
+//
+//                    DispatchQueue.main.async {
+//                        updateUserInfor(token: userInfor.token, employeeDto: employeeDto, citizen: citizen, functionNames: userInfor.functionNames)
+//                        self.imageName = employeeDto["avatar"].string ?? ""
+//
+//                        self.isUpdating = false
+//                    }
+//                }
+            }
+        }
     }
-    
     
     func resetError() {
         DispatchQueue.main.async {

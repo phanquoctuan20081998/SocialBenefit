@@ -19,7 +19,7 @@
 
 // Reset Password Screen
 "forgot_password" = "Forgot your password";
-"infor" = "Please enter you email address, we will send the instruction for the new one.";
+"infor" = "Please enter your company code and your email address";
 "company_code" = "Enter you company code";
 "email_reset" = "Enter your email";
 "reset_password" = "Reset Password";
@@ -30,10 +30,10 @@
 "success_notification2" = "A new password has been sent to your email!";
 
 // List of Benefit
-"benefit_title" = "LIST OF YOU BENEFITS";
+"benefit_title" = "LIST OF YOUR BENEFITS";
 "order" = "No.";
 "benefit" = "Benefit";
-"benefit_status" = "Appied?";
+"benefit_status" = "Applied?";
 "up_comming" = "Upcomming";
 "on_going" = "Ongoing";
 "apply" = "Apply";
@@ -70,8 +70,8 @@
 "choose_city" = "Choose Province/City";
 "enter_address" = "Enter your address";
 "location_example" = "324, Tây Sơn";
-"nickname" = "Your nickename (0/90)";
-"nickname_placeholder" = "Input your nickname";
+"nickname" = "Your nick name (maximum 90 characters)";
+"nickname_placeholder" = "Input your nick name";
 "address" = "Where are you living now?";
 "birthday" = "Your birthday";
 "gender" = "Your gender";
@@ -88,6 +88,10 @@
 "how_do_you_want_to_set" = "How do you want to set your picture?";
 "add_from_camera" = "CAMERA";
 "add_from_gallery" = "GALLERY";
+"blank_email" = "Please enter your email address";
+"wrong_email" = "Invalid format!";
+"blank_phone" = "Please enter your phone number";
+"updated" = "Updated";
 
 // Banner Card View
 "recognitions_in_company" = "Recognitions in Company";
@@ -242,6 +246,11 @@
 "developed_by" = "Developed by";
 "vn" = "Vietnamese";
 "en" = "English";
+"password_not_match" = "Password not match";
+"password_6_to_15" = "New password must be at least 6~15 characters in length";
+"wrong_old_password" = "Old password is incorrect";
+"api_call_failed" = "Cannot connect to server";
+"company_address" = "324, Tay Son, Dong Da, Ha Noi, Viet Nam";
 
 // Recognition
 "ranking_of_month %@" = "%@ ranking";
@@ -299,6 +308,41 @@
 "retype_new_password" = "Please retype your new password";
 "update" = "Update";
 
+// Used Points History
+"your_used_points_hictory" = "Your used points hictory";
+"search_the_transaction" = "Search the transaction";
+"consumed" = "Consumed";
+"compliments_from" = "Compliments from";
+"compliments_to" = "Compliments to";
+"benefits_from" = "From benefit";
+"voucher_at" = "Voucher at";
+"loading" = "Loading";
+
+// Notification
+"C00193_I" = "<b> %1$@</b>. Please register before the date %2$@";
+"C00194_I" = "You have a new survey <b> %1$@</b>";
+"C00195_I" = "You have survey <b> %1$@</b> unfulfilled. Please participate in answering the survey";
+"C00196_I" = "<b> %1$@</b> has reacted on your recognition post";
+"C00197_I" = "<b> %1$@</b> has comment on your recognition post";
+"C00198_I" = "Your vouchers are about to expire, use them today!";
+"C00199_I" = "Voucher <b> %1$@</b> has expired";
+"C00200_I" = "New voucher: <b>%1$@</b>";
+
+"C00150_I" = "Benefit <b> %1$@</b> has been finished, your request has been rejected";
+"S00110_I" = "Admin has rejected your benefit request: <b> %1$@</b> &lt;br /&gt;Reason: <b>%2$@</b>";
+"S00111_I" = "Admin has accepted your benefit request: <b> %1$@ </b>";
+"S00155_I" = "You have received benefit <b> %1$@ </b>";
+"S00112_I" = "<b> %1$@ </b> has replied your comment in <b> %2$@ </b>";
+"C00201_I" = "<b> %1$@ </b> has replied your comment in recognition post of <b> %2$@ </b>";
+"S00113_I" = "You got reward from <b> %1$@ </b>";
+"C00159_I" = "%1$@<br />%2$@";
+"S00109_I" = "You got reward from <b>%1$@</b>";
+
+"survey" = "Survey";
+"system" = "System";
+"at" = "at";
+"react" = "react";
+
 // Month
 "january" = "January";
 "february" = "February";
@@ -314,7 +358,6 @@
 "december" = "December";
 
 // Error
-
 "M00136_E" = "buy_over_error";
 "M00137_E" = "not_enough_voucher_error";
 "M00121_E" = "not_exist";
@@ -334,12 +377,13 @@
 "C00189_E" = "Temporarily stopping registration because there are enough requests to join";
 "C00190_E" = "Registration deadline has passed";
 
-"need_to_fill_all_data" = "need_to_fill_all_data";
+"need_to_fill_all_data" = "Need to fill all data";
 "wrong_data" = "wrong_data";
-"wrong_email_format" = "wrong_email_format";
-"wrong_email" = "wrong_email";
-"blank_email" = "blank_email";
-"blank_phone" = "blank_phone";
-"can_connect_server" = "can_connect_server";
+"wrong_email_format" = "Email is not in the correct format";
+"wrong_email" = "Company does not exist";
+"blank_email" = "Email is empty";
+"blank_phone" = "Phone number is empty";
+"can_connect_server" = "Can connect to server";
 "this_person_is_exist" = "This person already exists";
 "need_to_fill_wish" = "Please fill your wish";
+"there_is_no_camera_on_this_device" = "There is no camera on this device";
