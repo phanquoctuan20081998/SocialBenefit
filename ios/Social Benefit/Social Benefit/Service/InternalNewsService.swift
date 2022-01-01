@@ -12,14 +12,13 @@ import SwiftyJSON
     
 class InternalNewsService {
     
-    func getAPI(fromIndex: Int, searchText: String, category: Int, returnCallBack: @escaping ([InternalNewsData]) -> ()) {
+    func getAPI(fromIndex: Int, searchText: String, category: Int, pageSize: Int, returnCallBack: @escaping ([InternalNewsData]) -> ()) {
         let service = BaseAPI_Alamofire()
         var data = [InternalNewsData]()
         
         // 3 things should be consider: pageIndex, category, searchText...
         
         // 1 - pageIndex
-        let pageSize = Constants.MAX_NUM_API_LOAD
         let page = fromIndex / pageSize
         
         // 2 - searchText

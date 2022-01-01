@@ -55,6 +55,7 @@ struct RecognitionActionView: View {
                            isActive: $addMoreClick,
                            label: { EmptyView() })
         )
+        .navigationBarHidden(true)
     }
 }
 

@@ -41,8 +41,7 @@ extension RankingOfRecognitionView {
                 ForEach(rankingOfRecognitionViewModel.allRankingList.indices, id: \.self) { index in
                     
                     NavigationLink {
-                        EmployeeRankingView(employeeId: rankingOfRecognitionViewModel.allRankingList[index].getId())
-                            .navigationBarHidden(true)
+                        NavigationLazyView(EmployeeRankingView(employeeId: rankingOfRecognitionViewModel.allRankingList[index].getId()))
                     } label: {
                         RankingCardView(rankingCard: rankingOfRecognitionViewModel.allRankingList[index])
                             .foregroundColor(.black)

@@ -55,7 +55,7 @@ struct ResetPasswordView: View {
                             EmptyView()
                         }
                         
-                        NavigationLink(destination: ResetSuccessView().navigationBarHidden(true), isActive: $resetPasswordViewModel.isReseting) {
+                        NavigationLink(destination: NavigationLazyView(ResetSuccessView()), isActive: $resetPasswordViewModel.isReseting) {
                             EmptyView()
                         }
                     }

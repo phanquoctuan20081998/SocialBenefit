@@ -47,8 +47,7 @@ extension CustomerSupportPopUp {
             
             // Move to select report screen...
             NavigationLink(
-                destination: SearchSelectionView(selectedTab: $customerSupportViewModel.screenProblemText)
-                    .navigationBarHidden(true),
+                destination: NavigationLazyView(SearchSelectionView(selectedTab: $customerSupportViewModel.screenProblemText)),
                 label: {
                     FeedBackTextField(placeHolder: "select_screen_problem".localized, text: $customerSupportViewModel.screenProblemText, height: 40)
                         .disabled(true)

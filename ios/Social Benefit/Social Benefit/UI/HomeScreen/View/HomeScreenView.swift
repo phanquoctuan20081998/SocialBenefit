@@ -66,6 +66,7 @@ struct HomeScreenView: View {
         .environmentObject(searchViewModel)
         .environmentObject(homeViewModel)
         //        .environmentObject(keyboardHandler)
+        .navigationBarHidden(true)
     }
     
     @ViewBuilder func getView(selectedTab: String) -> some View {

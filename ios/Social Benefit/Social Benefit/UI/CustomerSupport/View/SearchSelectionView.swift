@@ -38,7 +38,7 @@ struct SearchSelectionView: View {
                 }
             }.edgesIgnoringSafeArea(.all)
                 .frame(width: ScreenInfor().screenWidth)
-        }
+        }.navigationBarHidden(true)
     }
 }
 

@@ -89,7 +89,7 @@
 "add_from_camera" = "CAMERA";
 "add_from_gallery" = "GALLERY";
 "blank_email" = "Please enter your email address";
-"wrong_email" = "Invalid format!";
+"invalid_email_format" = "Invalid format!";
 "blank_phone" = "Please enter your phone number";
 "updated" = "Updated";
 

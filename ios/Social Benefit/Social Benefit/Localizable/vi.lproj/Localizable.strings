@@ -89,7 +89,7 @@
 "add_from_camera" = "MÁY ẢNH";
 "add_from_gallery" = "BỘ SƯU TẬP";
 "blank_email" = "Vui lòng điền email của bạn";
-"wrong_email" = "Sai định dạng";
+"invalid_email_format" = "Sai định dạng";
 "blank_phone" = "Vui lòng nhập số điện thoại";
 "updated" = "Đã cập nhật";
 

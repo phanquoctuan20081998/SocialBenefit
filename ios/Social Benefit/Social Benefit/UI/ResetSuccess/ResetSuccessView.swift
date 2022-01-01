@@ -56,10 +56,11 @@ struct ResetSuccessView: View {
                     
                 }
                 
-                NavigationLink(destination: LoginView().navigationBarHidden(true), isActive: $isTapped) {
+                NavigationLink(destination: NavigationLazyView(LoginView()), isActive: $isTapped) {
                     EmptyView()
                 }
             }.edgesIgnoringSafeArea(.all)
+            .navigationBarHidden(true)
 //        }
     }
 }

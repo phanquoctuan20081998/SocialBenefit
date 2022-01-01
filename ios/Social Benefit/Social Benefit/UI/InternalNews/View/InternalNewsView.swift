@@ -45,6 +45,7 @@ struct InternalNewsView: View {
                 isActive: $isActive,
                 label: { EmptyView() })
         )
+        .navigationBarHidden(true)
     }
 }
 

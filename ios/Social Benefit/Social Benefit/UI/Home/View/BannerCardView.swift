@@ -62,7 +62,7 @@ struct InternalNewsBannerView: View {
             .background(
                 ZStack {
                     NavigationLink(
-                        destination: InternalNewsView().navigationBarHidden(true),
+                        destination: NavigationLazyView(InternalNewsView()),
                         isActive: $isMove,
                         label: { EmptyView() })
                 }
@@ -304,8 +304,12 @@ struct MainCardView: View {
                 }
                 .background (
                     ZStack {
-                        NavigationLink(destination: RecognitionActionView().navigationBarHidden(true), isActive: $moveToRecognition, label: { EmptyView() })
-                        NavigationLink(destination: MyVoucherView().navigationBarHidden(true), isActive: $moveToMyVoucher, label: { EmptyView() })
+                        NavigationLink(destination: NavigationLazyView(RecognitionActionView()),
+                                       isActive: $moveToRecognition,
+                                       label: { EmptyView() })
+                        NavigationLink(destination: NavigationLazyView(MyVoucherView()),
+                                       isActive: $moveToMyVoucher,
+                                       label: { EmptyView() })
                     }
                 )
             }

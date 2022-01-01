@@ -32,7 +32,7 @@ struct NotificationView: View {
             }
         }
         .background(
-            NavigationLink(destination: notificationViewModel.destinationView.navigationBarHidden(true), isActive: $isMoveToNextPage, label: {
+            NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
                 EmptyView()
             })
         )

@@ -75,7 +75,7 @@ public class BaseAPI {
             
             guard let data = data, error == nil else {
                 print("Call API failed: ", error?.localizedDescription ?? "No data")
-                
+                print(endpoint)
                 if (error?.localizedDescription == "Could not connect to the server.") {
                     DispatchQueue.main.async {
                         self.sessionTimeOut.isTimeOut = true

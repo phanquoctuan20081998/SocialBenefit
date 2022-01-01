@@ -172,7 +172,7 @@ extension UserInformationView {
                             if userInformationViewModel.isPresentEmailBlankError {
                                 TextFieldErrorView(error: "blank_email".localized)
                             } else if userInformationViewModel.isPresentWrongEmailError {
-                                TextFieldErrorView(error: "wrong_email".localized)
+                                TextFieldErrorView(error: "invalid_email_format".localized)
                             }
                         }, alignment: .trailing
                     )
@@ -304,7 +304,7 @@ extension UserInformationView {
     
     @ViewBuilder
     func TextFieldErrorView(error: String) -> some View {
-        Text(getError(errorCode: error))
+        Text(error)
             .font(.system(size: 12))
             .foregroundColor(.red)
             .frame(height: 35)

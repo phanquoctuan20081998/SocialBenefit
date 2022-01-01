@@ -57,11 +57,7 @@ class InternalNewsViewModel: ObservableObject {
         
         self.isLoading = true
         
-        internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category) { data in
-            
-//            for item in data {
-//                print(item.title)
-//            }
+        internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category, pageSize: Constants.MAX_NUM_API_LOAD) { data in
   
             DispatchQueue.main.async {
                 self.allInternalNews = data
@@ -90,7 +86,7 @@ class InternalNewsViewModel: ObservableObject {
     
     func loadMoreData() {
         
-        internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category) { data in
+        internalNewsService.getAPI(fromIndex: fromIndex, searchText: searchPattern, category: category, pageSize: Constants.MAX_NUM_API_LOAD) { data in
   
             DispatchQueue.main.async {
                 for item in data {

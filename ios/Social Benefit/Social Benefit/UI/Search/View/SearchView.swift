@@ -39,7 +39,9 @@ struct SearchContentView: View {
         .background(
             ZStack {
                 if selectedTab != -1 {
-                    NavigationLink(destination: getDestinationView(selection: filteredData[selectedTab].destination), isActive: $isMoveToNextPage, label: { EmptyView() })
+                    NavigationLink(destination: NavigationLazyView(getDestinationView(selection: filteredData[selectedTab].destination)),
+                                   isActive: $isMoveToNextPage,
+                                   label: { EmptyView() })
                 }
             }
         )
@@ -51,25 +53,25 @@ struct SearchContentView: View {
         case 0:
             return AnyView(ListSurveyView())
         case 1:
-            return AnyView(UserInformationView().navigationBarHidden(true))
+            return AnyView(UserInformationView())
 //        case 2:
 //            return AnyView(Text("2"))
         case 3:
-            return AnyView(HomeScreenView(selectedTab: "house").navigationBarHidden(true))
+            return AnyView(HomeScreenView(selectedTab: "house"))
         case 4:
-            return AnyView(InternalNewsView().navigationBarHidden(true))
+            return AnyView(InternalNewsView())
         case 5:
-            return AnyView(ListOfBenefitsView().navigationBarHidden(true))
+            return AnyView(ListOfBenefitsView())
         case 6:
-            return AnyView(HomeScreenView(selectedTab: "tag").navigationBarHidden(true))
+            return AnyView(HomeScreenView(selectedTab: "tag"))
         case 7:
-            return AnyView(MyVoucherView().navigationBarHidden(true))
+            return AnyView(MyVoucherView())
         case 8:
-            return AnyView(RecognitionActionView().navigationBarHidden(true))
+            return AnyView(RecognitionActionView())
         case 9:
-            return AnyView(HomeScreenView(selectedTab: "star").navigationBarHidden(true))
+            return AnyView(HomeScreenView(selectedTab: "star"))
         default:
-            return AnyView(UsedPointHistoryView().navigationBarHidden(true))
+            return AnyView(UsedPointHistoryView())
         }
         
     }
