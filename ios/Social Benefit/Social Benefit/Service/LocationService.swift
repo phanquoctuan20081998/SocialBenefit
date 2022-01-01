@@ -26,7 +26,7 @@ class LocationService {
         
         let header: HTTPHeaders = ["token": userInfor.token,
                                    "user_id": userInfor.userId,
-                                   "timezoneOffset": "0"]
+                                   "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["filter" : filter]
         

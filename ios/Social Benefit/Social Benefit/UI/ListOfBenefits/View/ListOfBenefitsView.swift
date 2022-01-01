@@ -60,7 +60,7 @@ struct ListOfBenefitsView: View {
 extension ListOfBenefitsView {
     
     var HeaderView: some View {
-        let scale = [0.17, 0.55, 0.25]
+        let scale = [0.17, 0.45, 0.20]
         let headers = ["", "benefit".localized, "benefit_status".localized]
         
         return HStack(spacing: 0) {
@@ -70,6 +70,7 @@ extension ListOfBenefitsView {
                     .bold()
                     .font(.system(size: 15))
                     .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20, alignment: .leading)
+                    .padding(.leading, 10)
             }
         }
         .padding(.vertical, 10)

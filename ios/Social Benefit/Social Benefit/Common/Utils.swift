@@ -31,4 +31,6 @@ class Utils {
              }
          }
     }
+    
+    static let millisecondsFromGMT = 1000 * TimeZone.autoupdatingCurrent.secondsFromGMT()
 }

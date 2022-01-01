@@ -125,8 +125,11 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         print(emailText)
         
         if emailText.isEmpty || phoneText.isEmpty {
-            if self.phoneText.isEmpty { self.isPresentPhoneBlankError = true }
-            if self.emailText.isEmpty { self.isPresentEmailBlankError = true }
+            DispatchQueue.main.async {
+                if self.phoneText.isEmpty { self.isPresentPhoneBlankError = true }
+                if self.emailText.isEmpty { self.isPresentEmailBlankError = true }
+            }
+            
             return
         }
         
@@ -136,8 +139,9 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         }
         
         // Update UserInfor...
-        
-        userInforUpdate()
+        if !isPresentPhoneBlankError && !isPresentEmailBlankError && !isPresentWrongEmailError {
+            userInforUpdate()
+        }
     }
     
     func userInforUpdate() {

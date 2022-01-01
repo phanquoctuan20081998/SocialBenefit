@@ -72,6 +72,9 @@ extension InternalNewsView {
                             } else {
                                 internalNewsViewModel.category = Constants.InternalNewsType.OTHER
                             }
+                            
+                            // Stop loading when clicking on the other tab
+//                            internalNewsViewModel.resetLoading()
                         }
                     }
             }

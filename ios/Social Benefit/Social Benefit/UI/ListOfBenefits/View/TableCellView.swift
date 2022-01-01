@@ -15,11 +15,12 @@ struct TableCellView: View {
     var body: some View {
         
         HStack(spacing: 20) {
+            
             URLImageView(url: benefitData.logo)
                 .frame(width: 50, height: 50)
             
             Text(benefitData.title)
-                .frame(width: ScreenInfor().screenWidth * 0.5, alignment: .leading)
+                .frame(width: ScreenInfor().screenWidth * 0.45, alignment: .leading)
 
             switch benefitData.mobileStatus {
                 
@@ -27,21 +28,21 @@ struct TableCellView: View {
                 Text("on_going".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2, alignment: .leading)
+                    .frame(width: ScreenInfor().screenWidth * 0.25)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_UP_COMMING: do {
                 Text("up_comming".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2, alignment: .leading)
+                    .frame(width: ScreenInfor().screenWidth * 0.25)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_RECEIVED: do {
                 Image(systemName: "checkmark")
                     .font(.headline)
                     .foregroundColor(.green)
-                    .frame(width: ScreenInfor().screenWidth * 0.2)
+                    .frame(width: ScreenInfor().screenWidth * 0.25)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_NOT_REGISTER: do {
@@ -56,8 +57,8 @@ struct TableCellView: View {
                 }, label: {
                 
                     RoundedButton(text: "apply".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.blue, textColor: Color.white, cornerRadius: 10)
-                            .font(.system(size: 15, weight: .black, design: .default))
-                            .frame(width: ScreenInfor().screenWidth * 0.2, height: 20)
+                            .font(.system(size: 13, weight: .black, design: .default))
+                            .frame(width: ScreenInfor().screenWidth * 0.25, height: 20)
                 })
             }
                 
@@ -65,20 +66,20 @@ struct TableCellView: View {
                 Text("waiting".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2, alignment: .leading)
+                    .frame(width: ScreenInfor().screenWidth * 0.25)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_REJECTED: do {
                 Image(systemName: "xmark")
                     .font(.headline)
                     .foregroundColor(.red)
-                    .frame(width: ScreenInfor().screenWidth * 0.2)
+                    .frame(width: ScreenInfor().screenWidth * 0.25)
             }
                 
             case BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_PENDING_REGISTER: do {
                 RoundedButton(text: "pending".localized, font: .system(size: 30, weight: .regular, design: .default), backgroundColor: Color.gray.opacity(0.2), textColor: Color.blue, cornerRadius: 10)
                     .font(.system(size: 15, weight: .black, design: .default))
-                    .frame(width: ScreenInfor().screenWidth * 0.2, height: 20, alignment: .leading)
+                    .frame(width: ScreenInfor().screenWidth * 0.25, height: 20)
                     .disabled(true)
             }
                 
@@ -87,7 +88,7 @@ struct TableCellView: View {
                 Text("".localized)
                     .italic()
                     .multilineTextAlignment(.center)
-                    .frame(width: ScreenInfor().screenWidth * 0.2)
+                    .frame(width: ScreenInfor().screenWidth * 0.25)
             }
             }
         }.font(.system(size: 13))

@@ -70,6 +70,7 @@ struct LoginView: View {
         .edgesIgnoringSafeArea(.all)
         .loadingView(isLoading: $loginViewModel.isLoading)
         .errorPopup($loginViewModel.error)
+        .background(Color.white)
         .navigationBarHidden(true)
     }
 }

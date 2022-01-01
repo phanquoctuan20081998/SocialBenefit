@@ -45,7 +45,7 @@ class InternalNewsService {
         var order: Int = 0
         
         let header: HTTPHeaders = ["token": userInfor.token,
-                                   "timezoneOffset": "0"]
+                                   "timezoneOffset": "\(Utils.millisecondsFromGMT / -60000)"]
         let params: Parameters = ["page" : page,
                                   "size" : pageSize,
                                   "filter" : filter,

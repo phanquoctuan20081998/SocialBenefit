@@ -107,7 +107,7 @@ class RecognitionService {
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
                       "companyId": userInfor.companyId,
-                      "timezoneOffset": "0"]
+                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["": ""]
         
@@ -131,7 +131,7 @@ class RecognitionService {
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
                       "companyId": userInfor.companyId,
-                      "timezoneOffset": "0"]
+                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["": ""]
         
@@ -150,7 +150,7 @@ class RecognitionService {
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
                       "companyId": userInfor.companyId,
-                      "timezoneOffset": "0"]
+                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["fromIndex": fromIndex,
                                   "limit": limit]

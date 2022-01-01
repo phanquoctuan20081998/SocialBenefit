@@ -44,6 +44,9 @@ struct ErrorTextView: ViewModifier {
                 .onTapGesture {
                     error = .none
                 }
+                .onReceive(PopUpTimer) { _ in
+                    error = .none
+                }
             }
         }
     }

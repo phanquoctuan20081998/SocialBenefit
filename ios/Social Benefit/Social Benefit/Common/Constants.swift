@@ -157,7 +157,6 @@ struct Constants {
                                     BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow, destination: 8, functionId: FuctionId.COMPANY_BUDGET_POINT),
                                     BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white, destination: 9, functionId: FuctionId.COMPANY_BUDGET_POINT),
                                     BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray, destination: 10, functionId: FuctionId.COMPANY_BUDGET_POINT)]
-    
 }
 
 enum AppLanguage: String, CaseIterable {

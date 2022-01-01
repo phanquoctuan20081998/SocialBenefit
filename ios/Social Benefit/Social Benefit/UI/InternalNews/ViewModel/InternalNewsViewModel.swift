@@ -106,6 +106,11 @@ class InternalNewsViewModel: ObservableObject {
         self.category = Constants.InternalNewsType.ALL
         self.allInternalNews = []
     }
+    
+    func resetLoading() {
+        self.isLoading = false
+        self.isRefreshing = false
+    }
 }
 
 

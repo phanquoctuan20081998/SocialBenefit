@@ -1203,8 +1203,8 @@
             filePath = "Social Benefit/UI/UserInformation/ViewModel/UserInformationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "userInforUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1219,8 +1219,8 @@
             filePath = "Social Benefit/UI/UserInformation/ViewModel/UserInformationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "userInforUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1235,8 +1235,8 @@
             filePath = "Social Benefit/UI/UserInformation/ViewModel/UserInformationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "userInforUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1267,8 +1267,8 @@
             filePath = "Social Benefit/UI/UserInformation/ViewModel/UserInformationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "userInforUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1283,8 +1283,8 @@
             filePath = "Social Benefit/UI/UserInformation/ViewModel/UserInformationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "saveButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
