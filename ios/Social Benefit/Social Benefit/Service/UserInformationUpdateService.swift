@@ -44,10 +44,10 @@ class UserInformationService {
             }
             
             // Scale image
-//            let targeSize = CGSize(width: 200, height: 200)
-//            let resizedImage = image.scalePreservingAspectRatio(targetSize: targeSize)
-            
-            guard let imgData = image.jpegData(compressionQuality: 0.5) else { return }
+            let targeSize = CGSize(width: 200, height: 200)
+            let resizedImage = image.scalePreservingAspectRatio(targetSize: targeSize)
+
+            guard let imgData = resizedImage.jpegData(compressionQuality: 0.5) else { return }
             multipartFormData.append(imgData, withName: "file", fileName: imageName + ".jpeg", mimeType: "image/jpeg")
             
             
@@ -55,7 +55,7 @@ class UserInformationService {
         },to: URL.init(string: URLName)!, usingThreshold: UInt64.init(),
                   method: .post,
                   headers: headers).response { response in
-            print(response)
+            
             if (response.error == nil) {
                 do {
                     if let jsonData = response.data{
@@ -75,7 +75,7 @@ class UserInformationService {
         }
     }
     
-    func getAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, returnCallBack: @escaping (Bool) -> ()) {
+    func getAPI(id: String, nickName: String, address: String, citizenId: String, email: String, phone: String, birthday: String, locationId: String, returnCallBack: @escaping (JSON) -> ()) {
         
         // Trim white space...
         let nickName = nickName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -101,11 +101,8 @@ class UserInformationService {
             
             print(result)
             
-            if result.isEmpty {
-                returnCallBack(false)
-            } else {
-                returnCallBack(true)
-            }
+            returnCallBack(result)
         })
     }
 }
+

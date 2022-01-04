@@ -10,6 +10,9 @@ import SwiftUI
 
 class NotificationViewModel: ObservableObject, Identifiable {
     
+    @ObservedObject var benefitDetailViewModel = BenefitDetailViewModel()
+    @ObservedObject var listOfBenefitsViewModel = ListOfBenefitsViewModel()
+    
     @Published var allNotificationItems = [NotificationItemData]()
     @Published var fromIndex: Int = 0
     
@@ -25,7 +28,9 @@ class NotificationViewModel: ObservableObject, Identifiable {
     @Published var destinationView: AnyView = AnyView(EmptyView())
     
     private var internalNewsDetailService = InternalNewsDetailService()
+    private var checkBenefitService = CheckBenefitService()
     private var notificationListService = NotificationListService()
+    
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -53,8 +58,13 @@ class NotificationViewModel: ObservableObject, Identifiable {
     
     public func refresh() {
         DispatchQueue.main.async {
-            self.fromIndex = 0
-            self.loadNotificationItemsData(fromIndex: self.fromIndex)
+            self.notificationListService.getAPI(nextPageIndex: self.fromIndex, pageSize: 10) { [weak self] data in
+                
+                DispatchQueue.main.async {
+                    self?.allNotificationItems = data
+                    self?.isRefreshing = false
+                }
+            }
         }
     }
     
@@ -95,7 +105,14 @@ class NotificationViewModel: ObservableObject, Identifiable {
             
         }
         case Constants.NotificationLogType.BENEFIT: do {
-           
+            
+            //Call API
+            checkBenefitService.getAPI(benefitId: notificationItem.getTypeId()) { error, data in
+                self.benefitDetailViewModel.getData(benefit: data, index: 0)
+                self.destinationView = AnyView(BenefitDetailView()
+                                                .environmentObject(self.benefitDetailViewModel)
+                                                .environmentObject(self.listOfBenefitsViewModel))
+            }
         }
         case Constants.NotificationLogType.RECOGNIZE: do {
             
@@ -112,10 +129,22 @@ class NotificationViewModel: ObservableObject, Identifiable {
             }
         }
         case Constants.NotificationLogType.BENEFIT_REQUEST: do {
-            
+            //Call API
+            checkBenefitService.getAPI(benefitId: notificationItem.getTypeId()) { error, data in
+                self.benefitDetailViewModel.getData(benefit: data, index: 0)
+                self.destinationView = AnyView(BenefitDetailView()
+                                                .environmentObject(self.benefitDetailViewModel)
+                                                .environmentObject(self.listOfBenefitsViewModel))
+            }
         }
         case Constants.NotificationLogType.BENEFIT_APPROVE: do {
-            
+            //Call API
+            checkBenefitService.getAPI(benefitId: notificationItem.getTypeId()) { error, data in
+                self.benefitDetailViewModel.getData(benefit: data, index: 0)
+                self.destinationView = AnyView(BenefitDetailView()
+                                                .environmentObject(self.benefitDetailViewModel)
+                                                .environmentObject(self.listOfBenefitsViewModel))
+            }
         }
         case Constants.NotificationLogType.SURVEY_REMIND: do {
             

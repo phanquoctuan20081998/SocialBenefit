@@ -222,7 +222,7 @@ extension UserInformationView {
                 userInformationViewModel.saveButtonTapped()
 
                 // Click count
-                countClick()
+//                countClick()
             }, label: {
                 Text("save".localized)
                     .foregroundColor(userInformationViewModel.isEnableSaveButton ? .black : .gray)

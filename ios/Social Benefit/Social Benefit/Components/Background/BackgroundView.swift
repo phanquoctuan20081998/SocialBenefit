@@ -33,7 +33,7 @@ struct BackgroundViewWithNotiAndSearch: View {
                         HStack(spacing: 20) {
                             
                             NavigationLink {
-                                NotificationView()
+                                NavigationLazyView(NotificationView())
                             } label: {
                                 Image(systemName: "bell.fill")
                             }
@@ -134,10 +134,11 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                 .edgesIgnoringSafeArea(.all)
             
             Spacer()
-        }.background(
-            NavigationLink(destination: HomeScreenView(selectedTab: "house").navigationBarHidden(true), isActive: $isMoveToHomeScreen, label: {
-                EmptyView()
-            })
+        }
+        .background(
+            NavigationLink(destination: NavigationLazyView(HomeScreenView(selectedTab: "house")),
+                           isActive: $isMoveToHomeScreen,
+                           label: { EmptyView() })
         )
     }
 }
@@ -145,17 +146,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-//        BackgroundViewWithNotiAndSearch()
         HomeScreenView(selectedTab: "tag")
-        
-//        MyVoucherView()
-//            .environmentObject(HomeScreenViewModel())
-//            .environmentObject(MyVoucherViewModel())
-//            .environmentObject(InternalNewsViewModel())
-////            .environmentObject(SpecialOffersViewModel())
-//            .environmentObject(MerchantCategoryItemViewModel())
-////            .environmentObject(OffersViewModel())
-//            .environmentObject(ConfirmInforBuyViewModel())
     }
 }
 

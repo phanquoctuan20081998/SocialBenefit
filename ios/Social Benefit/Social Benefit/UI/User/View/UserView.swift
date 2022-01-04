@@ -149,7 +149,7 @@ struct UserInforView: View {
                         Text(userInfor.position)
                             .font(.system(size: 15, weight: .semibold, design: .default))
                             .foregroundColor(.black)
-                    }.frame(maxWidth: ScreenInfor().screenWidth * 0.55, alignment: .leading)
+                    }.frame(maxWidth: ScreenInfor().screenWidth * 0.6, alignment: .leading)
                     
                     Spacer()
             

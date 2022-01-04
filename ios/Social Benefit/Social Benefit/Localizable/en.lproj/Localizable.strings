@@ -319,7 +319,7 @@
 "loading" = "Loading";
 
 // Notification
-"C00193_I" = "<b> %1$@</b>. Please register before the date %2$@";
+"C00193_I" = "<b> %1$@</b>";
 "C00194_I" = "You have a new survey <b> %1$@</b>";
 "C00195_I" = "You have survey <b> %1$@</b> unfulfilled. Please participate in answering the survey";
 "C00196_I" = "<b> %1$@</b> has reacted on your recognition post";
@@ -342,6 +342,7 @@
 "system" = "System";
 "at" = "at";
 "react" = "react";
+"new_benefit" = "New benefit";
 
 // Month
 "january" = "January";

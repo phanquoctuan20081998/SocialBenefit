@@ -318,7 +318,7 @@
 "voucher_at" = "Ưu đãi tại";
 
 // Notification
-"C00193_I" = "<b> %1$@</b>. Hãy đăng ký tham gia trước ngày %2$@";
+"C00193_I" = "<b> %1$@</b>";
 "C00194_I" = "Bạn có khảo sát mới <b> %1$@</b>";
 "C00195_I" = "Bạn còn khảo sát <b> %1$@</b> chưa thực hiện. Hãy tham gia trả lời nhé";
 "C00196_I" = "<b> %1$@</b> đã thể hiện cảm xúc trên bài khen thưởng của bạn";
@@ -342,6 +342,7 @@
 "at" = "lúc";
 "react" = "Cảm xúc";
 "loading" = "Đang tải";
+"new_benefit" = "Phúc lợi mới";
 
 // Month
 "january" = "tháng 1";

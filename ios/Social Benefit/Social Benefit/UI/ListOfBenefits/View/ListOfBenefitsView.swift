@@ -13,6 +13,7 @@ struct ListOfBenefitsView: View {
     
     @ObservedObject var listOfBenefitsViewModel = ListOfBenefitsViewModel()
     @ObservedObject var benefitDetailViewModel = BenefitDetailViewModel()
+    
     @State var isTapDetail: Bool = false 
     
     var body: some View {

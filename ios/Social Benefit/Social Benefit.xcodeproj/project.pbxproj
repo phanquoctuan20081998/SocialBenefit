@@ -849,47 +849,47 @@
 		C40366F926DB249F00381888 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C427BFDF26C366E400FEAA71 /* ScreenInforModel.swift */,
-				C40366FA26DB258C00381888 /* BenefitModel.swift */,
-				C40366FC26DB260D00381888 /* InternalNewsModel.swift */,
-				C403670026DB27A800381888 /* MerchantListModel.swift */,
-				C403670226DB2A8200381888 /* UserInforModel.swift */,
-				C43B21C526DDCDB800E2E451 /* CommentModel.swift */,
-				C402B26B26E76C5F00A41288 /* ReactModel.swift */,
-				C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */,
-				C48BA35326EF016E006C4F27 /* MerchantCategoryItemModel.swift */,
-				C4492A5D26F18E98008B26C9 /* MerchantVoucherItemModel.swift */,
-				C497AA1726F83A6D006EFE0C /* BuyVoucherInforModel.swift */,
-				C4DF7A6626F9BCCE00DC7D04 /* BuyVoucherModel.swift */,
-				C43C7BB526FAE3F00056D169 /* MyVoucherModel.swift */,
-				C4B9BF7626FC25170022DA55 /* VoucherCodeModel.swift */,
-				C472E4C126FD726B00D047BA /* MerchantVoucherDetailModel.swift */,
-				C472E4C726FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift */,
-				C4750072270B40B000FE75EB /* SearchBarModel.swift */,
-				C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */,
-				C49C4C322743536800ED3213 /* UsedPointsHistoryModel.swift */,
-				C46BD88E2747822500E8715F /* RecognitionModel.swift */,
-				C4D510DB275278800007BE48 /* RankingOfRecognitionModel.swift */,
-				C4119B542754891E0093542F /* RecognitionDetailModel.swift */,
-				C48790B72759D7AA002E97F0 /* UserModel.swift */,
-				C456C45E275DA1D600406C8D /* WalletInforModel.swift */,
-				C4E288D327608B0A00A0BBF7 /* PointTransactionRequestModel.swift */,
-				C4A519C0276995E60065E047 /* ViewClickItem.swift */,
-				C446BE812771B46800925F5E /* ListSurveyModel.swift */,
-				C446BE832771B48400925F5E /* ListSurveyRequestModel.swift */,
-				C446BE852771B4A800925F5E /* APIModelProtocol.swift */,
-				C446BE872771B4BF00925F5E /* SurveyGetModel.swift */,
-				C446BE892771B4DE00925F5E /* SurveyChoiceModel.swift */,
-				C446BE8B2771B4F600925F5E /* SurveyChoiceResultModel.swift */,
-				C446BE8D2771B50700925F5E /* ListCommentModel.swift */,
 				C446BE8F2771B51B00925F5E /* AddCommentRequestModel.swift */,
 				C446BE912771B52D00925F5E /* AddCommentResultModel.swift */,
-				C446BE932771B54300925F5E /* ReactSuveryModel.swift */,
 				C446BE952771B56700925F5E /* AddReactResultModel.swift */,
-				C446BE972771B58200925F5E /* LoginRequestModel.swift */,
-				C446BE992771B59800925F5E /* LoginModel.swift */,
+				C446BE852771B4A800925F5E /* APIModelProtocol.swift */,
 				C446BE9B2771B5B100925F5E /* AppError.swift */,
+				C472E4C726FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift */,
+				C40366FA26DB258C00381888 /* BenefitModel.swift */,
+				C497AA1726F83A6D006EFE0C /* BuyVoucherInforModel.swift */,
+				C4DF7A6626F9BCCE00DC7D04 /* BuyVoucherModel.swift */,
+				C43B21C526DDCDB800E2E451 /* CommentModel.swift */,
+				C40366FC26DB260D00381888 /* InternalNewsModel.swift */,
+				C446BE8D2771B50700925F5E /* ListCommentModel.swift */,
+				C446BE812771B46800925F5E /* ListSurveyModel.swift */,
+				C446BE832771B48400925F5E /* ListSurveyRequestModel.swift */,
+				C4B3D58A26EA0A67003C6CA9 /* LocationModel.swift */,
+				C446BE992771B59800925F5E /* LoginModel.swift */,
+				C446BE972771B58200925F5E /* LoginRequestModel.swift */,
+				C48BA35326EF016E006C4F27 /* MerchantCategoryItemModel.swift */,
+				C403670026DB27A800381888 /* MerchantListModel.swift */,
+				C472E4C126FD726B00D047BA /* MerchantVoucherDetailModel.swift */,
+				C4492A5D26F18E98008B26C9 /* MerchantVoucherItemModel.swift */,
+				C43C7BB526FAE3F00056D169 /* MyVoucherModel.swift */,
 				C4E985A6277AADC100D5AC7E /* NotificationItem.swift */,
+				C4E288D327608B0A00A0BBF7 /* PointTransactionRequestModel.swift */,
+				C4BA720B2717CD0200D73660 /* PreviousUserLoginInfor.swift */,
+				C4D510DB275278800007BE48 /* RankingOfRecognitionModel.swift */,
+				C402B26B26E76C5F00A41288 /* ReactModel.swift */,
+				C446BE932771B54300925F5E /* ReactSuveryModel.swift */,
+				C4119B542754891E0093542F /* RecognitionDetailModel.swift */,
+				C46BD88E2747822500E8715F /* RecognitionModel.swift */,
+				C427BFDF26C366E400FEAA71 /* ScreenInforModel.swift */,
+				C4750072270B40B000FE75EB /* SearchBarModel.swift */,
+				C446BE892771B4DE00925F5E /* SurveyChoiceModel.swift */,
+				C446BE8B2771B4F600925F5E /* SurveyChoiceResultModel.swift */,
+				C446BE872771B4BF00925F5E /* SurveyGetModel.swift */,
+				C49C4C322743536800ED3213 /* UsedPointsHistoryModel.swift */,
+				C403670226DB2A8200381888 /* UserInforModel.swift */,
+				C48790B72759D7AA002E97F0 /* UserModel.swift */,
+				C4A519C0276995E60065E047 /* ViewClickItem.swift */,
+				C4B9BF7626FC25170022DA55 /* VoucherCodeModel.swift */,
+				C456C45E275DA1D600406C8D /* WalletInforModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2355,7 +2355,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2380,7 +2380,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

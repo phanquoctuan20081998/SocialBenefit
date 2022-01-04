@@ -35,6 +35,8 @@ class NotificationListService {
         
         service.makeCall(endpoint: Config.API_NOTIFICATION_LIST, method: "POST", header: header as [String: String], body: params, callback: { result in
             
+            print(result)
+            
             for i in 0..<result.count {
                 
                 id = result[i]["id"].int ?? -1

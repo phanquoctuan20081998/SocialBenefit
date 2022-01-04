@@ -158,7 +158,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         
         self.isUpdating = true
         
-//        if image == UIImage(color: .white) {
+        if image == UIImage(color: .white) {
             userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image!, imageName: self.imageName) { data in
                 
                 if !data.isEmpty {
@@ -175,24 +175,23 @@ class UserInformationViewModel: ObservableObject, Identifiable {
                     }
                 }
             }
-//        } else {
-//            userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { data in
-//                                if !data.isEmpty {
-//                                    self.isSuccessed = true
-//                
-//                                    let employeeDto = data
-//                                    let citizen = employeeDto["citizen"]
-//                
-//                                    DispatchQueue.main.async {
-//                                        updateUserInfor(token: userInfor.token, employeeDto: employeeDto, citizen: citizen, functionNames: userInfor.functionNames)
-//                                        self.imageName = employeeDto["avatar"].string ?? ""
-//                
-//                                        self.isUpdating = false
-//                                    }
-//                                }
-//                self.isUpdating = false
-//            }
-//        }
+        } else {
+            userInformationService.getAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId) { data in
+                if !data.isEmpty {
+                    self.isSuccessed = true
+                    
+                    let employeeDto = data
+                    let citizen = employeeDto["citizen"]
+                    
+                    DispatchQueue.main.async {
+                        updateUserInfor(token: userInfor.token, employeeDto: employeeDto, citizen: citizen, functionNames: userInfor.functionNames)
+                        self.imageName = employeeDto["avatar"].string ?? ""
+                        
+                        self.isUpdating = false
+                    }
+                }
+            }
+        }
     }
     
     func resetError() {

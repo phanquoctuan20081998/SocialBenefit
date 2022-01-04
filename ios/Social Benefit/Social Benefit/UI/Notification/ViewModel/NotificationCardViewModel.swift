@@ -50,7 +50,7 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
             self.content = convertFromHTMLString(self.notificationItem.getContent())?.string ?? ""
         } else if self.notificationItem.getContentParams().count == 1 {
             self.content = convertFromHTMLString(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0]))?.string ?? ""
-        } else if self.notificationItem.getContentParams().count == 2 {
+        } else {
             self.content = convertFromHTMLString(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0], self.notificationItem.getContentParams()[1]))?.string ?? ""
         }
     }
