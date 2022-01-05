@@ -89,6 +89,13 @@ struct InternalNewsDetailView: View {
         .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
         
+        // Dismiss reaction bar when tab outside
+        .onTapGesture {
+            if reactViewModel.isShowReactionBar {
+                reactViewModel.isShowReactionBar = false
+            }
+        }
+        
         // Option pop up
         .overlay(CommentOptionPopUp(isPresent: $commentViewModel.isPresentOptionView, text: $commentViewModel.selectedText, commentId: commentViewModel.selectedCommentId, contentId: commentViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, parentId: commentViewModel.selectedParentId))
         .navigationBarHidden(true)
@@ -110,21 +117,24 @@ extension InternalNewsDetailView {
             ZStack {
                 VStack {
                     PostContentView
-                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
-                        .padding(.horizontal, 10)
-                    Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-                    LikeAndCommentButton(contentId: commentViewModel.contentId, isFocus: $commentViewModel.isFocus)
-                        .frame(height: 20)
-                        .padding(.horizontal, 10)
+                    
+//                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
+//                        .padding(.horizontal, 10)
+//                    Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+//                    LikeAndCommentButton(contentId: commentViewModel.contentId, isFocus: $commentViewModel.isFocus)
+//                        .frame(height: 20)
+//                        .padding(.horizontal, 10)
+                    
+                    ReactionView
                 }
                 .zIndex(1)
                 .environmentObject(reactViewModel)
                 
-                if reactViewModel.isShowReactionBar {
-                    ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                        .offset(x: 100 - ScreenInfor().screenWidth / 3, y: 100 + webViewHeight / 2)
-                        .zIndex(1)
-                }
+//                if reactViewModel.isShowReactionBar {
+//                    ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
+//                        .offset(x: 100 - ScreenInfor().screenWidth / 3, y: 100 + webViewHeight / 2)
+//                        .zIndex(1)
+//                }
             }
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
@@ -159,6 +169,14 @@ extension InternalNewsDetailView {
         }
     }
     
+    var ReactionView: some View {
+        ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
+                    isLoadingReact: $reactViewModel.isLoadingReact,
+                    currentReaction: $reactViewModel.currentReaction,
+                    reactModel: reactViewModel.reactModel,
+                    listComment: reactViewModel.listComment,
+                    sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })
+    }
     
     var PostContentView: some View {
         

@@ -70,7 +70,7 @@
 "done" = "Done";
 "choose_city" = "Choose Province/City";
 "enter_address" = "Enter your address";
-"location_example" = "324, Tây Sơn";
+"location_example" = "324 Tay Son";
 "nickname" = "Your nick name (maximum 90 characters)";
 "nickname_placeholder" = "Input your nick name";
 "address" = "Where are you living now?";
@@ -254,7 +254,7 @@
 "password_6_to_15" = "New password must be at least 6~15 characters in length";
 "wrong_old_password" = "Old password is incorrect";
 "api_call_failed" = "Cannot connect to server";
-"company_address" = "324, Tay Son, Dong Da, Ha Noi, Viet Nam";
+"company_address" = "324 Tay Son, Dong Da, Ha Noi, Viet Nam";
 
 // Recognition
 "ranking_of_month %@" = "%@ ranking";

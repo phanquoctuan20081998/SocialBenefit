@@ -99,7 +99,7 @@ struct ReactionCommentView: View {
                             .aspectRatio(contentMode: .fit)
                     }
                     .background(type == selectedReaction ? Color.gray.opacity(0.2) : Color.clear)
-                    .cornerRadius(4)
+                    .cornerRadius(30)
                     .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
                 }
             }

@@ -34,13 +34,15 @@ class LocationService {
         var cityId: String?
         
         service.makeCall(endpoint: Config.API_LOCATION_LIST, method: "POST", header: header, body: params, callback: { result in
-            
+   
             for i in 0..<result.count {
                 cityName = result[i]["name"].string
                 cityId = result[i]["id"].string
                 
-                let tempLocationData = LocationData(name: cityName!, id: cityId!)
-                data.append(tempLocationData)
+                if cityId !=  "00000" {
+                    let tempLocationData = LocationData(name: cityName!, id: cityId!)
+                    data.append(tempLocationData)
+                }
             }
             returnCallBack(data)
         })

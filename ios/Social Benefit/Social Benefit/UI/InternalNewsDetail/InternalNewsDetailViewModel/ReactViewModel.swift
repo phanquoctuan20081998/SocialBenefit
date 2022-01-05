@@ -20,7 +20,15 @@ class ReactViewModel: ObservableObject, Identifiable {
     @Published var isShowReactionBar: Bool = false
     @Published var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     
+    @Published var isLoadingReact: Bool = false
+    @Published var currentReaction = ReactionType.none
+    @Published var reactModel = ReactSuveryModel()
+    @Published var listComment = ListCommentModel()
+    
     private let reactService = ReactService()
+    private let listReactService = ListReactService()
+    private let addReactService = AddReactSurveyService()
+    
     private var cancellables = Set<AnyCancellable>()
     
     // For Recognition..
@@ -34,6 +42,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     init(contentId: Int) {
         initComment(contentId: contentId)
         self.contentType = Constants.ReactContentType.INTERNAL_NEWS
+        self.getListReact(id: contentId)
     }
     
     // Recognition...
@@ -94,6 +103,41 @@ class ReactViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func getListReact(id: Int?) {
+        isLoadingReact = true
+        listReactService.request(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { response in
+            switch response {
+            case .success(let value):
+                self.reactModel = value
+                self.currentReaction = value.myRectionType
+            case .failure(let error):
+                print(error)
+            }
+            self.isLoadingReact = false
+        }
+    }
+    
+    func sendReaction(contentId: Int) {
+        isLoadingReact = true
+        addReactService.request(contentId: contentId,
+                                contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
+                                reactType: currentReaction) { response in
+            switch response {
+            case .success(let value):
+                if value.status == 200 {
+                    self.getListReact(id: contentId)
+                } else {
+                    self.isLoadingReact = false
+                }
+            case .failure(let error):
+                print(error)
+                self.isLoadingReact = false
+            }
+        }
+    }
+    
+    
+    // Old version
     func addSubscribers() {
         $selectedReaction
             .sink(receiveValue: updateTopReact(selectedReaction:))
@@ -129,8 +173,6 @@ class ReactViewModel: ObservableObject, Identifiable {
                 }
                 react[maxIndex] = 0
             }
-            
-            
         } else {
             if self.reactTop1 != 6 {
                 top2React.append(convertReactCodeToImageName(reactTop1))

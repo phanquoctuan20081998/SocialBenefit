@@ -50,7 +50,7 @@ struct InternalNewsView: View {
 }
 
 extension InternalNewsView {
-    
+     
     private var TabView: some View {
         HStack(spacing: 0) {
             ForEach(Constants.INTERNALNEWS_TABHEADER.indices, id:\.self) { i in

@@ -70,7 +70,7 @@
 "done" = "Xong";
 "choose_city" = "Chọn tỉnh/ thành phố";
 "enter_address" = "Vui lòng nhập địa chỉ";
-"location_example" = "324, Tây Sơn";
+"location_example" = "324 Tây Sơn";
 "nickname" = "Tên thân mật (tối đa 90 kí tự)";
 "nickname_placeholder" = "Nhập tên thân mật";
 "address" = "Bạn đang sống tại?";
@@ -254,7 +254,7 @@
 "password_6_to_15" = "Mật khẩu mới phải có độ dài 6 ~ 15 ký tự";
 "wrong_old_password" = "Thông tin mật khẩu cũ chưa đúng";
 "api_call_failed" = "Không thể kết nối với máy chủ";
-"company_address" = "324, Tây Sơn, Đống Đa, Hà Nội, Việt Nam";
+"company_address" = "324 Tây Sơn, Đống Đa, Hà Nội, Việt Nam";
 
 // Recognition
 "ranking_of_month %@" = "Xếp hạng %@";

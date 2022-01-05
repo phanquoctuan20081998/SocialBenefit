@@ -283,7 +283,7 @@ class SurveyDetailViewModel: ObservableObject {
             case .success(let value):
                 if value.status == 200 {
                     self.getListReact(id: self.surveyModel.result?.id)
-                } else {
+                } else { 
                     self.isLoadingReact = false
                 }
             case .failure(let error):

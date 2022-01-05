@@ -167,28 +167,27 @@ extension UserInformationView {
                     .onTapGesture {
                         userInformationViewModel.resetError()
                     }
-                    .overlay(
-                        VStack {
-                            if userInformationViewModel.isPresentEmailBlankError {
-                                TextFieldErrorView(error: "blank_email".localized)
-                            } else if userInformationViewModel.isPresentWrongEmailError {
-                                TextFieldErrorView(error: "invalid_email_format".localized)
-                            }
-                        }, alignment: .trailing
-                    )
+                    
+                
+                VStack {
+                    if userInformationViewModel.isPresentEmailBlankError {
+                        TextFieldErrorView(error: "blank_email".localized)
+                    } else if userInformationViewModel.isPresentWrongEmailError {
+                        TextFieldErrorView(error: "invalid_email_format".localized)
+                    }
+                }
                 
                 InformationTextFieldView(text: $userInformationViewModel.phoneText, title: "telephone".localized, placeHolder: "", showChevron: false, disable: false)
                     .keyboardType(.numberPad)
-                    .overlay(
-                        VStack {
-                            if userInformationViewModel.isPresentPhoneBlankError {
-                                TextFieldErrorView(error: "blank_phone".localized)
-                            }
-                        }, alignment: .trailing
-                    )
                     .onTapGesture {
                         userInformationViewModel.resetError()
                     }
+                
+                VStack {
+                    if userInformationViewModel.isPresentPhoneBlankError {
+                        TextFieldErrorView(error: "blank_phone".localized)
+                    }
+                }
             }.padding(.top, 30)
             
             HStack {

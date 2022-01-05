@@ -40,7 +40,9 @@ struct ReactionBar: View {
                         .font(Font.system(size: 12))
                 }
             }
+            
             Divider()
+            
             HStack {
                 if isShowReactionBar {
                     ReactionCommentView.init(isShowReactionBar: $isShowReactionBar, selectedReaction: $currentReaction, action: {
@@ -67,11 +69,14 @@ struct ReactionBar: View {
                         }
                     }
                 }
+                
                 Spacer()
+                
                 Image(systemName: "bubble.left")
                 Text("comment".localized)
                     .font(Font.system(size: 12))
             }
+            .padding(.top, 10)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(10)

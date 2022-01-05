@@ -23,6 +23,11 @@ struct SurveyDetailView: View {
             viewModel.getListReact(id: detailModel.id)
             UIScrollView.appearance().keyboardDismissMode = .onDrag
         }
+        .onTapGesture {
+            if viewModel.isShowReactionBar {
+                viewModel.isShowReactionBar = false
+            }
+        }
         .navigationBarHidden(true)
     }
     

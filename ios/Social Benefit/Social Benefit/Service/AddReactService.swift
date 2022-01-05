@@ -16,7 +16,6 @@ class AddReactService {
     func getAPI(contentId: Int, contentType: Int, reactType: Int) {
         let service = BaseAPI()
         
-        
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
                       "contentId": String(contentId),

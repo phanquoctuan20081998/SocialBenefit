@@ -154,6 +154,7 @@
 		C464CF8727843777007BDCB4 /* UpdateCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464CF8627843777007BDCB4 /* UpdateCommentService.swift */; };
 		C4675B8227848F8B00A97726 /* NewsDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675B8127848F8B00A97726 /* NewsDetailService.swift */; };
 		C4675B8527853F8200A97726 /* ReactionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675B8427853F8200A97726 /* ReactionBar.swift */; };
+		C4675B872785723900A97726 /* PHPhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675B862785723800A97726 /* PHPhotoLibrary.swift */; };
 		C46BD8892747545500E8715F /* RankingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD8882747545500E8715F /* RankingCardView.swift */; };
 		C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD88A27477D4500E8715F /* RecognitionNewsCardView.swift */; };
 		C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD88C27477E3200E8715F /* RecognitionService.swift */; };
@@ -452,6 +453,7 @@
 		C464CF8627843777007BDCB4 /* UpdateCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommentService.swift; sourceTree = "<group>"; };
 		C4675B8127848F8B00A97726 /* NewsDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailService.swift; sourceTree = "<group>"; };
 		C4675B8427853F8200A97726 /* ReactionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionBar.swift; sourceTree = "<group>"; };
+		C4675B862785723800A97726 /* PHPhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPhotoLibrary.swift; sourceTree = "<group>"; };
 		C46BD8882747545500E8715F /* RankingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCardView.swift; sourceTree = "<group>"; };
 		C46BD88A27477D4500E8715F /* RecognitionNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionNewsCardView.swift; sourceTree = "<group>"; };
 		C46BD88C27477E3200E8715F /* RecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionService.swift; sourceTree = "<group>"; };
@@ -986,6 +988,7 @@
 				C446BEAF2771B88900925F5E /* StringValue.swift */,
 				C419C2F0277EE3F3007D4A3F /* ResizeUIImage.swift */,
 				C41C1280277F411800C7E096 /* HideKeyboard.swift */,
+				C4675B862785723800A97726 /* PHPhotoLibrary.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2191,6 +2194,7 @@
 				C47AEC332757094F00DF8A60 /* EmployeeRankingViewModel.swift in Sources */,
 				C47CA9AD2759F0E000F25771 /* RecentTransferListView.swift in Sources */,
 				C40366FF26DB278100381888 /* MerchantListService.swift in Sources */,
+				C4675B872785723900A97726 /* PHPhotoLibrary.swift in Sources */,
 				C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */,
 				C43C7BB626FAE3F00056D169 /* MyVoucherModel.swift in Sources */,
 				C40AA171277B4E10002601AC /* NotificationCardView.swift in Sources */,
@@ -2383,7 +2387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.3;
+				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2408,7 +2412,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.3;
+				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
