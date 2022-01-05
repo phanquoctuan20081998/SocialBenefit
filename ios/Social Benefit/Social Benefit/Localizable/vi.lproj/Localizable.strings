@@ -24,6 +24,7 @@
 "email_reset" = "Email của bạn";
 "reset_password" = "Lấy lại mật khẩu";
 "back_login" = "Quay trở lại đăng nhập";
+"enter_email" = "Nhập email của bạn";
 
 // Reset Password Success
 "success_notification1" = "Thiết lập thành công! Mật khẩu mới";
@@ -141,6 +142,9 @@
 "you" = "Bạn";
 "%d other" = "%d người khác";
 "%d others" = "%d người khác";
+"are_you_sure_to_delete_comment" = "Bạn có chắn chắn muốn xoá bình luận này?";
+"edit_comment" = "Sửa bình luận";
+"delete_comment" = "Xoá bình luận";
 
 // Benefit Detail
 "apply_this_benefit" = "Đăng ký";

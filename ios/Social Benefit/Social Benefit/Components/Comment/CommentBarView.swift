@@ -13,7 +13,7 @@ struct CommentBarView: View {
     @Binding var isReply: Bool
     @Binding var replyTo: String
     @Binding var parentId: Int
-    
+    @Binding var isFocus: Bool
     @Binding var commentText: String
     
     // Need to rewrite send button for individual task
@@ -45,16 +45,14 @@ struct CommentBarView: View {
                 HStack {
                     URLImageView(url: Config.baseURL + userInfor.avatar)
                         .clipShape(Circle())
-                        .frame(width: 20, height: 20)
+                        .frame(width: 30, height: 30)
                         .padding(.all, 2)
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                     
                     Spacer().frame(width: 18)
                     
-                    AutoResizeTextField(text: $commentText, isFocus: .constant(false), minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                    AutoResizeTextField(text: $commentText, isFocus: $isFocus, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
-//                        .padding(5)
-                    
                         .overlay(RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.blue.opacity(0.5), lineWidth: 2))
                     

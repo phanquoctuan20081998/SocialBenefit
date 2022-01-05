@@ -13,7 +13,7 @@ class InternalNewsViewModel: ObservableObject {
     @Published var allInternalNews: [InternalNewsData] = []
     @Published var fromIndex = 0
     @Published var searchPattern = ""
-    @Published var category = Constants.InternalNewsType.ALL
+    @Published var category = InternalNewsSelectedTab
     
     // For show image at home screen
     @Published var allInternalNewsBanner: [InternalNewsData] = []
@@ -32,7 +32,7 @@ class InternalNewsViewModel: ObservableObject {
     
     init() {
         addSubscribers()
-        loadData(fromIndex: 0, searchPattern: "", category: Constants.InternalNewsType.ALL)
+        loadData(fromIndex: 0, searchPattern: "", category: InternalNewsSelectedTab)
     }
     
     func addSubscribers() {
@@ -99,8 +99,10 @@ class InternalNewsViewModel: ObservableObject {
     func reset() {
         self.fromIndex = 0
         self.searchPattern = ""
-        self.category = Constants.InternalNewsType.ALL
+        self.category = 0
         self.allInternalNews = []
+        
+        InternalNewsSelectedTab = 0
     }
     
     func resetLoading() {

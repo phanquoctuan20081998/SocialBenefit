@@ -220,9 +220,10 @@ extension UserInformationView {
         HStack {
             Button(action: {
                 userInformationViewModel.saveButtonTapped()
-
+                hideKeyboard()
+                
                 // Click count
-//                countClick()
+                countClick()
             }, label: {
                 Text("save".localized)
                     .foregroundColor(userInformationViewModel.isEnableSaveButton ? .black : .gray)

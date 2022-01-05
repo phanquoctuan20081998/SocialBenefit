@@ -63,7 +63,7 @@ struct Webview : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView  {
         webview.scrollView.bounces = false
         webview.navigationDelegate = context.coordinator
-        let htmlStart = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, shrink-to-fit=no\"></HEAD><BODY><font size=\(font - 20)>"
+        let htmlStart = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, shrink-to-fit=no\"></HEAD><BODY>"
         let htmlEnd = "</font></BODY></HTML>"
         let html = convertToHTMLString(htmlString)   
         let htmlString = "\(htmlStart)\(html)\(htmlEnd)"

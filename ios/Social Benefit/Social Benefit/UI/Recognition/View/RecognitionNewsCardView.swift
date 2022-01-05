@@ -50,12 +50,12 @@ struct RecognitionNewsCardView: View {
                         .foregroundColor(Color("nissho_blue"))
                         .frame(width: ScreenInfor().screenWidth * 0.8, height:  1)
                     
-                    LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE)
+                    LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE, isFocus: .constant(false))
                         .frame(height: 10)
                         .padding(.horizontal, 10)
                         .padding(.bottom, 5)
                     
-                    CommentBarView(isReply: .constant(false), replyTo: .constant(""), parentId: .constant(-1), commentText: $commentText, SendButtonView: AnyView(SendCommentButtonView))
+                    CommentBarView(isReply: .constant(false), replyTo: .constant(""), parentId: .constant(-1), isFocus: .constant(false), commentText: $commentText, SendButtonView: AnyView(SendCommentButtonView))
                         .onTapGesture {
                             self.proxy?.scrollTo(self.index, alignment: .top, animated: true)
                         }

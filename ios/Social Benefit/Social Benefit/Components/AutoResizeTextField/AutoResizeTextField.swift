@@ -9,10 +9,13 @@ import Foundation
 import SwiftUI
 
 struct DynamicHeightTextField: UIViewRepresentable {
+    
     @Binding var text: String
     @Binding var height: CGFloat
     @Binding var isFocus: Bool
+    
     var textfieldType: Int
+    var isFirstResponder: Bool = false
     var onEnd: () -> ()
     
     func makeUIView(context: Context) -> UITextView {
@@ -54,6 +57,16 @@ struct DynamicHeightTextField: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
+        
+        DispatchQueue.main.async {
+            if isFirstResponder && !context.coordinator.didBecomeFirstResponder  {
+                uiView.becomeFirstResponder()
+                context.coordinator.didBecomeFirstResponder = true
+            } else if !isFirstResponder && context.coordinator.didBecomeFirstResponder {
+                uiView.resignFirstResponder()
+                context.coordinator.didBecomeFirstResponder = false
+            }
+        }
     }
 
     
@@ -65,10 +78,12 @@ struct DynamicHeightTextField: UIViewRepresentable {
 class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
     
     var dynamicHeightTextField: DynamicHeightTextField
+    var didBecomeFirstResponder = false
+    
     @Binding var isFocus: Bool
+    
     weak var textView: UITextView?
 
-    
     init(dynamicSizeTextField: DynamicHeightTextField, isFocus: Binding<Bool>) {
         self.dynamicHeightTextField = dynamicSizeTextField
         _isFocus = isFocus
@@ -84,10 +99,10 @@ class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            textView.resignFirstResponder()
-            return false
-        }
+//        if (text == "\n") {
+//            textView.resignFirstResponder()
+//            return false
+//        }
         return true
     }
     
@@ -158,13 +173,13 @@ struct AutoResizeTextField: View {
                     Text(placeholder)
                         .font(.system(size: 13))
                         .foregroundColor(Color(UIColor.placeholderText))
-                        .padding(5)
+                        .padding(10)
                 }
             }
             
-            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, textfieldType: textfiledType, onEnd: {
+            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, textfieldType: textfiledType, isFirstResponder: isFocus, onEnd: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            }).padding(textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION ? 10 : 5)
+            }).padding(textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION ? 10 : 2)
         }
         .frame(height: textFieldHeight)
     }

@@ -49,6 +49,7 @@ struct RecognitionPostView: View {
                 CommentBarView(isReply: $recognitionPostViewModel.isReply,
                                replyTo: $recognitionPostViewModel.replyTo,
                                parentId: $recognitionPostViewModel.parentId,
+                               isFocus: $recognitionPostViewModel.isFocus,
                                commentText: $recognitionPostViewModel.commentText,
                                SendButtonView: AnyView(
                                 SendCommentButtonView(
@@ -100,7 +101,7 @@ extension RecognitionPostView {
                 .foregroundColor(Color("nissho_blue"))
                 .frame(width: ScreenInfor().screenWidth * 0.95, height:  1)
             
-            LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE)
+            LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE, isFocus: $recognitionPostViewModel.isFocus)
                 .frame(height: 10)
                 .padding(.horizontal, 10)
                 .padding(.bottom, 5)
@@ -123,17 +124,17 @@ extension RecognitionPostView {
                     let parentCommentMax = recognitionPostViewModel.parentComment.indices
                     ForEach(parentCommentMax, id: \.self) { i in
                         
-                        VStack {
-                            FirstCommentCardView(comment: recognitionPostViewModel.parentComment[i].data, currentPosition: i, isReply: $recognitionPostViewModel.isReply, parentId: $recognitionPostViewModel.parentId, replyTo: $recognitionPostViewModel.replyTo, moveToPosition: $recognitionPostViewModel.moveToPosition)
-                            
-                            if recognitionPostViewModel.parentComment[i].childIndex != -1 {
-                                let childIndex = recognitionPostViewModel.parentComment[i].childIndex
-                                
-                                ForEach(0..<recognitionPostViewModel.childComment[childIndex].count, id: \.self) { j in
-                                    SecondCommentCardView(comment: recognitionPostViewModel.childComment[childIndex][j])
-                                }
-                            }
-                        }.scrollId(i)
+//                        VStack {
+//                            FirstCommentCardView(comment: recognitionPostViewModel.parentComment[i].data, currentPosition: i, isReply: $recognitionPostViewModel.isReply, parentId: $recognitionPostViewModel.parentId, replyTo: $recognitionPostViewModel.replyTo, moveToPosition: $recognitionPostViewModel.moveToPosition)
+//
+//                            if recognitionPostViewModel.parentComment[i].childIndex != -1 {
+//                                let childIndex = recognitionPostViewModel.parentComment[i].childIndex
+//
+//                                ForEach(0..<recognitionPostViewModel.childComment[childIndex].count, id: \.self) { j in
+//                                    SecondCommentCardView(comment: recognitionPostViewModel.childComment[childIndex][j])
+//                                }
+//                            }
+//                        }.scrollId(i)
                     }
                 }
             }

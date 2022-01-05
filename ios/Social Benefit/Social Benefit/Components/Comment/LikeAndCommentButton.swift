@@ -14,6 +14,9 @@ struct LikeAndCommentButton: View {
     var contentId: Int
     var contentType: Int = Constants.ReactContentType.INTERNAL_NEWS
     
+    // For focus on comment bar
+    @Binding var isFocus: Bool
+    
     var body: some View {
         ZStack {
             
@@ -93,11 +96,15 @@ struct LikeAndCommentButton: View {
                 
                 Spacer()
                 
-                HStack {
-                    Image(systemName: "bubble.left")
-                    Text("comment".localized)
-                        .font(.system(size: 12))
-                }.foregroundColor(.blue)
+                Button {
+                    self.isFocus = true
+                } label: {
+                    HStack {
+                        Image(systemName: "bubble.left")
+                        Text("comment".localized)
+                            .font(.system(size: 12))
+                    }.foregroundColor(.blue)
+                }
             }
         }
     }

@@ -85,7 +85,9 @@ struct InternalNewsBannerView: View {
         homeViewModel.isPresentInternalNewDetail.toggle()
         
         if let index = homeViewModel.selectedIndex {
-            homeViewModel.selectedInternalNew = internalNewsViewModel.allInternalNews[index]
+            if index < internalNewsViewModel.allInternalNews.count {
+                homeViewModel.selectedInternalNew = internalNewsViewModel.allInternalNews[index]
+            }
         }
     }
 }

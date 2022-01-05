@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 struct ParentCommentData: Identifiable {
     let id = UUID()
@@ -37,9 +38,16 @@ class CommentViewModel: ObservableObject, Identifiable {
     @Published var isReply: Bool = false
     @Published var parentId: Int = -1
     @Published var replyTo: String = ""
+    @Published var isFocus: Bool = false
     @Published var moveToPosition: Int = 0
     
+    // Selected Comment
+    @Published var selectedCommentId: Int = -1
+    @Published var selectedParentId: Int = -1
+    @Published var selectedText: String = ""
+    
     @Published var commentText = ""
+    @Published var isPresentOptionView = false
     
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
@@ -81,6 +89,15 @@ class CommentViewModel: ObservableObject, Identifiable {
         $commentText
             .sink(receiveValue: loadCommentText(commentText:))
             .store(in: &cancellables)
+        $isPresentOptionView
+            .sink(receiveValue: refresh(isPresent:))
+            .store(in: &cancellables)
+    }
+    
+    func refresh(isPresent: Bool) {
+        if !isPresent {
+            self.initComment(contentId: self.contentId)
+        }
     }
     
     func loadCommentText(commentText: String) {

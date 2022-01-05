@@ -1171,8 +1171,8 @@
             filePath = "Social Benefit/UI/InternalNewsDetail/InternalNewsDetailViewModel/CommentViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "init(data:childIndex:)"
             landmarkType = "7">
          </BreakpointContent>

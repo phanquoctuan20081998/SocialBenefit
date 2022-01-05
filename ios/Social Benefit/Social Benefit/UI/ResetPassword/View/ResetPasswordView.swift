@@ -128,7 +128,7 @@ extension ResetPasswordView {
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 30)
             
             // Company Code textfield
-            TextField("email".localized,
+            TextField("enter_email".localized,
                       text: $resetPasswordViewModel.email,
                       onEditingChanged: { (focus) in
                 resetPasswordViewModel.isFocus2 = focus })

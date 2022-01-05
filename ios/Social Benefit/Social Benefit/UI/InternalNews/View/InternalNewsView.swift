@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// Global Variable to control selected tab
+public var InternalNewsSelectedTab: Int = 0
+
 // Main
 struct InternalNewsView: View {
     
@@ -14,7 +17,7 @@ struct InternalNewsView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)
     
-    @State private var selectedTabIndex = 0
+    @State private var selectedTabIndex = InternalNewsSelectedTab
     @State private var isSearching = false
     @State private var selectedInternalNew = InternalNewsData()
     @State var isActive = false
@@ -33,9 +36,6 @@ struct InternalNewsView: View {
             .background(Color("nissho_light_blue"))
             .edgesIgnoringSafeArea(.all)
         }
-        .onAppear(perform: {
-            internalNewsViewModel.reset()
-        })
         .background(
             BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true, backButtonTapped: internalNewsViewModel.reset)
         )
@@ -64,6 +64,8 @@ extension InternalNewsView {
                     .onTapGesture {
                         withAnimation {
                             selectedTabIndex = i
+                            InternalNewsSelectedTab = i
+                            
                             if i == 0 {
                                 internalNewsViewModel.category = Constants.InternalNewsType.ALL
                             } else if i == 1 {
@@ -73,9 +75,6 @@ extension InternalNewsView {
                             } else {
                                 internalNewsViewModel.category = Constants.InternalNewsType.OTHER
                             }
-                            
-                            // Stop loading when clicking on the other tab
-//                            internalNewsViewModel.resetLoading()
                         }
                     }
             }

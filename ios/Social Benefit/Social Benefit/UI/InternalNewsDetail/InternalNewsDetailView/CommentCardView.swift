@@ -17,6 +17,11 @@ struct FirstCommentCardView: View {
     @Binding var replyTo: String
     @Binding var moveToPosition: Int
     
+    @Binding var selectedCommentText: String
+    @Binding var selectedCommentId: Int
+    @Binding var selectedParentId: Int
+    @Binding var isPresentOptionView: Bool
+    
     var body: some View {
         HStack(alignment: .top) {
             URLImageView(url: comment.avatar)
@@ -69,12 +74,27 @@ struct FirstCommentCardView: View {
         // This offset will help text bar not cover new comment...
         // Because scrollView only scroll to top of final comment card
         .offset(y: -100)
+        .onLongPressGesture {
+            if comment.commentBy == userInfor.name || comment.commentBy == userInfor.nickname {
+                DispatchQueue.main.async {
+                    isPresentOptionView = true
+                    selectedCommentText = comment.commentDetail
+                    selectedParentId = comment.parentId ?? -1
+                    selectedCommentId = comment.id
+                }
+            }
+        }
     }
 }
 
 struct SecondCommentCardView: View {
     
     var comment: CommentData
+    
+    @Binding var selectedCommentText: String
+    @Binding var selectedCommentId: Int
+    @Binding var selectedParentId: Int
+    @Binding var isPresentOptionView: Bool
     
     var body: some View {
         HStack(alignment: .top) {
@@ -115,11 +135,17 @@ struct SecondCommentCardView: View {
         }.padding(.horizontal)
         .padding(.top, 5)
         .offset(y: -100)
+        .onLongPressGesture {
+            if comment.commentBy == userInfor.name || comment.commentBy == userInfor.nickname {
+                DispatchQueue.main.async {
+                    isPresentOptionView = true
+                    selectedCommentText = comment.commentDetail
+                    selectedParentId = comment.parentId ?? -1
+                    selectedCommentId = comment.id
+                }
+            }
+        }
     }
 }
 
-struct CommentCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        FirstCommentCardView(comment: CommentData(id: 1, contentId: 1, parentId: -1, avatar: "", commentBy: "tt", commentDetail: "sdfhbsdjhfbsdhjbfhjsd", commentTime: ""), currentPosition: 1, isReply: .constant(false), parentId: .constant(-1), replyTo: .constant(""), moveToPosition: .constant(12))
-    }
-}
+

@@ -38,6 +38,7 @@ struct InternalNewsDetailView: View {
         self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
         self.internalNewData = internalNewData
         self.isHiddenTabBarWhenBack = isHiddenTabBarWhenBack
+        
     }
     
     init(internalNewData: InternalNewsData) {
@@ -66,6 +67,7 @@ struct InternalNewsDetailView: View {
             CommentBarView(isReply: $commentViewModel.isReply,
                            replyTo: $commentViewModel.replyTo,
                            parentId: $commentViewModel.parentId,
+                           isFocus: $commentViewModel.isFocus,
                            commentText: $commentViewModel.commentText,
                            SendButtonView: AnyView(
                             SendCommentButtonView(
@@ -86,6 +88,9 @@ struct InternalNewsDetailView: View {
         .padding(.bottom, keyboardHandler.keyboardHeight)
         .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
+        
+        // Option pop up
+        .overlay(CommentOptionPopUp(isPresent: $commentViewModel.isPresentOptionView, text: $commentViewModel.selectedText, commentId: commentViewModel.selectedCommentId, contentId: commentViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, parentId: commentViewModel.selectedParentId))
         .navigationBarHidden(true)
     }
     
@@ -108,7 +113,7 @@ extension InternalNewsDetailView {
                     LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
                         .padding(.horizontal, 10)
                     Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-                    LikeAndCommentButton(contentId: commentViewModel.contentId)
+                    LikeAndCommentButton(contentId: commentViewModel.contentId, isFocus: $commentViewModel.isFocus)
                         .frame(height: 20)
                         .padding(.horizontal, 10)
                 }
@@ -137,13 +142,14 @@ extension InternalNewsDetailView {
                     ForEach(parentCommentMax, id: \.self) { i in
                         
                         VStack {
-                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $commentViewModel.isReply, parentId: $commentViewModel.parentId, replyTo: $commentViewModel.replyTo, moveToPosition: $commentViewModel.moveToPosition)
+                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $commentViewModel.isReply, parentId: $commentViewModel.parentId, replyTo: $commentViewModel.replyTo, moveToPosition: $commentViewModel.moveToPosition, selectedCommentText: $commentViewModel.selectedText, selectedCommentId: $commentViewModel.selectedCommentId, selectedParentId: $commentViewModel.selectedParentId, isPresentOptionView: $commentViewModel.isPresentOptionView)
+                            
                             
                             if commentViewModel.parentComment[i].childIndex != -1 {
                                 let childIndex = commentViewModel.parentComment[i].childIndex
                                 
                                 ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
-                                    SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j])
+                                    SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j],  selectedCommentText: $commentViewModel.selectedText, selectedCommentId: $commentViewModel.selectedCommentId, selectedParentId: $commentViewModel.selectedParentId, isPresentOptionView: $commentViewModel.isPresentOptionView)
                                 }
                             }
                         }.scrollId(i)
@@ -168,12 +174,10 @@ extension InternalNewsDetailView {
                     .font(.system(size: 19))
                     .padding(.horizontal, 10)
                 
-                Webview(dynamicHeight: $webViewHeight, htmlString: internalNewData.body, font: 22)
+                Webview(dynamicHeight: $webViewHeight, htmlString: internalNewData.body, font: 1)
                     .frame(width: ScreenInfor().screenWidth * 0.9, height: webViewHeight)
             }
             .padding(.bottom, 20)
-            
-            
         }
         .frame(width: ScreenInfor().screenWidth * 0.9)
         .background(Color.white)

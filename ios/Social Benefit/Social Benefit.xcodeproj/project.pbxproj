@@ -149,6 +149,11 @@
 		C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16326F2E5E400933BBC /* VoucherFilterView.swift */; };
 		C462F16626F2E76700933BBC /* AllVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16526F2E76700933BBC /* AllVoucherView.swift */; };
 		C462F16926F3452C00933BBC /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F16826F3452C00933BBC /* ProgressView.swift */; };
+		C464CF83278425A0007BDCB4 /* CommentOptionPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464CF82278425A0007BDCB4 /* CommentOptionPopUp.swift */; };
+		C464CF852784368C007BDCB4 /* DeleteCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464CF842784368C007BDCB4 /* DeleteCommentService.swift */; };
+		C464CF8727843777007BDCB4 /* UpdateCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464CF8627843777007BDCB4 /* UpdateCommentService.swift */; };
+		C4675B8227848F8B00A97726 /* NewsDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675B8127848F8B00A97726 /* NewsDetailService.swift */; };
+		C4675B8527853F8200A97726 /* ReactionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675B8427853F8200A97726 /* ReactionBar.swift */; };
 		C46BD8892747545500E8715F /* RankingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD8882747545500E8715F /* RankingCardView.swift */; };
 		C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD88A27477D4500E8715F /* RecognitionNewsCardView.swift */; };
 		C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD88C27477E3200E8715F /* RecognitionService.swift */; };
@@ -442,6 +447,11 @@
 		C462F16326F2E5E400933BBC /* VoucherFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherFilterView.swift; sourceTree = "<group>"; };
 		C462F16526F2E76700933BBC /* AllVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVoucherView.swift; sourceTree = "<group>"; };
 		C462F16826F3452C00933BBC /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		C464CF82278425A0007BDCB4 /* CommentOptionPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentOptionPopUp.swift; sourceTree = "<group>"; };
+		C464CF842784368C007BDCB4 /* DeleteCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentService.swift; sourceTree = "<group>"; };
+		C464CF8627843777007BDCB4 /* UpdateCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommentService.swift; sourceTree = "<group>"; };
+		C4675B8127848F8B00A97726 /* NewsDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailService.swift; sourceTree = "<group>"; };
+		C4675B8427853F8200A97726 /* ReactionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionBar.swift; sourceTree = "<group>"; };
 		C46BD8882747545500E8715F /* RankingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCardView.swift; sourceTree = "<group>"; };
 		C46BD88A27477D4500E8715F /* RecognitionNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionNewsCardView.swift; sourceTree = "<group>"; };
 		C46BD88C27477E3200E8715F /* RecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionService.swift; sourceTree = "<group>"; };
@@ -741,6 +751,9 @@
 				C4A519C2276996B70065E047 /* ViewClickService.swift */,
 				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
 				C47081DB277D6F0700E7F612 /* InternalNewsDetailService.swift */,
+				C464CF842784368C007BDCB4 /* DeleteCommentService.swift */,
+				C464CF8627843777007BDCB4 /* UpdateCommentService.swift */,
+				C4675B8127848F8B00A97726 /* NewsDetailService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -980,23 +993,24 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C446BEB12771B96500925F5E /* ViewModifier */,
-				C4F410F5274B8D0600BEF6DF /* Comment */,
-				C49285532716B88000F5BCBB /* CheckBox */,
-				C4DB9687271598CC0073382C /* LoadingPage */,
-				C4C8115A270E8A33002D7220 /* ConfirmPopUp */,
-				C4D02616270D40F30048B671 /* PopUp */,
+				C4675B8327853F6500A97726 /* Reaction */,
+				C4393D2726E90EDC00C02D43 /* AutoResizeTextField */,
+				C4CD0D5E26D5FB0D003D5BE7 /* Background */,
 				C4D0260E270D3E5F0048B671 /* BackgroundSearch */,
+				C49285532716B88000F5BCBB /* CheckBox */,
+				C4F410F5274B8D0600BEF6DF /* Comment */,
+				C4C8115A270E8A33002D7220 /* ConfirmPopUp */,
 				C447E4C5270C393400ECBB3E /* DragPopUp */,
-				C472E4BC26FD66C600D047BA /* ScrollableTabBar */,
+				C4EC104126F23B5A0064C3B3 /* GridView */,
+				C4DB9687271598CC0073382C /* LoadingPage */,
+				C4D02616270D40F30048B671 /* PopUp */,
 				C4DF7A6826F9CAD900DC7D04 /* PopUpMessage */,
 				C462F16726F3451700933BBC /* ProgressView */,
-				C4EC104126F23B5A0064C3B3 /* GridView */,
 				C4B3D58326E9FB90003C6CA9 /* RoundedButton */,
-				C4CD0D5E26D5FB0D003D5BE7 /* Background */,
-				C4393D2726E90EDC00C02D43 /* AutoResizeTextField */,
-				C419868726E46F2500A877A5 /* URLImage */,
+				C472E4BC26FD66C600D047BA /* ScrollableTabBar */,
 				C43B21C926DE140400E2E451 /* SearchBar */,
+				C419868726E46F2500A877A5 /* URLImage */,
+				C446BEB12771B96500925F5E /* ViewModifier */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1241,6 +1255,14 @@
 				C462F16826F3452C00933BBC /* ProgressView.swift */,
 			);
 			path = ProgressView;
+			sourceTree = "<group>";
+		};
+		C4675B8327853F6500A97726 /* Reaction */ = {
+			isa = PBXGroup;
+			children = (
+				C4675B8427853F8200A97726 /* ReactionBar.swift */,
+			);
+			path = Reaction;
 			sourceTree = "<group>";
 		};
 		C46CD3C12716884600A454CE /* View */ = {
@@ -1754,6 +1776,7 @@
 				C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */,
 				C434AF39274CC72A002A026E /* LikeAndCommentCountBarView.swift */,
 				C4042E23274D26B8003A88A7 /* CommentBarView.swift */,
+				C464CF82278425A0007BDCB4 /* CommentOptionPopUp.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -1924,6 +1947,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C464CF852784368C007BDCB4 /* DeleteCommentService.swift in Sources */,
 				C472E4C826FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift in Sources */,
 				C48BA35626EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift in Sources */,
 				C4E985A9277AB75C00D5AC7E /* NotificationListService.swift in Sources */,
@@ -1941,6 +1965,7 @@
 				C48BA35426EF016E006C4F27 /* MerchantCategoryItemModel.swift in Sources */,
 				C446BE7C2771B35C00925F5E /* UITextFieldRep.swift in Sources */,
 				C478889A270BFF65009F5A25 /* UserInformationViewModel.swift in Sources */,
+				C464CF83278425A0007BDCB4 /* CommentOptionPopUp.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
 				C446BEC22771C49500925F5E /* RadioButtonOptional.swift in Sources */,
 				C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */,
@@ -2002,6 +2027,7 @@
 				C4413F1C2759B64400FDA3E7 /* CheckIsDisplayFunction.swift in Sources */,
 				C446BEA42771B71700925F5E /* SurveyChoiceService.swift in Sources */,
 				C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */,
+				C4675B8527853F8200A97726 /* ReactionBar.swift in Sources */,
 				C402B26A26E76C5300A41288 /* ReactViewModel.swift in Sources */,
 				C419C2F1277EE3F3007D4A3F /* ResizeUIImage.swift in Sources */,
 				C4492A5E26F18E98008B26C9 /* MerchantVoucherItemModel.swift in Sources */,
@@ -2129,6 +2155,7 @@
 				C41C8C6E26DC79C200AC1FA7 /* InternalNewsDetailView.swift in Sources */,
 				C446BECE2771C61800925F5E /* ListSurveyView.swift in Sources */,
 				C446BECC2771C5F100925F5E /* ListSurveyViewModel.swift in Sources */,
+				C464CF8727843777007BDCB4 /* UpdateCommentService.swift in Sources */,
 				C45260BE271565B1007E945B /* View.swift in Sources */,
 				C472E4C026FD723000D047BA /* MerchantVoucherDetailService.swift in Sources */,
 				C4C8334E2711475A0058E8E3 /* HomeViewModel.swift in Sources */,
@@ -2140,6 +2167,7 @@
 				C4DB9689271598EA0073382C /* LoadingPageView.swift in Sources */,
 				C456C45F275DA1D600406C8D /* WalletInforModel.swift in Sources */,
 				C446BEC82771C4D200925F5E /* SurveyDetailViewModel.swift in Sources */,
+				C4675B8227848F8B00A97726 /* NewsDetailService.swift in Sources */,
 				C45490352741F51300175E09 /* UsedPointHistoryView.swift in Sources */,
 				C4E3442F26F627BD00B343E8 /* Constants.swift in Sources */,
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
@@ -2355,7 +2383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2380,7 +2408,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

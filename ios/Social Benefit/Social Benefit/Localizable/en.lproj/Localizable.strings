@@ -24,6 +24,7 @@
 "email_reset" = "Enter your email";
 "reset_password" = "Reset Password";
 "back_login" = "Already have an account? Login!";
+"enter_email" = "Enter your email";
 
 // Reset Password Success
 "success_notification1" = "Reset password successfully!";
@@ -141,6 +142,9 @@
 "you" = "You";
 "%d other" = "%d other";
 "%d others" = "%d others";
+"are_you_sure_to_delete_comment" = "Are you sure you want to delete this comment?";
+"edit_comment" = "Edit comment";
+"delete_comment" = "Delete comment";
 
 // Benefit Detail
 "apply_this_benefit" = "Apply this Benefit?";

@@ -36,7 +36,8 @@ struct BenefitDetailView: View {
             Spacer()
             
             VStack {
-                HTMLView(htmlString: self.benefitDetailViewModel.benefit.body, font: 13)
+                Webview(dynamicHeight: .constant(0), htmlString: convertToHTMLString(self.benefitDetailViewModel.benefit.body), font: 13)
+//                HTMLView(htmlString: self.benefitDetailViewModel.benefit.body, font: 13)
                     .padding(30)
                 
                 getApplyButton()

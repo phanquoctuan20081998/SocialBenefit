@@ -25,6 +25,7 @@ class RecognitionPostViewModel: ObservableObject, Identifiable {
     @Published var isReply: Bool = false
     @Published var parentId: Int = -1
     @Published var replyTo: String = ""
+    @Published var isFocus: Bool = false
     @Published var moveToPosition: Int = 0
     
     @Published var commentText = ""

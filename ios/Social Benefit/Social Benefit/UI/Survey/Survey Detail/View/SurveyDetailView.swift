@@ -87,7 +87,9 @@ struct SurveyDetailView: View {
                             }
                             Spacer()
                                 .frame(height: 20)
+                            
                             reactionView
+            
                             commentList
                         }
                     }
@@ -367,62 +369,15 @@ struct SurveyDetailView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    
     var reactionView: some View {
-        VStack {
-            HStack {
-                if viewModel.isLoadingReact {
-                    ActivityRep()
-                } else {
-                    if viewModel.currentReaction != .none {
-                        Image.init(viewModel.currentReaction.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
-                    }
-                    Text(viewModel.reactModel.allReactionText)
-                }
-                Spacer()
-                
-                if let commentCount = viewModel.listComment.result?.count {
-                    Text(commentCount.string + " " + "count_comment".localized)
-                        .font(Font.system(size: 12))
-                }
-            }
-            Divider()
-            HStack {
-                if viewModel.isShowReactionBar {
-                    ReactionCommentView.init(isShowReactionBar: $viewModel.isShowReactionBar, selectedReaction: $viewModel.currentReaction, action: {
-                        self.viewModel.sendReaction()
-                    })
-                } else {
-                    if viewModel.isLoadingReact {
-                        ActivityRep()
-                    } else {
-                        Button.init {
-                            viewModel.isShowReactionBar = true
-                        } label: {
-                            if viewModel.currentReaction == .none {
-                                Image(systemName: "hand.thumbsup")
-                            } else {
-                                Image(viewModel.currentReaction.imageName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
-                            }
-                            Text(viewModel.reactModel.myReactionText)
-                                .font(Font.system(size: 12))
-                                .foregroundColor(viewModel.currentReaction.color)
-                        }
-                    }
-                }
-                Spacer()
-                Image(systemName: "bubble.left")
-                Text("comment".localized)
-                    .font(Font.system(size: 12))
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(10)
+        
+        ReactionBar(isShowReactionBar: $viewModel.isShowReactionBar,
+                    isLoadingReact: $viewModel.isLoadingReact,
+                    currentReaction: $viewModel.currentReaction,
+                    reactModel: viewModel.reactModel,
+                    listComment: viewModel.listComment,
+                    sendReaction: self.viewModel.sendReaction)
     }
 }
 
