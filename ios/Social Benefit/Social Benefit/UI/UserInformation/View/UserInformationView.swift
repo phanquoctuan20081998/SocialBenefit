@@ -35,7 +35,14 @@ struct UserInformationView: View {
                     Spacer().frame(height: 30)
                 }
             }.background(
-                BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "", isHaveLogo: true)
+                BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar,
+                                                   title: "",
+                                                   isHaveLogo: true,
+                                                   isHaveDiffirentHandle: true,
+                                                   diffirentHandle: {
+                                                       userInformationViewModel.isPresentConfirmPopUp = true
+                                                       Utils.dismissKeyboard()
+                                                   })
             )
             
             // Pop Up
@@ -163,30 +170,35 @@ extension UserInformationView {
                 .padding(.top)
             
             VStack (spacing: 20) {
-                InformationTextFieldView(text: $userInformationViewModel.emailText, title: "contact_email".localized, placeHolder: "", showChevron: false, disable: false)
-                    .onTapGesture {
-                        userInformationViewModel.resetError()
-                    }
-                    
                 
-                VStack {
-                    if userInformationViewModel.isPresentEmailBlankError {
-                        TextFieldErrorView(error: "blank_email".localized)
-                    } else if userInformationViewModel.isPresentWrongEmailError {
-                        TextFieldErrorView(error: "invalid_email_format".localized)
-                    }
+                VStack(spacing: 5) {
+                    InformationTextFieldView(text: $userInformationViewModel.emailText, title: "contact_email".localized, placeHolder: "", showChevron: false, disable: false)
+                        .onTapGesture {
+                            userInformationViewModel.resetError()
+                        }
+                    
+                    // Error
+                    VStack {
+                        if userInformationViewModel.isPresentEmailBlankError {
+                            TextFieldErrorView(error: "blank_email".localized)
+                        } else if userInformationViewModel.isPresentWrongEmailError {
+                            TextFieldErrorView(error: "invalid_email_format".localized)
+                        }
+                    }.frame(width: ScreenInfor().screenWidth * 0.75, alignment: .leading)
                 }
                 
-                InformationTextFieldView(text: $userInformationViewModel.phoneText, title: "telephone".localized, placeHolder: "", showChevron: false, disable: false)
-                    .keyboardType(.numberPad)
-                    .onTapGesture {
-                        userInformationViewModel.resetError()
-                    }
-                
-                VStack {
-                    if userInformationViewModel.isPresentPhoneBlankError {
-                        TextFieldErrorView(error: "blank_phone".localized)
-                    }
+                VStack(spacing: 5) {
+                    InformationTextFieldView(text: $userInformationViewModel.phoneText, title: "telephone".localized, placeHolder: "", showChevron: false, disable: false)
+                        .keyboardType(.numberPad)
+                        .onTapGesture {
+                            userInformationViewModel.resetError()
+                        }
+                    
+                    VStack {
+                        if userInformationViewModel.isPresentPhoneBlankError {
+                            TextFieldErrorView(error: "blank_phone".localized)
+                        }
+                    }.frame(width: ScreenInfor().screenWidth * 0.75, alignment: .leading)
                 }
             }.padding(.top, 30)
             
@@ -204,7 +216,7 @@ extension UserInformationView {
                     .font(.system(size: 15))
             }.padding(.vertical, 15)
             
-        }.frame(width: ScreenInfor().screenWidth*0.9, alignment: .leading)
+        }.frame(width: ScreenInfor().screenWidth * 0.9, alignment: .leading)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.gray.opacity(0.2), lineWidth: 2)

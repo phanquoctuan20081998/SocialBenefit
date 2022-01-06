@@ -26,11 +26,14 @@ struct BenefitDetailView: View {
                 Rectangle()
                     .fill(Color.gray)
                     .frame(width: 200, height: 2)
+                
                 Text(self.benefitDetailViewModel.benefit.title)
                     .bold()
                     .font(.system(size: 20))
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
                     .padding(.top, 20)
-                    .padding(.horizontal, 50)
+                    .padding(.horizontal, 40)
             }
             
             Spacer()

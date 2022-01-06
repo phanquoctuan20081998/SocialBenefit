@@ -28,8 +28,11 @@ extension AppInformationPopUp {
                 .frame(width: 50, height: 50)
             
             VStack(spacing: 5) {
+                
+                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+                
                 Text("social_benefits".localized)
-                Text("version".localized + ": ")
+                Text("version %@".localizeWithFormat(arguments: appVersion!))
                 Text("\("developed_by".localized) \(companyName)")
                 Text("\(companyAddress)")
             }

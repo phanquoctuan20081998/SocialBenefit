@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchSelectionView: View {
     @State var isPresent = true
-    @State var searchText = ""
+//    @State var searchText = ""
     @State var isSearching = false
     
     @ObservedObject var searchViewModel = SearchViewModel()
@@ -18,7 +18,7 @@ struct SearchSelectionView: View {
     @Binding var selectedTab: String
     
     var body: some View {
-        SearchView(isPresent: $isPresent, searchText: $searchText, isSearching: $isSearching, contentView: AnyView(contentView))
+        SearchView(isPresent: $isPresent, searchText: $searchViewModel.searchText, isSearching: $isSearching, contentView: AnyView(contentView))
     }
     
     var contentView: some View {

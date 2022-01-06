@@ -67,12 +67,12 @@ extension CustomerSupportPopUp {
                     countClick()
                 }, label: {
                     Text("send".localized)
-                        .foregroundColor(customerSupportViewModel.feedBackText.trimmingCharacters(in: .whitespaces).isEmpty ? .gray : .black)
+                        .foregroundColor(customerSupportViewModel.feedBackText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .gray : .black)
                         .padding(5)
                         .background(RoundedRectangle(cornerRadius: 5)
                                         .fill(Color("nissho_light_blue"))
                                         .frame(width: 80))
-                }).disabled(customerSupportViewModel.feedBackText.trimmingCharacters(in: .whitespaces).isEmpty)
+                }).disabled(customerSupportViewModel.feedBackText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 
                 Spacer().frame(width: 80)
                 

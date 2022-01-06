@@ -245,7 +245,7 @@
 "other_setting" = "Other";
 "application_information" = "Application information";
 "social_benefits" = "Social Benefits";
-"version" = "Version 1.0.0";
+"version %@" = "Version: %@";
 "close" = "Close";
 "developed_by" = "Developed by";
 "vn" = "Vietnamese";

@@ -380,6 +380,7 @@ struct SurveyDetailView: View {
         ReactionBar(isShowReactionBar: $viewModel.isShowReactionBar,
                     isLoadingReact: $viewModel.isLoadingReact,
                     currentReaction: $viewModel.currentReaction,
+                    isFocus: .constant(false),
                     reactModel: viewModel.reactModel,
                     listComment: viewModel.listComment,
                     sendReaction: self.viewModel.sendReaction)

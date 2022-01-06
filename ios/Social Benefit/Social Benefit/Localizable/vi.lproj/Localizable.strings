@@ -245,7 +245,7 @@
 "other_setting" = "Mục khác";
 "application_information" = "Thông tin ứng dụng";
 "social_benefits" = "Phúc lợi nhân viên";
-"version" = "Phiên bản 1.0.0";
+"version %@" = "Phiên bản: %@";
 "close" = "Đóng";
 "developed_by" = "Phát triển bởi";
 "vn" = "Tiếng Việt";

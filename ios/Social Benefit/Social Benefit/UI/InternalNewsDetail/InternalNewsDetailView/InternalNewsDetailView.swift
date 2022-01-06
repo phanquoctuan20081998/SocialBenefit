@@ -173,6 +173,7 @@ extension InternalNewsDetailView {
         ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,
+                    isFocus: $commentViewModel.isFocus,
                     reactModel: reactViewModel.reactModel,
                     listComment: reactViewModel.listComment,
                     sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })
@@ -239,7 +240,7 @@ struct SendCommentButtonView: View {
             
             AddCommentService().getAPI(contentId: contentId, contentType: type, parentId: parentId, content: content, returnCallBack: { newCommentId in
                 DispatchQueue.main.async {
-                    let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.name, commentDetail: content, commentTime: "a_few_seconds".localized)
+                    let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.nickname.isEmpty ? userInfor.name : userInfor.nickname, commentDetail: content, commentTime: "a_few_seconds".localized)
                     
                     updateComment(newComment)
                     

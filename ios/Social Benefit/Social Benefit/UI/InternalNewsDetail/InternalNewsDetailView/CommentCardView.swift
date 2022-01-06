@@ -115,6 +115,7 @@ struct SecondCommentCardView: View {
                         .padding(.init(top: 15, leading: 15, bottom: 0, trailing: 15))
                     
                     Spacer().frame(height: 10)
+                    
                     Text(comment.commentDetail)
                         .font(.system(size: 15))
                         .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))

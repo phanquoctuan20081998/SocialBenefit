@@ -12,6 +12,7 @@ struct ReactionBar: View {
     @Binding var isShowReactionBar: Bool
     @Binding var isLoadingReact: Bool
     @Binding var currentReaction: ReactionType
+    @Binding var isFocus: Bool
     
     var reactModel: ReactSuveryModel
     var listComment: ListCommentModel
@@ -72,9 +73,13 @@ struct ReactionBar: View {
                 
                 Spacer()
                 
-                Image(systemName: "bubble.left")
-                Text("comment".localized)
-                    .font(Font.system(size: 12))
+                HStack {
+                    Image(systemName: "bubble.left")
+                    Text("comment".localized)
+                        .font(Font.system(size: 12))
+                }.onTapGesture {
+                    isFocus = true
+                }
             }
             .padding(.top, 10)
         }

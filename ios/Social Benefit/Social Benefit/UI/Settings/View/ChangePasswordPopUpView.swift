@@ -16,6 +16,7 @@ struct ChangePasswordPopUpView: View {
     var body: some View {
         PopUpView(isPresentedPopUp: $isPresentedPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(PopUpContent))
             .overlay(ConfirmPopUp(isPresentedPopUp: $isPresentComfirmPopUp, isPresentedPreviousPopUp: $settingsViewModel.isPresentedChangePasswordPopUp, variable: $settingsViewModel.isShowError))
+            .overlay(SuccessedMessageView(successedMessage: "updated".localized,color: Color.green, isPresented: $settingsViewModel.isPresentUpdated))
     }
 }
 

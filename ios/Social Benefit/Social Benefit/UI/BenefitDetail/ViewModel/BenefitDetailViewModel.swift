@@ -30,10 +30,6 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     
     func initApplyStatus() {
         checkBenefitService.getAPI(benefitId: benefit.id) { error, data  in
-            
-            print("error = \(error)")
-            print("data = \(data)")
-            
             DispatchQueue.main.async {
                 if error.isEmpty {
                     self.applyStatus = data.status

@@ -24,6 +24,7 @@ class SettingsViewModel: ObservableObject, Identifiable {
     @Published var isAllTextFiledAreBlank = true
     @Published var isShowError = false
     @Published var errorMeg = ""
+    @Published var isPresentUpdated = false
     
     private var changePasswordService = ChangePasswordService()
     private var cancellables = Set<AnyCancellable>()
@@ -110,6 +111,7 @@ class SettingsViewModel: ObservableObject, Identifiable {
                     DispatchQueue.main.async {
                         self.isShowError = false
                         self.isPresentedChangePasswordPopUp = false
+                        self.isPresentUpdated = true
                     }
                 } else {
                     getError(Constants.ChangePasswordErrors.api_call_failed.localized)
