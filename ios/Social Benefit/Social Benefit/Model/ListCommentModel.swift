@@ -34,6 +34,24 @@ struct ListCommentModel: APIResponseProtocol {
         }
         return []
     }
+    
+    mutating func deleteComment(comment: CommentResultModel) {
+        result = result?.filter({ model in
+            return (model.id != comment.id && model.parentId != comment.id)
+        })
+    }
+    
+    mutating func updateComment(comment: CommentResultModel) {
+        
+        if result != nil {
+            for i in 0 ..< result!.count {
+                if result![i].id == comment.id {
+                    result![i].commentDetail = comment.commentDetail
+                    break
+                }
+            }
+        }
+    }
 }
 
 struct CommentResultModel: APIModelProtocol, Identifiable {
@@ -45,6 +63,7 @@ struct CommentResultModel: APIModelProtocol, Identifiable {
     var commentByEmployeeId: Int?
     var commentDetail: String?
     var commentTime: Int?
+    var commentType: Int?
     
     var children: [CommentResultModel]?
     
@@ -53,5 +72,9 @@ struct CommentResultModel: APIModelProtocol, Identifiable {
             return getFullDateSince1970(date: time)
         }
         return ""
+    }
+    
+    mutating func updateNewComment(_ text: String?) {
+        commentDetail = text
     }
 }

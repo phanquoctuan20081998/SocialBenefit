@@ -396,3 +396,6 @@
 "this_person_is_exist" = "Người này đã tồn tại trong danh sách";
 "need_to_fill_wish" = "Vui lòng nhập lời nhắn của bạn";
 "there_is_no_camera_on_this_device" = "Không có camera trên thiết bị của bạn";
+
+"survey_answer_updated" = "Câu trả lời của bạn đã được gửi thành công";
+"end_date_survey" = "Khảo sát kết thúc vào:";

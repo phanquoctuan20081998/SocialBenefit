@@ -72,6 +72,9 @@ struct LoginView: View {
         .errorPopup($loginViewModel.error)
         .background(Color.white)
         .navigationBarHidden(true)
+        .onTapGesture {
+            Utils.dismissKeyboard()
+        }
     }
 }
 

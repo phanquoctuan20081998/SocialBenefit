@@ -1,0 +1,228 @@
+/* 
+  Localizable.strings
+  Social Benefit
+
+  Created by Admin on 7/14/21.
+  
+*/
+
+// Login Screen
+"app_name" = "Social Benefit";
+"company" = "Nhập mã công ty";
+"email" = "Nhập email/ ID";
+"password" = "Nhập mật khẩu";
+"remember_me" = "Ghi nhớ tài khoản";
+"login" = "Đăng Nhập";
+"forgot_password" = "Quên mật khẩu";
+"warning1" = "Chưa có tài khoản?";
+"warning2" = "Vui lòng liên hệ bộ phận HR";
+
+// Reset Password Screen
+"forgot_password" = "Quên mật khẩu";
+"infor" = "Vui lòng điền email của bạn, hệ thống sẽ gửi hướng dẫn lấy lại mật khẩu.";
+"company_code" = "Nhập mã công ty";
+"email_reset" = "Email của bạn";
+"reset_password" = "Lấy lại mật khẩu";
+"back_login" = "Quay trở lại đăng nhập";
+
+// Reset Password Success
+"success_notification1" = "Thiết lập thành công! Mật khẩu mới";
+"success_notification2" = "đã được gửi đến email của bạn";
+
+// List of Benefit
+"benefit_title" = "DANH SÁCH PHÚC LỢI CỦA BẠN";
+"order" = "Thứ tự";
+"benefit" = "Phúc lợi";
+"benefit_status" = "Trạng thái";
+"up_comming" = "Sắp diễn ra";
+"on_going" = "Đang diễn ra";
+"apply" = "Đăng kí";
+"waiting_to_confirm" = "Chờ xác nhận";
+"approved" = "Đã phê duyệt";
+"rejected" = "Đã từ chối";
+"received" = "Đã nhận";
+"waiting" = "Chờ xác nhận";
+
+// Internal News
+"internal_news" = "Bản tin nội bộ";
+"search_news" = "Tìm kiếm bản tin";
+"all" = "Tất cả";
+"training" = "Đào tạo";
+"annoucement" = "Thông báo";
+"cancel" = "Huỷ";
+
+// User Screen
+"point_history" = "Lịch sử tiêu dùng điểm";
+"favorite" = "Cửa hàng ưu thích";
+"benefits" = "Danh sách phúc lợi của bạn";
+"surveys" = "Khảo sát công ty";
+"setting" = "Cài đặt";
+"customer" = "Tổng đài hỗ trợ";
+"rate" = "Đánh giá ứng dụng";
+"logout" = "Đăng xuất";
+
+// User Information Screen
+"presentation" = "Giới thiệu";
+"contact" = "Liên hệ";
+"select_date" = "Chọn ngày";
+"done" = "Xong";
+"choose_city" = "Chọn tỉnh/ thành phố";
+"enter_address" = "Vui lòng nhập địa chỉ";
+"location_example" = "324, Tây Sơn";
+"nickname" = "Tên thân mật (0/90)";
+"nickname_placeholder" = "Nhập tên thân mật";
+"address" = "Bạn đang sống tại?";
+"birthday" = "Sinh nhật";
+"gender" = "Giới tính";
+"male" = "Nam";
+"female" = "Nữ";
+"other" = "Khác";
+"passport" = "Chứng minh thư/ CCCD";
+"insurance" = "Mã số bảo hiểm xã hội";
+"contact_email" = "Địa chỉ email";
+"telephone" = "Số điện thoại";
+"leader" = "Là quản lý?";
+"save" = "Lưu";
+
+// Banner Card View
+
+"recognitions_in_company" = "Bảng tin khen thưởng";
+"promotions" = "Khuyến mãi đừng bỏ lỡ";
+"total_point" = "Tổng điểm của bạn";
+"recognize" = "Khen tặng";
+"my_voucher" = "Ví của tôi";
+"my_order" = "Đơn đặt hàng";
+"others" = "Khác";
+"see_all" = "Xem thêm";
+
+// Tab Bar
+"home" = "Trang chủ";
+"recognition" = "Khen thưởng";
+"promotion" = "Khuyến mãi";
+"user" = "Người dùng";
+
+// Internal News Detail
+"reply" = "Trả lời";
+"a_few_seconds" = "vài giây...";
+"reply_to" = "Trả lời";
+"type_comment" = "Nhập bình luận";
+"be_the_first" = "Trở thành người đầu tiên";
+"comment" = "Bình luận";
+"count_comment" = "bình luận";
+"count_comments" = "bình luận";
+"like" = "Thích";
+"liked" = "Đã thích";
+"love" = "Yêu thích";
+"laugh" = "Haha";
+"sad" = "Buồn";
+"angry" = "Giận dữ";
+"year" = "năm";
+"years" = "năm";
+"month" = "tháng";
+"months" = "tháng";
+"day" = "ngày";
+"days" = "ngày";
+"hour" = "giờ";
+"hours" = "giờ";
+"minute" = "phút";
+"minutes" = "phút";
+"second" = "giây";
+"seconds" = "giây";
+"you_and %d" = "Bạn và %d người khác";
+"you" = "Bạn";
+"%d other" = "%d người khác";
+"%d others" = "%d người khác";
+
+// Benefit Detail
+"apply_this_benefit" = "Đăng kí";
+"want_to_apply" = "Bạn muốn đăng kí?";
+"cancel_button" = "HỦY";
+"ok_button" = "OK";
+"register_now" = "Đăng kí ngay";
+"condition" = "ĐIỀU KIỆN ÁP DỤNG";
+
+//Merchant List
+"promotion" = "Ưu đãi";
+"search_voucher" = "Tìm kiếm ưu đãi";
+"other" = "Khác";
+"all_categories" = "Tất cả thể loại";
+"special_offer" = "Ưu đãi đặc biệt";
+"buy" = "Mua";
+"all_offer" = "Tất cả ưu đãi";
+"filter" = "Lọc";
+"ENUM_NEAREST_DEADLINE" = "Hạn gần nhất";
+"ENUM_FARTHEST_DEADLINE" = "Hạn xa nhất";
+"ENUM_LOWEST_PRICE" = "Giá thấp nhất";
+"ENUM_HIGHEST_PRICE" = "Giá cao nhất";
+"ENUM_NAME_AZ" = "Sắp xếp theo tên (A-Z)";
+"ENUM_NAME_ZA" = "Sắp xếp theo tên (Z-A)";
+"ENUM_MOST_DISCOUNTS" = "Giảm giá nhiều nhất";
+"ENUM_BESTSELLER" = "Bán chạy nhất";
+"ENUM_BEST_REVIEW" = "Đánh giá tốt nhất";
+"yes" = "Có";
+"cancel" = "Huỷ";
+"voucher_is_out_of_stock" = "Số lượng ưu đãi đã hết!";
+"buy_button_notification %d" = "Bạn đang có %d ưu đãi này.";
+"would_like_buy_more" = "Bạn có muốn mua thêm không?";
+"purchase_number" = "Số lượng";
+"reach_maximum" = "Bạn đã đạt mức mua tối đa";
+
+// My voucher
+"my_vouchers" = "Ví ưu đãi";
+"copied_to_clipboard" = "Đã sao chép";
+"search_your_voucher" = "Tìm kiếm ưu đãi";
+"all" = "Tất cả";
+"active" = "Có hiệu lực";
+"used" = "Đã sử dụng";
+"expried" = "Hết hạn";
+"no_voucher" = "Không có ưu đãi";
+"expriy" = "HSD";
+"copy" = "Sao chép";
+"the_code_will_be_expried_after" = "Mã sẽ hết hiệu lực sau";
+"(s)" = "(giây)";
+"thank_you_for_using_our_service" = "Cảm ơn đã sử dụng dịch vụ!";
+
+// Merchant Voucher Detail
+"share/copy" = "Chia sẻ";
+"qrcode" = "Mã QR";
+"buy_more" = "Mua thêm";
+"information" = "Thông tin";
+"applied_stores" = "Địa điểm áp dụng";
+"similar_promotions" = "Ưu đãi tương tự";
+
+// Month
+"january" = "tháng 1";
+"february" = "tháng 2";
+"march" = "tháng 3";
+"april" = "tháng 4";
+"may" = "tháng 5";
+"june" = "tháng 6";
+"july" = "tháng 7";
+"august" = "tháng 8";
+"september" = "tháng 9";
+"october" = "tháng 10";
+"november" = "tháng 11";
+"december" = "tháng 12";
+
+//survey
+"finished" = "Đã kết thúc";
+"deadline_soon" = "Sắp hết hạn";
+"deadline_ed" = "Đã hết hạn";
+"deadline" = "Hạn chót";
+"search_for_survey" = "Tìm kiếm khảo sát";
+"send" = "Gửi";
+"question" = "Câu hỏi";
+"your_survey_option" = "Ý kiến của bạn";
+"show_more" = "Hiển thị nhiều hơn";
+"sending" = "Đang gửi";
+"answer" = "trả lời";
+"total" = "Tổng";
+"other" = "Khác";
+"no_like" = "Trở thành người đầu tiên";
+
+"need_fill_all_data" = "Bạn chưa điền đủ thông tin";
+
+"network_error" = "Lỗi kết nối, vui lòng thử lại sau.";
+"unkown_error" = "Có lỗi xảy ra, vui lòng thử lại sau.";
+"wrong_login_data" = "Sai ID hoặc mật khẩu.";
+"session_expired" = "Phiên hết hạn vui lòng đăng nhập lại.";

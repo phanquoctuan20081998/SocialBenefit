@@ -27,83 +27,97 @@ struct SurveyDetailView: View {
             if viewModel.isShowReactionBar {
                 viewModel.isShowReactionBar = false
             }
+            viewModel.sendAnswerSuccess = ""
+            Utils.dismissKeyboard()
         }
         .navigationBarHidden(true)
+        .successPopup($viewModel.sendAnswerSuccess)        
+        .commentPopup($viewModel.commentSelected, editCommet: $viewModel.commentEdited, deleteComment: $viewModel.commentDeleted, newText: $viewModel.newComment)
+        .commentDeletePopup($viewModel.commentDeleted, action: {
+            self.viewModel.deleteComment()
+        })
+        .editDeletePopup($viewModel.commentEdited, newText: $viewModel.newComment, action: {
+            self.viewModel.updateComment()
+        })
+        .errorPopup($viewModel.error)
+        .loadingView(isLoading: $viewModel.isLoading)
     }
     
     var survetList: some View {
         VStack {
-            if viewModel.isLoading {
-                LoadingPageView()
-            } else {
-                if let survey = viewModel.surveyModel.result {
-                    VStack {
-                        Spacer()
-                            .frame(height: 50)
-                        ScrollView {
-                            
-                            HStack() {
-                                Spacer()
-                                    .frame(width: 20)
-                                VStack {
-                                    Text(survey.surveyNameText)
-                                        .foregroundColor(Color("color_top3"))
-                                        .bold()
-                                    Divider()
-                                        .background(Color("color_top3"))
-                                    HStack {
-                                        Text("deadline".localized + ":")
-                                            .font(Font.system(size: 14))
-                                        Text(survey.dateString)
-                                            .foregroundColor(Color.red)
-                                            .font(Font.system(size: 14))
-                                    }
-                                    
-                                    surveyChoiceList
-                                    
-                                    if !viewModel.deadlinePassed {
-                                        if viewModel.isSendingAnswer {
-                                            HStack {
-                                                ActivityRep()
-                                                Text("sending".localized)
-                                            }
-                                        } else {
-                                            Button.init( action: {
-                                                viewModel.sendAnswers()
-                                            }, label: {
-                                                let color = viewModel.isValidate ? Color("nissho_light_blue") : Color.gray
-                                                Text("send".localized)
-                                                    .foregroundColor(.black)
-                                                    .padding(.init(top: 10, leading: 50, bottom: 10, trailing: 50))
-                                                    .background(
-                                                        RoundedRectangle(cornerRadius: 10).fill(color)
-                                                    )
-                                                    .font(.system(size: 15))
-                                            }).disabled(!viewModel.isValidate)
+            if let survey = viewModel.surveyModel.result {
+                VStack {
+                    Spacer()
+                        .frame(height: 50)
+                    ScrollView {
+                        
+                        HStack() {
+                            Spacer()
+                                .frame(width: 20)
+                            VStack {
+                                Text(survey.surveyNameText)
+                                    .foregroundColor(Color("color_top3"))
+                                    .bold()
+                                Divider()
+                                    .background(Color("color_top3"))
+                                HStack {
+                                    Text("end_date_survey".localized)
+                                        .font(Font.system(size: 14))
+                                    Text(survey.dateString)
+                                        .foregroundColor(Color.red)
+                                        .font(Font.system(size: 14))
+                                }
+                                
+                                surveyChoiceList
+                                
+                                if !viewModel.deadlinePassed {
+                                    if viewModel.isSendingAnswer {
+                                        HStack {
+                                            ActivityRep()
+                                            Text("sending".localized)
                                         }
+                                    } else {
+                                        Button.init( action: {
+                                            viewModel.sendAnswers()
+                                        }, label: {
+                                            let color = viewModel.isValidate ? Color("nissho_light_blue") : Color.gray
+                                            Text("send".localized)
+                                                .foregroundColor(.black)
+                                                .padding(.init(top: 10, leading: 50, bottom: 10, trailing: 50))
+                                                .background(
+                                                    RoundedRectangle(cornerRadius: 10).fill(color)
+                                                )
+                                                .font(.system(size: 15))
+                                        }).disabled(!viewModel.isValidate)
                                     }
                                 }
-                                .padding(10)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
-                                Spacer()
-                                    .frame(width: 20)
                             }
+                            .padding(10)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
                             Spacer()
-                                .frame(height: 20)
-                            
-                            reactionView
-            
-                            commentList
+                                .frame(width: 20)
+                        }
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        reactionView
+        
+                        commentList
+                    }
+                    .introspectScrollView { scrollView in
+                        if viewModel.scrollToBottom {
+                            let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+                            scrollView.setContentOffset(bottomOffset, animated: true)
                         }
                     }
-                    
-                    commentBar
-                    
-                } else {
-                    EmptyView()
                 }
+                
+                commentBar
+                
+            } else {
+                EmptyView()
             }
         }
     }
@@ -276,8 +290,10 @@ struct SurveyDetailView: View {
                         }
                     }
                     HStack {
-                        TextField("type_comment".localized, text: $viewModel.commentString)
-                            .textFieldStyle(.roundedBorder)
+                        AutoResizeTextField(text: $viewModel.commentString, isFocus: $viewModel.focusComment, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .overlay(RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.blue.opacity(0.5), lineWidth: 2))
                             .disabled(viewModel.isSendingComment)
                         if viewModel.isSendingComment {
                             ActivityRep()
@@ -286,7 +302,10 @@ struct SurveyDetailView: View {
                                 Utils.dismissKeyboard()
                                 viewModel.sendComment()
                             } label: {
-                                Image.init(systemName: "paperplane")
+                                Image(systemName: "paperplane.circle.fill")
+                                    .padding(.trailing, 3)
+                                    .font(.system(size: 35))
+                                    .background(Color.white)
                             }
                             .disabled(viewModel.commentString.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
                         }
@@ -321,6 +340,9 @@ struct SurveyDetailView: View {
                         }
                         .background(Color("comment"))
                         .cornerRadius(15)
+                        .onLongPressGesture {
+                            viewModel.didLongTapCommnet(comment)
+                        }
                         HStack {
                             Button(action: {
                                 viewModel.replyTo = comment
@@ -358,6 +380,9 @@ struct SurveyDetailView: View {
                             }
                             .background(Color("comment"))
                             .cornerRadius(15)
+                            .onLongPressGesture {
+                                viewModel.didLongTapCommnet(child)
+                            }
                             HStack {
                                 Text(child.timeText)
                                     .font(Font.system(size: 14))
@@ -367,20 +392,18 @@ struct SurveyDetailView: View {
                         
                     }
                     .padding(EdgeInsets.init(top: 0, leading: 70, bottom: 0, trailing: 20))
-                    
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
-    
     var reactionView: some View {
         
         ReactionBar(isShowReactionBar: $viewModel.isShowReactionBar,
                     isLoadingReact: $viewModel.isLoadingReact,
                     currentReaction: $viewModel.currentReaction,
-                    isFocus: .constant(false),
+                    isFocus: $viewModel.focusComment,
                     reactModel: viewModel.reactModel,
                     listComment: viewModel.listComment,
                     sendReaction: self.viewModel.sendReaction)

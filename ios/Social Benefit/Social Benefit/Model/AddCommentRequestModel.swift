@@ -9,14 +9,13 @@ import Foundation
 
 struct AddCommentRequestModel: APIModelProtocol {
     
-    var employeeId: String?
+    var employeeId = userInfor.employeeId
     var contentId: Int?
     var parentId: Int?
     var contentType: Int?
     var content: String?
     
     init(replyTo: CommentResultModel?, surveyId: Int?, content: String) {
-        employeeId = userInfor.employeeId
         if replyTo == nil {
             self.contentType = 3
             self.contentId = surveyId

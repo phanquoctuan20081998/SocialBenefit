@@ -56,6 +56,13 @@ struct SurveyResultModel: Codable, Identifiable {
         return str
     }
     
+    var deadline_edText: String {
+        var str = "deadline_ed".localized
+        str += ": "
+        str += dateString
+        return str
+    }
+    
     var dateString: String {
         if let deadlineDate = deadlineDate {
             let date = Date.init(timeIntervalSince1970: deadlineDate / 1000)
@@ -68,7 +75,7 @@ struct SurveyResultModel: Codable, Identifiable {
 }
 
 
-struct SurveyQuestionList: Codable {
+struct SurveyQuestionList: Codable, Identifiable {
     var version: Int?
     var active: Bool?
     var id: Int?
