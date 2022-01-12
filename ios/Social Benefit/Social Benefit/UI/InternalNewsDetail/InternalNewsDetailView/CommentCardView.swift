@@ -22,6 +22,8 @@ struct FirstCommentCardView: View {
     @Binding var selectedParentId: Int
     @Binding var isPresentOptionView: Bool
     
+    @Binding var isFocus: Bool // To trigger comment textfield
+    
     var body: some View {
         HStack(alignment: .top) {
             URLImageView(url: comment.avatar)
@@ -56,6 +58,7 @@ struct FirstCommentCardView: View {
                         self.parentId = comment.id
                         self.replyTo = comment.commentBy
                         self.moveToPosition = self.currentPosition
+                        self.isFocus = true
                     }, label: {
                         Text("reply".localized)
                             .bold()
@@ -71,9 +74,8 @@ struct FirstCommentCardView: View {
             }
         }.padding(.horizontal)
         .padding(.top, 5)
-        // This offset will help text bar not cover new comment...
-        // Because scrollView only scroll to top of final comment card
-        .offset(y: -100)
+        //        .offset(y: -100)
+        .onTapGesture{} // This weird little things help scroll smoothly on long press gesture item
         .onLongPressGesture {
             if comment.commentBy == userInfor.name || comment.commentBy == userInfor.nickname {
                 DispatchQueue.main.async {
@@ -135,7 +137,9 @@ struct SecondCommentCardView: View {
             }
         }.padding(.horizontal)
         .padding(.top, 5)
-        .offset(y: -100)
+//        .offset(y: -100)
+
+        .onTapGesture{} // This weird little things help scroll smoothly on long press gesture item
         .onLongPressGesture {
             if comment.commentBy == userInfor.name || comment.commentBy == userInfor.nickname {
                 DispatchQueue.main.async {

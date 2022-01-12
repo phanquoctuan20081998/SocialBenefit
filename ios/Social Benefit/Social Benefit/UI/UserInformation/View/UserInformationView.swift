@@ -40,7 +40,12 @@ struct UserInformationView: View {
                                                    isHaveLogo: true,
                                                    isHaveDiffirentHandle: true,
                                                    diffirentHandle: {
-                                                       userInformationViewModel.isPresentConfirmPopUp = true
+                                                       if userInformationViewModel.isEnableSaveButton {
+                                                           userInformationViewModel.isPresentConfirmPopUp = true
+                                                       } else {
+                                                           self.presentationMode.wrappedValue.dismiss()
+                                                       }
+                                                       
                                                        Utils.dismissKeyboard()
                                                    })
             )
@@ -141,6 +146,15 @@ extension UserInformationView {
                 
                 LocationFieldView()
                 
+                // Error
+                VStack {
+                    if userInformationViewModel.isPresentAddressError {
+                        TextFieldErrorView(error: "need_to_fill_address".localized)
+                    }
+                }
+                .frame(width: ScreenInfor().screenWidth * 0.75, alignment: .leading)
+                .offset(y: -10)
+                
                 DateFieldView(dateFormatter: dateFormatter)
                     .disabled(true)
                 
@@ -180,7 +194,7 @@ extension UserInformationView {
                     // Error
                     VStack {
                         if userInformationViewModel.isPresentEmailBlankError {
-                            TextFieldErrorView(error: "blank_email".localized)
+                            TextFieldErrorView(error: "blank_email_user_infor".localized)
                         } else if userInformationViewModel.isPresentWrongEmailError {
                             TextFieldErrorView(error: "invalid_email_format".localized)
                         }
@@ -196,7 +210,7 @@ extension UserInformationView {
                     
                     VStack {
                         if userInformationViewModel.isPresentPhoneBlankError {
-                            TextFieldErrorView(error: "blank_phone".localized)
+                            TextFieldErrorView(error: "blank_phone_user_infor".localized)
                         }
                     }.frame(width: ScreenInfor().screenWidth * 0.75, alignment: .leading)
                 }
@@ -406,6 +420,7 @@ struct LocationFieldView: View {
         ZStack {
             VStack {
                 Button(action: {
+                    userInformationViewModel.isPresentAddressError = false
                     userInformationViewModel.isPresentedLocationPickerView.toggle()
                     userInformationViewModel.endDragOffsetY = 0
                     userInformationViewModel.filter = ""

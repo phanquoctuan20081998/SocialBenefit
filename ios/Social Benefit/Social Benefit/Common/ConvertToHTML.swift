@@ -20,10 +20,11 @@ func convertToHTMLString(_ body: String) -> String {
             "<html>\n" +
             "\n" +
             "<head>\n" +
+            "<meta name=\"viewport\" content=\"width=device-width, shrink-to-fit=no\">" +
             "</head>\n" +
             "<style> \n" +
             "img{display: block;height: auto;max-width: 100%; margin-right: auto ;margin-left: auto;} \n" +
-            "body { word-wrap: break-word; } \n" +
+            "body { word-wrap: break-word; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.775em;} \n" +
             "pre { white-space: pre-wrap; word-break: keep-all; } \n" +
             "</style> \n" +
             "\n" +

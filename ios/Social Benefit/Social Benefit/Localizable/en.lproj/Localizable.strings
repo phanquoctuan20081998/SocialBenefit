@@ -25,16 +25,16 @@
 "reset_password" = "Reset Password";
 "back_login" = "Already have an account? Login!";
 "enter_email" = "Enter your email";
+"wrong_company" = "Company does not exist";
 
 // Reset Password Success
-"success_notification1" = "Reset password successfully!";
-"success_notification2" = "A new password has been sent to your email!";
+"success_notification" = "Reset password successfully! A new password has been sent to your email!";
 
 // List of Benefit
 "benefit_title" = "LIST OF YOUR BENEFITS";
 "order" = "No.";
 "benefit" = "Benefit";
-"benefit_status" = "Applied?";
+"benefit_status" = "Status";
 "up_comming" = "Upcomming";
 "on_going" = "Ongoing";
 "apply" = "Apply";
@@ -49,7 +49,7 @@
 "search_news" = "Search the news";
 "all" = "All";
 "training" = "Training";
-"annoucement" = "Annoucement";
+"annoucement" = "Announcement";
 "cancel" = "Cancel";
 "confirm" = "Confirm";
 
@@ -89,10 +89,11 @@
 "how_do_you_want_to_set" = "How do you want to set your picture?";
 "add_from_camera" = "CAMERA";
 "add_from_gallery" = "GALLERY";
-"blank_email" = "Please enter your email address";
+"blank_email_user_infor" = "Please enter your email address";
 "invalid_email_format" = "Invalid format!";
-"blank_phone" = "Please enter your phone number";
+"blank_phone_user_infor" = "Please enter your phone number";
 "updated" = "Updated";
+"need_to_fill_address" = "Please enter your full address";
 
 // Banner Card View
 "recognitions_in_company" = "Recognitions in Company";
@@ -293,7 +294,7 @@
 "need_fill_all_data" = "Please fill full form";
 "network_error" = "Network connection error try again later.";
 "unkown_error" = "An error occurred, please try again later.";
-"wrong_login_data" = "The ID or password is incorrect.";
+"wrong_login_data" = "Maybe wrong password. Please try again later!";
 "session_expired" = "Session expired please login again.";
 
 // Customer Support
@@ -323,23 +324,23 @@
 "loading" = "Loading";
 
 // Notification
-"C00193_I" = "<b> %1$@</b>";
-"C00194_I" = "You have a new survey <b> %1$@</b>";
-"C00195_I" = "You have survey <b> %1$@</b> unfulfilled. Please participate in answering the survey";
-"C00196_I" = "<b> %1$@</b> has reacted on your recognition post";
-"C00197_I" = "<b> %1$@</b> has comment on your recognition post";
+"C00193_I" = "<b>%1$@</b>. Please register before the date %2$@";
+"C00194_I" = "You have a new survey <b>%1$@</b>";
+"C00195_I" = "You have survey <b>%1$@</b> unfulfilled. Please participate in answering the survey";
+"C00196_I" = "<b>%1$@</b> has reacted on your recognition post";
+"C00197_I" = "<b>%1$@</b> has comment on your recognition post";
 "C00198_I" = "Your vouchers are about to expire, use them today!";
-"C00199_I" = "Voucher <b> %1$@</b> has expired";
+"C00199_I" = "Voucher <b>%1$@</b> has expired";
 "C00200_I" = "New voucher: <b>%1$@</b>";
 
-"C00150_I" = "Benefit <b> %1$@</b> has been finished, your request has been rejected";
-"S00110_I" = "Admin has rejected your benefit request: <b> %1$@</b> &lt;br /&gt;Reason: <b>%2$@</b>";
-"S00111_I" = "Admin has accepted your benefit request: <b> %1$@ </b>";
-"S00155_I" = "You have received benefit <b> %1$@ </b>";
-"S00112_I" = "<b> %1$@ </b> has replied your comment in <b> %2$@ </b>";
-"C00201_I" = "<b> %1$@ </b> has replied your comment in recognition post of <b> %2$@ </b>";
-"S00113_I" = "You got reward from <b> %1$@ </b>";
-"C00159_I" = "%1$@<br />%2$@";
+"C00150_I" = "Benefit <b>%1$@</b> has been finished, your request has been rejected";
+"S00110_I" = "Admin has rejected your benefit request: <b>%1$@</b> <br>Reason: <b>%2$@</b>";
+"S00111_I" = "Admin has accepted your benefit request: <b>%1$@</b>";
+"S00155_I" = "You have received benefit <b>%1$@</b>";
+"S00112_I" = "<b>%1$@</b> has replied your comment in <b>%2$@</b>";
+"C00201_I" = "<b>%1$@</b> has replied your comment in recognition post of <b>%2$@</b>";
+"S00113_I" = "You got reward from <b>%1$@</b>";
+"C00159_I" = "%1$@<br>%2$@";
 "S00109_I" = "You got reward from <b>%1$@</b>";
 
 "survey" = "Survey";
@@ -347,6 +348,8 @@
 "at" = "at";
 "react" = "react";
 "new_benefit" = "New benefit";
+"today" = "Today";
+"yesterday" = "Yesterday";
 
 // Month
 "january" = "January";
@@ -385,7 +388,7 @@
 "need_to_fill_all_data" = "Need to fill all data";
 "wrong_data" = "wrong_data";
 "wrong_email_format" = "Email is not in the correct format";
-"wrong_email" = "Company does not exist";
+"wrong_email" = "Email does not exist";
 "blank_email" = "Email is empty";
 "blank_phone" = "Phone number is empty";
 "can_connect_server" = "Can connect to server";

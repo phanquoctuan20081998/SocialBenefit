@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -32,7 +34,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             
             let window = UIWindow(windowScene: windowScene)
-             window.rootViewController = splashViewController
+            window.rootViewController = splashViewController
+//            let hostingController = UIHostingController(rootView: HomeScreenView(selectedTab: "house"))
+//            window.rootViewController = SwipeNavigationController(rootViewController: hostingController)
             self.window = window
             window.makeKeyAndVisible()
         }

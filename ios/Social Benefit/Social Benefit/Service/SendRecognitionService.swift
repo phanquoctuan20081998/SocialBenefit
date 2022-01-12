@@ -13,7 +13,7 @@ import SwiftyJSON
 class SendRecognitionService {
     
     func getAPI(pointType: Int, walletInfor: WalletInforData, pointTransactions: [PointTransactionRequestData], returnCallBack: @escaping (WalletInforData, String) -> ()) {
-        let service = BaseAPI()
+        let service = BaseAPI() 
 
         let walletInfoJsonData = try! JSONEncoder().encode(walletInfor)
         let walletInfoJson = String(data: walletInfoJsonData, encoding: String.Encoding.utf8)

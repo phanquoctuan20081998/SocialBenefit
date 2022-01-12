@@ -40,7 +40,7 @@ func convertToEnglishFormat(day: Int?, month: Int?, year: Int?) -> String {
     guard let day = day else { return "" }
     guard let month = month else { return "" }
     guard let year = year else { return "" }
-
+    
     date += getDayEnglishFormat(day: day) + " "
     date += getMonthEnlishFormat(month: month) + " "
     date += String(year)
@@ -85,3 +85,30 @@ func getMonthEnlishFormat(month: Int) -> String {
     
     return date
 }
+
+func getDateSinceToday(time: String) -> String {
+    // time = dd/MM/yyyy
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyy"
+    
+    let date = dateFormatter.date(from: time)
+    
+    let components = Calendar.current.dateComponents([.year, .month, .day], from: date!)
+    let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+    let yesterday = Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
+    
+    let dateEnglishFormat = convertToEnglishFormat(day: components.day, month: components.month, year: components.year)
+    let todayEnglishFormat = convertToEnglishFormat(day: today.day, month: today.month, year: today.year)
+    let yesterdayEnglishFormat = convertToEnglishFormat(day: yesterday.day, month: yesterday.month, year: yesterday.year)
+    
+    
+    if dateEnglishFormat == todayEnglishFormat {
+        return "today"
+    } else if dateEnglishFormat == yesterdayEnglishFormat {
+        return "yesterday"
+    } else {
+        return time
+    }
+}
+

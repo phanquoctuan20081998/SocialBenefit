@@ -13,6 +13,8 @@ struct BenefitDetailView: View {
     @EnvironmentObject var benefitDetailViewModel: BenefitDetailViewModel
     @EnvironmentObject var listOfBenefitsViewModel: ListOfBenefitsViewModel
     
+    @State private var webViewHeight: CGFloat = .zero
+    
     var body: some View {
         VStack {
             VStack {
@@ -21,7 +23,7 @@ struct BenefitDetailView: View {
                 
                 // Upper view...
                 // Reference at ListOfBenefitsView.swift...
-                BenefitUpperView(isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "condition".localized, isShowTabBar: false)
+                BenefitUpperView(isRefreshing: $listOfBenefitsViewModel.isRefreshing, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "condition".localized, isShowTabBar: false)
                 
                 Rectangle()
                     .fill(Color.gray)
@@ -39,18 +41,21 @@ struct BenefitDetailView: View {
             Spacer()
             
             VStack {
-                Webview(dynamicHeight: .constant(0), htmlString: convertToHTMLString(self.benefitDetailViewModel.benefit.body), font: 13)
-//                HTMLView(htmlString: self.benefitDetailViewModel.benefit.body, font: 13)
-                    .padding(30)
+                
+                if benefitDetailViewModel.isLoading {
+                    LoadingPageView()
+                } else {
+                    HTMLView(htmlString: self.benefitDetailViewModel.benefit.body)
+                        .padding(30)
+                }
                 
                 getApplyButton()
                     .padding(.bottom, 20)
             }
         }
-        .overlay(ApplyPopupView())
+        .overlay(ApplyPopupView(reload: .constant(false), benefitId: benefitDetailViewModel.benefit.id, index: benefitDetailViewModel.index))
         .overlay(BenefitErrorPopUpView().environmentObject(listOfBenefitsViewModel))
         .navigationBarHidden(true)
-//        .overlay(WarningMessageView(message: self.benefitDetailViewModel.errorCode, isPresented: $benefitDetailViewModel.isPresentError))
     }
     
     @ViewBuilder

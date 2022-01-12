@@ -38,7 +38,6 @@ struct InternalNewsDetailView: View {
         self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
         self.internalNewData = internalNewData
         self.isHiddenTabBarWhenBack = isHiddenTabBarWhenBack
-        
     }
     
     init(internalNewData: InternalNewsData) {
@@ -57,7 +56,7 @@ struct InternalNewsDetailView: View {
                     ScrollViewContent
                         .onAppear { self.proxy = proxy }
                 }
-                Spacer().frame(height: 30)
+//                Spacer().frame(height: )
             }
             
             Spacer()
@@ -80,7 +79,10 @@ struct InternalNewsDetailView: View {
                                 parentId: commentViewModel.parentId,
                                 content: commentViewModel.commentText,
                                 contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
-                                updateComment: commentViewModel.updateComment(newComment:))))
+                                updateComment: commentViewModel.updateComment(newComment:),
+                                otherUpdate: {
+                                    commentViewModel.requestListComment(id: commentViewModel.contentId)
+                                })))
                 .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
             
             Spacer()
@@ -105,6 +107,8 @@ struct InternalNewsDetailView: View {
         if isNavigationFromHomeScreen {
             homeViewModel.isPresentInternalNewDetail = false
             ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+        } else {
+            
         }
     }
 }
@@ -139,20 +143,27 @@ extension InternalNewsDetailView {
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)
             
-            Spacer().frame(height: 50)
-            
             if commentViewModel.isLoading && !commentViewModel.isRefreshing {
                 LoadingPageView()
             } else {
                 VStack(spacing: 10) {
                     
-                    Spacer().frame(height: 50)
+                    Spacer().frame(height: 10)
                     
                     let parentCommentMax = commentViewModel.parentComment.indices
                     ForEach(parentCommentMax, id: \.self) { i in
                         
                         VStack {
-                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data, currentPosition: i, isReply: $commentViewModel.isReply, parentId: $commentViewModel.parentId, replyTo: $commentViewModel.replyTo, moveToPosition: $commentViewModel.moveToPosition, selectedCommentText: $commentViewModel.selectedText, selectedCommentId: $commentViewModel.selectedCommentId, selectedParentId: $commentViewModel.selectedParentId, isPresentOptionView: $commentViewModel.isPresentOptionView)
+                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data,
+                                                 currentPosition: i, isReply: $commentViewModel.isReply,
+                                                 parentId: $commentViewModel.parentId,
+                                                 replyTo: $commentViewModel.replyTo,
+                                                 moveToPosition: $commentViewModel.moveToPosition,
+                                                 selectedCommentText: $commentViewModel.selectedText,
+                                                 selectedCommentId: $commentViewModel.selectedCommentId,
+                                                 selectedParentId: $commentViewModel.selectedParentId,
+                                                 isPresentOptionView: $commentViewModel.isPresentOptionView,
+                                                 isFocus: $commentViewModel.isFocus)
                             
                             
                             if commentViewModel.parentComment[i].childIndex != -1 {
@@ -175,7 +186,7 @@ extension InternalNewsDetailView {
                     currentReaction: $reactViewModel.currentReaction,
                     isFocus: $commentViewModel.isFocus,
                     reactModel: reactViewModel.reactModel,
-                    listComment: reactViewModel.listComment,
+                    listComment: commentViewModel.listComment,
                     sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })
     }
     
@@ -219,6 +230,7 @@ struct SendCommentButtonView: View {
     var contentType: Int
     
     var updateComment: (_ newComment: CommentData) -> ()
+    var otherUpdate: () -> () = { }
     
     var body: some View {
         Button(action: {
@@ -243,6 +255,7 @@ struct SendCommentButtonView: View {
                     let newComment = CommentData(id: newCommentId, contentId: contentId, parentId: parentId, avatar: userInfor.avatar, commentBy: userInfor.nickname.isEmpty ? userInfor.name : userInfor.nickname, commentDetail: content, commentTime: "a_few_seconds".localized)
                     
                     updateComment(newComment)
+                    otherUpdate() // If have
                     
                     // Move to the latest comment...
                     // if comment not reply anything
@@ -277,11 +290,11 @@ struct SendCommentButtonView: View {
         }, label: {
             Image(systemName: "paperplane.circle.fill")
                 .padding(.trailing, 3)
-                .foregroundColor(content.isEmpty ? .gray : .blue)
+                .foregroundColor(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .gray : .blue)
                 .font(.system(size: 35))
                 .background(Color.white)
         })
-            .disabled(content.isEmpty)
+            .disabled(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
     }
 }
 
@@ -291,5 +304,4 @@ struct InternalNewsDetailView_Previews: PreviewProvider {
         InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>それでは申し訳ございません が、 　５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
-
 

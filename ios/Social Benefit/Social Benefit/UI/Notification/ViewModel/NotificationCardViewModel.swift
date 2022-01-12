@@ -42,16 +42,18 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
         let componentDate = getDateElementSince1970(notificationItem.getCreatedTime())
         
         self.date = "\(String(format: "%02d", componentDate.day ?? 0))/\(String(format: "%02d", componentDate.month ?? 0))/\(componentDate.year ?? 0)"
+        self.date = getDateSinceToday(time: self.date).localized
+        
         self.time = "\(String(format: "%02d", componentDate.hour ?? 0)):\(String(format: "%02d", componentDate.minute ?? 0))"
     }
     
     func getContent() {
         if self.notificationItem.getContentParams().isEmpty {
-            self.content = convertFromHTMLString(self.notificationItem.getContent())?.string ?? ""
+            self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent())"
         } else if self.notificationItem.getContentParams().count == 1 {
-            self.content = convertFromHTMLString(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0]))?.string ?? ""
+            self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0]))"
         } else {
-            self.content = convertFromHTMLString(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0], self.notificationItem.getContentParams()[1]))?.string ?? ""
+            self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0], self.notificationItem.getContentParams()[1]))"
         }
     }
     
@@ -74,12 +76,12 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
             self.notiTypeName = "survey".localized
         }
         case Constants.NotificationLogType.COMMENT: do {
-            self.image = "notify_hr"
-            self.notiTypeName = "comment".localized
+            self.image = Config.baseURL + self.notificationItem.getImgURL()
+            self.notiTypeName = "annoucement".localized
         }
         case Constants.NotificationLogType.COMMENT_RECOGNITION: do {
             self.image = "notify_hr"
-            self.notiTypeName = "comment".localized
+            self.notiTypeName = "annoucement".localized
         }
         case Constants.NotificationLogType.BENEFIT: do {
             self.image = "notify_benefit"

@@ -31,12 +31,17 @@ struct NotificationView: View {
                 }
             }
         }
+        .onAppear {
+            notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
+        }
         .background(
-            NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
-                EmptyView()
-            })
+            ZStack {
+                NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
+                    EmptyView()
+                })
+            }
         )
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "notification".localized, isHaveLogo: true))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "notification".localized, isHaveLogo: true, isHiddenTabBarWhenBack: false, backButtonTapped: notificationViewModel.updateReadNotification))
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
     }
@@ -50,10 +55,12 @@ extension NotificationView {
                     
                     NotificationCardView(notificationItem: notificationViewModel.allNotificationItems[index])
                         .onTapGesture {
-                            notificationViewModel.changeDesitionationView(notificationItem: notificationViewModel.allNotificationItems[index])
-                            self.isMoveToNextPage = true
+                            DispatchQueue.main.async {
+                                notificationViewModel.changeDesitionationView(notificationItem: notificationViewModel.allNotificationItems[index])
+                                
+                                self.isMoveToNextPage = true
+                            }
                         }
-                    
                     Spacer().frame(height: 20)
                     
                 }

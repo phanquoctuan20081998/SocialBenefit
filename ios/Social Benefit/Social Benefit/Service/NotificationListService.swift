@@ -20,7 +20,7 @@ class NotificationListService {
                       "companyId": userInfor.companyId,
                       "employeeId": userInfor.employeeId]
         
-        let params: Parameters = ["range": "[\(nextPageIndex * pageSize), \(pageSize)]"]
+        let params: Parameters = ["range": "[\(nextPageIndex), \(pageSize)]"]
         
         var id: Int = -1
         var imgURL: String = ""
@@ -34,13 +34,11 @@ class NotificationListService {
         var point: Int = -1
         
         service.makeCall(endpoint: Config.API_NOTIFICATION_LIST, method: "POST", header: header as [String: String], body: params, callback: { result in
-            
-            print(result)
-            
+   
             for i in 0..<result.count {
                 
                 id = result[i]["id"].int ?? -1
-                imgURL = result[i]["imgURL"].string ?? ""
+                imgURL = result[i]["imageUrl"].string ?? ""
                 typeId = result[i]["typeId"].int ?? -1
                 type = result[i]["type"].int ?? -1
                 content = result[i]["content"].string ?? ""

@@ -10,7 +10,6 @@ import SwiftUI
 
 struct HTMLView: UIViewRepresentable {
     var htmlString: String
-    var font: Int
 
     func makeUIView(context: Context) -> WKWebView {
         return WKWebView()

@@ -22,6 +22,7 @@ struct Config {
     static let API_BENEFIT_LIST = "/benefit/list"
     static let API_BENEFIT_APPLY = "/benefit/employee/apply"
     static let API_BENEFIT_CHECK = "/benefit/employee/check"
+    static let API_BENEFIT_GET = "/benefit/get"
     
     static let API_MERCHANT_CATEGORY = "/merchant-voucher-category"
     static let API_MERCHANT_LIST_SPECIAL = "/merchant-voucher-special-list"
@@ -73,4 +74,6 @@ struct Config {
     static let API_SURVEY_GET = "/survey/get"
     
     static let API_NOTIFICATION_LIST = "/notification_log/list"
+    static let API_NOTIFICATION_READ = "/notification_log/read"
+    static let API_NOTIFICATION_TOTAL = "/notification_log/total"
 }

@@ -13,6 +13,7 @@ struct DragPopUp: View {
     @Binding var isPresent: Bool
     
     var contentView: AnyView
+    var closePopUp: () -> () = { }
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -24,7 +25,7 @@ struct DragPopUp: View {
                         isPresent.toggle()
                     }
                 
-                LocationPickerView1(isPresent: $isPresent, curDragOffsetY: $curDragOffsetY, contentView: contentView)
+                LocationPickerView1(isPresent: $isPresent, curDragOffsetY: $curDragOffsetY, contentView: contentView, closePopUp: closePopUp)
                     .animation(.easeInOut)
                     .transition(.move(edge: .bottom))
             }
@@ -39,6 +40,7 @@ struct LocationPickerView1: View {
     @Binding var curDragOffsetY: CGFloat
     
     var contentView: AnyView
+    var closePopUp: () -> () = { }
 
     var body: some View {
         VStack {
@@ -72,6 +74,7 @@ struct LocationPickerView1: View {
             .onEnded { val in
                 if curDragOffsetY > 150 {
                     isPresent.toggle()
+                    closePopUp()
                 }
                 curDragOffsetY = 0
             }

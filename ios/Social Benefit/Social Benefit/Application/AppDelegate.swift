@@ -10,6 +10,8 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 
+public var device_token = ""
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
@@ -87,6 +89,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             guard let token = token else {
                 return
             }
+            
+            device_token = token
+            
             print("Token \(token)")
         }
     }
