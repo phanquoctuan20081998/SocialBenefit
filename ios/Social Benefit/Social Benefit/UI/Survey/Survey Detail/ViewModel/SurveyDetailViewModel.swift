@@ -15,6 +15,9 @@ class SurveyDetailViewModel: ObservableObject {
     private let addCommentService = AddCommentSurveyService()
     private let reactService = ListReactService()
     
+    private let deleteCommentService = DeleteCommentSurveySerive()
+    private let editCommentService = EditCommentSurveySerive()
+    
     private let addReactService = AddReactSurveyService()
     
     @Published var surveyModel = SurveyGetModel()
@@ -43,6 +46,22 @@ class SurveyDetailViewModel: ObservableObject {
     
     @Published var isLoadingReact = false
     
+    @Published var sendAnswerSuccess = ""
+    
+    @Published var error: AppError = .none
+    
+    @Published var focusComment = false
+    
+    @Published var commentSelected: CommentResultModel? = nil
+    
+    @Published var commentEdited: CommentResultModel? = nil
+    
+    @Published var commentDeleted: CommentResultModel? = nil
+    
+    @Published var newComment = ""
+    
+    @Published var scrollToBottom = false
+    
     private(set) var totalAnswer: [Int] = []
     
     private(set) var maxNumberAnswer: [Int] = []
@@ -63,6 +82,13 @@ class SurveyDetailViewModel: ObservableObject {
         surveyModel = SurveyGetModel()
         listComment = ListCommentModel()
         isShowReactionBar = false
+        sendAnswerSuccess = ""
+        error = .none
+        newComment = ""
+        commentSelected = nil
+        commentEdited = nil
+        commentDeleted = nil
+        scrollToBottom = false
     }
     
     func request(id: Int) {
@@ -225,20 +251,22 @@ class SurveyDetailViewModel: ObservableObject {
             case .success(let value):
                 if value.status == 200 {
                     self.isValidate = false
+                    self.sendAnswerSuccess = "survey_answer_updated".localized
                 }
-            case .failure(_):
-                break
+            case .failure(let error):
+                self.error = error
             }
         }
     }
     
-    func requestListComment(id: Int) {
+    func requestListComment(id: Int, completion: (() -> Void)? = nil) {
         listCommentService.request(contentId: id, contentType: 3) { response in
             switch response {
             case .success(let value):
                 self.listComment = value
+                completion?()
             case .failure(let error):
-                print(error)
+                self.error = error
             }
         }
     }
@@ -250,7 +278,9 @@ class SurveyDetailViewModel: ObservableObject {
             case.success( let value):
                 if value.status == 200 {
                     if let id = self.surveyModel.result?.id {
-                        self.requestListComment(id: id)
+                        self.requestListComment(id: id) {
+                            self.scrollToBottom = true
+                        }
                     }
                     self.commentString = ""
                     self.replyTo = nil
@@ -287,8 +317,48 @@ class SurveyDetailViewModel: ObservableObject {
                     self.isLoadingReact = false
                 }
             case .failure(let error):
-                print(error)
+                self.error = error
                 self.isLoadingReact = false
+            }
+        }
+    }
+    
+    func didLongTapCommnet(_ comment: CommentResultModel) {
+        if comment.commentByEmployeeId?.string == userInfor.employeeId {
+            Utils.dismissKeyboard()
+            commentSelected = comment
+        }
+    }
+    
+    func deleteComment() {
+        if let comment = commentDeleted {
+            isLoading = true
+            deleteCommentService.request(comment: comment) { response in
+                switch response {
+                case .success(_):
+                    self.listComment.deleteComment(comment: comment)
+                    self.commentDeleted = nil
+                case .failure(let error):
+                    self.error = error
+                }
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func updateComment() {
+        if var comment = commentEdited {
+            comment.commentDetail = newComment
+            isLoading = true
+            editCommentService.request(comment: comment) { response in
+                switch response {
+                case .success(_):
+                    self.listComment.updateComment(comment: comment)
+                    self.commentEdited = nil
+                case .failure(let error):
+                    self.error = error
+                }
+                self.isLoading = false
             }
         }
     }

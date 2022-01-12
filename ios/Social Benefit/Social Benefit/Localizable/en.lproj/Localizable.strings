@@ -392,3 +392,6 @@
 "this_person_is_exist" = "This person already exists";
 "need_to_fill_wish" = "Please fill your wish";
 "there_is_no_camera_on_this_device" = "There is no camera on this device";
+
+"survey_answer_updated" = "Your answer has been submitted successfully";
+"end_date_survey" = "Deadline:";

@@ -286,6 +286,13 @@
 		C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */; };
 		C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */; };
 		C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */; };
+		CBC9D432278D3128000AF185 /* CommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D431278D3128000AF185 /* CommentPopup.swift */; };
+		CBC9D436278D3B39000AF185 /* DeleteCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */; };
+		CBC9D438278D856A000AF185 /* DeleteCommentSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */; };
+		CBC9D43A278D8F43000AF185 /* EditCommentSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D439278D8F43000AF185 /* EditCommentSurveySerive.swift */; };
+		CBC9D43C278D8FB7000AF185 /* EditCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */; };
+		CBC9D43E278DA097000AF185 /* UpdateCommentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */; };
+		CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDDB5C52787F27B00E2A8A0 /* SuccessTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -588,6 +595,13 @@
 		C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentButton.swift; sourceTree = "<group>"; };
 		C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionActionView.swift; sourceTree = "<group>"; };
+		CBC9D431278D3128000AF185 /* CommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPopup.swift; sourceTree = "<group>"; };
+		CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentPopup.swift; sourceTree = "<group>"; };
+		CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentSurveySerive.swift; sourceTree = "<group>"; };
+		CBC9D439278D8F43000AF185 /* EditCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentSurveySerive.swift; sourceTree = "<group>"; };
+		CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentPopup.swift; sourceTree = "<group>"; };
+		CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommentRequestModel.swift; sourceTree = "<group>"; };
+		CBDDB5C52787F27B00E2A8A0 /* SuccessTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessTextView.swift; sourceTree = "<group>"; };
 		CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -756,6 +770,8 @@
 				C464CF842784368C007BDCB4 /* DeleteCommentService.swift */,
 				C464CF8627843777007BDCB4 /* UpdateCommentService.swift */,
 				C4675B8127848F8B00A97726 /* NewsDetailService.swift */,
+				CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */,
+				CBC9D439278D8F43000AF185 /* EditCommentSurveySerive.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -905,6 +921,7 @@
 				C4A519C0276995E60065E047 /* ViewClickItem.swift */,
 				C4B9BF7626FC25170022DA55 /* VoucherCodeModel.swift */,
 				C456C45E275DA1D600406C8D /* WalletInforModel.swift */,
+				CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1123,6 +1140,7 @@
 				C446BEB42771B9B500925F5E /* InforTextView.swift */,
 				C446BEB62771B9CA00925F5E /* LoadingView.swift */,
 				C446BEB82771B9DD00925F5E /* ErrorPupup.swift */,
+				CBDDB5C52787F27B00E2A8A0 /* SuccessTextView.swift */,
 			);
 			path = ViewModifier;
 			sourceTree = "<group>";
@@ -1161,6 +1179,9 @@
 				C446BEC12771C49500925F5E /* RadioButtonOptional.swift */,
 				C446BEC32771C4A100925F5E /* CheckBoxOptional.swift */,
 				C446BEC52771C4B800925F5E /* ReactionCommentView.swift */,
+				CBC9D431278D3128000AF185 /* CommentPopup.swift */,
+				CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */,
+				CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1980,6 +2001,7 @@
 				C47888A0270C2BF7009F5A25 /* DragPopUpView.swift in Sources */,
 				C48BA34A26EEEBE1006C4F27 /* CommentCardView.swift in Sources */,
 				C431446B26BC1BF4009FCA89 /* MoveTo.swift in Sources */,
+				CBC9D43C278D8FB7000AF185 /* EditCommentPopup.swift in Sources */,
 				C4E985A7277AADC100D5AC7E /* NotificationItem.swift in Sources */,
 				C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */,
 				C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */,
@@ -2001,6 +2023,7 @@
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
 				C4B9BF7926FC2AC50022DA55 /* GeneratorQRCode.swift in Sources */,
 				C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */,
+				CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */,
 				C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */,
 				C4EA9A86275E5F6800F87B8C /* RecognitionUsesBlockView.swift in Sources */,
 				C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */,
@@ -2051,6 +2074,7 @@
 				C446BEA82771B74000925F5E /* AddCommentSurveyService.swift in Sources */,
 				C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */,
 				C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */,
+				CBC9D43A278D8F43000AF185 /* EditCommentSurveySerive.swift in Sources */,
 				C446BEA22771B6FA00925F5E /* SurveyGetService.swift in Sources */,
 				C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */,
 				C4AB352D270AD7B000A186F5 /* SearchView.swift in Sources */,
@@ -2073,6 +2097,7 @@
 				C4D02610270D3E790048B671 /* BackgroundSearchView.swift in Sources */,
 				C446BEB32771B98000925F5E /* Popup.swift in Sources */,
 				C472E4CA26FDA5DC00D047BA /* AppliedStoreMerchantListService.swift in Sources */,
+				CBC9D432278D3128000AF185 /* CommentPopup.swift in Sources */,
 				C4974ABD26F5D916002AED6C /* MerchantVoucherListByCategoryViewModel.swift in Sources */,
 				C49285552716B89300F5BCBB /* CheckBox.swift in Sources */,
 				C476C5B327561FC200D93AA7 /* NoHightLightClickAffect.swift in Sources */,
@@ -2091,6 +2116,7 @@
 				C446BEAC2771B76A00925F5E /* AddReactSurveyService.swift in Sources */,
 				C446BE9C2771B5B100925F5E /* AppError.swift in Sources */,
 				C49B0B71270DF10D002C3D9F /* SearchSelectionView.swift in Sources */,
+				CBC9D43E278DA097000AF185 /* UpdateCommentRequestModel.swift in Sources */,
 				C4E9D43D26D4D4A400B223AC /* BannerCurverShape.swift in Sources */,
 				C410A467274B3177006069E3 /* RecognitionViewModel.swift in Sources */,
 				84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */,
@@ -2114,11 +2140,13 @@
 				C43B21C626DDCDB800E2E451 /* CommentModel.swift in Sources */,
 				C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */,
 				C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */,
+				CBC9D436278D3B39000AF185 /* DeleteCommentPopup.swift in Sources */,
 				C4AB352F270AD8E200A186F5 /* SearchCardView.swift in Sources */,
 				C4119B552754891E0093542F /* RecognitionDetailModel.swift in Sources */,
 				C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */,
 				C403670526DB85D700381888 /* BannerCardView.swift in Sources */,
 				8487535B2705A9670061D4E1 /* LanguageSelectorPopUp.swift in Sources */,
+				CBC9D438278D856A000AF185 /* DeleteCommentSurveySerive.swift in Sources */,
 				C462F16926F3452C00933BBC /* ProgressView.swift in Sources */,
 				C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,

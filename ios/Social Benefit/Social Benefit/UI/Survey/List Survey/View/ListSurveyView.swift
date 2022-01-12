@@ -16,6 +16,7 @@ struct ListSurveyView: View {
     @ObservedObject private var viewModel = ListSurveyViewModel()
     
     var body: some View {
+        
         VStack {
             
             Spacer()
@@ -47,9 +48,15 @@ struct ListSurveyView: View {
                                     .frame(width: 100, height: 100)
                                     .scaledToFit()
                                 VStack(alignment: .leading, spacing: 10) {
-                                    Text(item.deadlineText)
-                                        .bold()
-                                        .font(.system(size: 14))
+                                    if viewModel.tabSelection == 1 {
+                                        Text(item.deadline_edText)
+                                            .bold()
+                                            .font(.system(size: 14))
+                                    } else {
+                                        Text(item.deadlineText)
+                                            .bold()
+                                            .font(.system(size: 14))
+                                    }
                                     Text(item.surveyNameText)
                                         .font(.system(size: 14))
                                 }
@@ -65,6 +72,7 @@ struct ListSurveyView: View {
             viewModel.firstRequest()
         }
         .navigationBarHidden(true)
+        .errorPopup($viewModel.error)
     }
     
     func segmentOnChange(_ tag: Int) {

@@ -16,6 +16,8 @@ class ListSurveyViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var keyword = ""
     
+    @Published var error: AppError = .none
+    
     private var cancellables = Set<AnyCancellable>()
     
     private var isRequested = false
@@ -41,6 +43,7 @@ class ListSurveyViewModel: ObservableObject {
     }
     
     func firstRequest() {
+        error = .none
         if !isRequested {
             isRequested = true
             self.requestListSurvey()
@@ -56,7 +59,7 @@ class ListSurveyViewModel: ObservableObject {
             case .success(let value):
                 self.listSurvey = value
             case .failure(let error):
-                print(error)
+                self.error = error
             }
             self.isLoading = false
         }

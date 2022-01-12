@@ -85,6 +85,7 @@ extension CommentOptionPopUp {
                 Image(systemName: "paperplane.circle.fill")
                     .font(.system(size: 25))
             }
+            .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
         }
         .padding()
         .frame(width: ScreenInfor().screenWidth * 0.8)
