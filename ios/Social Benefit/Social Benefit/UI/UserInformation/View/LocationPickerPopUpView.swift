@@ -18,10 +18,11 @@ struct LocationPickerPopUpView: View {
 }
 
 
+
 struct LocationPickerView: View {
     
     @State var data: [LocationData] = []
-//    @State var typedText = ""
+    //    @State var typedText = ""
     @EnvironmentObject var userInformationViewModel: UserInformationViewModel
     
     var body: some View {
@@ -34,7 +35,7 @@ struct LocationPickerView: View {
         } else {
             LocationTyperContent
                 .onAppear {
-                    self.userInformationViewModel.noStreet = ""
+                    self.userInformationViewModel.curNoStreet = ""
                 }
         }
     }
@@ -45,7 +46,6 @@ struct LocationPickerView: View {
             HStack {
                 Button(action: {
                     userInformationViewModel.isPresentedLocationPickerView.toggle()
-
                 }, label: {
                     Image(systemName: "xmark")
                 })
@@ -57,7 +57,6 @@ struct LocationPickerView: View {
                     .padding(.trailing, 60)
                     .padding(.bottom, 15)
             }.padding(.top, 25)
-//                .gesture(dragGesture)
             
             Divider()
             
@@ -73,11 +72,13 @@ struct LocationPickerView: View {
                         
                         .onTapGesture {
                             userInformationViewModel.filter = item.id
-                            userInformationViewModel.locationId = item.id
+                            userInformationViewModel.curLocationId = item.id
                             
-                            if userInformationViewModel.curLocationText == "" {
-                                userInformationViewModel.curLocationText = item.name }
-                            else { userInformationViewModel.curLocationText = item.name + ", " + userInformationViewModel.curLocationText}
+                            if userInformationViewModel.curLocationText.isEmpty {
+                                userInformationViewModel.curLocationText = item.name
+                            } else {
+                                userInformationViewModel.curLocationText = item.name + ", " + userInformationViewModel.curLocationText
+                            }
                         }
                     }
                 }
@@ -119,22 +120,25 @@ struct LocationPickerView: View {
                     .padding(.trailing, 60)
                     .padding(.bottom, 15)
             }.padding(.top, 25)
-//                .gesture(dragGesture)
+            //                .gesture(dragGesture)
             
             Divider()
             
             ZStack {
-                TextField("location_example".localized, text: $userInformationViewModel.noStreet, onCommit:  {
-                    if userInformationViewModel.noStreet != "" {
-                        userInformationViewModel.curLocationText = userInformationViewModel.noStreet + ", " + userInformationViewModel.curLocationText
+                TextField("location_example".localized, text: $userInformationViewModel.curNoStreet, onCommit:  {
+                    if userInformationViewModel.curNoStreet != "" {
+                        userInformationViewModel.curLocationText = userInformationViewModel.curNoStreet + ", " + userInformationViewModel.curLocationText
                     }
+                    
                     userInformationViewModel.isPresentedLocationPickerView.toggle()
                     
                     if userInformationViewModel.curLocationText != "" {
                         userInformationViewModel.locationText = userInformationViewModel.curLocationText
+                        userInformationViewModel.noStreetText = userInformationViewModel.curNoStreet
+                        userInformationViewModel.locationIdText = userInformationViewModel.curLocationId
                     }
                 })
-                    .frame(width: ScreenInfor().screenWidth*0.85, height: 50)
+                    .frame(width: ScreenInfor().screenWidth * 0.85, height: 50)
                     .lineLimit(10)
             }
         }

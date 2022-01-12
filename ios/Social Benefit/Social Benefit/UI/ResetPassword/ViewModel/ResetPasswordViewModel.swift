@@ -21,6 +21,7 @@ class ResetPasswordViewModel: ObservableObject {
     
     @Published var isPresentWrongFormatEmail = false
     @Published var isPresentNotExistEmail = false
+    @Published var isPresentNotExistCompany = false
     @Published var isPresentAllTypedError = false
     @Published var isPresentCannotConnectServerError = false
     
@@ -58,8 +59,13 @@ class ResetPasswordViewModel: ObservableObject {
         resetPasswordService.getAPI(companyCode: companyCode, email: email) { data in
             
             DispatchQueue.main.async {
-                if data { self.isReseting = true }
-                else { self.isPresentNotExistEmail = true }
+                if data == 0 {
+                    self.isReseting = true
+                } else if data == 1 {
+                    self.isPresentNotExistCompany = true
+                } else {
+                    self.isPresentNotExistEmail = true
+                }
                 
                 self.isLoading = false
             }

@@ -130,3 +130,38 @@ struct NotificationItemData: Hashable, Codable {
         NotificationItemData(id: -1, imgURL: "", typeId: 198856, type: 1, content: "COO193_I", createdTime: 1639872010000, status: 1, contentParams: ["test hôm nay", "ABC"], receivedId: 0, point: -10)
     ]
 }
+
+struct NotificationItemDataNil: Hashable, Codable {
+    
+    private var id: Int!
+    private var imgURL: String!
+    private var typeId: Int!
+    private var type: Int!
+    private var content: String!
+    private var createdTime: Int!
+    private var status: Int!
+    private var contentParams: [String]!
+    private var receivedId: Int!
+    private var point: Int!
+    
+    public init() {
+        self.id = nil
+        self.imgURL = nil
+        self.typeId = nil
+        self.type = nil
+        self.content = nil
+        self.createdTime = nil
+        self.status = nil
+        self.contentParams = []
+        self.receivedId = nil
+        self.point = nil
+    }
+
+    public mutating func setTypeId(typeId: Int!) {
+        self.typeId = typeId
+    }
+    
+    public mutating func setType(type: Int!) {
+        self.type = type
+    }
+}

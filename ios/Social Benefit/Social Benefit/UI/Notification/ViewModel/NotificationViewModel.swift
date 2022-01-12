@@ -14,6 +14,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
     @ObservedObject var listOfBenefitsViewModel = ListOfBenefitsViewModel()
     
     @Published var allNotificationItems = [NotificationItemData]()
+    @Published var readNotificationItems = [NotificationItemData]()
     @Published var fromIndex: Int = 0
     
     @Published var isLoading: Bool = false
@@ -25,11 +26,14 @@ class NotificationViewModel: ObservableObject, Identifiable {
         }
     }
     
-    @Published var destinationView: AnyView = AnyView(EmptyView())
+    @Published var destinationView: AnyView = AnyView(LoadingView().navigationBarHidden(true))
+    @Published var isNotLazyLoading: Bool = false
     
     private var internalNewsDetailService = InternalNewsDetailService()
     private var checkBenefitService = CheckBenefitService()
     private var notificationListService = NotificationListService()
+    private let surveyGetSerivce = SurveyGetService()
+    private let notificationService = NotificationService()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -49,15 +53,19 @@ class NotificationViewModel: ObservableObject, Identifiable {
             
             DispatchQueue.main.async {
                 self?.allNotificationItems = data
+                self?.readNotificationItems = data
                 
                 self?.isLoading = false
                 self?.isRefreshing = false
+                
+                self?.updateReadNotification()
             }
         }
     }
     
     public func refresh() {
         DispatchQueue.main.async {
+            self.fromIndex = 0
             self.notificationListService.getAPI(nextPageIndex: self.fromIndex, pageSize: 10) { [weak self] data in
                 
                 DispatchQueue.main.async {
@@ -69,37 +77,78 @@ class NotificationViewModel: ObservableObject, Identifiable {
     }
     
     public func reloadData() {
-        self.isLoading = true
         
         notificationListService.getAPI(nextPageIndex: fromIndex, pageSize: 10) { [weak self] data in
             DispatchQueue.main.async {
                 for item in data {
                     self?.allNotificationItems.append(item)
+                    self?.readNotificationItems.append(item)
                 }
-                
-                self?.isLoading = false
                 self?.isRefreshing = false
+                self?.updateReadNotification()
             }
         }
     }
     
-
+    public func updateReadNotification() {
+        notificationService.getAPI(items: self.readNotificationItems) {
+            
+        }
+    }
     
-    func changeDesitionationView(notificationItem: NotificationItemData) {
+    public func changeDesitionationView(notificationItem: NotificationItemData) {
         switch notificationItem.getType() {
         case Constants.NotificationLogType.NOTIFICATION_HR: do {
             
         }
         case Constants.NotificationLogType.SURVEY: do {
-            
-        }
-        case Constants.NotificationLogType.COMMENT: do {
-            //Call API
-            internalNewsDetailService.getAPI(internalNewsId: notificationItem.getTypeId()) { data in
-                DispatchQueue.main.async {
-                    self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
+            surveyGetSerivce.request(id: notificationItem.getTypeId()) { response in
+                switch response {
+                case .success(let value):
+                    self.destinationView = AnyView(SurveyDetailView(detailModel: value.result!))
+                    
+                case .failure(let error):
+                    print(error)
                 }
             }
+        }
+        case Constants.NotificationLogType.COMMENT: do {
+            switch Int(notificationItem.getContentParams()[2]) ?? 0 {
+            case Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS: do {
+                internalNewsDetailService.getAPI(internalNewsId: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
+                    DispatchQueue.main.async {
+                        self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
+                        self.isNotLazyLoading = true
+                    }
+                }
+            }
+            case Constants.CommentContentType.COMMENT_TYPE_COMMENT: do {
+                internalNewsDetailService.getAPI(internalNewsId: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
+                    DispatchQueue.main.async {
+                        self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
+                        self.isNotLazyLoading = true
+                    }
+                }
+            }
+            case Constants.CommentContentType.COMMENT_TYPE_SURVEY: do {
+                surveyGetSerivce.request(id: Int(notificationItem.getContentParams()[3]) ?? 0) { response in
+                    switch response {
+                    case .success(let value):
+                        self.destinationView = AnyView(SurveyDetailView(detailModel: value.result!))
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+            case Constants.CommentContentType.COMMENT_TYPE_RECOGNITION: do {
+                
+            }
+            default: do { }
+            }
+            
+            //Call API
+            
         }
         case Constants.NotificationLogType.COMMENT_RECOGNITION: do {
             
@@ -125,6 +174,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
             internalNewsDetailService.getAPI(internalNewsId: notificationItem.getTypeId()) { data in
                 DispatchQueue.main.async {
                     self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
+                    self.isNotLazyLoading = true
                 }
             }
         }
@@ -147,7 +197,15 @@ class NotificationViewModel: ObservableObject, Identifiable {
             }
         }
         case Constants.NotificationLogType.SURVEY_REMIND: do {
-            
+            surveyGetSerivce.request(id: notificationItem.getTypeId()) { response in
+                switch response {
+                case .success(let value):
+                    self.destinationView = AnyView(SurveyDetailView(detailModel: value.result!))
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
         case Constants.NotificationLogType.REACT_RECOGNITION: do {
             

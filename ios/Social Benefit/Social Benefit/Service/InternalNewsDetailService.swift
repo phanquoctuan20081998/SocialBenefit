@@ -25,8 +25,8 @@ class InternalNewsDetailService {
         let params: Parameters = ["":""]
 
         service.makeCall(endpoint: endPoint, method: "GET", header: header, body: params, callback: { result in
-            
-            let contentId = result["contentId"].int ?? -1
+        
+            let contentId = result["id"].int ?? -1
             let title = result["title"].string ?? ""
             let shortBody = result["shortBody"].string ?? ""
             let body = result["body"].string ?? ""

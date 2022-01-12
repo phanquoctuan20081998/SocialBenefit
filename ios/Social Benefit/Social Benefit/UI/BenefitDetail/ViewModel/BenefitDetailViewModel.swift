@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BenefitDetailViewModel: ObservableObject, Identifiable {
     
@@ -20,11 +21,17 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     @Published var isPresentError: Bool = false
     @Published var errorCode: String = ""
     
+    @Published var isLoading: Bool = false
+    
     private let checkBenefitService = CheckBenefitService()
+    private var benefitDetailService = BenefitDetailService(id: 0)
     
     func getData(benefit: BenefitData, index: Int) {
         self.benefit = benefit
         self.index = index
+        
+        benefitDetailService = BenefitDetailService(id: benefit.id)
+        
         initApplyStatus()
     }
     
@@ -40,6 +47,16 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
                     self.isPresentError = true
                     self.errorCode = error
                 }
+            }
+        }
+        
+        self.isLoading = true
+        
+        benefitDetailService.getAPI { data in
+            DispatchQueue.main.async {
+                self.benefit = data
+                
+                self.isLoading = false
             }
         }
     }

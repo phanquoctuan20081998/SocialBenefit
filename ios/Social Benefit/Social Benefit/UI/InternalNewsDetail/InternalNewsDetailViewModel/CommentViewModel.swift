@@ -40,6 +40,7 @@ class CommentViewModel: ObservableObject, Identifiable {
     @Published var replyTo: String = ""
     @Published var isFocus: Bool = false
     @Published var moveToPosition: Int = 0
+    @Published var listComment = ListCommentModel()
     
     // Selected Comment
     @Published var selectedCommentId: Int = -1
@@ -59,12 +60,14 @@ class CommentViewModel: ObservableObject, Identifiable {
     }
     
     private let commentService = CommentService()
+    private let listCommentService = ListCommentService()
     private var cancellables = Set<AnyCancellable>()
     
     init(contentId: Int) {
         self.contentId = contentId
         initComment(contentId: contentId)
         addSubscribers()
+        requestListComment(id: contentId)
     }
     
     func initComment(contentId: Int) {
@@ -83,6 +86,7 @@ class CommentViewModel: ObservableObject, Identifiable {
     
     func refresh() {
         self.initComment(contentId: self.contentId)
+        self.requestListComment(id: self.contentId)
     }
     
     func addSubscribers() {
@@ -97,6 +101,7 @@ class CommentViewModel: ObservableObject, Identifiable {
     func refresh(isPresent: Bool) {
         if !isPresent {
             self.initComment(contentId: self.contentId)
+            self.requestListComment(id: self.contentId)
         }
     }
     
@@ -175,6 +180,17 @@ class CommentViewModel: ObservableObject, Identifiable {
                         self.childComment[childId].append(newComment)
                     }
                 }
+            }
+        }
+    }
+    
+    func requestListComment(id: Int) {
+        listCommentService.request(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { response in
+            switch response {
+            case .success(let value):
+                self.listComment = value
+            case .failure(let error):
+                print(error)
             }
         }
     }

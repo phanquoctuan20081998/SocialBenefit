@@ -41,7 +41,7 @@ struct InternalNewsView: View {
         )
         .background(
             NavigationLink(
-                destination: NavigationLazyView(InternalNewsDetailView(internalNewData: selectedInternalNew)),
+                destination: InternalNewsDetailView(internalNewData: selectedInternalNew),
                 isActive: $isActive,
                 label: { EmptyView() })
         )
@@ -118,7 +118,7 @@ extension InternalNewsView {
                                     
                                     // Otherwise just delete the ProgressView after 1 seconds...
                                     
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now()) {
                                         self.isShowProgressView = false
                                     }
                                     

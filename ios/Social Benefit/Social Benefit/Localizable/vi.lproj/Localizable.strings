@@ -25,10 +25,10 @@
 "reset_password" = "Lấy lại mật khẩu";
 "back_login" = "Quay trở lại đăng nhập";
 "enter_email" = "Nhập email của bạn";
+"wrong_company" = "Công ty không tồn tại";
 
 // Reset Password Success
-"success_notification1" = "Thiết lập thành công! Mật khẩu mới";
-"success_notification2" = "đã được gửi đến email của bạn";
+"success_notification" = "Thiết lập thành công! Mật khẩu mới đã được gửi đến email của bạn";
 
 // List of Benefit
 "benefit_title" = "DANH SÁCH PHÚC LỢI CỦA BẠN";
@@ -89,10 +89,11 @@
 "how_do_you_want_to_set" = "Bạn muốn nhập ảnh bằng cách nào?";
 "add_from_camera" = "MÁY ẢNH";
 "add_from_gallery" = "BỘ SƯU TẬP";
-"blank_email" = "Vui lòng điền email của bạn";
+"blank_email_user_infor" = "Vui lòng điền email của bạn";
 "invalid_email_format" = "Sai định dạng";
-"blank_phone" = "Vui lòng nhập số điện thoại";
+"blank_phone_user_infor" = "Vui lòng nhập số điện thoại";
 "updated" = "Đã cập nhật";
+"need_to_fill_address" = "Vui lòng nhập đầy đủ địa chỉ";
 
 // Banner Card View
 "recognitions_in_company" = "Bảng tin khen thưởng";
@@ -149,8 +150,8 @@
 // Benefit Detail
 "apply_this_benefit" = "Đăng ký";
 "want_to_apply" = "Bạn muốn đăng ký?";
-"cancel_button" = "HỦY";
-"ok_button" = "OK";
+"cancel_button" = "HỦY BỎ";
+"ok_button" = "XÁC NHẬN";
 "register_now" = "Đăng ký ngay";
 "condition" = "ĐIỀU KIỆN ÁP DỤNG";
 
@@ -293,7 +294,7 @@
 "need_fill_all_data" = "Bạn chưa điền đủ thông tin";
 "network_error" = "Lỗi kết nối, vui lòng thử lại sau.";
 "unkown_error" = "Có lỗi xảy ra, vui lòng thử lại sau.";
-"wrong_login_data" = "Sai ID hoặc mật khẩu.";
+"wrong_login_data" = "Thông tin đăng nhập chưa đúng. Vui lòng thử lại.";
 "session_expired" = "Phiên hết hạn vui lòng đăng nhập lại.";
 
 // Customer Support
@@ -322,23 +323,23 @@
 "voucher_at" = "Ưu đãi tại";
 
 // Notification
-"C00193_I" = "<b> %1$@</b>";
-"C00194_I" = "Bạn có khảo sát mới <b> %1$@</b>";
-"C00195_I" = "Bạn còn khảo sát <b> %1$@</b> chưa thực hiện. Hãy tham gia trả lời nhé";
-"C00196_I" = "<b> %1$@</b> đã thể hiện cảm xúc trên bài khen thưởng của bạn";
-"C00197_I" = "<b> %1$@</b> đã bình luận trong bài khen thưởng của bạn";
+"C00193_I" = "<b>%1$@</b>. Hãy đăng ký tham gia trước ngày %2$@";
+"C00194_I" = "Bạn có khảo sát mới <b>%1$@</b>";
+"C00195_I" = "Bạn còn khảo sát <b>%1$@</b> chưa thực hiện. Hãy tham gia trả lời nhé";
+"C00196_I" = "<b>%1$@</b> đã thể hiện cảm xúc trên bài khen thưởng của bạn";
+"C00197_I" = "<b>%1$@</b> đã bình luận trong bài khen thưởng của bạn";
 "C00198_I" = "Các ưu đãi của bạn sắp hết hạn, hãy sử dụng ngay hôm nay nhé!";
-"C00199_I" = "Ưu đãi <b> %1$@</b> đã hết hạn";
+"C00199_I" = "Ưu đãi <b>%1$@</b> đã hết hạn";
 "C00200_I" = "Uu đãi mới: <b>%1$@</b>";
 
-"C00150_I" = "Yêu cầu tham gia phúc lợi <b> %1$@</b> của bạn đã bị từ chối do phúc lợi đã hết hạn";
-"S00110_I" = "Quản trị viên đã từ chối yêu cầu phúc lợi: <b> %1$@</b> &lt;br /&gt;Lý do: <b>%2$@</b>";
-"S00111_I" = "Quản trị viên đã chấp thuận yêu cầu phúc lợi: <b> %1$@ </b>";
-"S00155_I" = "Bạn nhận được phúc lợi <b> %1$@ </b>";
-"S00112_I" = "<b> %1$@ </b> đã trả lời bình luận của bạn trong <b> %2$@ </b>";
-"C00201_I" = "<b> %1$@ </b> đã trả lời bình luận của bạn trong bài khen thưởng của <b> %2$@ </b>";
-"S00113_I" = "Bạn nhận được điểm từ <b> %1$@ </b>";
-"C00159_I" = "%1$@<br />%2$@";
+"C00150_I" = "Yêu cầu tham gia phúc lợi <b>%1$@</b> của bạn đã bị từ chối do phúc lợi đã hết hạn";
+"S00110_I" = "Quản trị viên đã từ chối yêu cầu phúc lợi: <b>%1$@</b><br>Lý do: <b>%2$@</b>";
+"S00111_I" = "Quản trị viên đã chấp thuận yêu cầu phúc lợi: <b>%1$@</b>";
+"S00155_I" = "Bạn nhận được phúc lợi <b>%1$@</b>";
+"S00112_I" = "<b>%1$@</b> đã trả lời bình luận của bạn trong <b>%2$@</b>";
+"C00201_I" = "<b>%1$@</b> đã trả lời bình luận của bạn trong bài khen thưởng của <b>%2$@</b>";
+"S00113_I" = "Bạn nhận được điểm từ <b>%1$@</b>";
+"C00159_I" = "%1$@<br>%2$@";
 "S00109_I" = "Bạn nhận được lời khen từ <b>%1$@</b>";
 
 "survey" = "Khảo sát";
@@ -347,6 +348,8 @@
 "react" = "Cảm xúc";
 "loading" = "Đang tải";
 "new_benefit" = "Phúc lợi mới";
+"today" = "Hôm nay";
+"yesterday" = "Hôm qua";
 
 // Month
 "january" = "tháng 1";
@@ -386,8 +389,8 @@
 "need_to_fill_all_data" = "Cần nhập đầy đủ thông tin";
 "wrong_data" = "wrong_data";
 "wrong_email_format" = "Địa chỉ email không hợp lệ";
-"wrong_email" = "Công ty không tồn tại";
-"blank_email" = "Email không được để trống";
+"wrong_email" = "Địa chỉ email không tồn tại";
+"blank_email" = "Địa chỉ email không được để trống";
 "blank_phone" = "Điện thoại không được để trống";
 "can_connect_server" = "Không thể kết nối với máy chủ";
 "this_person_is_exist" = "Người này đã tồn tại trong danh sách";

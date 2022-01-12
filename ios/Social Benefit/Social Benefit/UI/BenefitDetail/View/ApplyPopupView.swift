@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
-
+ 
 struct ApplyPopupView: View {
     
     @EnvironmentObject var benefitDetailViewModel: BenefitDetailViewModel
     @EnvironmentObject var listOfBenefitsViewModel: ListOfBenefitsViewModel
+    
+    @Binding var reload: Bool
+    
+    var benefitId: Int
+    var index: Int
     
     var body: some View {
         ZStack {
@@ -58,18 +63,19 @@ extension ApplyPopupView {
                     })
                     
                     Button(action: {
-                        ApplyBenefitService().getAPI(benefitId: self.benefitDetailViewModel.benefit.id) { error in
+                        ApplyBenefitService().getAPI(benefitId: benefitId) { error in
                             DispatchQueue.main.async {
                                 self.benefitDetailViewModel.isPresentedPopup = false
                                 
                                 if error.isEmpty {
                                     self.benefitDetailViewModel.applyStatus = 0 //Change to waiting to confirm
+                                    self.reload = true
                                 } else if error == MessageID.C00189_E {
                                     // If running out of registrations
                                     DispatchQueue.main.async {
                                         // Set apply button to pending
                                         self.benefitDetailViewModel.applyStatus = 4 // In benefit detail screen
-                                        self.listOfBenefitsViewModel.listOfBenefits[self.benefitDetailViewModel.index].mobileStatus = BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_PENDING_REGISTER // In list of benefits screen
+                                        self.listOfBenefitsViewModel.listOfBenefits[index].mobileStatus = BenefitData.MOBILE_STATUS.MOBILE_BENEFIT_STATUS_PENDING_REGISTER // In list of benefits screen
                                     }
                                 } else {
                                     self.benefitDetailViewModel.isPresentError = true

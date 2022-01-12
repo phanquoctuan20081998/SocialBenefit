@@ -37,13 +37,17 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     @Published var filter = ""
     @Published var locationText = userInfor.address
     @Published var curLocationText = ""
-    @Published var locationId = userInfor.locationId
-    @Published var noStreet = ""
+    @Published var locationIdText = userInfor.locationId
+    @Published var curLocationId = userInfor.locationId
+    @Published var noStreetText = userInfor.noStreet
+    @Published var curNoStreet = ""
     
     // To control error...
+    @Published var isPresentAddressError: Bool = false
     @Published var isPresentWrongEmailError: Bool = false
     @Published var isPresentEmailBlankError: Bool = false
     @Published var isPresentPhoneBlankError: Bool = false
+    
     @Published var isEnableSaveButton: Bool = false
     
     // To control popup
@@ -110,7 +114,7 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     func checkEnableSendButton() {
         if nicknameText != userInfor.nickname || emailText != userInfor.email ||
             phoneText != userInfor.phone  || locationText != userInfor.address || imageName != userInfor.avatar {
-            isEnableSaveButton = true
+                isEnableSaveButton = true
         } else {
             isEnableSaveButton = false
         }
@@ -119,13 +123,20 @@ class UserInformationViewModel: ObservableObject, Identifiable {
     func saveButtonTapped() {
         
         // Check email fommat...
-        let emailText = emailText.trimmingCharacters(in: .whitespaces)
-        let phoneText = phoneText.trimmingCharacters(in: .whitespaces)
+        let emailText = emailText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let phoneText = phoneText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let address = noStreetText.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if emailText.isEmpty || phoneText.isEmpty {
+        if emailText.isEmpty || phoneText.isEmpty || address.isEmpty {
             DispatchQueue.main.async {
-                if self.phoneText.isEmpty { self.isPresentPhoneBlankError = true }
-                if self.emailText.isEmpty { self.isPresentEmailBlankError = true }
+                if address.isEmpty { self.isPresentAddressError = true }
+                if phoneText.isEmpty { self.isPresentPhoneBlankError = true }
+                if emailText.isEmpty { self.isPresentEmailBlankError = true }
+            }
+            
+            if !textFieldValidatorEmail(emailText) {
+                isPresentWrongEmailError = true
+                return
             }
             
             return
@@ -137,28 +148,28 @@ class UserInformationViewModel: ObservableObject, Identifiable {
         }
         
         // Update UserInfor...
-        if !isPresentPhoneBlankError && !isPresentEmailBlankError && !isPresentWrongEmailError {
+        if !isPresentPhoneBlankError && !isPresentEmailBlankError && !isPresentWrongEmailError && !isPresentAddressError {
             userInforUpdate()
         }
     }
     
+   
     func userInforUpdate() {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let birthday = dateFormatter.string(from: userInfor.birthday)
         
-        var noStreet = ""
-        if self.noStreet.isEmpty {
-            noStreet = userInfor.noStreet
-        } else {
-            noStreet = self.noStreet
-        }
-        
+//        var noStreet = ""
+//        if self.noStreetText.isEmpty {
+//            noStreet = userInfor.noStreet
+//        } else {
+//            noStreet = self.noStreetText
+//        }
         
         self.isUpdating = true
         
-        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: noStreet, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationId, image: self.image!, imageName: self.imageName) { data in
+        userInformationService.sendImageAPI(id: userInfor.employeeId, nickName: self.nicknameText, address: self.noStreetText, citizenId: userInfor.citizenId, email: self.emailText, phone: self.phoneText, birthday: birthday, locationId: self.locationIdText, image: self.image!, imageName: self.imageName) { data in
             
             if !data.isEmpty {
                 self.isSuccessed = true

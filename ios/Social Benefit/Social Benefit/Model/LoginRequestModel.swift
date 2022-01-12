@@ -13,6 +13,6 @@ struct LoginRequestModel: APIModelProtocol {
     var userLogin: String?
     var password: String?
     var deviceId = UIDevice.current.identifierForVendor?.uuidString
-    var deviceToken = "abc"
+    var deviceToken = device_token
     var deviceType = "1"
 }

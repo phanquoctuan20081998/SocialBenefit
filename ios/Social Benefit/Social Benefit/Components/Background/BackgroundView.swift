@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BackgroundViewWithNotiAndSearch: View {
     @EnvironmentObject var homeScreen: HomeScreenViewModel
+    @State var total: Int = 0
 
     var body: some View {
         VStack {
@@ -36,8 +37,21 @@ struct BackgroundViewWithNotiAndSearch: View {
                                 NavigationLazyView(NotificationView())
                             } label: {
                                 Image(systemName: "bell.fill")
+                                    .overlay(
+                                        ZStack {
+                                            if total != 0 {
+                                                Circle()
+                                                    .fill(Color.orange)
+                                                    .frame(width: 15, height: 15)
+                                                
+                                                Text("\(total)")
+                                                    .bold()
+                                                    .font(.system(size: 8))
+                                                    .foregroundColor(.white)
+                                            }
+                                        }.offset(x: 10, y: -8)
+                                    )
                             }
-
                             
                             Button {
                                 withAnimation(.easeInOut) {
@@ -54,6 +68,11 @@ struct BackgroundViewWithNotiAndSearch: View {
                         .padding(.top, ScreenInfor().screenHeight * 0.05)
                     , alignment: .top)
                 .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    NotificationCountService().getAPI { data in
+                        self.total = data
+                    }
+                }
             Spacer()
         }
     }

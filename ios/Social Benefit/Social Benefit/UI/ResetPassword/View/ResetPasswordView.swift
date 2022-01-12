@@ -77,6 +77,9 @@ struct ResetPasswordView: View {
                 ErrorMessageView(error: "can_connect_server".localized, isPresentedError: $resetPasswordViewModel.isPresentCannotConnectServerError)
                     .offset(y: 400)
                 
+                ErrorMessageView(error: "wrong_company".localized, isPresentedError: $resetPasswordViewModel.isPresentNotExistCompany)
+                    .offset(y: 400)
+                
                 if resetPasswordViewModel.isLoading {
                     VStack{
                         Spacer()
@@ -90,6 +93,9 @@ struct ResetPasswordView: View {
             }.edgesIgnoringSafeArea(.all)
             .onAppear {
                 resetPasswordViewModel.resetTextField()
+            }
+            .onTapGesture {
+                Utils.dismissKeyboard()
             }
         }
     }
@@ -159,6 +165,8 @@ extension ResetPasswordView {
                     }
                 }
             }
+            
+            Utils.dismissKeyboard()
         } label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.blue)

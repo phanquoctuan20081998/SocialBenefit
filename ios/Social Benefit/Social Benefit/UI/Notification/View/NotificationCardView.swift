@@ -19,21 +19,29 @@ struct NotificationCardView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            Image(notificationCardViewModel.image)
-                .resizable()
-                .scaledToFit()
-                .padding(.all, 10)
-                .clipShape(Circle())
-                .frame(width: 70, height: 70)
-                .overlay(Circle().stroke(Color("nissho_blue"), lineWidth: 3))
+            if(notificationCardViewModel.notificationItem.getType() == Constants.NotificationLogType.COMMENT) {
+                URLImageView(url: notificationCardViewModel.image)
+                    .clipShape(Circle())
+                    .padding(.all, 5)
+                    .frame(width: 70, height: 70)
+                    .overlay(Circle().stroke(Color("nissho_blue"), lineWidth: 3))
+                    .padding(.leading, 5)
+            } else {
+                Image(notificationCardViewModel.image)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.all, 8)
+                    .clipShape(Circle())
+                    .frame(width: 70, height: 70)
+                    .overlay(Circle().stroke(Color("nissho_blue"), lineWidth: 3))
+                    .padding(.leading, 5)
+            }
             
             VStack(alignment: .leading) {
-                HStack {
-                    Text(notificationCardViewModel.notiTypeName + ": ")
-                        .bold()
-                    + Text(notificationCardViewModel.content)
-                }.multilineTextAlignment(.leading)
                 
+                HTMLView(htmlString: notificationCardViewModel.content)
+                    .offset(x: -8)
+          
                 Spacer()
                 
                 HStack {
@@ -44,18 +52,29 @@ struct NotificationCardView: View {
                     Text(notificationCardViewModel.point)
                         .bold()
                         .foregroundColor(.blue)
-                    
                 }
-            }.font(.system(size: 15))
+            }.font(.system(size: 12))
         }
-        .padding()
-        .frame(width: ScreenInfor().screenWidth * 0.9, height: 100)
+        .padding(10)
+        .frame(width: ScreenInfor().screenWidth * 0.9, height: 110)
         .overlay(RoundedRectangle(cornerRadius: 20)
                     .stroke(Color("nissho_blue"), lineWidth: 3))
+        
+        .overlay(
+            ZStack {
+                if notificationItem.getStatus() == 0 {
+                    Circle()
+                        .fill(.red)
+                        .frame(width: 8, height: 8)
+                        .padding()
+                }
+            }, alignment: .topTrailing
+        )
         .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
     }
     
 }
+
 
 struct NotificationCardView_Previews: PreviewProvider {
     static var previews: some View {

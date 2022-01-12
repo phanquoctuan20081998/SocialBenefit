@@ -22,12 +22,13 @@ class ReactViewModel: ObservableObject, Identifiable {
     
     @Published var isLoadingReact: Bool = false
     @Published var currentReaction = ReactionType.none
-    @Published var reactModel = ReactSuveryModel()
-    @Published var listComment = ListCommentModel()
+    @Published var reactModel = ReactSuveryModel() 
+//    @Published var listComment = ListCommentModel()
     
     private let reactService = ReactService()
     private let listReactService = ListReactService()
     private let addReactService = AddReactSurveyService()
+//    private let listCommentService = ListCommentService()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -43,6 +44,7 @@ class ReactViewModel: ObservableObject, Identifiable {
         initComment(contentId: contentId)
         self.contentType = Constants.ReactContentType.INTERNAL_NEWS
         self.getListReact(id: contentId)
+//        self.requestListComment(id: contentId)
     }
     
     // Recognition...
@@ -136,6 +138,16 @@ class ReactViewModel: ObservableObject, Identifiable {
         }
     }
     
+//    func requestListComment(id: Int) {
+//        listCommentService.request(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { response in
+//            switch response {
+//            case .success(let value):
+//                self.listComment = value
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//    }
     
     // Old version
     func addSubscribers() {
