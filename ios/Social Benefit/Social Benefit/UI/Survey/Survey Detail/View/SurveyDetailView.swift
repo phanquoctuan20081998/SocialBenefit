@@ -28,6 +28,7 @@ struct SurveyDetailView: View {
                 viewModel.isShowReactionBar = false
             }
             viewModel.sendAnswerSuccess = ""
+            viewModel.infoText = ""
             Utils.dismissKeyboard()
         }
         .navigationBarHidden(true)
@@ -41,6 +42,7 @@ struct SurveyDetailView: View {
         })
         .errorPopup($viewModel.error)
         .loadingView(isLoading: $viewModel.isLoading)
+        .inforTextView($viewModel.infoText)
     }
     
     var survetList: some View {
@@ -346,6 +348,7 @@ struct SurveyDetailView: View {
                         HStack {
                             Button(action: {
                                 viewModel.replyTo = comment
+                                viewModel.focusComment = true
                             }, label: {
                                 Text("reply".localized)
                                     .bold()
