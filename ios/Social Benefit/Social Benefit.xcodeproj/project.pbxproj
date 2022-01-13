@@ -1878,13 +1878,15 @@
 				84DA60642696DAC80012F55B /* Frameworks */,
 				84DA60652696DAC80012F55B /* Resources */,
 				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
-				3CDEE5AA06DD4E4A6E03A7DB /* [CP] Embed Pods Frameworks */,
+				2FD8F45E71D14FE8E6B1EF05 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Social Benefit";
+			packageProductDependencies = (
+			);
 			productName = "Social Benefit";
 			productReference = 84DA60672696DAC80012F55B /* Social Benefit.app */;
 			productType = "com.apple.product-type.application";
@@ -1913,6 +1915,8 @@
 				vi,
 			);
 			mainGroup = 84DA605E2696DAC80012F55B;
+			packageReferences = (
+			);
 			productRefGroup = 84DA60682696DAC80012F55B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1945,7 +1949,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3CDEE5AA06DD4E4A6E03A7DB /* [CP] Embed Pods Frameworks */ = {
+		2FD8F45E71D14FE8E6B1EF05 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

@@ -40,7 +40,7 @@ struct DeleteCommentPopup: ViewModifier {
                             Button {
                                 comment = nil
                             } label: {
-                                Text("cancle".localized.uppercased())
+                                Text("cancel".localized.uppercased())
                             }.padding(.leading, 100)
                             
                             Spacer()
