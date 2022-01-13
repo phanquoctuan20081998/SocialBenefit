@@ -58,6 +58,8 @@
 		C4119B53275487340093542F /* PostBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4119B52275487340093542F /* PostBannerView.swift */; };
 		C4119B552754891E0093542F /* RecognitionDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4119B542754891E0093542F /* RecognitionDetailModel.swift */; };
 		C412CA1826BBEDE300501D96 /* RoundedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C412CA1726BBEDE300501D96 /* RoundedStyle.swift */; };
+		C417D46A278FBF5100E21563 /* EditCommentSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417D469278FBF5100E21563 /* EditCommentSurveySerive.swift */; };
+		C417D46C278FBF6E00E21563 /* DeleteCommentSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417D46B278FBF6E00E21563 /* DeleteCommentSurveySerive.swift */; };
 		C419868926E46F3900A877A5 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419868826E46F3900A877A5 /* URLImageView.swift */; };
 		C419868B26E46F5400A877A5 /* URLImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419868A26E46F5400A877A5 /* URLImageViewModel.swift */; };
 		C419868E26E46F7C00A877A5 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419868D26E46F7C00A877A5 /* LocalFileManager.swift */; };
@@ -292,8 +294,6 @@
 		C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */; };
 		CBC9D432278D3128000AF185 /* CommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D431278D3128000AF185 /* CommentPopup.swift */; };
 		CBC9D436278D3B39000AF185 /* DeleteCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */; };
-		CBC9D438278D856A000AF185 /* DeleteCommentSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */; };
-		CBC9D43A278D8F43000AF185 /* EditCommentSurveySerive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D439278D8F43000AF185 /* EditCommentSurveySerive.swift */; };
 		CBC9D43C278D8FB7000AF185 /* EditCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */; };
 		CBC9D43E278DA097000AF185 /* UpdateCommentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */; };
 		CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDDB5C52787F27B00E2A8A0 /* SuccessTextView.swift */; };
@@ -368,6 +368,8 @@
 		C4119B52275487340093542F /* PostBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBannerView.swift; sourceTree = "<group>"; };
 		C4119B542754891E0093542F /* RecognitionDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionDetailModel.swift; sourceTree = "<group>"; };
 		C412CA1726BBEDE300501D96 /* RoundedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedStyle.swift; sourceTree = "<group>"; };
+		C417D469278FBF5100E21563 /* EditCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentSurveySerive.swift; sourceTree = "<group>"; };
+		C417D46B278FBF6E00E21563 /* DeleteCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentSurveySerive.swift; sourceTree = "<group>"; };
 		C419868826E46F3900A877A5 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		C419868A26E46F5400A877A5 /* URLImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageViewModel.swift; sourceTree = "<group>"; };
 		C419868D26E46F7C00A877A5 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 				84DA60682696DAC80012F55B /* Products */,
 				EB0BB67FC17D285CAAD4A5A5 /* Pods */,
 				640D96DEBE36BA1BC6786580 /* Frameworks */,
+				C417D460278F27CB00E21563 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -738,14 +741,17 @@
 				C472E4C926FDA5DC00D047BA /* AppliedStoreMerchantListService.swift */,
 				C4B3D58C26EA1817003C6CA9 /* ApplyBenefitService.swift */,
 				84DA60C8269ECB410012F55B /* BaseAPI.swift */,
+				C47EC774278816A3009B959F /* BenefitDetailService.swift */,
 				C4DF7A6426F9BC5200DC7D04 /* BuyVoucherService.swift */,
 				848753682706BAA60061D4E1 /* ChangePasswordService.swift */,
 				C426926F26EB005C0089A5B8 /* CheckBenefitService.swift */,
 				C43B21C726DDD0F600E2E451 /* CommentService.swift */,
 				C497AA1526F83936006EFE0C /* ConfirmInforBuyService.swift */,
 				C45EDBA0270FF7B5004799B5 /* CustomerSupportService.swift */,
+				C464CF842784368C007BDCB4 /* DeleteCommentService.swift */,
 				C47AEC302757077B00DF8A60 /* EmployeeInforService.swift */,
 				C4B9BF7426FC23680022DA55 /* GenerateCodeService.swift */,
+				C47081DB277D6F0700E7F612 /* InternalNewsDetailService.swift */,
 				C4C9677B26C6500200AC5CB9 /* InternalNewsService.swift */,
 				C446BEA52771B72B00925F5E /* ListCommentService.swift */,
 				C4B94DF026C26C56009D5C46 /* ListOfBenefitsService.swift */,
@@ -759,7 +765,10 @@
 				C4974ABA26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift */,
 				C4492A6126F19916008B26C9 /* MerchantVoucherSpecialListService.swift */,
 				C43C7BB326FAE3800056D169 /* MyVoucherService.swift */,
+				C4675B8127848F8B00A97726 /* NewsDetailService.swift */,
+				C468BCF3278D6FEB006C85A4 /* NotificationCountService.swift */,
 				C4E985A8277AB75C00D5AC7E /* NotificationListService.swift */,
+				C468BCF6278D7D0F006C85A4 /* NotificationService.swift */,
 				C402B26D26E76E5500A41288 /* ReactService.swift */,
 				C48790B52759D716002E97F0 /* RecentTranferService.swift */,
 				C46BD88C27477E3200E8715F /* RecognitionService.swift */,
@@ -768,19 +777,15 @@
 				C42255DE26FE0E5200A4416F /* SimilarVoucherService.swift */,
 				C446BEA32771B71700925F5E /* SurveyChoiceService.swift */,
 				C446BEA12771B6FA00925F5E /* SurveyGetService.swift */,
+				C464CF8627843777007BDCB4 /* UpdateCommentService.swift */,
 				C419869126E46FC200A877A5 /* URLImageService.swift */,
 				C49C4C3027434D7500ED3213 /* UsedPointsHistoryService.swift */,
 				C4CB7FD7272258F90094EE90 /* UserInformationUpdateService.swift */,
 				C456C460275DAD0800406C8D /* UserService.swift */,
 				C4A519C2276996B70065E047 /* ViewClickService.swift */,
 				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
-				C47081DB277D6F0700E7F612 /* InternalNewsDetailService.swift */,
-				C464CF842784368C007BDCB4 /* DeleteCommentService.swift */,
-				C464CF8627843777007BDCB4 /* UpdateCommentService.swift */,
-				C4675B8127848F8B00A97726 /* NewsDetailService.swift */,
-				C47EC774278816A3009B959F /* BenefitDetailService.swift */,
-				C468BCF3278D6FEB006C85A4 /* NotificationCountService.swift */,
-				C468BCF6278D7D0F006C85A4 /* NotificationService.swift */,
+				C417D469278FBF5100E21563 /* EditCommentSurveySerive.swift */,
+				C417D46B278FBF6E00E21563 /* DeleteCommentSurveySerive.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1018,6 +1023,15 @@
 				C468BCF1278D0F7B006C85A4 /* SwipeNavigationController.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C417D460278F27CB00E21563 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9D439278D8F43000AF185 /* EditCommentSurveySerive.swift */,
+				CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C419868626E46EFC00A877A5 /* Components */ = {
@@ -2084,8 +2098,8 @@
 				C4AA6DEB26C4B85A00203CB9 /* InternalNewsView.swift in Sources */,
 				C446BEA82771B74000925F5E /* AddCommentSurveyService.swift in Sources */,
 				C4B3D58B26EA0A67003C6CA9 /* LocationModel.swift in Sources */,
+				C417D46C278FBF6E00E21563 /* DeleteCommentSurveySerive.swift in Sources */,
 				C40366FD26DB260D00381888 /* InternalNewsModel.swift in Sources */,
-				CBC9D43A278D8F43000AF185 /* EditCommentSurveySerive.swift in Sources */,
 				C446BEA22771B6FA00925F5E /* SurveyGetService.swift in Sources */,
 				C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */,
 				C4AB352D270AD7B000A186F5 /* SearchView.swift in Sources */,
@@ -2158,7 +2172,6 @@
 				C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */,
 				C403670526DB85D700381888 /* BannerCardView.swift in Sources */,
 				8487535B2705A9670061D4E1 /* LanguageSelectorPopUp.swift in Sources */,
-				CBC9D438278D856A000AF185 /* DeleteCommentSurveySerive.swift in Sources */,
 				C462F16926F3452C00933BBC /* ProgressView.swift in Sources */,
 				C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,
@@ -2184,6 +2197,7 @@
 				C4C8115C270E8A4A002D7220 /* ConfirmPopUp.swift in Sources */,
 				84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */,
 				C4B6854626F75E6C0046F97F /* ListOfMerchantViewByCategory.swift in Sources */,
+				C417D46A278FBF5100E21563 /* EditCommentSurveySerive.swift in Sources */,
 				C430AEBB26E6552100D3D29A /* AddCommentService.swift in Sources */,
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,
 				C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */,
@@ -2429,7 +2443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2454,7 +2468,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
