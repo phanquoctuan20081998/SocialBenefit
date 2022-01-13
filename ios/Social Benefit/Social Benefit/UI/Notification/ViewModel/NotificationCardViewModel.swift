@@ -11,7 +11,6 @@ import SwiftUI
 
 class NotificationCardViewModel: ObservableObject, Identifiable {
     
-
     @Published var notificationItem = NotificationItemData()
     
     @Published var image: String = ""
@@ -50,19 +49,11 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
     
     func getContent() {
         if self.notificationItem.getContentParams().isEmpty {
-            self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent())"
+            self.content = "\(self.notiTypeName): \(self.notificationItem.getContent())"
         } else if self.notificationItem.getContentParams().count == 1 {
-            
-            if self.notificationItem.getContent() == "C00193_I" {
-                print(notificationItem.getContent())
-                self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0], self.date))"
-            } else {
-                print(notificationItem.getContent())
-                self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0]))"
-            }
-            
+            self.content = "\(self.notiTypeName): \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0]))"
         } else {
-            self.content = "<b>\(self.notiTypeName)</b>: \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0], self.notificationItem.getContentParams()[1]))"
+            self.content = "\(self.notiTypeName): \(self.notificationItem.getContent().localizeWithFormat(arguments: self.notificationItem.getContentParams()[0], self.notificationItem.getContentParams()[1]))"
         }
     }
     
