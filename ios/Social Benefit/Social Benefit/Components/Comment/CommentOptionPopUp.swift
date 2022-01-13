@@ -111,7 +111,7 @@ extension CommentOptionPopUp {
                         self.isPresent = false
                     }
                 } label: {
-                    Text("cancel".localized.uppercased())
+                    Text("cancle".localized.uppercased())
                 }.padding(.leading, 100)
                 
                 Spacer()

@@ -16,7 +16,8 @@ struct BenefitDetailView: View {
     @State private var webViewHeight: CGFloat = .zero
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            
             VStack {
                 
                 Spacer().frame(height: 30)
@@ -31,11 +32,11 @@ struct BenefitDetailView: View {
                 
                 Text(self.benefitDetailViewModel.benefit.title)
                     .bold()
-                    .font(.system(size: 20))
+                    .font(.system(size: 18))
                     .multilineTextAlignment(.center)
                     .lineLimit(3)
                     .padding(.top, 20)
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 25)
             }
             
             Spacer()
@@ -62,7 +63,7 @@ struct BenefitDetailView: View {
     func getApplyButton() -> some View {
         if self.benefitDetailViewModel.typeMember == BenefitData.MEMBER_TYPE.BENEFIT_TYPE_REGISTER_MEMBER {
             switch self.benefitDetailViewModel.applyStatus {
-            
+                
             case 0:
                 applyButtonView(text: "waiting_to_confirm".localized, textColor: Color.blue, backgroundColor: Color.gray.opacity(0.2), disable: true)
             case 1:
@@ -98,7 +99,7 @@ struct BenefitDetailView: View {
                     view.shadow(color: .black.opacity(0.3), radius: 3, x: 3, y: 3)
                 }
         })
-        .disabled(disable)
+            .disabled(disable)
     }
 }
 

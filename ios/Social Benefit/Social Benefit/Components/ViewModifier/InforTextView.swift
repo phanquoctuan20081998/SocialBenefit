@@ -8,45 +8,41 @@
 import Foundation
 import SwiftUI
 
-struct InforTextView: ViewModifier {
-    @Binding var text: String
+struct InforTextView: View {
+    var text: String
+    @Binding var isPresent: Bool
     
-    func body(content: Content) -> some View {
-        content
-            .overlay(popupContent())
-    }
-
-    @ViewBuilder
-    private func popupContent() -> some View {
-        GeometryReader { geometry in
-            if !text.isEmpty {
-                VStack() {
-                    HStack(spacing: 10) {
-                        Image(systemName: "info.circle")
-                            .foregroundColor(Color.white)
-                            .font(Font.system(size: 20))
-                        Text(text)
-                            .foregroundColor(Color.white)
-                            .font(.system(size: 15))
-                            .lineLimit(3)
-                    }
-                    .padding(10)
-                    .background(Color.yellow)
-                    .clipShape(Capsule())
+    var textColor: Color
+    var backgroundColor: Color
+    
+    var image: Image?
+    
+    var body: some View {
+        VStack() {
+            HStack(spacing: 10) {
+                if let image = image {
+                    Button(action: {
+                        isPresent = false
+                    }, label: {
+                        image
+                            .foregroundColor(textColor)
+                            .font(Font.system(size: 25))
+                    })
                 }
-                .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 50, trailing: 10))
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
-                .onTapGesture {
-                    text = ""
-                }
+                Text(text)
+                    .foregroundColor(textColor)
+                    .font(.system(size: 15))
+                    .lineLimit(3)
             }
-        }
+            .padding(10)
+            .background(backgroundColor)
+            .clipShape(Capsule())
+        }.padding(EdgeInsets.init(top: 10, leading: 10, bottom: 50, trailing: 10))
     }
 }
 
-extension View {
-    
-    func inforTextView(_ text: Binding<String>) -> some View {
-        return modifier(InforTextView.init(text: text))
+struct InforTextView_Previews: PreviewProvider {
+    static var previews: some View {
+        InforTextView.init(text: "jhjhkjhkhkhkhkhkh", isPresent: .constant(true), textColor: .white, backgroundColor: .red, image: Image(systemName: "xmark"))
     }
 }

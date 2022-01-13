@@ -62,8 +62,6 @@ class SurveyDetailViewModel: ObservableObject {
     
     @Published var scrollToBottom = false
     
-    @Published var infoText = ""
-    
     private(set) var totalAnswer: [Int] = []
     
     private(set) var maxNumberAnswer: [Int] = []
@@ -74,10 +72,9 @@ class SurveyDetailViewModel: ObservableObject {
     
     static let customId = -1
     
-    var questionList: [SurveyQuestionList] = []
-    
-    private var currentChoiceList: [[SurveyChoiceModel]] = []
-    private var currentCustomList: [[SurveyChoiceModel]] = []
+    var questionList: [SurveyQuestionList] {
+        return surveyModel.result?.questionOrderList ?? []
+    }
     
     func refreshData() {
         replyTo = nil
@@ -92,23 +89,16 @@ class SurveyDetailViewModel: ObservableObject {
         commentEdited = nil
         commentDeleted = nil
         scrollToBottom = false
-        infoText = ""
     }
     
-    func request(id: Int, showLoading: Bool = true) {
-        if showLoading {
-            isLoading = true
-        }
-        
+    func request(id: Int) {
+        isLoading = true
         surveyGetSerivce.request(id: id) { response in
             switch response {
             case .success(let value):
-                var hasShowMoreTemp: [Bool] = []
-                var choiceListTemp: [[SurveyChoiceModel]] = []
-                var customListTemp: [[SurveyChoiceModel]] = []
-                var maxNumberAnswerTemp: [Int] = []
-                var totalAnswerTemp: [Int] = []
-                value.result?.questionOrderList.forEach({ question in
+                self.surveyModel = value
+                
+                self.surveyModel.result?.questionOrderList.forEach({ question in
                     var list: [SurveyChoiceModel] = []
                     var customAnswerList: [SurveyChoiceModel] = []
                     var total = 0
@@ -133,9 +123,9 @@ class SurveyDetailViewModel: ObservableObject {
                         total += choice.numberAnswer ?? 0
                     })
                     if customAnswerList.count > 1 {
-                        hasShowMoreTemp.append(true)
+                        self.hasShowMore.append(true)
                     } else {
-                        hasShowMoreTemp.append(false)
+                        self.hasShowMore.append(false)
                     }
                     if question.customAnswer == true {
                         var choiceModel = SurveyChoiceModel()
@@ -144,8 +134,8 @@ class SurveyDetailViewModel: ObservableObject {
                         choiceModel.checked = false
                         list.append(choiceModel)
                     }
-                    choiceListTemp.append(list)
-                    customListTemp.append(customAnswerList)
+                    self.choiceList.append(list)
+                    self.customList.append(customAnswerList)
                     let max1 = list.map { $0.numberAnswer ?? 0 }.max { n1, n2 in
                         return n1 < n2
                     }
@@ -154,20 +144,11 @@ class SurveyDetailViewModel: ObservableObject {
                         return n1 < n2
                     }
                     let max = max(max1 ?? 0, max2 ?? 0)
-                    maxNumberAnswerTemp.append(max)
-                    totalAnswerTemp.append(total)
+                    self.maxNumberAnswer.append(max)
+                    self.totalAnswer.append(total)
                 })
-                self.hasShowMore = hasShowMoreTemp
-                self.choiceList = choiceListTemp
-                self.customList = customListTemp
-                self.currentChoiceList = choiceListTemp
-                self.currentCustomList = customListTemp
-                self.maxNumberAnswer = maxNumberAnswerTemp
-                self.totalAnswer = totalAnswerTemp
-                self.questionList = value.result?.questionOrderList ?? []
-                self.surveyModel = value
             case .failure(let error):
-                self.error = error
+                print(error)
             }
             self.isLoading = false
         }
@@ -227,31 +208,8 @@ class SurveyDetailViewModel: ObservableObject {
                 }
                 result = (result && didAnswer)
             }
-            
-            if result {
-                let compare1 = choiceList.elementsEqual(currentChoiceList, by: { $0 == $1 })
-                let compare2 = customList.elementsEqual(currentCustomList, by: { $0 == $1 })
-                
-                if compare1, compare2 {
-                    result = false
-                }
-            }
         }
-        
         isValidate = result
-    }
-    
-    func validateCustomAnswer() -> Bool {
-        for (index, question) in questionList.enumerated() {
-            if question.customAnswer == true {
-                for choice in choiceList[index] {
-                    if choice.choiceId == SurveyDetailViewModel.customId, choice.choiceName.trimmingCharacters(in: .whitespacesAndNewlines).count == 0, choice.checked == true {
-                        return false
-                    }
-                }
-            }
-        }
-        return true
     }
     
     var getAllAnswerModel: [SurveyChoiceAnswerModel] {
@@ -286,27 +244,17 @@ class SurveyDetailViewModel: ObservableObject {
     }
     
     func sendAnswers() {
-        sendAnswerSuccess = ""
-        infoText = ""
-        Utils.dismissKeyboard()
-        if !validateCustomAnswer() {
-            infoText = "not_complete_survey_error".localized
-        } else {
-            isSendingAnswer = true
-            surveyChoiceSerivce.request(answers: getAllAnswerModel, surveyId: surveyModel.result?.id) { response in
-                self.isSendingAnswer = false
-                switch response {
-                case .success(let value):
-                    if value.status == 200 {
-                        self.isValidate = false
-                        self.sendAnswerSuccess = "survey_answer_updated".localized
-                        if let id = self.surveyModel.result?.id {
-                            self.request(id: id, showLoading: false)
-                        }
-                    }
-                case .failure(let error):
-                    self.error = error
+        isSendingAnswer = true
+        surveyChoiceSerivce.request(answers: getAllAnswerModel, surveyId: surveyModel.result?.id) { response in
+            self.isSendingAnswer = false
+            switch response {
+            case .success(let value):
+                if value.status == 200 {
+                    self.isValidate = false
+                    self.sendAnswerSuccess = "survey_answer_updated".localized
                 }
+            case .failure(let error):
+                self.error = error
             }
         }
     }
