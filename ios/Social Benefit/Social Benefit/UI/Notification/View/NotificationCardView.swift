@@ -38,7 +38,7 @@ struct NotificationCardView: View {
             }
             
             VStack(alignment: .leading) {
-                
+   
                 HTMLView(htmlString: notificationCardViewModel.content)
                     .offset(x: -8)
           
