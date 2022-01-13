@@ -56,6 +56,7 @@ struct InternalNewsDetailView: View {
                     ScrollViewContent
                         .onAppear { self.proxy = proxy }
                 }
+//                Spacer().frame(height: )
             }
             
             Spacer()
@@ -198,7 +199,6 @@ extension InternalNewsDetailView {
                 .padding()
             
             VStack(alignment: .leading, spacing: 10) {
-                
                 Text(internalNewData.title.toUpperCase())
                     .bold()
                     .font(.system(size: 19))

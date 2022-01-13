@@ -50,6 +50,10 @@ struct SurveyChoiceModel: Codable, Hashable, Identifiable {
         return choiceId == SurveyDetailViewModel.customId
     }
     
+    var isChecked: Bool {
+        return checked == true
+    }
+    
 }
 
 struct SurveyChoiceRequestModel: APIModelProtocol {

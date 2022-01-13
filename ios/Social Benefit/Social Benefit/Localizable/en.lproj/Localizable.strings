@@ -398,3 +398,6 @@
 
 "survey_answer_updated" = "Your answer has been submitted successfully";
 "end_date_survey" = "Deadline:";
+
+"delete" = "delete";
+"not_complete_survey_error" = "Please complete survey before sending";

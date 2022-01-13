@@ -45,7 +45,7 @@
 "waiting" = "Chờ xác nhận";
 
 // Internal News
-"internal_news" = "Bản tin nội bộ";
+"internal_news" = "Tin nội bộ";
 "search_news" = "Tìm kiếm bản tin";
 "all" = "Tất cả";
 "training" = "Đào tạo";
@@ -399,3 +399,7 @@
 
 "survey_answer_updated" = "Câu trả lời của bạn đã được gửi thành công";
 "end_date_survey" = "Khảo sát kết thúc vào:";
+
+"delete" = "Xóa";
+
+"not_complete_survey_error" = "Xin hãy hoàn thành khảo sát trước khi gửi";
