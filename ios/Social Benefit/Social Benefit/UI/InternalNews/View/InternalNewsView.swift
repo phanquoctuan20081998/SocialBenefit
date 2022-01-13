@@ -40,10 +40,13 @@ struct InternalNewsView: View {
             BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "internal_news".localized, isHaveLogo: true, backButtonTapped: internalNewsViewModel.reset)
         )
         .background(
-            NavigationLink(
-                destination: InternalNewsDetailView(internalNewData: selectedInternalNew),
-                isActive: $isActive,
-                label: { EmptyView() })
+            ZStack {
+                NavigationLink(destination: EmptyView(), label: {})
+                NavigationLink(
+                    destination: InternalNewsDetailView(internalNewData: selectedInternalNew),
+                    isActive: $isActive,
+                    label: { EmptyView() })
+            }
         )
         .navigationBarHidden(true)
     }
@@ -55,7 +58,7 @@ extension InternalNewsView {
         HStack(spacing: 0) {
             ForEach(Constants.INTERNALNEWS_TABHEADER.indices, id:\.self) { i in
                 Text(Constants.INTERNALNEWS_TABHEADER[i].localized)
-                    .font(.system(size: 13))
+                    .font(.system(size: 12))
                     .bold()
                     .foregroundColor((selectedTabIndex == i) ? Color.blue : Color.gray)
                     .frame(width: ScreenInfor().screenWidth / CGFloat(Constants.INTERNALNEWS_TABHEADER.count), height: 40)
@@ -157,4 +160,3 @@ struct SlidingTabView_Previews : PreviewProvider {
             .environmentObject(HomeScreenViewModel())
     }
 }
-

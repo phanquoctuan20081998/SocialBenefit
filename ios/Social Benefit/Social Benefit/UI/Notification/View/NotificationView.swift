@@ -36,6 +36,9 @@ struct NotificationView: View {
         }
         .background(
             ZStack {
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
+                }
                 NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
                     EmptyView()
                 })
