@@ -269,8 +269,8 @@ struct SurveyDetailView: View {
             HStack(alignment: .center, spacing: 10) {
                 URLImageView(url: Config.baseURL + userInfor.avatar)
                     .clipShape(Circle())
-                    .frame(width: 20, height: 20)
-                    .padding(.all, 7)
+                    .frame(width: 30, height: 30)
+                    .padding(.all, 2)
                     .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                 
                 VStack(alignment: .leading) {

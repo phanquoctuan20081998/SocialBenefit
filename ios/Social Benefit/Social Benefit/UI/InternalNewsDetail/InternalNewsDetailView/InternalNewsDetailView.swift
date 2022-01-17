@@ -55,38 +55,44 @@ struct InternalNewsDetailView: View {
                 AmzdScrollViewReader { proxy in
                     ScrollViewContent
                         .onAppear { self.proxy = proxy }
+                        .padding(.bottom, keyboardHandler.keyboardHeight)
                 }
             }
             
             Spacer()
             
-            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-            
-            CommentBarView(isReply: $commentViewModel.isReply,
-                           replyTo: $commentViewModel.replyTo,
-                           parentId: $commentViewModel.parentId,
-                           isFocus: $commentViewModel.isFocus,
-                           commentText: $commentViewModel.commentText,
-                           SendButtonView: AnyView(
-                            SendCommentButtonView(
-                                isReply: $commentViewModel.isReply,
-                                commentText: $commentViewModel.commentText,
-                                moveToPosition: $commentViewModel.moveToPosition,
-                                numOfComment: $commentViewModel.numOfComment,
-                                proxy: $proxy,
-                                contentId: internalNewData.contentId,
-                                parentId: commentViewModel.parentId,
-                                content: commentViewModel.commentText,
-                                contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
-                                updateComment: commentViewModel.updateComment(newComment:),
-                                otherUpdate: {
-                                    commentViewModel.requestListComment(id: commentViewModel.contentId)
-                                })))
-                .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
-            
-            Spacer()
+            VStack {
+                
+                Spacer().frame(height: 5)
+                
+                Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+                
+                CommentBarView(isReply: $commentViewModel.isReply,
+                               replyTo: $commentViewModel.replyTo,
+                               parentId: $commentViewModel.parentId,
+                               isFocus: $commentViewModel.isFocus,
+                               commentText: $commentViewModel.commentText,
+                               SendButtonView: AnyView(
+                                SendCommentButtonView(
+                                    isReply: $commentViewModel.isReply,
+                                    commentText: $commentViewModel.commentText,
+                                    moveToPosition: $commentViewModel.moveToPosition,
+                                    numOfComment: $commentViewModel.numOfComment,
+                                    proxy: $proxy,
+                                    contentId: internalNewData.contentId,
+                                    parentId: commentViewModel.parentId,
+                                    content: commentViewModel.commentText,
+                                    contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
+                                    updateComment: commentViewModel.updateComment(newComment:),
+                                    otherUpdate: {
+                                        commentViewModel.requestListComment(id: commentViewModel.contentId)
+                                    })))
+                    .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
+                Spacer().frame(height: 10)
+            }
+            .background(Color.white)
+            .offset(y: -keyboardHandler.keyboardHeight)
         }
-        .padding(.bottom, keyboardHandler.keyboardHeight)
         .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
         
@@ -95,7 +101,11 @@ struct InternalNewsDetailView: View {
             if reactViewModel.isShowReactionBar {
                 reactViewModel.isShowReactionBar = false
             }
+            Utils.dismissKeyboard()
         }
+        .onAppear(perform: {
+            UIScrollView.appearance().bounces = true
+        })
         
         // Option pop up
         .overlay(CommentOptionPopUp(isPresent: $commentViewModel.isPresentOptionView, text: $commentViewModel.selectedText, commentId: commentViewModel.selectedCommentId, contentId: commentViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, parentId: commentViewModel.selectedParentId))
@@ -121,8 +131,8 @@ extension InternalNewsDetailView {
                 VStack {
                     PostContentView
                     
-//                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
-//                        .padding(.horizontal, 10)
+                    //                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
+                    //                        .padding(.horizontal, 10)
 //                    Divider().frame(width: ScreenInfor().screenWidth * 0.9)
 //                    LikeAndCommentButton(contentId: commentViewModel.contentId, isFocus: $commentViewModel.isFocus)
 //                        .frame(height: 20)
@@ -279,6 +289,8 @@ struct SendCommentButtonView: View {
                     self.numOfComment += 1
                 }
             })
+            
+            Utils.dismissKeyboard()
             
             // Click count
             if contentType == Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS {

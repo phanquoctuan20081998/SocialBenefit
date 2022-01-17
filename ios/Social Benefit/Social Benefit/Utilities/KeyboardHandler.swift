@@ -22,8 +22,10 @@ final class KeyboardHandler: ObservableObject {
         .map { _ in CGFloat.zero}
     
     init() {
-        cancellable = Publishers.Merge(keyboardWillShow, keyboardWillHide)
-            .subscribe(on: DispatchQueue.main)
-            .assign(to: \.self.keyboardHeight, on: self)
+        withAnimation(.linear(duration: 1)) {
+            cancellable = Publishers.Merge(keyboardWillShow, keyboardWillHide)
+                .subscribe(on: DispatchQueue.main)
+                .assign(to: \.self.keyboardHeight, on: self)
+        }
     }
 }

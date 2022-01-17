@@ -48,6 +48,9 @@ struct InternalNewsView: View {
                     label: { EmptyView() })
             }
         )
+        .onAppear {
+            UIScrollView.appearance().bounces = true
+        }
         .navigationBarHidden(true)
     }
 }

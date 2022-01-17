@@ -33,6 +33,7 @@ struct NotificationView: View {
         }
         .onAppear {
             notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
+            UIScrollView.appearance().bounces = true
         }
         .background(
             ZStack {

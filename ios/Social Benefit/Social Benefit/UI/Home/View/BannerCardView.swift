@@ -51,7 +51,7 @@ struct InternalNewsBannerView: View {
                                     }
                             }
                         }
-                        .aspectRatio(4/3, contentMode: .fit)
+//                        .aspectRatio(4/3, contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     } else { EmptyView() }
                 }
@@ -226,8 +226,12 @@ struct PromotionsBannerView: View {
 
 struct MainCardView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    
     @State var moveToRecognition = false
     @State var moveToMyVoucher = false
+    
+    // Special merchants
+    @State var moveToVNP = false
     
     var personalPoint: Int
     
@@ -303,6 +307,15 @@ struct MainCardView: View {
                         
                         Spacer()
                     }
+                    
+//                    Button {
+//                        self.moveToVNP = true
+//                        countClick()
+//                    } label: {
+//                        mainButton(text: "vnp".localized, image: "ic_vnpt", color: Color("light_blue"))
+//                            .foregroundColor(.black)
+//                    }
+                    
                 }
                 .background (
                     ZStack {
@@ -311,6 +324,9 @@ struct MainCardView: View {
                                        label: { EmptyView() })
                         NavigationLink(destination: NavigationLazyView(MyVoucherView()),
                                        isActive: $moveToMyVoucher,
+                                       label: { EmptyView() })
+                        NavigationLink(destination: NavigationLazyView(VinaphoneView(webViewURL: "http://222.252.19.197:8694/vnpt_online/portal/source/embed/nissho")),
+                                       isActive: $moveToVNP,
                                        label: { EmptyView() })
                     }
                 )
@@ -331,9 +347,8 @@ struct mainButton: View {
     var color: Color
     
     var body: some View {
-        VStack {
-            
-            Circle()
+        VStack(spacing: 0) {
+            RoundedRectangle(cornerRadius: 20)
                 .fill(
                     LinearGradient(gradient: Gradient(colors: [color, .white]), startPoint: .top, endPoint: .bottom)
                 )
@@ -432,7 +447,9 @@ func getPromotionData(data: [MerchantListData], imageTapped: @escaping () -> ())
 struct BannerCardView_Previews: PreviewProvider {
     static var previews: some View {
         //        HomeScreenView(selectedTab: "house")
-        //        MainCardView(personalPoint: 100)
-        RecognitionsBannerView()
+                MainCardView(personalPoint: 100)
+//        RecognitionsBannerView()
+            .environmentObject(HomeScreenViewModel())
+            .environmentObject(HomeViewModel())
     }
 }

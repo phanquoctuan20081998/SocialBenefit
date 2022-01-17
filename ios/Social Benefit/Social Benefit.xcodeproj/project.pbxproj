@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
+		2A398BB227951A4400E347F5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB127951A4400E347F5 /* SplashView.swift */; };
+		2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */; };
+		2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB72795458100E347F5 /* VinaphoneView.swift */; };
+		2A398BBA2795472000E347F5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB92795472000E347F5 /* WebView.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
 		84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */; };
@@ -314,6 +318,10 @@
 
 /* Begin PBXFileReference section */
 		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
+		2A398BB127951A4400E347F5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialSettingsService.swift; sourceTree = "<group>"; };
+		2A398BB72795458100E347F5 /* VinaphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinaphoneView.swift; sourceTree = "<group>"; };
+		2A398BB92795472000E347F5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -627,6 +635,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A398BB52795454300E347F5 /* SpecialMerchant */ = {
+			isa = PBXGroup;
+			children = (
+				2A398BB62795455E00E347F5 /* Vinaphone */,
+			);
+			path = SpecialMerchant;
+			sourceTree = "<group>";
+		};
+		2A398BB62795455E00E347F5 /* Vinaphone */ = {
+			isa = PBXGroup;
+			children = (
+				2A398BB72795458100E347F5 /* VinaphoneView.swift */,
+			);
+			path = Vinaphone;
+			sourceTree = "<group>";
+		};
 		640D96DEBE36BA1BC6786580 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +750,7 @@
 				C446BE7F2771B39900925F5E /* UserDefaultsUtils.swift */,
 				C47081D9277D5D4F00E7F612 /* ConvertToHTML.swift */,
 				C41C1282277F41CD00C7E096 /* NavigationLazyView.swift */,
+				2A398BB92795472000E347F5 /* WebView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -786,6 +811,7 @@
 				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
 				C417D469278FBF5100E21563 /* EditCommentSurveySerive.swift */,
 				C417D46B278FBF6E00E21563 /* DeleteCommentSurveySerive.swift */,
+				2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -793,6 +819,7 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2A398BB52795454300E347F5 /* SpecialMerchant */,
 				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
 				C4ADDE5D276C2A2A00B24F6A /* ClickCounter */,
 				84DA60942697F2970012F55B /* Controller */,
@@ -840,6 +867,7 @@
 			children = (
 				84DA60852696DB720012F55B /* SplashViewController.swift */,
 				84DA60862696DB720012F55B /* SplashViewController.xib */,
+				2A398BB127951A4400E347F5 /* SplashView.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -2111,6 +2139,7 @@
 				C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */,
 				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
+				2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */,
 				C45EDBA1270FF7B5004799B5 /* CustomerSupportService.swift in Sources */,
 				C40AA16D277B4DDE002601AC /* NotificationView.swift in Sources */,
 				C403670326DB2A8200381888 /* UserInforModel.swift in Sources */,
@@ -2130,6 +2159,8 @@
 				C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */,
 				C456C45D275DA14F00406C8D /* WalletInforService.swift in Sources */,
 				C446BEB02771B88900925F5E /* StringValue.swift in Sources */,
+				2A398BB227951A4400E347F5 /* SplashView.swift in Sources */,
+				2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */,
 				C4DF7A6726F9BCCE00DC7D04 /* BuyVoucherModel.swift in Sources */,
 				C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */,
 				C41C1281277F411800C7E096 /* HideKeyboard.swift in Sources */,
@@ -2190,6 +2221,7 @@
 				C46BD8892747545500E8715F /* RankingCardView.swift in Sources */,
 				C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */,
 				C472E4C426FD763400D047BA /* MerchantVoucherDetailViewModel.swift in Sources */,
+				2A398BBA2795472000E347F5 /* WebView.swift in Sources */,
 				C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */,
 				C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */,
 				C402B26E26E76E5500A41288 /* ReactService.swift in Sources */,

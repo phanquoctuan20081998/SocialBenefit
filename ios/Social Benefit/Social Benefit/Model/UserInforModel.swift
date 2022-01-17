@@ -106,7 +106,7 @@ struct UserInfor {
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "ABCD", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
-                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png", citizenId: "", locationId: "", functionNames: [])
+                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: UserDefaults.getCompanyLogo(), citizenId: "", locationId: "", functionNames: [])
 
 
 func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNames: [String]) {
@@ -185,4 +185,10 @@ func updateUserInfor(model: LoginModel) {
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
     userInfor.functionNames = model.result?.functionNames ?? []
+    
+    UserDefaults.setCompanyLogo(value: userInfor.companyLogo)
+    
+    MerchantSpecialSettingsService().getAPI(code: "MED247") {
+        
+    }
 }

@@ -13,7 +13,8 @@ struct Config {
 //    static let baseURL = "http://172.20.109.102:8089"
 //    static let baseURL = "http://172.20.108.151:8089"
 //    static let baseURL = "http://localhost:8089"
-    static let baseURL = "http://demo-sb.nissho-vn.com:8089"
+//    static let baseURL = "http://demo-sb.nissho-vn.com:8089"
+    static let baseURL = "http://113.190.243.99:8089"
     
     static let API_LOGIN = "/employee/login"
     static let API_EMPLOYEE_FORGOTPASS = "/employee/forgotpassword"
@@ -76,4 +77,6 @@ struct Config {
     static let API_NOTIFICATION_LIST = "/notification_log/list"
     static let API_NOTIFICATION_READ = "/notification_log/read"
     static let API_NOTIFICATION_TOTAL = "/notification_log/total"
+    
+    static let API_MERCHANT_SPECIAL_SETTINGS_GET = "/merchant_special_settings/get"
 }

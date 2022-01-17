@@ -34,11 +34,11 @@ struct LoginView: View {
                 Spacer()
                     .frame(minHeight: 50, maxHeight: 100)
                 
-                //URLImageView(url: userInfor.companyLogo)
-                Image("pic_company_logo")
-                    .resizable()
+                URLImageView(url: userInfor.companyLogo)
+//                Image("pic_company_logo")
+//                    .resizable()
                     .scaledToFit()
-                    .frame(height: 50)
+                    .frame(width: ScreenInfor().screenWidth * 0.7, height: 80)
                 
                 Spacer()
                 

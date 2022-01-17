@@ -13,6 +13,10 @@ struct HomeView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
+    init() {
+        UIScrollView.appearance().bounces = false
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -39,6 +43,9 @@ struct HomeView: View {
             }
             .background(BackgroundViewWithNotiAndSearch())
             .edgesIgnoringSafeArea(.all)
+            .onDisappear {
+                UIScrollView.appearance().bounces = true
+            }
         }.navigationBarHidden(true)
     }
 }
