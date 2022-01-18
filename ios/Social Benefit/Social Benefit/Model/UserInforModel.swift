@@ -35,9 +35,11 @@ struct UserInfor {
     var companyLogo: String
     var citizenId: String
     var locationId: String
+    var clientId: String
+    var clientSecret: String
     var functionNames: [String]
     
-    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String, functionNames: [String]) {
+    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String, clientId: String, clientSecret: String, functionNames: [String]) {
         
         self.userId = userId
         self.employeeId = employeeId
@@ -64,6 +66,8 @@ struct UserInfor {
         self.companyLogo = companyLogo
         self.citizenId = citizenId
         self.locationId = locationId
+        self.clientId = clientId
+        self.clientSecret = clientSecret
         self.functionNames = functionNames
     }
     
@@ -100,13 +104,15 @@ struct UserInfor {
         self.insurance = citizen["socialInsurance"].string ?? ""
         self.citizenId = String(citizen["id"].int ?? 0)
         self.locationId = citizen["locationWard"]["id"].string ?? "00000"
+        self.clientId = employeeDto["company"]["clientId"].string ?? ""
+        self.clientSecret = employeeDto["company"]["clientSecret"].string ?? ""
         self.functionNames = []
     }
 }
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "ABCD", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
-                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: UserDefaults.getCompanyLogo(), citizenId: "", locationId: "", functionNames: [])
+                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: UserDefaults.getCompanyLogo(), citizenId: "", locationId: "", clientId: "", clientSecret: "", functionNames: [])
 
 
 func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNames: [String]) {
@@ -142,6 +148,8 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNa
     userInfor.insurance = citizen["socialInsurance"].string ?? ""
     userInfor.citizenId = String(citizen["id"].int ?? 0)
     userInfor.locationId = citizen["locationWard"]["id"].string ?? "00000"
+    userInfor.clientId = employeeDto["company"]["clientId"].string ?? ""
+    userInfor.clientSecret = employeeDto["company"]["clientSecret"].string ?? ""
     userInfor.functionNames = functionNames
     
 //    print(userInfor)
@@ -183,12 +191,11 @@ func updateUserInfor(model: LoginModel) {
     userInfor.insurance = model.result?.employeeDto?.citizen?.socialInsurance ?? ""
     userInfor.citizenId = model.result?.employeeDto?.citizen?.id?.string ?? "0"
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
-    userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
+    userInfor.clientId = model.result?.employeeDto?.company?.clientId ?? ""
+    userInfor.clientSecret = model.result?.employeeDto?.company?.clientSecret ?? ""
     userInfor.functionNames = model.result?.functionNames ?? []
     
-    UserDefaults.setCompanyLogo(value: userInfor.companyLogo)
+    print(userInfor)
     
-    MerchantSpecialSettingsService().getAPI(code: "MED247") {
-        
-    }
+    UserDefaults.setCompanyLogo(value: userInfor.companyLogo)
 }

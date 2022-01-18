@@ -1,0 +1,11 @@
+framework module MedLib {
+  umbrella header "MedLib.h"
+
+  export *
+  module * { export * }
+}
+
+module MedLib.Swift {
+    header "MedLib-Swift.h"
+    requires objc
+}

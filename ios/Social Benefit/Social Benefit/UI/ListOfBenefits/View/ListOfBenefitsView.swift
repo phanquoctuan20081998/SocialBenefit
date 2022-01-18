@@ -27,7 +27,13 @@ struct ListOfBenefitsView: View {
                 
                 BenefitUpperView(isRefreshing: $listOfBenefitsViewModel.isRefreshing, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
                 
+                Rectangle()
+                    .frame(width: ScreenInfor().screenWidth * 0.4, height: 1)
+                    .foregroundColor(Color("nissho_blue"))
+                    .padding(.bottom)
+                
                 HeaderView
+                    .padding(.bottom)
                 
                 if listOfBenefitsViewModel.isLoading && !listOfBenefitsViewModel.isRefreshing {
                     LoadingPageView()
@@ -79,7 +85,11 @@ extension ListOfBenefitsView {
         }
         .padding(.vertical, 10)
         .frame(width: ScreenInfor().screenWidth)
-        .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
+        .background(
+            Capsule()
+                .fill(Color("nissho_blue"))
+                .frame(width: ScreenInfor().screenWidth + 100)
+                .offset(x: 60))
     }
     
     var TableView: some View {

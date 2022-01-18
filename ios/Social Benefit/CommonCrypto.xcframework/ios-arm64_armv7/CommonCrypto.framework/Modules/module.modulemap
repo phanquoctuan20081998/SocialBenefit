@@ -1,0 +1,11 @@
+framework module CommonCrypto {
+    umbrella header "CommonCrypto.h"
+    header "CommonCryptoWrapper.h"
+
+    export *
+    module * { export * }
+
+	explicit module CommonRandom {
+        header "CommonRandom.h"
+	}
+}

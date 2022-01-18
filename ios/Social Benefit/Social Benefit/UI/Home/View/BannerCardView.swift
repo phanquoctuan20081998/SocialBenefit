@@ -232,6 +232,7 @@ struct MainCardView: View {
     
     // Special merchants
     @State var moveToVNP = false
+    @State var moveToVUI = false
     
     var personalPoint: Int
     
@@ -316,6 +317,13 @@ struct MainCardView: View {
 //                            .foregroundColor(.black)
 //                    }
                     
+//                    Button {
+//                        self.moveToVUI = true
+//                        countClick()
+//                    } label: {
+//                        mainButton(text: "vui".localized, image: "ic_vui", color: Color.green)
+//                            .foregroundColor(.black)
+//                    }
                 }
                 .background (
                     ZStack {
@@ -327,6 +335,9 @@ struct MainCardView: View {
                                        label: { EmptyView() })
                         NavigationLink(destination: NavigationLazyView(VinaphoneView(webViewURL: "http://222.252.19.197:8694/vnpt_online/portal/source/embed/nissho")),
                                        isActive: $moveToVNP,
+                                       label: { EmptyView() })
+                        NavigationLink(destination: NavigationLazyView(VUIAppView()),
+                                       isActive: $moveToVUI,
                                        label: { EmptyView() })
                     }
                 )

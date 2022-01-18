@@ -145,6 +145,22 @@ struct Constants {
         static let NEW_VOUCHER = 13
     }
     
+    // Merchant Special
+    struct MerchantSpecialCode {
+        static let VNP = "VNP"
+        static let VUI = "VUI"
+        static let MED247 = "MED247"
+    }
+    
+    struct MerchantSpecialSettings {
+        static let URL_WEBVIEW = "URL_WEBVIEW"
+        static let AUTH_URL = "AUTH_URL"
+        static let API_URL = "API_URL"
+        static let COMPANY = "COMPANY"
+        static let CODE = "CODE"
+        static let ENV = "ENV"
+    }
+    
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0, functionId: FuctionId.SURVEY),
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1, functionId: ""),

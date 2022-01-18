@@ -34,8 +34,9 @@ class CheckBenefitService {
             let logo = result["benefit"]["logo"].string ?? ""
             let typeMember = result["benefit"]["typeMember"].int ?? -1
             let mobileStatus = result["benefit"]["mobileStatus"].int ?? -1
+            let actionTime = result["benefit"]["actionTime"].string ?? ""
             
-            let data = BenefitData(id: id, title: title, body: body, logo: logo, typeMember: typeMember, status: status, mobileStatus: mobileStatus)
+            let data = BenefitData(id: id, title: title, body: body, logo: logo, typeMember: typeMember, status: status, mobileStatus: mobileStatus, actionTime: actionTime)
             
             returnCallBack(error, data)
         })

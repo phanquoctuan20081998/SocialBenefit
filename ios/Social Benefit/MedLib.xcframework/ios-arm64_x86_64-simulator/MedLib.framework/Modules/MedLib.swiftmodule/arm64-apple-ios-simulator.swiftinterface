@@ -1,0 +1,266 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MedLib
+import Alamofire
+import CommonCrypto
+import Foundation
+@_exported import MedLib
+import Swift
+import SwiftyJSON
+import UIKit
+import WebKit
+import _Concurrency
+public struct JWTHeader : Swift.Codable {
+  public var algorithm: Swift.String?
+  public var type: Swift.String
+  public var keyId: Swift.String?
+  public init(keyId: Swift.String? = nil)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @objc public class MedKit : ObjectiveC.NSObject {
+  @objc(shareInstance) public static let shared: MedLib.MedKit
+  @objc public func version() -> Swift.String
+  @objc(logout) public func logout()
+  @objc public func present(rootVC: UIKit.UIViewController, code: Swift.String, secretKey: Swift.String, env: MedLib.MedEnv, completionHandler: @escaping ((_ error: Swift.Error?) -> ()))
+  @objc public func verifyPartner(code: Swift.String, secretKey: Swift.String, env: MedLib.MedEnv, completionHandler: @escaping ((_ error: Swift.Error?) -> ()))
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum MedEnv : Swift.Int {
+  case PROD
+  case STAG
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct JWT {
+  public var header: MedLib.JWTHeader!
+  public var payload: MedLib.JWTPayload!
+  public var signature: Swift.String!
+  public var rawString: Swift.String!
+  public init?(payload: MedLib.JWTPayload, algorithm: MedLib.JWTAlgorithm, header: MedLib.JWTHeader? = nil)
+  public init(algorithm: MedLib.JWTAlgorithm, rawString: Swift.String) throws
+}
+public enum SwiftyCryptoError : Swift.Error {
+  case invalidBase64String
+  case invalidKeyFormat
+  case invalidAsn1Structure
+  case asn1ParsingFailed
+  case invalidAsn1RootNode
+  case tagEncodingFailed
+  case keyCreateFailed(error: CoreFoundation.CFError?)
+  case keyAddFailed(status: Darwin.OSStatus)
+  case keyCopyFailed(status: Darwin.OSStatus)
+  case invalidDigestSize(digestSize: Swift.Int, maxChunkSize: Swift.Int)
+  case signatureCreateFailed(status: Darwin.OSStatus)
+  case signatureVerifyFailed(status: Darwin.OSStatus)
+  case keyRepresentationFailed(error: CoreFoundation.CFError?)
+}
+public class RSASignature {
+  public enum DigestType {
+    case sha1
+    case sha224
+    case sha256
+    case sha384
+    case sha512
+    public static func == (a: MedLib.RSASignature.DigestType, b: MedLib.RSASignature.DigestType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  final public let data: Foundation.Data
+  public init(data: Foundation.Data)
+  convenience public init(base64Encoded base64String: Swift.String) throws
+  public var base64String: Swift.String {
+    get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class CompactJSONEncoder : Foundation.JSONEncoder {
+  public static let shared: MedLib.CompactJSONEncoder
+  override public func encode<T>(_ value: T) throws -> Foundation.Data where T : Swift.Encodable
+  public func encodeToString<T>(value: T) throws -> Swift.String where T : Swift.Encodable
+  override public init()
+  @objc deinit
+}
+public struct DynamicKey : Swift.CodingKey {
+  public var stringValue: Swift.String
+  public init(stringValue: Swift.String)
+  public var intValue: Swift.Int? {
+    get
+  }
+  public init?(intValue: Swift.Int)
+}
+@objc @_inheritsConvenienceInitializers public class Base64Utils : ObjectiveC.NSObject {
+  public static func base64encode(input: Foundation.Data) -> Swift.String
+  public static func base64encode(input: Swift.String) -> Swift.String?
+  public static func stringURISafe(input: Swift.String) -> Swift.String
+  public static func base64encodeURISafe(input: Foundation.Data) -> Swift.String
+  public static func base64decode(_ input: Swift.String) -> Foundation.Data?
+  public static func decode(encodedString: Swift.String) -> Swift.String?
+  public static func base64StringWithPadding(encodedString: Swift.String) -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum JWTAlgorithm : Swift.CustomStringConvertible {
+  case none
+  case rs256(MedLib.RSAKey)
+  case rs384(MedLib.RSAKey)
+  case rs512(MedLib.RSAKey)
+  case hs256(Swift.String)
+  case hs384(Swift.String)
+  case hs512(Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public func sign(message: Swift.String) -> Swift.String?
+  public func verify(base64EncodedSignature: Swift.String, rawMessage: Swift.String) throws -> Swift.Bool
+}
+public enum RSAKeyType {
+  case PUBLIC
+  case PRIVATE
+  public static func == (a: MedLib.RSAKeyType, b: MedLib.RSAKeyType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct RSAKeyPair {
+  public var privateKey: MedLib.RSAKey
+  public var publicKey: MedLib.RSAKey
+}
+public class RSAKey {
+  public var key: Security.SecKey
+  public var keyBase64String: Swift.String
+  public var data: Foundation.Data?
+  public var keyType: MedLib.RSAKeyType!
+  public init(key: Security.SecKey, keyBase64String: Swift.String, keyType: MedLib.RSAKeyType)
+  public init(base64String: Swift.String, keyType: MedLib.RSAKeyType) throws
+  public static func base64StringWithoutPrefixAndSuffix(pemString: Swift.String) throws -> Swift.String
+  public func pemString() throws -> Swift.String
+  public func format(keyData: Foundation.Data, keyType: MedLib.RSAKeyType) -> Swift.String
+  @objc deinit
+}
+public struct EncodableValue : Swift.Codable {
+  public let value: Swift.Encodable
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(value _value: Swift.Encodable)
+  public init(from decoder: Swift.Decoder) throws
+}
+public class RSAMessage : MedLib.Message {
+  public var data: Foundation.Data
+  public var base64String: Swift.String
+  required public init(data: Foundation.Data)
+  required convenience public init(base64String: Swift.String) throws
+  public func sign(signingKey: MedLib.RSAKey, digestType: MedLib.RSASignature.DigestType) throws -> MedLib.RSASignature
+  public func verify(verifyKey: MedLib.RSAKey, signature: MedLib.RSASignature, digestType: MedLib.RSASignature.DigestType) throws -> Swift.Bool
+  @objc deinit
+}
+public protocol Message {
+  var data: Foundation.Data { get }
+  var base64String: Swift.String { get }
+  init(data: Foundation.Data)
+  init(base64String: Swift.String) throws
+}
+extension MedLib.Message {
+  public var base64String: Swift.String {
+    get
+  }
+}
+public enum SwiftyCryptoRSAKeySize : Swift.Int {
+  case RSAKey64
+  case RSAKey128
+  case RSAKey256
+  case RSAKey512
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers public class RSAKeyFactory : ObjectiveC.NSObject {
+  public static let shared: MedLib.RSAKeyFactory
+  public func generateKeyPair(keySize: MedLib.SwiftyCryptoRSAKeySize) -> MedLib.RSAKeyPair?
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum HMACAlgorithm {
+  case sha256
+  case sha384
+  case sha512
+  public static func == (a: MedLib.HMACAlgorithm, b: MedLib.HMACAlgorithm) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension MedLib.HMACAlgorithm {
+  public var commonCryptoAlgorithm: CommonCrypto.CCHmacAlgorithm {
+    get
+  }
+  public var commonCryptoDigestLength: Swift.Int32 {
+    get
+  }
+}
+public func hmac(algorithm: MedLib.HMACAlgorithm, key: Foundation.Data, message: Foundation.Data) -> Foundation.Data
+public enum InvalidTokenError : Swift.CustomStringConvertible, Swift.Error {
+  case decodeError(Swift.String)
+  case invalidAlgorithm(Swift.String)
+  case invalidSignature
+  case expiredToken(Swift.String)
+  case invalidNotBefore(Swift.String)
+  case invalidIssuedAt(Swift.String)
+  case invalidAudience([Swift.String?]?)
+  case invalidIssuer(Swift.String)
+  case invalidSubject(Swift.String)
+  case invalidJTI(Swift.String)
+  case invalidOrMissingArgument(Swift.String)
+  public var description: Swift.String {
+    get
+  }
+}
+public struct JWTPayload : Swift.Codable {
+  public var issuer: Swift.String?
+  public var subject: Swift.String?
+  public var audience: [Swift.String?]?
+  public var expiration: Swift.Int?
+  public var notBefore: Swift.Int?
+  public var issueAt: Swift.Int?
+  public var jwtId: Swift.String?
+  public var customFields: [Swift.String : MedLib.EncodableValue]?
+  public static let reservedKeys: [Swift.String]
+  public init()
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public func checkNotBefore(allowNil: Swift.Bool) throws
+  public func checkExpiration(allowNil: Swift.Bool) throws
+  public func checkIssueAt(allowNil: Swift.Bool) throws
+  public func checkIssuer(expected: Swift.String) throws
+  public func checkSubject(expected: Swift.String) throws
+  public func checkAudience(expected: [Swift.String?]) throws
+  public func checkJTI(expected: Swift.String) throws
+}
+@_inheritsConvenienceInitializers public class CompactJSONDecoder : Foundation.JSONDecoder {
+  public static let shared: MedLib.CompactJSONDecoder
+  override public func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+  public func decode<T>(_ type: T.Type, from string: Swift.String) throws -> T where T : Swift.Decodable
+  public func decode(from string: Swift.String) throws -> [Swift.String : Any]
+  override public init()
+  @objc deinit
+}
+extension MedLib.MedEnv : Swift.Equatable {}
+extension MedLib.MedEnv : Swift.Hashable {}
+extension MedLib.MedEnv : Swift.RawRepresentable {}
+extension MedLib.RSASignature.DigestType : Swift.Equatable {}
+extension MedLib.RSASignature.DigestType : Swift.Hashable {}
+extension MedLib.RSAKeyType : Swift.Equatable {}
+extension MedLib.RSAKeyType : Swift.Hashable {}
+extension MedLib.SwiftyCryptoRSAKeySize : Swift.Equatable {}
+extension MedLib.SwiftyCryptoRSAKeySize : Swift.Hashable {}
+extension MedLib.SwiftyCryptoRSAKeySize : Swift.RawRepresentable {}
+extension MedLib.HMACAlgorithm : Swift.Equatable {}
+extension MedLib.HMACAlgorithm : Swift.Hashable {}

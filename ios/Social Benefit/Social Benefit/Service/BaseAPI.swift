@@ -50,7 +50,7 @@ public class BaseAPI {
     private var session: URLSession
     var sessionExpired: SessionExpired
     var sessionTimeOut: SessionTimeOut
-    
+    var baseURL: String = Config.baseURL
     
     public init() {
         session = URLSession.shared
@@ -58,12 +58,21 @@ public class BaseAPI {
         sessionTimeOut = SessionTimeOut.shared
     }
     
+    public init(baseURL: String) {
+        session = URLSession.shared
+        sessionExpired = SessionExpired.shared
+        sessionTimeOut = SessionTimeOut.shared
+        
+        self.baseURL = baseURL
+    }
+    
+    
     public func makeCall(endpoint: String, method: String, header: [String : String], body: [String: Any], callback: @escaping (JSON) -> Void) {
         
         var isSuccessed = false
         
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
-        let url = URL(string: Config.baseURL +  endpoint)!
+        let url = URL(string: self.baseURL +  endpoint)!
         var request = URLRequest(url: url)
         request.httpMethod = method
         if header != ["":""] {request.allHTTPHeaderFields = header}

@@ -27,8 +27,10 @@ class ListOfBenefitsService {
         var typeMember: Int = 0
         var status: Int = 0
         var mobileStatus: Int = 0
+        var actionTime: String = ""
         
         service.makeCall(endpoint: Config.API_BENEFIT_LIST, method: "POST", header: header as [String : String], body: ["":""]) { (result) in
+            
             let resultArray = result
             let numOfList = resultArray.count
 
@@ -42,10 +44,11 @@ class ListOfBenefitsService {
                 typeMember = resultDic["typeMember"].int ?? 0
                 status = resultDic["status"].int ?? 0
                 mobileStatus = resultDic["mobileStatus"].int ?? 0
+                actionTime = resultDic["actionTime"].string ?? ""
                 
                 if (logo.isEmpty) { logo = userInfor.companyLogo }
                 
-                data.append(BenefitData(id: id, title: title, body: body, logo: logo, typeMember: typeMember, status: status, mobileStatus: mobileStatus))
+                data.append(BenefitData(id: id, title: title, body: body, logo: logo, typeMember: typeMember, status: status, mobileStatus: mobileStatus, actionTime: actionTime))
             }
             
             returnCallBack(data)
