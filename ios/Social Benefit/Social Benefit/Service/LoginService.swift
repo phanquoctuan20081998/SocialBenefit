@@ -17,8 +17,9 @@ class LoginService: APIServiceProtocol {
         
         let body = LoginRequestModel.init(companyCode: companyCode, userLogin: userLogin, password: passMd5)
         
+        print(body)
+        
         apiRequest.request(url: Config.API_LOGIN, method: .post, httpBody: body, type: LoginModel.self, customError: "wrong_login_data".localized) { response in
-            
             completion(response)
         }
     }

@@ -24,21 +24,8 @@ struct TableCellView: View {
                 .frame(width: 50, height: 50)
                 .clipped()
             
-            VStack(alignment: .leading, spacing: 10) {
-                Text(benefitData.title)
-                    .frame(width: ScreenInfor().screenWidth * 0.45, alignment: .leading)
-                
-                HStack(spacing: 13) {
-                    Image(systemName: "calendar.badge.clock")
-                        .foregroundColor(.green)
-                        .font(.system(size: 15))
-                    
-                    Text(benefitData.actionTime)
-                        .bold()
-                        .foregroundColor(.blue)
-                        .font(.system(size: 10))
-                }
-            }.font(.system(size: 13))
+            Text(benefitData.title)
+                .frame(width: ScreenInfor().screenWidth * 0.45, alignment: .leading)
 
             switch benefitData.mobileStatus {
                 
@@ -116,32 +103,45 @@ struct TableCellView: View {
 }
 
 
-struct TableCellView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        VStack {
-            
-            let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
-            let scale = [0.17, 0.6, 0.2]
-            
-            HStack(spacing: 0) {
-                
-                ForEach(headers.indices, id: \.self) { i in
-                    Text(headers[i])
-                        .bold()
-                        .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
-                }
-            }
-            .padding(.vertical, 10)
-            .frame(width: ScreenInfor().screenWidth)
-            .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
-            
-            ScrollView {
-                TableCellView(isPresentedApplyPopUp: .constant(true), selectedBenefit: .constant(0), selectedIndex: .constant(0), benefitData: BenefitData(id: 0, title: "dcasgdvasgdvasvdvasdvvsadjhasvjdasdvasvdhjasvdjhvasjhdvahsvdhasvdasvdjasvjdvasdvasvdavdhavhdvashjdvahjsvdahsvdavdhjavdavhdvahdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0, actionTime: "20/08/1998"), index: 0)
-                
-                Divider()
-            }
-        }
-    }
-}
+//struct TableCellView_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        
+//        VStack {
+//            
+//            let headers = ["order".localized, "benefit".localized, "benefit_status".localized]
+//            let scale = [0.17, 0.6, 0.2]
+//            
+//            HStack(spacing: 0) {
+//                
+//                ForEach(headers.indices, id: \.self) { i in
+//                    Text(headers[i])
+//                        .bold()
+//                        .frame(width: ScreenInfor().screenWidth * CGFloat(scale[i]), height: 20)
+//                }
+//            }
+//            .padding(.vertical, 10)
+//            .frame(width: ScreenInfor().screenWidth)
+//            .background(Color(#colorLiteral(red: 0.6202182174, green: 0.7264552712, blue: 0.9265476465, alpha: 1)))
+//            
+//            ScrollView {
+//                TableCellView(isPresentedApplyPopUp: .constant(true), selectedBenefit: .constant(0), benefitData: BenefitData(id: 0, title: "dcasgdvasgdvasvdvasdvvsadjhasvjdasdvasvdhjasvdjhvasjhdvahsvdhasvdasvdjasvjdvasdvasvdavdhavhdvashjdvahjsvdahsvdavdhjavdavhdvahdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 0, mobileStatus: 0))
+//                Divider()
+//                
+//                TableCellView(isPresentedApplyPopUp: .constant(true), selectedBenefit: .constant(0), benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 1, mobileStatus: 1))
+//                Divider()
+//                
+//                TableCellView(isPresentedApplyPopUp: .constant(true), selectedBenefit: .constant(0), benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 2, mobileStatus: 2))
+//                Divider()
+//                
+//                TableCellView(isPresentedApplyPopUp: .constant(true), selectedBenefit: .constant(0), benefitData: BenefitData(id: 0, title: "dcdsdfsdfsfsdfssdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: 2, status: 4, mobileStatus: 3))
+//                Divider()
+//                
+//                TableCellView(isPresentedApplyPopUp: .constant(true), selectedBenefit: .constant(0), benefitData: BenefitData(id: 0, title: "dcdcsc", body: "dchsdch", logo: "/files/608/iphone-11-xanhla-200x200.jpg", typeMember: -1, status: -1, mobileStatus: 6))
+//                
+//                Divider()
+//                
+//            }
+//        }
+//    }
+//}

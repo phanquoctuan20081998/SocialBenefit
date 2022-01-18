@@ -24,11 +24,13 @@ struct ResetSuccessView: View {
                 VStack(spacing: 20) {
                     
                     Spacer().frame(height: 100)
-
-                    URLImageView(url: userInfor.companyLogo)
+                    
+                    //URLImageView(url: userInfor.companyLogo)
+                    Image("pic_company_logo")
+                        .resizable()
                         .scaledToFit()
-                        .frame(width: ScreenInfor().screenWidth * 0.7, height: 80)
-
+                        .frame(height: 50)
+                    
                     Spacer().frame(height: 30)
                     
                     Text("success_notification".localized)

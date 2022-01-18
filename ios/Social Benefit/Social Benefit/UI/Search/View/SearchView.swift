@@ -45,9 +45,6 @@ struct SearchContentView: View {
                 }
             }
         )
-        .onAppear {
-            UIScrollView.appearance().bounces = true
-        }
     }
     
     func getDestinationView(selection: Int) -> AnyView {

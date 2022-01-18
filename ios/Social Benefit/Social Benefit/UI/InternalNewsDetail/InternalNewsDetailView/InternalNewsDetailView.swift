@@ -55,44 +55,39 @@ struct InternalNewsDetailView: View {
                 AmzdScrollViewReader { proxy in
                     ScrollViewContent
                         .onAppear { self.proxy = proxy }
-                        .padding(.bottom, keyboardHandler.keyboardHeight)
                 }
+//                Spacer().frame(height: )
             }
             
             Spacer()
             
-            VStack {
-                
-                Spacer().frame(height: 5)
-                
-                Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-                
-                CommentBarView(isReply: $commentViewModel.isReply,
-                               replyTo: $commentViewModel.replyTo,
-                               parentId: $commentViewModel.parentId,
-                               isFocus: $commentViewModel.isFocus,
-                               commentText: $commentViewModel.commentText,
-                               SendButtonView: AnyView(
-                                SendCommentButtonView(
-                                    isReply: $commentViewModel.isReply,
-                                    commentText: $commentViewModel.commentText,
-                                    moveToPosition: $commentViewModel.moveToPosition,
-                                    numOfComment: $commentViewModel.numOfComment,
-                                    proxy: $proxy,
-                                    contentId: internalNewData.contentId,
-                                    parentId: commentViewModel.parentId,
-                                    content: commentViewModel.commentText,
-                                    contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
-                                    updateComment: commentViewModel.updateComment(newComment:),
-                                    otherUpdate: {
-                                        commentViewModel.requestListComment(id: commentViewModel.contentId)
-                                    })))
-                    .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
-                Spacer().frame(height: 10)
-            }
-            .background(Color.white)
-            .offset(y: -keyboardHandler.keyboardHeight)
+            Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+            
+            CommentBarView(isReply: $commentViewModel.isReply,
+                           replyTo: $commentViewModel.replyTo,
+                           parentId: $commentViewModel.parentId,
+                           isFocus: $commentViewModel.isFocus,
+                           commentText: $commentViewModel.commentText,
+                           SendButtonView: AnyView(
+                            SendCommentButtonView(
+                                isReply: $commentViewModel.isReply,
+                                commentText: $commentViewModel.commentText,
+                                moveToPosition: $commentViewModel.moveToPosition,
+                                numOfComment: $commentViewModel.numOfComment,
+                                proxy: $proxy,
+                                contentId: internalNewData.contentId,
+                                parentId: commentViewModel.parentId,
+                                content: commentViewModel.commentText,
+                                contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
+                                updateComment: commentViewModel.updateComment(newComment:),
+                                otherUpdate: {
+                                    commentViewModel.requestListComment(id: commentViewModel.contentId)
+                                })))
+                .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
+            
+            Spacer()
         }
+        .padding(.bottom, keyboardHandler.keyboardHeight)
         .edgesIgnoringSafeArea(.all)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
         
@@ -101,15 +96,12 @@ struct InternalNewsDetailView: View {
             if reactViewModel.isShowReactionBar {
                 reactViewModel.isShowReactionBar = false
             }
-            Utils.dismissKeyboard()
         }
-        .onAppear(perform: {
-            UIScrollView.appearance().bounces = true
-        })
         
         // Option pop up
         .overlay(CommentOptionPopUp(isPresent: $commentViewModel.isPresentOptionView, text: $commentViewModel.selectedText, commentId: commentViewModel.selectedCommentId, contentId: commentViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, parentId: commentViewModel.selectedParentId))
         .navigationBarHidden(true)
+        .reactionPopUpView(isPresented: $reactViewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, contentId: internalNewData.contentId)
     }
     
     func backButtonTapped() {
@@ -131,8 +123,8 @@ extension InternalNewsDetailView {
                 VStack {
                     PostContentView
                     
-                    //                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
-                    //                        .padding(.horizontal, 10)
+//                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
+//                        .padding(.horizontal, 10)
 //                    Divider().frame(width: ScreenInfor().screenWidth * 0.9)
 //                    LikeAndCommentButton(contentId: commentViewModel.contentId, isFocus: $commentViewModel.isFocus)
 //                        .frame(height: 20)
@@ -194,6 +186,7 @@ extension InternalNewsDetailView {
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,
                     isFocus: $commentViewModel.isFocus,
+                    isShowRactionList: $reactViewModel.isShowReactionList,
                     reactModel: reactViewModel.reactModel,
                     listComment: commentViewModel.listComment,
                     sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })
@@ -208,7 +201,6 @@ extension InternalNewsDetailView {
                 .padding()
             
             VStack(alignment: .leading, spacing: 10) {
-                
                 Text(internalNewData.title.toUpperCase())
                     .bold()
                     .font(.system(size: 19))
@@ -290,8 +282,6 @@ struct SendCommentButtonView: View {
                 }
             })
             
-            Utils.dismissKeyboard()
-            
             // Click count
             if contentType == Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS {
                 countClick(contentId: contentId, contentType: Constants.ViewContent.TYPE_INTERNAL_NEWS)
@@ -316,3 +306,4 @@ struct InternalNewsDetailView_Previews: PreviewProvider {
         InternalNewsDetailView(internalNewData: InternalNewsData(id: 0, contentId: 12, title: "Thông báo cắst điện6", shortBody: "Thông báo cắt điện", body: "<p>それでは申し訳ございません が、 　５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。５分ほど、お時間をいただけますでしょうか。 一度お電話をお切りして、上の者から 改めてお話しさせていただきたいと存じますが、よろしいでしょうか。</p>", cover: "/files/608/iphone-11-xanhla-200x200.jpg", newsCategory: 1))
     }
 }
+

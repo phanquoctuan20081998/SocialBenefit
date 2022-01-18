@@ -6,8 +6,8 @@ target 'Social Benefit' do
   use_frameworks!
 
   # Pods for Social Benefit
-  pod 'Alamofire', '~> 5.5.0'
-  pod 'SwiftyJSON', '~> 5.0.0'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
   pod 'SDWebImageSwiftUI'
   pod 'ScrollViewProxy', '~> 1.0'
   pod 'Firebase/Core'

@@ -18,7 +18,6 @@ struct BenefitData: Identifiable, Hashable {
     var typeMember: Int
     var status: Int
     var mobileStatus: Int
-    var actionTime: String
     
     init() {
         self.id = 0
@@ -28,10 +27,9 @@ struct BenefitData: Identifiable, Hashable {
         self.typeMember = 0
         self.status = 0
         self.mobileStatus = 0
-        self.actionTime = ""
     }
     
-    init(id: Int, title: String, body: String, logo: String, typeMember: Int, status: Int, mobileStatus: Int, actionTime: String) {
+    init(id: Int, title: String, body: String, logo: String, typeMember: Int, status: Int, mobileStatus: Int) {
         self.id = id
         self.title = title
         self.body = body
@@ -39,7 +37,6 @@ struct BenefitData: Identifiable, Hashable {
         self.typeMember = typeMember
         self.status = status
         self.mobileStatus = mobileStatus
-        self.actionTime = actionTime
     }
     
     // This is status of benefit...

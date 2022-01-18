@@ -33,11 +33,11 @@ struct URLImageView: View {
         ZStack {
             WebImage(url: URL(string: url), isAnimating: $isAnimating)
                 .placeholder {
-                    Rectangle().foregroundColor(.gray.opacity(0.0001))
-//                        .overlay(
-//                            Image(systemName: "photo")
-//                                .foregroundColor(.gray.opacity(0.5))
-//                        )
+                    Rectangle().foregroundColor(.gray.opacity(0.1))
+                        .overlay(
+                            Image(systemName: "photo")
+                                .foregroundColor(.gray.opacity(0.5))
+                        )
 //                        .scaledToFill()
                 }
                 .resizable()

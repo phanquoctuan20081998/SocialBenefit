@@ -37,13 +37,15 @@ struct LoadingView: View {
 }
 
 extension View {
-    func loadingView(isLoading: Binding<Bool>) -> some View {
+    func loadingView(isLoading: Binding<Bool>, dimBackground: Bool = true) -> some View {
         return self.popup(isPresented: isLoading, alignment: .center) {
             VStack {
                 LoadingView()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .background(Color.black.opacity(0.2))
+            .if(dimBackground) {
+                $0.background(Color.black.opacity(0.2))
+            }
             .edgesIgnoringSafeArea(.all)
         }
     }

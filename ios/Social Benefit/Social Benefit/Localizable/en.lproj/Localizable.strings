@@ -401,3 +401,5 @@
 
 "delete" = "delete";
 "not_complete_survey_error" = "Please complete survey before sending";
+
+"reacted" = "People who reacted";

@@ -63,8 +63,6 @@ struct LoginCompany: APIModelProtocol {
     var id: Int?
     var fullName: String?
     var logo: String?
-    var clientId: String?
-    var clientSecret: String?
 }
 
 struct LoginPosition: APIModelProtocol {

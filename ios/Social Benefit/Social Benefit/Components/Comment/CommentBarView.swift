@@ -59,7 +59,7 @@ struct CommentBarView: View {
                     SendButtonView
                 }
             }
-        }.background(Color.white)
+        }
     }
 }
 

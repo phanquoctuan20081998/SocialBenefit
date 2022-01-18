@@ -63,6 +63,31 @@ struct ReactSuveryModel: APIResponseProtocol {
         }
         return .none
     }
+    
+    var maxReactionType: [ReactionType] {
+        var array: [ReactionType] = []
+        if let result = result {
+            let dictionary = result.reduce(into: [:]) { counts, react in
+                counts[react.reactType, default: 0] += 1
+            }
+            let max = dictionary.sorted { d1, d2 in
+                if d1.value == d2.value {
+                    if let k1 = d1.key, let k2 = d2.key {
+                        return k1 > k2
+                    }
+                    return true
+                } else {
+                    return d1.value > d2.value
+                }
+            }.prefix(2)
+            max.forEach { e in
+                if let key = e.key, let reactType = ReactionType.init(rawValue: key) {
+                    array.append(reactType)
+                }
+            }
+        }
+        return array
+    }
 }
 
 struct ReactResultModel: APIModelProtocol {

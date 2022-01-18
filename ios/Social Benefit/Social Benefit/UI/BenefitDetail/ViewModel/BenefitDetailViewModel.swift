@@ -13,7 +13,7 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     @Published var applyStatus = -1
     @Published var typeMember = -1
     @Published var isPresentedPopup: Bool = false
-    @Published var benefit: BenefitData = benefitDataSample
+    @Published var benefit: BenefitData = BenefitData()
     @Published var index: Int = -1
     
     
@@ -62,5 +62,3 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     }
 }
 
-
-let benefitDataSample = BenefitData(id: 0, title: "hsdhjsdb sds sdbfh. sdjks nsdjc  dsjbb dsbdsk. dshb dskb sdb sdbcbd sdbcbcs nn dc sdcj sdnc j dfkn", body: "dsbdsjfsdjhbfhjdsbfhs", logo: "", typeMember: 0, status: 0, mobileStatus: 0, actionTime: "02/02/2022")

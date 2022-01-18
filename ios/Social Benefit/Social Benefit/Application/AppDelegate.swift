@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import UserNotifications
-import SwiftUI
 
 public var device_token = ""
 
@@ -27,9 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             // do only pure app launch stuff, not interface stuff
         } else {
             self.window = UIWindow()
-            let vc = UIHostingController(rootView: SplashView())
-//            window.rootViewController = SwipeNavigationController(rootViewController: hostingController)
-//            let vc = SplashViewController()
+            let vc = SplashViewController()
             self.window!.rootViewController = vc
             self.window!.makeKeyAndVisible()
             self.window!.backgroundColor = .red
@@ -70,13 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         self.window = self.window ?? UIWindow()
         
-        let vc = UIHostingController(rootView: SplashView())
-        
         // Set this scene's window's background color.
         self.window!.backgroundColor = UIColor.red
         
         // Create a ViewController object and set it as the scene's window's root view controller.
-        self.window!.rootViewController = vc
+        self.window!.rootViewController = SplashViewController()
         
         // Make this scene's window be visible.
         self.window!.makeKeyAndVisible()

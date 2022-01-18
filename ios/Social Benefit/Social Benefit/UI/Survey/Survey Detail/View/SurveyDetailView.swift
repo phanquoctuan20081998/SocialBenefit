@@ -43,6 +43,7 @@ struct SurveyDetailView: View {
         .errorPopup($viewModel.error)
         .loadingView(isLoading: $viewModel.isLoading)
         .inforTextView($viewModel.infoText)
+        .reactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
     }
     
     var survetList: some View {
@@ -269,8 +270,8 @@ struct SurveyDetailView: View {
             HStack(alignment: .center, spacing: 10) {
                 URLImageView(url: Config.baseURL + userInfor.avatar)
                     .clipShape(Circle())
-                    .frame(width: 30, height: 30)
-                    .padding(.all, 2)
+                    .frame(width: 20, height: 20)
+                    .padding(.all, 7)
                     .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                 
                 VStack(alignment: .leading) {
@@ -331,20 +332,7 @@ struct SurveyDetailView: View {
                         .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(comment.commentBy ?? "")
-                                .bold()
-                                .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
-                                .font(Font.system(size: 14))
-                            Text(comment.commentDetail ?? "")
-                                .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 10, trailing: 10))
-                                .font(Font.system(size: 14))
-                        }
-                        .background(Color("comment"))
-                        .cornerRadius(15)
-                        .onLongPressGesture {
-                            viewModel.didLongTapCommnet(comment)
-                        }
+                        commmentDetail(comment)                        
                         HStack {
                             Button(action: {
                                 viewModel.replyTo = comment
@@ -372,20 +360,7 @@ struct SurveyDetailView: View {
                             .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                         
                         VStack(alignment: .leading, spacing: 10) {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(child.commentBy ?? "")
-                                    .bold()
-                                    .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
-                                    .font(Font.system(size: 14))
-                                Text(child.commentDetail ?? "")
-                                    .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 10, trailing: 10))
-                                    .font(Font.system(size: 14))
-                            }
-                            .background(Color("comment"))
-                            .cornerRadius(15)
-                            .onLongPressGesture {
-                                viewModel.didLongTapCommnet(child)
-                            }
+                            commmentDetail(child)
                             HStack {
                                 Text(child.timeText)
                                     .font(Font.system(size: 14))
@@ -401,12 +376,38 @@ struct SurveyDetailView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    @ViewBuilder
+    func commmentDetail(_ comment: CommentResultModel) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(comment.commentBy ?? "")
+                .bold()
+                .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
+                .font(Font.system(size: 14))
+            Text(comment.commentDetail ?? "")
+                .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 10, trailing: 10))
+                .font(Font.system(size: 14))
+        }
+        .background(Color("comment"))
+        .cornerRadius(15)
+        .if(comment.commentByEmployeeId?.string == userInfor.employeeId, transform: { content in
+            content
+                .onTapGesture {
+                    
+                }
+                .onLongPressGesture {
+                    viewModel.didLongTapCommnet(comment)
+                }
+        })
+        
+    }
+    
     var reactionView: some View {
         
         ReactionBar(isShowReactionBar: $viewModel.isShowReactionBar,
                     isLoadingReact: $viewModel.isLoadingReact,
                     currentReaction: $viewModel.currentReaction,
                     isFocus: $viewModel.focusComment,
+                    isShowRactionList: $viewModel.isShowReactionList,
                     reactModel: viewModel.reactModel,
                     listComment: viewModel.listComment,
                     sendReaction: self.viewModel.sendReaction)

@@ -12,6 +12,8 @@ struct SuccessTextView: ViewModifier {
     
     @Binding var text: String
     
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
     func body(content: Content) -> some View {
         content
             .overlay(popupContent())
@@ -32,13 +34,22 @@ struct SuccessTextView: ViewModifier {
                             .lineLimit(3)
                     }
                     .padding(10)
-                    .background(Color.blue)
+                    .background(Color.green)
                     .clipShape(Capsule())
                 }
                 .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 50, trailing: 10))
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
                 .onTapGesture {
                     text = ""
+                }
+                .onReceive(timer) { _ in
+                    text = ""
+                }
+                .onAppear {
+                    _ = self.timer.upstream.autoconnect()
+                }
+                .onDisappear {
+                    self.timer.upstream.connect().cancel()
                 }
             }
         }

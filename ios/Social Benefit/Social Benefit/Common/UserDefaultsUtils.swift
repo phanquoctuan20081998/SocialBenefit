@@ -15,7 +15,6 @@ extension UserDefaults {
         case employeeId
         case password
         case appLanguage
-        case companyLogo
     }
     
     static func getCompanyCode() -> String {
@@ -63,15 +62,6 @@ extension UserDefaults {
     
     static func setAppLanguage(value: AppLanguage) {
         UserDefaults.standard.set(value.rawValue, forKey: UserDefaultsKey.appLanguage.rawValue)
-        UserDefaults.standard.synchronize()
-    }
-    
-    static func getCompanyLogo() -> String {
-       return UserDefaults.standard.string(forKey: UserDefaultsKey.companyLogo.rawValue) ?? "https://www.nissho-vn.com/wp-content/themes/nevrenew/img/logo.png"
-    }
-    
-    static func setCompanyLogo(value: String) {
-        UserDefaults.standard.set(value, forKey: UserDefaultsKey.companyLogo.rawValue)
         UserDefaults.standard.synchronize()
     }
 }

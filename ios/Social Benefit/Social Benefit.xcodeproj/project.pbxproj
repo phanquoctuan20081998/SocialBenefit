@@ -3,26 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
-		2A112AFD27967588000F4B88 /* VUIAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112AFC27967588000F4B88 /* VUIAppView.swift */; };
-		2A112B0427969516000F4B88 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0327969516000F4B88 /* Med247View.swift */; };
-		2A112B09279697C9000F4B88 /* VUIAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B08279697C9000F4B88 /* VUIAppService.swift */; };
-		2A112B0B27969949000F4B88 /* VUIAppResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0A27969949000F4B88 /* VUIAppResponseModel.swift */; };
-		2A112B0D27969ABA000F4B88 /* OAth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0C27969ABA000F4B88 /* OAth2Service.swift */; };
-		2A112B1027969B31000F4B88 /* OAth2ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0F27969B31000F4B88 /* OAth2ResponseModel.swift */; };
-		2A112B142796A0B5000F4B88 /* VUIAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B132796A0B5000F4B88 /* VUIAppViewModel.swift */; };
-		2A112B192796B684000F4B88 /* CommonCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */; };
-		2A112B1A2796B684000F4B88 /* CommonCrypto.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2A112B1B2796B685000F4B88 /* MedLib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B162796ADCE000F4B88 /* MedLib.xcframework */; };
-		2A112B1C2796B685000F4B88 /* MedLib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B162796ADCE000F4B88 /* MedLib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2A398BB227951A4400E347F5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB127951A4400E347F5 /* SplashView.swift */; };
-		2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */; };
-		2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB72795458100E347F5 /* VinaphoneView.swift */; };
-		2A398BBA2795472000E347F5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB92795472000E347F5 /* WebView.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
 		84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */; };
@@ -307,6 +292,13 @@
 		C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */; };
 		C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */; };
 		C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */; };
+		CB5DC53B279140F40013EC73 /* ReactCountGroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC53A279140F40013EC73 /* ReactCountGroupService.swift */; };
+		CB5DC53D279141FB0013EC73 /* ReactListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC53C279141FB0013EC73 /* ReactListService.swift */; };
+		CB5DC53F2791428A0013EC73 /* ReactListRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC53E2791428A0013EC73 /* ReactListRequestModel.swift */; };
+		CB5DC5422791443B0013EC73 /* ReactionPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC5412791443B0013EC73 /* ReactionPopUpView.swift */; };
+		CB5DC544279176690013EC73 /* ReactionPopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC543279176690013EC73 /* ReactionPopUpViewModel.swift */; };
+		CB5DC546279182120013EC73 /* ReactCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC545279182120013EC73 /* ReactCountModel.swift */; };
+		CB5DC54A27918A610013EC73 /* ReactListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5DC54927918A610013EC73 /* ReactListModel.swift */; };
 		CBC9D432278D3128000AF185 /* CommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D431278D3128000AF185 /* CommentPopup.swift */; };
 		CBC9D436278D3B39000AF185 /* DeleteCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */; };
 		CBC9D43C278D8FB7000AF185 /* EditCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */; };
@@ -321,8 +313,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2A112B1C2796B685000F4B88 /* MedLib.xcframework in Embed Frameworks */,
-				2A112B1A2796B684000F4B88 /* CommonCrypto.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,19 +321,6 @@
 
 /* Begin PBXFileReference section */
 		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
-		2A112AFC27967588000F4B88 /* VUIAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppView.swift; sourceTree = "<group>"; };
-		2A112B0327969516000F4B88 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
-		2A112B08279697C9000F4B88 /* VUIAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppService.swift; sourceTree = "<group>"; };
-		2A112B0A27969949000F4B88 /* VUIAppResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppResponseModel.swift; sourceTree = "<group>"; };
-		2A112B0C27969ABA000F4B88 /* OAth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAth2Service.swift; sourceTree = "<group>"; };
-		2A112B0F27969B31000F4B88 /* OAth2ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAth2ResponseModel.swift; sourceTree = "<group>"; };
-		2A112B132796A0B5000F4B88 /* VUIAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppViewModel.swift; sourceTree = "<group>"; };
-		2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = CommonCrypto.xcframework; sourceTree = "<group>"; };
-		2A112B162796ADCE000F4B88 /* MedLib.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MedLib.xcframework; sourceTree = "<group>"; };
-		2A398BB127951A4400E347F5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialSettingsService.swift; sourceTree = "<group>"; };
-		2A398BB72795458100E347F5 /* VinaphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinaphoneView.swift; sourceTree = "<group>"; };
-		2A398BB92795472000E347F5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -635,6 +612,13 @@
 		C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentButton.swift; sourceTree = "<group>"; };
 		C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionActionView.swift; sourceTree = "<group>"; };
+		CB5DC53A279140F40013EC73 /* ReactCountGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactCountGroupService.swift; sourceTree = "<group>"; };
+		CB5DC53C279141FB0013EC73 /* ReactListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListService.swift; sourceTree = "<group>"; };
+		CB5DC53E2791428A0013EC73 /* ReactListRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListRequestModel.swift; sourceTree = "<group>"; };
+		CB5DC5412791443B0013EC73 /* ReactionPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionPopUpView.swift; sourceTree = "<group>"; };
+		CB5DC543279176690013EC73 /* ReactionPopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionPopUpViewModel.swift; sourceTree = "<group>"; };
+		CB5DC545279182120013EC73 /* ReactCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactCountModel.swift; sourceTree = "<group>"; };
+		CB5DC54927918A610013EC73 /* ReactListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListModel.swift; sourceTree = "<group>"; };
 		CBC9D431278D3128000AF185 /* CommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPopup.swift; sourceTree = "<group>"; };
 		CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentPopup.swift; sourceTree = "<group>"; };
 		CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentSurveySerive.swift; sourceTree = "<group>"; };
@@ -651,65 +635,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */,
-				2A112B192796B684000F4B88 /* CommonCrypto.xcframework in Frameworks */,
-				2A112B1B2796B685000F4B88 /* MedLib.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A112AFB2796756F000F4B88 /* VUIApp */ = {
-			isa = PBXGroup;
-			children = (
-				2A112B122796A0A5000F4B88 /* ViewModel */,
-				2A112B112796A09D000F4B88 /* View */,
-			);
-			path = VUIApp;
-			sourceTree = "<group>";
-		};
-		2A112B0227969502000F4B88 /* Med247 */ = {
-			isa = PBXGroup;
-			children = (
-				2A112B0327969516000F4B88 /* Med247View.swift */,
-			);
-			path = Med247;
-			sourceTree = "<group>";
-		};
-		2A112B112796A09D000F4B88 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2A112AFC27967588000F4B88 /* VUIAppView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		2A112B122796A0A5000F4B88 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				2A112B132796A0B5000F4B88 /* VUIAppViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		2A398BB52795454300E347F5 /* SpecialMerchant */ = {
-			isa = PBXGroup;
-			children = (
-				2A112B0227969502000F4B88 /* Med247 */,
-				2A112AFB2796756F000F4B88 /* VUIApp */,
-				2A398BB62795455E00E347F5 /* Vinaphone */,
-			);
-			path = SpecialMerchant;
-			sourceTree = "<group>";
-		};
-		2A398BB62795455E00E347F5 /* Vinaphone */ = {
-			isa = PBXGroup;
-			children = (
-				2A398BB72795458100E347F5 /* VinaphoneView.swift */,
-			);
-			path = Vinaphone;
-			sourceTree = "<group>";
-		};
 		640D96DEBE36BA1BC6786580 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,8 +680,6 @@
 		84DA605E2696DAC80012F55B = {
 			isa = PBXGroup;
 			children = (
-				2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */,
-				2A112B162796ADCE000F4B88 /* MedLib.xcframework */,
 				84DA60692696DAC80012F55B /* Social Benefit */,
 				84DA60682696DAC80012F55B /* Products */,
 				EB0BB67FC17D285CAAD4A5A5 /* Pods */,
@@ -811,7 +740,6 @@
 				C446BE7F2771B39900925F5E /* UserDefaultsUtils.swift */,
 				C47081D9277D5D4F00E7F612 /* ConvertToHTML.swift */,
 				C41C1282277F41CD00C7E096 /* NavigationLazyView.swift */,
-				2A398BB92795472000E347F5 /* WebView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -872,9 +800,8 @@
 				C456C45C275DA14F00406C8D /* WalletInforService.swift */,
 				C417D469278FBF5100E21563 /* EditCommentSurveySerive.swift */,
 				C417D46B278FBF6E00E21563 /* DeleteCommentSurveySerive.swift */,
-				2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */,
-				2A112B08279697C9000F4B88 /* VUIAppService.swift */,
-				2A112B0C27969ABA000F4B88 /* OAth2Service.swift */,
+				CB5DC53A279140F40013EC73 /* ReactCountGroupService.swift */,
+				CB5DC53C279141FB0013EC73 /* ReactListService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -882,7 +809,6 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2A398BB52795454300E347F5 /* SpecialMerchant */,
 				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
 				C4ADDE5D276C2A2A00B24F6A /* ClickCounter */,
 				84DA60942697F2970012F55B /* Controller */,
@@ -930,7 +856,6 @@
 			children = (
 				84DA60852696DB720012F55B /* SplashViewController.swift */,
 				84DA60862696DB720012F55B /* SplashViewController.xib */,
-				2A398BB127951A4400E347F5 /* SplashView.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -1027,8 +952,9 @@
 				C4B9BF7626FC25170022DA55 /* VoucherCodeModel.swift */,
 				C456C45E275DA1D600406C8D /* WalletInforModel.swift */,
 				CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */,
-				2A112B0A27969949000F4B88 /* VUIAppResponseModel.swift */,
-				2A112B0F27969B31000F4B88 /* OAth2ResponseModel.swift */,
+				CB5DC53E2791428A0013EC73 /* ReactListRequestModel.swift */,
+				CB5DC545279182120013EC73 /* ReactCountModel.swift */,
+				CB5DC54927918A610013EC73 /* ReactListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1130,6 +1056,7 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CB5DC5402791440E0013EC73 /* ReactView */,
 				C4675B8327853F6500A97726 /* Reaction */,
 				C4393D2726E90EDC00C02D43 /* AutoResizeTextField */,
 				C4CD0D5E26D5FB0D003D5BE7 /* Background */,
@@ -1950,6 +1877,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CB5DC5402791440E0013EC73 /* ReactView */ = {
+			isa = PBXGroup;
+			children = (
+				CB5DC5412791443B0013EC73 /* ReactionPopUpView.swift */,
+				CB5DC543279176690013EC73 /* ReactionPopUpViewModel.swift */,
+			);
+			path = ReactView;
+			sourceTree = "<group>";
+		};
 		EB0BB67FC17D285CAAD4A5A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,13 +1907,15 @@
 				84DA60642696DAC80012F55B /* Frameworks */,
 				84DA60652696DAC80012F55B /* Resources */,
 				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
-				415A62862E8BD7B86AA9C82E /* [CP] Embed Pods Frameworks */,
+				2FD8F45E71D14FE8E6B1EF05 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Social Benefit";
+			packageProductDependencies = (
+			);
 			productName = "Social Benefit";
 			productReference = 84DA60672696DAC80012F55B /* Social Benefit.app */;
 			productType = "com.apple.product-type.application";
@@ -2006,6 +1944,8 @@
 				vi,
 			);
 			mainGroup = 84DA605E2696DAC80012F55B;
+			packageReferences = (
+			);
 			productRefGroup = 84DA60682696DAC80012F55B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2038,7 +1978,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		415A62862E8BD7B86AA9C82E /* [CP] Embed Pods Frameworks */ = {
+		2FD8F45E71D14FE8E6B1EF05 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2090,13 +2030,13 @@
 				C4E985A9277AB75C00D5AC7E /* NotificationListService.swift in Sources */,
 				C40161C526F08D44003A1EEF /* SpecialOffersView.swift in Sources */,
 				C446BE842771B48400925F5E /* ListSurveyRequestModel.swift in Sources */,
-				2A112B1027969B31000F4B88 /* OAth2ResponseModel.swift in Sources */,
 				C4B9BF7726FC25170022DA55 /* VoucherCodeModel.swift in Sources */,
 				C424F73926CDFCBD00BD441E /* ConditionInViewModifier.swift in Sources */,
 				C440878127421BF4009079EF /* TransactionCardView.swift in Sources */,
 				C4520AB326E3500E00E4B6A5 /* InternalNewsViewModel.swift in Sources */,
 				C436562A26CB4C0700148796 /* FunctionCardView.swift in Sources */,
 				84DA60CB269ECB6A0012F55B /* StringUtils.swift in Sources */,
+				CB5DC546279182120013EC73 /* ReactCountModel.swift in Sources */,
 				C4D02615270D3F8A0048B671 /* CustomerSupportPopUp.swift in Sources */,
 				C48C6AFF2718064000BFAF34 /* ResetSuccessView.swift in Sources */,
 				C47AEC312757077B00DF8A60 /* EmployeeInforService.swift in Sources */,
@@ -2129,10 +2069,10 @@
 				C402B26C26E76C5F00A41288 /* ReactModel.swift in Sources */,
 				C4B3D58726EA02DD003C6CA9 /* ApplyPopupView.swift in Sources */,
 				C471A9CC2702AA0200C5F6EE /* BottomButtonView.swift in Sources */,
-				2A112B0D27969ABA000F4B88 /* OAth2Service.swift in Sources */,
 				C4B9BF7326FC1BDE0022DA55 /* HomeScreenViewModel.swift in Sources */,
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
 				848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */,
+				CB5DC53B279140F40013EC73 /* ReactCountGroupService.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
 				C446BE982771B58200925F5E /* LoginRequestModel.swift in Sources */,
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
@@ -2141,9 +2081,7 @@
 				CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */,
 				C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */,
 				C4EA9A86275E5F6800F87B8C /* RecognitionUsesBlockView.swift in Sources */,
-				2A112AFD27967588000F4B88 /* VUIAppView.swift in Sources */,
 				C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */,
-				2A112B0B27969949000F4B88 /* VUIAppResponseModel.swift in Sources */,
 				8487535D2705AB060061D4E1 /* ChangePasswordPopUpView.swift in Sources */,
 				C4792A5B27017DF5006D71AD /* MyVoucherButtonView.swift in Sources */,
 				84DA60C2269ECA130012F55B /* RecognitionViewController.swift in Sources */,
@@ -2163,7 +2101,6 @@
 				C472E4BE26FD66DF00D047BA /* ScrollableTabBar.swift in Sources */,
 				C4042E24274D26B8003A88A7 /* CommentBarView.swift in Sources */,
 				C40366FB26DB258C00381888 /* BenefitModel.swift in Sources */,
-				2A112B09279697C9000F4B88 /* VUIAppService.swift in Sources */,
 				C44D1E9A26E7A33E00D2DDA2 /* ReactionBarView.swift in Sources */,
 				C43C7BB826FB019B0056D169 /* MyVoucherViewModel.swift in Sources */,
 				84DA606B2696DAC80012F55B /* AppDelegate.swift in Sources */,
@@ -2205,7 +2142,6 @@
 				C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */,
 				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
-				2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */,
 				C45EDBA1270FF7B5004799B5 /* CustomerSupportService.swift in Sources */,
 				C40AA16D277B4DDE002601AC /* NotificationView.swift in Sources */,
 				C403670326DB2A8200381888 /* UserInforModel.swift in Sources */,
@@ -2225,8 +2161,6 @@
 				C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */,
 				C456C45D275DA14F00406C8D /* WalletInforService.swift in Sources */,
 				C446BEB02771B88900925F5E /* StringValue.swift in Sources */,
-				2A398BB227951A4400E347F5 /* SplashView.swift in Sources */,
-				2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */,
 				C4DF7A6726F9BCCE00DC7D04 /* BuyVoucherModel.swift in Sources */,
 				C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */,
 				C41C1281277F411800C7E096 /* HideKeyboard.swift in Sources */,
@@ -2244,6 +2178,7 @@
 				C410A467274B3177006069E3 /* RecognitionViewModel.swift in Sources */,
 				84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */,
 				C48790B82759D7AA002E97F0 /* UserModel.swift in Sources */,
+				CB5DC5422791443B0013EC73 /* ReactionPopUpView.swift in Sources */,
 				C4974ABB26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift in Sources */,
 				C403670126DB27A800381888 /* MerchantListModel.swift in Sources */,
 				C4EC104326F23B670064C3B3 /* GridView.swift in Sources */,
@@ -2287,7 +2222,6 @@
 				C46BD8892747545500E8715F /* RankingCardView.swift in Sources */,
 				C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */,
 				C472E4C426FD763400D047BA /* MerchantVoucherDetailViewModel.swift in Sources */,
-				2A398BBA2795472000E347F5 /* WebView.swift in Sources */,
 				C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */,
 				C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */,
 				C402B26E26E76E5500A41288 /* ReactService.swift in Sources */,
@@ -2319,6 +2253,7 @@
 				C446BEC62771C4B800925F5E /* ReactionCommentView.swift in Sources */,
 				C4F2A4FE26F04BAE0090675A /* UpperCaseText.swift in Sources */,
 				C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */,
+				CB5DC53D279141FB0013EC73 /* ReactListService.swift in Sources */,
 				C4D2606F26E475B2002E475C /* SlideBar.swift in Sources */,
 				C446BEB92771B9DD00925F5E /* ErrorPupup.swift in Sources */,
 				C4DB9689271598EA0073382C /* LoadingPageView.swift in Sources */,
@@ -2356,8 +2291,10 @@
 				C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */,
 				C476C5B927562BAF00D93AA7 /* EmployeeRankingView.swift in Sources */,
 				C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */,
+				CB5DC54A27918A610013EC73 /* ReactListModel.swift in Sources */,
 				C446BE8E2771B50700925F5E /* ListCommentModel.swift in Sources */,
 				C404F5BB270D4E83005237C5 /* CustomerSupportPopUpViewModel.swift in Sources */,
+				CB5DC53F2791428A0013EC73 /* ReactListRequestModel.swift in Sources */,
 				C48790B62759D716002E97F0 /* RecentTranferService.swift in Sources */,
 				C434AF3A274CC72A002A026E /* LikeAndCommentCountBarView.swift in Sources */,
 				C45260C0271565D8007E945B /* Model.swift in Sources */,
@@ -2365,10 +2302,9 @@
 				C419869026E46F9000A877A5 /* NetworkingManager.swift in Sources */,
 				C436562826CB4BB800148796 /* UserView.swift in Sources */,
 				C43C7BB226FAD04D0056D169 /* MyVoucherView.swift in Sources */,
+				CB5DC544279176690013EC73 /* ReactionPopUpViewModel.swift in Sources */,
 				84DA60C4269ECA130012F55B /* HomeViewController.swift in Sources */,
 				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
-				2A112B142796A0B5000F4B88 /* VUIAppViewModel.swift in Sources */,
-				2A112B0427969516000F4B88 /* Med247View.swift in Sources */,
 				C456C461275DAD0800406C8D /* UserService.swift in Sources */,
 				C446BEB72771B9CA00925F5E /* LoadingView.swift in Sources */,
 				C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */,
@@ -2543,7 +2479,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 0.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2568,7 +2504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 0.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
