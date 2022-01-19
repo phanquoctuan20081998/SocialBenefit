@@ -23,7 +23,6 @@ class MerchantSpecialSettingsService {
         
         service.makeCall(endpoint: Config.API_MERCHANT_SPECIAL_SETTINGS_GET, method: "POST", header: header, body: params, callback: { (result) in
             
-            print(result)
             let value = result["value"].string ?? ""
             let valueJson = JSON.init(parseJSON: value)
             

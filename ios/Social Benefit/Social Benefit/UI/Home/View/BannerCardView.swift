@@ -317,13 +317,13 @@ struct MainCardView: View {
 //                            .foregroundColor(.black)
 //                    }
                     
-//                    Button {
-//                        self.moveToVUI = true
-//                        countClick()
-//                    } label: {
-//                        mainButton(text: "vui".localized, image: "ic_vui", color: Color.green)
-//                            .foregroundColor(.black)
-//                    }
+                    Button {
+                        self.moveToVUI = true
+                        countClick()
+                    } label: {
+                        mainButton(text: "vui".localized, image: "ic_vui", color: Color.green)
+                            .foregroundColor(.black)
+                    }
                 }
                 .background (
                     ZStack {

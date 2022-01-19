@@ -17,10 +17,10 @@ class OAth2Service {
         
         let header = ["": ""]
         
-        
         let params: Parameters = ["client_id": clientId,
                                   "client_secret": clientSercet,
                                   "giant_type": "client_credentials"]
+    
         
         service.makeCall(endpoint: "", method: "POST", header: header, body: params, callback: { (result) in
             

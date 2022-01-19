@@ -10,12 +10,13 @@ import Combine
 
 class VUIAppViewModel: ObservableObject, Identifiable {
     
-    @Published var authUrl: String = "https://auth.sandbox.vuiapp.vn/auth/realms/nissho/protocol/openid-connect/token"
-    @Published var apiUrl: String = "https://api.sandbox.vuiapp.vn/v2/sessions"
-//    @Published var clientId: String = userInfor.clientId
-//    @Published var clientSecret: String = userInfor.clientSecret
-    @Published var clientId: String = "application-api"
-    @Published var clientSecret: String = "0a2dd6e3-ff6c-447a-ac14-c4dd61a3a1be"
+    @Published var authUrl: String = ""
+    @Published var apiUrl: String = ""
+    @Published var clientId: String = userInfor.clientId
+    @Published var clientSecret: String = userInfor.clientSecret
+
+    @Published var isLoading: Bool = false
+    @Published var isCannotConnectToServer: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     private var merchantSpecialSettingsService = MerchantSpecialSettingsService()
@@ -31,14 +32,15 @@ class VUIAppViewModel: ObservableObject, Identifiable {
     }
     
     func loadData() {
-        self.getOAth2()
         
-//        merchantSpecialSettingsService.getAPI(code: Constants.MerchantSpecialCode.VUI) { data in
-//            self.authUrl = data[Constants.MerchantSpecialSettings.AUTH_URL].string ?? ""
-//            self.apiUrl = data[Constants.MerchantSpecialSettings.API_URL].string ?? ""
-//
-//            self.getOAth2()
-//        }
+        self.isLoading = true
+        
+        merchantSpecialSettingsService.getAPI(code: Constants.MerchantSpecialCode.VUI) { data in
+            self.authUrl = data[Constants.MerchantSpecialSettings.AUTH_URL].string ?? ""
+            self.apiUrl = data[Constants.MerchantSpecialSettings.API_URL].string ?? ""
+            
+            self.getOAth2()
+        }
     }
     
     func getOAth2() {
@@ -48,6 +50,7 @@ class VUIAppViewModel: ObservableObject, Identifiable {
             && !self.clientSecret.isEmpty {
             oath2Service.getAPI(url: authUrl, clientId: userInfor.clientId, clientSercet: userInfor.clientSecret) { data in
                 
+                self.isLoading = false
             }
         }
     }
