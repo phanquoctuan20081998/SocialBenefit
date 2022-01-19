@@ -20,7 +20,7 @@ struct ListSurveyView: View {
         VStack {
             
             Spacer()
-            .frame(height: 50)
+                .frame(height: 50)
             
             Text("surveys".localized.uppercased())
                 .bold()

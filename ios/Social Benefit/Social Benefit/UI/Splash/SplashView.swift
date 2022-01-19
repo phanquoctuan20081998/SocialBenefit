@@ -12,8 +12,6 @@ struct SplashView: View {
     
     var body: some View {
         ZStack {
-            LoginView()
-            
             ZStack {
                 Color.white
                     .edgesIgnoringSafeArea(.all)
@@ -22,6 +20,10 @@ struct SplashView: View {
                     .scaledToFit()
                     .frame(width: ScreenInfor().screenWidth * 0.8, height: 150)
             }.opacity(animationFinished ? 0 : 1)
+            
+            if animationFinished {
+                LoginView()
+            }
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

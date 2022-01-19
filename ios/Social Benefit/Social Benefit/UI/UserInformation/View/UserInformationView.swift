@@ -15,6 +15,10 @@ struct UserInformationView: View {
     
     var dateFormatter = getDataFormatter()
     
+    init() {
+        UIScrollView.appearance().bounces = true
+    }
+    
     var body: some View {
         ZStack {
             VStack {

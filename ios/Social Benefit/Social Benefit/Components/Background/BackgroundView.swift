@@ -10,7 +10,7 @@ import SwiftUI
 struct BackgroundViewWithNotiAndSearch: View {
     @EnvironmentObject var homeScreen: HomeScreenViewModel
     @State var total: Int = 0
-
+    
     var body: some View {
         VStack {
             
@@ -109,7 +109,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                                 if !isHaveDiffirentHandle {
                                     self.presentationMode.wrappedValue.dismiss()
                                     self.isActive.toggle()
- 
+                                    
                                     backButtonTapped()
                                 } else {
                                     diffirentHandle()
@@ -155,9 +155,12 @@ struct BackgroundViewWithoutNotiAndSearch: View {
             Spacer()
         }
         .background(
-            NavigationLink(destination: NavigationLazyView(HomeScreenView(selectedTab: "house")),
-                           isActive: $isMoveToHomeScreen,
-                           label: { EmptyView() })
+            ZStack {
+                NavigationLink(destination: EmptyView(), label: {})
+                NavigationLink(destination: NavigationLazyView(HomeScreenView(selectedTab: "house")),
+                               isActive: $isMoveToHomeScreen,
+                               label: { EmptyView() })
+            }
         )
     }
 }

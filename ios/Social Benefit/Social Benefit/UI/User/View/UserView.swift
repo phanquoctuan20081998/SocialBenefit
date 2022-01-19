@@ -16,8 +16,9 @@ struct UserView: View {
     
     @State var selection: Int? = nil
     
-    // Navigation Controll
-    
+    init() {
+        UIScrollView.appearance().bounces = true
+    }
     
     var body: some View {
         VStack {
