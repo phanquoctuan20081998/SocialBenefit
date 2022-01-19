@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
+		2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23C2797E87E001CFD6B /* PTIView.swift */; };
+		2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */; };
 		2A112AFD27967588000F4B88 /* VUIAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112AFC27967588000F4B88 /* VUIAppView.swift */; };
 		2A112B0427969516000F4B88 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0327969516000F4B88 /* Med247View.swift */; };
 		2A112B09279697C9000F4B88 /* VUIAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B08279697C9000F4B88 /* VUIAppService.swift */; };
@@ -338,6 +340,8 @@
 
 /* Begin PBXFileReference section */
 		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
+		2A0EF23C2797E87E001CFD6B /* PTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTIView.swift; sourceTree = "<group>"; };
+		2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantWebView.swift; sourceTree = "<group>"; };
 		2A112AFC27967588000F4B88 /* VUIAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppView.swift; sourceTree = "<group>"; };
 		2A112B0327969516000F4B88 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
 		2A112B08279697C9000F4B88 /* VUIAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppService.swift; sourceTree = "<group>"; };
@@ -673,6 +677,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A0EF23B2797E86A001CFD6B /* PTI */ = {
+			isa = PBXGroup;
+			children = (
+				2A0EF23C2797E87E001CFD6B /* PTIView.swift */,
+			);
+			path = PTI;
+			sourceTree = "<group>";
+		};
+		2A0EF23E2797ECAB001CFD6B /* MerchantWebView */ = {
+			isa = PBXGroup;
+			children = (
+				2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */,
+			);
+			path = MerchantWebView;
+			sourceTree = "<group>";
+		};
 		2A112AFB2796756F000F4B88 /* VUIApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -718,6 +738,7 @@
 		2A398BB52795454300E347F5 /* SpecialMerchant */ = {
 			isa = PBXGroup;
 			children = (
+				2A0EF23B2797E86A001CFD6B /* PTI */,
 				2A112B0227969502000F4B88 /* Med247 */,
 				2A112AFB2796756F000F4B88 /* VUIApp */,
 				2A398BB62795455E00E347F5 /* Vinaphone */,
@@ -1158,6 +1179,7 @@
 		C419868626E46EFC00A877A5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2A0EF23E2797ECAB001CFD6B /* MerchantWebView */,
 				2A2DCC932797151F0058890E /* ReactionView */,
 				C4675B8327853F6500A97726 /* Reaction */,
 				C4393D2726E90EDC00C02D43 /* AutoResizeTextField */,
@@ -2162,6 +2184,7 @@
 				2A112B0D27969ABA000F4B88 /* OAth2Service.swift in Sources */,
 				C4B9BF7326FC1BDE0022DA55 /* HomeScreenViewModel.swift in Sources */,
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
+				2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */,
 				848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
 				C446BE982771B58200925F5E /* LoginRequestModel.swift in Sources */,
@@ -2361,6 +2384,7 @@
 				C45490352741F51300175E09 /* UsedPointHistoryView.swift in Sources */,
 				C4E3442F26F627BD00B343E8 /* Constants.swift in Sources */,
 				C48BA35026EEFC6E006C4F27 /* MerchantCategoryView.swift in Sources */,
+				2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */,
 				C4119B512754871D0093542F /* RecognitionPostView.swift in Sources */,
 				C42BD5E82743584E00E99840 /* ConvertDate.swift in Sources */,
 				2A2DCC92279713910058890E /* ReactionPopUpView.swift in Sources */,
