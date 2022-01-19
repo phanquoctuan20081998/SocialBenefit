@@ -51,10 +51,8 @@ struct CommentPopup: ViewModifier {
                             }
                     }
                     .frame(width: ScreenInfor().screenWidth * 0.8, height: 130, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30)
-                            .fill(.white)
-                    )
+                    .background(Color.white)
+                    .cornerRadius(30)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .background(Color.black.opacity(0.2))
@@ -78,6 +76,7 @@ struct CommentPopup: ViewModifier {
         .font(.system(size: 20))
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
+        .background(Color.white)
     }
 }
 

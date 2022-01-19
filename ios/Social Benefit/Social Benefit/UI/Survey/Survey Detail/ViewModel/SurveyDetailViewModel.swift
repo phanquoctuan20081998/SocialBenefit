@@ -63,6 +63,7 @@ class SurveyDetailViewModel: ObservableObject {
     @Published var scrollToBottom = false
     
     @Published var infoText = ""
+    @Published var isShowReactionList = false
     
     private(set) var totalAnswer: [Int] = []
     
@@ -103,6 +104,7 @@ class SurveyDetailViewModel: ObservableObject {
         surveyGetSerivce.request(id: id) { response in
             switch response {
             case .success(let value):
+                self.surveyModel = SurveyGetModel()
                 var hasShowMoreTemp: [Bool] = []
                 var choiceListTemp: [[SurveyChoiceModel]] = []
                 var customListTemp: [[SurveyChoiceModel]] = []
@@ -365,7 +367,7 @@ class SurveyDetailViewModel: ObservableObject {
             case .success(let value):
                 if value.status == 200 {
                     self.getListReact(id: self.surveyModel.result?.id)
-                } else { 
+                } else {
                     self.isLoadingReact = false
                 }
             case .failure(let error):

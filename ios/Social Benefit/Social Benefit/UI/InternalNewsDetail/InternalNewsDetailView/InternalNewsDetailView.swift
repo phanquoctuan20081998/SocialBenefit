@@ -109,6 +109,7 @@ struct InternalNewsDetailView: View {
         
         // Option pop up
         .overlay(CommentOptionPopUp(isPresent: $commentViewModel.isPresentOptionView, text: $commentViewModel.selectedText, commentId: commentViewModel.selectedCommentId, contentId: commentViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, parentId: commentViewModel.selectedParentId))
+        .reactionPopUpView(isPresented: $reactViewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, contentId: internalNewData.contentId)
         .navigationBarHidden(true)
     }
     
@@ -194,6 +195,7 @@ extension InternalNewsDetailView {
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,
                     isFocus: $commentViewModel.isFocus,
+                    isShowRactionList: $reactViewModel.isShowReactionList,
                     reactModel: reactViewModel.reactModel,
                     listComment: commentViewModel.listComment,
                     sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })

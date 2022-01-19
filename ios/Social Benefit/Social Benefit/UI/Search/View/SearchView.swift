@@ -29,6 +29,13 @@ struct SearchContentView: View {
                             .onTapGesture {
                                 self.isMoveToNextPage.toggle()
                                 self.selectedTab = i
+                                
+                                print(filteredData[selectedTab].destination)
+                                if filteredData[selectedTab].destination == 3 {
+                                    UIScrollView.appearance().bounces = false
+                                }
+                                
+                                // Count click
                                 countClick()
                             }
                     }

@@ -7,10 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct ErrorTextView: ViewModifier {
     
     @Binding var error: AppError
+    
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     init(_ error: Binding<AppError>) {
         _error = error
@@ -44,8 +47,14 @@ struct ErrorTextView: ViewModifier {
                 .onTapGesture {
                     error = .none
                 }
-                .onReceive(PopUpTimer) { _ in
+                .onReceive(timer) { _ in
                     error = .none
+                }
+                .onAppear {
+                    _ = self.timer.upstream.autoconnect()
+                }
+                .onDisappear {
+                    self.timer.upstream.connect().cancel()
                 }
             }
         }
@@ -58,4 +67,3 @@ extension View {
         return modifier(ErrorTextView.init(error))
     }
 }
-

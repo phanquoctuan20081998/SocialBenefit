@@ -50,7 +50,7 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
     
     func getContent() {
         if self.notificationItem.getContentParams().isEmpty {
-            self.content = "\(self.notiTypeName): \(self.notificationItem.getContent())"
+            self.content = "\(self.notiTypeName): <b> \(self.notificationItem.getContent()) </b>"
         } else if self.notificationItem.getContentParams().count == 1 {
             
             if self.notificationItem.getContent() == "C00193_I" {

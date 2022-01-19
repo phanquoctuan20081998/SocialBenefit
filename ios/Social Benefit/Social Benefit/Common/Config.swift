@@ -51,6 +51,9 @@ struct Config {
     static let API_CONTENT_LIST_REACT = "/content/get/react"
     static let API_CONTENT_REACT = "/content/react"
     
+    static let API_GET_REACT_COUNT_GROUP = "/content/get/react/group_count"
+    static let API_GET_REACT_LIST = "/content/get/react/list"
+    
     static let API_SEND_MAIL_CUSTOMER_SUPPORT = "/mobile/mail/customer_support"
     
     static let API_USED_POINTS_HISTORY_GET = "/used-points-history"

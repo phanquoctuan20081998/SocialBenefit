@@ -25,6 +25,8 @@ class ReactViewModel: ObservableObject, Identifiable {
     @Published var reactModel = ReactSuveryModel() 
 //    @Published var listComment = ListCommentModel()
     
+    @Published var isShowReactionList = false
+    
     private let reactService = ReactService()
     private let listReactService = ListReactService()
     private let addReactService = AddReactSurveyService()

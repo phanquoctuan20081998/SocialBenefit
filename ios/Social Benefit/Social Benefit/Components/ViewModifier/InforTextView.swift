@@ -11,6 +11,8 @@ import SwiftUI
 struct InforTextView: ViewModifier {
     @Binding var text: String
     
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
     func body(content: Content) -> some View {
         content
             .overlay(popupContent())
@@ -38,6 +40,15 @@ struct InforTextView: ViewModifier {
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
                 .onTapGesture {
                     text = ""
+                }
+                .onReceive(timer) { _ in
+                    text = ""
+                }
+                .onAppear {
+                    _ = self.timer.upstream.autoconnect()
+                }
+                .onDisappear {
+                    self.timer.upstream.connect().cancel()
                 }
             }
         }

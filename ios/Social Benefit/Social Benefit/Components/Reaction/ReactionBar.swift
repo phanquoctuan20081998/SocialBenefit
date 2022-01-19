@@ -13,6 +13,7 @@ struct ReactionBar: View {
     @Binding var isLoadingReact: Bool
     @Binding var currentReaction: ReactionType
     @Binding var isFocus: Bool
+    @Binding var isShowRactionList: Bool
     
     var reactModel: ReactSuveryModel
     var listComment: ListCommentModel
@@ -21,18 +22,26 @@ struct ReactionBar: View {
     
     var body: some View {
         VStack {
-            HStack {
+            HStack() {
                 if isLoadingReact {
                     ActivityRep()
                 } else {
-                    if currentReaction != .none {
-                        Image.init(currentReaction.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
+                    HStack(spacing: 0) {
+                        ForEach(reactModel.maxReactionType.indices) { index in
+                            if reactModel.maxReactionType[index] != .none {
+                                Image.init(reactModel.maxReactionType[index].imageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20, height: 20)
+                            }
+                        }
                     }
+                    
                     Text(reactModel.allReactionText)
                         .font(Font.system(size: 12))
+                        .onTapGesture {
+                            isShowRactionList = true
+                        }
                 }
                 Spacer()
                 
@@ -87,4 +96,3 @@ struct ReactionBar: View {
         .padding(10)
     }
 }
-

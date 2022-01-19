@@ -366,7 +366,6 @@
 "december" = "tháng 12";
 
 // Error
-
 "M00136_E" = "buy_over_error";
 "M00137_E" = "not_enough_voucher_error";
 "M00121_E" = "not_exist";
@@ -401,5 +400,6 @@
 "end_date_survey" = "Khảo sát kết thúc vào:";
 
 "delete" = "Xóa";
-
 "not_complete_survey_error" = "Xin hãy hoàn thành khảo sát trước khi gửi";
+
+"reacted" = "Người đã bày tỏ cảm xúc";
