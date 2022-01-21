@@ -56,6 +56,7 @@ struct RecognitionActionView: View {
                            label: { EmptyView() })
         )
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

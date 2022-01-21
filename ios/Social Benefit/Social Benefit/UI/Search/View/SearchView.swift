@@ -30,11 +30,12 @@ struct SearchContentView: View {
                                 self.isMoveToNextPage.toggle()
                                 self.selectedTab = i
                                 
-                                print(filteredData[selectedTab].destination)
+                                // Back to Home Screen
                                 if filteredData[selectedTab].destination == 3 {
-                                    UIScrollView.appearance().bounces = false
+                                    homeScreen.isPresentedSearchView = false
+                                    homeScreen.selectedTab = "house"
+                                    homeScreen.isPresentedTabBar = true
                                 }
-                                
                                 // Count click
                                 countClick()
                             }
@@ -45,16 +46,13 @@ struct SearchContentView: View {
         .edgesIgnoringSafeArea(.all)
         .background(
             ZStack {
-                if selectedTab != -1 {
+                if selectedTab != -1 && filteredData[selectedTab].destination != 3 {
                     NavigationLink(destination: NavigationLazyView(getDestinationView(selection: filteredData[selectedTab].destination)),
                                    isActive: $isMoveToNextPage,
                                    label: { EmptyView() })
                 }
             }
         )
-        .onAppear {
-            UIScrollView.appearance().bounces = true
-        }
     }
     
     func getDestinationView(selection: Int) -> AnyView {
@@ -66,8 +64,10 @@ struct SearchContentView: View {
             return AnyView(UserInformationView())
 //        case 2:
 //            return AnyView(Text("2"))
-        case 3:
-            return AnyView(HomeScreenView(selectedTab: "house"))
+//        case 3: do {
+//            return AnyView(EmptyView())
+//        }
+            
         case 4:
             return AnyView(InternalNewsView())
         case 5:

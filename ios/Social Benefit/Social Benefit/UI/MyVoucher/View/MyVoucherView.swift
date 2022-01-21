@@ -61,6 +61,7 @@ struct MyVoucherView: View {
         .environmentObject(myVoucherViewModel)
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

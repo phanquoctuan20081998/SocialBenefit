@@ -10,12 +10,20 @@ import SwiftUI
 struct VUIAppView: View {
     
     @ObservedObject var vuiAppViewModel = VUIAppViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        Text("Hello, World!")
-            .onAppear {
-                vuiAppViewModel.loadData()
-            }
+        ZStack {
+            Text("")
+                .onAppear {
+                    vuiAppViewModel.loadData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            
+            MerchantLoadingView(merchantName: "VUI-NANO")
+        }.navigationBarHidden(true)
     }
 }
 

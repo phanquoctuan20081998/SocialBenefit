@@ -34,9 +34,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = splashViewController
-//            let hostingController = UIHostingController(rootView: SplashView())
-//            window.rootViewController = SwipeNavigationController(rootViewController: hostingController)
+//            window.rootViewController = splashViewController
+            let hostingController = UIHostingController(rootView: SplashView())
+            window.rootViewController = SwipeNavigationController(rootViewController: hostingController)
             self.window = window
             window.makeKeyAndVisible()
         }

@@ -42,9 +42,11 @@ struct ListOfBenefitsView: View {
                     TableView
                 }
                 
-            }.navigationBarHidden(true)
-                .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
-                .edgesIgnoringSafeArea(.all)
+            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
+            .edgesIgnoringSafeArea(.all)
         }
         .background(
             NavigationLink(

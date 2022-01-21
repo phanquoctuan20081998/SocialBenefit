@@ -53,6 +53,7 @@ struct MerchantVoucherDetailView: View {
             
         }.environmentObject(merchantVoucherDetailViewModel)
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         .overlay(
             MyVoucherButtonView()
                 .padding(.trailing)

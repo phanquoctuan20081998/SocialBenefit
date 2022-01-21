@@ -74,9 +74,16 @@ public class BaseAPI {
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
         let url = URL(string: self.baseURL +  endpoint)!
         var request = URLRequest(url: url)
+
         request.httpMethod = method
         if header != ["":""] {request.allHTTPHeaderFields = header}
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        if endpoint.isEmpty && self.baseURL != Config.baseURL  {
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        } else {
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        }
+        
         request.httpBody = jsonData
         
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -84,7 +91,7 @@ public class BaseAPI {
             
             guard let data = data, error == nil else {
                 print("Call API failed: ", error?.localizedDescription ?? "No data")
-                print(endpoint)
+               
                 if (error?.localizedDescription == "Could not connect to the server.") {
                     DispatchQueue.main.async {
                         self.sessionTimeOut.isTimeOut = true

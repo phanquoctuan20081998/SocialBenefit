@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
+		2A0CB7AA2799448500EB11B2 /* MerchantSpecialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */; };
 		2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23C2797E87E001CFD6B /* PTIView.swift */; };
 		2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */; };
 		2A112AFD27967588000F4B88 /* VUIAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112AFC27967588000F4B88 /* VUIAppView.swift */; };
@@ -32,6 +33,7 @@
 		2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */; };
 		2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB72795458100E347F5 /* VinaphoneView.swift */; };
 		2A398BBA2795472000E347F5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB92795472000E347F5 /* WebView.swift */; };
+		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
 		84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */; };
@@ -340,6 +342,7 @@
 
 /* Begin PBXFileReference section */
 		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
+		2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialModel.swift; sourceTree = "<group>"; };
 		2A0EF23C2797E87E001CFD6B /* PTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTIView.swift; sourceTree = "<group>"; };
 		2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantWebView.swift; sourceTree = "<group>"; };
 		2A112AFC27967588000F4B88 /* VUIAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppView.swift; sourceTree = "<group>"; };
@@ -362,6 +365,7 @@
 		2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialSettingsService.swift; sourceTree = "<group>"; };
 		2A398BB72795458100E347F5 /* VinaphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinaphoneView.swift; sourceTree = "<group>"; };
 		2A398BB92795472000E347F5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -689,6 +693,7 @@
 			isa = PBXGroup;
 			children = (
 				2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */,
+				2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */,
 			);
 			path = MerchantWebView;
 			sourceTree = "<group>";
@@ -1078,6 +1083,7 @@
 				2A2DCC96279716E10058890E /* ReactCountModel.swift */,
 				2A2DCC98279717080058890E /* ReactListModel.swift */,
 				2A2DCC9A2797172B0058890E /* ReactListRequestModel.swift */,
+				2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2286,6 +2292,7 @@
 				C4750077270B413100FE75EB /* SearchViewModel.swift in Sources */,
 				C41C1281277F411800C7E096 /* HideKeyboard.swift in Sources */,
 				C4BA72122717D4E100D73660 /* ResetPasswordViewModel.swift in Sources */,
+				2A0CB7AA2799448500EB11B2 /* MerchantSpecialModel.swift in Sources */,
 				C446BEC02771C48300925F5E /* SurveyDetailView.swift in Sources */,
 				C42F55C126F37670006F1CAC /* ListOfMerchantView.swift in Sources */,
 				C4E9D43726D4C86B00B223AC /* TabCurveShape.swift in Sources */,
@@ -2413,6 +2420,7 @@
 				C48B6D1C271141DE00766804 /* HomeView.swift in Sources */,
 				2A2DCC952797154A0058890E /* ReactionPopUpViewModel.swift in Sources */,
 				C4BA720C2717CD0200D73660 /* PreviousUserLoginInfor.swift in Sources */,
+				2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */,
 				C476C5B927562BAF00D93AA7 /* EmployeeRankingView.swift in Sources */,
 				C4B9BF7D26FC58E60022DA55 /* Test.swift in Sources */,
 				C446BE8E2771B50700925F5E /* ListCommentModel.swift in Sources */,
@@ -2596,6 +2604,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2621,6 +2630,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

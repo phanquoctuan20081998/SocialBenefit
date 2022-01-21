@@ -57,6 +57,7 @@ struct BenefitDetailView: View {
         .overlay(ApplyPopupView(reload: .constant(false), benefitId: benefitDetailViewModel.benefit.id, index: benefitDetailViewModel.index))
         .overlay(BenefitErrorPopUpView().environmentObject(listOfBenefitsViewModel))
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
     
     @ViewBuilder

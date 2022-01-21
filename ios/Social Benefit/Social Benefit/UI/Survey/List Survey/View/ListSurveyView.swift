@@ -72,6 +72,7 @@ struct ListSurveyView: View {
             viewModel.firstRequest()
         }
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         .errorPopup($viewModel.error)
     }
     

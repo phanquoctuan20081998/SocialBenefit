@@ -37,8 +37,9 @@ struct RecognitionView: View {
                             .buttonStyle(NavigationLinkNoAffectButtonStyle())
                         
                         NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
-                                        .environmentObject(recognitionViewModel)
-                                        .navigationBarHidden(true))) {
+                                                                        .environmentObject(recognitionViewModel)
+                                                                        .navigationBarHidden(true)
+                                                                        .navigationBarBackButtonHidden(true))) {
                             MyRankView
                                 .foregroundColor(.black)
                         }

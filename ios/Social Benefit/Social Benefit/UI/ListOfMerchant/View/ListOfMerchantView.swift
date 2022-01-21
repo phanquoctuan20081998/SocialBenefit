@@ -40,7 +40,9 @@ struct ListOfMerchantView: View {
                         SpecialOffersView()
                         FilterView()
                         AllOffersView()
-                    }.navigationBarHidden(true)
+                    }
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
             }
             
             NavigationLink(destination: EmptyView()) {

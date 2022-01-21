@@ -38,6 +38,7 @@ struct EmployeeRankingView: View {
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "employee_rank".localized, isHaveLogo: true))
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

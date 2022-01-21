@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct FunctionCardView: View {
     
@@ -31,6 +32,11 @@ struct FunctionCardView: View {
                 if selectedNumber == 7 {
                     customerSupportViewModel.isPresentCustomerSupportPopUp = true
                     customerSupportViewModel.resetText()
+                }
+                
+                // If click to Rate the app
+                if selectedNumber == 8 {
+                    SKStoreReviewController.requestReview()
                 }
                 
                 // Click count

@@ -9,16 +9,23 @@ import SwiftUI
 
 struct PTIView: View {
     
+    @State var isLoading: Bool = true
     var webViewURL: String
+    var merchantName: String
     
     var body: some View {
-        MerchantWebView(url: webViewURL)
+        ZStack {
+            MerchantWebView(isLoading: $isLoading, url: webViewURL)
+            if isLoading {
+                MerchantLoadingView(merchantName: merchantName)
+            }
+        }
     }
 }
 
 
 struct PTIView_Previews: PreviewProvider {
     static var previews: some View {
-        PTIView(webViewURL: "https://ptitrangan.com.vn/embed-app/?partner=nev&uid=%501%5D")
+        PTIView(webViewURL: "https://ptitrangan.com.vn/embed-app/?partner=nev&uid=%501%5D", merchantName: "PTI")
     }
 }

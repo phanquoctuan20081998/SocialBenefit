@@ -37,9 +37,11 @@ struct UserInfor {
     var locationId: String
     var clientId: String
     var clientSecret: String
+    var merchantSpecialData: [MerchantSpecialList]
     var functionNames: [String]
+    var merchantSpecial: [MerchantSpecialInfo]
     
-    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String, clientId: String, clientSecret: String, functionNames: [String]) {
+    init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String, clientId: String, clientSecret: String, merchantSpecialList: [MerchantSpecialList], functionNames: [String], merchantSpecial: [MerchantSpecialInfo]) {
         
         self.userId = userId
         self.employeeId = employeeId
@@ -68,7 +70,9 @@ struct UserInfor {
         self.locationId = locationId
         self.clientId = clientId
         self.clientSecret = clientSecret
+        self.merchantSpecialData = merchantSpecialList
         self.functionNames = functionNames
+        self.merchantSpecial = merchantSpecial
     }
     
     // For initialize User Information without token infor
@@ -106,13 +110,41 @@ struct UserInfor {
         self.locationId = citizen["locationWard"]["id"].string ?? "00000"
         self.clientId = employeeDto["company"]["clientId"].string ?? ""
         self.clientSecret = employeeDto["company"]["clientSecret"].string ?? ""
+        
+        self.merchantSpecialData = []
+        var merchantSpecial = MerchantSpecialList()
+        let merchantSpecialList = employeeDto["company"]["merchantSpecialList"].array ?? []
+        
+        for merchantItem in merchantSpecialList {
+            
+            // Get merchant setting values
+            var merchantSpecialSettingList: [MerchantSpecialSettings] = []
+            var merchantSpecialSetting = MerchantSpecialSettings()
+            
+            for settingItem in merchantItem["merchantSpecialSettings"].array ?? [] {
+                merchantSpecialSetting.settingCode = settingItem["settingCode"].string ?? ""
+                merchantSpecialSetting.settingValue = settingItem["settingValue"].string ?? ""
+                merchantSpecialSettingList.append(merchantSpecialSetting)
+            }
+            
+            
+            // Get merchant special data
+            merchantSpecial.id = merchantItem["id"].int ?? 0
+            merchantSpecial.merchantCode = merchantItem["merchantCode"].string ?? ""
+            merchantSpecial.merchantName = merchantItem["merchantName"].string ?? ""
+            merchantSpecial.merchantSpecialSettings = merchantSpecialSettingList
+            
+            self.merchantSpecialData.append(merchantSpecial)
+        }
+        
         self.functionNames = []
+        self.merchantSpecial = []
     }
 }
 
 var userInfor = UserInfor(userId: "", employeeId: "", token: "", companyId: "", name: "ABCD", avatar: "", position: "", nickname: "",
                           email: "", phone: "", noStreet: "", ward: "", district: "", city: "", address: "", birthday: Date(), gender: "",
-                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: UserDefaults.getCompanyLogo(), citizenId: "", locationId: "", clientId: "", clientSecret: "", functionNames: [])
+                          CMND: "", passport: "", insurance: "", department: "", isLeader: false, companyLogo: UserDefaults.getCompanyLogo(), citizenId: "", locationId: "", clientId: "", clientSecret: "", merchantSpecialList: [], functionNames: [], merchantSpecial: [])
 
 
 func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNames: [String]) {
@@ -150,6 +182,34 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNa
     userInfor.locationId = citizen["locationWard"]["id"].string ?? "00000"
     userInfor.clientId = employeeDto["company"]["clientId"].string ?? ""
     userInfor.clientSecret = employeeDto["company"]["clientSecret"].string ?? ""
+    
+    
+    userInfor.merchantSpecialData = []
+    var merchantSpecial = MerchantSpecialList()
+    let merchantSpecialList = employeeDto["company"]["merchantSpecialList"].array ?? []
+    
+    for merchantItem in merchantSpecialList {
+        
+        // Get merchant setting values
+        var merchantSpecialSettingList: [MerchantSpecialSettings] = []
+        var merchantSpecialSetting = MerchantSpecialSettings()
+        
+        for settingItem in merchantItem["merchantSpecialSettings"].array ?? [] {
+            merchantSpecialSetting.settingCode = settingItem["settingCode"].string ?? ""
+            merchantSpecialSetting.settingValue = settingItem["settingValue"].string ?? ""
+            merchantSpecialSettingList.append(merchantSpecialSetting)
+        }
+        
+        
+        // Get merchant special data
+        merchantSpecial.id = merchantItem["id"].int ?? 0
+        merchantSpecial.merchantCode = merchantItem["merchantCode"].string ?? ""
+        merchantSpecial.merchantName = merchantItem["merchantName"].string ?? ""
+        merchantSpecial.merchantSpecialSettings = merchantSpecialSettingList
+        
+        userInfor.merchantSpecialData.append(merchantSpecial)
+    }
+    
     userInfor.functionNames = functionNames
     
 //    print(userInfor)
@@ -193,7 +253,45 @@ func updateUserInfor(model: LoginModel) {
     userInfor.locationId = model.result?.employeeDto?.citizen?.locationWard?.id ?? ""
     userInfor.clientId = model.result?.employeeDto?.company?.clientId ?? ""
     userInfor.clientSecret = model.result?.employeeDto?.company?.clientSecret ?? ""
+    
+    
+    var merchantSpecial = MerchantSpecialList()
+    
+    for merchantItem in model.result?.employeeDto?.company?.merchantSpecialList ?? [] {
+        
+        // Get merchant setting values
+        var merchantSpecialSettingList: [MerchantSpecialSettings] = []
+        var merchantSpecialSetting = MerchantSpecialSettings()
+        
+        for settingItem in merchantItem.merchantSpecialSettings ?? [] {
+            merchantSpecialSetting.settingCode = settingItem.settingCode ?? ""
+            merchantSpecialSetting.settingValue = settingItem.settingValue ?? ""
+            merchantSpecialSettingList.append(merchantSpecialSetting)
+        }
+        
+        
+        // Get merchant special data
+        merchantSpecial.id = merchantItem.id ?? 0
+        merchantSpecial.merchantCode = merchantItem.merchantCode ?? ""
+        merchantSpecial.merchantName = merchantItem.merchantName ?? ""
+        merchantSpecial.merchantSpecialSettings = merchantSpecialSettingList
+        
+        userInfor.merchantSpecialData.append(merchantSpecial)
+    }
+    
     userInfor.functionNames = model.result?.functionNames ?? []
+    
+    // Get merchant setting values
+    var merchantSpecialSettingList: [MerchantSpecialInfo] = []
+    var merchantSpecialSetting = MerchantSpecialInfo()
+    
+    for settingItem in model.result?.merchantSpecials ?? [] {
+        print(settingItem)
+        merchantSpecialSetting.merchantName = settingItem.merchantName ?? ""
+        merchantSpecialSetting.merchantCode = settingItem.merchantCode ?? ""
+        merchantSpecialSettingList.append(merchantSpecialSetting)
+    }
+    userInfor.merchantSpecial = merchantSpecialSettingList
     
     print(userInfor)
     

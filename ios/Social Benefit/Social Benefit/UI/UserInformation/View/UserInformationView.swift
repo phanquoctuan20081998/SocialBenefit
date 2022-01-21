@@ -67,10 +67,9 @@ struct UserInformationView: View {
             hideKeyboard()
         }
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
-
-
 
 extension UserInformationView {
     

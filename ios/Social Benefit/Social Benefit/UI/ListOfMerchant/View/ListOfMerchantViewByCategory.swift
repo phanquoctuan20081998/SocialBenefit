@@ -52,7 +52,9 @@ struct ListOfMerchantViewByCategory: View {
                         SpecialOffersView()
                         FilterView()
                         AllOffersView()
-                    }.navigationBarHidden(true)
+                    }
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
 //                }.navigationViewStyle(StackNavigationViewStyle())
                 
             }

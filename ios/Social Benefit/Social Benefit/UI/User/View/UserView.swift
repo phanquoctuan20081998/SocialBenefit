@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct UserView: View {
     
@@ -70,6 +71,7 @@ struct UserView: View {
                     
                     FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7, isCountClick: false)
                     
+                    FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 8)
                 }
                 
                 Spacer().frame(height: 30)

@@ -49,9 +49,10 @@ struct InternalNewsView: View {
             }
         )
         .onAppear {
-            UIScrollView.appearance().bounces = true
+            homeScreenViewModel.isPresentedTabBar = false
         }
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

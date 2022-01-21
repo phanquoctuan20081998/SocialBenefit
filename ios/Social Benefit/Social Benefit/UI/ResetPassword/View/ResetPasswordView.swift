@@ -25,14 +25,7 @@ struct ResetPasswordView: View {
                 
                 VStack(spacing: 20) {
                     
-                    Spacer().frame(height: 100)
-                    
-                    //URLImageView(url: userInfor.companyLogo)
-                    URLImageView(url: userInfor.companyLogo)
-                        .scaledToFit()
-                        .frame(width: ScreenInfor().screenWidth * 0.7, height: 80)
-
-                    Spacer()
+                    Spacer().frame(height: ScreenInfor().screenHeight * 0.25)
                     
                     VStack(spacing: 20) {
                         

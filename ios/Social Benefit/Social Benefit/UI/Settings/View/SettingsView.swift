@@ -71,6 +71,7 @@ struct SettingsView: View {
         )
         .environmentObject(settingsViewModel)
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
     
     @ViewBuilder

@@ -15,3 +15,11 @@ func isDisplayFunction(_ functionName: String) -> Bool {
     
     return userInfor.functionNames.contains(functionName)
 }
+
+func isDisplayMerchantSpecial(_ merchantCode: String) -> Bool {
+    if userInfor.merchantSpecial.isEmpty {
+        return false
+    }
+    
+    return userInfor.merchantSpecial.contains(where: { $0.merchantCode == merchantCode })
+}

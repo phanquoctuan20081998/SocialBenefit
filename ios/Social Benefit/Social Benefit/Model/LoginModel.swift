@@ -16,8 +16,13 @@ struct LoginResultMode: APIModelProtocol {
     var token: String?
     var employeeDto: LoginEmployeeDto?
     var functionNames: [String]?
+    var merchantSpecials: [MerchantSpecialInfo]?
 }
 
+struct MerchantSpecialInfo: APIModelProtocol {
+    var merchantCode: String?
+    var merchantName: String?
+}
 struct LoginEmployeeDto: APIModelProtocol {
     var id: Int?
     var departmentDivision: String?
@@ -65,6 +70,19 @@ struct LoginCompany: APIModelProtocol {
     var logo: String?
     var clientId: String?
     var clientSecret: String?
+    var merchantSpecialList: [MerchantSpecialList]?
+}
+
+struct MerchantSpecialList: APIModelProtocol {
+    var id : Int?
+    var merchantCode: String?
+    var merchantName: String?
+    var merchantSpecialSettings: [MerchantSpecialSettings]?
+}
+
+struct MerchantSpecialSettings: APIModelProtocol {
+    var settingCode: String?
+    var settingValue: String?
 }
 
 struct LoginPosition: APIModelProtocol {

@@ -18,7 +18,8 @@ struct InternalNewsBannerView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     @State private var currentPage = 0
-    @State var isMove: Bool = false
+    @State var isMoveToInternalNews: Bool = false
+    @State var isMoveToInternalNewsDetail: Bool = false
     @State var data: [InternalNewsData] = []
     
     var body: some View {
@@ -63,7 +64,11 @@ struct InternalNewsBannerView: View {
                 ZStack {
                     NavigationLink(
                         destination: NavigationLazyView(InternalNewsView()),
-                        isActive: $isMove,
+                        isActive: $isMoveToInternalNews,
+                        label: { EmptyView() })
+                    NavigationLink(
+                        destination: NavigationLazyView(InternalNewsDetailView(internalNewData: homeViewModel.selectedInternalNew!)),
+                        isActive: $isMoveToInternalNewsDetail,
                         label: { EmptyView() })
                 }
             )
@@ -73,8 +78,7 @@ struct InternalNewsBannerView: View {
     }
     
     func topTitleTapped() {
-        self.isMove = true
-        homeScreenViewModel.isPresentedTabBar.toggle()
+        self.isMoveToInternalNews = true
         
         // Click count
         countClick()
@@ -82,7 +86,7 @@ struct InternalNewsBannerView: View {
     
     func imageTapped() {
         homeScreenViewModel.isPresentedTabBar = false
-        homeViewModel.isPresentInternalNewDetail.toggle()
+        isMoveToInternalNewsDetail = true
         
         if let index = homeViewModel.selectedIndex {
             if index < internalNewsViewModel.allInternalNews.count {
@@ -232,6 +236,7 @@ struct MainCardView: View {
     
     // Special merchants
     @State var moveToVNP = false
+    @State var moveToPTI = false
     @State var moveToVUI = false
     
     var personalPoint: Int
@@ -309,20 +314,66 @@ struct MainCardView: View {
                         Spacer()
                     }
                     
-//                    Button {
-//                        self.moveToVNP = true
-//                        countClick()
-//                    } label: {
-//                        mainButton(text: "vnp".localized, image: "ic_vnpt", color: Color("light_blue"))
-//                            .foregroundColor(.black)
-//                    }
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) {
+                        
+                        let VNP = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VNP }) ?? MerchantSpecialList()
+                        
+                        let VNPSettings = VNP.merchantSpecialSettings
+                        
+                        let url = VNP.merchantSpecialSettings![VNPSettings?.firstIndex(where: { $0.settingCode == Constants.MerchantSpecialSettings.URL_WEBVIEW }) ?? 0].settingValue
+                        
+                        VStack {
+                            Button {
+                                self.moveToVNP = true
+                                countClick()
+                            } label: {
+                                mainButton(text: VNP.merchantName ?? "vnpt".localized, image: "ic_vnpt", color: Color("light_blue"))
+                                    .foregroundColor(.black)
+                            }
+                        }.background(
+                            NavigationLink(destination: NavigationLazyView(VinaphoneView(webViewURL: url ?? "", merchantName: VNP.merchantName!)),
+                                           isActive: $moveToVNP,
+                                           label: { EmptyView() })
+                        )
+                    }
                     
-                    Button {
-                        self.moveToVUI = true
-                        countClick()
-                    } label: {
-                        mainButton(text: "vui".localized, image: "ic_vui", color: Color.green)
-                            .foregroundColor(.black)
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) {
+                        
+                        let PTI = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.PTI }) ?? MerchantSpecialList()
+                        
+                        let PTISettings = PTI.merchantSpecialSettings
+                        
+                        let url = PTI.merchantSpecialSettings![PTISettings?.firstIndex(where: { $0.settingCode == Constants.MerchantSpecialSettings.URL_WEBVIEW }) ?? 0].settingValue
+                        
+                        let urlWithEmployeeId = url!.replacingOccurrences(of: "{0}", with: userInfor.employeeId)
+                        
+                        VStack {
+                            Button {
+                                self.moveToPTI = true
+                                countClick()
+                            } label: {
+                                mainButton(text: PTI.merchantName ?? "pti".localized, image: "ic_pti", color: Color("light_orange"))
+                                    .foregroundColor(.black)
+                            }
+                        }.background(
+                            NavigationLink(destination: NavigationLazyView(PTIView(webViewURL: urlWithEmployeeId, merchantName: PTI.merchantName!)),
+                                           isActive: $moveToPTI,
+                                           label: { EmptyView() })
+                        )
+                        
+                    }
+                    
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) {
+                        
+                        let VUI = userInfor.merchantSpecial.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VUI })
+                        
+                        Button {
+                            self.moveToVUI = true
+                            countClick()
+                        } label: {
+                            mainButton(text: (VUI?.merchantName!.localized)!, image: "ic_vui", color: Color.green)
+                                .foregroundColor(.black)
+                        }
                     }
                 }
                 .background (
@@ -333,9 +384,7 @@ struct MainCardView: View {
                         NavigationLink(destination: NavigationLazyView(MyVoucherView()),
                                        isActive: $moveToMyVoucher,
                                        label: { EmptyView() })
-                        NavigationLink(destination: NavigationLazyView(VinaphoneView(webViewURL: "http://222.252.19.197:8694/vnpt_online/portal/source/embed/nissho")),
-                                       isActive: $moveToVNP,
-                                       label: { EmptyView() })
+                       
                         NavigationLink(destination: NavigationLazyView(VUIAppView()),
                                        isActive: $moveToVUI,
                                        label: { EmptyView() })
@@ -343,11 +392,19 @@ struct MainCardView: View {
                 )
             }
         }
-        .frame(width: ScreenInfor().screenWidth * 0.93, height: isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) ? 200 : 150)
-        
+        .frame(width: ScreenInfor().screenWidth * 0.93, height: isDoesNotHaveButton() ? 200 : 150)
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+    }
+    
+    func isDoesNotHaveButton() -> Bool {
+        if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) || isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) || isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) || isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) ||
+            isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) {
+            return true
+        }
+        
+        return false
     }
 }
 

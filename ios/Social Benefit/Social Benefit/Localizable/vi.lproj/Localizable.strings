@@ -403,3 +403,6 @@
 "not_complete_survey_error" = "Xin hãy hoàn thành khảo sát trước khi gửi";
 
 "reacted" = "Người đã bày tỏ cảm xúc";
+
+// Merchanr Special
+"you_are_being_redirected" = "Quý khách đang được điều hướng sang cổng dịch vụ của %@";

@@ -33,14 +33,13 @@ struct NotificationView: View {
         }
         .onAppear {
             notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
-            UIScrollView.appearance().bounces = true
         }
         .background(
             ZStack {
                 NavigationLink(destination: EmptyView()) {
                     EmptyView()
                 }
-                NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
+                NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true).navigationBarBackButtonHidden(true)), isActive: $isMoveToNextPage, label: {
                     EmptyView()
                 })
             }
@@ -48,6 +47,7 @@ struct NotificationView: View {
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "notification".localized, isHaveLogo: true, isHiddenTabBarWhenBack: false, backButtonTapped: notificationViewModel.updateReadNotification))
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

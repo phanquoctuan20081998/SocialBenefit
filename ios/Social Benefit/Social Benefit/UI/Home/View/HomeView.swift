@@ -13,10 +13,6 @@ struct HomeView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
-    init() {
-        UIScrollView.appearance().bounces = false
-    }
-    
     var body: some View {
         ZStack {
             VStack {
@@ -36,17 +32,46 @@ struct HomeView: View {
                             RecognitionsBannerView()
                             PromotionsBannerView()
                         }
-                    }
+                    }.background(ScrollViewConfigurator {
+                        $0?.bounces = false               // << here !!
+                    })
                     Spacer()
                         .frame(height: 100)
                 }
             }
             .background(BackgroundViewWithNotiAndSearch())
             .edgesIgnoringSafeArea(.all)
-            .onDisappear {
-                UIScrollView.appearance().bounces = true
+            .onAppear {
+                homeScreenViewModel.isPresentedTabBar = true
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
+    }
+}
+
+struct ScrollViewConfigurator: UIViewRepresentable {
+    let configure: (UIScrollView?) -> ()
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            configure(view.enclosingScrollView())
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+extension UIView {
+    func enclosingScrollView() -> UIScrollView? {
+        var next: UIView? = self
+        repeat {
+            next = next?.superview
+            if let scrollview = next as? UIScrollView {
+                return scrollview
+            }
+        } while next != nil
+        return nil
     }
 }
 

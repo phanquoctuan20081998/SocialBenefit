@@ -150,6 +150,7 @@ struct Constants {
         static let VNP = "VNP"
         static let VUI = "VUI"
         static let MED247 = "MED247"
+        static let PTI = "PTI"
     }
     
     struct MerchantSpecialSettings {

@@ -33,6 +33,7 @@ struct UsedPointHistoryView: View {
         }
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: true))
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -23,13 +23,7 @@ struct ResetSuccessView: View {
                 
                 VStack(spacing: 20) {
                     
-                    Spacer().frame(height: 100)
-
-                    URLImageView(url: userInfor.companyLogo)
-                        .scaledToFit()
-                        .frame(width: ScreenInfor().screenWidth * 0.7, height: 80)
-
-                    Spacer().frame(height: 30)
+                    Spacer()
                     
                     Text("success_notification".localized)
                         .font(.system(size: 15))
@@ -59,6 +53,7 @@ struct ResetSuccessView: View {
                 }
             }.edgesIgnoringSafeArea(.all)
             .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
 //        }
     }
 }

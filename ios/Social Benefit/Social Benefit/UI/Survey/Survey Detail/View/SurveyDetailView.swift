@@ -32,6 +32,7 @@ struct SurveyDetailView: View {
             Utils.dismissKeyboard()
         }
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         .successPopup($viewModel.sendAnswerSuccess)
         .commentPopup($viewModel.commentSelected, editCommet: $viewModel.commentEdited, deleteComment: $viewModel.commentDeleted, newText: $viewModel.newComment)
         .commentDeletePopup($viewModel.commentDeleted, action: {

@@ -403,3 +403,6 @@
 "not_complete_survey_error" = "Please complete survey before sending";
 
 "reacted" = "People who reacted";
+
+// Merchanr Special
+"you_are_being_redirected" = "You are being redirected to the service portal of %@";
