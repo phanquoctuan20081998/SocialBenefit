@@ -8,64 +8,18 @@
 import SwiftUI
 
 struct VinaphoneView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State var isLoading: Bool = true
     var webViewURL: String
     var merchantName: String
     
     var body: some View {
         ZStack {
-            VNPWebView
+            MerchantWebView(isLoading: $isLoading, merchantSpecialCode: Constants.MerchantSpecialCode.VNP, url: webViewURL)
+            
             if isLoading {
                 MerchantLoadingView(merchantName: merchantName)
             }
         }
-    }
-}
-
-extension VinaphoneView {
-    
-    var VNPWebView: some View {
-        
-        let webview = URLWebView(web: nil, req: URLRequest(url: URL(string: webViewURL)!), isLoading: $isLoading)
-        
-        return VStack {
-            
-            webview
-                .overlay(
-                    HStack {
-//                        Button {
-//                            if webview.webview?.url == URL(string: webViewURL)! {
-//                                self.presentationMode.wrappedValue.dismiss()
-//                            }
-//
-//                            webview.goBack()
-//                        } label: {
-//                            Image(systemName: "arrow.backward")
-//                                .foregroundColor(.blue)
-//                                .font(.system(size: 20))
-//                        }
-                        
-                        Spacer()
-                        
-                        Button {
-                            self.presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            Image(systemName: "x.circle.fill")
-                                .foregroundColor(.red)
-                                .font(.system(size: 20))
-                        }
-                    }
-                        .padding(.top, ScreenInfor().screenHeight * 0.05)
-                        .padding(),
-//                        .background(Color.white),
-                    alignment: .topLeading
-                )
-            
-        }
-        .edgesIgnoringSafeArea(.all)
-        .navigationBarHidden(true)
     }
 }
 

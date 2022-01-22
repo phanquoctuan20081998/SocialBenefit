@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StoreKit
+import MedLib
 
 struct UserView: View {
     
@@ -79,6 +80,7 @@ struct UserView: View {
                 VStack {
                     Button {
                         Utils.setLoginIsRoot()
+                        MedKit.shared.logout()
                     } label: {
                         
                         HStack {

@@ -145,8 +145,18 @@ public class BaseAPI {
 // Call API using Alamofire
 public class BaseAPI_Alamofire {
     
+    var baseURL: String = Config.baseURL
+    
+    init(baseURL: String) {
+        self.baseURL = baseURL
+    }
+    
+    init() {
+
+    }
+    
     public func makeCall(endpoint: String, method: String, header: HTTPHeaders, body: Parameters, callback:@escaping (JSON)->Void) {
-        let strURL = Config.baseURL + endpoint
+        let strURL = baseURL + endpoint
         let METHOD: HTTPMethod
         
         switch method {
@@ -158,11 +168,18 @@ public class BaseAPI_Alamofire {
             METHOD = .post
         }
         
-        let task = AF.request(strURL, method: METHOD, parameters: body, headers: header).responseDecodable { (response: AFDataResponse<JSON>) in
+        let task = AF.request(strURL, method: METHOD, parameters: body, headers: header)
+            .responseDecodable { (response: AFDataResponse<JSON>) in
             switch response.result {
             case .success:
+                var result = JSON()
                 print("Validation Successful")
-                let result = JSON(response.data as Any)["result"]
+                
+                if endpoint.isEmpty && self.baseURL != Config.baseURL {
+                    result = JSON(response.data as Any)
+                } else {
+                    result = JSON(response.data as Any)["result"]
+                }
                 callback(result)
                 
             case let .failure(error):

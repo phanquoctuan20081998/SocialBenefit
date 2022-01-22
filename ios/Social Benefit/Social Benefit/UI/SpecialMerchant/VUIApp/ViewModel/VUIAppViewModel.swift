@@ -14,9 +14,15 @@ class VUIAppViewModel: ObservableObject, Identifiable {
     @Published var apiUrl: String = ""
     @Published var clientId: String = userInfor.clientId
     @Published var clientSecret: String = userInfor.clientSecret
+    
+    @Published var accessToken: String = ""
+    @Published var vuiAppResponse = VUIAppResponse()
 
     @Published var isLoading: Bool = false
     @Published var isCannotConnectToServer: Bool = false
+    @Published var isPresentError: Bool = false
+    @Published var applicationCode: String = ""
+    
     
     private var cancellables = Set<AnyCancellable>()
     private var merchantSpecialSettingsService = MerchantSpecialSettingsService()
@@ -24,6 +30,7 @@ class VUIAppViewModel: ObservableObject, Identifiable {
     private var vuiAppService = VUIAppService()
     
     init() {
+        loadData()
         addSubscribers()
     }
     
@@ -40,6 +47,7 @@ class VUIAppViewModel: ObservableObject, Identifiable {
             self.apiUrl = data[Constants.MerchantSpecialSettings.API_URL].string ?? ""
             
             self.getOAth2()
+            
         }
     }
     
@@ -49,6 +57,25 @@ class VUIAppViewModel: ObservableObject, Identifiable {
             && !self.clientId.isEmpty
             && !self.clientSecret.isEmpty {
             oath2Service.getAPI(url: authUrl, clientId: userInfor.clientId, clientSercet: userInfor.clientSecret) { data in
+                self.accessToken = data.getAccessToken()
+                self.getWebURL()
+            }
+        }
+    }
+    
+    func getWebURL() {
+        if !self.accessToken.isEmpty {
+
+            vuiAppService.getAPI(token: accessToken, url: apiUrl, employeeCode: userInfor.employeeId, phoneNumber: userInfor.phone) { [self] data in
+                if data["errors"].isEmpty {
+                    self.vuiAppResponse.setWebUrl(url: data["webUri"].string ?? "")
+                } else {
+                    DispatchQueue.main.async {
+                        self.vuiAppResponse.setError(error: data["errors"][0]["extensions"]["code"].int ?? 0)
+                        self.applicationCode =  data["errors"][0]["extensions"]["applicationCode"].string ?? ""
+                        self.isPresentError = true
+                    }
+                }
                 
                 self.isLoading = false
             }

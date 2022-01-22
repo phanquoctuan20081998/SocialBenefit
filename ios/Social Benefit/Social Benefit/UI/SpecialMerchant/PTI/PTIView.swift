@@ -15,7 +15,8 @@ struct PTIView: View {
     
     var body: some View {
         ZStack {
-            MerchantWebView(isLoading: $isLoading, url: webViewURL)
+            MerchantWebView(isLoading: $isLoading, merchantSpecialCode: Constants.MerchantSpecialCode.PTI, url: webViewURL)
+            
             if isLoading {
                 MerchantLoadingView(merchantName: merchantName)
             }

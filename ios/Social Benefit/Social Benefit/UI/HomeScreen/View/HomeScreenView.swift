@@ -30,13 +30,13 @@ struct HomeScreenView: View {
                 
                 getView(selectedTab: homeScreenViewModel.selectedTab)
                 
-                // Search View...
-                SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
-                
                 // Custom Tab Bar...
                 if homeScreenViewModel.isPresentedTabBar {
                     CustomTabBarView(selectedTab: $homeScreenViewModel.selectedTab)
                 }
+                
+                // Search View...
+                SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
                 
                 // Promotion - Buy Button and Other Category popup...
                 BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup)

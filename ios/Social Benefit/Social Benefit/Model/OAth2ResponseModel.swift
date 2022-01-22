@@ -17,6 +17,17 @@ struct OAth2Response {
     private var notBeforePolicy: Int
     private var sessionState: String
     private var scope: String
+    
+    public init() {
+        accessToken = ""
+        expiresIn = 0
+        refreshExpiresIn = 0
+        refreshToken = ""
+        tokenType = ""
+        notBeforePolicy = 0
+        sessionState = ""
+        scope = ""
+    }
 
     public func getAccessToken() -> String {
         return accessToken

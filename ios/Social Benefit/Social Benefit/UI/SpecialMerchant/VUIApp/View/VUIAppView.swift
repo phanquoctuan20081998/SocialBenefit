@@ -14,16 +14,22 @@ struct VUIAppView: View {
     
     var body: some View {
         ZStack {
-            Text("")
-                .onAppear {
-                    vuiAppViewModel.loadData()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                }
+            if vuiAppViewModel.isLoading {
+                MerchantLoadingView(merchantName: "VUI-NANO")
+            } else if !vuiAppViewModel.vuiAppResponse.getWebUrl().isEmpty {
+                MerchantWebView(isLoading: $vuiAppViewModel.isLoading, merchantSpecialCode: Constants.MerchantSpecialCode.VUI, url: vuiAppViewModel.vuiAppResponse.getWebUrl())
+            }
             
-            MerchantLoadingView(merchantName: "VUI-NANO")
-        }.navigationBarHidden(true)
+            if vuiAppViewModel.isPresentError {
+                ErrorMessageView(error: vuiAppViewModel.applicationCode, isPresentedError: $vuiAppViewModel.isPresentError)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+            }
+        }
+        .navigationBarHidden(true)
     }
 }
 

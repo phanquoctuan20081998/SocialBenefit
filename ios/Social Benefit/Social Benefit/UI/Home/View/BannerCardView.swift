@@ -8,6 +8,7 @@ import SwiftUI
 import SDWebImage
 import SDWebImageSwiftUI
 import ScrollViewProxy
+import MedLib
 
 var ImageSlideTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
@@ -238,6 +239,7 @@ struct MainCardView: View {
     @State var moveToVNP = false
     @State var moveToPTI = false
     @State var moveToVUI = false
+    @State var moveToMED = false
     
     var personalPoint: Int
     
@@ -314,6 +316,7 @@ struct MainCardView: View {
                         Spacer()
                     }
                     
+                    // Merchanr Specials
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) {
                         
                         let VNP = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VNP }) ?? MerchantSpecialList()
@@ -366,14 +369,39 @@ struct MainCardView: View {
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) {
                         
                         let VUI = userInfor.merchantSpecial.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VUI })
+                        VStack {
+                            Button {
+                                self.moveToVUI = true
+                                countClick()
+                            } label: {
+                                mainButton(text: (VUI?.merchantName!)!, image: "ic_vui", color: Color.green)
+                                    .foregroundColor(.black)
+                            }
+                        }.background(
+                            NavigationLink(destination: NavigationLazyView(VUIAppView()),
+                                           isActive: $moveToVUI,
+                                           label: { EmptyView() })
+                        )
+                    }
+                    
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) {
                         
-                        Button {
-                            self.moveToVUI = true
-                            countClick()
-                        } label: {
-                            mainButton(text: (VUI?.merchantName!.localized)!, image: "ic_vui", color: Color.green)
-                                .foregroundColor(.black)
-                        }
+                        let MED247 = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.MED247 }) ?? MerchantSpecialList()
+                        
+                        VStack {
+                            Button {
+                                moveToMED = true
+                                
+                                countClick()
+                            } label: {
+                                mainButton(text: MED247.merchantName!, image: "ic_med247", color: Color("light_blue"))
+                                    .foregroundColor(.black)
+                            }
+                        }.background(
+                            NavigationLink(destination: NavigationLazyView(Med247ViewControllerRepresentation()),
+                                           isActive: $moveToMED,
+                                           label: { EmptyView() })
+                        )
                     }
                 }
                 .background (
@@ -383,10 +411,6 @@ struct MainCardView: View {
                                        label: { EmptyView() })
                         NavigationLink(destination: NavigationLazyView(MyVoucherView()),
                                        isActive: $moveToMyVoucher,
-                                       label: { EmptyView() })
-                       
-                        NavigationLink(destination: NavigationLazyView(VUIAppView()),
-                                       isActive: $moveToVUI,
                                        label: { EmptyView() })
                     }
                 )

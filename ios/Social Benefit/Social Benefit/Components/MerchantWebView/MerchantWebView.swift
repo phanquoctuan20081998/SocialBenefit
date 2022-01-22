@@ -11,6 +11,7 @@ struct MerchantWebView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var isLoading: Bool
+    var merchantSpecialCode: String
     var url: String
     
     var body: some View {
@@ -24,35 +25,32 @@ extension MerchantWebView {
         
         let webview = URLWebView(web: nil, req: URLRequest(url: URL(string: url)!), isLoading: $isLoading)
         
-        return VStack {
+        return ZStack(alignment: .top) {
+ 
+            webview
+            
             HStack {
-//                Button {
-//                    if webview.webview?.url == URL(string: url)! {
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }
-//
-//                    webview.goBack()
-//                } label: {
-//                    Image(systemName: "arrow.backward")
-//                        .foregroundColor(.blue)
-//                        .font(.system(size: 20))
-//                }
                 
-                Spacer()
+                // Show close button on the rignt side in VNP
+                if merchantSpecialCode == Constants.MerchantSpecialCode.VNP || merchantSpecialCode == Constants.MerchantSpecialCode.VUI {
+                    Spacer()
+                }
                 
                 Button {
                     self.presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: "x.circle.fill")
                         .foregroundColor(.red)
-                        .font(.system(size: 20))
+                        .font(.system(size: 25))
+                }
+                
+                // Show close button on the rignt side in PTI
+                if merchantSpecialCode == Constants.MerchantSpecialCode.PTI {
+                    Spacer()
                 }
             }
             .padding(.top, ScreenInfor().screenHeight * 0.05)
             .padding()
-            .background(Color.white.opacity(0.0001))
-            
-            webview
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
@@ -61,6 +59,6 @@ extension MerchantWebView {
 
 struct MerchantWebView_Previews: PreviewProvider {
     static var previews: some View {
-        MerchantWebView(isLoading: .constant(false), url: "https://ptitrangan.com.vn/embed-app/?partner=nev&uid=%501%5D")
+        MerchantWebView(isLoading: .constant(false), merchantSpecialCode: "VNP", url: "https://ptitrangan.com.vn/embed-app/?partner=nev&uid=01")
     }
 }

@@ -21,6 +21,7 @@ struct MerchantLoadingView: View {
             Spacer()
         }
         .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
+        .overlay(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: false))
         .background(Color.white)
         .edgesIgnoringSafeArea(.all)
     }

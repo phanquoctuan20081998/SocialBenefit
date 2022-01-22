@@ -406,3 +406,5 @@
 
 // Merchanr Special
 "you_are_being_redirected" = "You are being redirected to the service portal of %@";
+"ERR_NOT_FOUND" = "Fall to get account";
+"ERR_CONFLICT" = "Employment already linked with other user";

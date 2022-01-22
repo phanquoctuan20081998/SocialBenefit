@@ -12,7 +12,6 @@
 		2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23C2797E87E001CFD6B /* PTIView.swift */; };
 		2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */; };
 		2A112AFD27967588000F4B88 /* VUIAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112AFC27967588000F4B88 /* VUIAppView.swift */; };
-		2A112B0427969516000F4B88 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0327969516000F4B88 /* Med247View.swift */; };
 		2A112B09279697C9000F4B88 /* VUIAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B08279697C9000F4B88 /* VUIAppService.swift */; };
 		2A112B0B27969949000F4B88 /* VUIAppResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0A27969949000F4B88 /* VUIAppResponseModel.swift */; };
 		2A112B0D27969ABA000F4B88 /* OAth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0C27969ABA000F4B88 /* OAth2Service.swift */; };
@@ -33,6 +32,9 @@
 		2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */; };
 		2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB72795458100E347F5 /* VinaphoneView.swift */; };
 		2A398BBA2795472000E347F5 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB92795472000E347F5 /* WebView.swift */; };
+		2A43E178279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */; };
+		2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */; };
+		2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
@@ -346,7 +348,6 @@
 		2A0EF23C2797E87E001CFD6B /* PTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTIView.swift; sourceTree = "<group>"; };
 		2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantWebView.swift; sourceTree = "<group>"; };
 		2A112AFC27967588000F4B88 /* VUIAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppView.swift; sourceTree = "<group>"; };
-		2A112B0327969516000F4B88 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
 		2A112B08279697C9000F4B88 /* VUIAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppService.swift; sourceTree = "<group>"; };
 		2A112B0A27969949000F4B88 /* VUIAppResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUIAppResponseModel.swift; sourceTree = "<group>"; };
 		2A112B0C27969ABA000F4B88 /* OAth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAth2Service.swift; sourceTree = "<group>"; };
@@ -365,6 +366,9 @@
 		2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialSettingsService.swift; sourceTree = "<group>"; };
 		2A398BB72795458100E347F5 /* VinaphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinaphoneView.swift; sourceTree = "<group>"; };
 		2A398BB92795472000E347F5 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewControllerRepresentation.swift; sourceTree = "<group>"; };
+		2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewController.swift; sourceTree = "<group>"; };
+		2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Med247ViewController.xib; sourceTree = "<group>"; };
 		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -710,7 +714,9 @@
 		2A112B0227969502000F4B88 /* Med247 */ = {
 			isa = PBXGroup;
 			children = (
-				2A112B0327969516000F4B88 /* Med247View.swift */,
+				2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */,
+				2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */,
+				2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */,
 			);
 			path = Med247;
 			sourceTree = "<group>";
@@ -2086,6 +2092,7 @@
 				84DA60742696DACA0012F55B /* Assets.xcassets in Resources */,
 				848753642706A46F0061D4E1 /* angry.gif in Resources */,
 				84DA60722696DAC80012F55B /* Main.storyboard in Resources */,
+				2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */,
 				84DA608F2696DB950012F55B /* Media.xcassets in Resources */,
 				84DA60882696DB720012F55B /* SplashViewController.xib in Resources */,
 				848753672706A46F0061D4E1 /* sad.gif in Resources */,
@@ -2229,6 +2236,7 @@
 				C4D02618270D44140048B671 /* PopUpView.swift in Sources */,
 				C446BE9A2771B59800925F5E /* LoginModel.swift in Sources */,
 				C4413F1C2759B64400FDA3E7 /* CheckIsDisplayFunction.swift in Sources */,
+				2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */,
 				C446BEA42771B71700925F5E /* SurveyChoiceService.swift in Sources */,
 				C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */,
 				C4675B8527853F8200A97726 /* ReactionBar.swift in Sources */,
@@ -2305,6 +2313,7 @@
 				C4E9D43D26D4D4A400B223AC /* BannerCurverShape.swift in Sources */,
 				C47EC775278816A3009B959F /* BenefitDetailService.swift in Sources */,
 				C410A467274B3177006069E3 /* RecognitionViewModel.swift in Sources */,
+				2A43E178279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift in Sources */,
 				84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */,
 				C48790B82759D7AA002E97F0 /* UserModel.swift in Sources */,
 				C4974ABB26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift in Sources */,
@@ -2436,7 +2445,6 @@
 				84DA60C4269ECA130012F55B /* HomeViewController.swift in Sources */,
 				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
 				2A112B142796A0B5000F4B88 /* VUIAppViewModel.swift in Sources */,
-				2A112B0427969516000F4B88 /* Med247View.swift in Sources */,
 				C456C461275DAD0800406C8D /* UserService.swift in Sources */,
 				C446BEB72771B9CA00925F5E /* LoadingView.swift in Sources */,
 				C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */,
