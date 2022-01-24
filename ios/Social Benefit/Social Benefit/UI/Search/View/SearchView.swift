@@ -21,6 +21,9 @@ struct SearchContentView: View {
         
         ScrollView {
             VStack {
+                
+                Spacer().frame(height: 10)
+                
                 ForEach(filteredData.indices, id: \.self) { i in
                     if filteredData[i].functionId.isEmpty || isDisplayFunction(filteredData[i].functionId) {
                         SearchCardView(icon: filteredData[i].icon, color: filteredData[i].color, title: filteredData[i].title)

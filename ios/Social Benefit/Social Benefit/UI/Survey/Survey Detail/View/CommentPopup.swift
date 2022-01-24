@@ -72,11 +72,14 @@ struct CommentPopup: ViewModifier {
                 .frame(width: ScreenInfor().screenWidth * 0.1)
             
             Text(title)
+            
+            Spacer()
         }
         .font(.system(size: 20))
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
-        .background(Color.white)
+        .contentShape(Rectangle())
+        .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
     }
 }
 

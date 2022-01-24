@@ -33,7 +33,7 @@ struct EditCommentPopup: ViewModifier {
                 VStack {
                     HStack {
 
-                        AutoResizeTextField(text: $newText, isFocus: .constant(true), minHeight: 30, maxHeight: 300, placeholder: "")
+                        AutoResizeTextField(text: $newText, isFocus: .constant(true), minHeight: 30, maxHeight: 100, placeholder: "")
                         Button {
                             action()
                         } label: {
@@ -49,6 +49,7 @@ struct EditCommentPopup: ViewModifier {
                             .fill(.white)
                     )
                 }
+                .offset(y: -100)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .background(Color.black.opacity(0.2))
                 .edgesIgnoringSafeArea(.all)

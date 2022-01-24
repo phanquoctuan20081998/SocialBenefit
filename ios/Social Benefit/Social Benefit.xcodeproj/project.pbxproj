@@ -1237,8 +1237,8 @@
 		C41C8C6C26DC799B00AC1FA7 /* InternalNewsDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C4953EF426E3A98400295583 /* InternalNewsDetailViewModel */,
-				C4953EF326E3A96F00295583 /* InternalNewsDetailView */,
+				C4953EF426E3A98400295583 /* ViewModel */,
+				C4953EF326E3A96F00295583 /* View */,
 			);
 			path = InternalNewsDetail;
 			sourceTree = "<group>";
@@ -1666,23 +1666,23 @@
 			path = CheckBox;
 			sourceTree = "<group>";
 		};
-		C4953EF326E3A96F00295583 /* InternalNewsDetailView */ = {
+		C4953EF326E3A96F00295583 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C41C8C6D26DC79C200AC1FA7 /* InternalNewsDetailView.swift */,
 				C44D1E9926E7A33E00D2DDA2 /* ReactionBarView.swift */,
 				C48BA34926EEEBE1006C4F27 /* CommentCardView.swift */,
 			);
-			path = InternalNewsDetailView;
+			path = View;
 			sourceTree = "<group>";
 		};
-		C4953EF426E3A98400295583 /* InternalNewsDetailViewModel */ = {
+		C4953EF426E3A98400295583 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				C4953EF526E3A9A900295583 /* CommentViewModel.swift */,
 				C402B26926E76C5300A41288 /* ReactViewModel.swift */,
 			);
-			path = InternalNewsDetailViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C4A5582D26BA3A7000029AC0 /* ResetPassword */ = {
@@ -2612,7 +2612,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2638,7 +2638,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

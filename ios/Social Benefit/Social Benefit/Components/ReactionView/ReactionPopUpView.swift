@@ -7,13 +7,10 @@
 
 import Foundation
 import SwiftUI
-import simd
 
 struct ReactionPopUpView: View {
     
     @Binding var isPresented: Bool
-    @State var curDragOffsetY: CGFloat = 0
-    @State var offset: CGFloat = 0
     
     var contentType: Int
     var contentId: Int
@@ -21,23 +18,6 @@ struct ReactionPopUpView: View {
     @ObservedObject private var viewModel = ReactionPopUpViewModel()
     
     var body: some View {
-        VStack {
-            DragPopUp(curDragOffsetY: curDragOffsetY, isPresent: $isPresented, contentView: AnyView(popupContent))
-                .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
-                .edgesIgnoringSafeArea(.all)
-        }
-        .edgesIgnoringSafeArea(.all)
-        .onAppear() {
-            viewModel.request(contentType, contentId)
-            viewModel.requestReactList(contentType: contentType, contentId: contentId, reactType: -1)
-        }
-        .onDisappear() {
-            viewModel.clearData()
-        }
-        .errorPopup($viewModel.error)
-    }
-    
-    var popupContent: some View {
         VStack {
             VStack(alignment: .leading) {
                 HStack {
@@ -58,11 +38,25 @@ struct ReactionPopUpView: View {
                     Spacer()
                 }
                 content
+                
             }
-            .frame(height: ScreenInfor().screenHeight * 0.9)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(Color.white)
             .cornerRadius(10)
+//            .padding(EdgeInsets.init(top: 50, leading: 20, bottom: 50, trailing: 20))
+            .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .background(Color.black.opacity(0.2))
+        .edgesIgnoringSafeArea(.all)
+        .onAppear() {
+            viewModel.request(contentType, contentId)
+            viewModel.requestReactList(contentType: contentType, contentId: contentId, reactType: -1)
+        }
+        .onDisappear() {
+            viewModel.clearData()
+        }
+        .errorPopup($viewModel.error)
     }
     
     var content: some View {
@@ -90,7 +84,7 @@ struct ReactionPopUpView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
                 ForEach(result.indices) { index in
-                   
+                    
                     if result[index].reactType == -1 {
                         VStack {
                             Button(action: {

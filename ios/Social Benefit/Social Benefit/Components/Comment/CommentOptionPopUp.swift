@@ -70,7 +70,7 @@ extension CommentOptionPopUp {
     var EditView: some View {
         HStack {
 
-            AutoResizeTextField(text: $text, isFocus: .constant(true), minHeight: 30, maxHeight: 300, placeholder: "")
+            AutoResizeTextField(text: $text, isFocus: .constant(true), minHeight: 30, maxHeight: 100, placeholder: "")
             
             Button {
                 UpdateCommentService().getAPI(id: commentId, contentId: contentId, contentType: contentType, parentId: parentId, content: text) { id in
@@ -93,6 +93,7 @@ extension CommentOptionPopUp {
             RoundedRectangle(cornerRadius: 30)
                 .fill(.white)
         )
+        .offset(y: -100)
     }
     
     var ConfirmPopUp: some View {
@@ -145,10 +146,14 @@ extension CommentOptionPopUp {
                 .frame(width: ScreenInfor().screenWidth * 0.1)
             
             Text(title)
+            
+            Spacer()
         }
         .font(.system(size: 20))
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
+        .contentShape(Rectangle())
+        .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
     }
 }
 

@@ -44,7 +44,10 @@ struct SurveyDetailView: View {
         .errorPopup($viewModel.error)
         .loadingView(isLoading: $viewModel.isLoading)
         .inforTextView($viewModel.infoText)
-        .reactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
+        .sheet(isPresented: $viewModel.isShowReactionList) {
+            ReactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
+        }
+//        .reactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
     }
     
     var survetList: some View {
