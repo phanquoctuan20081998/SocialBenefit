@@ -11,14 +11,18 @@ import MedLib
 
 final class Med247ViewController: UIViewController {
     
+    weak var delegate: Med247ViewControllerDelegate?
+    
     var MED247 = MerchantSpecialList()
     var MED247Setting: [MerchantSpecialSettings] = []
     var code: String = ""
     var secretKey = ""
+    
+    @IBOutlet private weak var loadingLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         MED247 = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.MED247 }) ?? MerchantSpecialList()
         MED247Setting = MED247.merchantSpecialSettings!
@@ -28,5 +32,17 @@ final class Med247ViewController: UIViewController {
         MedKit.shared.present(rootVC: self, code: code, secretKey: secretKey, env: MedEnv.STAG) { error in
             
         }
+        
+        loadingLabel.text = "you_are_being_redirected".localizeWithFormat(arguments: "Med 247")
+    }
+    
+    @IBAction private func clickBack() {
+        delegate?.dissmissView()
     }
 }
+
+
+protocol Med247ViewControllerDelegate: AnyObject {
+    func dissmissView()
+}
+

@@ -8,7 +8,7 @@
 import Foundation
 
 
-class UserViewModel: ObservableObject, Identifiable {
+class UserViewModel: ObservableObject, Identifiable {    
     var sessionExpired: SessionExpired
     
     init() {

@@ -20,6 +20,8 @@ struct FunctionCardView: View {
     var isPresentTabBar: Bool
     
     @Binding var selection: Int?
+    @Binding var isRate: Bool
+    
     var selectedNumber: Int
     var isCountClick = true
     
@@ -36,7 +38,8 @@ struct FunctionCardView: View {
                 
                 // If click to Rate the app
                 if selectedNumber == 8 {
-                    SKStoreReviewController.requestReview()
+//                    SKStoreReviewController.requestReview()
+                    isRate = true
                 }
                 
                 // Click count
@@ -76,6 +79,6 @@ struct FunctionCardView: View {
 
 struct FunctionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, isPresentTabBar: false, selection: .constant(1), selectedNumber: 1)
+        FunctionCardView(thumnail: "point_history".localized, thumailColor: Color.blue, functionName: "tt", chevron: true, isPresentTabBar: false, selection: .constant(1), isRate: .constant(true), selectedNumber: 1)
     }
 }

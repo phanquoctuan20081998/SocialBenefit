@@ -58,8 +58,7 @@ struct RecognitionPostView: View {
                                     moveToPosition: $recognitionPostViewModel.moveToPosition,
                                     numOfComment: $recognitionPostViewModel.numOfComment,
                                     proxy: $proxy,
-                                    contentId: recognitionPostViewModel.contentId,
-                                    parentId: recognitionPostViewModel.parentId,
+                                    parentId: $recognitionPostViewModel.parentId, contentId: recognitionPostViewModel.contentId,
                                     content: recognitionPostViewModel.commentText,
                                     contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION,
                                     updateComment: recognitionPostViewModel.updateComment(newComment: ))))

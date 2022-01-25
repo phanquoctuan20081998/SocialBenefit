@@ -32,6 +32,7 @@ struct NotificationView: View {
             }
         }
         .onAppear {
+            notificationViewModel.isRefreshing = true
             notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
         }
         .background(
@@ -61,7 +62,7 @@ extension NotificationView {
                         .onTapGesture {
                             DispatchQueue.main.async {
                                 notificationViewModel.changeDesitionationView(notificationItem: notificationViewModel.allNotificationItems[index])
-                                
+                                notificationViewModel.updateReadNotification(items: [notificationViewModel.allNotificationItems[index]])
                                 self.isMoveToNextPage = true
                             }
                         }

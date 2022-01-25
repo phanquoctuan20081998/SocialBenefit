@@ -96,6 +96,13 @@ class NotificationViewModel: ObservableObject, Identifiable {
         }
     }
     
+    public func updateReadNotification(items: [NotificationItemData]) {
+
+        notificationService.getAPI(items: items) {
+            
+        }
+    }
+    
     public func changeDesitionationView(notificationItem: NotificationItemData) {
         switch notificationItem.getType() {
         case Constants.NotificationLogType.NOTIFICATION_HR: do {

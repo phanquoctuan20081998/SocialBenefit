@@ -8,6 +8,7 @@
 import SwiftUI
 import StoreKit
 import MedLib
+import SafariServices
 
 struct UserView: View {
     
@@ -17,6 +18,7 @@ struct UserView: View {
     @ObservedObject var userViewModel = UserViewModel()
     
     @State var selection: Int? = nil
+    @State var isRate: Bool = false
     
     init() {
         UIScrollView.appearance().bounces = true
@@ -43,20 +45,20 @@ struct UserView: View {
                     
                     if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
                         NavigationLink(destination: NavigationLazyView(UsedPointHistoryView()), tag: 2, selection: $selection) {
-                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 2)
+                            FunctionCardView(thumnail: "clock.arrow.circlepath", thumailColor: Color.gray, functionName: "point_history".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 2)
                         }
                     }
                     
                     if isDisplayFunction(Constants.FuctionId.BENEFIT) {
                         NavigationLink(destination: NavigationLazyView(ListOfBenefitsView()), tag: 4, selection: $selection) {
-                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 4)
+                            FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "benefits".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 4)
                         }
                     }
                     
                     
                     if isDisplayFunction(Constants.FuctionId.SURVEY) {
                         NavigationLink(destination: NavigationLazyView(ListSurveyView()), tag: 5, selection: $selection) {
-                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 5)
+                            FunctionCardView(thumnail: "chart.bar.xaxis", thumailColor: Color.purple, functionName: "surveys".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 5)
                         }
                     }
                 }.padding(.top, 10)
@@ -66,13 +68,12 @@ struct UserView: View {
                 
                 VStack(spacing: 8) {
                     NavigationLink(destination: NavigationLazyView(SettingsView()), tag: 6, selection: $selection) {
-                        FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, isPresentTabBar: false, selection: $selection, selectedNumber: 6)
+                        FunctionCardView(thumnail: "gearshape.fill", thumailColor: Color.blue, functionName: "setting".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 6)
                     }
                     
+                    FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: .constant(false), selectedNumber: 7, isCountClick: false)
                     
-                    FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color.green, functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 7, isCountClick: false)
-                    
-                    FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: true, selection: $selection, selectedNumber: 8)
+                    FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 8)
                 }
                 
                 Spacer().frame(height: 30)
@@ -111,12 +112,29 @@ struct UserView: View {
                     .frame(height: 100)
             }
         }
+        .sheet(isPresented: $isRate, content: {
+            SafariView(url: URL(string: Constants.RATEAPPURL)!)
+        })
         .background(BackgroundViewWithNotiAndSearch())
         
         .onAppear {
             homescreen.isPresentedTabBar = true
         }
     }
+}
+
+struct SafariView: UIViewControllerRepresentable {
+    
+    let url: URL
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
+        
+    }
+    
 }
 
 struct UserInforView: View {

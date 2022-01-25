@@ -65,6 +65,9 @@ struct HomeScreenView: View {
         .environmentObject(searchViewModel)
         .environmentObject(homeViewModel)
         //        .environmentObject(keyboardHandler)
+        .onAppear(perform: {
+            homeScreenViewModel.isPresentedTabBar = true
+        })
         .navigationBarHidden(true)
     }
     

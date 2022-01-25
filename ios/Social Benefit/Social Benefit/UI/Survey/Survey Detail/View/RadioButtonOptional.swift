@@ -32,6 +32,7 @@ struct RadioButtonOptional: View {
                 Image(systemName: (model.checked ?? false) ? "smallcircle.fill.circle.fill" : "circle")
                     .foregroundColor((model.checked ?? false) ? Color.blue : Color.secondary)
                 Text(buttonText).foregroundColor(Color.black)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         })
         

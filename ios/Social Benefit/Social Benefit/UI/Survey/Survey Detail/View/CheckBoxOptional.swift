@@ -30,6 +30,7 @@ struct CheckBoxOptional: View {
                 Image(systemName: (model.checked ?? false) ? "checkmark.square.fill" : "square")
                     .foregroundColor((model.checked ?? false) ? Color.blue : Color.secondary)
                 Text(buttonText).foregroundColor(Color.black)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         })
     }

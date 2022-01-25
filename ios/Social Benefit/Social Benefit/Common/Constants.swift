@@ -162,6 +162,9 @@ struct Constants {
         static let ENV = "ENV"
     }
     
+    static let APPID = "1601163900"
+    static let RATEAPPURL = "https://itunes.apple.com/app/id\(APPID)?action=write-review"
+    
     // Background Search Bar...
     static let BACKGROUND_SEARCH = [BackgroundSearch(tab: "company_surveys", icon: "chart.bar.xaxis", color: Color.purple, destination: 0, functionId: FuctionId.SURVEY),
                                     BackgroundSearch(tab: "employee_information", icon: "home_my_profile", color: Color.white, destination: 1, functionId: ""),

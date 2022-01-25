@@ -36,6 +36,7 @@
 		2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */; };
 		2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
+		2AADE31B279EED9500721956 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADE31A279EED9500721956 /* Med247View.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
 		84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */; };
@@ -370,6 +371,7 @@
 		2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewController.swift; sourceTree = "<group>"; };
 		2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Med247ViewController.xib; sourceTree = "<group>"; };
 		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
+		2AADE31A279EED9500721956 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */,
 				2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */,
 				2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */,
+				2AADE31A279EED9500721956 /* Med247View.swift */,
 			);
 			path = Med247;
 			sourceTree = "<group>";
@@ -2357,6 +2360,7 @@
 				C446BEC42771C4A100925F5E /* CheckBoxOptional.swift in Sources */,
 				C4F2A4FC26F040AC0090675A /* HTMLStringView.swift in Sources */,
 				C46BD8892747545500E8715F /* RankingCardView.swift in Sources */,
+				2AADE31B279EED9500721956 /* Med247View.swift in Sources */,
 				C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */,
 				C472E4C426FD763400D047BA /* MerchantVoucherDetailViewModel.swift in Sources */,
 				2A398BBA2795472000E347F5 /* WebView.swift in Sources */,
@@ -2612,7 +2616,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2620,7 +2624,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2638,7 +2642,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2646,7 +2650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

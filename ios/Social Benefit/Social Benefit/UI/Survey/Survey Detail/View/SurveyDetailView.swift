@@ -42,7 +42,7 @@ struct SurveyDetailView: View {
             self.viewModel.updateComment()
         })
         .errorPopup($viewModel.error)
-        .loadingView(isLoading: $viewModel.isLoading)
+        .loadingView(isLoading: $viewModel.isLoading, dimBackground: false)
         .inforTextView($viewModel.infoText)
         .sheet(isPresented: $viewModel.isShowReactionList) {
             ReactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
@@ -124,7 +124,7 @@ struct SurveyDetailView: View {
                 commentBar
                 
             } else {
-                EmptyView()
+                Spacer()
             }
         }
     }
@@ -134,10 +134,14 @@ struct SurveyDetailView: View {
             ForEach(viewModel.questionList.indices) { index in
                 let question = viewModel.questionList[index]
                 let multiAnswer = question.multiAnswer ?? false
+                
                 HStack {
-                    Text(question.questionText)
                     if question.mustAnswer == true {
-                        Text("*").foregroundColor(Color.red)
+                        (Text(question.questionText) + Text(" ") + Text("*").foregroundColor(Color.red))
+                            .fixedSize(horizontal: false, vertical: true)
+                    } else {
+                        Text(question.questionText)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 0, trailing: 0))
@@ -150,12 +154,14 @@ struct SurveyDetailView: View {
                                     
                                     Text(viewModel.choiceList[index][idx].choiceName)
                                         .bold()
+                                        .fixedSize(horizontal: false, vertical: true)
                                     Spacer()
                                     let number = viewModel.choiceList[index][idx].numberAnswer?.string ?? "0"
                                     Text(number + " " + "answer".localized)
                                         .bold()
                                 } else {
                                     Text(viewModel.choiceList[index][idx].choiceName)
+                                        .fixedSize(horizontal: false, vertical: true)
                                     Spacer()
                                     let number = viewModel.choiceList[index][idx].numberAnswer?.string ?? "0"
                                     Text(number + " " + "answer".localized)
@@ -387,9 +393,11 @@ struct SurveyDetailView: View {
                 .bold()
                 .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
                 .font(Font.system(size: 14))
+                .fixedSize(horizontal: false, vertical: true)
             Text(comment.commentDetail ?? "")
                 .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 10, trailing: 10))
                 .font(Font.system(size: 14))
+                .fixedSize(horizontal: false, vertical: true)
         }
         .background(Color("comment"))
         .cornerRadius(15)
@@ -423,3 +431,4 @@ struct SurveyDetailViewModel_Previews: PreviewProvider {
         SurveyDetailView(detailModel: SurveyResultModel.init(id: 1, surveyName: "", deadlineDate: 10000))
     }
 }
+

@@ -398,7 +398,8 @@ struct MainCardView: View {
                                     .foregroundColor(.black)
                             }
                         }.background(
-                            NavigationLink(destination: NavigationLazyView(Med247ViewControllerRepresentation()),
+                            NavigationLink(destination: NavigationLazyView(Med247ViewControllerRepresentation()
+                                                                            .navigationBarHidden(true)),
                                            isActive: $moveToMED,
                                            label: { EmptyView() })
                         )

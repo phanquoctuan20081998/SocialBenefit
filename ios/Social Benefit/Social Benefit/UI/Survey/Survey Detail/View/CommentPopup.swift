@@ -75,7 +75,7 @@ struct CommentPopup: ViewModifier {
             
             Spacer()
         }
-        .font(.system(size: 20))
+        .font(.system(size: 17))
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
         .contentShape(Rectangle())

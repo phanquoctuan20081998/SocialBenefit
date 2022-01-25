@@ -149,11 +149,11 @@ extension CommentOptionPopUp {
             
             Spacer()
         }
-        .font(.system(size: 20))
+        .font(.system(size: 17))
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
         .contentShape(Rectangle())
-        .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+//        .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
     }
 }
 

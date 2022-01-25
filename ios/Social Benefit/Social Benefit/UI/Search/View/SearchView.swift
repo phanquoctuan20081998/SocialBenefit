@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+public var isBack: Bool = false
+
 struct SearchContentView: View {
     
     @EnvironmentObject var searchViewModel: SearchViewModel
@@ -38,7 +40,10 @@ struct SearchContentView: View {
                                     homeScreen.isPresentedSearchView = false
                                     homeScreen.selectedTab = "house"
                                     homeScreen.isPresentedTabBar = true
+                                } else {
+                                    isBack = true
                                 }
+                                
                                 // Count click
                                 countClick()
                             }
@@ -47,6 +52,13 @@ struct SearchContentView: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+        .onAppear(perform: {
+            if isBack {
+                homeScreen.isPresentedSearchView = false
+            }
+            
+            isBack = false
+        })
         .background(
             ZStack {
                 if selectedTab != -1 && filteredData[selectedTab].destination != 3 {

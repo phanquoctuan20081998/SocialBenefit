@@ -79,8 +79,7 @@ struct InternalNewsDetailView: View {
                                     moveToPosition: $commentViewModel.moveToPosition,
                                     numOfComment: $commentViewModel.numOfComment,
                                     proxy: $proxy,
-                                    contentId: internalNewData.contentId,
-                                    parentId: commentViewModel.parentId,
+                                    parentId: $commentViewModel.parentId, contentId: internalNewData.contentId,
                                     content: commentViewModel.commentText,
                                     contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
                                     updateComment: commentViewModel.updateComment(newComment:),
@@ -238,9 +237,9 @@ struct SendCommentButtonView: View {
     @Binding var moveToPosition: Int
     @Binding var numOfComment: Int
     @Binding var proxy: AmzdScrollViewProxy?
+    @Binding var parentId: Int
     
     var contentId: Int
-    var parentId: Int
     var content: String
     var contentType: Int
     
@@ -292,6 +291,9 @@ struct SendCommentButtonView: View {
                     
                     self.commentText = ""
                     self.numOfComment += 1
+                    
+                    isReply = false
+                    parentId = -1
                 }
             })
             
