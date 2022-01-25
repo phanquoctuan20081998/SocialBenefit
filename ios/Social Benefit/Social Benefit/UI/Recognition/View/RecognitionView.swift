@@ -9,6 +9,7 @@ import SwiftUI
 import ScrollViewProxy
 
 struct RecognitionView: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @ObservedObject var recognitionViewModel = RecognitionViewModel()
     
     @State private var proxy: AmzdScrollViewProxy? = nil
@@ -67,7 +68,9 @@ struct RecognitionView: View {
                 }
             }
         )
-        
+        .onAppear(perform: {
+            homeScreenViewModel.isPresentedTabBar = true
+        })
         .environmentObject(recognitionViewModel)
         .background(BackgroundViewWithNotiAndSearch())
         .edgesIgnoringSafeArea(.all)

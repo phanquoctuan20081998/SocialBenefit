@@ -51,6 +51,9 @@ struct ListOfMerchantView: View {
         }
         .background(BackgroundViewWithNotiAndSearch(), alignment: .top)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+        .onAppear {
+            homeScreenViewModel.isPresentedTabBar = true
+        }
     }
 }
 
