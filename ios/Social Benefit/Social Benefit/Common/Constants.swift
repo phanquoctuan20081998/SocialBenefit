@@ -70,7 +70,7 @@ struct Constants {
         static let VN = 1
     }
     
-    static let LANGUAGE_CODE = ["VIE", "ENG"]
+    static let LANGUAGE_CODE = ["ENG", "VIE"]
     static let LANGUAGE_TAB = ["en", "vn"]
     
     // Change Password Error...
