@@ -70,6 +70,7 @@ struct Constants {
         static let VN = 1
     }
     
+    static let LANGUAGE_CODE = ["VIE", "ENG"]
     static let LANGUAGE_TAB = ["en", "vn"]
     
     // Change Password Error...
@@ -160,6 +161,17 @@ struct Constants {
         static let COMPANY = "COMPANY"
         static let CODE = "CODE"
         static let ENV = "ENV"
+    }
+    
+    struct SystemType {
+        static let Company = 0
+        static let Merchant = 1
+        static let Mobile = 2
+    }
+    
+    struct DocumentType {
+        static let FAQ = 0
+        static let PolicyTerm = 1
     }
     
     static let APPID = "1601163900"

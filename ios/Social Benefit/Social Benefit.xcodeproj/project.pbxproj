@@ -28,6 +28,9 @@
 		2A2DCC9B2797172B0058890E /* ReactListRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2DCC9A2797172B0058890E /* ReactListRequestModel.swift */; };
 		2A2DCC9D279717C30058890E /* ReactCountGroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2DCC9C279717C30058890E /* ReactCountGroupService.swift */; };
 		2A2DCC9F279717ED0058890E /* ReactListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2DCC9E279717ED0058890E /* ReactListService.swift */; };
+		2A35DB0F27A2551C00E8E8C0 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A35DB0E27A2551C00E8E8C0 /* FAQView.swift */; };
+		2A35DB1127A2552C00E8E8C0 /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A35DB1027A2552C00E8E8C0 /* PolicyView.swift */; };
+		2A35DB1327A2792F00E8E8C0 /* FAQPolicyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A35DB1227A2792F00E8E8C0 /* FAQPolicyService.swift */; };
 		2A398BB227951A4400E347F5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB127951A4400E347F5 /* SplashView.swift */; };
 		2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */; };
 		2A398BB82795458100E347F5 /* VinaphoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A398BB72795458100E347F5 /* VinaphoneView.swift */; };
@@ -364,6 +367,9 @@
 		2A2DCC9A2797172B0058890E /* ReactListRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListRequestModel.swift; sourceTree = "<group>"; };
 		2A2DCC9C279717C30058890E /* ReactCountGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactCountGroupService.swift; sourceTree = "<group>"; };
 		2A2DCC9E279717ED0058890E /* ReactListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListService.swift; sourceTree = "<group>"; };
+		2A35DB0E27A2551C00E8E8C0 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		2A35DB1027A2552C00E8E8C0 /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
+		2A35DB1227A2792F00E8E8C0 /* FAQPolicyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQPolicyService.swift; sourceTree = "<group>"; };
 		2A398BB127951A4400E347F5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		2A398BB32795271B00E347F5 /* MerchantSpecialSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialSettingsService.swift; sourceTree = "<group>"; };
 		2A398BB72795458100E347F5 /* VinaphoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinaphoneView.swift; sourceTree = "<group>"; };
@@ -752,6 +758,15 @@
 			path = ReactionView;
 			sourceTree = "<group>";
 		};
+		2A35DB0D27A2550A00E8E8C0 /* FAQPolicy */ = {
+			isa = PBXGroup;
+			children = (
+				2A35DB0E27A2551C00E8E8C0 /* FAQView.swift */,
+				2A35DB1027A2552C00E8E8C0 /* PolicyView.swift */,
+			);
+			path = FAQPolicy;
+			sourceTree = "<group>";
+		};
 		2A398BB52795454300E347F5 /* SpecialMerchant */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,6 +953,7 @@
 				2A112B0C27969ABA000F4B88 /* OAth2Service.swift */,
 				2A2DCC9C279717C30058890E /* ReactCountGroupService.swift */,
 				2A2DCC9E279717ED0058890E /* ReactListService.swift */,
+				2A35DB1227A2792F00E8E8C0 /* FAQPolicyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -945,6 +961,7 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2A35DB0D27A2550A00E8E8C0 /* FAQPolicy */,
 				2A398BB52795454300E347F5 /* SpecialMerchant */,
 				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
 				C4ADDE5D276C2A2A00B24F6A /* ClickCounter */,
@@ -2208,6 +2225,7 @@
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
 				C446BE982771B58200925F5E /* LoginRequestModel.swift in Sources */,
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
+				2A35DB1127A2552C00E8E8C0 /* PolicyView.swift in Sources */,
 				C4B9BF7926FC2AC50022DA55 /* GeneratorQRCode.swift in Sources */,
 				C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */,
 				CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */,
@@ -2299,6 +2317,7 @@
 				C476C5B327561FC200D93AA7 /* NoHightLightClickAffect.swift in Sources */,
 				C497AA1826F83A6D006EFE0C /* BuyVoucherInforModel.swift in Sources */,
 				C4B94DEF26C26B0E009D5C46 /* TableCellView.swift in Sources */,
+				2A35DB0F27A2551C00E8E8C0 /* FAQView.swift in Sources */,
 				C456C45D275DA14F00406C8D /* WalletInforService.swift in Sources */,
 				C446BEB02771B88900925F5E /* StringValue.swift in Sources */,
 				2A398BB227951A4400E347F5 /* SplashView.swift in Sources */,
@@ -2368,6 +2387,7 @@
 				C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */,
 				C472E4C426FD763400D047BA /* MerchantVoucherDetailViewModel.swift in Sources */,
 				2A398BBA2795472000E347F5 /* WebView.swift in Sources */,
+				2A35DB1327A2792F00E8E8C0 /* FAQPolicyService.swift in Sources */,
 				C4C9677C26C6500200AC5CB9 /* InternalNewsService.swift in Sources */,
 				C4AA6DE926C421D800203CB9 /* InternalNewsCardView.swift in Sources */,
 				C402B26E26E76E5500A41288 /* ReactService.swift in Sources */,
