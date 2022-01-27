@@ -10,6 +10,7 @@ import Foundation
 class ReactionPopUpViewModel: ObservableObject {
     
     private let service = ReactCountGroupService()
+    
     private let listService = ReactListService()
     
     @Published var error: AppError = .none
@@ -20,7 +21,7 @@ class ReactionPopUpViewModel: ObservableObject {
     
     @Published var isLoading = false
     
-    @Published var currentReactType = -1
+    @Published var currentTab = 0
     
     func request(_ contentType: Int, _ contentId: Int) {
         isLoading = true
@@ -35,8 +36,7 @@ class ReactionPopUpViewModel: ObservableObject {
         }
     }
     
-    func requestReactList(contentType: Int?, contentId: Int?, reactType: Int) {
-        isLoading = true
+    func requestReactList(contentType: Int?, contentId: Int?, reactType: Int?) {
         listService.request(contentType: contentType, contentId: contentId, reactType: reactType, fromIndex: 0) { response in
             switch response {
             case .success(let value):
@@ -44,7 +44,6 @@ class ReactionPopUpViewModel: ObservableObject {
             case .failure(let error):
                 self.error = error
             }
-            self.isLoading = false
         }
     }
     

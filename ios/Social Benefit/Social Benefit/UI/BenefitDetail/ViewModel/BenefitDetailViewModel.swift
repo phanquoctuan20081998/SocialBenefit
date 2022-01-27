@@ -16,7 +16,6 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     @Published var benefit: BenefitData = benefitDataSample
     @Published var index: Int = -1
     
-    
     // Control error
     @Published var isPresentError: Bool = false
     @Published var errorCode: String = ""

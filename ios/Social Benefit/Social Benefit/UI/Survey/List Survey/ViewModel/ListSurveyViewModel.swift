@@ -30,6 +30,7 @@ class ListSurveyViewModel: ObservableObject {
     
     init() {
         addSubscribers()
+        firstRequest()
     }
     
     func addSubscribers() {

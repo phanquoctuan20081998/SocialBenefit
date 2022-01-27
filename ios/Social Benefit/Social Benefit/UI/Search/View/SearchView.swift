@@ -55,6 +55,7 @@ struct SearchContentView: View {
         .onAppear(perform: {
             if isBack {
                 homeScreen.isPresentedSearchView = false
+                homeScreen.isPresentedTabBar = true
             }
             
             isBack = false

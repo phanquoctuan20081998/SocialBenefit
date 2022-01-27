@@ -44,7 +44,7 @@ struct ListOfBenefitsView: View {
                 
             }
             .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+//            .navigationBarBackButtonHidden(true)
             .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
             .edgesIgnoringSafeArea(.all)
         }

@@ -112,7 +112,6 @@ struct InternalNewsDetailView: View {
             ReactionPopUpView(isPresented: $reactViewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, contentId: internalNewData.contentId)
         }
         .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
     }
     
     func backButtonTapped() {

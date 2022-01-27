@@ -69,7 +69,7 @@ struct ListSurveyView: View {
         }
         .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "", isHaveLogo: true))
         .onAppear() {
-            viewModel.firstRequest()
+//            viewModel.firstRequest()
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)

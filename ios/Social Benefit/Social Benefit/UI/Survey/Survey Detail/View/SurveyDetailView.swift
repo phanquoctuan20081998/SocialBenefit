@@ -32,7 +32,6 @@ struct SurveyDetailView: View {
             Utils.dismissKeyboard()
         }
         .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
         .successPopup($viewModel.sendAnswerSuccess)
         .commentPopup($viewModel.commentSelected, editCommet: $viewModel.commentEdited, deleteComment: $viewModel.commentDeleted, newText: $viewModel.newComment)
         .commentDeletePopup($viewModel.commentDeleted, action: {
@@ -106,6 +105,8 @@ struct SurveyDetailView: View {
                             Spacer()
                                 .frame(width: 20)
                         }
+                        .padding(.top, 10)
+                        
                         Spacer()
                             .frame(height: 20)
                         
@@ -168,7 +169,8 @@ struct SurveyDetailView: View {
                                 }
                             }
                             .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
-                        } else {
+                        }
+                        else {
                             EmptyView()
                         }
                     } else {

@@ -35,6 +35,7 @@
 		2A43E178279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */; };
 		2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */; };
 		2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */; };
+		2A52844F27A18D8D001CAF20 /* ReactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A52844E27A18D8D001CAF20 /* ReactListView.swift */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		2AADE31B279EED9500721956 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADE31A279EED9500721956 /* Med247View.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
@@ -370,6 +371,7 @@
 		2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewControllerRepresentation.swift; sourceTree = "<group>"; };
 		2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewController.swift; sourceTree = "<group>"; };
 		2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Med247ViewController.xib; sourceTree = "<group>"; };
+		2A52844E27A18D8D001CAF20 /* ReactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListView.swift; sourceTree = "<group>"; };
 		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
 		2AADE31A279EED9500721956 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -745,6 +747,7 @@
 			children = (
 				2A2DCC91279713910058890E /* ReactionPopUpView.swift */,
 				2A2DCC942797154A0058890E /* ReactionPopUpViewModel.swift */,
+				2A52844E27A18D8D001CAF20 /* ReactListView.swift */,
 			);
 			path = ReactionView;
 			sourceTree = "<group>";
@@ -2267,6 +2270,7 @@
 				C446BEA22771B6FA00925F5E /* SurveyGetService.swift in Sources */,
 				C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */,
 				C4AB352D270AD7B000A186F5 /* SearchView.swift in Sources */,
+				2A52844F27A18D8D001CAF20 /* ReactListView.swift in Sources */,
 				84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */,
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
 				C446BEAE2771B87900925F5E /* ExtenBinding.swift in Sources */,
@@ -2616,7 +2620,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2642,7 +2646,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

@@ -31,24 +31,23 @@ struct NotificationView: View {
                 }
             }
         }
-        .onAppear {
-            notificationViewModel.isRefreshing = true
-            notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
-        }
+//        .onAppear {
+//            notificationViewModel.isRefreshing = true
+//            notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
+//        }
         .background(
             ZStack {
                 NavigationLink(destination: EmptyView()) {
                     EmptyView()
                 }
-                NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true).navigationBarBackButtonHidden(true)), isActive: $isMoveToNextPage, label: {
+                NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
                     EmptyView()
-                })
+                }).isDetailLink(false)
             }
         )
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "notification".localized, isHaveLogo: true, isHiddenTabBarWhenBack: false, backButtonTapped: notificationViewModel.updateReadNotification))
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
     }
 }
 

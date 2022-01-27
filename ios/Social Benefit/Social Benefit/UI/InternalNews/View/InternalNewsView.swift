@@ -52,7 +52,6 @@ struct InternalNewsView: View {
             homeScreenViewModel.isPresentedTabBar = false
         }
         .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
     }
 }
 

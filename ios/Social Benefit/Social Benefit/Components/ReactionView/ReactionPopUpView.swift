@@ -15,6 +15,8 @@ struct ReactionPopUpView: View {
     var contentType: Int
     var contentId: Int
     
+    var isPopup = false
+    
     @ObservedObject private var viewModel = ReactionPopUpViewModel()
     
     var body: some View {
@@ -43,15 +45,18 @@ struct ReactionPopUpView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(Color.white)
             .cornerRadius(10)
-//            .padding(EdgeInsets.init(top: 50, leading: 20, bottom: 50, trailing: 20))
-            .shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
+            .if(isPopup) { view in
+                view.padding(EdgeInsets.init(top: 50, leading: 20, bottom: 50, trailing: 20))
+            }
+            .if(isPopup) { view in
+                view.shadow(color: .black.opacity(0.2), radius: 8, x: -3, y: 3)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.black.opacity(0.2))
         .edgesIgnoringSafeArea(.all)
         .onAppear() {
             viewModel.request(contentType, contentId)
-            viewModel.requestReactList(contentType: contentType, contentId: contentId, reactType: -1)
         }
         .onDisappear() {
             viewModel.clearData()
@@ -69,13 +74,9 @@ struct ReactionPopUpView: View {
     
     var headerTab: some View {
         VStack {
-            if let result = viewModel.countModel.result {
-                headerTab(result)
-                listReact
-                Spacer()
-            } else {
-                EmptyView()
-            }
+            headerTab(viewModel.countModel.list)
+            listReact(viewModel.countModel.list)
+            Spacer()
         }
     }
     
@@ -83,27 +84,27 @@ struct ReactionPopUpView: View {
     func headerTab(_ result: [ReactCountResultModel]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
-                ForEach(result.indices) { index in
-                    
+                ForEach(result.indices, id: \.self) { index in
+                   
                     if result[index].reactType == -1 {
                         VStack {
                             Button(action: {
-                                viewModel.requestReactList(contentType: contentType, contentId: contentId, reactType: -1)
-                                viewModel.currentReactType = result[index].reactType ?? -1
+                                viewModel.currentTab = index
                             }, label: {
                                 HStack {
                                     Text("all".localized)
-                                        .if(viewModel.currentReactType != -1) {
+                                        .fixedSize(horizontal: true, vertical: false)
+                                        .if(viewModel.currentTab != index) {
                                             $0.foregroundColor(.black)
                                         }
-                                        .if(viewModel.currentReactType == -1) {
+                                        .if(viewModel.currentTab == index) {
                                             $0.foregroundColor(.blue)
                                         }
                                     Text(result[index].reactCount?.string ?? "")
-                                        .if(viewModel.currentReactType != -1) {
+                                        .if(viewModel.currentTab != index) {
                                             $0.foregroundColor(.black)
                                         }
-                                        .if(viewModel.currentReactType == -1) {
+                                        .if(viewModel.currentTab == index) {
                                             $0.foregroundColor(.blue)
                                         }
                                 }
@@ -112,15 +113,14 @@ struct ReactionPopUpView: View {
                             
                             Divider()
                                 .background(Color.blue)
-                                .if(viewModel.currentReactType != -1) {
+                                .if(viewModel.currentTab != index) {
                                     $0.hidden()
                                 }
                         }
                     } else if let reactType = result[index].reactType, let type = ReactionType.init(rawValue: reactType) {
                         VStack {
                             Button(action: {
-                                viewModel.requestReactList(contentType: contentType, contentId: contentId, reactType: reactType)
-                                viewModel.currentReactType = reactType
+                                viewModel.currentTab = index
                             }, label: {
                                 HStack {
                                     Image.init(type.imageName)
@@ -129,10 +129,10 @@ struct ReactionPopUpView: View {
                                         .frame(width: 20, height: 20)
                                         .clipped()
                                     Text(result[index].reactCount?.string ?? "")
-                                        .if(viewModel.currentReactType != reactType) {
+                                        .if(viewModel.currentTab != index) {
                                             $0.foregroundColor(.black)
                                         }
-                                        .if(viewModel.currentReactType == reactType) {
+                                        .if(viewModel.currentTab == index) {
                                             $0.foregroundColor(type.color)
                                         }
                                 }
@@ -140,7 +140,7 @@ struct ReactionPopUpView: View {
                             })
                             Divider()
                                 .background(type.color)
-                                .if(viewModel.currentReactType != reactType) { content in
+                                .if(viewModel.currentTab != index) { content in
                                     content.hidden()
                                 }
                         }
@@ -148,25 +148,30 @@ struct ReactionPopUpView: View {
                 }
             }
             .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
+            .frame(height: 50)
         }
     }
     
-    var listReact: some View {
-        List(viewModel.listModel.result ?? []) { item in
-            HStack(spacing: 20) {
-                ZStack(alignment: .bottomTrailing) {
-                    URLImageView(url: Config.baseURL + (item.avatar ?? ""))
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
-                    if let type = ReactionType.init(rawValue: item.reactType) {
-                        Image.init(type.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
-                            .clipped()
+    @ViewBuilder
+    func listReact(_ result: [ReactCountResultModel]) -> some View {
+        VStack {
+            if result.count > 0 {
+                if #available(iOS 14.0, *) {
+                    TabView(selection: $viewModel.currentTab) {
+                        ForEach(result.indices, id: \.self) { index in
+                            ReactListView.init(contentType: contentType, contentId: contentId, reactType: result[index].reactType).tag(index)
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                } else {
+                    TabView(selection: $viewModel.currentTab) {
+                        ForEach(result.indices, id: \.self) { index in
+                            ReactListView.init(contentType: contentType, contentId: contentId, reactType: result[index].reactType).tag(index)
+                        }
                     }
                 }
-                Text(item.employeeName ?? "")
+            } else {
+                EmptyView()
             }
         }
     }
@@ -175,7 +180,7 @@ struct ReactionPopUpView: View {
 extension View {
     func reactionPopUpView(isPresented: Binding<Bool>, contentType: Int, contentId: Int) -> some View {
         return self.popup(isPresented: isPresented, alignment: .center) {
-            ReactionPopUpView(isPresented: isPresented, contentType: contentType, contentId: contentId)
+            ReactionPopUpView(isPresented: isPresented, contentType: contentType, contentId: contentId, isPopup: true)
         }
     }
 }
