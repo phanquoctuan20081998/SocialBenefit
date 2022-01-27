@@ -24,7 +24,7 @@ class FAQPolicyService {
         
         service.makeCall(endpoint: Config.API_FAQ_POLICY_GET, method: "POST", header: header, body: params, callback: { (result) in
             
-           print(result)
+           returnCallBack(result)
             
         })
     }

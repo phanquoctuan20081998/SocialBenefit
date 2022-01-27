@@ -74,11 +74,11 @@ struct UserView: View {
                     FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color("light_green"), functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: .constant(false), selectedNumber: 7, isCountClick: false)
                     
                     // Phase 3 - FAQ
-                    NavigationLink(destination: NavigationLazyView(FAQView()), tag: 9, selection: $selection) {
-                        FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 9)
+                    NavigationLink(destination: NavigationLazyView(FAQView()), tag: 10, selection: $selection) {
+                        FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
                     }
                     
-                    FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
+                    FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 11)
                     
                     FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 8)
                 }

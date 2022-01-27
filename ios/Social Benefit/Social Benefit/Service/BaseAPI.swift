@@ -97,6 +97,8 @@ public class BaseAPI {
                         self.sessionTimeOut.isTimeOut = true
                     }
                 }
+                
+                callback(JSON(["errors": error?.localizedDescription]))
                 return
             }
             do {
