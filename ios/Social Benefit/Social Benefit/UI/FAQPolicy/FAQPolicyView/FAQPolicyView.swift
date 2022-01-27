@@ -1,21 +1,20 @@
 //
-//  FAQView.swift
+//  FAQPolicyView.swift
 //  Social Benefit
 //
 //  Created by Tuan Phan Quoc on 27/01/2022.
 //
 
+import Foundation
 import SwiftUI
 
 struct FAQPolicyView: View {
     
-    @ObservedObject var faqPolicyViewModel = FAQPolicyViewModel()
-    
-    var docType: Int
+    @ObservedObject var faqPolicyViewModel: FAQPolicyViewModel
                                                                             
     var body: some View {
         ZStack {
-            BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: faqPolicyViewModel.getTitle(docType: docType), isHaveLogo: false)
+            BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: faqPolicyViewModel.getTitle(), isHaveLogo: false)
             
             if !faqPolicyViewModel.content.isEmpty {
                 VStack {
@@ -36,15 +35,6 @@ struct FAQPolicyView: View {
             // Error
             ErrorMessageView(error: faqPolicyViewModel.error, isPresentedError: $faqPolicyViewModel.isPresentError)
         }
-        .onAppear {
-            faqPolicyViewModel.loadData(docType: docType)
-        }
         .navigationBarHidden(true)
-    }
-}
-
-struct FAQView_Previews: PreviewProvider {
-    static var previews: some View {
-        FAQPolicyView(docType: Constants.DocumentType.FAQ)
     }
 }

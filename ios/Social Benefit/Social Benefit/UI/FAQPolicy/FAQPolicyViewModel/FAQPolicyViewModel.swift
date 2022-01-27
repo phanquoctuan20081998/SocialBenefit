@@ -14,11 +14,17 @@ class FAQPolicyViewModel: ObservableObject, Identifiable {
     @Published var error: String = ""
     @Published var content: String = ""
     @Published var isLoading: Bool = false
+    @Published var docType: Int = 0
     
     private var faqPolicyService = FAQPolicyService()
     private let currentLang = Constants.LANGUAGE_CODE[UserDefaults.standard.integer(forKey: "language")]
     
-    func loadData(docType: Int) {
+    init(docType: Int) {
+        self.docType = docType
+        loadData()
+    }
+    
+    func loadData() {
         
         self.isLoading = true
         
@@ -38,9 +44,9 @@ class FAQPolicyViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func getTitle(docType: Int) -> String {
+    func getTitle() -> String {
         if docType == Constants.DocumentType.FAQ {
-            return "raq".localized
+            return "faq".localized
         } else {
             return "policy".localized
         }
