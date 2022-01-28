@@ -25,6 +25,7 @@ struct FAQPolicyView: View {
                         HTMLView(htmlString: faqPolicyViewModel.content)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .frame(width: ScreenInfor().screenWidth * 0.9, height: ScreenInfor().screenHeight * 0.8, alignment: .bottom)
+                            
                         Spacer()
                     }
                 }

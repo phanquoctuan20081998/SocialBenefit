@@ -13,7 +13,7 @@ class FAQPolicyViewModel: ObservableObject, Identifiable {
     @Published var isPresentError: Bool = false
     @Published var error: String = ""
     @Published var content: String = ""
-    @Published var isLoading: Bool = true
+    @Published var isLoading: Bool = false
     @Published var docType: Int = 0
     
     private var faqPolicyService = FAQPolicyService()

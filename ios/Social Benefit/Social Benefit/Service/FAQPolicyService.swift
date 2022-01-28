@@ -23,8 +23,8 @@ class FAQPolicyService {
                                   "lang_code": lang_code]
         
         service.makeCall(endpoint: Config.API_FAQ_POLICY_GET, method: "POST", header: header, body: params, callback: { (result) in
-            
-           returnCallBack(result)
+            print(result)
+            returnCallBack(result)
             
         })
     }

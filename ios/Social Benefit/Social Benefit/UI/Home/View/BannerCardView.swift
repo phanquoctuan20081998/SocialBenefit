@@ -53,7 +53,7 @@ struct InternalNewsBannerView: View {
                                     }
                             }
                         }
-//                        .aspectRatio(4/3, contentMode: .fit)
+                        //                        .aspectRatio(4/3, contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     } else { EmptyView() }
                 }
@@ -232,15 +232,6 @@ struct PromotionsBannerView: View {
 struct MainCardView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
-    @State var moveToRecognition = false
-    @State var moveToMyVoucher = false
-    
-    // Special merchants
-    @State var moveToVNP = false
-    @State var moveToPTI = false
-    @State var moveToVUI = false
-    @State var moveToMED = false
-    
     var personalPoint: Int
     
     var body: some View {
@@ -250,177 +241,97 @@ struct MainCardView: View {
                 .scaledToFill()
             
             VStack {
-                HStack {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("hello".localized)
-                            .font(.system(size: 15))
-                        Text(userInfor.name)
-                            .bold()
-                            .font(.system(size: 20))
-                            .foregroundColor(.blue)
-                        
-                        if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
-                            HStack {
-                                Text("\(self.personalPoint)")
-                                    .bold()
-                                    .foregroundColor(.orange)
-                                    .font(.system(size: 20))
-                                Image("ic_coin")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                            }.onTapGesture {
-                                withAnimation {
-                                    homeScreenViewModel.selectedTab = "star"
-                                }
-                                countClick()
-                            }
-                        }
-                    }.padding(.leading, 30)
-                    
-                    Spacer()
-                    
-                    URLImageView(url: userInfor.avatar)
-                        .clipShape(Circle())
-                        .frame(width: 70, height: 70)
-                        .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 2))
-                        .padding(.trailing, 40)
-                    
-                }
+                
+                TitleView
                 
                 HStack {
                     if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
-                        
                         Spacer()
-                        
-                        // Reconigion Button
-                        Button {
-                            self.moveToRecognition = true
-                            self.homeScreenViewModel.isPresentedTabBar = false
-                            countClick()
-                        } label: {
-                            mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
-                                .foregroundColor(.black)
-                        }
-                        
+                        RecognitionButton()
                         Spacer()
-                        
-                        // Reconigion Button
-                        Button {
-                            self.moveToMyVoucher = true
-                            countClick()
-                        } label: {
-                            mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
-                                .foregroundColor(.black)
-                        }
-                        
+                        MyVoucherButton()
                         Spacer()
                     }
                     
-                    // Merchanr Specials
+                    // Merchant Specials
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) {
-                        
-                        let VNP = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VNP }) ?? MerchantSpecialList()
-                        
-                        let VNPSettings = VNP.merchantSpecialSettings
-                        
-                        let url = VNP.merchantSpecialSettings![VNPSettings?.firstIndex(where: { $0.settingCode == Constants.MerchantSpecialSettings.URL_WEBVIEW }) ?? 0].settingValue
-                        
-                        VStack {
-                            Button {
-                                self.moveToVNP = true
-                                countClick()
-                            } label: {
-                                mainButton(text: VNP.merchantName ?? "vnpt".localized, image: "ic_vnpt", color: Color("light_blue"))
-                                    .foregroundColor(.black)
-                            }
-                        }.background(
-                            NavigationLink(destination: NavigationLazyView(VinaphoneView(webViewURL: url ?? "", merchantName: VNP.merchantName!)),
-                                           isActive: $moveToVNP,
-                                           label: { EmptyView() })
-                        )
+                        VNPTButton()
                     }
                     
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) {
-                        
-                        let PTI = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.PTI }) ?? MerchantSpecialList()
-                        
-                        let PTISettings = PTI.merchantSpecialSettings
-                        
-                        let url = PTI.merchantSpecialSettings![PTISettings?.firstIndex(where: { $0.settingCode == Constants.MerchantSpecialSettings.URL_WEBVIEW }) ?? 0].settingValue
-                        
-                        let urlWithEmployeeId = url!.replacingOccurrences(of: "{0}", with: userInfor.employeeId)
-                        
-                        VStack {
-                            Button {
-                                self.moveToPTI = true
-                                countClick()
-                            } label: {
-                                mainButton(text: PTI.merchantName ?? "pti".localized, image: "ic_pti", color: Color("light_orange"))
-                                    .foregroundColor(.black)
-                            }
-                        }.background(
-                            NavigationLink(destination: NavigationLazyView(PTIView(webViewURL: urlWithEmployeeId, merchantName: PTI.merchantName!)),
-                                           isActive: $moveToPTI,
-                                           label: { EmptyView() })
-                        )
-                        
+                        PTIButton()
                     }
                     
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) {
-                        
-                        let VUI = userInfor.merchantSpecial.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VUI })
-                        VStack {
-                            Button {
-                                self.moveToVUI = true
-                                countClick()
-                            } label: {
-                                mainButton(text: (VUI?.merchantName!)!, image: "ic_vui", color: Color.green)
-                                    .foregroundColor(.black)
-                            }
-                        }.background(
-                            NavigationLink(destination: NavigationLazyView(VUIAppView()),
-                                           isActive: $moveToVUI,
-                                           label: { EmptyView() })
-                        )
+                        VUIButton()
                     }
                     
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) {
-                        
-                        let MED247 = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.MED247 }) ?? MerchantSpecialList()
-                        
-                        VStack {
-                            Button {
-                                moveToMED = true
-                                
-                                countClick()
-                            } label: {
-                                mainButton(text: MED247.merchantName!, image: "ic_med247", color: Color("light_blue"))
-                                    .foregroundColor(.black)
-                            }
-                        }.background(
-                            NavigationLink(destination: NavigationLazyView(Med247ViewControllerRepresentation()
-                                                                            .navigationBarHidden(true)),
-                                           isActive: $moveToMED,
-                                           label: { EmptyView() })
-                        )
+                        Med247Button()
+                    }
+                    
+                    // Other Button
+                    if isDisplayOtherButton() {
+                        OtherButton
                     }
                 }
-                .background (
-                    ZStack {
-                        NavigationLink(destination: NavigationLazyView(RecognitionActionView()),
-                                       isActive: $moveToRecognition,
-                                       label: { EmptyView() })
-                        NavigationLink(destination: NavigationLazyView(MyVoucherView()),
-                                       isActive: $moveToMyVoucher,
-                                       label: { EmptyView() })
-                    }
-                )
             }
         }
         .frame(width: ScreenInfor().screenWidth * 0.93, height: isDoesNotHaveButton() ? 200 : 150)
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+    }
+}
+
+extension MainCardView {
+    
+    var TitleView: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("hello".localized)
+                    .font(.system(size: 15))
+                Text(userInfor.name)
+                    .bold()
+                    .font(.system(size: 20))
+                    .foregroundColor(.blue)
+                
+                if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                    HStack {
+                        Text("\(self.personalPoint)")
+                            .bold()
+                            .foregroundColor(.orange)
+                            .font(.system(size: 20))
+                        Image("ic_coin")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }.onTapGesture {
+                        withAnimation {
+                            homeScreenViewModel.selectedTab = "star"
+                        }
+                        countClick()
+                    }
+                }
+            }.padding(.leading, 30)
+            
+            Spacer()
+            
+            URLImageView(url: userInfor.avatar)
+                .clipShape(Circle())
+                .frame(width: 70, height: 70)
+                .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 2))
+                .padding(.trailing, 40)
+            
+        }
+    }
+    
+    var OtherButton: some View {
+        Button {
+            homeScreenViewModel.isPresentOtherPopUp = true
+        } label: {
+            mainButton(text: "other".localized, image: "ic_others", color: Color("light_blue"))
+                .foregroundColor(.black)
+        }
     }
     
     func isDoesNotHaveButton() -> Bool {
@@ -431,8 +342,215 @@ struct MainCardView: View {
         
         return false
     }
+    
+    func isDisplayOtherButton() -> Bool {
+        return false
+    }
 }
 
+struct RecognitionButton: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToRecognition = false
+    
+    var body: some View {
+        Button {
+            self.moveToRecognition = true
+            self.homeScreenViewModel.isPresentedTabBar = false
+            countClick()
+        } label: {
+            mainButton(text: "recognize".localized, image: "ic_recognize", color: Color("light_pink"))
+                .foregroundColor(.black)
+        }
+        .background(
+            NavigationLink(destination: NavigationLazyView(RecognitionActionView()),
+                           isActive: $moveToRecognition,
+                           label: { EmptyView() })
+        )
+    }
+}
+
+struct MyVoucherButton: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToMyVoucher = false
+    
+    var body: some View {
+        Button {
+            self.moveToMyVoucher = true
+            countClick()
+        } label: {
+            mainButton(text: "my_voucher".localized, image: "ic_my_voucher", color: Color("light_yellow"))
+                .foregroundColor(.black)
+        }.background(
+            NavigationLink(destination: NavigationLazyView(MyVoucherView()),
+                           isActive: $moveToMyVoucher,
+                           label: { EmptyView() })
+        )
+    }
+}
+
+struct VNPTButton: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToVNP = false
+    
+    var body: some View {
+        VStack {
+            let VNP = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VNP }) ?? MerchantSpecialList()
+            
+            let VNPSettings = VNP.merchantSpecialSettings
+            
+            let url = VNP.merchantSpecialSettings![VNPSettings?.firstIndex(where: { $0.settingCode == Constants.MerchantSpecialSettings.URL_WEBVIEW }) ?? 0].settingValue
+            
+            VStack {
+                Button {
+                    self.moveToVNP = true
+                    countClick()
+                } label: {
+                    mainButton(text: VNP.merchantName ?? "vnpt".localized, image: "ic_vnpt", color: Color("light_blue"))
+                        .foregroundColor(.black)
+                }
+            }.background(
+                NavigationLink(destination: NavigationLazyView(VinaphoneView(webViewURL: url ?? "", merchantName: VNP.merchantName!)),
+                               isActive: $moveToVNP,
+                               label: { EmptyView() })
+            )
+        }
+    }
+}
+
+struct PTIButton: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToPTI = false
+    
+    var body: some View {
+        VStack {
+            let PTI = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.PTI }) ?? MerchantSpecialList()
+            
+            let PTISettings = PTI.merchantSpecialSettings
+            
+            let url = PTI.merchantSpecialSettings![PTISettings?.firstIndex(where: { $0.settingCode == Constants.MerchantSpecialSettings.URL_WEBVIEW }) ?? 0].settingValue
+            
+            let urlWithEmployeeId = url!.replacingOccurrences(of: "{0}", with: userInfor.employeeId)
+            
+            VStack {
+                Button {
+                    self.moveToPTI = true
+                    countClick()
+                } label: {
+                    mainButton(text: PTI.merchantName ?? "pti".localized, image: "ic_pti", color: Color("light_orange"))
+                        .foregroundColor(.black)
+                }
+            }.background(
+                NavigationLink(destination: NavigationLazyView(PTIView(webViewURL: urlWithEmployeeId, merchantName: PTI.merchantName!)),
+                               isActive: $moveToPTI,
+                               label: { EmptyView() })
+            )
+        }
+    }
+}
+
+struct VUIButton: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToVUI = false
+    
+    var body: some View {
+        VStack {
+            let VUI = userInfor.merchantSpecial.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.VUI })
+            VStack {
+                Button {
+                    self.moveToVUI = true
+                    countClick()
+                } label: {
+                    mainButton(text: (VUI?.merchantName!)!, image: "ic_vui", color: Color.green)
+                        .foregroundColor(.black)
+                }
+            }.background(
+                NavigationLink(destination: NavigationLazyView(VUIAppView()),
+                               isActive: $moveToVUI,
+                               label: { EmptyView() })
+            )
+        }
+    }
+}
+
+struct Med247Button: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @State var moveToMED = false
+    
+    var body: some View {
+        VStack {
+            let MED247 = userInfor.merchantSpecialData.first(where: { $0.merchantCode ==  Constants.MerchantSpecialCode.MED247 }) ?? MerchantSpecialList()
+            
+            VStack {
+                Button {
+                    moveToMED = true
+                    
+                    countClick()
+                } label: {
+                    mainButton(text: MED247.merchantName!, image: "ic_med247", color: Color("light_blue"))
+                        .foregroundColor(.black)
+                }
+            }.background(
+                NavigationLink(destination: NavigationLazyView(Med247ViewControllerRepresentation().navigationBarHidden(true)),
+                               isActive: $moveToMED,
+                               label: { EmptyView() })
+            )
+        }
+    }
+}
+
+struct OthersButtonPopUpView: View {
+    @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    
+    var body: some View {
+        if homeScreenViewModel.isPresentOtherPopUp {
+            ZStack {
+                Color.black.opacity(0.5)
+                    .onTapGesture {
+                        homeScreenViewModel.isPresentOtherPopUp = false
+                    }
+                
+                VStack {
+                    HStack {
+                        Button {
+                            homeScreenViewModel.isPresentOtherPopUp = false
+                        } label: {
+                            Image(systemName: "arrow.backward")
+                        }
+                        
+                        Text("others".localized)
+                    }
+                    .padding()
+                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) {
+                                VNPTButton()
+                            }
+                            
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) {
+                                PTIButton()
+                            }
+                            
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) {
+                                VUIButton()
+                            }
+                            
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) {
+                                Med247Button()
+                            }
+                        }
+                    }
+                    
+                    Spacer()
+                }
+                .frame(width: ScreenInfor().screenWidth * 0.8, height: ScreenInfor().screenHeight * 0.2)
+                .background(Color.white)
+                .cornerRadius(30)
+            }.edgesIgnoringSafeArea(.all)
+        }
+    }
+}
 
 struct mainButton: View {
     var text: String
@@ -537,12 +655,26 @@ func getPromotionData(data: [MerchantListData], imageTapped: @escaping () -> ())
     return result
 }
 
-struct BannerCardView_Previews: PreviewProvider {
+struct OtherButtonPopUpView: ViewModifier {
+    
+    var popupContent: AnyView
+    
+    func body(content: Content) -> some View {
+        content
+            .overlay(popupContent)
+    }
+}
+
+extension View {
+    
+    func othersButtonPopUp(_ popup: AnyView) -> some View {
+        return modifier(OtherButtonPopUpView(popupContent: popup))
+    }
+}
+
+struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        //        HomeScreenView(selectedTab: "house")
-                MainCardView(personalPoint: 100)
-//        RecognitionsBannerView()
+        OthersButtonPopUpView()
             .environmentObject(HomeScreenViewModel())
-            .environmentObject(HomeViewModel())
     }
 }

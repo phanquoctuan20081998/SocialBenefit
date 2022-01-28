@@ -12,4 +12,5 @@ class HomeScreenViewModel: ObservableObject, Identifiable {
     @Published var isPresentedError = false
     @Published var isPresentedTabBar = true
     @Published var isPresentedSearchView = false
+    @Published var isPresentOtherPopUp = false
 }

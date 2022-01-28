@@ -139,7 +139,6 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                         }
                         
                         if isHaveLogo {
-                            
                             URLImageView(url: userInfor.companyLogo)
                                 .scaledToFit()
                                 .frame(height: 30, alignment: .trailing)

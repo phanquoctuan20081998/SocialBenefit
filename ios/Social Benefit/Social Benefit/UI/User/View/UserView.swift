@@ -77,7 +77,7 @@ struct UserView: View {
                     NavigationLink(destination: NavigationLazyView(FAQView()), tag: 10, selection: $selection) {
                         FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
                     }
-                    
+
                     NavigationLink(destination: NavigationLazyView(PolicyView()), tag: 11, selection: $selection) {
                         FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 11)
                     }

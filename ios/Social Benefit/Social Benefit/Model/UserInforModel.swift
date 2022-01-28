@@ -210,9 +210,12 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNa
         userInfor.merchantSpecialData.append(merchantSpecial)
     }
     
+    if userInfor.companyLogo.isEmpty {
+        userInfor.companyLogo = "https://i.ibb.co/TYkjg14/Nissho-Viet-Nam-Logo-Vertical.png"
+    }
+    
     userInfor.functionNames = functionNames
     
-//    print(userInfor)
 }
 
 func updateUserInfor(model: LoginModel) {
@@ -286,14 +289,15 @@ func updateUserInfor(model: LoginModel) {
     var merchantSpecialSetting = MerchantSpecialInfo()
     
     for settingItem in model.result?.merchantSpecials ?? [] {
-        print(settingItem)
         merchantSpecialSetting.merchantName = settingItem.merchantName ?? ""
         merchantSpecialSetting.merchantCode = settingItem.merchantCode ?? ""
         merchantSpecialSettingList.append(merchantSpecialSetting)
     }
     userInfor.merchantSpecial = merchantSpecialSettingList
     
-    print(userInfor)
+    if userInfor.companyLogo.isEmpty {
+        userInfor.companyLogo = "https://i.ibb.co/TYkjg14/Nissho-Viet-Nam-Logo-Vertical.png"
+    }
     
     UserDefaults.setCompanyLogo(value: userInfor.companyLogo)
 }
