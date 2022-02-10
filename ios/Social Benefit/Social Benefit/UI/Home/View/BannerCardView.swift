@@ -242,6 +242,8 @@ struct MainCardView: View {
             
             VStack {
                 
+                let buttonTotal = countDisplayableButton()
+                
                 TitleView
                 
                 HStack {
@@ -254,19 +256,19 @@ struct MainCardView: View {
                     }
                     
                     // Merchant Specials
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= 4 {
                         VNPTButton()
                     }
                     
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= 4 {
                         PTIButton()
                     }
                     
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= 4 {
                         VUIButton()
                     }
                     
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= 4 {
                         Med247Button()
                     }
                     
@@ -344,8 +346,29 @@ extension MainCardView {
     }
     
     func isDisplayOtherButton() -> Bool {
-        return false
+        
+        let buttonTotal = countDisplayableButton()
+        
+        if buttonTotal > 4 {
+            return true
+        } else {
+            return false
+        }
     }
+    
+    
+}
+
+func countDisplayableButton() -> Int {
+    var buttonTotal = 0
+    
+    if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) { buttonTotal += 2 }
+    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) { buttonTotal += 1 }
+    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) { buttonTotal += 1 }
+    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) { buttonTotal += 1 }
+    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) { buttonTotal += 1 }
+    
+    return buttonTotal
 }
 
 struct RecognitionButton: View {
@@ -510,6 +533,8 @@ struct OthersButtonPopUpView: View {
                     }
                 
                 VStack {
+                    let buttonTotal = countDisplayableButton()
+                    
                     HStack {
                         Button {
                             homeScreenViewModel.isPresentOtherPopUp = false
@@ -524,19 +549,19 @@ struct OthersButtonPopUpView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal > 4 {
                                 VNPTButton()
                             }
                             
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal > 4 {
                                 PTIButton()
                             }
                             
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal > 4 {
                                 VUIButton()
                             }
                             
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal > 4 {
                                 Med247Button()
                             }
                         }
@@ -666,7 +691,6 @@ struct OtherButtonPopUpView: ViewModifier {
 }
 
 extension View {
-    
     func othersButtonPopUp(_ popup: AnyView) -> some View {
         return modifier(OtherButtonPopUpView(popupContent: popup))
     }
