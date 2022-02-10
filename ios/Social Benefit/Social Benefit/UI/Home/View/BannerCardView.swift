@@ -232,6 +232,12 @@ struct PromotionsBannerView: View {
 struct MainCardView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
+    // Check special merchants button count
+    @State var isVNPButtonValid: Bool = false
+    @State var isPTIButtonValid: Bool = false
+    @State var isVUIButtonValid: Bool = false
+    @State var isMED247ButtonValid: Bool = false
+    
     var personalPoint: Int
     
     var body: some View {
@@ -241,9 +247,7 @@ struct MainCardView: View {
                 .scaledToFill()
             
             VStack {
-                
-                let buttonTotal = countDisplayableButton()
-                
+        
                 TitleView
                 
                 HStack {
@@ -256,19 +260,19 @@ struct MainCardView: View {
                     }
                     
                     // Merchant Specials
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= 4 {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && isVNPButtonValid {
                         VNPTButton()
                     }
                     
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= 4 {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && isPTIButtonValid {
                         PTIButton()
                     }
                     
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= 4 {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && isVUIButtonValid {
                         VUIButton()
                     }
                     
-                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= 4 {
+                    if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && isMED247ButtonValid {
                         Med247Button()
                     }
                     
@@ -283,6 +287,9 @@ struct MainCardView: View {
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+        .onAppear {
+            checkSpecialMerchantButton()
+        }
     }
 }
 
@@ -346,7 +353,6 @@ extension MainCardView {
     }
     
     func isDisplayOtherButton() -> Bool {
-        
         let buttonTotal = countDisplayableButton()
         
         if buttonTotal > 4 {
@@ -356,7 +362,31 @@ extension MainCardView {
         }
     }
     
-    
+    // Check which button display on main card, which button on other popup
+    func checkSpecialMerchantButton() {
+        var buttonTotal = 0
+        
+        if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+            buttonTotal = 2
+        }
+        
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= 4 {
+            self.isVUIButtonValid = true
+            buttonTotal += 1
+        }
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= 4 {
+            self.isVNPButtonValid = true
+            buttonTotal += 1
+        }
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= 4 {
+            self.isPTIButtonValid = true
+            buttonTotal += 1
+        }
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= 4 {
+            self.isMED247ButtonValid = true
+            buttonTotal += 1
+        }
+    }
 }
 
 func countDisplayableButton() -> Int {
@@ -524,6 +554,12 @@ struct Med247Button: View {
 struct OthersButtonPopUpView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     
+    // Check special merchants button count
+    @State var isVNPButtonValid: Bool = false
+    @State var isPTIButtonValid: Bool = false
+    @State var isVUIButtonValid: Bool = false
+    @State var isMED247ButtonValid: Bool = false
+    
     var body: some View {
         if homeScreenViewModel.isPresentOtherPopUp {
             ZStack {
@@ -533,8 +569,6 @@ struct OthersButtonPopUpView: View {
                     }
                 
                 VStack {
-                    let buttonTotal = countDisplayableButton()
-                    
                     HStack {
                         Button {
                             homeScreenViewModel.isPresentOtherPopUp = false
@@ -549,19 +583,19 @@ struct OthersButtonPopUpView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal > 4 {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && !isVNPButtonValid{
                                 VNPTButton()
                             }
                             
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal > 4 {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && !isPTIButtonValid {
                                 PTIButton()
                             }
                             
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal > 4 {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && !isVUIButtonValid {
                                 VUIButton()
                             }
                             
-                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal > 4 {
+                            if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && !isMED247ButtonValid {
                                 Med247Button()
                             }
                         }
@@ -573,6 +607,31 @@ struct OthersButtonPopUpView: View {
                 .background(Color.white)
                 .cornerRadius(30)
             }.edgesIgnoringSafeArea(.all)
+        }
+    }
+    
+    func checkSpecialMerchantButton() {
+        var buttonTotal = 0
+        
+        if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+            buttonTotal = 2
+        }
+        
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= 4 {
+            self.isVUIButtonValid = true
+            buttonTotal += 1
+        }
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= 4 {
+            self.isVNPButtonValid = true
+            buttonTotal += 1
+        }
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= 4 {
+            self.isPTIButtonValid = true
+            buttonTotal += 1
+        }
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= 4 {
+            self.isMED247ButtonValid = true
+            buttonTotal += 1
         }
     }
 }
