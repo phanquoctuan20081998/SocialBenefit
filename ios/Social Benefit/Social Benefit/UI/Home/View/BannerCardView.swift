@@ -365,24 +365,30 @@ extension MainCardView {
     // Check which button display on main card, which button on other popup
     func checkSpecialMerchantButton() {
         var buttonTotal = 0
+        var maximum = 3
+        
+        if countDisplayableButton() == 4 {
+            maximum = 4
+        }
+        
         
         if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
             buttonTotal = 2
         }
         
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= maximum {
             self.isVUIButtonValid = true
             buttonTotal += 1
         }
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= maximum {
             self.isVNPButtonValid = true
             buttonTotal += 1
         }
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= maximum {
             self.isPTIButtonValid = true
             buttonTotal += 1
         }
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= maximum {
             self.isMED247ButtonValid = true
             buttonTotal += 1
         }
@@ -612,24 +618,29 @@ struct OthersButtonPopUpView: View {
     
     func checkSpecialMerchantButton() {
         var buttonTotal = 0
+        var maximum = 3
+        
+        if countDisplayableButton() == 4 {
+            maximum = 4
+        }
         
         if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
             buttonTotal = 2
         }
         
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && buttonTotal <= maximum {
             self.isVUIButtonValid = true
             buttonTotal += 1
         }
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && buttonTotal <= maximum {
             self.isVNPButtonValid = true
             buttonTotal += 1
         }
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && buttonTotal <= maximum {
             self.isPTIButtonValid = true
             buttonTotal += 1
         }
-        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= 4 {
+        if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && buttonTotal <= maximum {
             self.isMED247ButtonValid = true
             buttonTotal += 1
         }
