@@ -611,7 +611,11 @@ struct OthersButtonPopUpView: View {
                 .frame(width: ScreenInfor().screenWidth * 0.8, height: ScreenInfor().screenHeight * 0.2)
                 .background(Color.white)
                 .cornerRadius(30)
-            }.edgesIgnoringSafeArea(.all)
+            }
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                checkSpecialMerchantButton()
+            }
         }
     }
     

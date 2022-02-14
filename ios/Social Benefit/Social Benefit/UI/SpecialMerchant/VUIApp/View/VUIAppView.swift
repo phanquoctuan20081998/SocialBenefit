@@ -16,7 +16,9 @@ struct VUIAppView: View {
         ZStack {
             if vuiAppViewModel.isLoading {
                 MerchantLoadingView(merchantName: "VUI-NANO")
-            } else if !vuiAppViewModel.vuiAppResponse.getWebUrl().isEmpty {
+            } 
+            
+            if !vuiAppViewModel.vuiAppResponse.getWebUrl().isEmpty {
                 MerchantWebView(isLoading: $vuiAppViewModel.isLoading, merchantSpecialCode: Constants.MerchantSpecialCode.VUI, url: vuiAppViewModel.vuiAppResponse.getWebUrl())
             }
             
