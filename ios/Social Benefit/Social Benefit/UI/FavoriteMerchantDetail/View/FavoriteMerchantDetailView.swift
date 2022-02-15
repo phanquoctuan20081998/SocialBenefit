@@ -10,6 +10,7 @@ import SwiftUI
 struct FavoriteMerchantDetailView: View {
     @ObservedObject var favoriteMerchantSpecialOfferViewModel: FavoriteMerchantSpecialOfferViewModel
     @ObservedObject var favoriteMerchantOfferViewModel: FavoriteMerchantOfferViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
     @State var isMoveToMerchantDetailSpecialOffer = false
     @State var selectedVoucherIdSpecialOffer = 0
@@ -35,6 +36,8 @@ struct FavoriteMerchantDetailView: View {
                     .padding(.init(top: ScreenInfor().screenHeight * 0.05 + 10, leading: 0, bottom: 0, trailing: 20))
                  , alignment: .topTrailing)
         .edgesIgnoringSafeArea(.all)
+        .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(false), title: "your_favorite_merchant".localized.uppercased(), isHaveLogo: false))
         .background(
             ZStack {

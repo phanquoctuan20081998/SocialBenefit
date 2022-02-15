@@ -16,7 +16,7 @@ struct MerchantCategoryItemView: View {
         VStack {
             let allItem = merchantCategoryItemViewModel.allMerchantCategoryItem
             
-            VStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 10) {
                 if 0 < allItem.count { FirstRowItemView }
                 if 5 < allItem.count { SecondRowItemView }
             }
@@ -32,11 +32,15 @@ struct MerchantCategoryItemView: View {
 extension MerchantCategoryItemView {
     var FirstRowItemView: some View {
         HStack(spacing: 10) {
+            
             let allItem = merchantCategoryItemViewModel.allMerchantCategoryItem
+            
             ForEach(0..<(allItem.count > 5 ? 5 : allItem.count)) { i in
                 MerchantCategoryItemCardView(data: merchantCategoryItemViewModel.allMerchantCategoryItem[i])
             }
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var SecondRowItemView: some View {
@@ -49,8 +53,9 @@ extension MerchantCategoryItemView {
             }
             
             MerchantCategoryItemCardLocalView()
-            
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

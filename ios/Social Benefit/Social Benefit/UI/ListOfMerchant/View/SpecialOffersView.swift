@@ -29,20 +29,15 @@ struct SpecialOffersView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(self.specialOffersViewModel.allSpecialOffers.indices, id: \.self) { i in
-                        NavigationLink(
-                            destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
-                            isActive: $isMoveToMerchantDetail,
-                            label: {
-                                Button {
-                                    self.isMoveToMerchantDetail = true
-                                    self.selectedVoucherId = specialOffersViewModel.allSpecialOffers[i].id
-                                    // Click count
-                                    countClick(contentId: self.specialOffersViewModel.allSpecialOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
-                                } label: {
-                                    SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
-                                        .foregroundColor(.black)
-                                }.buttonStyle(NavigationLinkNoAffectButtonStyle())
-                            }).buttonStyle(NavigationLinkNoAffectButtonStyle())
+                        Button {
+                            self.isMoveToMerchantDetail = true
+                            self.selectedVoucherId = specialOffersViewModel.allSpecialOffers[i].id
+                            // Click count
+                            countClick(contentId: self.specialOffersViewModel.allSpecialOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                        } label: {
+                            SpecialOfferCardView(voucherData: self.specialOffersViewModel.allSpecialOffers[i], choosedIndex: i)
+                                .foregroundColor(.black)
+                        }.buttonStyle(NavigationLinkNoAffectButtonStyle())
                     }
 
                     //Infinite Scroll View
@@ -87,6 +82,18 @@ struct SpecialOffersView: View {
             }
             Spacer()
         }
+        .background(
+            ZStack {
+                NavigationLink(
+                    destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
+                    isActive: $isMoveToMerchantDetail,
+                    label: {
+                        EmptyView()
+                    })
+                
+                NavigationLink(destination: EmptyView(), label: {})
+            }
+        )
         .padding(.top)
         .frame(height: 260)
     }

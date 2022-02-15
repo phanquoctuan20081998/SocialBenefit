@@ -22,25 +22,19 @@ struct AllOffersView: View {
         ScrollView(.vertical, showsIndicators: false) {
             
             VStack(alignment: .leading, spacing: 2) {
-            
+                
                 VStack(spacing: 15) {
                     ForEach(self.offersViewModel.allOffers.indices, id: \.self) { i in
-                        
-                        NavigationLink(
-                            destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
-                            isActive: $isMoveToMerchantDetail,
-                            label: {
-                                Button {
-                                    self.isMoveToMerchantDetail = true
-                                    self.selectedVoucherId = offersViewModel.allOffers[i].id
-                                    
-                                    // Click count
-                                    countClick(contentId: offersViewModel.allOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
-                                } label: {
-                                    AllOfferCardView(voucherData: self.offersViewModel.allOffers[i])
-                                        .foregroundColor(.black)
-                                }.buttonStyle(NavigationLinkNoAffectButtonStyle())
-                            }).buttonStyle(NavigationLinkNoAffectButtonStyle())
+                        Button {
+                            self.isMoveToMerchantDetail = true
+                            self.selectedVoucherId = offersViewModel.allOffers[i].id
+                            
+                            // Click count
+                            countClick(contentId: offersViewModel.allOffers[i].id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                        } label: {
+                            AllOfferCardView(voucherData: self.offersViewModel.allOffers[i])
+                                .foregroundColor(.black)
+                        }.buttonStyle(NavigationLinkNoAffectButtonStyle())
                     }
                     
                     //Infinite Scroll View
@@ -79,7 +73,18 @@ struct AllOffersView: View {
                     Spacer().frame(height: 40)
                     
                 }.padding()
-            }
+            }.background(
+                ZStack {
+                    NavigationLink(
+                        destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
+                        isActive: $isMoveToMerchantDetail,
+                        label: {
+                            EmptyView()
+                        })
+                        
+                    NavigationLink(destination: EmptyView(), label: {})
+                }
+            )
         }
     }
 }

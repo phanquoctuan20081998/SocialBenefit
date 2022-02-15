@@ -408,7 +408,11 @@
 
 "reacted" = "Người đã bày tỏ cảm xúc";
 
-// Merchanr Special
+// Merchant Special
 "you_are_being_redirected" = "Quý khách đang được điều hướng sang cổng dịch vụ của %@";
 "ERR_NOT_FOUND" = "Không thể lấy được tài khoản";
 "ERR_CONFLICT" = "Tài khoản của quý khách đã được liên kết với người dùng khác";
+
+// Favorite Merchant
+"your_favorite_merchant" = "Cửa hàng yêu thích";
+"

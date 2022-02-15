@@ -408,7 +408,11 @@
 
 "reacted" = "People who reacted";
 
-// Merchanr Special
+// Merchant Special
 "you_are_being_redirected" = "You are being redirected to the service portal of %@";
 "ERR_NOT_FOUND" = "Fall to get account";
 "ERR_CONFLICT" = "Employment already linked with other user";
+
+// Favorite Merchant
+"your_favorite_merchant" = "Your favorite merchant";
+

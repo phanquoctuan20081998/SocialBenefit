@@ -35,7 +35,7 @@ struct MerchantVoucherDetailView: View {
                 
                 .frame(width: ScreenInfor().screenWidth)
                 
-            } else {
+            } else {                
                 VoucherHeadline
                 InformationBar()
                 
@@ -56,9 +56,9 @@ struct MerchantVoucherDetailView: View {
         .navigationBarBackButtonHidden(true)
         .overlay(
             MyVoucherButtonView()
-                .padding(.trailing)
-                .padding(.top, ScreenInfor().screenHeight * 0.02)
+                .padding(.init(top: ScreenInfor().screenHeight * 0.05 + 10, leading: 0, bottom: 0, trailing: 20))
             ,alignment: .topTrailing)
+        .edgesIgnoringSafeArea(.all)
         
         // PopUp overlay...
         .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
@@ -95,7 +95,8 @@ extension MerchantVoucherDetailView {
         
         return VStack {
             
-            Spacer().frame(height: 50)
+            Spacer()
+                .frame(height: ScreenInfor().screenHeight * 0.13)
             
             URLImageView(url: voucherDetail.imageURL)
                 .scaledToFit()
