@@ -55,6 +55,9 @@ struct UserView: View {
                         }
                     }
                     
+                    NavigationLink(destination: NavigationLazyView(FavoriteMerchantDetailView(merchantId: 2202)), tag: 12, selection: $selection) {
+                        FunctionCardView(thumnail: "list.number", thumailColor: Color.blue, functionName: "favorite".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 12)
+                    }
                     
                     if isDisplayFunction(Constants.FuctionId.SURVEY) {
                         NavigationLink(destination: NavigationLazyView(ListSurveyView()), tag: 5, selection: $selection) {

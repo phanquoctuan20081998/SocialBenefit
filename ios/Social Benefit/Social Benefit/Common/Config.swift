@@ -10,12 +10,12 @@ import Foundation
 
 struct Config {
     
-//    static let baseURL = "http://172.20.109.102:8089"
+    static let baseURL = "http://172.20.109.102:8089"
 //    static let baseURL = "http://172.20.108.151:8066"
 //    static let baseURL = "http://172.20.108.151:8022"
 //    static let baseURL = "http://localhost:8089"
 //    static let baseURL = "http://demo-sb.nissho-vn.com:8089"
-    static let baseURL = "http://113.190.243.99:8089"
+//    static let baseURL = "http://113.190.243.99:8089"
     
     static let API_LOGIN = "/employee/login"
     static let API_EMPLOYEE_FORGOTPASS = "/employee/forgotpassword"
@@ -36,6 +36,7 @@ struct Config {
     static let API_MERCHANT_VOUCHER_DETAIL = "/merchant-voucher-detail"
     static let API_APPLIED_STORE_MERCHANT_LIST = "/applied-store-merchant-list"
     static let API_MERCHANT_VOUCHER_LIST_BY_SIMILAR = "/merchant-voucher-list-by-similar"
+    static let API_MERCHANT_LIST_BY_MERCHANT = "/merchant-voucher-list-by-merchant"
 
     static let API_INTERNAL_NEWS_LIST = "/internal_news/list"
     static let API_INTERNAL_NEWS_GET = "/internal_news/get"

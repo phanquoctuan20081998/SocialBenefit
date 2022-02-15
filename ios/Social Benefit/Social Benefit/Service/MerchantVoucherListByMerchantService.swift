@@ -1,8 +1,8 @@
 //
-//  SpecialOffersService.swift
+//  MerchantVoucherListByMerchantService.swift
 //  Social Benefit
 //
-//  Created by Phan Quốc Tuấn on 15/09/2021.
+//  Created by Tuan Phan Quoc on 15/02/2022.
 //
 
 import Foundation
@@ -10,23 +10,22 @@ import SwiftUI
 import Alamofire
 import SwiftyJSON
 
-class MerchantVoucherSpecialListService {
+class MerchantVoucherListByMerchantService {
+    
     let dateFomatter = DateFormatter()
     
     init() {
         dateFomatter.dateFormat = "dd/MM/yyyy"
     }
     
-    func getAPI(searchPattern: String, fromIndex: Int, categoryId: Int, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ()) {
+    func getAPI(merchantId: Int, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ()) {
         let service = BaseAPI()
         var data = [MerchantVoucherItemData]()
         
         let header = ["token": userInfor.token,
-                      "employeeId": userInfor.employeeId]
+                      "user_id": userInfor.userId]
         
-        let params: Parameters = ["searchPattern": searchPattern,
-                                  "fromIndex": fromIndex,
-                                  "categoryId": (categoryId == -1) ? "" : categoryId]
+        let params: Parameters = ["merchantId": merchantId]
         
         var id: Int = 0
         var voucherCode: Int = 0
@@ -44,7 +43,7 @@ class MerchantVoucherSpecialListService {
         var merchantId: Int = 0
         var employeeLikeThis: Bool = false
         
-        service.makeCall(endpoint: Config.API_MERCHANT_LIST_SPECIAL, method: "POST", header: header as [String: String], body: params, callback: { result in
+        service.makeCall(endpoint: Config.API_MERCHANT_LIST_BY_MERCHANT, method: "POST", header: header as [String: String], body: params, callback: { result in
             
             for i in 0..<result.count {
                 
@@ -63,7 +62,7 @@ class MerchantVoucherSpecialListService {
                 categoryId = result[i]["categoryId"].int ?? -1
                 merchantId = result[i]["merchantId"].int ?? -1
                 employeeLikeThis = result[i]["employeeLikeThis"].bool ?? false
-               
+                
                 let tempMerchantVoucherItemData = MerchantVoucherItemData(id: id, voucherCode: voucherCode, imageURL: imageURL, name: name, merchantName: merchantName, content: content, favoriteValue: favoriteValue, outOfDateTime: outOfDateTime, shoppingValue: shoppingValue, pointValue: pointValue, moneyValue: moneyValue, discountValue: discountValue, categoryId: categoryId, merchantId: merchantId, employeeLikeThis: employeeLikeThis)
                 
                 data.append(tempMerchantVoucherItemData)
@@ -72,5 +71,6 @@ class MerchantVoucherSpecialListService {
         })
     }
 }
+
 
 
