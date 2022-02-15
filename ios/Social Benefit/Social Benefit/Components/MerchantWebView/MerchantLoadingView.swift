@@ -13,6 +13,8 @@ struct MerchantLoadingView: View {
     var body: some View {
         VStack {
             Spacer()
+                .frame(height: ScreenInfor().screenHeight * 0.1)
+            Spacer()
             ActivityRep()
                 .frame(width: 50, height: 50)
             Text("you_are_being_redirected".localizeWithFormat(arguments: merchantName))
@@ -21,7 +23,7 @@ struct MerchantLoadingView: View {
             Spacer()
         }
         .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
-        .overlay(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: false))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: false))
         .background(Color.white)
         .edgesIgnoringSafeArea(.all)
     }

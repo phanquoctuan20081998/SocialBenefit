@@ -22,7 +22,7 @@ func getFullDateSince1970(date: Int) -> String {
     } else if diffirent.minute != 0 {
         return "\(String(describing: diffirent.minute!)) " + ((diffirent.minute == 1) ? "minute".localized : "minutes".localized)
     } else {
-        return "\(String(describing: diffirent.second!)) " + ((diffirent.second == 1) ? "second".localized : "seconds".localized)
+        return "a_few_seconds".localized
     }
 }
 

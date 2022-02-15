@@ -262,23 +262,28 @@ struct MainCardView: View {
                     // Merchant Specials
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && isVNPButtonValid {
                         VNPTButton()
+                        Spacer()
                     }
                     
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.PTI) && isPTIButtonValid {
                         PTIButton()
+                        Spacer()
                     }
                     
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VUI) && isVUIButtonValid {
                         VUIButton()
+                        Spacer()
                     }
                     
                     if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.MED247) && isMED247ButtonValid {
                         Med247Button()
+                        Spacer()
                     }
                     
                     // Other Button
                     if isDisplayOtherButton() {
                         OtherButton
+                        Spacer()
                     }
                 }
             }
@@ -586,6 +591,8 @@ struct OthersButtonPopUpView: View {
                     .padding()
                     .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
                     
+                    Spacer()
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
                             if isDisplayMerchantSpecial(Constants.MerchantSpecialCode.VNP) && !isVNPButtonValid{
@@ -608,7 +615,8 @@ struct OthersButtonPopUpView: View {
                     
                     Spacer()
                 }
-                .frame(width: ScreenInfor().screenWidth * 0.8, height: ScreenInfor().screenHeight * 0.2)
+                .padding(.init(top: 0, leading: 15, bottom: 15, trailing: 15))
+                .frame(width: ScreenInfor().screenWidth * 0.8, height: ScreenInfor().screenHeight * 0.25)
                 .background(Color.white)
                 .cornerRadius(30)
             }

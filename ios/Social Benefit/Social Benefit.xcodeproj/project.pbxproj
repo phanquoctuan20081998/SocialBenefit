@@ -17,10 +17,6 @@
 		2A112B0D27969ABA000F4B88 /* OAth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0C27969ABA000F4B88 /* OAth2Service.swift */; };
 		2A112B1027969B31000F4B88 /* OAth2ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B0F27969B31000F4B88 /* OAth2ResponseModel.swift */; };
 		2A112B142796A0B5000F4B88 /* VUIAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A112B132796A0B5000F4B88 /* VUIAppViewModel.swift */; };
-		2A112B192796B684000F4B88 /* CommonCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */; };
-		2A112B1A2796B684000F4B88 /* CommonCrypto.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2A112B1B2796B685000F4B88 /* MedLib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B162796ADCE000F4B88 /* MedLib.xcframework */; };
-		2A112B1C2796B685000F4B88 /* MedLib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B162796ADCE000F4B88 /* MedLib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2A2DCC92279713910058890E /* ReactionPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2DCC91279713910058890E /* ReactionPopUpView.swift */; };
 		2A2DCC952797154A0058890E /* ReactionPopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2DCC942797154A0058890E /* ReactionPopUpViewModel.swift */; };
 		2A2DCC97279716E10058890E /* ReactCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2DCC96279716E10058890E /* ReactCountModel.swift */; };
@@ -40,6 +36,10 @@
 		2A43E178279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E177279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift */; };
 		2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */; };
 		2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */; };
+		2A46166027BB8335008A6AA9 /* CommonCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */; };
+		2A46166127BB8335008A6AA9 /* CommonCrypto.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B152796ADCE000F4B88 /* CommonCrypto.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2A46166327BB8338008A6AA9 /* MedLib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B162796ADCE000F4B88 /* MedLib.xcframework */; };
+		2A46166427BB8338008A6AA9 /* MedLib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A112B162796ADCE000F4B88 /* MedLib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2A52844F27A18D8D001CAF20 /* ReactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A52844E27A18D8D001CAF20 /* ReactListView.swift */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		2AADE31B279EED9500721956 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADE31A279EED9500721956 /* Med247View.swift */; };
@@ -327,22 +327,28 @@
 		C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */; };
 		C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */; };
 		C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */; };
-		CBC9D432278D3128000AF185 /* CommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D431278D3128000AF185 /* CommentPopup.swift */; };
-		CBC9D436278D3B39000AF185 /* DeleteCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */; };
-		CBC9D43C278D8FB7000AF185 /* EditCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */; };
+		CB05460A27B0CF0E0010CBAE /* EditCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460427B0CF0E0010CBAE /* EditCommentPopup.swift */; };
+		CB05460B27B0CF0E0010CBAE /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460527B0CF0E0010CBAE /* CommentListView.swift */; };
+		CB05460C27B0CF0E0010CBAE /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460627B0CF0E0010CBAE /* CommentInputView.swift */; };
+		CB05460D27B0CF0E0010CBAE /* CommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460727B0CF0E0010CBAE /* CommentPopup.swift */; };
+		CB05460E27B0CF0E0010CBAE /* DeleteCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460827B0CF0E0010CBAE /* DeleteCommentPopup.swift */; };
+		CB05460F27B0CF0E0010CBAE /* CommentEnvironmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460927B0CF0E0010CBAE /* CommentEnvironmentObject.swift */; };
+		CB05461127B129800010CBAE /* CommentReactPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05461027B129800010CBAE /* CommentReactPopup.swift */; };
+		CB10787F27B226CB00AC0743 /* CommentDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB10787E27B226CB00AC0743 /* CommentDetailService.swift */; };
+		CB10788127B27A9400AC0743 /* CommentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB10788027B27A9400AC0743 /* CommentDetailModel.swift */; };
 		CBC9D43E278DA097000AF185 /* UpdateCommentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */; };
 		CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDDB5C52787F27B00E2A8A0 /* SuccessTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */ = {
+		2A46166227BB8335008A6AA9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2A112B1C2796B685000F4B88 /* MedLib.xcframework in Embed Frameworks */,
-				2A112B1A2796B684000F4B88 /* CommonCrypto.xcframework in Embed Frameworks */,
+				2A46166427BB8338008A6AA9 /* MedLib.xcframework in Embed Frameworks */,
+				2A46166127BB8335008A6AA9 /* CommonCrypto.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,11 +681,17 @@
 		C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentButton.swift; sourceTree = "<group>"; };
 		C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionActionView.swift; sourceTree = "<group>"; };
-		CBC9D431278D3128000AF185 /* CommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPopup.swift; sourceTree = "<group>"; };
-		CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentPopup.swift; sourceTree = "<group>"; };
+		CB05460427B0CF0E0010CBAE /* EditCommentPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCommentPopup.swift; sourceTree = "<group>"; };
+		CB05460527B0CF0E0010CBAE /* CommentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
+		CB05460627B0CF0E0010CBAE /* CommentInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
+		CB05460727B0CF0E0010CBAE /* CommentPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentPopup.swift; sourceTree = "<group>"; };
+		CB05460827B0CF0E0010CBAE /* DeleteCommentPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCommentPopup.swift; sourceTree = "<group>"; };
+		CB05460927B0CF0E0010CBAE /* CommentEnvironmentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentEnvironmentObject.swift; sourceTree = "<group>"; };
+		CB05461027B129800010CBAE /* CommentReactPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReactPopup.swift; sourceTree = "<group>"; };
+		CB10787E27B226CB00AC0743 /* CommentDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailService.swift; sourceTree = "<group>"; };
+		CB10788027B27A9400AC0743 /* CommentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetailModel.swift; sourceTree = "<group>"; };
 		CBC9D437278D856A000AF185 /* DeleteCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentSurveySerive.swift; sourceTree = "<group>"; };
 		CBC9D439278D8F43000AF185 /* EditCommentSurveySerive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentSurveySerive.swift; sourceTree = "<group>"; };
-		CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentPopup.swift; sourceTree = "<group>"; };
 		CBC9D43D278DA097000AF185 /* UpdateCommentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCommentRequestModel.swift; sourceTree = "<group>"; };
 		CBDDB5C52787F27B00E2A8A0 /* SuccessTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessTextView.swift; sourceTree = "<group>"; };
 		CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release.xcconfig"; sourceTree = "<group>"; };
@@ -691,8 +703,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */,
-				2A112B192796B684000F4B88 /* CommonCrypto.xcframework in Frameworks */,
-				2A112B1B2796B685000F4B88 /* MedLib.xcframework in Frameworks */,
+				2A46166027BB8335008A6AA9 /* CommonCrypto.xcframework in Frameworks */,
+				2A46166327BB8338008A6AA9 /* MedLib.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,6 +988,7 @@
 				2A2DCC9C279717C30058890E /* ReactCountGroupService.swift */,
 				2A2DCC9E279717ED0058890E /* ReactListService.swift */,
 				2A35DB1227A2792F00E8E8C0 /* FAQPolicyService.swift */,
+				CB10787E27B226CB00AC0743 /* CommentDetailService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -983,6 +996,7 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CB05460327B0CF0E0010CBAE /* Comment */,
 				2A35DB0D27A2550A00E8E8C0 /* FAQPolicy */,
 				2A398BB52795454300E347F5 /* SpecialMerchant */,
 				C4B3D57726E9B5EC003C6CA9 /* BenefitDetail */,
@@ -1135,6 +1149,7 @@
 				2A2DCC98279717080058890E /* ReactListModel.swift */,
 				2A2DCC9A2797172B0058890E /* ReactListRequestModel.swift */,
 				2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */,
+				CB10788027B27A9400AC0743 /* CommentDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1404,9 +1419,6 @@
 				C446BEC12771C49500925F5E /* RadioButtonOptional.swift */,
 				C446BEC32771C4A100925F5E /* CheckBoxOptional.swift */,
 				C446BEC52771C4B800925F5E /* ReactionCommentView.swift */,
-				CBC9D431278D3128000AF185 /* CommentPopup.swift */,
-				CBC9D435278D3B39000AF185 /* DeleteCommentPopup.swift */,
-				CBC9D43B278D8FB7000AF185 /* EditCommentPopup.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2058,6 +2070,20 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CB05460327B0CF0E0010CBAE /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				CB05460427B0CF0E0010CBAE /* EditCommentPopup.swift */,
+				CB05460527B0CF0E0010CBAE /* CommentListView.swift */,
+				CB05460627B0CF0E0010CBAE /* CommentInputView.swift */,
+				CB05460727B0CF0E0010CBAE /* CommentPopup.swift */,
+				CB05460827B0CF0E0010CBAE /* DeleteCommentPopup.swift */,
+				CB05460927B0CF0E0010CBAE /* CommentEnvironmentObject.swift */,
+				CB05461027B129800010CBAE /* CommentReactPopup.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 		EB0BB67FC17D285CAAD4A5A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2078,8 +2104,8 @@
 				84DA60632696DAC80012F55B /* Sources */,
 				84DA60642696DAC80012F55B /* Frameworks */,
 				84DA60652696DAC80012F55B /* Resources */,
-				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
-				0290C2C0ABE21D69C46F20C6 /* [CP] Embed Pods Frameworks */,
+				2A46166227BB8335008A6AA9 /* Embed Frameworks */,
+				ED974024950C52A2500DD65B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2147,23 +2173,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0290C2C0ABE21D69C46F20C6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Social Benefit/Pods-Social Benefit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Social Benefit/Pods-Social Benefit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Social Benefit/Pods-Social Benefit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		763D9D9685954D966225CC75 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2186,6 +2195,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ED974024950C52A2500DD65B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Social Benefit/Pods-Social Benefit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Social Benefit/Pods-Social Benefit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Social Benefit/Pods-Social Benefit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2196,6 +2222,7 @@
 				C464CF852784368C007BDCB4 /* DeleteCommentService.swift in Sources */,
 				C472E4C826FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift in Sources */,
 				C48BA35626EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift in Sources */,
+				CB05460E27B0CF0E0010CBAE /* DeleteCommentPopup.swift in Sources */,
 				C4E985A9277AB75C00D5AC7E /* NotificationListService.swift in Sources */,
 				C40161C526F08D44003A1EEF /* SpecialOffersView.swift in Sources */,
 				2A2DCC9D279717C30058890E /* ReactCountGroupService.swift in Sources */,
@@ -2214,6 +2241,7 @@
 				C446BE7C2771B35C00925F5E /* UITextFieldRep.swift in Sources */,
 				C478889A270BFF65009F5A25 /* UserInformationViewModel.swift in Sources */,
 				C464CF83278425A0007BDCB4 /* CommentOptionPopUp.swift in Sources */,
+				CB05460F27B0CF0E0010CBAE /* CommentEnvironmentObject.swift in Sources */,
 				C427BFE026C366E400FEAA71 /* ScreenInforModel.swift in Sources */,
 				C446BEC22771C49500925F5E /* RadioButtonOptional.swift in Sources */,
 				C4CAE21B2704BFFC008E25DE /* AppliedStoreView.swift in Sources */,
@@ -2222,10 +2250,10 @@
 				C4E288D627608C1200A0BBF7 /* SendRecognitionService.swift in Sources */,
 				C4B94DF326C2756E009D5C46 /* ListOfBenefitsView.swift in Sources */,
 				C4492A6226F19916008B26C9 /* MerchantVoucherSpecialListService.swift in Sources */,
+				CB05460A27B0CF0E0010CBAE /* EditCommentPopup.swift in Sources */,
 				C47888A0270C2BF7009F5A25 /* DragPopUpView.swift in Sources */,
 				C48BA34A26EEEBE1006C4F27 /* CommentCardView.swift in Sources */,
 				C431446B26BC1BF4009FCA89 /* MoveTo.swift in Sources */,
-				CBC9D43C278D8FB7000AF185 /* EditCommentPopup.swift in Sources */,
 				C4E985A7277AADC100D5AC7E /* NotificationItem.swift in Sources */,
 				C4B3D58926EA0995003C6CA9 /* LocationService.swift in Sources */,
 				C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */,
@@ -2283,6 +2311,7 @@
 				C4D02618270D44140048B671 /* PopUpView.swift in Sources */,
 				C446BE9A2771B59800925F5E /* LoginModel.swift in Sources */,
 				C4413F1C2759B64400FDA3E7 /* CheckIsDisplayFunction.swift in Sources */,
+				CB10787F27B226CB00AC0743 /* CommentDetailService.swift in Sources */,
 				2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */,
 				C446BEA42771B71700925F5E /* SurveyChoiceService.swift in Sources */,
 				C4A26D7126CE62E00015CE05 /* LocationPickerPopUpView.swift in Sources */,
@@ -2293,6 +2322,7 @@
 				C46CD3C42716885F00A454CE /* LoginView.swift in Sources */,
 				C446BEB52771B9B500925F5E /* InforTextView.swift in Sources */,
 				C446BEAA2771B75500925F5E /* ListReactService.swift in Sources */,
+				CB05460B27B0CF0E0010CBAE /* CommentListView.swift in Sources */,
 				C4CAE2192704BFC5008E25DE /* InformationView.swift in Sources */,
 				C4BBFFEE270AE20000A92109 /* IsSystemImage.swift in Sources */,
 				C426927026EB005C0089A5B8 /* CheckBenefitService.swift in Sources */,
@@ -2325,6 +2355,7 @@
 				C40AA16D277B4DDE002601AC /* NotificationView.swift in Sources */,
 				C403670326DB2A8200381888 /* UserInforModel.swift in Sources */,
 				C456C463275DB34E00406C8D /* UserSearchView.swift in Sources */,
+				CB05460C27B0CF0E0010CBAE /* CommentInputView.swift in Sources */,
 				C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */,
 				84DA60872696DB720012F55B /* SplashViewController.swift in Sources */,
 				C446BE8C2771B4F600925F5E /* SurveyChoiceResultModel.swift in Sources */,
@@ -2333,7 +2364,6 @@
 				C446BEB32771B98000925F5E /* Popup.swift in Sources */,
 				2A2DCC97279716E10058890E /* ReactCountModel.swift in Sources */,
 				C472E4CA26FDA5DC00D047BA /* AppliedStoreMerchantListService.swift in Sources */,
-				CBC9D432278D3128000AF185 /* CommentPopup.swift in Sources */,
 				2A2DCC99279717080058890E /* ReactListModel.swift in Sources */,
 				C4974ABD26F5D916002AED6C /* MerchantVoucherListByCategoryViewModel.swift in Sources */,
 				C49285552716B89300F5BCBB /* CheckBox.swift in Sources */,
@@ -2365,6 +2395,7 @@
 				2A43E178279B96B40004B2D3 /* Med247ViewControllerRepresentation.swift in Sources */,
 				84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */,
 				C48790B82759D7AA002E97F0 /* UserModel.swift in Sources */,
+				CB05461127B129800010CBAE /* CommentReactPopup.swift in Sources */,
 				C4974ABB26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift in Sources */,
 				C403670126DB27A800381888 /* MerchantListModel.swift in Sources */,
 				C4EC104326F23B670064C3B3 /* GridView.swift in Sources */,
@@ -2384,7 +2415,6 @@
 				C43B21C626DDCDB800E2E451 /* CommentModel.swift in Sources */,
 				C4B9BF7F26FC63B50022DA55 /* GetError.swift in Sources */,
 				C462F16426F2E5E400933BBC /* VoucherFilterView.swift in Sources */,
-				CBC9D436278D3B39000AF185 /* DeleteCommentPopup.swift in Sources */,
 				C4AB352F270AD8E200A186F5 /* SearchCardView.swift in Sources */,
 				C4119B552754891E0093542F /* RecognitionDetailModel.swift in Sources */,
 				C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */,
@@ -2454,6 +2484,7 @@
 				2A35DB1727A29ABA00E8E8C0 /* FAQPolicyViewModel.swift in Sources */,
 				2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */,
 				C4119B512754871D0093542F /* RecognitionPostView.swift in Sources */,
+				CB10788127B27A9400AC0743 /* CommentDetailModel.swift in Sources */,
 				C42BD5E82743584E00E99840 /* ConvertDate.swift in Sources */,
 				2A2DCC92279713910058890E /* ReactionPopUpView.swift in Sources */,
 				C44F131526E87A19003156A6 /* AddReactService.swift in Sources */,
@@ -2465,6 +2496,7 @@
 				C4B854F2275FAD6B001B274B /* TextFieldDynamicWidth.swift in Sources */,
 				C4B3D57A26E9B667003C6CA9 /* BenefitDetailView.swift in Sources */,
 				C40AA173277C021E002601AC /* NotificationCardViewModel.swift in Sources */,
+				CB05460D27B0CF0E0010CBAE /* CommentPopup.swift in Sources */,
 				C446BE9E2771B6B700925F5E /* APIRequest.swift in Sources */,
 				C4A9890327550D9B00E22760 /* RecognitionPostViewModel.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,

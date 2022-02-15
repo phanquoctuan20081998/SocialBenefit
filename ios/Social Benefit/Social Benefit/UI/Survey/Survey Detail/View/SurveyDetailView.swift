@@ -9,18 +9,23 @@ import SwiftUI
 
 struct SurveyDetailView: View {
     
-    let detailModel: SurveyResultModel
+    let contentId: Int
     
     @ObservedObject private var viewModel = SurveyDetailViewModel()
+    
+    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    
+    init(contentId: Int) {
+        self.contentId = contentId
+    }
     
     var body: some View {
         survetList
         .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "", isHaveLogo: true))
         .onAppear() {
             viewModel.refreshData()
-            viewModel.request(id: detailModel.id)
-            viewModel.requestListComment(id: detailModel.id)
-            viewModel.getListReact(id: detailModel.id)
+            viewModel.request(id: contentId)
+            viewModel.getListReact(id: contentId)
             UIScrollView.appearance().keyboardDismissMode = .onDrag
         }
         .onTapGesture {
@@ -33,20 +38,20 @@ struct SurveyDetailView: View {
         }
         .navigationBarHidden(true)
         .successPopup($viewModel.sendAnswerSuccess)
-        .commentPopup($viewModel.commentSelected, editCommet: $viewModel.commentEdited, deleteComment: $viewModel.commentDeleted, newText: $viewModel.newComment)
-        .commentDeletePopup($viewModel.commentDeleted, action: {
-            self.viewModel.deleteComment()
-        })
-        .editDeletePopup($viewModel.commentEdited, newText: $viewModel.newComment, action: {
-            self.viewModel.updateComment()
-        })
+        .overlay(CommentPopup().environmentObject(commentEnvironment))
+        .overlay(DeleteCommentPopup().environmentObject(commentEnvironment))
+        .overlay(EditCommentPopup().environmentObject(commentEnvironment))
+        .overlay(CommentReactPopup().environmentObject(commentEnvironment))
         .errorPopup($viewModel.error)
+        .errorPopup($commentEnvironment.error)
         .loadingView(isLoading: $viewModel.isLoading, dimBackground: false)
         .inforTextView($viewModel.infoText)
         .sheet(isPresented: $viewModel.isShowReactionList) {
-            ReactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
+            ReactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: contentId)
         }
-//        .reactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: detailModel.id)
+        .sheet(isPresented: $commentEnvironment.isShowReactionList) {
+            ReactionPopUpView(isPresented: $commentEnvironment.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+        }
     }
     
     var survetList: some View {
@@ -115,9 +120,11 @@ struct SurveyDetailView: View {
                         commentList
                     }
                     .introspectScrollView { scrollView in
-                        if viewModel.scrollToBottom {
-                            let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
-                            scrollView.setContentOffset(bottomOffset, animated: true)
+                        if commentEnvironment.scrollToBottom {
+                            if scrollView.contentSize.height > scrollView.bounds.size.height {
+                                let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+                                scrollView.setContentOffset(bottomOffset, animated: true)
+                            }
                         }
                     }
                 }
@@ -125,7 +132,7 @@ struct SurveyDetailView: View {
                 commentBar
                 
             } else {
-                Spacer()
+                Color.clear
             }
         }
     }
@@ -277,142 +284,13 @@ struct SurveyDetailView: View {
     }
     
     var commentBar: some View {
-        VStack(alignment: .leading) {
-            Divider()
-            HStack(alignment: .center, spacing: 10) {
-                URLImageView(url: Config.baseURL + userInfor.avatar)
-                    .clipShape(Circle())
-                    .frame(width: 30, height: 30)
-                    .padding(.all, 3)
-                    .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-                
-                VStack(alignment: .leading) {
-                    if viewModel.replyTo != nil {
-                        HStack {
-                            Text("reply_to".localized)
-                                .font(Font.system(size: 12))
-                            Text(viewModel.replyTo?.commentBy ?? "")
-                                .font(Font.system(size: 12))
-                            Text("-")
-                                .font(Font.system(size: 12))
-                            Button.init {
-                                viewModel.replyTo = nil
-                            } label: {
-                                Text("cancel".localized)
-                                    .font(Font.system(size: 12))
-                            }
-                            
-                        }
-                    }
-                    HStack {
-                        AutoResizeTextField(text: $viewModel.commentString, isFocus: $viewModel.focusComment, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                            .overlay(RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.blue.opacity(0.5), lineWidth: 2))
-                            .disabled(viewModel.isSendingComment)
-                        if viewModel.isSendingComment {
-                            ActivityRep()
-                        } else {
-                            Button.init {
-                                Utils.dismissKeyboard()
-                                viewModel.sendComment()
-                            } label: {
-                                Image(systemName: "paperplane.circle.fill")
-                                    .padding(.trailing, 3)
-                                    .font(.system(size: 35))
-                                    .background(Color.white)
-                            }
-                            .disabled(viewModel.commentString.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
-                        }
-                    }
-                }
-                
-            }
-            .background(Color.white)
-            .padding(10)
-        }
+        CommentInputView(contentId: contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY)
+            .environmentObject(commentEnvironment)
     }
     
     var commentList: some View {
-        VStack(alignment: .leading) {
-            ForEach(viewModel.listComment.comments) { comment in
-                HStack(alignment: .top) {
-                    URLImageView(url: Config.baseURL + (comment.avatar ?? ""))
-                        .clipShape(Circle())
-                        .frame(width: 30, height: 30)
-                        .padding(.all, 5)
-                        .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        commmentDetail(comment)
-                        HStack {
-                            Button(action: {
-                                viewModel.replyTo = comment
-                                viewModel.focusComment = true
-                            }, label: {
-                                Text("reply".localized)
-                                    .bold()
-                                    .font(Font.system(size: 14))
-                            })
-                            Text(comment.timeText)
-                                .font(Font.system(size: 14))
-                                .foregroundColor(Color.gray)
-                        }
-                    }
-                    
-                }
-                .padding(EdgeInsets.init(top: 0, leading: 20, bottom: 0, trailing: 20))
-                
-                ForEach(comment.children ?? []) { child in
-                    HStack(alignment: .top) {
-                        URLImageView(url: Config.baseURL + (child.avatar ?? ""))
-                            .clipShape(Circle())
-                            .frame(width: 30, height: 30)
-                            .padding(.all, 5)
-                            .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-                        
-                        VStack(alignment: .leading, spacing: 10) {
-                            commmentDetail(child)
-                            HStack {
-                                Text(child.timeText)
-                                    .font(Font.system(size: 14))
-                                    .foregroundColor(Color.gray)
-                            }
-                        }
-                        
-                    }
-                    .padding(EdgeInsets.init(top: 0, leading: 70, bottom: 0, trailing: 20))
-                }
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-    
-    @ViewBuilder
-    func commmentDetail(_ comment: CommentResultModel) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(comment.commentBy ?? "")
-                .bold()
-                .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
-                .font(Font.system(size: 14))
-                .fixedSize(horizontal: false, vertical: true)
-            Text(comment.commentDetail ?? "")
-                .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 10, trailing: 10))
-                .font(Font.system(size: 14))
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .background(Color("comment"))
-        .cornerRadius(15)
-        .if(comment.commentByEmployeeId?.string == userInfor.employeeId, transform: { content in
-            content
-                .onTapGesture {
-                    
-                }
-                .onLongPressGesture {
-                    viewModel.didLongTapCommnet(comment)
-                }
-        })
-        
+        CommentListView.init(contentId: contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY)
+            .environmentObject(commentEnvironment)
     }
     
     var reactionView: some View {
@@ -420,17 +298,10 @@ struct SurveyDetailView: View {
         ReactionBar(isShowReactionBar: $viewModel.isShowReactionBar,
                     isLoadingReact: $viewModel.isLoadingReact,
                     currentReaction: $viewModel.currentReaction,
-                    isFocus: $viewModel.focusComment,
+                    isFocus: $commentEnvironment.focusComment,
                     isShowRactionList: $viewModel.isShowReactionList,
                     reactModel: viewModel.reactModel,
-                    listComment: viewModel.listComment,
+                    listComment: commentEnvironment.listComment,
                     sendReaction: self.viewModel.sendReaction)
     }
 }
-
-struct SurveyDetailViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        SurveyDetailView(detailModel: SurveyResultModel.init(id: 1, surveyName: "", deadlineDate: 10000))
-    }
-}
-

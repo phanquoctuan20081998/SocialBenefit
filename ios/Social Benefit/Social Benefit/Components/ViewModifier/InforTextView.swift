@@ -48,6 +48,7 @@ struct InforTextView: ViewModifier {
                     _ = self.timer.upstream.autoconnect()
                 }
                 .onDisappear {
+                    text = ""
                     self.timer.upstream.connect().cancel()
                 }
             }

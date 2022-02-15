@@ -67,7 +67,6 @@ class CommentViewModel: ObservableObject, Identifiable {
         self.contentId = contentId
         initComment(contentId: contentId)
         addSubscribers()
-        requestListComment(id: contentId)
     }
     
     func initComment(contentId: Int) {
@@ -86,7 +85,6 @@ class CommentViewModel: ObservableObject, Identifiable {
     
     func refresh() {
         self.initComment(contentId: self.contentId)
-        self.requestListComment(id: self.contentId)
     }
     
     func addSubscribers() {
@@ -101,7 +99,6 @@ class CommentViewModel: ObservableObject, Identifiable {
     func refresh(isPresent: Bool) {
         if !isPresent {
             self.initComment(contentId: self.contentId)
-            self.requestListComment(id: self.contentId)
         }
     }
     
@@ -159,38 +156,6 @@ class CommentViewModel: ObservableObject, Identifiable {
                 if self.parentComment[j].data.id == self.childComment[i][0].parentId {
                     self.parentComment[j].childIndex = i
                 }
-            }
-        }
-    }
-    
-    func updateComment(newComment: CommentData) {
-        if newComment.parentId == -1 {
-            let parentData = ParentCommentData(data: newComment, childIndex: -1)
-            self.parentComment.append(parentData)
-        } else {
-            for i in self.parentComment.indices {
-                if self.parentComment[i].data.id == newComment.parentId {
-                    let childId = self.parentComment[i].childIndex
-                    
-                    //If parent hasn't had child yet
-                    if childId == -1 {
-                        self.childComment.append([newComment])
-                        self.parentComment[i].childIndex = self.childComment.count - 1
-                    } else {
-                        self.childComment[childId].append(newComment)
-                    }
-                }
-            }
-        }
-    }
-    
-    func requestListComment(id: Int) {
-        listCommentService.request(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { response in
-            switch response {
-            case .success(let value):
-                self.listComment = value
-            case .failure(let error):
-                print(error)
             }
         }
     }

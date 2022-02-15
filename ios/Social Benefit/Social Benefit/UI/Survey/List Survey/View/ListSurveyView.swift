@@ -40,7 +40,7 @@ struct ListSurveyView: View {
                 LoadingPageView()
             } else {
                 List(viewModel.listSurvey.result ?? []) { item in
-                    NavigationLink.init(destination: SurveyDetailView(detailModel: item)) {
+                    NavigationLink.init(destination: SurveyDetailView(contentId: item.id)) {
                         HStack {
                             HStack(alignment: .top, spacing: 10) {
                                 Image("survey_0909")

@@ -15,13 +15,13 @@ struct AddCommentRequestModel: APIModelProtocol {
     var contentType: Int?
     var content: String?
     
-    init(replyTo: CommentResultModel?, surveyId: Int?, content: String) {
+    init(replyTo: CommentResultModel?, contentId: Int?, contentType: Int?, content: String) {
         if replyTo == nil {
-            self.contentType = 3
-            self.contentId = surveyId
+            self.contentType = contentType
+            self.contentId = contentId
             self.parentId = -1
         } else {
-            self.contentType = 2
+            self.contentType = Constants.CommentContentType.COMMENT_TYPE_COMMENT
             self.contentId = replyTo?.contentId
             self.parentId = replyTo?.id
         }

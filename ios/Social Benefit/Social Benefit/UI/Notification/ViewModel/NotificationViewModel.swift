@@ -109,15 +109,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
             
         }
         case Constants.NotificationLogType.SURVEY: do {
-            surveyGetSerivce.request(id: notificationItem.getTypeId()) { response in
-                switch response {
-                case .success(let value):
-                    self.destinationView = AnyView(SurveyDetailView(detailModel: value.result!))
-                    
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            self.destinationView = AnyView(SurveyDetailView(contentId: notificationItem.getTypeId()))
         }
         case Constants.NotificationLogType.COMMENT: do {
             switch Int(notificationItem.getContentParams()[2]) ?? 0 {
@@ -138,15 +130,8 @@ class NotificationViewModel: ObservableObject, Identifiable {
                 }
             }
             case Constants.CommentContentType.COMMENT_TYPE_SURVEY: do {
-                surveyGetSerivce.request(id: Int(notificationItem.getContentParams()[3]) ?? 0) { response in
-                    switch response {
-                    case .success(let value):
-                        self.destinationView = AnyView(SurveyDetailView(detailModel: value.result!))
-                        
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
+                let id = Int(notificationItem.getContentParams()[3]) ?? 0
+                self.destinationView = AnyView(SurveyDetailView.init(contentId: id))
             }
             case Constants.CommentContentType.COMMENT_TYPE_RECOGNITION: do {
                 
@@ -204,15 +189,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
             }
         }
         case Constants.NotificationLogType.SURVEY_REMIND: do {
-            surveyGetSerivce.request(id: notificationItem.getTypeId()) { response in
-                switch response {
-                case .success(let value):
-                    self.destinationView = AnyView(SurveyDetailView(detailModel: value.result!))
-                    
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            self.destinationView = AnyView(SurveyDetailView(contentId: notificationItem.getTypeId()))
         }
         case Constants.NotificationLogType.REACT_RECOGNITION: do {
             

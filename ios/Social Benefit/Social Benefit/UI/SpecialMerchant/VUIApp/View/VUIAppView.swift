@@ -19,7 +19,7 @@ struct VUIAppView: View {
             } 
             
             if !vuiAppViewModel.vuiAppResponse.getWebUrl().isEmpty {
-                MerchantWebView(isLoading: $vuiAppViewModel.isLoading, merchantSpecialCode: Constants.MerchantSpecialCode.VUI, url: vuiAppViewModel.vuiAppResponse.getWebUrl())
+                MerchantWebView(isLoading: .constant(true), merchantSpecialCode: Constants.MerchantSpecialCode.VUI, url: vuiAppViewModel.vuiAppResponse.getWebUrl())
             }
             
             if vuiAppViewModel.isPresentError {

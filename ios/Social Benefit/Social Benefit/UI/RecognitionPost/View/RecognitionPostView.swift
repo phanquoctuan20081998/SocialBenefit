@@ -14,6 +14,8 @@ struct RecognitionPostView: View {
     @ObservedObject var reactViewModel: ReactViewModel
     @ObservedObject var keyboardHandler = KeyboardHandler()
     
+    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    
     @State var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     @State private var proxy: AmzdScrollViewProxy? = nil
     
@@ -45,26 +47,8 @@ struct RecognitionPostView: View {
                     Spacer().frame(height: 30)
                 }
                 
-                
-                CommentBarView(isReply: $recognitionPostViewModel.isReply,
-                               replyTo: $recognitionPostViewModel.replyTo,
-                               parentId: $recognitionPostViewModel.parentId,
-                               isFocus: $recognitionPostViewModel.isFocus,
-                               commentText: $recognitionPostViewModel.commentText,
-                               SendButtonView: AnyView(
-                                SendCommentButtonView(
-                                    isReply: $recognitionPostViewModel.isReply,
-                                    commentText: $recognitionPostViewModel.commentText,
-                                    moveToPosition: $recognitionPostViewModel.moveToPosition,
-                                    numOfComment: $recognitionPostViewModel.numOfComment,
-                                    proxy: $proxy,
-                                    parentId: $recognitionPostViewModel.parentId, contentId: recognitionPostViewModel.contentId,
-                                    content: recognitionPostViewModel.commentText,
-                                    contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION,
-                                    updateComment: recognitionPostViewModel.updateComment(newComment: ))))
-                    .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
-                    .padding(.bottom, keyboardHandler.keyboardHeight)
-                
+                CommentInputView(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
+                    .environmentObject(commentEnvironment)
             }
             .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "recognition".localized, isHaveLogo: true))
             .environmentObject(recognitionPostViewModel)
@@ -75,7 +59,14 @@ struct RecognitionPostView: View {
             }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-            
+            .overlay(CommentPopup().environmentObject(commentEnvironment))
+            .overlay(DeleteCommentPopup().environmentObject(commentEnvironment))
+            .overlay(EditCommentPopup().environmentObject(commentEnvironment))
+            .overlay(CommentReactPopup().environmentObject(commentEnvironment))
+            .sheet(isPresented: $commentEnvironment.isShowReactionList) {
+                ReactionPopUpView(isPresented: $commentEnvironment.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+            }
+            .errorPopup($commentEnvironment.error)
             // Reaction Bar
             if reactViewModel.isShowReactionBar {
                 ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
@@ -121,21 +112,8 @@ extension RecognitionPostView {
                     
                     Spacer().frame(height: 100)
                     
-                    let parentCommentMax = recognitionPostViewModel.parentComment.indices
-                    ForEach(parentCommentMax, id: \.self) { i in
-                        
-//                        VStack {
-//                            FirstCommentCardView(comment: recognitionPostViewModel.parentComment[i].data, currentPosition: i, isReply: $recognitionPostViewModel.isReply, parentId: $recognitionPostViewModel.parentId, replyTo: $recognitionPostViewModel.replyTo, moveToPosition: $recognitionPostViewModel.moveToPosition)
-//
-//                            if recognitionPostViewModel.parentComment[i].childIndex != -1 {
-//                                let childIndex = recognitionPostViewModel.parentComment[i].childIndex
-//
-//                                ForEach(0..<recognitionPostViewModel.childComment[childIndex].count, id: \.self) { j in
-//                                    SecondCommentCardView(comment: recognitionPostViewModel.childComment[childIndex][j])
-//                                }
-//                            }
-//                        }.scrollId(i)
-                    }
+                    CommentListView.init(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
+                        .environmentObject(commentEnvironment)
                 }
             }
         }

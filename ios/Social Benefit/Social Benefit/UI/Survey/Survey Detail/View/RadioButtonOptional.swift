@@ -33,6 +33,7 @@ struct RadioButtonOptional: View {
                     .foregroundColor((model.checked ?? false) ? Color.blue : Color.secondary)
                 Text(buttonText).foregroundColor(Color.black)
                     .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.leading)
             }
         })
         

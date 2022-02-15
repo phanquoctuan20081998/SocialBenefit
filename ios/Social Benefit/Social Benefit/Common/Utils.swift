@@ -25,10 +25,8 @@ class Utils {
     
     static func setTabbarIsRoot() {
          if let sceneDelegate = UIApplication.shared.connectedScenes
-                .first?.delegate as? SceneDelegate, let rootView = sceneDelegate.window?.rootViewController {
-             if !(rootView is UIHostingController<HomeScreenView>) {
-                 sceneDelegate.window?.rootViewController = UIHostingController(rootView:  HomeScreenView(selectedTab: "house"))
-             }
+                .first?.delegate as? SceneDelegate {
+             sceneDelegate.window?.rootViewController = UIHostingController(rootView:  HomeScreenView(selectedTab: "house"))
          }
     }
     

@@ -84,7 +84,6 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     @EnvironmentObject var homeScreen: HomeScreenViewModel
     
     @Binding var isActive: Bool
-    @State var isMoveToHomeScreen = false
     
     var title: String
     var isHaveLogo: Bool
@@ -144,7 +143,7 @@ struct BackgroundViewWithoutNotiAndSearch: View {
                                 .frame(height: 30, alignment: .trailing)
                                 .padding(.trailing, 25)
                                 .onTapGesture {
-                                    self.isMoveToHomeScreen = true
+                                    Utils.setTabbarIsRoot()
                                 }
                         }
                     }.padding(.top, ScreenInfor().screenHeight * 0.05)
@@ -153,14 +152,6 @@ struct BackgroundViewWithoutNotiAndSearch: View {
             
             Spacer()
         }
-        .background(
-            ZStack {
-                NavigationLink(destination: EmptyView(), label: {})
-                NavigationLink(destination: NavigationLazyView(HomeScreenView(selectedTab: "house")),
-                               isActive: $isMoveToHomeScreen,
-                               label: { EmptyView() })
-            }
-        )
     }
 }
 

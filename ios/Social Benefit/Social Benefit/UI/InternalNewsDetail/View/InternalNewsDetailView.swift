@@ -25,6 +25,8 @@ struct InternalNewsDetailView: View {
     @State private var proxy: AmzdScrollViewProxy? = nil
     @State private var webViewHeight: CGFloat = .zero
     
+    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    
     init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool, isNavigationFromHomeScreen: Bool) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
         self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
@@ -56,37 +58,22 @@ struct InternalNewsDetailView: View {
                     ScrollViewContent
                         .onAppear { self.proxy = proxy }
                         .padding(.bottom, keyboardHandler.keyboardHeight)
+                        .introspectScrollView { scrollView in
+                            if commentEnvironment.scrollToBottom {
+                                if scrollView.contentSize.height > scrollView.bounds.size.height {
+                                    let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+                                    scrollView.setContentOffset(bottomOffset, animated: true)
+                                }
+                            }
+                        }
                 }
             }
             
             Spacer()
             
-            VStack {
-                
-                Spacer().frame(height: 5)
-                
-                Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-                
-                CommentBarView(isReply: $commentViewModel.isReply,
-                               replyTo: $commentViewModel.replyTo,
-                               parentId: $commentViewModel.parentId,
-                               isFocus: $commentViewModel.isFocus,
-                               commentText: $commentViewModel.commentText,
-                               SendButtonView: AnyView(
-                                SendCommentButtonView(
-                                    isReply: $commentViewModel.isReply,
-                                    commentText: $commentViewModel.commentText,
-                                    moveToPosition: $commentViewModel.moveToPosition,
-                                    numOfComment: $commentViewModel.numOfComment,
-                                    proxy: $proxy,
-                                    parentId: $commentViewModel.parentId, contentId: internalNewData.contentId,
-                                    content: commentViewModel.commentText,
-                                    contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
-                                    updateComment: commentViewModel.updateComment(newComment:),
-                                    otherUpdate: {
-                                        commentViewModel.requestListComment(id: commentViewModel.contentId)
-                                    })))
-                    .padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
+            VStack {                
+                CommentInputView.init(contentId: internalNewData.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS)
+                    .environmentObject(commentEnvironment)
                 Spacer().frame(height: 10)
             }
             .background(Color.white)
@@ -107,11 +94,19 @@ struct InternalNewsDetailView: View {
         })
         
         // Option pop up
-        .overlay(CommentOptionPopUp(isPresent: $commentViewModel.isPresentOptionView, text: $commentViewModel.selectedText, commentId: commentViewModel.selectedCommentId, contentId: commentViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, parentId: commentViewModel.selectedParentId))
+        .overlay(CommentPopup().environmentObject(commentEnvironment))
+        .overlay(DeleteCommentPopup().environmentObject(commentEnvironment))
+        .overlay(EditCommentPopup().environmentObject(commentEnvironment))
+        .overlay(CommentReactPopup().environmentObject(commentEnvironment))
         .sheet(isPresented: $reactViewModel.isShowReactionList) {
             ReactionPopUpView(isPresented: $reactViewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, contentId: internalNewData.contentId)
         }
+        .sheet(isPresented: $commentEnvironment.isShowReactionList) {
+            ReactionPopUpView(isPresented: $commentEnvironment.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+        }
+        .errorPopup($commentEnvironment.error)
         .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
     
     func backButtonTapped() {
@@ -157,36 +152,8 @@ extension InternalNewsDetailView {
             if commentViewModel.isLoading && !commentViewModel.isRefreshing {
                 LoadingPageView()
             } else {
-                VStack(spacing: 10) {
-                    
-                    Spacer().frame(height: 10)
-                    
-                    let parentCommentMax = commentViewModel.parentComment.indices
-                    ForEach(parentCommentMax, id: \.self) { i in
-                        
-                        VStack {
-                            FirstCommentCardView(comment: commentViewModel.parentComment[i].data,
-                                                 currentPosition: i, isReply: $commentViewModel.isReply,
-                                                 parentId: $commentViewModel.parentId,
-                                                 replyTo: $commentViewModel.replyTo,
-                                                 moveToPosition: $commentViewModel.moveToPosition,
-                                                 selectedCommentText: $commentViewModel.selectedText,
-                                                 selectedCommentId: $commentViewModel.selectedCommentId,
-                                                 selectedParentId: $commentViewModel.selectedParentId,
-                                                 isPresentOptionView: $commentViewModel.isPresentOptionView,
-                                                 isFocus: $commentViewModel.isFocus)
-                            
-                            
-                            if commentViewModel.parentComment[i].childIndex != -1 {
-                                let childIndex = commentViewModel.parentComment[i].childIndex
-                                
-                                ForEach(0..<commentViewModel.childComment[childIndex].count, id: \.self) { j in
-                                    SecondCommentCardView(comment: commentViewModel.childComment[childIndex][j],  selectedCommentText: $commentViewModel.selectedText, selectedCommentId: $commentViewModel.selectedCommentId, selectedParentId: $commentViewModel.selectedParentId, isPresentOptionView: $commentViewModel.isPresentOptionView)
-                                }
-                            }
-                        }.scrollId(i)
-                    }
-                }
+                CommentListView.init(contentId: internalNewData.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS)
+                    .environmentObject(commentEnvironment)
             }
         }
     }
@@ -195,10 +162,10 @@ extension InternalNewsDetailView {
         ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,
-                    isFocus: $commentViewModel.isFocus,
+                    isFocus: $commentEnvironment.focusComment,
                     isShowRactionList: $reactViewModel.isShowReactionList,
                     reactModel: reactViewModel.reactModel,
-                    listComment: commentViewModel.listComment,
+                    listComment: commentEnvironment.listComment,
                     sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })
     }
     
@@ -236,9 +203,9 @@ struct SendCommentButtonView: View {
     @Binding var moveToPosition: Int
     @Binding var numOfComment: Int
     @Binding var proxy: AmzdScrollViewProxy?
-    @Binding var parentId: Int
     
     var contentId: Int
+    @Binding var parentId: Int
     var content: String
     var contentType: Int
     
@@ -290,7 +257,6 @@ struct SendCommentButtonView: View {
                     
                     self.commentText = ""
                     self.numOfComment += 1
-                    
                     isReply = false
                     parentId = -1
                 }

@@ -46,6 +46,7 @@ struct Config {
     
     static let API_COMMENT_LIST = "/comment/list"
     static let API_COMMENT_ADD = "/comment/add"
+    static let API_COMMENT_GET = "/comment/get"
     static let API_COMMENT_UPDATE = "/comment/update"
     static let API_COMMENT_DELETE = "/comment/delete"
     

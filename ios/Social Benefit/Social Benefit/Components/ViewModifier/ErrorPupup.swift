@@ -54,6 +54,7 @@ struct ErrorTextView: ViewModifier {
                     _ = self.timer.upstream.autoconnect()
                 }
                 .onDisappear {
+                    error = .none
                     self.timer.upstream.connect().cancel()
                 }
             }

@@ -16,11 +16,6 @@ struct MerchantWebView: View {
     
     var body: some View {
         WebView
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.isLoading = false
-                }
-            }
     }
 }
 
@@ -28,7 +23,7 @@ extension MerchantWebView {
     
     var WebView: some View {
         
-        let webview = URLWebView(web: nil, req: URLRequest(url: URL(string: url)!))
+        let webview = URLWebView(web: nil, req: URLRequest(url: URL(string: url)!), isLoading: $isLoading)
         
         return ZStack(alignment: .top) {
  
