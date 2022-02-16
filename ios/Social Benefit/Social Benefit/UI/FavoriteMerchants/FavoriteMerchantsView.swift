@@ -10,9 +10,10 @@ import SwiftUI
 struct FavoriteMerchantsView: View {
     
     @ObservedObject private var viewModel = FavoriteMerchantsViewModel()
+    @State var selectedId = 0
     
     var body: some View {
-        VStack() {            
+        VStack() {
             Spacer()
                 .frame(height: 50)
             
@@ -25,36 +26,46 @@ struct FavoriteMerchantsView: View {
                 .font(.system(size: 13))
             
             List(viewModel.listMerchant) { item in
-                NavigationLink.init(destination: FavoriteMerchantDetailView.init(merchantId: item.id)) {
-                    HStack(spacing: 10) {
-                        URLImageView(url: Config.baseURL + (item.logo ?? ""))
-                            .frame(width: 70, height: 70)
-                        VStack(alignment: .leading, spacing: 5) {
-                            Group {
-                                Text(item.fullName ?? "")
-                                    .bold()
-                                    .font(Font.system(size: 15))
-                                Text(item.fullAddress ?? "")
-                                    .font(Font.system(size: 12))
-                                Text(item.hotlines ?? "")
-                                    .foregroundColor(Color.blue)
-                                    .font(Font.system(size: 12))
-                            }
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.leading)
+                
+                HStack(spacing: 10) {
+                    URLImageView(url: Config.baseURL + (item.logo ?? ""))
+                        .frame(width: 70, height: 70)
+                    VStack(alignment: .leading, spacing: 5) {
+                        Group {
+                            Text(item.fullName ?? "")
+                                .bold()
+                                .font(Font.system(size: 15))
+                            Text(item.fullAddress ?? "")
+                                .font(Font.system(size: 12))
+                            Text(item.hotlines ?? "")
+                                .foregroundColor(Color.blue)
+                                .font(Font.system(size: 12))
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
                     }
-                    .onAppear {
-                        if item == viewModel.listMerchant.last {
-                            viewModel.requestFavoriteMerchant()
-                        }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .onTapGesture(perform: {
+                    self.selectedId = item.id
+                })
+                .onAppear {
+                    if item == viewModel.listMerchant.last {
+                        viewModel.requestFavoriteMerchant()
                     }
                 }
-                
-            }            
+            }
+            
             .loadingView(isLoading: $viewModel.isLoading, dimBackground: false)
         }
+        .background(
+            ZStack {
+                NavigationLink.init(destination: FavoriteMerchantDetailView.init(merchantId: self.selectedId)) {
+                    EmptyView()
+                }
+                NavigationLink(destination: EmptyView(), label: {})
+            }
+        )
         .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "", isHaveLogo: true))
         .navigationBarHidden(true)
         .errorPopup($viewModel.error)

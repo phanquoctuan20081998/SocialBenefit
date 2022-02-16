@@ -10,8 +10,8 @@ import Foundation
 
 struct Config {
     
-//    static let baseURL = "http://172.20.109.102:8089"
-    static let baseURL = "http://172.20.108.151:8066"
+    static let baseURL = "http://172.20.109.102:8089"
+//    static let baseURL = "http://172.20.108.151:8066"
 //    static let baseURL = "http://172.20.108.151:8022"
 //    static let baseURL = "http://localhost:8089"
 //    static let baseURL = "http://demo-sb.nissho-vn.com:8089"
