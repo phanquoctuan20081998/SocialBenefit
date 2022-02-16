@@ -22,7 +22,7 @@ struct FavoriteMerchantDetailView: View {
     
     init(merchantId: Int) {
         favoriteMerchantSpecialOfferViewModel = FavoriteMerchantSpecialOfferViewModel(merchantId: merchantId)
-        favoriteMerchantOfferViewModel = FavoriteMerchantOfferViewModel()
+        favoriteMerchantOfferViewModel = FavoriteMerchantOfferViewModel(merchantId: merchantId)
     }
     
     var body: some View {

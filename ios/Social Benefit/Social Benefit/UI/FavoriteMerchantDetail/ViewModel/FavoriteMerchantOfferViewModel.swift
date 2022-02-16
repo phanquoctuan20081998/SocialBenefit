@@ -13,6 +13,7 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     
     @Published var fromIndex: Int = 0
     @Published var categoryId: Int = -1
+    @Published var merchantId: Int = -1
     
     // Loading & refreshing
     @Published var isLoading: Bool = false
@@ -27,14 +28,15 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     private let offersService = MerchantVoucherListByCategoryService()
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(merchantId: Int) {
+        self.merchantId = merchantId
         loadData()
     }
 
     
     func loadData() {
         self.isLoading = true
-        offersService.getAPI(searchPattern: "", fromIndex: 0, categoryId: -1, filterConditionItems: "[]") { data in
+        offersService.getAPI(searchPattern: "", fromIndex: 0, categoryId: -1, filterConditionItems: "[]", merchantId: merchantId) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
                 
@@ -52,7 +54,7 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     }
     
     func reLoadData() {
-        offersService.getAPI(searchPattern: "", fromIndex: fromIndex, categoryId: -1, filterConditionItems: "[]") { data in
+        offersService.getAPI(searchPattern: "", fromIndex: fromIndex, categoryId: -1, filterConditionItems: "[]", merchantId: merchantId) { data in
             DispatchQueue.main.async {
                 for item in data {
                     self.allOffers.append(item)

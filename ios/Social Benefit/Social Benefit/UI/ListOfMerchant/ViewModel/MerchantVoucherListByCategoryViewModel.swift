@@ -53,7 +53,7 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     
     func loadSearchData(searchPattern: String) {
         self.isLoading = true
-        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems, merchantId: -1) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
                 
@@ -71,7 +71,7 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     }
     
     func loadCategoryData(categoryId: Int) {
-        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems, merchantId: -1) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
             }
@@ -79,7 +79,7 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     }
     
     func loadFilterData(filterConditionItems: String) {
-        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: 0, categoryId: categoryId, filterConditionItems: filterConditionItems, merchantId: -1) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
                 
@@ -88,7 +88,7 @@ class MerchantVoucherListByCategoryViewModel: ObservableObject, Identifiable {
     }
     
     func reLoadData() {
-        offersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId, filterConditionItems: filterConditionItems) { data in
+        offersService.getAPI(searchPattern: searchPattern, fromIndex: fromIndex, categoryId: categoryId, filterConditionItems: filterConditionItems, merchantId: -1) { data in
             DispatchQueue.main.async {
                 for item in data {
                     self.allOffers.append(item)

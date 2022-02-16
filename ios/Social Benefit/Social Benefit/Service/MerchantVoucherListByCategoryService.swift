@@ -18,7 +18,7 @@ class MerchantVoucherListByCategoryService {
         dateFomatter.dateFormat = "dd/MM/yyyy"
     }
     
-    func getAPI(searchPattern: String, fromIndex: Int, categoryId: Int, filterConditionItems: String, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ()) {
+    func getAPI(searchPattern: String, fromIndex: Int, categoryId: Int, filterConditionItems: String, merchantId: Int, returnCallBack: @escaping ([MerchantVoucherItemData]) -> ()) {
         let service = BaseAPI()
         var data = [MerchantVoucherItemData]()
         
@@ -28,7 +28,8 @@ class MerchantVoucherListByCategoryService {
         let params: Parameters = ["searchPattern": searchPattern,
                                   "fromIndex": fromIndex,
                                   "categoryId": (categoryId == -1) ? "" : categoryId,
-                                  "filterConditionItems": filterConditionItems]
+                                  "filterConditionItems": filterConditionItems,
+                                  "merchantId": (merchantId == -1) ? "" : merchantId]
         
         var id: Int = 0
         var voucherCode: Int = 0
