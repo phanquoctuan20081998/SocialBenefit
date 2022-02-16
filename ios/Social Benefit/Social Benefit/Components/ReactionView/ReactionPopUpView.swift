@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReactionPopUpView: View {
     
-    @Binding var isPresented: Bool
+    @Binding var activeSheet: ReactActiveSheet?
     
     var contentType: Int
     var contentId: Int
@@ -24,7 +24,7 @@ struct ReactionPopUpView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Button(action: {
-                        isPresented = false
+                        activeSheet = nil
                     }, label: {
                         Image(systemName: "arrow.backward")
                             .font(.headline)
@@ -92,21 +92,17 @@ struct ReactionPopUpView: View {
                                 viewModel.currentTab = index
                             }, label: {
                                 HStack {
-                                    Text("all".localized)
-                                        .fixedSize(horizontal: true, vertical: false)
-                                        .if(viewModel.currentTab != index) {
-                                            $0.foregroundColor(.black)
-                                        }
-                                        .if(viewModel.currentTab == index) {
-                                            $0.foregroundColor(.blue)
-                                        }
-                                    Text(result[index].reactCount?.string ?? "")
-                                        .if(viewModel.currentTab != index) {
-                                            $0.foregroundColor(.black)
-                                        }
-                                        .if(viewModel.currentTab == index) {
-                                            $0.foregroundColor(.blue)
-                                        }
+                                    Group {
+                                        Text("all".localized)
+                                        Text(result[index].reactCount?.string ?? "")
+                                    }
+                                    .fixedSize(horizontal: true, vertical: false)
+                                    .if(viewModel.currentTab != index) {
+                                        $0.foregroundColor(.black)
+                                    }
+                                    .if(viewModel.currentTab == index) {
+                                        $0.foregroundColor(.blue)
+                                    }
                                 }
                                 .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
                             })
@@ -129,6 +125,7 @@ struct ReactionPopUpView: View {
                                         .frame(width: 20, height: 20)
                                         .clipped()
                                     Text(result[index].reactCount?.string ?? "")
+                                        .fixedSize(horizontal: true, vertical: false)
                                         .if(viewModel.currentTab != index) {
                                             $0.foregroundColor(.black)
                                         }
@@ -173,14 +170,6 @@ struct ReactionPopUpView: View {
             } else {
                 EmptyView()
             }
-        }
-    }
-}
-
-extension View {
-    func reactionPopUpView(isPresented: Binding<Bool>, contentType: Int, contentId: Int) -> some View {
-        return self.popup(isPresented: isPresented, alignment: .center) {
-            ReactionPopUpView(isPresented: isPresented, contentType: contentType, contentId: contentId, isPopup: true)
         }
     }
 }

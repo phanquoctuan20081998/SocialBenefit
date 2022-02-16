@@ -15,6 +15,8 @@ struct CommentListView: View {
     
     @State var lastLocation: CGPoint = .zero
     
+    @Binding var activeSheet: ReactActiveSheet?
+    
     @EnvironmentObject var commentEnvironment: CommentEnvironmentObject
     
     var body: some View {
@@ -147,7 +149,7 @@ struct CommentListView: View {
                     }
                     .onTapGesture {
                         commentEnvironment.commentId = comment.id
-                        commentEnvironment.isShowReactionList = true
+                        activeSheet = .comment
                     }
                 }
             }

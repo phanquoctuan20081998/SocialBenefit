@@ -47,8 +47,6 @@ class CommentEnvironmentObject: ObservableObject {
     
     @Published var commentPosition: CGRect?
     
-    @Published var isShowReactionList = false
-    
     @Published var commentId = 0
     
     func requestListComment(id: Int, contentType: Int, completion: (() -> Void)? = nil) {

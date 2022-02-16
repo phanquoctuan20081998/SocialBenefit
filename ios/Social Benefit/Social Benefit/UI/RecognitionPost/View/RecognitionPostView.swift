@@ -21,6 +21,8 @@ struct RecognitionPostView: View {
     
     var companyData: RecognitionData = RecognitionData.sampleData[0]
     
+    @State var activeSheet: ReactActiveSheet?
+    
     init(companyData: RecognitionData) {
         self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
         
@@ -63,8 +65,13 @@ struct RecognitionPostView: View {
             .overlay(DeleteCommentPopup().environmentObject(commentEnvironment))
             .overlay(EditCommentPopup().environmentObject(commentEnvironment))
             .overlay(CommentReactPopup().environmentObject(commentEnvironment))
-            .sheet(isPresented: $commentEnvironment.isShowReactionList) {
-                ReactionPopUpView(isPresented: $commentEnvironment.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+            .sheet(item: $activeSheet) { item in
+                switch item {
+                case .content:
+                    ReactionPopUpView(activeSheet: $activeSheet, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION, contentId: recognitionPostViewModel.contentId)
+                case .comment:
+                    ReactionPopUpView(activeSheet: $activeSheet, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+                }
             }
             .errorPopup($commentEnvironment.error)
             // Reaction Bar
@@ -112,7 +119,7 @@ extension RecognitionPostView {
                     
                     Spacer().frame(height: 100)
                     
-                    CommentListView.init(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
+                    CommentListView.init(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION, activeSheet: $activeSheet)
                         .environmentObject(commentEnvironment)
                 }
             }

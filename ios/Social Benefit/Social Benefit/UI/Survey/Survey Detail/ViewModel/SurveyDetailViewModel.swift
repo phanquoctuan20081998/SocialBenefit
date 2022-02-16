@@ -38,8 +38,6 @@ class SurveyDetailViewModel: ObservableObject {
     
     @Published var infoText = ""
     
-    @Published var isShowReactionList = false
-    
     @Published var error: AppError = .none
     
     private(set) var totalAnswer: [Int] = []

@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum ReactActiveSheet: Identifiable {
+    case content, comment
+    
+    var id: ReactActiveSheet { self }
+}
+
 struct SurveyDetailView: View {
     
     let contentId: Int
@@ -14,6 +20,8 @@ struct SurveyDetailView: View {
     @ObservedObject private var viewModel = SurveyDetailViewModel()
     
     @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    
+    @State var activeSheet: ReactActiveSheet?
     
     init(contentId: Int) {
         self.contentId = contentId
@@ -46,11 +54,13 @@ struct SurveyDetailView: View {
         .errorPopup($commentEnvironment.error)
         .loadingView(isLoading: $viewModel.isLoading, dimBackground: false)
         .inforTextView($viewModel.infoText)
-        .sheet(isPresented: $viewModel.isShowReactionList) {
-            ReactionPopUpView(isPresented: $viewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: contentId)
-        }
-        .sheet(isPresented: $commentEnvironment.isShowReactionList) {
-            ReactionPopUpView(isPresented: $commentEnvironment.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+        .sheet(item: $activeSheet) { item in
+            switch item {
+            case .content:
+                ReactionPopUpView(activeSheet: $activeSheet, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, contentId: contentId)
+            case .comment:
+                ReactionPopUpView(activeSheet: $activeSheet, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+            }
         }
     }
     
@@ -289,7 +299,7 @@ struct SurveyDetailView: View {
     }
     
     var commentList: some View {
-        CommentListView.init(contentId: contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY)
+        CommentListView.init(contentId: contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_SURVEY, activeSheet: $activeSheet)
             .environmentObject(commentEnvironment)
     }
     
@@ -299,7 +309,7 @@ struct SurveyDetailView: View {
                     isLoadingReact: $viewModel.isLoadingReact,
                     currentReaction: $viewModel.currentReaction,
                     isFocus: $commentEnvironment.focusComment,
-                    isShowRactionList: $viewModel.isShowReactionList,
+                    activeSheet:$activeSheet,
                     reactModel: viewModel.reactModel,
                     listComment: commentEnvironment.listComment,
                     sendReaction: self.viewModel.sendReaction)

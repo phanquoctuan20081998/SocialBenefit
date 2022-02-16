@@ -13,7 +13,7 @@ struct ReactionBar: View {
     @Binding var isLoadingReact: Bool
     @Binding var currentReaction: ReactionType
     @Binding var isFocus: Bool
-    @Binding var isShowRactionList: Bool
+    @Binding var activeSheet: ReactActiveSheet?
     
     var reactModel: ReactSuveryModel
     var listComment: ListCommentModel
@@ -40,7 +40,7 @@ struct ReactionBar: View {
                     Text(reactModel.allReactionText)
                         .font(Font.system(size: 12))
                         .onTapGesture {
-                            isShowRactionList = true
+                            activeSheet = .content
                         }
                 }
                 Spacer()

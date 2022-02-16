@@ -27,6 +27,8 @@ struct InternalNewsDetailView: View {
     
     @ObservedObject var commentEnvironment = CommentEnvironmentObject()
     
+    @State var activeSheet: ReactActiveSheet?
+    
     init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool, isNavigationFromHomeScreen: Bool) {
         self.commentViewModel = CommentViewModel(contentId: internalNewData.contentId)
         self.reactViewModel = ReactViewModel(contentId: internalNewData.contentId)
@@ -98,11 +100,13 @@ struct InternalNewsDetailView: View {
         .overlay(DeleteCommentPopup().environmentObject(commentEnvironment))
         .overlay(EditCommentPopup().environmentObject(commentEnvironment))
         .overlay(CommentReactPopup().environmentObject(commentEnvironment))
-        .sheet(isPresented: $reactViewModel.isShowReactionList) {
-            ReactionPopUpView(isPresented: $reactViewModel.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, contentId: internalNewData.contentId)
-        }
-        .sheet(isPresented: $commentEnvironment.isShowReactionList) {
-            ReactionPopUpView(isPresented: $commentEnvironment.isShowReactionList, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+        .sheet(item: $activeSheet) { item in
+            switch item {
+            case .content:
+                ReactionPopUpView(activeSheet: $activeSheet, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, contentId: internalNewData.contentId)
+            case .comment:
+                ReactionPopUpView(activeSheet: $activeSheet, contentType: Constants.CommentContentType.COMMENT_TYPE_COMMENT, contentId: commentEnvironment.commentId)
+            }
         }
         .errorPopup($commentEnvironment.error)
         .navigationBarHidden(true)
@@ -152,7 +156,7 @@ extension InternalNewsDetailView {
             if commentViewModel.isLoading && !commentViewModel.isRefreshing {
                 LoadingPageView()
             } else {
-                CommentListView.init(contentId: internalNewData.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS)
+                CommentListView.init(contentId: internalNewData.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS, activeSheet: $activeSheet)
                     .environmentObject(commentEnvironment)
             }
         }
@@ -163,7 +167,7 @@ extension InternalNewsDetailView {
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,
                     isFocus: $commentEnvironment.focusComment,
-                    isShowRactionList: $reactViewModel.isShowReactionList,
+                    activeSheet: $activeSheet,
                     reactModel: reactViewModel.reactModel,
                     listComment: commentEnvironment.listComment,
                     sendReaction: { reactViewModel.sendReaction(contentId: internalNewData.contentId) })

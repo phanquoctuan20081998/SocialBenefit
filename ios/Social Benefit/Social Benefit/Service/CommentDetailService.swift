@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import CloudKit
 
 class CommentDetailService: APIServiceProtocol {
     let apiRequest = APIRequest()

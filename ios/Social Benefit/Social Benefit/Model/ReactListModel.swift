@@ -12,7 +12,7 @@ struct ReactListModel: APIResponseProtocol {
     var result: [ReactListResultModel]?
 }
 
-struct ReactListResultModel: APIModelProtocol, Identifiable {
+struct ReactListResultModel: APIModelProtocol, Identifiable, Equatable, Hashable {
     var id: Int?
     var avatar: String?
     var employeeName: String?
