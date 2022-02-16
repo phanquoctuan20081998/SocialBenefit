@@ -11,6 +11,7 @@ struct FavoriteMerchantsView: View {
     
     @ObservedObject private var viewModel = FavoriteMerchantsViewModel()
     @State var selectedId = 0
+    @State var isMoveToDetail = false
     
     var body: some View {
         VStack() {
@@ -48,6 +49,7 @@ struct FavoriteMerchantsView: View {
                 }
                 .onTapGesture(perform: {
                     self.selectedId = item.id
+                    self.isMoveToDetail = true
                 })
                 .onAppear {
                     if item == viewModel.listMerchant.last {
@@ -60,7 +62,8 @@ struct FavoriteMerchantsView: View {
         }
         .background(
             ZStack {
-                NavigationLink.init(destination: FavoriteMerchantDetailView.init(merchantId: self.selectedId)) {
+                NavigationLink(destination: FavoriteMerchantDetailView.init(merchantId: self.selectedId),
+                               isActive: self.$isMoveToDetail) {
                     EmptyView()
                 }
                 NavigationLink(destination: EmptyView(), label: {})
