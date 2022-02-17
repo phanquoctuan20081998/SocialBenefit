@@ -139,7 +139,6 @@ struct ListOfMerchantViewByCategory_Previews: PreviewProvider {
             .environmentObject(MerchantVoucherListByCategoryViewModel())
             .environmentObject(ConfirmInforBuyViewModel())
             .environmentObject(HomeScreenViewModel())
-            .environmentObject(MerchantVoucherDetailViewModel())
             .environmentObject(CustomerSupportViewModel())
             .environmentObject(SearchViewModel())
             .environmentObject(HomeViewModel())

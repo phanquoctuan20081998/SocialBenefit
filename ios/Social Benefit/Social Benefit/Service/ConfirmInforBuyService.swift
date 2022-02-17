@@ -11,24 +11,17 @@ import Alamofire
 import SwiftyJSON
     
 class ConfirmInforBuyService {
-    
-    private var voucherId: Int
-    
-    init(voucherId: Int) {
-        self.voucherId = voucherId
-    }
-    
-    func getAPI(returnCallBack: @escaping (BuyVoucherInforData) -> ()) {
+    func getAPI(voucherId: Int, returnCallBack: @escaping (BuyVoucherInforData) -> ()) {
         let service = BaseAPI_Alamofire()
     
-        let endPoint = Config.API_CONFIRM_BUY_VOUCHER + "/\(self.voucherId)"
+        let endPoint = Config.API_CONFIRM_BUY_VOUCHER + "/\(voucherId)"
         let header: HTTPHeaders = ["token": userInfor.token,
                                    "employeeId" : userInfor.employeeId]
         let params: Parameters = ["":""]
 
         service.makeCall(endpoint: endPoint, method: "GET", header: header, body: params, callback: { result in
             
-            print(result)
+//            print(result)
             
             let remainPoint = result["remainPoint"].int ?? -1
             let voucherPoint = result["voucherPoint"].int ?? -1

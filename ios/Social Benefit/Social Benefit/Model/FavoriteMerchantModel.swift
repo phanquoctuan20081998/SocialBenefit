@@ -18,4 +18,20 @@ struct FavoriteMerchantResultModel: APIModelProtocol, Identifiable, Equatable {
     var hotlines: String?
     var logo: String?
     var fullAddress: String?
+    
+    init() {
+        fullName = ""
+        id = 0
+        hotlines = ""
+        logo = ""
+        fullAddress = ""
+    }
+    
+    init(fullName: String, id: Int, hotlines: String, logo: String, fullAddress: String) {
+        self.fullName = fullName
+        self.id = id
+        self.hotlines = hotlines
+        self.logo = logo
+        self.fullAddress = fullAddress
+    }
 }

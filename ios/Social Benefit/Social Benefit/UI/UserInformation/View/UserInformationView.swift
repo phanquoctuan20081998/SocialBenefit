@@ -484,7 +484,7 @@ struct UserInformationView_Previews: PreviewProvider {
         UserInformationView()
             .environmentObject(HomeScreenViewModel())
             .environmentObject(UserInformationViewModel())
-            .environmentObject(MerchantVoucherDetailViewModel())
+            .environmentObject(MerchantVoucherDetailViewModel(voucherId: 0))
             .environmentObject(HomeScreenViewModel())
             .environmentObject(ConfirmInforBuyViewModel())
     }

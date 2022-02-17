@@ -22,6 +22,8 @@ class AppliedStoreMerchantListService {
         let params: Parameters = ["voucherId": voucherId,
                                   "fromIndex": fromIndex]
         
+        print(voucherId)
+        
         var id: Int?
         var logo: String?
         var fullName: String?

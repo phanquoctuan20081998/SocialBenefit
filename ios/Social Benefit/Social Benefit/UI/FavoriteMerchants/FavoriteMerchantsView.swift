@@ -10,7 +10,8 @@ import SwiftUI
 struct FavoriteMerchantsView: View {
     
     @ObservedObject private var viewModel = FavoriteMerchantsViewModel()
-    @State var selectedId = 0
+    
+    @State var selectedMerchant = FavoriteMerchantResultModel(fullName: "", id: 0, hotlines: "", logo: "", fullAddress: "")
     @State var isMoveToDetail = false
     
     var body: some View {
@@ -48,7 +49,7 @@ struct FavoriteMerchantsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .onTapGesture(perform: {
-                    self.selectedId = item.id
+                    self.selectedMerchant = item
                     self.isMoveToDetail = true
                 })
                 .onAppear {
@@ -62,11 +63,14 @@ struct FavoriteMerchantsView: View {
         }
         .background(
             ZStack {
-                NavigationLink(destination: FavoriteMerchantDetailView.init(merchantId: self.selectedId),
-                               isActive: self.$isMoveToDetail) {
-                    EmptyView()
+                if self.selectedMerchant.id != 0 {
+                    NavigationLink(destination: NavigationLazyView(FavoriteMerchantDetailView
+                                                                    .init(merchant: self.selectedMerchant)),
+                                   isActive: self.$isMoveToDetail) {
+                        EmptyView()
+                    }
+                    NavigationLink(destination: EmptyView(), label: {})
                 }
-                NavigationLink(destination: EmptyView(), label: {})
             }
         )
         .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "", isHaveLogo: true))

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MerchantVoucherDetailView: View {
     
+    @ObservedObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+    @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
+    
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
-    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
+    
     
     // For navigation from homescreen
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -21,6 +23,17 @@ struct MerchantVoucherDetailView: View {
     
     @State var offset: CGFloat = 0
     @State var isActive: Bool = false
+    
+    init(voucherId: Int) {
+        merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel(voucherId: voucherId)
+        self.voucherId = voucherId
+    }
+    
+    init(isNavigationFromHomeScreen: Bool, voucherId: Int) {
+        merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel(voucherId: voucherId)
+        self.isNavigationFromHomeScreen = isNavigationFromHomeScreen
+        self.voucherId = voucherId
+    }
     
     var body: some View {
         VStack {
@@ -42,7 +55,7 @@ struct MerchantVoucherDetailView: View {
                 Rectangle().fill(Color.gray).frame(width: ScreenInfor().screenWidth * 0.9, height: 1)
                 
                 ScrollableTabView
-                BottomButtonView()
+                BottomButtonView().padding(.bottom)
             }
             
             NavigationLink(destination: EmptyView()) {
@@ -69,10 +82,10 @@ struct MerchantVoucherDetailView: View {
         
         .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: false, backButtonTapped: backButtonTapped))
         .onAppear {
-            self.merchantVoucherDetailViewModel.getData(voucherId: voucherId)
             self.confirmInforBuyViewModel.loadData(voucherId: voucherId)
             self.homeScreenViewModel.isPresentedTabBar = false
         }
+        .environmentObject(confirmInforBuyViewModel)
     }
     
     func backButtonTapped() {
@@ -89,10 +102,7 @@ extension MerchantVoucherDetailView {
     var VoucherHeadline: some View {
         
         let voucherDetail = merchantVoucherDetailViewModel.merchantVoucherDetail
-        
-        // Load data to display 3 bottom button
-        self.merchantVoucherDetailViewModel.loadButtonController(buyVoucherInfor: confirmInforBuyViewModel.buyVoucher)
-        
+
         return VStack {
             
             Spacer()
@@ -103,10 +113,21 @@ extension MerchantVoucherDetailView {
                 .frame(width: ScreenInfor().screenWidth * 0.9, height: 150)
                 .padding(.bottom, 20)
             
-            Text("[\(voucherDetail.merchantName)] \(voucherDetail.name)")
-                .bold()
-                .font(.system(size: 15))
-                .frame(width: ScreenInfor().screenWidth * 0.9, alignment: .leading)
+            HStack(spacing: 10) {
+                Button {
+                    self.merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThisMerchant.toggle()
+                    self.merchantVoucherDetailViewModel.likeMerchantButtonClick()
+                } label: {
+                    Image(systemName: "bookmark\(self.merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThisMerchant ? ".fill" : "")")
+                        .foregroundColor(self.merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThisMerchant ? .orange : .gray)
+                }
+                
+                Text("[\(voucherDetail.merchantName)] \(voucherDetail.name)")
+                    .bold()
+                    .font(.system(size: 15))
+                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+            }.padding()
+            
         }
         
     }
@@ -140,26 +161,14 @@ struct InformationBar: View {
                 Button(action: {
                     
                     DispatchQueue.main.async {
-                        
                         merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis.toggle()
-                        specialOffersViewModel.allSpecialOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[0]].employeeLikeThis.toggle()
-                        offersViewModel.allOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[1]].employeeLikeThis.toggle()
                         
                         if merchantVoucherDetailViewModel.merchantVoucherDetail.employeeLikeThis {
-                            
                             merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue += 1
-                            specialOffersViewModel.allSpecialOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[0]].favoriteValue += 1
-                            offersViewModel.allOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[1]].favoriteValue += 1
-                            
                         } else {
-                            
                             merchantVoucherDetailViewModel.merchantVoucherDetail.favoriteValue -= 1
-                            specialOffersViewModel.allSpecialOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[0]].favoriteValue -= 1
-                            offersViewModel.allOffers[getIndex(merchantVoucherDetailViewModel.voucherId)[1]].favoriteValue -= 1
-                            
                         }
                     }
-                    
             
                     AddReactService().getAPI(contentId: merchantVoucherDetailViewModel.merchantVoucherDetail.id, contentType: Constants.ReactContentType.VOUCHER, reactType: Constants.ReactType.LOVE)
                     
@@ -262,7 +271,7 @@ struct ScrollableTabBarView: View {
 struct VoucherDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MerchantVoucherDetailView(voucherId: 0)
-            .environmentObject(MerchantVoucherDetailViewModel())
+            .environmentObject(MerchantVoucherDetailViewModel(voucherId: 0))
             .environmentObject(HomeScreenViewModel())
             .environmentObject(ConfirmInforBuyViewModel())
         

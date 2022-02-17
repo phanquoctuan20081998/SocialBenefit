@@ -10,7 +10,7 @@ import SwiftUI
 struct SpecialOffersView: View {
     
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
+//    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
     
     @State var isMoveToMerchantDetail = false
     @State var selectedVoucherId = 0
@@ -84,14 +84,16 @@ struct SpecialOffersView: View {
         }
         .background(
             ZStack {
-                NavigationLink(
-                    destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
-                    isActive: $isMoveToMerchantDetail,
-                    label: {
-                        EmptyView()
-                    })
-                
-                NavigationLink(destination: EmptyView(), label: {})
+                if self.selectedVoucherId != 0 {
+                    NavigationLink(
+                        destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
+                        isActive: $isMoveToMerchantDetail,
+                        label: {
+                            EmptyView()
+                        })
+                    
+                    NavigationLink(destination: EmptyView(), label: {})
+                }
             }
         )
         .padding(.top)
@@ -215,7 +217,7 @@ extension SpecialOfferCardView {
 struct SpecialOffersView_Previews: PreviewProvider {
     static var previews: some View {
         SpecialOffersView()
-            .environmentObject(MerchantVoucherDetailViewModel())
+            .environmentObject(MerchantVoucherDetailViewModel(voucherId: 0))
             .environmentObject(MerchantVoucherSpecialListViewModel())
             
     }

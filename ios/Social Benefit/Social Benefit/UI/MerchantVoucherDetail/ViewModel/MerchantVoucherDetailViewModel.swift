@@ -8,9 +8,9 @@
 import Foundation
 
 class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
-    @Published var merchantVoucherDetail = merchantVoucherDetailDebug
+    @Published var merchantVoucherDetail = MerchantVoucherDetailData()
     @Published var appliedStoreMerchantList = [AppliedStoreMerchantListData]()
-    @Published var similarVouchers = allSpecialOffersDebug
+    @Published var similarVouchers = [MerchantVoucherItemData]()
     
     @Published var selectedVoucherId = -1
     @Published var fromIndexAppliedStore = 0
@@ -47,48 +47,33 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
     private let merchantVoucherDetailService = MerchantVoucherDetailService()
     private let appliedStoreMerchantListService = AppliedStoreMerchantListService()
     private let similarVoucherService = SimilarVoucherService()
+    private let favoriteMerchantUpdateService = FavoriteMerchantUpdateService()
+    private var confirmInforBuyService = ConfirmInforBuyService()
     
-//    func getData(voucherId: Int) {
-//        self.selectedVoucherId = voucherId
-//        self.isLoading = true
-//
-//        merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
-//            DispatchQueue.main.async {
-//                self.merchantVoucherDetail = data
-//                self.isLoading = false
-//            }
-//        }
-//
-//        appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: fromIndexAppliedStore) { data in
-//            DispatchQueue.main.async {
-//                self.appliedStoreMerchantList = data
-//            }
-//        }
-//
-//        similarVoucherService.getAPI(voucherId: voucherId, fromIndex: fromIndexSimilarVoucher) { data in
-//            DispatchQueue.main.async {
-//                self.similarVouchers = data
-//            }
-//        }
-//    }
+    init(voucherId: Int) {
+        selectedVoucherId = voucherId
+        getData()
+        loadButtonController()
+    }
     
-    func getData(voucherId: Int) {
-        self.selectedVoucherId = voucherId
+    func getData() {
         self.isLoading = true
-        
-        merchantVoucherDetailService.getAPI(merchantVoucherId: voucherId) { data in
-            DispatchQueue.main.async { [weak self] in
-                self!.merchantVoucherDetail = data
-                self!.voucherId = voucherId
+
+        merchantVoucherDetailService.getAPI(merchantVoucherId: selectedVoucherId) { data in
+            DispatchQueue.main.async {
+                self.merchantVoucherDetail = data
                 
-                self!.appliedStoreMerchantListService.getAPI(voucherId: voucherId, fromIndex: self!.fromIndexAppliedStore) { data in
-                    DispatchQueue.main.async { [weak self] in
-                        self!.appliedStoreMerchantList = data
+                self.appliedStoreMerchantListService.getAPI(voucherId: self.selectedVoucherId, fromIndex: self.fromIndexAppliedStore) { data in
+                    DispatchQueue.main.async {
+                        self.appliedStoreMerchantList = data
                         
-                        self!.similarVoucherService.getAPI(voucherId: voucherId, fromIndex: self!.fromIndexSimilarVoucher) { data in
+                        self.similarVoucherService.getAPI(voucherId: self.selectedVoucherId, fromIndex: self.fromIndexSimilarVoucher) { data in
                             DispatchQueue.main.async {
-                                self!.similarVouchers = data
-                                self!.isLoading = false
+                                self.similarVouchers = data
+                                
+                                if self.selectedVoucherId != 0 {
+                                    self.isLoading = false
+                                }
                             }
                         }
                     }
@@ -140,14 +125,20 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func loadButtonController(buyVoucherInfor: BuyVoucherInforData) {
-        DispatchQueue.main.async {
-            if buyVoucherInfor.canUseNumber ?? 0 > 0 { self.isBuy = true }
-            else { self.isBuy = false }
-            
-            if buyVoucherInfor.remainVoucherInStock ?? 0 > 0 {self.isOutOfStock = false}
-            else { self.isOutOfStock = true }
+    func loadButtonController() {
+        self.confirmInforBuyService.getAPI(voucherId: selectedVoucherId) { data in
+            DispatchQueue.main.async {
+                if data.canUseNumber ?? 0 > 0 { self.isBuy = true }
+                else { self.isBuy = false }
+                
+                if data.remainVoucherInStock ?? 0 > 0 {self.isOutOfStock = false}
+                else { self.isOutOfStock = true }
+            }
         }
+    }
+    
+    func likeMerchantButtonClick() {
+        favoriteMerchantUpdateService.request(merchantId: self.merchantVoucherDetail.merchantId, likeMerchant: self.merchantVoucherDetail.employeeLikeThisMerchant)
     }
 }
 
@@ -161,11 +152,11 @@ class MerchantVoucherDetailViewModel: ObservableObject, Identifiable {
 
 
 
-let merchantVoucherDetailDebug = MerchantVoucherDetailData(id: 1841, imageURL: "", name: "Ưu đãi giá tiền taxi", merchantName: "Công ty giầy thể thao Triệu Sơn", content: "<p>123</p>", favoriteValue: 2, outOfDate: "11/10/2021", shoppingValue: 11, pointValue: 900000, moneyValue: 1000000, discountValue: -10, hotlines: "", employeeLikeThis: true)
-
-let appliedStoreMerchantListDebug = [AppliedStoreMerchantListData(id: 499, logo: "", fullName: "Liên Á Hà Nội", fullAddress: "23, Phường Bách Khoa, Quận Hai Bà Trưng, Thành phố Hà Nội", hotlines: "09764545354"),
-                                     AppliedStoreMerchantListData(id: 501, logo: "", fullName: "Cửa hàng Đệm Liên Á 170 Long Biên", fullAddress: "170, Phường Giảng Võ, Quận Ba Đình, Thành phố Hà Nội", hotlines: "08978766575"),
-                                     AppliedStoreMerchantListData(id: 500, logo: "", fullName: "Liên Á Long Biên", fullAddress: "35, Phường Phúc Đồng, Quận Long Biên, Thành phố Hà Nội", hotlines: "0917561527236"),
-                                     AppliedStoreMerchantListData(id: 499, logo: "", fullName: "Liên Á Hà Nội", fullAddress: "23, Phường Bách Khoa, Quận Hai Bà Trưng, Thành phố Hà Nội", hotlines: "09764545354"),
-                                     AppliedStoreMerchantListData(id: 501, logo: "", fullName: "Cửa hàng Đệm Liên Á 170 Long Biên", fullAddress: "170, Phường Giảng Võ, Quận Ba Đình, Thành phố Hà Nội", hotlines: "08978766575"),
-                                     AppliedStoreMerchantListData(id: 500, logo: "", fullName: "Liên Á Long Biên", fullAddress: "35, Phường Phúc Đồng, Quận Long Biên, Thành phố Hà Nội", hotlines: "0917561527236")]
+//let merchantVoucherDetailDebug = MerchantVoucherDetailData(id: 1841, imageURL: "", name: "Ưu đãi giá tiền taxi", merchantName: "Công ty giầy thể thao Triệu Sơn", content: "<p>123</p>", favoriteValue: 2, outOfDate: "11/10/2021", shoppingValue: 11, pointValue: 900000, moneyValue: 1000000, discountValue: -10, hotlines: "", employeeLikeThis: true)
+//
+//let appliedStoreMerchantListDebug = [AppliedStoreMerchantListData(id: 499, logo: "", fullName: "Liên Á Hà Nội", fullAddress: "23, Phường Bách Khoa, Quận Hai Bà Trưng, Thành phố Hà Nội", hotlines: "09764545354"),
+//                                     AppliedStoreMerchantListData(id: 501, logo: "", fullName: "Cửa hàng Đệm Liên Á 170 Long Biên", fullAddress: "170, Phường Giảng Võ, Quận Ba Đình, Thành phố Hà Nội", hotlines: "08978766575"),
+//                                     AppliedStoreMerchantListData(id: 500, logo: "", fullName: "Liên Á Long Biên", fullAddress: "35, Phường Phúc Đồng, Quận Long Biên, Thành phố Hà Nội", hotlines: "0917561527236"),
+//                                     AppliedStoreMerchantListData(id: 499, logo: "", fullName: "Liên Á Hà Nội", fullAddress: "23, Phường Bách Khoa, Quận Hai Bà Trưng, Thành phố Hà Nội", hotlines: "09764545354"),
+//                                     AppliedStoreMerchantListData(id: 501, logo: "", fullName: "Cửa hàng Đệm Liên Á 170 Long Biên", fullAddress: "170, Phường Giảng Võ, Quận Ba Đình, Thành phố Hà Nội", hotlines: "08978766575"),
+//                                     AppliedStoreMerchantListData(id: 500, logo: "", fullName: "Liên Á Long Biên", fullAddress: "35, Phường Phúc Đồng, Quận Long Biên, Thành phố Hà Nội", hotlines: "0917561527236")]

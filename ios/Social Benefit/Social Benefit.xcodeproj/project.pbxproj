@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
+		2A0095EC27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0095EB27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift */; };
+		2A0095EE27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0095ED27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift */; };
+		2A0C073A27BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0C073927BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift */; };
 		2A0CB7AA2799448500EB11B2 /* MerchantSpecialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */; };
 		2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23C2797E87E001CFD6B /* PTIView.swift */; };
 		2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */; };
@@ -366,6 +369,9 @@
 
 /* Begin PBXFileReference section */
 		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
+		2A0095EB27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantUpdateService.swift; sourceTree = "<group>"; };
+		2A0095ED27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantUpdateRequestModel.swift; sourceTree = "<group>"; };
+		2A0C073927BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantDeatilViewModel.swift; sourceTree = "<group>"; };
 		2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialModel.swift; sourceTree = "<group>"; };
 		2A0EF23C2797E87E001CFD6B /* PTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTIView.swift; sourceTree = "<group>"; };
 		2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantWebView.swift; sourceTree = "<group>"; };
@@ -1009,6 +1015,7 @@
 				2A35DB1227A2792F00E8E8C0 /* FAQPolicyService.swift */,
 				CB10787E27B226CB00AC0743 /* CommentDetailService.swift */,
 				CB97938027BB6E6C00872F16 /* FavoriteMerchantService.swift */,
+				2A0095EB27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1174,6 +1181,7 @@
 				CB10788027B27A9400AC0743 /* CommentDetailModel.swift */,
 				CB97938227BB6F2600872F16 /* FavoriteMerchantRequestModel.swift */,
 				CB97938427BB70EB00872F16 /* FavoriteMerchantModel.swift */,
+				2A0095ED27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2120,6 +2128,7 @@
 		CB2BE2BD27BCA7E10077014A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2A0C073927BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift */,
 				CB2BE2BE27BCA7E10077014A /* FavoriteMerchantSpecialOfferViewModel.swift */,
 				CB2BE2BF27BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift */,
 			);
@@ -2410,6 +2419,7 @@
 				C45490372742069100175E09 /* UsedPointHistoryViewModel.swift in Sources */,
 				C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */,
 				C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */,
+				2A0C073A27BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift in Sources */,
 				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
 				2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */,
@@ -2538,6 +2548,7 @@
 				C4C8334E2711475A0058E8E3 /* HomeViewModel.swift in Sources */,
 				C446BEC62771C4B800925F5E /* ReactionCommentView.swift in Sources */,
 				C4F2A4FE26F04BAE0090675A /* UpperCaseText.swift in Sources */,
+				2A0095EE27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift in Sources */,
 				C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */,
 				C4D2606F26E475B2002E475C /* SlideBar.swift in Sources */,
 				C446BEB92771B9DD00925F5E /* ErrorPupup.swift in Sources */,
@@ -2565,6 +2576,7 @@
 				C40AA173277C021E002601AC /* NotificationCardViewModel.swift in Sources */,
 				CB05460D27B0CF0E0010CBAE /* CommentPopup.swift in Sources */,
 				C446BE9E2771B6B700925F5E /* APIRequest.swift in Sources */,
+				2A0095EC27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift in Sources */,
 				C4A9890327550D9B00E22760 /* RecognitionPostViewModel.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
 				C4750073270B40B000FE75EB /* SearchBarModel.swift in Sources */,

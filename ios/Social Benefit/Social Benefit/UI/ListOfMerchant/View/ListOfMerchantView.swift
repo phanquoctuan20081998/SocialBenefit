@@ -12,8 +12,8 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var merchantCategoryItemViewModel: MerchantCategoryItemViewModel
     @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
     @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
-    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
     var body: some View { 
         VStack(spacing: 15) {

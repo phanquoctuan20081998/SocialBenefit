@@ -17,15 +17,12 @@ class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
     @Published var buyVoucherResponse = BuyVoucherData()
     @Published var isPresentedError = false
     
-    private var confirmInforBuyService: ConfirmInforBuyService
+    private var confirmInforBuyService = ConfirmInforBuyService()
     private var walletInforService = WalletInforService()
+
     
-    init() {
-        self.confirmInforBuyService = ConfirmInforBuyService(voucherId: 0)
-    }
-    
-    func getBuyVoucherInfor() {
-        self.confirmInforBuyService.getAPI { data in
+    func getBuyVoucherInfor(voucherId: Int) {
+        self.confirmInforBuyService.getAPI(voucherId: voucherId) { data in
             DispatchQueue.main.async {
                 self.buyVoucher = data
             }
@@ -42,8 +39,7 @@ class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
     
     func loadData(voucherId: Int) {
         self.voucherId = voucherId
-        self.confirmInforBuyService = ConfirmInforBuyService(voucherId: voucherId)
-        getBuyVoucherInfor()
+        getBuyVoucherInfor(voucherId: voucherId)
         getWallInfor()
     }
 }

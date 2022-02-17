@@ -111,6 +111,7 @@ public class BaseAPI {
                     } else {
                         //show error
                         if json["messages"] != nil {
+                            print(endpoint)
                             print("Call API failed, Messages: ", json["messages"]!)
                             callback(JSON(["errors": json["messages"]]))
                         }

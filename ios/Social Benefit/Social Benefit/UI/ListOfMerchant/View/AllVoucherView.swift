@@ -75,14 +75,16 @@ struct AllOffersView: View {
                 }.padding()
             }.background(
                 ZStack {
-                    NavigationLink(
-                        destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
-                        isActive: $isMoveToMerchantDetail,
-                        label: {
-                            EmptyView()
-                        })
+                    if self.selectedVoucherId != 0 {
+                        NavigationLink(
+                            destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherId)),
+                            isActive: $isMoveToMerchantDetail,
+                            label: {
+                                EmptyView()
+                            })
                         
-                    NavigationLink(destination: EmptyView(), label: {})
+                        NavigationLink(destination: EmptyView(), label: {})
+                    }
                 }
             )
         }
@@ -96,7 +98,7 @@ struct AllOfferCardView: View {
     
     // For store index of current card view...
     // it's basically = index when use ForEach
-//    var choosedIndex: Int
+    //    var choosedIndex: Int
     
     var body: some View {
         HStack {
@@ -126,9 +128,9 @@ struct AllOfferCardView: View {
         .background(RoundedRectangle(cornerRadius: 20)
                         .fill(Color.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 1))
-//        .onTapGesture {
-//            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
-//        }
+        //        .onTapGesture {
+        //            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
+        //        }
     }
 }
 

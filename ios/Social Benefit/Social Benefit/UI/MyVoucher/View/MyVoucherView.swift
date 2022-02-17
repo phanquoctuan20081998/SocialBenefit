@@ -11,17 +11,12 @@ import MobileCoreServices
 struct MyVoucherView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-    @EnvironmentObject var merchantVoucherDetailViewModel: MerchantVoucherDetailViewModel
-    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
-    
+
     @ObservedObject var myVoucherViewModel = MyVoucherViewModel()
     
     @State var isMoveToNextPage = false
     @State var selectedIndex = -1
-    
     @State var isShowCopiedPopUp = false
-    
-    //Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
     
     var body: some View {
@@ -43,8 +38,6 @@ struct MyVoucherView: View {
             ZStack {
                 if self.selectedIndex != -1 {
                     NavigationLink(destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: myVoucherViewModel.allMyVoucher[self.selectedIndex].id)
-                                    .environmentObject(merchantVoucherDetailViewModel)
-                                    .environmentObject(confirmInforBuyViewModel)
                                     .environmentObject(homeScreenViewModel)),
                                    isActive: $isMoveToNextPage,
                                    label: { EmptyView() })

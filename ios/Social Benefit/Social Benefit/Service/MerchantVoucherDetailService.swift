@@ -20,8 +20,9 @@ class MerchantVoucherDetailService {
         
         let params: Parameters = ["merchantVoucherId": merchantVoucherId]
         
-        
+        print(merchantVoucherId)
         service.makeCall(endpoint: Config.API_MERCHANT_VOUCHER_DETAIL, method: "POST", header: header as [String: String], body: params, callback: { result in
+            print(result)
             let id = result["id"].int ?? 0
             let imageURL = result["imageURL"].string ?? ""
             let name = result["name"].string ?? ""
@@ -35,8 +36,10 @@ class MerchantVoucherDetailService {
             let discountValue = result["discountValue"].int ?? 0
             let hotlines = result["hotlines"].string ?? ""
             let employeeLikeThis = result["employeeLikeThis"].bool ?? false
+            let employeeLikeThisMerchant = result["employeeLikeThisMerchant"].bool ?? false
+            let merchantId = result["merchantId"].int ?? 0
             
-            let data = MerchantVoucherDetailData(id: id, imageURL: imageURL, name: name, merchantName: merchantName, content: content, favoriteValue: favoriteValue, outOfDate: outOfDate, shoppingValue: shoppingValue, pointValue: pointValue, moneyValue: moneyValue, discountValue: discountValue, hotlines: hotlines, employeeLikeThis: employeeLikeThis)
+            let data = MerchantVoucherDetailData(id: id, imageURL: imageURL, name: name, merchantName: merchantName, content: content, favoriteValue: favoriteValue, outOfDate: outOfDate, shoppingValue: shoppingValue, pointValue: pointValue, moneyValue: moneyValue, discountValue: discountValue, hotlines: hotlines, employeeLikeThis: employeeLikeThis, employeeLikeThisMerchant: employeeLikeThisMerchant, merchantId: merchantId)
             
             returnCallBack(data)
         })
