@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		29231284AC532B63BCB67C63 /* Pods_Social_Benefit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */; };
-		2A0095EC27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0095EB27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift */; };
-		2A0095EE27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0095ED27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift */; };
-		2A0C073A27BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0C073927BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift */; };
 		2A0CB7AA2799448500EB11B2 /* MerchantSpecialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */; };
 		2A0EF23D2797E87E001CFD6B /* PTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23C2797E87E001CFD6B /* PTIView.swift */; };
 		2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */; };
@@ -46,6 +43,9 @@
 		2A52844F27A18D8D001CAF20 /* ReactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A52844E27A18D8D001CAF20 /* ReactListView.swift */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		2AADE31B279EED9500721956 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADE31A279EED9500721956 /* Med247View.swift */; };
+		844BED2627BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2527BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift */; };
+		844BED2827BE4C77001DC14F /* FavoriteMerchantUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2727BE4C77001DC14F /* FavoriteMerchantUpdateService.swift */; };
+		844BED2A27BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2927BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift */; };
 		84571C07273969D000F4AB32 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C06273969CF00F4AB32 /* NetworkMonitor.swift */; };
 		84571C0B273CB5BF00F4AB32 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */; };
 		84571C0D273E4DCA00F4AB32 /* UIImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */; };
@@ -369,9 +369,8 @@
 
 /* Begin PBXFileReference section */
 		00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug.xcconfig"; sourceTree = "<group>"; };
-		2A0095EB27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantUpdateService.swift; sourceTree = "<group>"; };
-		2A0095ED27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantUpdateRequestModel.swift; sourceTree = "<group>"; };
-		2A0C073927BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantDeatilViewModel.swift; sourceTree = "<group>"; };
+		070D82899DA2A45B49051E4B /* Pods-Social Benefit.release-pro.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-pro.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-pro.xcconfig"; sourceTree = "<group>"; };
+		1062990F002EE83941E8CA26 /* Pods-Social Benefit.release-stg.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-stg.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-stg.xcconfig"; sourceTree = "<group>"; };
 		2A0CB7A92799448500EB11B2 /* MerchantSpecialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantSpecialModel.swift; sourceTree = "<group>"; };
 		2A0EF23C2797E87E001CFD6B /* PTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTIView.swift; sourceTree = "<group>"; };
 		2A0EF23F2797ECC5001CFD6B /* MerchantWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantWebView.swift; sourceTree = "<group>"; };
@@ -405,6 +404,14 @@
 		2A52844E27A18D8D001CAF20 /* ReactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListView.swift; sourceTree = "<group>"; };
 		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
 		2AADE31A279EED9500721956 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
+		39E9D832BE3FA85CCCD06C71 /* Pods-Social Benefit.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-dev.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-dev.xcconfig"; sourceTree = "<group>"; };
+		40289E1D349ABE1CBAA45D47 /* Pods-Social Benefit.debug-pro.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-pro.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-pro.xcconfig"; sourceTree = "<group>"; };
+		64557CA71E86777E712BF7DC /* Pods-Social Benefit.debug-stg.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-stg.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-stg.xcconfig"; sourceTree = "<group>"; };
+		68E4B616E8711FDE7283A4BD /* Pods-Social Benefit.debug-ft.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-ft.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-ft.xcconfig"; sourceTree = "<group>"; };
+		6B01EB1DF6AF7318F6EB4116 /* Pods-Social Benefit.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-dev.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-dev.xcconfig"; sourceTree = "<group>"; };
+		844BED2527BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantDetailViewModel.swift; sourceTree = "<group>"; };
+		844BED2727BE4C77001DC14F /* FavoriteMerchantUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantUpdateService.swift; sourceTree = "<group>"; };
+		844BED2927BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantUpdateRequestModel.swift; sourceTree = "<group>"; };
 		84571C06273969CF00F4AB32 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		84571C0A273CB5BF00F4AB32 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = "Social Benefit/UI/User/ViewModel/UserViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		84571C0C273E4DC900F4AB32 /* UIImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -437,6 +444,9 @@
 		84DA60C8269ECB410012F55B /* BaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		84DA60CA269ECB6A0012F55B /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		852575E06624D12534F5C234 /* Pods_Social_Benefit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Benefit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98335B7D504BB4E712E437BA /* Pods-Social Benefit.release-ft.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-ft.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-ft.xcconfig"; sourceTree = "<group>"; };
+		99B8F3680BFAE231858A95B6 /* Pods-Social Benefit.release-it.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-it.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-it.xcconfig"; sourceTree = "<group>"; };
+		A41E0CD6E37A0EFDE13A0C78 /* Pods-Social Benefit.debug-it.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-it.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-it.xcconfig"; sourceTree = "<group>"; };
 		C40161C426F08D44003A1EEF /* SpecialOffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOffersView.swift; sourceTree = "<group>"; };
 		C402B26926E76C5300A41288 /* ReactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactViewModel.swift; sourceTree = "<group>"; };
 		C402B26B26E76C5F00A41288 /* ReactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactModel.swift; sourceTree = "<group>"; };
@@ -709,6 +719,9 @@
 		CB2BE2BF27BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantOfferViewModel.swift; sourceTree = "<group>"; };
 		CB2BE2C127BCA7E10077014A /* FavoriteMerchantDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantDetailView.swift; sourceTree = "<group>"; };
 		CB2BE2C527BCA87A0077014A /* MerchantVoucherListByMerchantService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchantVoucherListByMerchantService.swift; sourceTree = "<group>"; };
+		CB5CAA9027BDFCAF00E4580B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB5CAA9327BDFCEC00E4580B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB5CAA9427BDFD2400E4580B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB97937B27BB5FE400872F16 /* FavoriteMerchantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantsView.swift; sourceTree = "<group>"; };
 		CB97937E27BB623500872F16 /* FavoriteMerchantsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantsViewModel.swift; sourceTree = "<group>"; };
 		CB97938027BB6E6C00872F16 /* FavoriteMerchantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantService.swift; sourceTree = "<group>"; };
@@ -904,7 +917,7 @@
 		84DA60692696DAC80012F55B /* Social Benefit */ = {
 			isa = PBXGroup;
 			children = (
-				C473D0FA27796B7B00895575 /* GoogleService-Info.plist */,
+				CB2BE2CB27BCEB3A0077014A /* Firebase */,
 				C473D0F7277952AE00895575 /* Social Benefit.entitlements */,
 				84DA60782696DACA0012F55B /* Info.plist */,
 				C419868C26E46F6D00A877A5 /* Utilities */,
@@ -1015,7 +1028,7 @@
 				2A35DB1227A2792F00E8E8C0 /* FAQPolicyService.swift */,
 				CB10787E27B226CB00AC0743 /* CommentDetailService.swift */,
 				CB97938027BB6E6C00872F16 /* FavoriteMerchantService.swift */,
-				2A0095EB27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift */,
+				844BED2727BE4C77001DC14F /* FavoriteMerchantUpdateService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1181,7 +1194,7 @@
 				CB10788027B27A9400AC0743 /* CommentDetailModel.swift */,
 				CB97938227BB6F2600872F16 /* FavoriteMerchantRequestModel.swift */,
 				CB97938427BB70EB00872F16 /* FavoriteMerchantModel.swift */,
-				2A0095ED27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift */,
+				844BED2927BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2128,9 +2141,9 @@
 		CB2BE2BD27BCA7E10077014A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				2A0C073927BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift */,
 				CB2BE2BE27BCA7E10077014A /* FavoriteMerchantSpecialOfferViewModel.swift */,
 				CB2BE2BF27BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift */,
+				844BED2527BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2141,6 +2154,49 @@
 				CB2BE2C127BCA7E10077014A /* FavoriteMerchantDetailView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CB2BE2CB27BCEB3A0077014A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				CB5CAA9227BDFCBD00E4580B /* dev */,
+				CB5CAA9127BDFCB800E4580B /* it */,
+				CB5CAA8F27BDFCA100E4580B /* ft */,
+				CB2BE2CD27BCEB450077014A /* prod */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		CB2BE2CD27BCEB450077014A /* prod */ = {
+			isa = PBXGroup;
+			children = (
+				C473D0FA27796B7B00895575 /* GoogleService-Info.plist */,
+			);
+			path = prod;
+			sourceTree = "<group>";
+		};
+		CB5CAA8F27BDFCA100E4580B /* ft */ = {
+			isa = PBXGroup;
+			children = (
+				CB5CAA9027BDFCAF00E4580B /* GoogleService-Info.plist */,
+			);
+			path = ft;
+			sourceTree = "<group>";
+		};
+		CB5CAA9127BDFCB800E4580B /* it */ = {
+			isa = PBXGroup;
+			children = (
+				CB5CAA9327BDFCEC00E4580B /* GoogleService-Info.plist */,
+			);
+			path = it;
+			sourceTree = "<group>";
+		};
+		CB5CAA9227BDFCBD00E4580B /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				CB5CAA9427BDFD2400E4580B /* GoogleService-Info.plist */,
+			);
+			path = dev;
 			sourceTree = "<group>";
 		};
 		CB97937D27BB5FEA00872F16 /* FavoriteMerchants */ = {
@@ -2157,6 +2213,16 @@
 			children = (
 				00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */,
 				CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */,
+				40289E1D349ABE1CBAA45D47 /* Pods-Social Benefit.debug-pro.xcconfig */,
+				64557CA71E86777E712BF7DC /* Pods-Social Benefit.debug-stg.xcconfig */,
+				070D82899DA2A45B49051E4B /* Pods-Social Benefit.release-pro.xcconfig */,
+				1062990F002EE83941E8CA26 /* Pods-Social Benefit.release-stg.xcconfig */,
+				A41E0CD6E37A0EFDE13A0C78 /* Pods-Social Benefit.debug-it.xcconfig */,
+				6B01EB1DF6AF7318F6EB4116 /* Pods-Social Benefit.debug-dev.xcconfig */,
+				68E4B616E8711FDE7283A4BD /* Pods-Social Benefit.debug-ft.xcconfig */,
+				39E9D832BE3FA85CCCD06C71 /* Pods-Social Benefit.release-dev.xcconfig */,
+				98335B7D504BB4E712E437BA /* Pods-Social Benefit.release-ft.xcconfig */,
+				99B8F3680BFAE231858A95B6 /* Pods-Social Benefit.release-it.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2174,6 +2240,7 @@
 				84DA60652696DAC80012F55B /* Resources */,
 				C49F5E6A274F1B5F00798EB2 /* Embed Frameworks */,
 				415A62862E8BD7B86AA9C82E /* [CP] Embed Pods Frameworks */,
+				CB2BE2D027BCF3630077014A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2280,6 +2347,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CB2BE2D027BCF3630077014A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release-dev\" ] || [ \"${CONFIGURATION}\" == \"Debug-dev\" ]; then\n  cp \"${PROJECT_DIR}/${PROJECT_NAME}/Firebase/dev/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nelif [ \"${CONFIGURATION}\" == \"Release-it\" ] || [ \"${CONFIGURATION}\" == \"Debug-it\" ]; then\n  cp \"${PROJECT_DIR}/${PROJECT_NAME}/Firebase/it/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nelif [ \"${CONFIGURATION}\" == \"Release-ft\" ] || [ \"${CONFIGURATION}\" == \"Debug-ft\" ]; then\n  cp \"${PROJECT_DIR}/${PROJECT_NAME}/Firebase/ft/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" \nelse\n  cp \"${PROJECT_DIR}/${PROJECT_NAME}/Firebase/prod/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2363,6 +2447,7 @@
 				C47081DC277D6F0700E7F612 /* InternalNewsDetailService.swift in Sources */,
 				C4B9BF7526FC23680022DA55 /* GenerateCodeService.swift in Sources */,
 				C49C4C3127434D7500ED3213 /* UsedPointsHistoryService.swift in Sources */,
+				844BED2827BE4C77001DC14F /* FavoriteMerchantUpdateService.swift in Sources */,
 				C497AA1626F83936006EFE0C /* ConfirmInforBuyService.swift in Sources */,
 				C446BEA62771B72B00925F5E /* ListCommentService.swift in Sources */,
 				C49C4C332743536800ED3213 /* UsedPointsHistoryModel.swift in Sources */,
@@ -2419,7 +2504,7 @@
 				C45490372742069100175E09 /* UsedPointHistoryViewModel.swift in Sources */,
 				C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */,
 				C441BBFC27575CBA00CE2E4A /* FindNewsFeedHaveSameDateFirstIndex.swift in Sources */,
-				2A0C073A27BCDA9B00836681 /* FavoriteMerchantDeatilViewModel.swift in Sources */,
+				844BED2627BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift in Sources */,
 				848753572705A37A0061D4E1 /* SettingsViewModel.swift in Sources */,
 				C4DF7A6526F9BC5200DC7D04 /* BuyVoucherService.swift in Sources */,
 				2A398BB42795271B00E347F5 /* MerchantSpecialSettingsService.swift in Sources */,
@@ -2547,8 +2632,8 @@
 				C472E4C026FD723000D047BA /* MerchantVoucherDetailService.swift in Sources */,
 				C4C8334E2711475A0058E8E3 /* HomeViewModel.swift in Sources */,
 				C446BEC62771C4B800925F5E /* ReactionCommentView.swift in Sources */,
+				844BED2A27BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift in Sources */,
 				C4F2A4FE26F04BAE0090675A /* UpperCaseText.swift in Sources */,
-				2A0095EE27BE244600F198E4 /* FavoriteMerchantUpdateRequestModel.swift in Sources */,
 				C4B94DF126C26C56009D5C46 /* ListOfBenefitsService.swift in Sources */,
 				C4D2606F26E475B2002E475C /* SlideBar.swift in Sources */,
 				C446BEB92771B9DD00925F5E /* ErrorPupup.swift in Sources */,
@@ -2576,7 +2661,6 @@
 				C40AA173277C021E002601AC /* NotificationCardViewModel.swift in Sources */,
 				CB05460D27B0CF0E0010CBAE /* CommentPopup.swift in Sources */,
 				C446BE9E2771B6B700925F5E /* APIRequest.swift in Sources */,
-				2A0095EC27BE23CB00F198E4 /* FavoriteMerchantUpdateService.swift in Sources */,
 				C4A9890327550D9B00E22760 /* RecognitionPostViewModel.swift in Sources */,
 				C4F0097326D8BCFD001B9972 /* PageControl.swift in Sources */,
 				C4750073270B40B000FE75EB /* SearchBarModel.swift in Sources */,
@@ -2648,7 +2732,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		84DA60792696DACA0012F55B /* Debug */ = {
+		84DA60792696DACA0012F55B /* Debug-pro */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2708,9 +2792,9 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = "Debug-pro";
 		};
-		84DA607A2696DACA0012F55B /* Release */ = {
+		84DA607A2696DACA0012F55B /* Release-pro */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2765,18 +2849,19 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release-pro";
 		};
-		84DA607C2696DACA0012F55B /* Debug */ = {
+		84DA607C2696DACA0012F55B /* Debug-pro */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00C96DCB74A6989D971CBA31 /* Pods-Social Benefit.debug.xcconfig */;
+			baseConfigurationReference = 40289E1D349ABE1CBAA45D47 /* Pods-Social Benefit.debug-pro.xcconfig */;
 			buildSettings = {
+				APP_NAME = "Social Benefit";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2787,22 +2872,24 @@
 				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG PRO";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Debug-pro";
 		};
-		84DA607D2696DACA0012F55B /* Release */ = {
+		84DA607D2696DACA0012F55B /* Release-pro */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCD25A51BCC3D1E91E31CED3 /* Pods-Social Benefit.release.xcconfig */;
+			baseConfigurationReference = 070D82899DA2A45B49051E4B /* Pods-Social Benefit.release-pro.xcconfig */;
 			buildSettings = {
+				APP_NAME = "Social Benefit";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = VMRFA854RH;
 				INFOPLIST_FILE = "Social Benefit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2814,10 +2901,536 @@
 				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = "Release-pro";
+		};
+		CB2BE2C727BCB9750077014A /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug-dev";
+		};
+		CB2BE2C827BCB9750077014A /* Debug-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B01EB1DF6AF7318F6EB4116 /* Pods-Social Benefit.debug-dev.xcconfig */;
+			buildSettings = {
+				APP_NAME = "Social Benefit dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = VMRFA854RH;
+				INFOPLIST_FILE = "Social Benefit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG DEV";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-dev";
+		};
+		CB2BE2C927BCB97D0077014A /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-dev";
+		};
+		CB2BE2CA27BCB97D0077014A /* Release-dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39E9D832BE3FA85CCCD06C71 /* Pods-Social Benefit.release-dev.xcconfig */;
+			buildSettings = {
+				APP_NAME = "Social Benefit dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = VMRFA854RH;
+				INFOPLIST_FILE = "Social Benefit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEV;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-dev";
+		};
+		CB5CAA8727BDF77400E4580B /* Debug-ft */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug-ft";
+		};
+		CB5CAA8827BDF77400E4580B /* Debug-ft */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E4B616E8711FDE7283A4BD /* Pods-Social Benefit.debug-ft.xcconfig */;
+			buildSettings = {
+				APP_NAME = "Social Benefit ft";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = VMRFA854RH;
+				INFOPLIST_FILE = "Social Benefit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits.ft;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG FT";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-ft";
+		};
+		CB5CAA8927BDF77D00E4580B /* Release-ft */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-ft";
+		};
+		CB5CAA8A27BDF77D00E4580B /* Release-ft */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98335B7D504BB4E712E437BA /* Pods-Social Benefit.release-ft.xcconfig */;
+			buildSettings = {
+				APP_NAME = "Social Benefit ft";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = VMRFA854RH;
+				INFOPLIST_FILE = "Social Benefit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits.ft;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = FT;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-ft";
+		};
+		CB5CAA8B27BDF8D300E4580B /* Debug-it */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug-it";
+		};
+		CB5CAA8C27BDF8D300E4580B /* Debug-it */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A41E0CD6E37A0EFDE13A0C78 /* Pods-Social Benefit.debug-it.xcconfig */;
+			buildSettings = {
+				APP_NAME = "Social Benefit it";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = VMRFA854RH;
+				INFOPLIST_FILE = "Social Benefit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits.it;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG IT";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-it";
+		};
+		CB5CAA8D27BDF8DB00E4580B /* Release-it */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-it";
+		};
+		CB5CAA8E27BDF8DB00E4580B /* Release-it */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99B8F3680BFAE231858A95B6 /* Pods-Social Benefit.release-it.xcconfig */;
+			buildSettings = {
+				APP_NAME = "Social Benefit it";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Social Benefit/Social Benefit.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = VMRFA854RH;
+				INFOPLIST_FILE = "Social Benefit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.7;
+				PRODUCT_BUNDLE_IDENTIFIER = socialbenefits.it;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = IT;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-it";
 		};
 /* End XCBuildConfiguration section */
 
@@ -2825,20 +3438,32 @@
 		84DA60622696DAC80012F55B /* Build configuration list for PBXProject "Social Benefit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84DA60792696DACA0012F55B /* Debug */,
-				84DA607A2696DACA0012F55B /* Release */,
+				84DA60792696DACA0012F55B /* Debug-pro */,
+				CB5CAA8B27BDF8D300E4580B /* Debug-it */,
+				CB2BE2C727BCB9750077014A /* Debug-dev */,
+				CB5CAA8727BDF77400E4580B /* Debug-ft */,
+				84DA607A2696DACA0012F55B /* Release-pro */,
+				CB2BE2C927BCB97D0077014A /* Release-dev */,
+				CB5CAA8927BDF77D00E4580B /* Release-ft */,
+				CB5CAA8D27BDF8DB00E4580B /* Release-it */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release-pro";
 		};
 		84DA607B2696DACA0012F55B /* Build configuration list for PBXNativeTarget "Social Benefit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84DA607C2696DACA0012F55B /* Debug */,
-				84DA607D2696DACA0012F55B /* Release */,
+				84DA607C2696DACA0012F55B /* Debug-pro */,
+				CB5CAA8C27BDF8D300E4580B /* Debug-it */,
+				CB2BE2C827BCB9750077014A /* Debug-dev */,
+				CB5CAA8827BDF77400E4580B /* Debug-ft */,
+				84DA607D2696DACA0012F55B /* Release-pro */,
+				CB2BE2CA27BCB97D0077014A /* Release-dev */,
+				CB5CAA8A27BDF77D00E4580B /* Release-ft */,
+				CB5CAA8E27BDF8DB00E4580B /* Release-it */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release-pro";
 		};
 /* End XCConfigurationList section */
 	};

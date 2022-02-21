@@ -413,10 +413,6 @@
 "ERR_NOT_FOUND" = "Không thể lấy được tài khoản";
 "ERR_CONFLICT" = "Tài khoản của quý khách đã được liên kết với người dùng khác";
 
-// Favorite merchant
 "favorite_merchants" = "Cửa hàng ưa thích";
 "search_your_favorite_merchant" = "Tìm kiếm cửa hàng ưa thích";
-
-// Favorite merchant details
 "your_favorite_merchant" = "Cửa hàng ưa thích";
-"offers %@" = "Ưu đãi của %@";

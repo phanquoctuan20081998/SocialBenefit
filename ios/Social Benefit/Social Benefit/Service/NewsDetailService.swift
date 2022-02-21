@@ -31,7 +31,7 @@ class NewsDetailService {
 
         service.makeCall(endpoint: endPoint, method: "GET", header: header, body: params, callback: { result in
             
-//            print(result)
+            print(result)
             
             let id = result["id"].int ?? -1
             let contentId = result["contentId"].int ?? -1

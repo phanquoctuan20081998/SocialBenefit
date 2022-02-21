@@ -413,10 +413,6 @@
 "ERR_NOT_FOUND" = "Fall to get account";
 "ERR_CONFLICT" = "Employment already linked with other user";
 
-// Favorite merchant
 "favorite_merchants" = "Favorite merchants";
 "search_your_favorite_merchant" = "Search your favorite merchant";
-
-// Favorite merchant details
 "your_favorite_merchant" = "Your favorite merchant";
-"offers %@" = "%@'s offers";

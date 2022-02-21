@@ -175,7 +175,7 @@ code_sign_if_enabled() {
   fi
 }
 
-if [[ "$CONFIGURATION" == "Debug" ]]; then
+if [[ "$CONFIGURATION" == "Debug-dev" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
@@ -191,7 +191,103 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
+if [[ "$CONFIGURATION" == "Debug-ft" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ScrollViewProxy/ScrollViewProxy.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+fi
+if [[ "$CONFIGURATION" == "Debug-it" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ScrollViewProxy/ScrollViewProxy.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+fi
+if [[ "$CONFIGURATION" == "Debug-pro" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ScrollViewProxy/ScrollViewProxy.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+fi
+if [[ "$CONFIGURATION" == "Release-dev" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ScrollViewProxy/ScrollViewProxy.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+fi
+if [[ "$CONFIGURATION" == "Release-ft" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ScrollViewProxy/ScrollViewProxy.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+fi
+if [[ "$CONFIGURATION" == "Release-it" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ScrollViewProxy/ScrollViewProxy.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+fi
+if [[ "$CONFIGURATION" == "Release-pro" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"

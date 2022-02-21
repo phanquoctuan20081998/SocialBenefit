@@ -45,7 +45,7 @@ struct HomeScreenView: View {
                 // User - Customer support popup...
                 CustomerSupportPopUp()
                 
-                // Banner Screen                
+                // Banner Screen
                 MerchantVoucherDetailNavigationView(voucherId: homeViewModel.selectedVoucherId, isPresent: homeViewModel.isPresentVoucherDetail)
                 
                 // Others Button popup...

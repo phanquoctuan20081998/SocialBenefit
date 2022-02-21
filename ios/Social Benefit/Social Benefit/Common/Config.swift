@@ -10,13 +10,37 @@ import Foundation
 
 struct Config {
     
-//    static let baseURL = "http://172.20.109.102:8089"
-//    static let baseURL = "http://172.20.108.151:8066"
-//    static let baseURL = "http://172.20.108.151:8022"
-//    static let baseURL = "http://localhost:8089"
-//    static let baseURL = "http://demo-sb.nissho-vn.com:8089"
-//    static let baseURL = "http://113.190.243.99:8089"
-    static let baseURL = "http://113.190.243.99:8044"
+    enum XcodeConfig {
+        case dev
+        case prod
+        case ft
+        case it
+    }
+    
+    static let xcodeConfig: XcodeConfig = {
+        #if DEV
+        return .dev
+        #elseif FT
+        return .ft
+        #elseif IT
+        return .it
+        #else
+        return .prod
+        #endif
+    }()
+    
+    static var baseURL: String {
+        switch xcodeConfig {
+        case .dev:
+            return "http://113.190.243.99:8044"
+        case .ft:
+            return "http://113.190.243.99:8066"
+        case .prod:
+            return "http://113.190.243.99:8089"
+        case .it:
+            return "http://113.190.243.99:8022"
+        }
+    }
     
     static let API_LOGIN = "/employee/login"
     static let API_EMPLOYEE_FORGOTPASS = "/employee/forgotpassword"

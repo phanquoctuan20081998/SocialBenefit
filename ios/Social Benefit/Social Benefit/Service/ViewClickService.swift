@@ -23,7 +23,7 @@ class ViewClickService {
         let params: Parameters = ["items": viewClickItemJson ?? ""]
         
         service.makeCall(endpoint: Config.API_MOBILE_VIEW_CLICK, method: "POST", header: header, body: params, callback: { (result) in
-//            print(result)
+            print(result)
         })
     }
 }

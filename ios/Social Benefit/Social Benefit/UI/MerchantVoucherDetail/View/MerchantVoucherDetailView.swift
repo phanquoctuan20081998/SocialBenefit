@@ -48,7 +48,7 @@ struct MerchantVoucherDetailView: View {
                 
                 .frame(width: ScreenInfor().screenWidth)
                 
-            } else {                
+            } else {
                 VoucherHeadline
                 InformationBar()
                 

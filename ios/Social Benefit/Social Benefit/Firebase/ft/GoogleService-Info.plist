@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>156097932835-ft7qdnk0nlp9ao8i5hn2e8ardcpi2e0r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.156097932835-ft7qdnk0nlp9ao8i5hn2e8ardcpi2e0r</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA2sT4ilhmnm3g9Q0hONFwKmQSY5NWYbcM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>156097932835</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>socialbenefits.ft</string>
+	<key>PROJECT_ID</key>
+	<string>social-benefit</string>
+	<key>STORAGE_BUCKET</key>
+	<string>social-benefit.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:156097932835:ios:ad37922dc43a2d276ecb96</string>
+</dict>
+</plist>

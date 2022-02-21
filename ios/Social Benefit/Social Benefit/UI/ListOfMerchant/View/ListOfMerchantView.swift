@@ -15,7 +15,7 @@ struct ListOfMerchantView: View {
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     
-    var body: some View { 
+    var body: some View {
         VStack(spacing: 15) {
             
             Spacer().frame(height: ScreenInfor().screenHeight * 0.05)

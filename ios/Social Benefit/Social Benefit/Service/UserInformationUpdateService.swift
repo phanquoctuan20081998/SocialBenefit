@@ -69,7 +69,7 @@ class UserInformationService {
                 }
                 
             } else {
-//                print(response.error!.localizedDescription)
+                print(response.error!.localizedDescription)
                 returnCallBack(JSON())
             }
         }
@@ -99,7 +99,7 @@ class UserInformationService {
         
         service.makeCall(endpoint: Config.API_EMPLOYEE_INFO_UPDATE, method: "POST", header: header, body: params, callback: { (result) in
             
-//            print(result)
+            print(result)
             
             returnCallBack(result)
         })

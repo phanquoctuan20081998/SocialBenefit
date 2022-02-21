@@ -29,7 +29,7 @@ class APIRequest {
             urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
             
         }.validate(statusCode: 200..<300).responseString(completionHandler: { response in
-//            print(response.value ?? "")
+            print(response.value ?? "")
         }).publishDecodable(type: T.self).result()
         cancellation = publisher.sink { response in
             let result = self.convertAppError(response, customMess: customError)
