@@ -164,7 +164,7 @@
 "special_offer" = "Ưu đãi đặc biệt";
 "buy" = "Mua";
 "all_offer" = "Tất cả ưu đãi";
-"filter" = "Lọc";
+"sort" = "Sắp xếp";
 "ENUM_NEAREST_DEADLINE" = "Hạn gần nhất";
 "ENUM_FARTHEST_DEADLINE" = "Hạn xa nhất";
 "ENUM_LOWEST_PRICE" = "Giá thấp nhất";

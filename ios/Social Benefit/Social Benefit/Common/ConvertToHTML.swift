@@ -16,24 +16,65 @@ func convertFromHTMLString(_ input: String?) -> NSAttributedString? {
 
 func convertToHTMLString(_ body: String) -> String {
     
+    //    return "<!DOCTYPE html>\n" +
+    //            "<html>\n" +
+    //            "\n" +
+    //            "<head>\n" +
+    //            "<meta name=\"viewport\" content=\"width=device-width, shrink-to-fit=no\">" +
+    //            "</head>\n" +
+    //            "<style> \n" +
+    //            "img{display: block;height: auto;max-width: 100%; margin-right: auto ;margin-left: auto;} \n" +
+    //            "body { word-wrap: break-word; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.775em;} \n" +
+    //            "pre { white-space: pre-wrap; word-break: keep-all; } \n" +
+    //            "</style> \n" +
+    //            "\n" +
+    //            "<body>\n" +
+    //            body +
+    //            "\n" +
+    //            "</body>\n" +
+    //            "\n" +
+    //            "</html>";
+    
+    
+//    return "<!DOCTYPE html>\n" +
+//    "<html>\n" +
+//    "\n" +
+//    "<head>\n" +
+//    "<link rel=\"stylesheet\" href=\"" + Constants.quillCSS + "\" />\n" +
+//    "</head>\n" +
+//    "<style> \n" +
+//    "img{display: block;height: auto;max-width: 100%; margin-right: auto ;margin-left: auto;} \n" +
+//    "body{word-wrap: break-word;} \n" +
+//    "pre { white-space: pre-wrap; word-break: keep-all; } \n" +
+//    "</style> \n" +
+//    "\n" +
+//    "<body class=\"ql-editor\">\n" +
+//    body +
+//    "\n" +
+//    "</body>\n" +
+//    "\n" +
+//    "</html>";
+    
     return "<!DOCTYPE html>\n" +
-            "<html>\n" +
-            "\n" +
-            "<head>\n" +
-            "<meta name=\"viewport\" content=\"width=device-width, shrink-to-fit=no\">" +
-            "</head>\n" +
-            "<style> \n" +
-            "img{display: block;height: auto;max-width: 100%; margin-right: auto ;margin-left: auto;} \n" +
-            "body { word-wrap: break-word; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.775em;} \n" +
-            "pre { white-space: pre-wrap; word-break: keep-all; } \n" +
-            "</style> \n" +
-            "\n" +
-            "<body>\n" +
-            body +
-            "\n" +
-            "</body>\n" +
-            "\n" +
-            "</html>";
+    "<html>\n" +
+    "\n" +
+    "<head>\n" +
+    "<link rel=\"stylesheet\" href=\"" + Constants.quillCSS + "\" />\n" +
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=0.8, maximum-scale=1, minimum-scale=0.5, shrink-to-fit=no\">" +
+    "</head>\n" +
+    "<style> \n" +
+    "img{display: block;height: auto;max-width: 100%; margin-right: auto ;margin-left: auto;} \n" +
+    "body { word-wrap: break-word; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.775em;} \n" +
+    "pre { white-space: pre-wrap; word-break: keep-all; } \n" +
+    "</style> \n" +
+    "\n" +
+    "<body class=\"ql-editor\">\n" +
+    body +
+    "\n" +
+    "</body>\n" +
+    "\n" +
+    "</html>";
 }
+
 
 

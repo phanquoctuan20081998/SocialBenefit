@@ -164,7 +164,7 @@
 "special_offer" = "Special offers";
 "buy" = "Buy";
 "all_offer" = "All Offers";
-"filter" = "Filter";
+"sort" = "Sort";
 "ENUM_NEAREST_DEADLINE" = "Nearest deadline";
 "ENUM_FARTHEST_DEADLINE" = "Farthest deadline";
 "ENUM_LOWEST_PRICE" = "Lowest price";

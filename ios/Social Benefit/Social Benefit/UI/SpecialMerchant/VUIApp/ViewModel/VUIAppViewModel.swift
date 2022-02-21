@@ -16,6 +16,7 @@ class VUIAppViewModel: ObservableObject, Identifiable {
     @Published var clientSecret: String = userInfor.clientSecret
     
     @Published var accessToken: String = ""
+    
     @Published var vuiAppResponse = VUIAppResponse()
 
     @Published var isLoading: Bool = false
@@ -43,11 +44,12 @@ class VUIAppViewModel: ObservableObject, Identifiable {
         self.isLoading = true
         
         merchantSpecialSettingsService.getAPI(code: Constants.MerchantSpecialCode.VUI) { data in
-            self.authUrl = data[Constants.MerchantSpecialSettings.AUTH_URL].string ?? ""
-            self.apiUrl = data[Constants.MerchantSpecialSettings.API_URL].string ?? ""
-            
-            self.getOAth2()
-            
+            DispatchQueue.main.async {
+                self.authUrl = data[Constants.MerchantSpecialSettings.AUTH_URL].string ?? ""
+                self.apiUrl = data[Constants.MerchantSpecialSettings.API_URL].string ?? ""
+                
+                self.getOAth2()
+            }
         }
     }
     
@@ -65,21 +67,24 @@ class VUIAppViewModel: ObservableObject, Identifiable {
     
     func getWebURL() {
         if !self.accessToken.isEmpty {
-
-            vuiAppService.getAPI(token: accessToken, url: apiUrl, employeeCode: userInfor.employeeId, phoneNumber: userInfor.phone) { [self] data in
-                if data["errors"].isEmpty {
-                    self.vuiAppResponse.setWebUrl(url: data["webUri"].string ?? "")
-                } else {
-                    DispatchQueue.main.async {
+            
+            vuiAppService.getAPI(token: accessToken, url: apiUrl, employeeCode: userInfor.userId
+                                 , phoneNumber: userInfor.phone) { [self] data in
+                
+                DispatchQueue.main.async {
+                    if data["errors"].isEmpty {
+                        self.vuiAppResponse.setWebUrl(url: data["webUri"].string ?? "")
+                    } else {
+                        
                         self.vuiAppResponse.setError(error: data["errors"][0]["extensions"]["code"].int ?? 0)
                         self.applicationCode =  data["errors"][0]["extensions"]["applicationCode"].string ?? ""
                         self.isPresentError = true
                     }
+                    
+                    self.isLoading = false
                 }
-                
-                self.isLoading = false
             }
         }
     }
-   
 }
+

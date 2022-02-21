@@ -131,24 +131,10 @@ extension InternalNewsDetailView {
             ZStack {
                 VStack {
                     PostContentView
-                    
-                    //                    LikeAndCommentCountBarView(numOfComment: commentViewModel.numOfComment)
-                    //                        .padding(.horizontal, 10)
-//                    Divider().frame(width: ScreenInfor().screenWidth * 0.9)
-//                    LikeAndCommentButton(contentId: commentViewModel.contentId, isFocus: $commentViewModel.isFocus)
-//                        .frame(height: 20)
-//                        .padding(.horizontal, 10)
-                    
                     ReactionView
                 }
                 .zIndex(1)
                 .environmentObject(reactViewModel)
-                
-//                if reactViewModel.isShowReactionBar {
-//                    ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-//                        .offset(x: 100 - ScreenInfor().screenWidth / 3, y: 100 + webViewHeight / 2)
-//                        .zIndex(1)
-//                }
             }
             
             Divider().frame(width: ScreenInfor().screenWidth * 0.9)

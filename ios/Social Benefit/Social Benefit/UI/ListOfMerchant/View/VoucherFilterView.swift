@@ -34,7 +34,7 @@ extension FilterView {
     var FilterSlideView: some View {
         HStack(spacing: 15) {
             HStack {
-                Text("filter".localized)
+                Text("sort".localized)
                     .padding(5)
             }.background(RoundedRectangle(cornerRadius: 10).fill(Color(#colorLiteral(red: 0.971601069, green: 0.9766867757, blue: 0.9764313102, alpha: 1))))
             .padding(.leading)

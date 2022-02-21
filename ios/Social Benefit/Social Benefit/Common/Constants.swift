@@ -10,6 +10,8 @@ import SwiftUI
 
 struct Constants {
     
+    static let quillCSS = "https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.core.min.css"
+    
     // Sort...
     static let FilterAndSortType = ["ENUM_NEAREST_DEADLINE", "ENUM_FARTHEST_DEADLINE", "ENUM_LOWEST_PRICE", "ENUM_HIGHEST_PRICE", "ENUM_NAME_AZ", "ENUM_NAME_ZA", "ENUM_MOST_DISCOUNTS", "ENUM_BESTSELLER", "ENUM_BEST_REVIEW"]
     static let SortDirectionType = ["ASC", "DESC"]

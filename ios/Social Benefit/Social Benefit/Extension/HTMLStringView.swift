@@ -23,7 +23,7 @@ struct HTMLView: UIViewRepresentable {
 
 }
 
-struct Webview : UIViewRepresentable {
+struct Webview: UIViewRepresentable {
     
     @Binding var dynamicHeight: CGFloat
     var htmlString: String
@@ -37,7 +37,22 @@ struct Webview : UIViewRepresentable {
             self.parent = parent
         }
 
-            
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+                if navigationAction.navigationType == .linkActivated  {
+                    if let url = navigationAction.request.url,
+                        UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                            decisionHandler(.cancel)
+                    } else {
+                        // Open in web view
+                        decisionHandler(.allow)
+                    }
+                } else {
+                    // other navigation type, such as reload, back or forward buttons
+                    decisionHandler(.allow)
+                }
+            }
+        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             
             let css = "img { max-width: 100%; height: auto; width: 100%; }"
@@ -62,10 +77,10 @@ struct Webview : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView  {
         webview.scrollView.bounces = false
         webview.navigationDelegate = context.coordinator
-        let htmlStart = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, shrink-to-fit=no\"></HEAD><BODY>"
+//        let htmlStart = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=0.6, maximum-scale=0.6, minimum-scale=0.6, user-scalable=no, shrink-to-fit=no\"></HEAD><BODY>"
         let htmlEnd = "</font></BODY></HTML>"
-        let html = convertToHTMLString(htmlString)   
-        let htmlString = "\(htmlStart)\(html)\(htmlEnd)"
+        let html = convertToHTMLString(htmlString)
+        let htmlString = "\(html)\(htmlEnd)"
         webview.loadHTMLString(htmlString, baseURL:  nil)
         return webview
     }

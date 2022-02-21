@@ -15,7 +15,10 @@ class VUIAppService {
     func getAPI(token: String, url: String, employeeCode: String, phoneNumber: String, returnCallBack: @escaping (JSON) -> ()) {
         let semaphore = DispatchSemaphore (value: 0)
         
+        print(employeeCode)
+        print(phoneNumber)
         let parameters = "{\r\n    \"employeeCode\": \"\(employeeCode)\",\r\n    \"phoneNumber\": \"\(phoneNumber)\"\r\n}"
+        
 //        let parameters = "{\r\n    \"employeeCode\": \"OSD200720PQ\",\r\n    \"phoneNumber\": \"0902723383\"\r\n}"
         let postData = parameters.data(using: .utf8)
         
