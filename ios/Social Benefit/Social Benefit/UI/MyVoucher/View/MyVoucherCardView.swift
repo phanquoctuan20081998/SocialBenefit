@@ -20,8 +20,8 @@ struct VoucherCardView: View {
         HStack(spacing: 15) {
             
             URLImageView(url: myVoucher.cover)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .frame(width: 80, height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             
             VStack(alignment: .leading, spacing: 5) {
                 Text("\(myVoucher.merchantName) | \(myVoucher.title)")

@@ -38,7 +38,7 @@ struct FavoriteMerchantDetailView: View {
             }
         }
         .overlay(MyVoucherButtonView()
-                    .padding(.init(top: ScreenInfor().screenHeight * 0.05 + 10, leading: 0, bottom: 0, trailing: 20))
+                    .padding(.init(top: ScreenInfor().screenHeight * 0.05 + 10, leading: 0, bottom: 0, trailing: 10))
                  , alignment: .topTrailing)
         .edgesIgnoringSafeArea(.all)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))

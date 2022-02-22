@@ -78,12 +78,17 @@ struct UserView: View {
                     FunctionCardView(thumnail: "text.bubble.fill", thumailColor: Color("light_green"), functionName: "customer".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: .constant(false), selectedNumber: 7, isCountClick: false)
                     
                     // Phase 3 - FAQ
-                    NavigationLink(destination: NavigationLazyView(FAQView()), tag: 10, selection: $selection) {
-                        FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
+                    
+                    if userViewModel.showFAQ {
+                        NavigationLink(destination: NavigationLazyView(FAQView()), tag: 10, selection: $selection) {
+                            FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
+                        }
                     }
-
-                    NavigationLink(destination: NavigationLazyView(PolicyView()), tag: 11, selection: $selection) {
-                        FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 11)
+                    
+                    if userViewModel.showPolicy {
+                        NavigationLink(destination: NavigationLazyView(PolicyView()), tag: 11, selection: $selection) {
+                            FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 11)
+                        }
                     }
                     
                     FunctionCardView(thumnail: "star.fill", thumailColor: Color.yellow, functionName: "rate".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 8)
