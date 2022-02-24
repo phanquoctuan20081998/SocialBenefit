@@ -55,12 +55,12 @@ extension RecognitionUsesBlockView {
         VStack(spacing: 10) {
             
             let currentUser = recognitionActionViewModel.allSelectedUser[index]
-        
+            
             if currentUser.getId() == -1 && recognitionActionViewModel.realCount == 0 && index == 0 {
                 HStack {
                     Text("compliments_to".localized)
                         .foregroundColor(.gray)
-
+                    
                     Spacer()
                     Image(systemName: "chevron.down")
                 }
@@ -69,30 +69,31 @@ extension RecognitionUsesBlockView {
                     .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
                     .foregroundColor(.gray.opacity(0.4))
             } else {
-                ZStack {
-                    UserCardView(avatar: currentUser.getAvatar(), userName: currentUser.getFullName(), departmentName: currentUser.getDepartmentName())
-                        .frame(width: ScreenInfor().screenWidth * 0.85, alignment: .leading)
-                        .overlay(
-                            Image(systemName: "ellipsis.circle")
-                                .resizable()
-                                .foregroundColor(.gray.opacity(0.4))
-                                .frame(width: 30, height: 30)
-                                .padding()
-                                .onTapGesture {
-                                    withAnimation {
-                                        self.isPresentPopUp = true
-                                    }
-                                },
-                            alignment: .trailing
-                        )
-                }
+                HStack {
+                    UserCardView(avatar: currentUser.getAvatar(), userName: currentUser.getFullName(), positionName: currentUser.getPositionName(), departmentName: currentUser.getDepartmentName(), isInUserView: true)
+                    Spacer()
+                    Image(systemName: "ellipsis")
+                        .resizable()
+                        .scaledToFit()
+                        .rotationEffect(.degrees(-90))
+                        .foregroundColor(.gray.opacity(0.4))
+                        .frame(width: 20, height: 20)
+                        .padding()
+                        .onTapGesture {
+                            withAnimation {
+                                self.isPresentPopUp = true
+                            }
+                        }
+                }.frame(width: ScreenInfor().screenWidth * 0.85, alignment: .leading)
             }
         }.frame(width: ScreenInfor().screenWidth * 0.8)
     }
     
     var SendWishes: some View {
         VStack {
-            AutoResizeTextField(text: $recognitionActionViewModel.wishesText[index], isFocus: .constant(false), minHeight: 80, maxHeight: 500, placeholder: "send_wishes".localized, textfiledType: Constants.AutoResizeTextfieldType.RECOGNITION_ACTION)
+            if index < recognitionActionViewModel.wishesText.count {
+                AutoResizeTextField(text: $recognitionActionViewModel.wishesText[index], isFocus: .constant(false), minHeight: 80, maxHeight: 500, placeholder: "send_wishes".localized, textfiledType: Constants.AutoResizeTextfieldType.RECOGNITION_ACTION)
+            }
         }
         .background(RoundedRectangle(cornerRadius: 10)
                         .strokeBorder(Color.gray.opacity(0.4), lineWidth: 1)
@@ -142,17 +143,20 @@ extension RecognitionUsesBlockView {
     
     var PointsView: some View {
         VStack(spacing: 10) {
-            HStack {                
-                TextFieldDynamicWidth(title: "0", text: $recognitionActionViewModel.pointText[index])
-                    .keyboardType(.numberPad)
-                    .font(.system(size: 35))
-                    .frame(height: 30)
-                
-                Text("\((recognitionActionViewModel.pointInt[index] == 0 || recognitionActionViewModel.pointInt[index] == 1) ? "point" : "points")")
-                
-                Spacer()
-            }.foregroundColor(recognitionActionViewModel.pointInt[index] == 0 ? .gray : .black)
-            
+            if index < recognitionActionViewModel.pointText.count {
+                HStack {
+                    
+                    TextFieldDynamicWidth(title: "0", text: $recognitionActionViewModel.pointText[index])
+                        .keyboardType(.numberPad)
+                        .font(.system(size: 35))
+                        .frame(height: 30)
+                    
+                    Text("\((recognitionActionViewModel.pointInt[index] == 0 || recognitionActionViewModel.pointInt[index] == 1) ? "point".localized : "points".localized)")
+                    
+                    Spacer()
+                    
+                }.foregroundColor(recognitionActionViewModel.pointInt[index] == 0 ? .gray : .black)
+            }
             Rectangle()
                 .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
                 .foregroundColor(.gray.opacity(0.4))

@@ -126,11 +126,9 @@ struct AllOfferCardView: View {
         .frame(width: ScreenInfor().screenWidth * 0.9, height: 100)
         .padding(5)
         .background(RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.white)
+                        .strokeBorder(Color("nissho_blue").opacity(0.5), lineWidth: 2)
+                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
                         .shadow(color: .black.opacity(0.2), radius: 10, x: -3, y: 1))
-        //        .onTapGesture {
-        //            merchantVoucherDetailViewModel.getData(voucherId: voucherData.id)
-        //        }
     }
 }
 
@@ -196,11 +194,11 @@ extension AllOfferCardView {
             }, label: {
                 Text("buy".localized)
                     .font(.system(size: 15))
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .padding(.vertical, 5)
                     .padding(.horizontal, 20)
                     .background(RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
+                                    .fill(Color("nissho_blue"))
                                     .shadow(color: .black.opacity(0.2), radius: 2, x: -0.5, y: 0.5))
             })
         }.padding(.trailing, 20)

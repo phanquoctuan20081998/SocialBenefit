@@ -42,6 +42,23 @@ struct RecognitionData: Identifiable, Hashable {
         self.commentCount = commentCount
     }
     
+    public init() {
+        self.id = 0
+        self.createdTime = Date()
+        self.time = ""
+        self.date = ""
+        self.from = ""
+        self.to = ""
+        self.message = ""
+        self.point = 0
+        
+        self.myReact = 0
+        self.reactTop1 = 0
+        self.reactTop2 = 0
+        self.totalOtherReact = 0
+        self.commentCount = 0
+    }
+    
     public func getId() -> Int {
         return id
     }

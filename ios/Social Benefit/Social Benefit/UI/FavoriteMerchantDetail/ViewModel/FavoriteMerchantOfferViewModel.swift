@@ -14,13 +14,14 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     @Published var fromIndex: Int = 0
     @Published var categoryId: Int = -1
     @Published var merchantId: Int = -1
+    @Published var filterConditionItems = "[]"
     
     // Loading & refreshing
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
         didSet {
             if oldValue == false && isRefreshing == true {
-                self.refresh()
+                self.refresh() 
             }
         }
     }
@@ -31,12 +32,30 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     init(merchantId: Int) {
         self.merchantId = merchantId
         loadData()
+        addSubscribers()
     }
 
+    func addSubscribers() {
+        $filterConditionItems
+            .sink(receiveValue: loadFilterData(filterConditionItems:))
+            .store(in: &cancellables)
+    }
     
     func loadData() {
         self.isLoading = true
         offersService.getAPI(searchPattern: "", fromIndex: 0, categoryId: -1, filterConditionItems: "[]", merchantId: merchantId) { data in
+            DispatchQueue.main.async {
+                self.allOffers = data
+                
+                self.isLoading = false
+                self.isRefreshing = false
+            }
+        }
+    }
+    
+    func loadFilterData(filterConditionItems: String) {
+        self.isLoading = true
+        offersService.getAPI(searchPattern: "", fromIndex: 0, categoryId: -1, filterConditionItems: filterConditionItems, merchantId: -1) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
                 

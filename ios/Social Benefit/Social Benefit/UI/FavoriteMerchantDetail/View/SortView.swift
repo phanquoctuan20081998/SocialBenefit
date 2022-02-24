@@ -8,9 +8,9 @@
 import SwiftUI
 import ScrollViewProxy
 
-struct FilterView: View {
+struct SortView: View {
     
-    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
+    @EnvironmentObject var offersViewModel: FavoriteMerchantOfferViewModel
     
     @State var selectedFilterIndex: Int = 0
     @State private var proxy: AmzdScrollViewProxy? = nil
@@ -29,7 +29,7 @@ struct FilterView: View {
     }
 }
 
-extension FilterView {
+extension SortView {
     
     var FilterSlideView: some View {
         HStack(spacing: 15) {
@@ -69,6 +69,8 @@ extension FilterView {
                                         
                                         DispatchQueue.main.async {
                                             self.offersViewModel.filterConditionItems = "[{\"filterType\":\"\(Constants.FilterAndSortType[i])\",\"sortType\":\"\(Constants.SortDirectionType[0])\"}]"
+                                            
+                                            print(self.offersViewModel.filterConditionItems)
                                         }
                     
                                     }
@@ -91,14 +93,3 @@ extension FilterView {
     }
 }
 
-struct FilterPopUp: View {
-    var body: some View {
-        Text("")
-    }
-}
-
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListOfMerchantView()
-    }
-}

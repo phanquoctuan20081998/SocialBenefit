@@ -12,6 +12,16 @@ struct ReactSuveryModel: APIResponseProtocol {
     var status: Int?
     var result: [ReactResultModel]?
     
+    var isOnlyLike: Bool = false
+    
+    init() {
+        
+    }
+    
+    init(isOnlyLike: Bool) {
+        self.isOnlyLike = isOnlyLike
+    }
+    
     var imageName: String {
         if let result = result, result.count > 0 {
             let myFilter = result.filter({ model in
@@ -47,6 +57,10 @@ struct ReactSuveryModel: APIResponseProtocol {
                 return "like".localized
             }
         }
+        if isOnlyLike {
+            return "like".localized
+        }
+        
         return "no_like".localized
     }
     

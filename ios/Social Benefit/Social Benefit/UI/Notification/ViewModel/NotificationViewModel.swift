@@ -50,7 +50,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
         self.isLoading = true
         
         notificationListService.getAPI(nextPageIndex: fromIndex, pageSize: 10) { [weak self] data in
-            
+            print(data)
             DispatchQueue.main.async {
                 self?.allNotificationItems = data
                 self?.readNotificationItems = data

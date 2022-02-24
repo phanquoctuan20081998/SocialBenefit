@@ -102,7 +102,7 @@
 "promotions" = "Your promotions, check them out!";
 "total_point" = "Your total points";
 "recognize" = "Recognize";
-"my_voucher" = "My voucher";
+"my_voucher" = "My vouchers";
 "my_order" = "My order";
 "others" = "Others";
 "see_all" = "See all";
@@ -198,6 +198,7 @@
 "you_are_having" = "You are having";
 "would_like_to_spend" = "Would you like to spend";
 "to_buy_this_voucher" = "to buy this voucher";
+"rebuy" = "Rebuy";
 
 // Merchant Voucher Detail
 "share/copy" = "Share/Copy";
@@ -225,6 +226,9 @@
 "point" = "point";
 "points" = "points";
 "be_careful_with_your_budget" = "Be careful with your budget";
+"note_point_text" = "*Notice:\n
+- Points for employees are only valid until %1$@/12/31\n
+- Department point fund will be settled on %2$@/12/31";
 
 // Search
 "company_surveys" = "Company surveys";
@@ -318,7 +322,7 @@
 "update" = "Update";
 
 // Used Points History
-"your_used_points_hictory" = "Your used points hictory";
+"your_used_points_hictory" = "Your used points history";
 "search_the_transaction" = "Search the transaction";
 "consumed" = "Consumed";
 "compliments_from" = "Compliments from";

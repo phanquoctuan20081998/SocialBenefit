@@ -31,7 +31,7 @@ struct UsedPointHistoryView: View {
                 TransactionView
             }
         }
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "", isHaveLogo: true))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreenViewModel.isPresentedTabBar, title: "your_used_points_hictory".localized, isHaveLogo: true))
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
@@ -41,11 +41,7 @@ extension UsedPointHistoryView {
     
     var UpperView: some View {
         VStack (spacing: 20) {
-            
-            Text("your_used_points_hictory".localized.uppercased())
-                .bold()
-                .foregroundColor(Color.blue)
-            
+                        
             SearchBarView(searchText: $usedPointHistoryViewModel.searchText, isSearching: $usedPointHistoryViewModel.isSearch, placeHolder: "search_the_transaction".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: true)
             
             HeaderTab

@@ -33,7 +33,6 @@ struct NotificationView: View {
         }
         .onAppear {
             notificationViewModel.isRefreshing = true
-//            notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
         }
         .background(
             ZStack {

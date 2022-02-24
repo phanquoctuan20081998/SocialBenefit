@@ -29,11 +29,7 @@ struct DynamicHeightTextField: UIViewRepresentable {
         textView.text = text
         textView.backgroundColor = UIColor.clear
         
-        if textfieldType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION {
-            textView.font = UIFont.systemFont(ofSize: 20)
-        } else {
-            textView.font = UIFont.systemFont(ofSize: 13)
-        }
+        textView.font = UIFont.systemFont(ofSize: 13)
         
         context.coordinator.textView = textView
         textView.delegate = context.coordinator
@@ -162,6 +158,7 @@ struct AutoResizeTextField: View {
             if text.isEmpty {
                 if textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION {
                     Text(placeholder)
+                        .font(.system(size: 13))
                         .foregroundColor(Color.gray)
                         .padding(15)
                 } else if textfiledType == Constants.AutoResizeTextfieldType.CUSTOMER_SUPPORT {
@@ -179,7 +176,7 @@ struct AutoResizeTextField: View {
             
             DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, textfieldType: textfiledType, isFirstResponder: isFocus, onEnd: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            }).padding(textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION ? 10 : 2)
+            }).padding(textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION ? 8 : 2)
         }
         .frame(height: textFieldHeight)
     }

@@ -148,7 +148,7 @@ extension InternalNewsDetailView {
         }
     }
     
-    var ReactionView: some View {
+    var ReactionView: some View { 
         ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,

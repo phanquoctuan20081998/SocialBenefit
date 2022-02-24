@@ -11,11 +11,12 @@ import Alamofire
 struct RecognitionActionView: View {
     
     @ObservedObject var recognitionActionViewModel = RecognitionActionViewModel()
+    @ObservedObject var keyboardHandler = KeyboardHandler()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
-
+    
     @State var addMoreClick: Bool = false
     
     var body: some View {
@@ -32,9 +33,10 @@ struct RecognitionActionView: View {
                 Spacer().frame(height: 20)
                 
                 SendPointActionView
-                
                 SendPointButton
             }
+            .font(.system(size: 13))
+            .offset(y: -keyboardHandler.keyboardHeight)
             
             // Error Present
             ErrorMessageView(error: "this_person_is_exist".localized, isPresentedError: $recognitionActionViewModel.isPresentError)
@@ -48,6 +50,9 @@ struct RecognitionActionView: View {
             PopUpView(isPresentedPopUp: $recognitionActionViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: self.outOfPopupClick, popUpContent: AnyView(ConfirmPopUpView))
             
         }
+        .onTapGesture(perform: {
+            Utils.dismissKeyboard()
+        })
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: false, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
         .edgesIgnoringSafeArea(.all)
         .background(
@@ -110,30 +115,31 @@ extension RecognitionActionView {
             }
             HStack {
                 RoundedRectangle(cornerRadius: 18)
-                    .fill(Color.blue)
+                    .fill(Color("nissho_blue"))
                     .frame(width: ScreenInfor().screenWidth * 0.93 / 2 - 15, height: 85, alignment: .bottom)
                     .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 0)
-            }.frame(width: ScreenInfor().screenWidth * 0.93, alignment: recognitionActionViewModel.selectedTab == 0 ? .leading : .trailing)
-                .padding(recognitionActionViewModel.selectedTab == 0 ? .leading : .trailing, 15)
+            }
+            .frame(width: ScreenInfor().screenWidth * 0.93, alignment: recognitionActionViewModel.selectedTab == 0 ? .leading : .trailing)
+            .padding(recognitionActionViewModel.selectedTab == 0 ? .leading : .trailing, 15)
             
             HStack(spacing: 10) {
                 
                 VStack(spacing: 7) {
                     Text("company_budget".localized)
-                    
+                        .fontWeight(.medium)
                     getPointView(point: recognitionActionViewModel.companyPoint)
-                        .font(.system(size: 20))
                 }
-                .foregroundColor(recognitionActionViewModel.selectedTab == 0 ? .white : .gray)
+                .font(.system(size: 13))
+                .foregroundColor(recognitionActionViewModel.selectedTab == 0 ? .black : .gray.opacity(0.7))
                 .frame(width: ScreenInfor().screenWidth * 0.93 / 2 - 15, height: 85)
                 
                 VStack(spacing: 7) {
                     Text("personal_budget".localized)
-                    
+                        .fontWeight(.medium)
                     getPointView(point: recognitionActionViewModel.personalPoint)
-                        .font(.system(size: 20))
                 }
-                .foregroundColor(recognitionActionViewModel.selectedTab == 1 ? .white : .gray)
+                .font(.system(size: 13))
+                .foregroundColor(recognitionActionViewModel.selectedTab == 1 ? .black : .gray.opacity(0.7))
                 .frame(width: ScreenInfor().screenWidth * 0.93 / 2 - 15, height: 85)
             }
         }
@@ -176,10 +182,17 @@ extension RecognitionActionView {
             
             Spacer()
             
+            NotePointView
             AddMorePersonButton
         }
         .background(Color.white)
         .environmentObject(recognitionActionViewModel)
+    }
+    
+    var NotePointView: some View {
+        VStack {
+            Text("note_point_text".localizeWithFormat(arguments: "2023", "2022"))
+        }.padding()
     }
     
     var SendPointButton: some View {
@@ -191,11 +204,12 @@ extension RecognitionActionView {
             
         } label: {
             Text("send_point".localized.uppercased())
-                .foregroundColor(.white)
+                .bold()
+                .foregroundColor(.black)
                 .font(.system(size: 20))
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.blue)
+                                .fill(Color("nissho_blue"))
                                 .frame(width: ScreenInfor().screenWidth * 0.93, alignment: .trailing))
         }
         .padding(.top, 5)
@@ -233,7 +247,7 @@ extension RecognitionActionView {
                 }
                 
                 Spacer().frame(width: 20)
-
+                
                 Button {
                     self.presentationMode.wrappedValue.dismiss()
                     
@@ -245,7 +259,7 @@ extension RecognitionActionView {
                 } label: {
                     Text("confirm".localized.uppercased())
                 }
-
+                
             }
             .foregroundColor(.blue)
             .frame(width: ScreenInfor().screenWidth * 0.7, alignment: .trailing)

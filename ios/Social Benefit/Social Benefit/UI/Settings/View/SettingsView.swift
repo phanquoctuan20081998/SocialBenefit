@@ -16,12 +16,6 @@ struct SettingsView: View {
         VStack {
             
             Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
-            
-            Text("settings".localized.uppercased())
-                .bold()
-                .font(.system(size: 20))
-                .foregroundColor(.blue)
-                
 
             VStack(alignment: .leading) {
                 settingTitle(text: "security".localized)
@@ -41,15 +35,6 @@ struct SettingsView: View {
                 Spacer().frame(height: 30)
             }
             
-            // Notification setting
-            
-//            VStack(alignment: .leading) {
-//                settingTitle(text: "notification".localized)
-//                settingOption(image: "bell.fill", color: Color.blue, title: "allow_popup_notification".localized, trailingElement: "switch", switchOnVariable: $settingsViewModel.isAllowNotiSwitchOn)
-//                settingOption(image: "speaker.slash.fill", color: Color.red, title: "allow_sound_on_notification".localized, trailingElement: "switch", switchOnVariable: $settingsViewModel.isAllowSoundSwitchOn)
-//                Spacer().frame(height: 30)
-//            }
-            
             VStack(alignment: .leading) {
                 settingTitle(text: "other_setting".localized)
                 settingOption(image: "info.circle.fill", color: Color.blue, title: "application_information".localized, trailingElement: "", switchOnVariable: .constant(false))
@@ -62,7 +47,7 @@ struct SettingsView: View {
             }
             
             Spacer()
-        }.background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "", isHaveLogo: true))
+        }.background(BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar, title: "settings".localized, isHaveLogo: true))
         
         // Pop Up
         .overlay(LanguageSelectorPopUp(isPresentedPopup: $settingsViewModel.isPresentedLanguagePopup), alignment: .top)

@@ -22,11 +22,6 @@ struct ListSurveyView: View {
             Spacer()
                 .frame(height: 50)
             
-            Text("surveys".localized.uppercased())
-                .bold()
-                .font(.system(size: 20))
-                .foregroundColor(.blue)
-            
             SearchBarView(searchText: $viewModel.keyword, isSearching: $isSearching, placeHolder: "search_for_survey".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: false)
                 .font(.system(size: 13))
             
@@ -67,7 +62,7 @@ struct ListSurveyView: View {
                 }
             }
         }
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "", isHaveLogo: true))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "surveys".localized, isHaveLogo: true))
         .onAppear() {
 //            viewModel.firstRequest()
         }

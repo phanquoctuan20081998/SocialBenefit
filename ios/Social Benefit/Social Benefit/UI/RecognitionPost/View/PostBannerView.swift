@@ -44,7 +44,7 @@ extension PostBannerView {
         .background(Color.white)
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-        .frame(width: ScreenInfor().screenWidth * 0.93, height: 200)
+        .frame(width: ScreenInfor().screenWidth * 0.93)
     }
     
     var ContentView: some View {
@@ -56,15 +56,14 @@ extension PostBannerView {
                 URLImageView(url: recognitionPostViewModel.recognitionDetailData.getSenderAvatar())
                     .clipShape(Circle())
                     .frame(width: 30, height: 30)
-                    .padding(.all, 5)
-                    .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
                 
                 VStack(alignment: .leading) {
                     Text(recognitionPostViewModel.recognitionDetailData.getSenderFullName())
                         .bold()
-                        .font(.system(size: 18))
+                        .font(.system(size: 13))
                     Text(recognitionPostViewModel.recognitionDetailData.getSenderJobDescription())
-                        .font(.system(size: 14))
+                        .foregroundColor(.gray)
+                        .font(.system(size: 12))
                 }
             }.frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
             
@@ -74,12 +73,10 @@ extension PostBannerView {
                     Text("\(recognitionPostViewModel.recognitionDetailData.getReceiverFullName())")
                         .bold()
                 }
+                .font(.system(size: 13))
                 URLImageView(url: recognitionPostViewModel.recognitionDetailData.getReceiverAvatar())
                     .clipShape(Circle())
                     .frame(width: 30, height: 30)
-                    .padding(.all, 5)
-                    .overlay(Circle().stroke(Color.gray.opacity(0.5), lineWidth: 2))
-                
             }
             
             getPointView(point: recognitionPostViewModel.recognitionDetailData.getPoint())
@@ -88,18 +85,21 @@ extension PostBannerView {
             
             Text(recognitionPostViewModel.recognitionDetailData.getRecognitionNote())
                 .italic()
-                .font(.system(size: 15))
+                .multilineTextAlignment(.center)
+                .font(.system(size: 13))
+                .frame(width: ScreenInfor().screenWidth * 0.8)
+                .fixedSize(horizontal: false, vertical: true)
             
-            Spacer()
+            Spacer(minLength: 20)
             
             Text(recognitionPostViewModel.getDate(date: recognitionPostViewModel.recognitionDetailData.getRecognitionTime()))
-                .italic()
-                .font(.system(size: 13))
+                .font(.system(size: 12))
+                .foregroundColor(.gray)
                 .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .trailing)
             
             Spacer()
             
-        }.frame(width: ScreenInfor().screenWidth * 0.93, height: 200)
+        }.frame(width: ScreenInfor().screenWidth * 0.93)
     }
 }
 

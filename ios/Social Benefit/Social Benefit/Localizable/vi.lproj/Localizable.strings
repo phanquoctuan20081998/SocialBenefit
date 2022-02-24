@@ -198,6 +198,7 @@
 "you_are_having" = "Bạn đang có";
 "would_like_to_spend" = "Bạn có muốn sử dụng";
 "to_buy_this_voucher" = "để mua ưu đãi này không";
+"rebuy" = "Mua lại";
 
 // Merchant Voucher Detail
 "share/copy" = "Chia sẻ";
@@ -209,7 +210,7 @@
 
 // Recognition Action
 "personal_budget" = "Điểm của tôi";
-"company_budget" = "Company Budget";
+"company_budget" = "Điểm công ty";
 "send_point" = "Chuyển điểm";
 "warning" = "Cảnh báo";
 "there_are_unsaved_changes" = "Thông tin đã được thay đổi, bạn có muốn thoát màn hình không?";
@@ -225,6 +226,9 @@
 "point" = "điểm";
 "points" = "điểm";
 "be_careful_with_your_budget" = "Điểm dường như không đủ";
+"note_point_text" = "*Lưu ý:\n
+- Điểm dành tặng cho nhân viên chỉ có giá trị tiêu dùng đến ngày 31/12/%1$@\n
+- Quỹ điểm phòng ban sẽ được tất toán vào ngày 31/12/%2$@";
 
 // Search
 "company_surveys" = "Khảo sát công ty";
@@ -266,7 +270,7 @@
 "recognitions_news_feed" = "Bảng tin khen thưởng";
 "your_history" = "Lịch sử của tôi";
 "recognitions_ranking" = "Xếp hạng khen thưởng";
-"to" = "đến";
+"to" = "gửi tới";
 
 // Ranking of recognition
 "ranking_of_the_month" = "Xếp hạng tháng";
@@ -279,7 +283,7 @@
 "total_received_points" = "Tổng điểm thưởng";
 
 //Recognition post
-"no_comment" = "Không có bình luận";
+"no_comment" = "Chưa có bình luận";
 
 // Survey
 "finished" = "Đã kết thúc";

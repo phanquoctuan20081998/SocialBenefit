@@ -19,7 +19,7 @@ struct NotificationCardView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            if(notificationCardViewModel.notificationItem.getType() == Constants.NotificationLogType.COMMENT) {
+            if(notificationCardViewModel.notificationItem.getType() == Constants.NotificationLogType.COMMENT) || (notificationCardViewModel.notificationItem.getType() == Constants.NotificationLogType.RECOGNIZE) || (notificationCardViewModel.notificationItem.getType() == Constants.NotificationLogType.COMMENT_RECOGNITION){
                 URLImageView(url: notificationCardViewModel.image)
                     .clipShape(Circle())
                     .padding(.all, 5)
@@ -27,14 +27,16 @@ struct NotificationCardView: View {
                     .overlay(Circle().stroke(Color("nissho_blue"), lineWidth: 3))
                     .padding(.leading, 5)
             } else {
-                Image(notificationCardViewModel.image)
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.all, 8)
-                    .clipShape(Circle())
-                    .frame(width: 70, height: 70)
-                    .overlay(Circle().stroke(Color("nissho_blue"), lineWidth: 3))
-                    .padding(.leading, 5)
+                if (!notificationCardViewModel.image.isEmpty) {
+                    Image(notificationCardViewModel.image)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.all, 8)
+                        .clipShape(Circle())
+                        .frame(width: 70, height: 70)
+                        .overlay(Circle().stroke(Color("nissho_blue"), lineWidth: 3))
+                        .padding(.leading, 5)
+                }
             }
             
             VStack(alignment: .leading) {

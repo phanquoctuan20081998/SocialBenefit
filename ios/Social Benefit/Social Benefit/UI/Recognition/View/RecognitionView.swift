@@ -16,56 +16,58 @@ struct RecognitionView: View {
     @State var isTop3RankingClick = false
     
     @State var isRecognitionPostClick = false
-    @State var selectedPost = -1
+    @State var selectedPost = RecognitionData()
     
     // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
     
     var body: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
-            RefreshableScrollView(height: 70, refreshing: self.$recognitionViewModel.isRefreshing) {
-                AmzdScrollViewReader { proxy in
-                    VStack (spacing: 30) {
-                        
-                         RankingCardView()
-                            .onTapGesture {
-                                self.isTop3RankingClick = true
-                                
-                                // Click count
-                                countClick()
+            if recognitionViewModel.isLoading {
+                LoadingPageView()
+            } else {
+                Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+                RefreshableScrollView(height: 70, refreshing: self.$recognitionViewModel.isRefreshing) {
+                    AmzdScrollViewReader { proxy in
+                        VStack (spacing: 30) {
+                            
+                            RankingCardView()
+                                .onTapGesture {
+                                    self.isTop3RankingClick = true
+                                    
+                                    // Click count
+                                    countClick()
+                                }
+                                .buttonStyle(NavigationLinkNoAffectButtonStyle())
+                            
+                            NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
+                                                                            .environmentObject(recognitionViewModel)
+                                                                            .navigationBarHidden(true)
+                                                                            .navigationBarBackButtonHidden(true))) {
+                                MyRankView
+                                    .foregroundColor(.black)
                             }
-                            .buttonStyle(NavigationLinkNoAffectButtonStyle())
-                        
-                        NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
-                                                                        .environmentObject(recognitionViewModel)
-                                                                        .navigationBarHidden(true)
-                                                                        .navigationBarBackButtonHidden(true))) {
-                            MyRankView
-                                .foregroundColor(.black)
-                        }
-                        
-                        NewsFeedTabView
-                        
-                    }.onAppear { self.proxy = proxy }
+                            
+                            NewsFeedTabView
+                            
+                        }.onAppear { self.proxy = proxy }
+                    }
                 }
-            }            
+            }
         }
         .background(
             ZStack {
-                NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
-                                .environmentObject(recognitionViewModel)
-                                .navigationBarHidden(true)),
-                               isActive: $isTop3RankingClick, label: { EmptyView() })
-            }
-        )
-        .background(
-            ZStack {
-                if self.selectedPost != -1 {
-                    NavigationLink(destination: NavigationLazyView(RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[selectedPost])),
+                if selectedPost.id != 0 {
+                    NavigationLink(destination: NavigationLazyView(RecognitionPostView(companyData: selectedPost)),
                                    isActive: $isRecognitionPostClick,
                                    label: { EmptyView() })
                 }
+                
+                NavigationLink(destination: NavigationLazyView(RankingOfRecognitionView()
+                                                                .environmentObject(recognitionViewModel)
+                                                                .navigationBarHidden(true)),
+                               isActive: $isTop3RankingClick,
+                               label: { EmptyView() })
             }
         )
         .onAppear(perform: {
@@ -74,7 +76,6 @@ struct RecognitionView: View {
         .environmentObject(recognitionViewModel)
         .background(BackgroundViewWithNotiAndSearch())
         .edgesIgnoringSafeArea(.all)
-        
     }
 }
 
@@ -149,7 +150,7 @@ extension RecognitionView {
                             let i = self.recognitionViewModel.isNewDate(index: index)
                             
                             if self.recognitionViewModel.selectedTab == Constants.RecognitionNewsFeedType.YOUR_HISTORY && i != -1 {
-                                Text(recognitionViewModel.sameDateGroup[i].date)
+                                Text(getDateSinceToday(time: recognitionViewModel.sameDateGroup[i].date).localized)
                                     .bold()
                                     .font(.system(size: 14))
                                     .frame(width: ScreenInfor().screenWidth * 0.9, alignment: .leading)
@@ -165,7 +166,7 @@ extension RecognitionView {
                                 .foregroundColor(.black)
                                 .onTapGesture(perform: {
                                     self.isRecognitionPostClick = true
-                                    self.selectedPost = index
+                                    self.selectedPost = recognitionViewModel.allRecognitionPost[index]
                                     
                                     // Click count
                                     countClick(contentId: recognitionViewModel.allRecognitionPost[index].getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)

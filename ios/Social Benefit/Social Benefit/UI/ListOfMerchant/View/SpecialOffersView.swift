@@ -174,11 +174,11 @@ extension SpecialOfferCardView {
             }, label: {
                 Text("buy".localized)
                     .font(.system(size: 10))
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .padding(3)
                     .padding(.horizontal, 5)
                     .background(RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color.blue)
+                                    .fill(Color("nissho_blue"))
                                     .shadow(color: .black.opacity(0.2), radius: 2, x: -0.5, y: 0.5))
             })
         }.padding(.horizontal, 7)

@@ -21,7 +21,7 @@ struct MyVoucherButtonView: View {
                 // Click count
                 countClick()
             } label: {
-                HStack() {
+                HStack(spacing: 5) {
                     Image("ic_my_voucher")
                         .resizable()
                         .scaledToFit()
@@ -29,7 +29,7 @@ struct MyVoucherButtonView: View {
                     
                     Text("my_voucher".localized)
                         .font(.system(size: 9))
-                        .frame(width: 40)
+                        .frame(width: 45)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
                 }

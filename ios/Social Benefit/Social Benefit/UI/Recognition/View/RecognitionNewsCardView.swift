@@ -11,10 +11,12 @@ import ScrollViewProxy
 struct RecognitionNewsCardView: View {
     
     @ObservedObject var reactViewModel: ReactViewModel
+    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
     
     @State var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     @State var commentText: String = ""
     @State var commentCount: Int = 0
+    @State var activeSheet: ReactActiveSheet?
     
     @Binding private var proxy: AmzdScrollViewProxy?
     
@@ -25,7 +27,7 @@ struct RecognitionNewsCardView: View {
     var isHaveReactAndCommentButton: Bool = true
     
     init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, newsFeedType: Int, isHaveReactAndCommentButton: Bool) {
-        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
+        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2(), isOnlyLike: true)
             
         _proxy = proxy
         
@@ -41,19 +43,19 @@ struct RecognitionNewsCardView: View {
             VStack(spacing: 10) {
                 ContentView
                 
-                LikeAndCommentCountBarView(numOfComment: commentCount, contentType: Constants.ReactContentType.RECOGNIZE, totalOtherReact: companyData.getTotalOtherReact())
-                
+                if !isHaveReactAndCommentButton {
+                    LikeAndCommentCountBarView(numOfComment: commentCount, contentType: Constants.ReactContentType.RECOGNIZE, totalOtherReact: companyData.getTotalOtherReact())
+                }
                 
                 if isHaveReactAndCommentButton {
-                    
-                    Rectangle()
-                        .foregroundColor(Color("nissho_blue"))
-                        .frame(width: ScreenInfor().screenWidth * 0.8, height:  1)
-                    
-                    LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE, isFocus: .constant(false))
-                        .frame(height: 10)
-                        .padding(.horizontal, 10)
-                        .padding(.bottom, 5)
+                    ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
+                                isLoadingReact: $reactViewModel.isLoadingReact,
+                                currentReaction: $reactViewModel.currentReaction,
+                                isFocus: $commentEnvironment.focusComment,
+                                activeSheet: $activeSheet,
+                                reactModel: reactViewModel.reactModel,
+                                listComment: commentEnvironment.listComment,
+                                sendReaction: { reactViewModel.sendReaction(contentId: companyData.getId()) })
                     
                     CommentBarView(isReply: .constant(false), replyTo: .constant(""), parentId: .constant(-1), isFocus: .constant(false), commentText: $commentText, SendButtonView: AnyView(SendCommentButtonView))
                         .onTapGesture {
@@ -64,17 +66,7 @@ struct RecognitionNewsCardView: View {
             .environmentObject(reactViewModel)
             .padding()
             .font(.system(size: 14))
-//            .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
-//            .background(Color.white)
-//            .cornerRadius(20)
-//            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-            
-            // Reaction Bar
-            if reactViewModel.isShowReactionBar {
-                ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                    .offset(x: -30, y: -30)
-                    .zIndex(2)
-            }
+
         }.onAppear {
             self.commentCount = self.companyData.getCommentCount()
         }
@@ -88,7 +80,7 @@ extension RecognitionNewsCardView {
             HStack {
                 
                 if newsFeedType == Constants.RecognitionNewsFeedType.ALL {
-                    Text("\(companyData.getTime()) \(companyData.getDate())")
+                    Text("\(companyData.getTime()), \(getDateSinceToday(time:companyData.getDate()).localized)")
                 } else {
                     Text("\(companyData.getTime())")
                 }
@@ -97,7 +89,7 @@ extension RecognitionNewsCardView {
                 
                 Text("\(companyData.getPoint() > 0 ? "+" : "")\(companyData.getPoint())")
                     .bold()
-                    .foregroundColor(.blue)
+                    .foregroundColor(companyData.getPoint() > 0 ? .blue : .gray)
             }
             
             Text("**\(companyData.getFrom())** \("to".localized) **\(companyData.getTo())**")

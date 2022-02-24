@@ -50,7 +50,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     }
     
     // Recognition...
-    init(myReact: Int, reactTop1: Int, reactTop2: Int) {
+    init(myReact: Int, reactTop1: Int, reactTop2: Int, isOnlyLike: Bool) {
         if myReact != -1 {
             isReacted = true 
             selectedReaction = myReact
@@ -74,6 +74,7 @@ class ReactViewModel: ObservableObject, Identifiable {
         self.addSubscribers()
         
         self.contentType = Constants.ReactContentType.RECOGNIZE
+        self.reactModel = ReactSuveryModel(isOnlyLike: isOnlyLike)
     }
     
     func initComment(contentId: Int) {

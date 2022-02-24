@@ -24,7 +24,7 @@ struct RecognitionPostView: View {
     @State var activeSheet: ReactActiveSheet?
     
     init(companyData: RecognitionData) {
-        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
+        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2(), isOnlyLike: false)
         
         self.recognitionPostViewModel = RecognitionPostViewModel(id: companyData.getId())
         
@@ -42,15 +42,18 @@ struct RecognitionPostView: View {
                         VStack {
                             PostContentView
                                 .onAppear { self.proxy = proxy }
+                            ReactionView
                             CommentView
+                                .padding(.top, 10)
                             Spacer()
-                        }
+                        }.padding(.bottom, keyboardHandler.keyboardHeight)
                     }
-                    Spacer().frame(height: 30)
                 }
                 
                 CommentInputView(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
                     .environmentObject(commentEnvironment)
+                    .background(Color.white)
+                    .offset(y: -keyboardHandler.keyboardHeight)
             }
             .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "recognition".localized, isHaveLogo: true))
             .environmentObject(recognitionPostViewModel)
@@ -65,6 +68,13 @@ struct RecognitionPostView: View {
             .overlay(DeleteCommentPopup().environmentObject(commentEnvironment))
             .overlay(EditCommentPopup().environmentObject(commentEnvironment))
             .overlay(CommentReactPopup().environmentObject(commentEnvironment))
+            // Dismiss reaction bar when tab outside
+            .onTapGesture {
+                if reactViewModel.isShowReactionBar {
+                    reactViewModel.isShowReactionBar = false
+                }
+                Utils.dismissKeyboard()
+            }
             .sheet(item: $activeSheet) { item in
                 switch item {
                 case .content:
@@ -74,12 +84,6 @@ struct RecognitionPostView: View {
                 }
             }
             .errorPopup($commentEnvironment.error)
-            // Reaction Bar
-            if reactViewModel.isShowReactionBar {
-                ReactionBarView(isShowReactionBar: $reactViewModel.isShowReactionBar, selectedReaction: $reactViewModel.selectedReaction)
-                    .offset(x: -30, y: 0)
-                    .zIndex(2)
-            }
         }
     }
 }
@@ -87,26 +91,25 @@ struct RecognitionPostView: View {
 extension RecognitionPostView {
     
     var PostContentView: some View {
-        VStack(spacing: 15) {
+        VStack(spacing: 0) {
             PostBannerView()
-            
             Spacer().frame(height: 5)
+        }
+    }
+    
+    var ReactionView: some View {
+        VStack {
+            ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
+                        isLoadingReact: $reactViewModel.isLoadingReact,
+                        currentReaction: $reactViewModel.currentReaction,
+                        isFocus: $commentEnvironment.focusComment,
+                        activeSheet: $activeSheet,
+                        reactModel: reactViewModel.reactModel,
+                        listComment: commentEnvironment.listComment,
+                        sendReaction: { reactViewModel.sendReaction(contentId: companyData.getId()) })
             
-            LikeAndCommentCountBarView(numOfComment: recognitionPostViewModel.numOfComment, contentType: Constants.ReactContentType.RECOGNIZE, totalOtherReact: recognitionPostViewModel.recognitionData.getTotalOtherReact())
-                .padding(.horizontal, 10)
-            
-            Rectangle()
-                .foregroundColor(Color("nissho_blue"))
-                .frame(width: ScreenInfor().screenWidth * 0.95, height:  1)
-            
-            LikeAndCommentButton(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE, isFocus: $recognitionPostViewModel.isFocus)
-                .frame(height: 10)
-                .padding(.horizontal, 10)
-                .padding(.bottom, 5)
-            
-            Rectangle()
-                .foregroundColor(Color("nissho_blue"))
-                .frame(width: ScreenInfor().screenWidth * 0.95, height:  1)
+            Divider()
+                .frame(width: ScreenInfor().screenWidth * 0.95)
         }
     }
     
@@ -115,10 +118,7 @@ extension RecognitionPostView {
             if recognitionPostViewModel.isLoading && !recognitionPostViewModel.isRefreshing {
                 LoadingPageView()
             } else {
-                VStack(spacing: 10) {
-                    
-                    Spacer().frame(height: 100)
-                    
+                VStack(spacing: 10) {                    
                     CommentListView.init(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION, activeSheet: $activeSheet)
                         .environmentObject(commentEnvironment)
                 }

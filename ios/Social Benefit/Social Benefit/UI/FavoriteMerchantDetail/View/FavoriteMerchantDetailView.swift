@@ -43,7 +43,7 @@ struct FavoriteMerchantDetailView: View {
         .edgesIgnoringSafeArea(.all)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(false), title: "your_favorite_merchant".localized.uppercased(), isHaveLogo: false))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(false), title: "your_favorite_merchant".localized, isHaveLogo: false))
         .background(
             ZStack {
                 NavigationLink(
@@ -156,6 +156,9 @@ extension FavoriteMerchantDetailView {
                 .padding(.leading)
                 .foregroundColor(.orange)
                 .frame(maxWidth: .infinity, alignment: .leading)
+            
+            SortView()
+                .environmentObject(favoriteMerchantOfferViewModel)
             
             if favoriteMerchantOfferViewModel.isLoading {
                 LoadingPageView()

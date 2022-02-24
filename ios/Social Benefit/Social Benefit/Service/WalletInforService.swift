@@ -22,9 +22,8 @@ class WalletInforService {
         let params: Parameters = ["": ""]
         
         service.makeCall(endpoint: Config.API_EMPLOYEE_WALLET_INFO_GET, method: "POST", header: header, body: params, callback: { (result) in
-            
             let companyPoint = result["companyPoint"].int ?? 0
-            let personalPoint = result["companyPoint"].int ?? 0
+            let personalPoint = result["personalPoint"].int ?? 0
             
             let data = WalletInforData(companyPoint: companyPoint, personalPoint: personalPoint)
             

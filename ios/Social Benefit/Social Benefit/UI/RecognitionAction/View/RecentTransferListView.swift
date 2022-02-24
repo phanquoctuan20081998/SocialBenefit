@@ -33,7 +33,7 @@ extension RecognitionActionView {
             if recognitionActionViewModel.isShowRecentTransferList {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 5) {
+                    HStack(spacing: 15) {
                         ForEach(self.recognitionActionViewModel.allTransfersList.indices, id: \.self) { i in
                             UserTransferView(avatar: recognitionActionViewModel.allTransfersList[i].getAvatar(), userName: recognitionActionViewModel.allTransfersList[i].getFullName())
                                 .onTapGesture {
@@ -109,15 +109,16 @@ extension RecognitionActionView {
         VStack {
             URLImageView(url: avatar)
                 .clipShape(Circle())
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
                 .background(Color.white)
                 .clipShape(Circle())
-                .overlay(Circle().stroke(Color.gray.opacity(0.4), lineWidth: 3))
+//                .overlay(Circle().stroke(Color.gray.opacity(0.4), lineWidth: 3))
             
             Text(userName)
                 .font(.system(size: 13))
                 .multilineTextAlignment(.center)
-        }.frame(width: 100, height: 80)
+        }
+//        }.frame(width: 100, height: 80)
     }
 }
 

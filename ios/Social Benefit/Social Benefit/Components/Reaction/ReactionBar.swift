@@ -28,11 +28,13 @@ struct ReactionBar: View {
                 } else {
                     HStack(spacing: 0) {
                         ForEach(reactModel.maxReactionType.indices) { index in
-                            if reactModel.maxReactionType[index] != .none {
-                                Image.init(reactModel.maxReactionType[index].imageName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
+                            if index < reactModel.maxReactionType.count {
+                                if reactModel.maxReactionType[index] != .none {
+                                    Image.init(reactModel.maxReactionType[index].imageName)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 20, height: 20)
+                                }
                             }
                         }
                     }
@@ -43,6 +45,7 @@ struct ReactionBar: View {
                             activeSheet = .content
                         }
                 }
+                
                 Spacer()
                 
                 if let commentCount = listComment.result?.count {
@@ -65,17 +68,19 @@ struct ReactionBar: View {
                         Button.init {
                             isShowReactionBar = true
                         } label: {
-                            if currentReaction == .none {
-                                Image(systemName: "hand.thumbsup")
-                            } else {
-                                Image(currentReaction.imageName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
+                            HStack {
+                                if currentReaction == .none {
+                                    Image(systemName: "hand.thumbsup")
+                                } else {
+                                    Image(currentReaction.imageName)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 20, height: 20)
+                                }
+                                Text(reactModel.myReactionText)
+                                    .font(Font.system(size: 12))
+                                    .foregroundColor(currentReaction.color)
                             }
-                            Text(reactModel.myReactionText)
-                                .font(Font.system(size: 12))
-                                .foregroundColor(currentReaction.color)
                         }
                     }
                 }

@@ -50,7 +50,7 @@ extension UserSearchView {
                     ForEach(recognitionActionViewModel.allUserList.indices, id: \.self) { index in
                         VStack {
                             
-                            UserCardView(avatar: recognitionActionViewModel.allUserList[index].getAvatar(), userName: recognitionActionViewModel.allUserList[index].getFullName(), departmentName: recognitionActionViewModel.allUserList[index].getDepartmentName())
+                            UserCardView(avatar: recognitionActionViewModel.allUserList[index].getAvatar(), userName: recognitionActionViewModel.allUserList[index].getFullName(), positionName: recognitionActionViewModel.allUserList[index].getPositionName(), departmentName: recognitionActionViewModel.allUserList[index].getDepartmentName(), isInUserView: false)
                             
                                 .padding(.init(top: 10, leading: 20, bottom: 3, trailing: 20))
                                 .frame(width: ScreenInfor().screenWidth, alignment: .leading)
@@ -128,11 +128,11 @@ extension UserSearchView {
 }
 
 @ViewBuilder
-func UserCardView(avatar: String, userName: String, departmentName: String) -> some View {
+func UserCardView(avatar: String, userName: String, positionName: String, departmentName: String, isInUserView: Bool) -> some View {
     HStack(spacing: 20) {
         URLImageView(url: avatar)
             .clipShape(Circle())
-            .frame(width: 60, height: 60)
+            .frame(width: 40, height: 40)
             .background(Color.white)
             .clipShape(Circle())
         
@@ -141,11 +141,12 @@ func UserCardView(avatar: String, userName: String, departmentName: String) -> s
                 .bold()
                 .foregroundColor(.blue)
             
-            Text("- \(departmentName)")
-                .font(.system(size: 14))
-            
-        }
-    }
+            HStack(spacing: 0) {
+                Text("\(positionName) - \(departmentName)")
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }.frame(width: isInUserView ? ScreenInfor().screenWidth * 0.5 : ScreenInfor().screenWidth * 0.7, alignment: .leading)
+    }.font(.system(size: 13))
 }
 
 struct UserSearchView_Previews: PreviewProvider {
