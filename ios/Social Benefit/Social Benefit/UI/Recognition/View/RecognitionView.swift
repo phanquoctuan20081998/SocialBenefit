@@ -108,9 +108,9 @@ extension RecognitionView {
                     .foregroundColor(.blue)
                 
                 Rectangle()
-                    .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
+                    .frame(height: 2)
                     .foregroundColor(Color.blue.opacity(0.2))
-                    .padding(.leading)
+                    .padding(.horizontal, 20)
             }.padding(.horizontal, 20)
             
             VStack(spacing: 0) {

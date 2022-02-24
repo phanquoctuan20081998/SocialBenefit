@@ -13,7 +13,7 @@ struct ListSurveyView: View {
     @State private var isSearching = false
 //    @State private var isMoveToSurveyDetail = false
 
-    @ObservedObject private var viewModel = ListSurveyViewModel()
+    @StateObject private var viewModel = ListSurveyViewModel()
     
     var body: some View {
         
