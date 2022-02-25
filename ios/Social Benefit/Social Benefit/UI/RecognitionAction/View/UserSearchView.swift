@@ -23,7 +23,7 @@ struct UserSearchView: View {
             SearchBarView(searchText: $recognitionActionViewModel.searchText, isSearching: $recognitionActionViewModel.isSearching, placeHolder: "type_to_search".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 18, isShowCancelButton: false)
                 .padding(.vertical, 15)
             
-            UserListView 
+            UserListView
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)

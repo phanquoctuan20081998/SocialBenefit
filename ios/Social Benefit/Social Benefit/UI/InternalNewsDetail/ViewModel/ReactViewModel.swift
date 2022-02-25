@@ -22,7 +22,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     
     @Published var isLoadingReact: Bool = false
     @Published var currentReaction = ReactionType.none
-    @Published var reactModel = ReactSuveryModel() 
+    @Published var reactModel = ReactSuveryModel()
 //    @Published var listComment = ListCommentModel()
     
     @Published var isShowReactionList = false
@@ -52,7 +52,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     // Recognition...
     init(myReact: Int, reactTop1: Int, reactTop2: Int, isOnlyLike: Bool) {
         if myReact != -1 {
-            isReacted = true 
+            isReacted = true
             selectedReaction = myReact
         }
         

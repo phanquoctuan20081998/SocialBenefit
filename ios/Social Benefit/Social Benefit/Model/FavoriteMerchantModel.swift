@@ -12,7 +12,7 @@ struct FavoriteMerchantModel: APIResponseProtocol {
     var result: [FavoriteMerchantResultModel]?
 }
 
-struct FavoriteMerchantResultModel: APIModelProtocol, Identifiable, Equatable {
+struct FavoriteMerchantResultModel: APIModelProtocol, Identifiable, Equatable, Hashable {
     var fullName: String?
     var id: Int
     var hotlines: String?

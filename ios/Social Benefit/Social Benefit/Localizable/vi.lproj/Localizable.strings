@@ -421,3 +421,19 @@
 "favorite_merchants" = "Cửa hàng ưa thích";
 "search_your_favorite_merchant" = "Tìm kiếm cửa hàng ưa thích";
 "your_favorite_merchant" = "Cửa hàng ưa thích";
+
+"recent_view_voucher" = "Ưu đãi đã xem";
+"the_end" = "Đã hết";
+"you_not_enough_point_more1" = "Bạn đang có";
+"you_not_enough_point_more2" = "ưu đãi này. Bạn cần ít nhất";
+"you_not_enough_point_more3" = " để mua thêm ưu đãi này.";
+"you_not_enough_point1" = "Bạn cần ít nhất";
+"you_not_enough_point2" = "để mua ưu đãi này.";
+"you_can_use1" = "Bạn đang có";
+"you_can_use2" = "ưu đãi này.";
+"would_you_spend_more1" = "Bạn đang có";
+"would_you_spend_more2" = "ưu đãi này. Bạn có muốn sử dụng";
+"would_you_spend_more3" = "để mua thêm ưu đãi này không?";
+"would_you_spend1" = "Bạn có muốn sử dụng";
+"would_you_spend2" = "để mua ưu đãi này không?";
+"limit_bought_reached" = "Đã đạt số lượng mua tối đa.";

@@ -17,9 +17,9 @@ struct SurveyDetailView: View {
     
     let contentId: Int
     
-    @ObservedObject private var viewModel = SurveyDetailViewModel()
+    @StateObject private var viewModel = SurveyDetailViewModel()
     
-    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    @StateObject var commentEnvironment = CommentEnvironmentObject()
     
     @State var activeSheet: ReactActiveSheet?
     

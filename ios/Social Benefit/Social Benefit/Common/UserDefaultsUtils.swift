@@ -16,6 +16,7 @@ extension UserDefaults {
         case password
         case appLanguage
         case companyLogo
+        case autoLogin
     }
     
     static func getCompanyCode() -> String {
@@ -72,6 +73,15 @@ extension UserDefaults {
     
     static func setCompanyLogo(value: String) {
         UserDefaults.standard.set(value, forKey: UserDefaultsKey.companyLogo.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func getAutoLogin() -> Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaultsKey.autoLogin.rawValue)
+    }
+    
+    static func setAutoLogin(value: Bool) {
+        UserDefaults.standard.set(value, forKey: UserDefaultsKey.autoLogin.rawValue)
         UserDefaults.standard.synchronize()
     }
 }

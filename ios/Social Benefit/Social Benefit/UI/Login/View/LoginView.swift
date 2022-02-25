@@ -14,63 +14,74 @@ struct LoginView: View {
     @State var reload = false
     
     var body: some View {
-        ZStack(alignment: .top) {
-            
-            // This for reload page after changing language...
-            if reload {
-                EmptyView()
-            }
-            
-            // Display background...
-            VStack {
-                Image("pic_background")
-                    .resizable()
-                    .scaledToFit()
-                Spacer()
-            }
-            
-            VStack(spacing: 10) {
+        if loginViewModel.isAutoLogin {
+            autologinView
+        } else {
+            ZStack(alignment: .top) {
+                // This for reload page after changing language...
+                if reload {
+                    EmptyView()
+                }
                 
-                Spacer()
-                    .frame(minHeight: 50, maxHeight: 100)
-                
-                URLImageView(url: userInfor.companyLogo)
-                    .scaledToFit()
-                    .frame(width: ScreenInfor().screenWidth * 0.7, height: 80)
-                
-                Spacer()
-                
-                TextFieldView
-                
-                Spacer()
-                
+                // Display background...
                 VStack {
-                    CheckBoxView
-                    LoginButton
-                    ForgotPassword
+                    Image("pic_background")
+                        .resizable()
+                        .scaledToFit()
+                    Spacer()
                 }
                 
-                Spacer()
-                
-                VStack(spacing: 20) {
-                    WarningText
-                    ChangeLanguageButton
+                VStack(spacing: 10) {
+                    
+                    Spacer()
+                        .frame(minHeight: 50, maxHeight: 100)
+                    
+                    URLImageView(url: userInfor.companyLogo)
+                        .scaledToFit()
+                        .frame(width: ScreenInfor().screenWidth * 0.7, height: 80)
+                    
+                    Spacer()
+                    
+                    TextFieldView
+                    
+                    Spacer()
+                    
+                    VStack {
+                        CheckBoxView
+                        LoginButton
+                        ForgotPassword
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(spacing: 20) {
+                        WarningText
+                        ChangeLanguageButton
+                    }
+                    Spacer()
                 }
-                Spacer()
+                
+                if loginViewModel.isPresentResetPasswordView {
+                    ResetPasswordView()
+                        .environmentObject(loginViewModel)
+                }
+                
             }
-            
-            if loginViewModel.isPresentResetPasswordView {
-                ResetPasswordView()
-                    .environmentObject(loginViewModel)
-            }
-            
+            .edgesIgnoringSafeArea(.all)
+            .loadingView(isLoading: $loginViewModel.isLoading)
+            .errorPopup($loginViewModel.error)
+            .background(Color.white)
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .edgesIgnoringSafeArea(.all)
-        .loadingView(isLoading: $loginViewModel.isLoading)
-        .errorPopup($loginViewModel.error)
-        .background(Color.white)
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
+    }
+    
+    var autologinView: some View {
+        VStack(alignment: .center) {
+            Color.clear
+            UIActivityRep.init(style: .medium, color: .black)
+        }
+        .background(Color.clear)
     }
 }
 

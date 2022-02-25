@@ -21,7 +21,7 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     @Published var isRefreshing: Bool = false {
         didSet {
             if oldValue == false && isRefreshing == true {
-                self.refresh() 
+                self.refresh()
             }
         }
     }

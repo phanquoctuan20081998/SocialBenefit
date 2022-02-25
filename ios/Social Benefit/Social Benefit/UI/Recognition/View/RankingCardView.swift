@@ -23,10 +23,11 @@ struct RankingCardView: View {
                         .foregroundColor(.blue)
                     
                     Rectangle()
-                        .frame(width: ScreenInfor().screenWidth * 0.9, height: 2)
+                        .frame(height: 2)
                         .foregroundColor(Color.blue.opacity(0.2))
-                        .padding(.leading)
-                }.padding(.horizontal, 20)
+                        .padding(.horizontal, 20)
+                }
+                .padding(.horizontal, 20)
             }
             
             Spacer().frame(height: 20)
@@ -81,9 +82,10 @@ extension RankingCardView {
                     )
                 
                 Text(recognitionViewModel.top3Recognition[0].name)
-                    .font(.system(size: 18, weight: .medium))
+                    .font(.system(size: 16, weight: .medium))
                     .multilineTextAlignment(.center)
-                    .frame(width: 80, height: 20)
+                    .frame(width: 100, height: 30)
+                    .minimumScaleFactor(0.5)
             }.offset(x: 0, y: -40)
         } else if rank == 2 && recognitionViewModel.top3Recognition.count >= 2 {
             VStack(spacing: 5) {
@@ -105,7 +107,8 @@ extension RankingCardView {
                 Text(recognitionViewModel.top3Recognition[1].name)
                     .font(.system(size: 14, weight: .medium))
                     .multilineTextAlignment(.center)
-                    .frame(width: 80, height: 20)
+                    .frame(width: 100, height: 30)
+                    .minimumScaleFactor(0.5)
             }.offset(x: -120, y: -20)
         } else if rank == 3 && recognitionViewModel.top3Recognition.count >= 3 {
             VStack(spacing: 5) {
@@ -125,7 +128,8 @@ extension RankingCardView {
                 Text(recognitionViewModel.top3Recognition[2].name)
                     .font(.system(size: 14, weight: .medium))
                     .multilineTextAlignment(.center)
-                    .frame(width: 80, height: 20)
+                    .frame(width: 100, height: 30)
+                    .minimumScaleFactor(0.5)
             }
             .offset(x: 120, y: -20)
         }

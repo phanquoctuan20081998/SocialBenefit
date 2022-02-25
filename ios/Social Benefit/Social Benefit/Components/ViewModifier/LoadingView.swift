@@ -46,6 +46,9 @@ extension View {
             .if(dimBackground) {
                 $0.background(Color.black.opacity(0.2))
             }
+            .if(!dimBackground) {
+                $0.background(Color.black.opacity(0.001))
+            }
             .edgesIgnoringSafeArea(.all)
         }
     }

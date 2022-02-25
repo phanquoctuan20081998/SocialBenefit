@@ -15,6 +15,10 @@ extension Int: StringValue {
     var string: String {
         return String(self)
     }
+    
+    var boolValue: Bool {
+        return self != 0
+    }
 }
 
 extension Float: StringValue {

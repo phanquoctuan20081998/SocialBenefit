@@ -155,6 +155,55 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     }
 }
 
+struct BackgroundViewWithMyVoucher: View {
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var title: String
+    
+    var body: some View {
+        VStack {
+            Image("pic_background")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .edgesIgnoringSafeArea([.top])
+                .frame(width: ScreenInfor().screenWidth)
+                .overlay(
+                    HStack {
+                        HStack {
+                            Button(action: {
+                                self.presentationMode.wrappedValue.dismiss()
+                                
+                            }, label: {
+                                VStack(alignment: .leading) {
+                                    Image(systemName: "arrow.backward")
+                                        .font(.headline)
+                                        .foregroundColor(.blue)
+                                        .padding(.leading)
+                                }
+                            }).padding()
+                            
+                            if !title.isEmpty {
+                                Text(title)
+                                    .bold()
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 15))
+                            }
+                            
+                            Spacer()
+                        }
+                        
+                        MyVoucherButtonView()
+                        Spacer()
+                            .frame(width: 20)
+                    }.padding(.top, ScreenInfor().screenHeight * 0.05)
+                    ,alignment: .top)
+                .edgesIgnoringSafeArea(.all)
+            
+            Spacer()
+        }
+    }
+}
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {

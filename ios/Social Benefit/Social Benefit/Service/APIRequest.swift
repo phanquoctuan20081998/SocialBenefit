@@ -13,7 +13,7 @@ class APIRequest {
     private var cancellation: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
-    func request<T: APIResponseProtocol>(url: String, method: HTTPMethod = .post, headers: HTTPHeaders? = nil, httpBody: APIModelProtocol? = nil, parameters: Parameters? = nil, type: T.Type, customError: String = "", completion: @escaping ((Result<T, AppError>) -> Void)) {
+    func request<T: APIResponseProtocol>(url: String, method: HTTPMethod = .post, headers: HTTPHeaders? = nil, httpBody: APIModelProtocol? = nil, parameters: Parameters? = nil, type: T.Type, customError: String = "", debugPrint: Bool = false, completion: @escaping ((Result<T, AppError>) -> Void)) {
         cancellation?.cancel()
         let publisher: AnyPublisher<Result<T, AFError>, Never>
         let jsonHeader = HTTPHeader.init(name: "Content-Type", value: "application/json; charset=utf-8")
@@ -29,7 +29,9 @@ class APIRequest {
             urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
             
         }.validate(statusCode: 200..<300).responseString(completionHandler: { response in
-            print(response.value ?? "")
+            if debugPrint {
+                print(response.value ?? "")
+            }
         }).publishDecodable(type: T.self).result()
         cancellation = publisher.sink { response in
             let result = self.convertAppError(response, customMess: customError)
@@ -55,6 +57,7 @@ class APIRequest {
             }
         case .failure(let afError):
             if afError.responseCode == 401 {
+                UserDefaults.setAutoLogin(value: false)
                 Utils.setLoginIsRoot()
                 return .failure(AppError.session)
             }

@@ -24,6 +24,8 @@ class LoginViewModel: ObservableObject {
     
     @Published var error: AppError = .none
     
+    @Published var isAutoLogin = false
+    
     init() {
         loadSaveData()
     }
@@ -33,7 +35,11 @@ class LoginViewModel: ObservableObject {
         if isRemember {
             companyCode = UserDefaults.getCompanyCode()
             employeeId = UserDefaults.getEmployeeId()
-            password = UserDefaults.getPassword()
+            password = UserDefaults.getPassword()            
+            isAutoLogin = UserDefaults.getAutoLogin()
+            if isAutoLogin, validate() {
+                login()
+            }
         }
     }
     
@@ -42,12 +48,14 @@ class LoginViewModel: ObservableObject {
             UserDefaults.setCompanyCode(value: companyCode)
             UserDefaults.setEmployeeId(value: employeeId)
             UserDefaults.setPassword(value: password)
+            UserDefaults.setAutoLogin(value: true)
         } else {
             UserDefaults.setCompanyCode(value: "")
             UserDefaults.setEmployeeId(value: "")
             UserDefaults.setPassword(value: "")
         }
         UserDefaults.setLoginRemember(value: isRemember)
+        
     }
     
     func login() {
@@ -63,6 +71,7 @@ class LoginViewModel: ObservableObject {
                     Utils.setTabbarIsRoot()
                 case .failure(let error):
                     self.error = error
+                    self.isAutoLogin = false
                 }
             }
         } else {

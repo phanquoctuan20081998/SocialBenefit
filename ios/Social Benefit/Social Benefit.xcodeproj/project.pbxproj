@@ -41,9 +41,9 @@
 		2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */; };
 		2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */; };
 		2A52844F27A18D8D001CAF20 /* ReactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A52844E27A18D8D001CAF20 /* ReactListView.swift */; };
+		2A9CC2B227C86828002DE5C9 /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9CC2B127C86828002DE5C9 /* SortView.swift */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		2AADE31B279EED9500721956 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADE31A279EED9500721956 /* Med247View.swift */; };
-		2ADF220D27C78E2400DFB076 /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADF220C27C78E2400DFB076 /* SortView.swift */; };
 		844BED2627BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2527BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift */; };
 		844BED2827BE4C77001DC14F /* FavoriteMerchantUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2727BE4C77001DC14F /* FavoriteMerchantUpdateService.swift */; };
 		844BED2A27BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2927BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift */; };
@@ -331,6 +331,12 @@
 		C4F3BDB0274D5018004C90CB /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */; };
 		C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */; };
 		C4FB94AE27586DEB00E9324C /* RecognitionActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */; };
+		CB01600B27C4A0AE00354276 /* BuyInforVoucherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01600A27C4A0AE00354276 /* BuyInforVoucherService.swift */; };
+		CB01600D27C4A14500354276 /* BuyInforVoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01600C27C4A14500354276 /* BuyInforVoucherModel.swift */; };
+		CB01600F27C4DA7300354276 /* BuyVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01600E27C4DA7300354276 /* BuyVoucherView.swift */; };
+		CB01601127C5128100354276 /* BuyVoucher2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01601027C5128100354276 /* BuyVoucher2Service.swift */; };
+		CB01601327C512C600354276 /* BuyVoucherRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01601227C512C600354276 /* BuyVoucherRequestModel.swift */; };
+		CB01601527C5162B00354276 /* BuyVoucherResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01601427C5162B00354276 /* BuyVoucherResultModel.swift */; };
 		CB05460A27B0CF0E0010CBAE /* EditCommentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460427B0CF0E0010CBAE /* EditCommentPopup.swift */; };
 		CB05460B27B0CF0E0010CBAE /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460527B0CF0E0010CBAE /* CommentListView.swift */; };
 		CB05460C27B0CF0E0010CBAE /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB05460627B0CF0E0010CBAE /* CommentInputView.swift */; };
@@ -344,6 +350,11 @@
 		CB2BE2C327BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BE2BF27BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift */; };
 		CB2BE2C427BCA7E10077014A /* FavoriteMerchantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BE2C127BCA7E10077014A /* FavoriteMerchantDetailView.swift */; };
 		CB2BE2C627BCA87B0077014A /* MerchantVoucherListByMerchantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BE2C527BCA87A0077014A /* MerchantVoucherListByMerchantService.swift */; };
+		CB4E965127C3376C002848EE /* RecentlyVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E965027C3376C002848EE /* RecentlyVoucherView.swift */; };
+		CB4E965327C340AF002848EE /* RecentlyVoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E965227C340AF002848EE /* RecentlyVoucherViewModel.swift */; };
+		CB4E965527C341B3002848EE /* RecentlyViewedVoucherListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E965427C341B3002848EE /* RecentlyViewedVoucherListService.swift */; };
+		CB4E965727C34229002848EE /* RecentlyViewedVoucherRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E965627C34229002848EE /* RecentlyViewedVoucherRequestModel.swift */; };
+		CB4E965927C34322002848EE /* RecentlyVoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E965827C34322002848EE /* RecentlyVoucherModel.swift */; };
 		CB97937C27BB5FE400872F16 /* FavoriteMerchantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97937B27BB5FE400872F16 /* FavoriteMerchantsView.swift */; };
 		CB97937F27BB623500872F16 /* FavoriteMerchantsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97937E27BB623500872F16 /* FavoriteMerchantsViewModel.swift */; };
 		CB97938127BB6E6C00872F16 /* FavoriteMerchantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB97938027BB6E6C00872F16 /* FavoriteMerchantService.swift */; };
@@ -403,9 +414,9 @@
 		2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewController.swift; sourceTree = "<group>"; };
 		2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Med247ViewController.xib; sourceTree = "<group>"; };
 		2A52844E27A18D8D001CAF20 /* ReactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListView.swift; sourceTree = "<group>"; };
+		2A9CC2B127C86828002DE5C9 /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
 		2AADE31A279EED9500721956 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
-		2ADF220C27C78E2400DFB076 /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		39E9D832BE3FA85CCCD06C71 /* Pods-Social Benefit.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-dev.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-dev.xcconfig"; sourceTree = "<group>"; };
 		40289E1D349ABE1CBAA45D47 /* Pods-Social Benefit.debug-pro.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-pro.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-pro.xcconfig"; sourceTree = "<group>"; };
 		64557CA71E86777E712BF7DC /* Pods-Social Benefit.debug-stg.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-stg.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-stg.xcconfig"; sourceTree = "<group>"; };
@@ -708,6 +719,12 @@
 		C4F3BDAF274D5018004C90CB /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		C4F410F6274B8D2100BEF6DF /* LikeAndCommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAndCommentButton.swift; sourceTree = "<group>"; };
 		C4FB94AD27586DEB00E9324C /* RecognitionActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionActionView.swift; sourceTree = "<group>"; };
+		CB01600A27C4A0AE00354276 /* BuyInforVoucherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyInforVoucherService.swift; sourceTree = "<group>"; };
+		CB01600C27C4A14500354276 /* BuyInforVoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyInforVoucherModel.swift; sourceTree = "<group>"; };
+		CB01600E27C4DA7300354276 /* BuyVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVoucherView.swift; sourceTree = "<group>"; };
+		CB01601027C5128100354276 /* BuyVoucher2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVoucher2Service.swift; sourceTree = "<group>"; };
+		CB01601227C512C600354276 /* BuyVoucherRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVoucherRequestModel.swift; sourceTree = "<group>"; };
+		CB01601427C5162B00354276 /* BuyVoucherResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVoucherResultModel.swift; sourceTree = "<group>"; };
 		CB05460427B0CF0E0010CBAE /* EditCommentPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCommentPopup.swift; sourceTree = "<group>"; };
 		CB05460527B0CF0E0010CBAE /* CommentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
 		CB05460627B0CF0E0010CBAE /* CommentInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
@@ -721,6 +738,11 @@
 		CB2BE2BF27BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantOfferViewModel.swift; sourceTree = "<group>"; };
 		CB2BE2C127BCA7E10077014A /* FavoriteMerchantDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMerchantDetailView.swift; sourceTree = "<group>"; };
 		CB2BE2C527BCA87A0077014A /* MerchantVoucherListByMerchantService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchantVoucherListByMerchantService.swift; sourceTree = "<group>"; };
+		CB4E965027C3376C002848EE /* RecentlyVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyVoucherView.swift; sourceTree = "<group>"; };
+		CB4E965227C340AF002848EE /* RecentlyVoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyVoucherViewModel.swift; sourceTree = "<group>"; };
+		CB4E965427C341B3002848EE /* RecentlyViewedVoucherListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedVoucherListService.swift; sourceTree = "<group>"; };
+		CB4E965627C34229002848EE /* RecentlyViewedVoucherRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedVoucherRequestModel.swift; sourceTree = "<group>"; };
+		CB4E965827C34322002848EE /* RecentlyVoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyVoucherModel.swift; sourceTree = "<group>"; };
 		CB5CAA9027BDFCAF00E4580B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB5CAA9327BDFCEC00E4580B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB5CAA9427BDFD2400E4580B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1031,6 +1053,9 @@
 				CB10787E27B226CB00AC0743 /* CommentDetailService.swift */,
 				CB97938027BB6E6C00872F16 /* FavoriteMerchantService.swift */,
 				844BED2727BE4C77001DC14F /* FavoriteMerchantUpdateService.swift */,
+				CB4E965427C341B3002848EE /* RecentlyViewedVoucherListService.swift */,
+				CB01600A27C4A0AE00354276 /* BuyInforVoucherService.swift */,
+				CB01601027C5128100354276 /* BuyVoucher2Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1038,6 +1063,7 @@
 		84DA60822696DB490012F55B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CB4E964F27C3373F002848EE /* RecentlyVoucher */,
 				CB2BE2BC27BCA7E10077014A /* FavoriteMerchantDetail */,
 				CB97937D27BB5FEA00872F16 /* FavoriteMerchants */,
 				CB05460327B0CF0E0010CBAE /* Comment */,
@@ -1197,6 +1223,11 @@
 				CB97938227BB6F2600872F16 /* FavoriteMerchantRequestModel.swift */,
 				CB97938427BB70EB00872F16 /* FavoriteMerchantModel.swift */,
 				844BED2927BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift */,
+				CB4E965627C34229002848EE /* RecentlyViewedVoucherRequestModel.swift */,
+				CB4E965827C34322002848EE /* RecentlyVoucherModel.swift */,
+				CB01600C27C4A14500354276 /* BuyInforVoucherModel.swift */,
+				CB01601227C512C600354276 /* BuyVoucherRequestModel.swift */,
+				CB01601427C5162B00354276 /* BuyVoucherResultModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2154,7 +2185,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2BE2C127BCA7E10077014A /* FavoriteMerchantDetailView.swift */,
-				2ADF220C27C78E2400DFB076 /* SortView.swift */,
+				2A9CC2B127C86828002DE5C9 /* SortView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2176,6 +2207,16 @@
 				C473D0FA27796B7B00895575 /* GoogleService-Info.plist */,
 			);
 			path = prod;
+			sourceTree = "<group>";
+		};
+		CB4E964F27C3373F002848EE /* RecentlyVoucher */ = {
+			isa = PBXGroup;
+			children = (
+				CB4E965027C3376C002848EE /* RecentlyVoucherView.swift */,
+				CB4E965227C340AF002848EE /* RecentlyVoucherViewModel.swift */,
+				CB01600E27C4DA7300354276 /* BuyVoucherView.swift */,
+			);
+			path = RecentlyVoucher;
 			sourceTree = "<group>";
 		};
 		CB5CAA8F27BDFCA100E4580B /* ft */ = {
@@ -2375,6 +2416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C464CF852784368C007BDCB4 /* DeleteCommentService.swift in Sources */,
+				CB4E965727C34229002848EE /* RecentlyViewedVoucherRequestModel.swift in Sources */,
 				CB2BE2C427BCA7E10077014A /* FavoriteMerchantDetailView.swift in Sources */,
 				C472E4C826FDA3EA00D047BA /* AppliedStoreMerchantListModel.swift in Sources */,
 				C48BA35626EF01D8006C4F27 /* MerchantCategoryItemViewModel.swift in Sources */,
@@ -2386,6 +2428,7 @@
 				2A112B1027969B31000F4B88 /* OAth2ResponseModel.swift in Sources */,
 				CB97937C27BB5FE400872F16 /* FavoriteMerchantsView.swift in Sources */,
 				C4B9BF7726FC25170022DA55 /* VoucherCodeModel.swift in Sources */,
+				CB4E965527C341B3002848EE /* RecentlyViewedVoucherListService.swift in Sources */,
 				C424F73926CDFCBD00BD441E /* ConditionInViewModifier.swift in Sources */,
 				C440878127421BF4009079EF /* TransactionCardView.swift in Sources */,
 				C4520AB326E3500E00E4B6A5 /* InternalNewsViewModel.swift in Sources */,
@@ -2429,6 +2472,7 @@
 				C419868926E46F3900A877A5 /* URLImageView.swift in Sources */,
 				2A0EF2402797ECC5001CFD6B /* MerchantWebView.swift in Sources */,
 				848753592705A9400061D4E1 /* AppInformationPopUp.swift in Sources */,
+				CB4E965127C3376C002848EE /* RecentlyVoucherView.swift in Sources */,
 				84DA60AF269EC9280012F55B /* Config.swift in Sources */,
 				C446BE982771B58200925F5E /* LoginRequestModel.swift in Sources */,
 				C4E3443126F62FFB00B343E8 /* SearchBarAndMyVoucherView.swift in Sources */,
@@ -2437,6 +2481,7 @@
 				C4CFE7B427055B22006C81C9 /* SettingsView.swift in Sources */,
 				CBDDB5C62787F27B00E2A8A0 /* SuccessTextView.swift in Sources */,
 				C4CD0D6026D5FB79003D5BE7 /* BackgroundView.swift in Sources */,
+				CB01601527C5162B00354276 /* BuyVoucherResultModel.swift in Sources */,
 				C4EA9A86275E5F6800F87B8C /* RecognitionUsesBlockView.swift in Sources */,
 				2A112AFD27967588000F4B88 /* VUIAppView.swift in Sources */,
 				C47EA7A62717E56300E91171 /* EmailValidation.swift in Sources */,
@@ -2503,6 +2548,7 @@
 				CB2BE2C627BCA87B0077014A /* MerchantVoucherListByMerchantService.swift in Sources */,
 				84DA606D2696DAC80012F55B /* SceneDelegate.swift in Sources */,
 				84DA60C9269ECB420012F55B /* BaseAPI.swift in Sources */,
+				CB01601127C5128100354276 /* BuyVoucher2Service.swift in Sources */,
 				C446BEAE2771B87900925F5E /* ExtenBinding.swift in Sources */,
 				C45490372742069100175E09 /* UsedPointHistoryViewModel.swift in Sources */,
 				C46BD88B27477D4500E8715F /* RecognitionNewsCardView.swift in Sources */,
@@ -2518,6 +2564,7 @@
 				C456C463275DB34E00406C8D /* UserSearchView.swift in Sources */,
 				CB05460C27B0CF0E0010CBAE /* CommentInputView.swift in Sources */,
 				C4F410F7274B8D2100BEF6DF /* LikeAndCommentButton.swift in Sources */,
+				CB01600F27C4DA7300354276 /* BuyVoucherView.swift in Sources */,
 				84DA60872696DB720012F55B /* SplashViewController.swift in Sources */,
 				C446BE8C2771B4F600925F5E /* SurveyChoiceResultModel.swift in Sources */,
 				C47081DA277D5D4F00E7F612 /* ConvertToHTML.swift in Sources */,
@@ -2527,6 +2574,7 @@
 				C472E4CA26FDA5DC00D047BA /* AppliedStoreMerchantListService.swift in Sources */,
 				2A2DCC99279717080058890E /* ReactListModel.swift in Sources */,
 				C4974ABD26F5D916002AED6C /* MerchantVoucherListByCategoryViewModel.swift in Sources */,
+				CB4E965927C34322002848EE /* RecentlyVoucherModel.swift in Sources */,
 				C49285552716B89300F5BCBB /* CheckBox.swift in Sources */,
 				C476C5B327561FC200D93AA7 /* NoHightLightClickAffect.swift in Sources */,
 				C497AA1826F83A6D006EFE0C /* BuyVoucherInforModel.swift in Sources */,
@@ -2560,7 +2608,6 @@
 				C4974ABB26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift in Sources */,
 				C403670126DB27A800381888 /* MerchantListModel.swift in Sources */,
 				C4EC104326F23B670064C3B3 /* GridView.swift in Sources */,
-				2ADF220D27C78E2400DFB076 /* SortView.swift in Sources */,
 				C4B9BF7B26FC53540022DA55 /* VoucherQRPopUpView.swift in Sources */,
 				C478889C270C2749009F5A25 /* ImagePickerView.swift in Sources */,
 				C446BE8A2771B4DE00925F5E /* SurveyChoiceModel.swift in Sources */,
@@ -2584,6 +2631,7 @@
 				C4850B8B27172B1B0003AE71 /* LoginService.swift in Sources */,
 				C403670526DB85D700381888 /* BannerCardView.swift in Sources */,
 				8487535B2705A9670061D4E1 /* LanguageSelectorPopUp.swift in Sources */,
+				CB01600B27C4A0AE00354276 /* BuyInforVoucherService.swift in Sources */,
 				C462F16926F3452C00933BBC /* ProgressView.swift in Sources */,
 				C478889E270C2979009F5A25 /* ImagePicker.swift in Sources */,
 				C4F0097126D8BC6F001B9972 /* ImageGalleryViewController.swift in Sources */,
@@ -2602,6 +2650,7 @@
 				C46BD8892747545500E8715F /* RankingCardView.swift in Sources */,
 				2AADE31B279EED9500721956 /* Med247View.swift in Sources */,
 				C46BD88D27477E3200E8715F /* RecognitionService.swift in Sources */,
+				CB01601327C512C600354276 /* BuyVoucherRequestModel.swift in Sources */,
 				CB2BE2C327BCA7E10077014A /* FavoriteMerchantOfferViewModel.swift in Sources */,
 				C472E4C426FD763400D047BA /* MerchantVoucherDetailViewModel.swift in Sources */,
 				2A398BBA2795472000E347F5 /* WebView.swift in Sources */,
@@ -2618,6 +2667,7 @@
 				C430AEBB26E6552100D3D29A /* AddCommentService.swift in Sources */,
 				84DA60C1269ECA130012F55B /* PromotionViewController.swift in Sources */,
 				C48BA35226EF0137006C4F27 /* MerchantCategoryItemService.swift in Sources */,
+				CB01600D27C4A14500354276 /* BuyInforVoucherModel.swift in Sources */,
 				C47EA7A42717E09400E91171 /* ResetPasswordService.swift in Sources */,
 				C47AEC352757269000DF8A60 /* GetPoint.swift in Sources */,
 				C436CF0B2768443400EFF9DF /* MessageID.swift in Sources */,
@@ -2674,6 +2724,7 @@
 				C47CA9AD2759F0E000F25771 /* RecentTransferListView.swift in Sources */,
 				C40366FF26DB278100381888 /* MerchantListService.swift in Sources */,
 				C4675B872785723900A97726 /* PHPhotoLibrary.swift in Sources */,
+				CB4E965327C340AF002848EE /* RecentlyVoucherViewModel.swift in Sources */,
 				C4884DF126CCA4DC006BC3C1 /* UserInformationView.swift in Sources */,
 				CB97937F27BB623500872F16 /* FavoriteMerchantsViewModel.swift in Sources */,
 				C43C7BB626FAE3F00056D169 /* MyVoucherModel.swift in Sources */,
@@ -2698,6 +2749,7 @@
 				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
 				2A112B142796A0B5000F4B88 /* VUIAppViewModel.swift in Sources */,
 				C456C461275DAD0800406C8D /* UserService.swift in Sources */,
+				2A9CC2B227C86828002DE5C9 /* SortView.swift in Sources */,
 				C446BEB72771B9CA00925F5E /* LoadingView.swift in Sources */,
 				C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */,
 			);

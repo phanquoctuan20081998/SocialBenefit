@@ -70,7 +70,7 @@ func getMonthEnlishFormat(month: Int) -> String {
     
     switch month {
     case 1: date += "january".localized
-    case 2: date += "febuary".localized
+    case 2: date += "february".localized
     case 3: date += "march".localized
     case 4: date += "april".localized
     case 5: date += "may".localized

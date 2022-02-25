@@ -421,3 +421,19 @@
 "favorite_merchants" = "Favorite merchants";
 "search_your_favorite_merchant" = "Search your favorite merchant";
 "your_favorite_merchant" = "Your favorite merchant";
+
+"recent_view_voucher" = "Recently viewed vouchers";
+"the_end" = "It's over";
+"you_not_enough_point_more1" = "You have owned";
+"you_not_enough_point_more2" = "of this voucher. You need at least";
+"you_not_enough_point_more3" = "to buy more.";
+"you_not_enough_point1" = "You need at least";
+"you_not_enough_point2" = "to buy this voucher.";
+"you_can_use1" = "You have owned";
+"you_can_use2" = "of this voucher.";
+"would_you_spend_more1" = "You have owned";
+"would_you_spend_more2" = "of this voucher. Would you like to spend";
+"would_you_spend_more3" = "to buy some more?";
+"would_you_spend1" = "Would you like to spend";
+"would_you_spend2" = "to buy this voucher?";
+"limit_bought_reached" = "Maximum voucher has reached.";

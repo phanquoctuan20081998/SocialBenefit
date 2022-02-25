@@ -19,7 +19,7 @@ struct SplashView: View {
                 URLImageView(url: userInfor.companyLogo)
                     .scaledToFit()
                     .frame(width: ScreenInfor().screenWidth * 0.8, height: 150)
-            }.opacity(animationFinished ? 0 : 1)
+            }
             
             if animationFinished {
                 LoginView()

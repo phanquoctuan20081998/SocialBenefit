@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct  BuyVoucherData: Hashable {
+struct BuyVoucherData: Hashable {
     var success: Bool
     var message: String
     var voucherOrderId: Int

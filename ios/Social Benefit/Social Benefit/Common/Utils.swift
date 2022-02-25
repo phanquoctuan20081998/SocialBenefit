@@ -31,4 +31,25 @@ class Utils {
     }
     
     static let millisecondsFromGMT = 1000 * TimeZone.autoupdatingCurrent.secondsFromGMT()
+    
+    static func formatPointText(point: Int?) -> String {
+        if let point = point {
+            let nf = NumberFormatter()
+            nf.numberStyle = .decimal
+            let number = nf.string(from: NSNumber.init(value: point))
+            return number ?? ""
+        }
+        return ""
+    }
+    
+    static func pointValueText(point: Int?) -> String {
+        if let point = point {
+            if point < 2 {
+                return "point".localized
+            } else {
+                return "points".localized
+            }
+        }
+        return "point".localized
+    }
 }

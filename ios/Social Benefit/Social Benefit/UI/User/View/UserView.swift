@@ -49,6 +49,10 @@ struct UserView: View {
                         }
                     }
                     
+                    NavigationLink(destination: NavigationLazyView(RecentlyVoucherView()), tag: 13, selection: $selection) {
+                        FunctionCardView(thumnail: "clock", thumailColor: Color.init(red: 3/255, green: 218/255, blue: 197/255), functionName: "recent_view_voucher".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 13)
+                    }
+                    
                     NavigationLink(destination: NavigationLazyView(FavoriteMerchantsView()), tag: 12, selection: $selection) {
                         FunctionCardView(thumnail: "bookmark.fill", thumailColor: Color.orange, functionName: "favorite_merchants".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 12)
                     }
@@ -97,7 +101,8 @@ struct UserView: View {
                 Spacer().frame(height: 30)
                 
                 VStack {
-                    Button {
+                    Button {                        
+                        UserDefaults.setAutoLogin(value: false)
                         Utils.setLoginIsRoot()
                         MedKit.shared.logout()
                     } label: {

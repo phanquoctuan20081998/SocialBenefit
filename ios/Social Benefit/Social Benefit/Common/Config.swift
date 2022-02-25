@@ -114,4 +114,6 @@ struct Config {
     static let API_MERCHANT_SPECIAL_SETTINGS_GET = "/merchant_special_settings/get"
     
     static let API_FAQ_POLICY_GET = "/mobile/faq_policy/get"
+    
+    static let API_RECENT_VIEW_VOUCHER = "/merchant-voucher-recent-view"
 }

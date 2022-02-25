@@ -49,10 +49,10 @@ struct ReactListView: View {
                     }
                 }
             }
-//            if isLoading {
-//                UIActivityRep.init(style: .medium, color: .black)
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-//            }
+            if isLoading {
+                UIActivityRep.init(style: .medium, color: .black)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }
         }
         .onAppear() {
             requestReactList(contentType: contentType, contentId: contentId, reactType: reactType, onAppear: true)
@@ -77,8 +77,12 @@ struct ReactListView: View {
                 self.isLoading = false
                 switch response {
                 case .success(let value):
-                    self.list.append(contentsOf: value.result ?? [])
-                    if (value.result ?? []).isEmpty {
+                    if let result = value.result {
+                        self.list.append(contentsOf: result)
+                        if result.isEmpty || result.count < Constants.MAX_NUM_API_LOAD {
+                            self.canLoadMore = false
+                        }
+                    } else {
                         self.canLoadMore = false
                     }
                 case .failure(let error):

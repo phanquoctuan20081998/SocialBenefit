@@ -118,7 +118,7 @@ extension RecognitionPostView {
             if recognitionPostViewModel.isLoading && !recognitionPostViewModel.isRefreshing {
                 LoadingPageView()
             } else {
-                VStack(spacing: 10) {                    
+                VStack(spacing: 10) {
                     CommentListView.init(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION, activeSheet: $activeSheet)
                         .environmentObject(commentEnvironment)
                 }

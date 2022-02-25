@@ -16,7 +16,7 @@ struct RecognitionView: View {
     @State var isTop3RankingClick = false
     
     @State var isRecognitionPostClick = false
-    @State var selectedPost = -1
+    @State var selectedPost = RecognitionData()
     
     // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
@@ -61,8 +61,8 @@ struct RecognitionView: View {
         )
         .background(
             ZStack {
-                if self.selectedPost != -1 {
-                    NavigationLink(destination: NavigationLazyView(RecognitionPostView(companyData: recognitionViewModel.allRecognitionPost[selectedPost])),
+                if self.selectedPost.id != 0 {
+                    NavigationLink(destination: NavigationLazyView(RecognitionPostView(companyData: selectedPost)),
                                    isActive: $isRecognitionPostClick,
                                    label: { EmptyView() })
                 }
@@ -165,7 +165,7 @@ extension RecognitionView {
                                 .foregroundColor(.black)
                                 .onTapGesture(perform: {
                                     self.isRecognitionPostClick = true
-                                    self.selectedPost = index
+                                    self.selectedPost = recognitionViewModel.allRecognitionPost[index]
                                     
                                     // Click count
                                     countClick(contentId: recognitionViewModel.allRecognitionPost[index].getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)
