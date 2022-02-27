@@ -16,7 +16,7 @@ class HomeViewModel: ObservableObject, Identifiable {
     @Published var selectedInternalNew: InternalNewsData? = nil
     @Published var selectedVoucherId: Int? = nil
     
-    @Published var walletInfor = WalletInforData.sampleData
+    @Published var walletInfor = WalletInforData()
     @Published var allRecognitionPost = [RecognitionData]()
     
     private var walletInforService = WalletInforService()

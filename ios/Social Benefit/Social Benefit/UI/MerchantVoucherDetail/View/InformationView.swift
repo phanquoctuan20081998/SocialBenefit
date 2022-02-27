@@ -14,7 +14,6 @@ struct InformationTabView: View {
     var body: some View {
         VStack {
             Webview(dynamicHeight: .constant(0), htmlString: merchantVoucherDetailViewModel.merchantVoucherDetail.content + "<p><strong>\("Hotline".localized):&nbsp;\(merchantVoucherDetailViewModel.merchantVoucherDetail.hotlines)</strong></p>", font: 0)
-//            HTMLView(htmlString: merchantVoucherDetailViewModel.merchantVoucherDetail.content + "<p><strong>\("Hotline".localized):&nbsp;\(merchantVoucherDetailViewModel.merchantVoucherDetail.hotlines)</strong></p>")
                 .padding(.horizontal, 30)
                 .padding(.bottom, 30)
         }.frame(width: ScreenInfor().screenWidth)

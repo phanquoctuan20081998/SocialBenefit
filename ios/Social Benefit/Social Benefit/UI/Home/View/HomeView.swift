@@ -43,6 +43,7 @@ struct HomeView: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 homeScreenViewModel.isPresentedTabBar = true
+                homeViewModel.loadWalletInfor()
             }
         }
         .navigationBarHidden(true)

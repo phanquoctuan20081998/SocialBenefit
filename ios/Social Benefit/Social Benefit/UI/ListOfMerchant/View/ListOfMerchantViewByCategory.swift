@@ -58,7 +58,7 @@ struct ListOfMerchantViewByCategory: View {
         }
         .background(BackGround)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup, isReloadSpecialVoucher: $specialOffersViewModel.isRefreshing, isReloadAllVoucher: $offersViewModel.isRefreshing))
         .onAppear {
             self.merchantCategoryItemViewModel.isInCategoryView = true
             self.specialOffersViewModel.searchPattern = ""

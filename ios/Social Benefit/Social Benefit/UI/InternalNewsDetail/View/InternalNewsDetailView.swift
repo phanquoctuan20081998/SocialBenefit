@@ -73,7 +73,7 @@ struct InternalNewsDetailView: View {
             
             Spacer()
             
-            VStack {
+            VStack {                
                 CommentInputView.init(contentId: internalNewData.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS)
                     .environmentObject(commentEnvironment)
                 Spacer().frame(height: 10)
@@ -148,7 +148,7 @@ extension InternalNewsDetailView {
         }
     }
     
-    var ReactionView: some View {
+    var ReactionView: some View { 
         ReactionBar(isShowReactionBar: $reactViewModel.isShowReactionBar,
                     isLoadingReact: $reactViewModel.isLoadingReact,
                     currentReaction: $reactViewModel.currentReaction,

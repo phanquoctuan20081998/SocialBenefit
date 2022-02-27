@@ -17,6 +17,7 @@ struct ReactionBar: View {
     
     var reactModel: ReactSuveryModel
     var listComment: ListCommentModel
+    var isOnlyLike = false
     
     var sendReaction: () -> ()
     
@@ -71,15 +72,23 @@ struct ReactionBar: View {
                             HStack {
                                 if currentReaction == .none {
                                     Image(systemName: "hand.thumbsup")
+                                        .foregroundColor(.blue)
                                 } else {
                                     Image(currentReaction.imageName)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 20, height: 20)
                                 }
-                                Text(reactModel.myReactionText)
-                                    .font(Font.system(size: 12))
-                                    .foregroundColor(currentReaction.color)
+                                
+                                if isOnlyLike && reactModel.myReactionText == "no_like".localized {
+                                    Text("like".localized)
+                                        .font(Font.system(size: 12))
+                                        .foregroundColor(currentReaction.color)
+                                } else {
+                                    Text(reactModel.myReactionText)
+                                        .font(Font.system(size: 12))
+                                        .foregroundColor(currentReaction.color)
+                                }
                             }
                         }
                     }
@@ -89,8 +98,10 @@ struct ReactionBar: View {
                 
                 HStack {
                     Image(systemName: "bubble.left")
+                        .foregroundColor(.blue)
                     Text("comment".localized)
                         .font(Font.system(size: 12))
+                        .foregroundColor(.blue)
                 }.onTapGesture {
                     isFocus = true
                 }

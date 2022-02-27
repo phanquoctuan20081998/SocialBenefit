@@ -74,7 +74,7 @@ struct MerchantVoucherDetailView: View {
         .edgesIgnoringSafeArea(.all)
         
         // PopUp overlay...
-        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup, isReloadSpecialVoucher: .constant(true), isReloadAllVoucher: .constant(true)))
         .overlay(VoucherQRPopUpView(isPresentedPopup: $merchantVoucherDetailViewModel.isShowQRPopUp, voucher: merchantVoucherDetailViewModel.QRData))
         .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $merchantVoucherDetailViewModel.isShowCopiedPopUp))
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
@@ -126,6 +126,7 @@ extension MerchantVoucherDetailView {
                     .bold()
                     .font(.system(size: 15))
                     .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }.padding()
             
         }

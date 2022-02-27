@@ -19,6 +19,11 @@ struct WalletInforData: Hashable, Codable {
         self.personalPoint = personalPoint
     }
     
+    public init() {
+        self.companyPoint = 0
+        self.personalPoint = 0
+    }
+    
     public func getCompanyPoint() -> Int {
         return companyPoint
     }

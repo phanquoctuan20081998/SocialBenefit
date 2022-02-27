@@ -45,7 +45,7 @@
 "waiting" = "Chờ xác nhận";
 
 // Internal News
-"internal_news" = "Tin nội bộ";
+"internal_news" = "Bảng tin nội bộ";
 "search_news" = "Tìm kiếm bản tin";
 "all" = "Tất cả";
 "training" = "Đào tạo";
@@ -99,10 +99,10 @@
 
 // Banner Card View
 "recognitions_in_company" = "Bảng tin khen thưởng";
-"promotions" = "Khuyến mãi đừng bỏ lỡ";
+"promotions" = "Ưu đãi đừng bỏ lỡ";
 "total_point" = "Tổng điểm của bạn";
 "recognize" = "Khen tặng";
-"my_voucher" = "Ví của tôi";
+"my_voucher" = "Ví ưu đãi";
 "my_order" = "Đơn đặt hàng";
 "others" = "Khác";
 "see_all" = "Xem thêm";
@@ -198,7 +198,10 @@
 "you_are_having" = "Bạn đang có";
 "would_like_to_spend" = "Bạn có muốn sử dụng";
 "to_buy_this_voucher" = "để mua ưu đãi này không";
+
 "rebuy" = "Mua lại";
+"you_have_bought_max" = "Bạn đã sở hữu số lượng ưu đãi tối đa.";
+"max" = "Tối đa";
 
 // Merchant Voucher Detail
 "share/copy" = "Chia sẻ";
@@ -229,6 +232,12 @@
 "note_point_text" = "*Lưu ý:\n
 - Điểm dành tặng cho nhân viên chỉ có giá trị tiêu dùng đến ngày 31/12/%1$@\n
 - Quỹ điểm phòng ban sẽ được tất toán vào ngày 31/12/%2$@";
+"user_empty" = "Bắt buộc chọn người nhận!";
+"wishes_empty" = "Bắt buộc nhập lời nhắn!";
+"point_empty" = "Bắt buộc nhập điểm!";
+"are_you_sure" = "Bạn có chắc?";
+"are_you_sure_to_send" = "Bạn có chắc muốn chuyển %1$@ điểm đến %2$@ người này?";
+"successfully_sent" = "Đã chuyển thành công";
 
 // Search
 "company_surveys" = "Khảo sát công ty";

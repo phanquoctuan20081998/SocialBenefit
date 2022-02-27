@@ -198,7 +198,10 @@
 "you_are_having" = "You are having";
 "would_like_to_spend" = "Would you like to spend";
 "to_buy_this_voucher" = "to buy this voucher";
+
 "rebuy" = "Rebuy";
+"you_have_bought_max" = "You already own the maximum number of this voucher.";
+"max" = "Maximum";
 
 // Merchant Voucher Detail
 "share/copy" = "Share/Copy";
@@ -229,6 +232,12 @@
 "note_point_text" = "*Notice:\n
 - Points for employees are only valid until %1$@/12/31\n
 - Department point fund will be settled on %2$@/12/31";
+"user_empty" = "Must choose user!";
+"wishes_empty" = "Must input wishes!";
+"point_empty" = "Must input point value!";
+"are_you_sure" = "Are you sure?";
+"are_you_sure_to_send" = "Are you sure to send %1$@ points to %2$@ person(s)?";
+"successfully_sent" = "Successfully sent";
 
 // Search
 "company_surveys" = "Company surveys";
@@ -437,3 +446,4 @@
 "would_you_spend1" = "Would you like to spend";
 "would_you_spend2" = "to buy this voucher?";
 "limit_bought_reached" = "Maximum voucher has reached.";
+

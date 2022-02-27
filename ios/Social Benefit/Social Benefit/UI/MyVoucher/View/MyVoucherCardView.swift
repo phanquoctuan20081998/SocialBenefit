@@ -11,6 +11,7 @@ import MobileCoreServices
 struct VoucherCardView: View {
     
     @EnvironmentObject var myVoucherViewModel: MyVoucherViewModel
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
     @Binding var isShowCopiedPopUp: Bool
     
     var myVoucher: MyVoucherData
@@ -103,10 +104,12 @@ struct VoucherCardView: View {
                     .font(.system(size: 13))
                 
                 Button(action: {
-                    reBuyButtonTapped()
-                    
-                    // Click count
-                    countClick(contentId: myVoucher.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                    if !isExpried {
+                        reBuyButtonTapped()
+                        
+                        // Click count
+                        countClick(contentId: myVoucher.id, contentType: Constants.ViewContent.TYPE_VOUCHER)
+                    }
                 }, label: {
                     Text("rebuy".localized)
                         .foregroundColor(.black)
@@ -153,7 +156,10 @@ struct VoucherCardView: View {
     }
     
     func reBuyButtonTapped() {
-        myVoucherViewModel.isPresentedReBuyPopup = true
+        DispatchQueue.main.async {
+            self.confirmInforBuyViewModel.loadData(voucherId: myVoucher.id)
+            confirmInforBuyViewModel.isPresentedPopup = true
+        }
     }
     
     func getDate(_ day: Date) -> String {

@@ -117,7 +117,7 @@ extension RecognitionView {
                 // Tab header
                 HStack(spacing: 0) {
                     ForEach(recognitionViewModel.header.indices, id: \.self) { index in
-                        let isSelect = index == recognitionViewModel.selectedTab
+                        let isSelect = (index == recognitionViewModel.selectedTab)
                         Text(recognitionViewModel.header[index].localized)
                             .foregroundColor(isSelect ? .blue : .gray)
                             .font(.system(size: 14))
@@ -149,7 +149,7 @@ extension RecognitionView {
                             let i = self.recognitionViewModel.isNewDate(index: index)
                             
                             if self.recognitionViewModel.selectedTab == Constants.RecognitionNewsFeedType.YOUR_HISTORY && i != -1 {
-                                Text(recognitionViewModel.sameDateGroup[i].date)
+                                Text(getDateSinceToday(time: recognitionViewModel.sameDateGroup[i].date).localized)
                                     .bold()
                                     .font(.system(size: 14))
                                     .frame(width: ScreenInfor().screenWidth * 0.9, alignment: .leading)

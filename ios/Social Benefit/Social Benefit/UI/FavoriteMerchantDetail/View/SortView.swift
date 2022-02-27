@@ -17,14 +17,7 @@ struct SortView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
-            Text("all_offer".localized.uppercased())
-                .font(.system(size: 18, weight: .heavy, design: .default))
-                .padding(.leading)
-                .foregroundColor(.orange)
-            
             FilterSlideView
-            
         }
     }
 }

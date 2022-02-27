@@ -23,7 +23,7 @@ struct UserSearchView: View {
             SearchBarView(searchText: $recognitionActionViewModel.searchText, isSearching: $recognitionActionViewModel.isSearching, placeHolder: "type_to_search".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 18, isShowCancelButton: false)
                 .padding(.vertical, 15)
             
-            UserListView
+            UserListView 
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
@@ -58,12 +58,19 @@ extension UserSearchView {
                                     DispatchQueue.main.async {
                                         if recognitionActionViewModel.isAddMoreClick {
                                             
+                                            // If user is added
+                                            if recognitionActionViewModel.isUserInUserList(user: recognitionActionViewModel.allUserList[index]) {
+                                                recognitionActionViewModel.isPresentError = true
+                                                recognitionActionViewModel.errorText = "this_person_is_exist"
+                                            } else {
+                                            
                                             // Create new element
                                             recognitionActionViewModel.allSelectedUser.append(recognitionActionViewModel.allUserList[index])
                                             recognitionActionViewModel.addTextControl()
                                             
                                             recognitionActionViewModel.realCount += 1
                                             recognitionActionViewModel.isAddMoreClick = false
+                                            }
                                         } else {
                                             if self.recognitionActionViewModel.allSelectedUser[recognitionActionViewModel.selectedUserIndex].getId() == -1 {
                                                 recognitionActionViewModel.realCount += 1
@@ -74,6 +81,7 @@ extension UserSearchView {
                                         
                                         self.recognitionActionViewModel.isModified = true
                                         self.presentationMode.wrappedValue.dismiss()
+                                        recognitionActionViewModel.resetError()
                                     }
                                 }
                             

@@ -21,7 +21,7 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     @Published var isRefreshing: Bool = false {
         didSet {
             if oldValue == false && isRefreshing == true {
-                self.refresh()
+                self.refresh() 
             }
         }
     }
@@ -55,7 +55,7 @@ class FavoriteMerchantOfferViewModel: ObservableObject, Identifiable {
     
     func loadFilterData(filterConditionItems: String) {
         self.isLoading = true
-        offersService.getAPI(searchPattern: "", fromIndex: 0, categoryId: -1, filterConditionItems: filterConditionItems, merchantId: -1) { data in
+        offersService.getAPI(searchPattern: "", fromIndex: 0, categoryId: -1, filterConditionItems: filterConditionItems, merchantId: merchantId) { data in
             DispatchQueue.main.async {
                 self.allOffers = data
                 

@@ -50,7 +50,11 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
     
     func getContent() {
         if self.notificationItem.getContentParams().isEmpty {
-            self.content = "\(self.notiTypeName): <b> \(self.notificationItem.getContent()) </b>"
+            if (self.notificationItem.getContent().prefix(1) == "C") {
+                self.content = "\(self.notiTypeName): <b> \(self.notificationItem.getContent().localized) </b>"
+            } else {
+                self.content = "\(self.notiTypeName): <b> \(self.notificationItem.getContent()) </b>"
+            }
         } else if self.notificationItem.getContentParams().count == 1 {
             
             if self.notificationItem.getContent() == "C00193_I" {
@@ -76,7 +80,7 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
         switch notificationItem.getType() {
         case Constants.NotificationLogType.NOTIFICATION_HR: do {
             self.image = "notify_hr"
-            self.notiTypeName = "annoucement".localized
+            self.notiTypeName = "notification".localized
         }
         case Constants.NotificationLogType.SURVEY: do {
             self.image = "notify_survey"
@@ -84,18 +88,18 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
         }
         case Constants.NotificationLogType.COMMENT: do {
             self.image = Config.baseURL + self.notificationItem.getImgURL()
-            self.notiTypeName = "annoucement".localized
+            self.notiTypeName = "notification".localized
         }
         case Constants.NotificationLogType.COMMENT_RECOGNITION: do {
-            self.image = "notify_hr"
-            self.notiTypeName = "annoucement".localized
+            self.image = Config.baseURL + self.notificationItem.getImgURL()
+            self.notiTypeName = "notification".localized
         }
         case Constants.NotificationLogType.BENEFIT: do {
             self.image = "notify_benefit"
             self.notiTypeName = "benefit".localized
         }
         case Constants.NotificationLogType.RECOGNIZE: do {
-            self.image = "notify_avatar"
+            self.image = Config.baseURL + self.notificationItem.getImgURL()
             self.notiTypeName = "recognition".localized
         }
         case Constants.NotificationLogType.SYSTEM: do {
@@ -124,15 +128,15 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
         }
         case Constants.NotificationLogType.VOUCHER_REMIND: do {
             self.image = "notify_hr"
-            self.notiTypeName = "voucher".localized
+            self.notiTypeName = "notification".localized
         }
         case Constants.NotificationLogType.VOUCHER_EXPIRED: do {
             self.image = "notify_hr"
-            self.notiTypeName = "voucher".localized
+            self.notiTypeName = "notification".localized
         }
         case Constants.NotificationLogType.NEW_VOUCHER: do {
             self.image = "notify_hr"
-            self.notiTypeName = "voucher".localized
+            self.notiTypeName = "notification".localized
         }
             
         default: do { }

@@ -51,6 +51,7 @@ extension RecognitionActionView {
                                                 recognitionActionViewModel.allSelectedUser[0] = recognitionActionViewModel.allTransfersList[i]
                                             } else {
                                                 recognitionActionViewModel.allSelectedUser.append(recognitionActionViewModel.allTransfersList[i])
+                                                recognitionActionViewModel.addTextControl()
                                             }
                                             
                                             recognitionActionViewModel.isModified = true

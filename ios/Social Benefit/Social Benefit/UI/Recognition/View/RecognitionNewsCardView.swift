@@ -11,7 +11,7 @@ import ScrollViewProxy
 struct RecognitionNewsCardView: View {
     
     @ObservedObject var reactViewModel: ReactViewModel
-    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    @StateObject var commentEnvironment = CommentEnvironmentObject()
     
     @State var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     @State var commentText: String = ""
@@ -27,7 +27,7 @@ struct RecognitionNewsCardView: View {
     var isHaveReactAndCommentButton: Bool = true
     
     init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, newsFeedType: Int, isHaveReactAndCommentButton: Bool) {
-        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2(), isOnlyLike: true)
+        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
             
         _proxy = proxy
         
@@ -55,6 +55,7 @@ struct RecognitionNewsCardView: View {
                                 activeSheet: $activeSheet,
                                 reactModel: reactViewModel.reactModel,
                                 listComment: commentEnvironment.listComment,
+                                isOnlyLike: true,
                                 sendReaction: { reactViewModel.sendReaction(contentId: companyData.getId()) })
                     
                     CommentBarView(isReply: .constant(false), replyTo: .constant(""), parentId: .constant(-1), isFocus: .constant(false), commentText: $commentText, SendButtonView: AnyView(SendCommentButtonView))
@@ -93,9 +94,11 @@ extension RecognitionNewsCardView {
             }
             
             Text("**\(companyData.getFrom())** \("to".localized) **\(companyData.getTo())**")
+                .fixedSize(horizontal: false, vertical: true)
             
             Text(companyData.getMessage())
                 .italic()
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
     

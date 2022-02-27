@@ -39,7 +39,7 @@ struct HomeScreenView: View {
                 SearchView(isPresent: $homeScreenViewModel.isPresentedSearchView, searchText: $searchViewModel.searchText, isSearching: $searchViewModel.isSearching, contentView: AnyView(SearchContentView()))
                 
                 // Promotion - Buy Button and Other Category popup...
-                BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup)
+                BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup, isReloadSpecialVoucher: $specialOffersViewModel.isRefreshing, isReloadAllVoucher: $offersViewModel.isRefreshing)
                 OtherPopUpView()
                 
                 // User - Customer support popup...

@@ -18,7 +18,7 @@ struct FavoriteMerchantsView: View {
         VStack() {
             Spacer()
                 .frame(height: 50)
-            
+
             SearchBarView(searchText: $viewModel.keyword, isSearching: $viewModel.isSearching, placeHolder: "search_your_favorite_merchant".localized, width: ScreenInfor().screenWidth * 0.9, height: 30, fontSize: 13, isShowCancelButton: false)
                 .font(.system(size: 13))
             
@@ -94,4 +94,3 @@ struct FavoriteMerchantsView: View {
         .errorPopup($viewModel.error)
     }
 }
-

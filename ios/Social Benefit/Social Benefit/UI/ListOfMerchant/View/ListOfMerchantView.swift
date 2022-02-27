@@ -53,6 +53,8 @@ struct ListOfMerchantView: View {
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
         .onAppear {
             homeScreenViewModel.isPresentedTabBar = true
+            specialOffersViewModel.isRefreshing = true
+            offersViewModel.isRefreshing = true
         }
     }
 }

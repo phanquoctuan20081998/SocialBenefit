@@ -42,27 +42,35 @@ struct FavoriteMerchantDetailView: View {
                  , alignment: .topTrailing)
         .edgesIgnoringSafeArea(.all)
         .overlay(ErrorMessageView(error: confirmInforBuyViewModel.buyVoucherResponse.errorCode, isPresentedError: $confirmInforBuyViewModel.isPresentedError))
-        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup, isReloadSpecialVoucher: $favoriteMerchantSpecialOfferViewModel.isRefreshing, isReloadAllVoucher: $favoriteMerchantOfferViewModel.isRefreshing))
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(false), title: "your_favorite_merchant".localized, isHaveLogo: false))
         .background(
             ZStack {
-                NavigationLink(
-                    destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherIdSpecialOffer)),
-                    isActive: $isMoveToMerchantDetailSpecialOffer,
-                    label: {
-                        EmptyView()
-                    })
-                NavigationLink(destination: EmptyView(), label: {})
+                if self.selectedVoucherIdSpecialOffer != 0 {
+                    NavigationLink(
+                        destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherIdSpecialOffer)),
+                        isActive: $isMoveToMerchantDetailSpecialOffer,
+                        label: {
+                            EmptyView()
+                        })
+                    NavigationLink(destination: EmptyView(), label: {})
+                }
                 
-                NavigationLink(
-                    destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherIdOffer)),
-                    isActive: $isMoveToMerchantDetailOffer,
-                    label: {
-                        EmptyView()
-                    })
-                NavigationLink(destination: EmptyView(), label: {})
+                if self.selectedVoucherIdOffer != 0 {
+                    NavigationLink(
+                        destination: NavigationLazyView(MerchantVoucherDetailView(voucherId: self.selectedVoucherIdOffer)),
+                        isActive: $isMoveToMerchantDetailOffer,
+                        label: {
+                            EmptyView()
+                        })
+                    NavigationLink(destination: EmptyView(), label: {})
+                }
             }
         )
+        .onAppear {
+            favoriteMerchantOfferViewModel.loadData()
+            favoriteMerchantSpecialOfferViewModel.loadData()
+        }
         .environmentObject(confirmInforBuyViewModel)
         .navigationBarHidden(true)
     }

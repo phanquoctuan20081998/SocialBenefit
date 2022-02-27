@@ -10,9 +10,9 @@ import Combine
 import SwiftUI
 
 class RecognitionActionViewModel: ObservableObject, Identifiable {
-    @Published var walletInfor = WalletInforData.sampleData
-    @Published var allTransfersList = UserData.sampleData
-    @Published var allUserList = UserData.sampleData
+    @Published var walletInfor = WalletInforData()
+    @Published var allTransfersList = [UserData]()
+    @Published var allUserList = [UserData]()
     
     @Published var fromIndexTransferList = 0
     @Published var fromIndexUserList = 0
@@ -34,6 +34,8 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     // Control confirm popup
     @Published var isModified = false
     @Published var isPresentConfirmPopUp = false
+    @Published var isPresentSendConfirmPopUp = false
+    @Published var isSendPointSuccess = false
     
     // Control search bar
     @Published var isSearching: Bool = false
@@ -46,9 +48,14 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     @Published var isPresentWarning: Bool = false
     @Published var warningText: String = ""
     
+    @Published var isUserEmpty: Bool = false
+    @Published var isPointEmpty: Bool = false
+    @Published var isWishEmpty: Bool = false
+    
     // Control switching between company and personal budget
     // Only for point manager
     @Published var selectedTab: Int = 0
+    @Published var pointTransaction = [PointTransactionRequestData]()
     
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
@@ -77,13 +84,15 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
         self.pointInt.append(0)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.companyPoint = self.walletInfor.getCompanyPoint()
-            self.personalPoint = self.walletInfor.getPersonalPoint()
-            
             if !userInfor.isLeader {
                 self.selectedTab = 1
             }
         }
+    }
+    
+    struct Tab {
+        static let COMPANY = 0
+        static let PERSONAL = 1
     }
     
     func addsubscribers() {
@@ -98,6 +107,10 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
         $wishesText
             .sink(receiveValue: updateWishes(wishesTextArray:))
             .store(in: &cancellables)
+        
+        $selectedTab
+            .sink(receiveValue: updateSelectedTab(selectedTab:))
+            .store(in: &cancellables)
     }
     
     func loadWalletInfor() {
@@ -107,6 +120,9 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
             
             DispatchQueue.main.async {
                 self?.walletInfor = data
+                
+                self?.companyPoint = data.getCompanyPoint()
+                self?.personalPoint = data.getPersonalPoint()
                 
                 self?.isLoading = false
                 self?.isRefreshing = false
@@ -196,7 +212,7 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
                     self.isModified = true
                 }
                 
-                if self.selectedTab == 0 {
+                if self.selectedTab == Tab.COMPANY {
                     withAnimation {
                         self.companyPoint = self.walletInfor.getCompanyPoint() - self.pointInt.reduce(0, +)
                         if self.companyPoint < 0 {
@@ -233,38 +249,64 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func reversePoint(selectedTab: Int) {
+        let point = pointInt.reduce(0, +)
+        
+        DispatchQueue.main.async {
+            if selectedTab == Tab.COMPANY {
+                self.personalPoint += point
+            } else {
+                self.companyPoint += point
+            }
+        }
+    }
+    
+    func updateSelectedTab(selectedTab: Int) {
+        self.updatePoint(pointTextArray: pointText)
+        self.reversePoint(selectedTab: selectedTab)
+    }
+    
     func isUserInUserList(user: UserData) -> Bool {
         return self.allSelectedUser.contains(where: { $0.getId() == user.getId() })
     }
     
     func sendButtonClick() {
-        //        let a = WalletInforData(companyPoint: 0, personalPoint: 0)
-        //        let b = [PointTransactionRequestData(employeeId: 136, point: 1, message: "abc")]
-        
-        let pointType = selectedTab == 0 ? 1: 2
         var pointTransaction = [PointTransactionRequestData]()
         
         for i in 0..<self.allSelectedUser.count {
             
-            if allSelectedUser[i].getId() != -1 {
-                if wishesText[i].isEmpty {
-                    self.isPresentError = true
-                    self.errorText = "need_to_fill_wish"
-                    
-                    return
-                }
+            if allSelectedUser[i].getId() == -1 || wishesText[i].isEmpty || pointText[i].isEmpty {
+                if allSelectedUser[i].getId() == -1 { self.isUserEmpty = true }
+                if wishesText[i].isEmpty { self.isWishEmpty = true }
+                if pointText[i].isEmpty { self.isPointEmpty = true }
                 
-                pointTransaction.append(PointTransactionRequestData(employeeId: allSelectedUser[i].getId(), point: pointInt[i], message: wishesText[i]))
+                return
             }
+            
+            pointTransaction.append(PointTransactionRequestData(employeeId: allSelectedUser[i].getId(), point: pointInt[i], message: wishesText[i]))
+            
         }
         
+        Utils.dismissKeyboard()
+        self.pointTransaction = pointTransaction
+        self.isPresentSendConfirmPopUp = true
+    }
+    
+    func sendPoint() {
+        let pointType = selectedTab == Tab.COMPANY ? 1: 2
         
-        
-        self.sendRecognitionService.getAPI(pointType: pointType, walletInfor: walletInfor, pointTransactions: pointTransaction) { walletInfor, error in
-            if !error.isEmpty {
-                DispatchQueue.main.async {
+        self.sendRecognitionService.getAPI(pointType: pointType, walletInfor: walletInfor, pointTransactions: pointTransaction) { point, error in
+            DispatchQueue.main.async {
+                if !error.isEmpty {
                     self.isPresentError = true
                     self.errorText = error
+                } else {
+                    self.loadWalletInfor()
+                    self.isSendPointSuccess = true
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.resetViewModel()
+                    }
                 }
             }
         }
@@ -285,9 +327,7 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
     func resetViewModel() {
         DispatchQueue.main.async {
             for i in 0..<self.allSelectedUser.count {
-                self.wishesText[i] = ""
-                self.pointText[i] = ""
-                self.pointInt[i] = 0
+                self.removeTextControl(index: i)
                 
                 self.allSelectedUser[i] = UserData()
                 self.selectedUserIndex = 0
@@ -296,7 +336,12 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
                 
                 self.isModified = false
             }
-            
         }
+    }
+    
+    func resetError() {
+        self.isUserEmpty = false
+        self.isPointEmpty = false
+        self.isWishEmpty = false
     }
 }

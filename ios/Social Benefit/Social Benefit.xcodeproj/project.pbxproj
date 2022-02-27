@@ -41,9 +41,9 @@
 		2A43E183279B9CEA0004B2D3 /* Med247ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */; };
 		2A43E184279B9CEA0004B2D3 /* Med247ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */; };
 		2A52844F27A18D8D001CAF20 /* ReactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A52844E27A18D8D001CAF20 /* ReactListView.swift */; };
-		2A9CC2B227C86828002DE5C9 /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9CC2B127C86828002DE5C9 /* SortView.swift */; };
 		2AA4A8762799A6B700F453A6 /* MerchantLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */; };
 		2AADE31B279EED9500721956 /* Med247View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADE31A279EED9500721956 /* Med247View.swift */; };
+		2ADF220D27C78E2400DFB076 /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADF220C27C78E2400DFB076 /* SortView.swift */; };
 		844BED2627BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2527BE49C8001DC14F /* FavoriteMerchantDetailViewModel.swift */; };
 		844BED2827BE4C77001DC14F /* FavoriteMerchantUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2727BE4C77001DC14F /* FavoriteMerchantUpdateService.swift */; };
 		844BED2A27BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BED2927BE4D92001DC14F /* FavoriteMerchantUpdateRequestModel.swift */; };
@@ -414,9 +414,9 @@
 		2A43E181279B9CEA0004B2D3 /* Med247ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247ViewController.swift; sourceTree = "<group>"; };
 		2A43E182279B9CEA0004B2D3 /* Med247ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Med247ViewController.xib; sourceTree = "<group>"; };
 		2A52844E27A18D8D001CAF20 /* ReactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactListView.swift; sourceTree = "<group>"; };
-		2A9CC2B127C86828002DE5C9 /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		2AA4A8752799A6B700F453A6 /* MerchantLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantLoadingView.swift; sourceTree = "<group>"; };
 		2AADE31A279EED9500721956 /* Med247View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Med247View.swift; sourceTree = "<group>"; };
+		2ADF220C27C78E2400DFB076 /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		39E9D832BE3FA85CCCD06C71 /* Pods-Social Benefit.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.release-dev.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.release-dev.xcconfig"; sourceTree = "<group>"; };
 		40289E1D349ABE1CBAA45D47 /* Pods-Social Benefit.debug-pro.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-pro.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-pro.xcconfig"; sourceTree = "<group>"; };
 		64557CA71E86777E712BF7DC /* Pods-Social Benefit.debug-stg.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Benefit.debug-stg.xcconfig"; path = "Target Support Files/Pods-Social Benefit/Pods-Social Benefit.debug-stg.xcconfig"; sourceTree = "<group>"; };
@@ -2185,7 +2185,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2BE2C127BCA7E10077014A /* FavoriteMerchantDetailView.swift */,
-				2A9CC2B127C86828002DE5C9 /* SortView.swift */,
+				2ADF220C27C78E2400DFB076 /* SortView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2608,6 +2608,7 @@
 				C4974ABB26F5D71E002AED6C /* MerchantVoucherListByCategoryService.swift in Sources */,
 				C403670126DB27A800381888 /* MerchantListModel.swift in Sources */,
 				C4EC104326F23B670064C3B3 /* GridView.swift in Sources */,
+				2ADF220D27C78E2400DFB076 /* SortView.swift in Sources */,
 				C4B9BF7B26FC53540022DA55 /* VoucherQRPopUpView.swift in Sources */,
 				C478889C270C2749009F5A25 /* ImagePickerView.swift in Sources */,
 				C446BE8A2771B4DE00925F5E /* SurveyChoiceModel.swift in Sources */,
@@ -2749,7 +2750,6 @@
 				C4B3D58D26EA1817003C6CA9 /* ApplyBenefitService.swift in Sources */,
 				2A112B142796A0B5000F4B88 /* VUIAppViewModel.swift in Sources */,
 				C456C461275DAD0800406C8D /* UserService.swift in Sources */,
-				2A9CC2B227C86828002DE5C9 /* SortView.swift in Sources */,
 				C446BEB72771B9CA00925F5E /* LoadingView.swift in Sources */,
 				C4D510DC275278800007BE48 /* RankingOfRecognitionModel.swift in Sources */,
 			);

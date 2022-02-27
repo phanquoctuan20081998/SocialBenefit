@@ -45,9 +45,13 @@ struct RecognitionActionView: View {
             
             WhiteWarningMessageView(message: recognitionActionViewModel.warningText, isPresented: $recognitionActionViewModel.isPresentWarning)
                 .shadow(color: .black.opacity(0.1), radius: 10, x: 5, y: 5)
+                .offset(y: -keyboardHandler.keyboardHeight)
+            
+            SuccessedMessageView(successedMessage: "successfully_sent".localized, color: .green, isPresented: $recognitionActionViewModel.isSendPointSuccess)
             
             // Confirm Popup
             PopUpView(isPresentedPopUp: $recognitionActionViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: self.outOfPopupClick, popUpContent: AnyView(ConfirmPopUpView))
+            PopUpView(isPresentedPopUp: $recognitionActionViewModel.isPresentSendConfirmPopUp, outOfPopUpAreaTapped: self.outOfPopupClick, popUpContent: AnyView(SendConfirmPopUpView))
             
         }
         .onTapGesture(perform: {
@@ -101,7 +105,7 @@ extension RecognitionActionView {
                     .frame(width: ScreenInfor().screenWidth * 0.93 / 2 - 15, height: 85, alignment: .bottom)
                     .onTapGesture {
                         withAnimation {
-                            recognitionActionViewModel.selectedTab = 0
+                            recognitionActionViewModel.selectedTab = RecognitionActionViewModel.Tab.COMPANY
                         }
                     }
                 RoundedRectangle(cornerRadius: 18)
@@ -109,7 +113,7 @@ extension RecognitionActionView {
                     .frame(width: ScreenInfor().screenWidth * 0.93 / 2 - 15, height: 85, alignment: .bottom)
                     .onTapGesture {
                         withAnimation {
-                            recognitionActionViewModel.selectedTab = 1
+                            recognitionActionViewModel.selectedTab = RecognitionActionViewModel.Tab.PERSONAL
                         }
                     }
             }
@@ -182,7 +186,9 @@ extension RecognitionActionView {
             
             Spacer()
             
-            NotePointView
+            if recognitionActionViewModel.selectedTab == RecognitionActionViewModel.Tab.COMPANY {
+                NotePointView
+            }
             AddMorePersonButton
         }
         .background(Color.white)
@@ -190,8 +196,11 @@ extension RecognitionActionView {
     }
     
     var NotePointView: some View {
-        VStack {
-            Text("note_point_text".localizeWithFormat(arguments: "2023", "2022"))
+        let thisYear = Calendar.current.component(.year, from: Date())
+        let nextYear = Calendar.current.component(.year, from: Calendar.current.date(byAdding: .year, value: 1, to: Date())!)
+        
+        return VStack {
+            Text("note_point_text".localizeWithFormat(arguments: String(nextYear), String(thisYear)))
         }.padding()
     }
     
@@ -203,17 +212,17 @@ extension RecognitionActionView {
             countClick()
             
         } label: {
-            Text("send_point".localized.uppercased())
-                .bold()
-                .foregroundColor(.black)
-                .font(.system(size: 20))
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 10)
-                                .fill(Color("nissho_blue"))
-                                .frame(width: ScreenInfor().screenWidth * 0.93, alignment: .trailing))
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color("nissho_blue"))
+                .frame(width: ScreenInfor().screenWidth * 0.93, height: 50, alignment: .trailing)
+                .overlay(Text("send_point".localized.uppercased())
+                            .bold()
+                            .foregroundColor(.black)
+                            .font(.system(size: 20)))
+            
+                .padding(.top, 5)
+                .padding(.bottom, ScreenInfor().screenHeight * 0.04)
         }
-        .padding(.top, 5)
-        .padding(.bottom, ScreenInfor().screenHeight * 0.04)
     }
     
     var AddMorePersonButton: some View {
@@ -230,10 +239,11 @@ extension RecognitionActionView {
     var ConfirmPopUpView: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("warning".localized)
-                .font(.system(size: 20))
+                .font(.system(size: 15))
                 .padding(.top, 10)
             
             Text("there_are_unsaved_changes".localized)
+                .fixedSize(horizontal: false, vertical: true)
             
             Spacer(minLength: 0)
             
@@ -266,13 +276,62 @@ extension RecognitionActionView {
         }
         .padding()
         .frame(width: ScreenInfor().screenWidth * 0.8, height: 170)
+        .font(.system(size: 13))
         .background(Color.white.cornerRadius(20))
-        
+    }
+    
+    var SendConfirmPopUpView: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            
+            HStack {
+                Image("app_icon")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                Text("are_you_sure".localized)
+                    .font(.system(size: 15))
+                    .padding(.top, 10)
+            }
+            
+            Text("are_you_sure_to_send".localizeWithFormat(arguments: String(recognitionActionViewModel.pointInt.reduce(0, +)), String(recognitionActionViewModel.pointInt.count)))
+                .fixedSize(horizontal: false, vertical: true)
+            
+            Spacer(minLength: 0)
+            
+            HStack {
+                Button {
+                    DispatchQueue.main.async {
+                        recognitionActionViewModel.isPresentSendConfirmPopUp = false
+                    }
+                } label: {
+                    Text("cancel".localized.uppercased())
+                }
+                
+                Spacer().frame(width: 20)
+                
+                Button {
+                    DispatchQueue.main.async {
+                        recognitionActionViewModel.sendPoint()
+                        recognitionActionViewModel.isPresentSendConfirmPopUp = false
+                    }
+                    
+                } label: {
+                    Text("confirm".localized.uppercased())
+                }
+                
+            }
+            .foregroundColor(.blue)
+            .frame(width: ScreenInfor().screenWidth * 0.7, alignment: .trailing)
+        }
+        .padding()
+        .frame(width: ScreenInfor().screenWidth * 0.8, height: 170)
+        .font(.system(size: 13))
+        .background(Color.white.cornerRadius(20))
     }
     
     func outOfPopupClick() {
         DispatchQueue.main.async {
             self.recognitionActionViewModel.isPresentConfirmPopUp = false
+            self.recognitionActionViewModel.isPresentSendConfirmPopUp = false
         }
     }
     

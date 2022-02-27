@@ -11,7 +11,8 @@ import MobileCoreServices
 struct MyVoucherView: View {
     
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-
+    @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
+    
     @ObservedObject var myVoucherViewModel = MyVoucherViewModel()
     
     @State var isMoveToNextPage = false
@@ -49,7 +50,7 @@ struct MyVoucherView: View {
         //Pop-up overlay
         .overlay(SuccessedMessageView(successedMessage: "copied_to_clipboard".localized, isPresented: $isShowCopiedPopUp))
         .overlay(VoucherQRPopUpView(isPresentedPopup: $myVoucherViewModel.isPresentedQRPopup, voucher: myVoucherViewModel.selectedVoucherCode))
-        .overlay(BuyVoucherPopUp(isPresentPopUp: $myVoucherViewModel.isPresentedReBuyPopup))
+        .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup, isReloadSpecialVoucher: .constant(true), isReloadAllVoucher: .constant(true)))
         
         .environmentObject(myVoucherViewModel)
         .edgesIgnoringSafeArea(.all)

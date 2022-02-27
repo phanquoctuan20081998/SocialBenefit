@@ -27,6 +27,7 @@ struct RecognitionUsesBlockView: View {
                             self.addMoreClick = true
                         }
                     PointsView
+                    
                     SendWishes
                     Rectangle()
                         .frame(width: ScreenInfor().screenWidth * 0.93, height: 1)
@@ -86,6 +87,13 @@ extension RecognitionUsesBlockView {
                         }
                 }.frame(width: ScreenInfor().screenWidth * 0.85, alignment: .leading)
             }
+            
+            if recognitionActionViewModel.isUserEmpty {
+                Text("user_empty".localized)
+                    .font(.system(size: 13))
+                    .foregroundColor(.red)
+                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+            }
         }.frame(width: ScreenInfor().screenWidth * 0.8)
     }
     
@@ -93,11 +101,21 @@ extension RecognitionUsesBlockView {
         VStack {
             if index < recognitionActionViewModel.wishesText.count {
                 AutoResizeTextField(text: $recognitionActionViewModel.wishesText[index], isFocus: .constant(false), minHeight: 80, maxHeight: 500, placeholder: "send_wishes".localized, textfiledType: Constants.AutoResizeTextfieldType.RECOGNITION_ACTION)
+                    .background(RoundedRectangle(cornerRadius: 10)
+                                    .strokeBorder(Color.gray.opacity(0.4), lineWidth: 1)
+                                    .foregroundColor(.white))
+                    .onTapGesture {
+                        recognitionActionViewModel.resetError()
+                    }
+            }
+            
+            if recognitionActionViewModel.isWishEmpty {
+                Text("wishes_empty".localized)
+                    .font(.system(size: 13))
+                    .foregroundColor(.red)
+                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
             }
         }
-        .background(RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(Color.gray.opacity(0.4), lineWidth: 1)
-                        .foregroundColor(.white))
         .frame(width: ScreenInfor().screenWidth * 0.8)
     }
     
@@ -131,6 +149,8 @@ extension RecognitionUsesBlockView {
                         if self.recognitionActionViewModel.realCount > 0 {
                             self.recognitionActionViewModel.realCount -= 1
                         }
+                        
+                        recognitionActionViewModel.resetError()
                     } label: {
                         Text("remove".localized)
                     }
@@ -150,6 +170,9 @@ extension RecognitionUsesBlockView {
                         .keyboardType(.numberPad)
                         .font(.system(size: 35))
                         .frame(height: 30)
+                        .onTapGesture {
+                            recognitionActionViewModel.resetError()
+                        }
                     
                     Text("\((recognitionActionViewModel.pointInt[index] == 0 || recognitionActionViewModel.pointInt[index] == 1) ? "point".localized : "points".localized)")
                     
@@ -157,9 +180,18 @@ extension RecognitionUsesBlockView {
                     
                 }.foregroundColor(recognitionActionViewModel.pointInt[index] == 0 ? .gray : .black)
             }
+            
+            if recognitionActionViewModel.isPointEmpty {
+                Text("point_empty".localized)
+                    .font(.system(size: 13))
+                    .foregroundColor(.red)
+                    .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
+            }
+            
             Rectangle()
                 .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
                 .foregroundColor(.gray.opacity(0.4))
+            
         }.frame(width: ScreenInfor().screenWidth * 0.8)
     }
 }

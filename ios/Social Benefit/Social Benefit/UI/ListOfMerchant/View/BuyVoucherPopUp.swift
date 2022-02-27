@@ -10,11 +10,12 @@ import SwiftUI
 struct BuyVoucherPopUp: View {
     
     @EnvironmentObject var confirmInforBuyViewModel: ConfirmInforBuyViewModel
-    @EnvironmentObject var specialOffersViewModel: MerchantVoucherSpecialListViewModel
-    @EnvironmentObject var offersViewModel: MerchantVoucherListByCategoryViewModel
     
     @State var buyNumber = 1
+    
     @Binding var isPresentPopUp: Bool
+    @Binding var isReloadSpecialVoucher: Bool
+    @Binding var isReloadAllVoucher: Bool
     
     var body: some View {
         ZStack {
@@ -76,14 +77,16 @@ extension BuyVoucherPopUp {
                 
                 HStack {
                     Text("\("would_like_to_spend".localized)")
-                    + Text(" \(confirmInforBuyViewModel.walletInfor.getPersonalPoint()) ")
+                    + Text(" \(confirmInforBuyViewModel.buyVoucher.voucherPoint ?? 0) ")
                         .bold()
                         .foregroundColor(.blue)
                     + Text(getPointStringOnly(point: confirmInforBuyViewModel.walletInfor.getPersonalPoint()))
                     + Text(" ")
                     + Text("to_buy_this_voucher".localized)
                     + Text("?")
-                }.multilineTextAlignment(.center)
+                }
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 
             }.font(.system(size: 15))
             .padding()
@@ -141,13 +144,8 @@ extension BuyVoucherPopUp {
                                 if !data.errorCode.isEmpty {
                                     confirmInforBuyViewModel.isPresentedError = true
                                 } else {
-                                    let choosedIndex1 = getIndex(in: specialOffersViewModel.allSpecialOffers, value: confirmInforBuyViewModel.voucherId)
-                                        
-                                    self.specialOffersViewModel.allSpecialOffers[choosedIndex1].shoppingValue += self.buyNumber
-                                    
-                                    let choosedIndex2 = getIndex(in: offersViewModel.allOffers, value: confirmInforBuyViewModel.voucherId)
-                                        
-                                    self.offersViewModel.allOffers[choosedIndex2].shoppingValue += self.buyNumber
+                                    self.isReloadSpecialVoucher = true
+                                    self.isReloadAllVoucher = true
                                 }
                             }
                         }
@@ -201,7 +199,7 @@ extension BuyVoucherPopUp {
 
 struct BuyVoucherPopUp_Previews: PreviewProvider {
     static var previews: some View {
-        BuyVoucherPopUp(isPresentPopUp: .constant(true))
+        BuyVoucherPopUp(isPresentPopUp: .constant(true), isReloadSpecialVoucher: .constant(true), isReloadAllVoucher: .constant(true))
             .environmentObject(ConfirmInforBuyViewModel())
             .environmentObject(MerchantVoucherSpecialListViewModel())
             .environmentObject(MerchantVoucherListByCategoryViewModel())
