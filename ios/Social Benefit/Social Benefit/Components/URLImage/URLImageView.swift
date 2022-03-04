@@ -10,14 +10,10 @@ import UIKit
 import SDWebImageSwiftUI
 
 struct URLImageView: View {
-    
-//    @ObservedObject var vm: URLImageViewModel
-//
-//    init(url: String) {
-//        _vm = ObservedObject(wrappedValue: URLImageViewModel(url: url))
-//    }
     @State var isAnimating: Bool = true
+    
     var url: String
+    var isDefaultAvatar: Bool = false
     
     init(url: String) {
         if url.contains("http") {
@@ -26,7 +22,19 @@ struct URLImageView: View {
             self.url = Config.baseURL + url
         }
         
-        self.url = self.url.replacingOccurrences(of: " ", with: "%20")
+        self.url = self.url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+    }
+    
+    init(url: String, isDefaultAvatar: Bool) {
+        if url.contains("http") {
+            self.url = url
+        } else {
+            self.url = Config.baseURL + url
+        }
+        
+        self.url = self.url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        self.isDefaultAvatar = isDefaultAvatar
     }
     
     var body: some View {
@@ -35,33 +43,21 @@ struct URLImageView: View {
                 .placeholder {
                     Rectangle().foregroundColor(.gray.opacity(0.1))
                         .overlay(
-                            Image(systemName: "photo")
-                                .foregroundColor(.gray.opacity(0.5))
+                            ZStack {
+                                if isDefaultAvatar {
+                                    Image("pic_user_profile")
+                                        .resizable()
+                                        .scaledToFill()
+                                } else {
+                                    Image(systemName: "photo")
+                                        .foregroundColor(.gray.opacity(0.5))
+                                }
+                            }
                         )
-//                        .scaledToFill()
                 }
                 .resizable()
                 .scaledToFill()
-                
-                            
-            
-//            if let image = vm.image {
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .scaledToFit()
-//
-//            } else if vm.isLoading {
-//                Rectangle()
-//                    .fill(Color.gray.opacity(0.1))
-//                    .overlay(
-//                        Image(systemName: "photo")
-//                                .foregroundColor(.gray.opacity(0.5))
-//                    )
-//
-//            } else {
-//                Image(systemName: "questionmark")
-//                    .foregroundColor(Color.gray)
-//            }
+                .clipped()
         }
     }
 }

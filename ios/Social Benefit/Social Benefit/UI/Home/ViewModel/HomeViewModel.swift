@@ -22,6 +22,12 @@ class HomeViewModel: ObservableObject, Identifiable {
     private var walletInforService = WalletInforService()
     private var recognitionService = RecognitionService()
     
+    private let surveyListService = HomeSurveyListService()
+    
+    @Published var error: AppError = .none
+    
+    @Published var listSurvey: [SurveyResultModel] = []
+    
     init() {
         loadWalletInfor()
         loadRecognitionData()
@@ -45,5 +51,25 @@ class HomeViewModel: ObservableObject, Identifiable {
                 }
             }
         }
+    }
+    
+    func requestHomeSurvey() {
+        if showHomeSurvey() {
+            surveyListService.request { response in
+                switch response {
+                case .success(let value):
+                    self.listSurvey = value.result ?? []
+                case .failure(let error):
+                    self.error = error
+                }
+            }
+        }
+    }
+    
+    func showHomeSurvey() -> Bool {
+        if isDisplayFunction(Constants.FuctionId.SURVEY), !isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+            return true
+        }
+        return false
     }
 }

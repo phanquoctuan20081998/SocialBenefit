@@ -94,7 +94,9 @@ extension RecognitionUsesBlockView {
                     .foregroundColor(.red)
                     .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .leading)
             }
-        }.frame(width: ScreenInfor().screenWidth * 0.8)
+        }
+        .contentShape(Rectangle())
+        .frame(width: ScreenInfor().screenWidth * 0.8)
     }
     
     var SendWishes: some View {
@@ -164,19 +166,25 @@ extension RecognitionUsesBlockView {
     var PointsView: some View {
         VStack(spacing: 10) {
             if index < recognitionActionViewModel.pointText.count {
-                HStack {
+                
+                ZStack {
+                    HStack {
+                        
+                        TextFieldDynamicWidth(title: "0", text: $recognitionActionViewModel.pointText[index])
+                            .keyboardType(.numberPad)
+                            .font(.system(size: 35))
+                            .frame(height: 30)
+                        
+                        Text("\((recognitionActionViewModel.pointInt[index] == 0 || recognitionActionViewModel.pointInt[index] == 1) ? "point".localized : "points".localized)")
+                        
+                        Spacer()
+                    }
                     
-                    TextFieldDynamicWidth(title: "0", text: $recognitionActionViewModel.pointText[index])
+                    TextField("", text: $recognitionActionViewModel.pointText[index])
+                        .foregroundColor(.clear)
                         .keyboardType(.numberPad)
                         .font(.system(size: 35))
-                        .frame(height: 30)
-                        .onTapGesture {
-                            recognitionActionViewModel.resetError()
-                        }
-                    
-                    Text("\((recognitionActionViewModel.pointInt[index] == 0 || recognitionActionViewModel.pointInt[index] == 1) ? "point".localized : "points".localized)")
-                    
-                    Spacer()
+                        .frame(width: ScreenInfor().screenWidth * 0.8, height: 30)
                     
                 }.foregroundColor(recognitionActionViewModel.pointInt[index] == 0 ? .gray : .black)
             }
@@ -192,7 +200,12 @@ extension RecognitionUsesBlockView {
                 .frame(width: ScreenInfor().screenWidth * 0.8, height: 1)
                 .foregroundColor(.gray.opacity(0.4))
             
-        }.frame(width: ScreenInfor().screenWidth * 0.8)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            recognitionActionViewModel.resetError()
+        }
+        .frame(width: ScreenInfor().screenWidth * 0.8)
     }
 }
 

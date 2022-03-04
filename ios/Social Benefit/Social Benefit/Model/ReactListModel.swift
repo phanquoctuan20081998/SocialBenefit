@@ -10,6 +10,7 @@ import Foundation
 struct ReactListModel: APIResponseProtocol {
     var status: Int?
     var result: [ReactListResultModel]?
+    var messages: [String]?
 }
 
 struct ReactListResultModel: APIModelProtocol, Identifiable, Equatable, Hashable {

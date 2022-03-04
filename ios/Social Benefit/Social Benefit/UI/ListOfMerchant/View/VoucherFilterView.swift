@@ -36,7 +36,7 @@ extension FilterView {
             HStack(spacing: 10)  {
                 Text("sort".localized)
                     .font(.system(size: 13))
-                Image(systemName: "line.3.horizontal.decrease")
+                Image(systemName: "line.horizontal.3.decrease")
                     .resizable()
                     .frame(width: 10, height: 10)
             }

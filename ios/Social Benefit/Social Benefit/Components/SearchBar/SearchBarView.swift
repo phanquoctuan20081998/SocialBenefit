@@ -24,7 +24,7 @@ struct SearchBarView: View {
         HStack {
             HStack {
                 TextField(placeHolder, text: $searchText)
-                    .padding(.leading, 35)
+                    .padding(.horizontal, 35)
                     .font(.system(size: CGFloat(fontSize)))
                     .frame(height: CGFloat(height))
             }
@@ -40,10 +40,9 @@ struct SearchBarView: View {
                     Image(systemName: "magnifyingglass")
                     Spacer()
                     
-                    if isSearching {
+                    if !searchText.isEmpty {
                         Button(action: {
                             searchText = ""
-                            isSearching = false
                         }, label: {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.system(size: CGFloat(fontSize)))

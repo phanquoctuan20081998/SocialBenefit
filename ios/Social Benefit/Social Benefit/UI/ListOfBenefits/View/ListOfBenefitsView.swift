@@ -23,31 +23,44 @@ struct ListOfBenefitsView: View {
         
         VStack {
             VStack(spacing: 0) {
-                Spacer().frame(height: ScreenInfor().screenHeight * 0.07)
+                Spacer()
+                    .frame(height: 100)
                 
-                BenefitUpperView(isRefreshing: $listOfBenefitsViewModel.isRefreshing, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, isShowTabBar: true)
-                
-                Rectangle()
-                    .frame(width: ScreenInfor().screenWidth * 0.4, height: 1)
-                    .foregroundColor(Color("nissho_blue"))
-                    .padding(.bottom)
-                
-                HeaderView
-                    .padding(.bottom)
-                
-                if listOfBenefitsViewModel.isLoading && !listOfBenefitsViewModel.isRefreshing {
-                    LoadingPageView()
-        
-                } else {
-                    TableView
+                VStack(spacing: 0) {
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    BenefitUpperView(isRefreshing: $listOfBenefitsViewModel.isRefreshing, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "benefit_title".localized, logo: userInfor.companyLogo, isShowTabBar: true)
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    Rectangle()
+                        .frame(width: ScreenInfor().screenWidth * 0.4, height: 1)
+                        .foregroundColor(Color("nissho_blue"))
+                        .padding(.bottom)
+                    
+                    HeaderView
+                        .padding(.bottom)
+                    
+                    if listOfBenefitsViewModel.isLoading && !listOfBenefitsViewModel.isRefreshing {
+                        LoadingPageView()
+            
+                    } else {
+                        TableView
+                    }
                 }
+                .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
                 
             }
             .navigationBarHidden(true)
 //            .navigationBarBackButtonHidden(true)
-            .background(Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1)))
+
             .edgesIgnoringSafeArea(.all)
         }
+        
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "list_of_your_benefits".localized, isHaveLogo: true, backgroundColor: Color(#colorLiteral(red: 0.8640524745, green: 0.9024624825, blue: 0.979608953, alpha: 1))))
         .background(
             NavigationLink(
                 destination: NavigationLazyView(BenefitDetailView()
@@ -120,36 +133,18 @@ struct BenefitUpperView: View {
     @Binding var isPresentedTabBar: Bool
     var text: String
     
+    let logo: String
+    
     //Because 2 screen sharing this function...
     //But diffirent tabbar show status...
     var isShowTabBar: Bool
     
     var body: some View {
         VStack {
-            HStack {
-                //Add back button
-                Button(action: {
-                    self.isRefreshing = true
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.isPresentedTabBar = isShowTabBar
-                }, label: {
-                    Image(systemName: "arrow.backward")
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                        .padding(.leading, 20)
-                })
-            }.frame(width: ScreenInfor().screenWidth, height: 20, alignment: .leading)
-            
-            //Add title
-            URLImageView(url: userInfor.companyLogo)
+            URLImageView(url: logo)
                 .scaledToFit()
                 .frame(height: 60)
             
-            Text(text)
-                .font(.bold(.headline)())
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 15)
-                .foregroundColor(.blue)
         }
     }
 }

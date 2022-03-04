@@ -10,4 +10,5 @@ import Foundation
 struct CommentDetailModel: APIResponseProtocol {
     var status: Int?
     var result: CommentResultModel?
+    var messages: [String]?
 }

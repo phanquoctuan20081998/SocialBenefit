@@ -20,7 +20,7 @@ class FavoriteMerchantUpdateService: APIServiceProtocol {
         let body = FavoriteMerchantUpdateRequestModel.init(merchantId: merchantId, employeeId: userInfor.employeeId, likeMerchant: likeMerchant)
         
         apiRequest.request(url: Config.API_UPDATE_MY_FAVORITE_MERCHANT_LIST, method: .post, headers: header, httpBody: body, type: FavoriteMerchantModel.self) { response in
-            print(response)
+            
         }
     }
 }

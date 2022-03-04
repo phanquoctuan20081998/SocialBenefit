@@ -11,7 +11,7 @@ import ScrollViewProxy
 struct RecognitionNewsCardView: View {
     
     @ObservedObject var reactViewModel: ReactViewModel
-    @StateObject var commentEnvironment = CommentEnvironmentObject()
+    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
     
     @State var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     @State var commentText: String = ""
@@ -27,9 +27,11 @@ struct RecognitionNewsCardView: View {
     var isHaveReactAndCommentButton: Bool = true
     
     init(companyData: RecognitionData, index: Int, proxy: Binding<AmzdScrollViewProxy?>, newsFeedType: Int, isHaveReactAndCommentButton: Bool) {
-        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
-            
+        self.reactViewModel = ReactViewModel(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE)
+        
         _proxy = proxy
+        
+        self.commentEnvironment.requestListComment(id: companyData.getId(), contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
         
         self.companyData = companyData
         self.commentCount = companyData.getCommentCount()
@@ -67,7 +69,11 @@ struct RecognitionNewsCardView: View {
             .environmentObject(reactViewModel)
             .padding()
             .font(.system(size: 14))
-
+            .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
+            .background(isHaveReactAndCommentButton ? Color.white : Color.clear)
+            .cornerRadius(20)
+            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+            .foregroundColor(.black)
         }.onAppear {
             self.commentCount = self.companyData.getCommentCount()
         }
@@ -107,7 +113,7 @@ extension RecognitionNewsCardView {
             AddCommentService().getAPI(contentId: companyData.getId(), contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION, parentId: -1, content: commentText, returnCallBack: { newCommentId in
                 DispatchQueue.main.async {
                     self.commentText = ""
-                    self.commentCount += 1
+                    self.commentEnvironment.requestListComment(id: companyData.getId(), contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
                 }
             })
             
@@ -116,11 +122,11 @@ extension RecognitionNewsCardView {
         }, label: {
             Image(systemName: "paperplane.circle.fill")
                 .padding(.trailing, 3)
-                .foregroundColor(commentText.isEmpty ? .gray : .blue)
+                .foregroundColor(commentText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .gray : .blue)
                 .font(.system(size: 30))
                 .background(Color.white)
         })
-            .disabled(commentText.isEmpty)
+            .disabled(commentText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
     }
 }
 

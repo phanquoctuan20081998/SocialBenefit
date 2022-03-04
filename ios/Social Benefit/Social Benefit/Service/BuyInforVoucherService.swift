@@ -17,7 +17,7 @@ class BuyInforVoucherService: APIServiceProtocol {
             "employeeId": userInfor.employeeId,
         ]
         
-        apiRequest.request(url: Config.API_CONFIRM_BUY_VOUCHER + "/\(voucherId)", method: .get, headers: header, type: BuyInforVoucherModel.self) { response in
+        apiRequest.request(url: Config.API_CONFIRM_BUY_VOUCHER + "/\(voucherId)", method: .get, headers: header, type: BuyInforVoucherModel.self, debugPrint: true) { response in
             completion(response)
         }
     }

@@ -31,7 +31,7 @@ struct ReactListView: View {
             ForEach(list, id: \.self) { item in
                 HStack(spacing: 20) {
                     ZStack(alignment: .bottomTrailing) {
-                        URLImageView(url: Config.baseURL + (item.avatar ?? ""))
+                        URLImageView(url: Config.baseURL + (item.avatar ?? ""), isDefaultAvatar: true)
                             .clipShape(Circle())
                             .frame(width: 50, height: 50)
                         if let type = ReactionType.init(rawValue: item.reactType) {

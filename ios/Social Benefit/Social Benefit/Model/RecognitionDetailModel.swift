@@ -32,6 +32,18 @@ struct RecognitionDetailData: Identifiable, Hashable {
         self.recognitionTime = recognitionTime
     }
     
+    public init() {
+        id = 0
+        senderAvatar = ""
+        senderFullName = ""
+        senderJobDescription = ""
+        receiverAvatar = ""
+        receiverFullName = ""
+        point = 0
+        recognitionNote = ""
+        recognitionTime = Date()
+    }
+    
     public func getId() -> Int {
         return id
     }

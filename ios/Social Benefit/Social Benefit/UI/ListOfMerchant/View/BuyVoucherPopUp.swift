@@ -17,6 +17,7 @@ struct BuyVoucherPopUp: View {
     @Binding var isReloadSpecialVoucher: Bool
     @Binding var isReloadAllVoucher: Bool
     
+    
     var body: some View {
         ZStack {
             if self.confirmInforBuyViewModel.isPresentedPopup {
@@ -28,14 +29,28 @@ struct BuyVoucherPopUp: View {
                         self.buyNumber = 1
                     }
                 
-                if confirmInforBuyViewModel.buyVoucher.remainVoucherInStock == 0 {
-                    outOfStockContent
+                if self.confirmInforBuyViewModel.isLoading {
+                    VStack {
+                        Spacer()
+                        LoadingPageView()
+                        Spacer()
+                    }
+                    .frame(width: ScreenInfor().screenWidth * 0.7, height: 120)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.white)
+                    )
+                    
                 } else {
-                    popupContent
+                    if confirmInforBuyViewModel.buyVoucher.remainVoucherInStock == 0 {
+                        outOfStockContent
+                    } else {
+                        popupContent
+                    }
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .foregroundColor(.black)
+            .foregroundColor(.black)
     }
 }
 
@@ -59,7 +74,7 @@ extension BuyVoucherPopUp {
         .frame(width: ScreenInfor().screenWidth * 0.7, height: 120)
         .background(
             RoundedRectangle(cornerRadius: 20)
-               .fill(Color.white)
+                .fill(Color.white)
         )
     }
     
@@ -89,7 +104,7 @@ extension BuyVoucherPopUp {
                 .fixedSize(horizontal: false, vertical: true)
                 
             }.font(.system(size: 15))
-            .padding()
+                .padding()
             
             let checkMax = (confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber == -1) ? false : (self.buyNumber >= confirmInforBuyViewModel.buyVoucher.maxCanBuyNumber!)
             
@@ -104,15 +119,15 @@ extension BuyVoucherPopUp {
                         Image(systemName: "minus.circle.fill")
                             .foregroundColor((self.buyNumber <= 1) ? .gray : .blue)
                     }).disabled(self.buyNumber <= 1)
-                   
+                    
                     
                     TextField("", text: Binding (
                         get: { String(buyNumber) },
                         set: { buyNumber = Int($0) ?? 0 }
                     )).keyboardType(.numberPad)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 20)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 20)
                     
                     
                     Button(action: {
@@ -150,10 +165,10 @@ extension BuyVoucherPopUp {
                             }
                         }
                         
-//                        self.confirmInforBuyViewModel.isPresentedPopup = false
+                        //                        self.confirmInforBuyViewModel.isPresentedPopup = false
                         self.isPresentPopUp = false
                         self.buyNumber = 1
-                                                                        
+                        
                     }, label: {
                         Text("yes".localized)
                             .foregroundColor(.black)
@@ -164,9 +179,9 @@ extension BuyVoucherPopUp {
                         
                     }).disabled(self.buyNumber < 1)
                     
-    
+                    
                     Button(action: {
-//                        self.confirmInforBuyViewModel.isPresentedPopup = false
+                        //                        self.confirmInforBuyViewModel.isPresentedPopup = false
                         self.isPresentPopUp = false
                         self.buyNumber = 1
                     }, label: {
@@ -178,14 +193,14 @@ extension BuyVoucherPopUp {
                                             .frame(width: 80))
                     })
                 }.foregroundColor(.blue)
-                .padding(5)
+                    .padding(5)
             }
         }.padding()
-        .frame(width: ScreenInfor().screenWidth * 0.8, height: 205)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-               .fill(Color.white)
-        )
+            .frame(width: ScreenInfor().screenWidth * 0.8, height: 205)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.white)
+            )
     }
     
     func getIndex(in array: [MerchantVoucherItemData], value: Int) -> Int {

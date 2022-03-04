@@ -26,7 +26,7 @@ struct FirstCommentCardView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            URLImageView(url: comment.avatar)
+            URLImageView(url: comment.avatar, isDefaultAvatar: true)
                 .clipShape(Circle())
                 .frame(width: 30, height: 30)
                 .padding(.all, 2)
@@ -101,7 +101,7 @@ struct SecondCommentCardView: View {
     var body: some View {
         HStack(alignment: .top) {
             Spacer().frame(width: 70)
-            URLImageView(url: Config.baseURL + comment.avatar)
+            URLImageView(url: Config.baseURL + comment.avatar, isDefaultAvatar: true)
                 .clipShape(Circle())
                 .frame(width: 30, height: 30)
                 .padding(.all, 2)

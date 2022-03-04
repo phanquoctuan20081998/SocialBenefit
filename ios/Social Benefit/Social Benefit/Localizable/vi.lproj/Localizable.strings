@@ -148,14 +148,14 @@
 "are_you_sure_to_delete_comment" = "Bạn có chắn chắn muốn xoá bình luận này?";
 "edit_comment" = "Sửa bình luận";
 "delete_comment" = "Xoá bình luận";
-
+"internal_news_detail" = "Chi tiết tin nội bộ";
 // Benefit Detail
 "apply_this_benefit" = "Đăng ký";
 "want_to_apply" = "Bạn muốn đăng ký?";
 "cancel_button" = "HỦY BỎ";
 "ok_button" = "XÁC NHẬN";
 "register_now" = "Đăng ký ngay";
-"condition" = "ĐIỀU KIỆN ÁP DỤNG";
+"condition" = "Điều kiện áp dụng";
 
 //Merchant List
 "promotion" = "Ưu đãi";
@@ -237,7 +237,7 @@
 "point_empty" = "Bắt buộc nhập điểm!";
 "are_you_sure" = "Bạn có chắc?";
 "are_you_sure_to_send" = "Bạn có chắc muốn chuyển %1$@ điểm đến %2$@ người này?";
-"successfully_sent" = "Đã chuyển thành công";
+"successfully_sent" = "Chuyển điểm thành công";
 
 // Search
 "company_surveys" = "Khảo sát công ty";
@@ -264,7 +264,7 @@
 "version %@" = "Phiên bản: %@";
 "close" = "Đóng";
 "developed_by" = "Phát triển bởi";
-"vn" = "Tiếng Việt";
+"vi" = "Tiếng Việt";
 "en" = "Tiếng Anh";
 "password_not_match" = "Mật khẩu không khớp";
 "password_6_to_15" = "Mật khẩu mới phải có độ dài 6 ~ 15 ký tự";
@@ -348,6 +348,7 @@
 "C00198_I" = "Các ưu đãi của bạn sắp hết hạn, hãy sử dụng ngay hôm nay nhé!";
 "C00199_I" = "Ưu đãi <b>%1$@</b> đã hết hạn";
 "C00200_I" = "Uu đãi mới: <b>%1$@</b>";
+"C00205_I" = "<b>%1$@</b> đã thể hiện cảm xúc trên bình luận của bạn";
 
 "C00150_I" = "Yêu cầu tham gia phúc lợi <b>%1$@</b> của bạn đã bị từ chối do phúc lợi đã hết hạn";
 "S00110_I" = "Quản trị viên đã từ chối yêu cầu phúc lợi: <b>%1$@</b><br>Lý do: <b>%2$@</b>";
@@ -427,9 +428,9 @@
 "ERR_NOT_FOUND" = "Không thể lấy được tài khoản";
 "ERR_CONFLICT" = "Tài khoản của quý khách đã được liên kết với người dùng khác";
 
-"favorite_merchants" = "Cửa hàng ưa thích";
-"search_your_favorite_merchant" = "Tìm kiếm cửa hàng ưa thích";
-"your_favorite_merchant" = "Cửa hàng ưa thích";
+"favorite_merchants" = "Cửa hàng yêu thích";
+"search_your_favorite_merchant" = "Tìm kiếm cửa hàng yêu thích";
+"your_favorite_merchant" = "Cửa hàng yêu thích";
 
 "recent_view_voucher" = "Ưu đãi đã xem";
 "the_end" = "Đã hết";
@@ -446,3 +447,12 @@
 "would_you_spend1" = "Bạn có muốn sử dụng";
 "would_you_spend2" = "để mua ưu đãi này không?";
 "limit_bought_reached" = "Đã đạt số lượng mua tối đa.";
+
+"skip" = "Bỏ qua";
+"start" = "Bắt đầu";
+"detail_survey" = "Chi tiết khảo sát";
+"no_enough_point" = "Không đủ điểm để mua thêm";
+"M00121_E" = "Không tồn tại mã số ưu đãi trong hệ thống";
+"M00136_E" = "Bạn đã mua quá số lượng cho phép của voucher này";
+"M00137_E" = "Số lượng voucher còn lại không đủ";
+"M00125_E" = "Ưu đãi đã hết hạn";

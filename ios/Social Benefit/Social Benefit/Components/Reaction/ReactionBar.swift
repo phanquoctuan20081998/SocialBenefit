@@ -50,12 +50,19 @@ struct ReactionBar: View {
                 Spacer()
                 
                 if let commentCount = listComment.result?.count {
-                    Text(commentCount.string + " " + "count_comment".localized)
-                        .font(Font.system(size: 12))
+                    if commentCount == 0 {
+                        Text("no_comment".localized)
+                            .font(Font.system(size: 12))
+                    } else {
+                        Text(commentCount.string + " " + "count_comment".localized)
+                            .font(Font.system(size: 12))
+                    }
                 }
             }
             
-            Divider()
+            Rectangle()
+                .fill(Color("nissho_blue"))
+                .frame(height: 1)
             
             HStack {
                 if isShowReactionBar {

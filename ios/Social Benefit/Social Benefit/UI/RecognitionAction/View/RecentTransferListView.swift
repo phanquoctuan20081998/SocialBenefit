@@ -55,6 +55,7 @@ extension RecognitionActionView {
                                             }
                                             
                                             recognitionActionViewModel.isModified = true
+                                            recognitionActionViewModel.resetError()
                                             recognitionActionViewModel.realCount += 1
                                         }
                                     }
@@ -108,7 +109,7 @@ extension RecognitionActionView {
     @ViewBuilder
     func UserTransferView(avatar: String, userName: String) -> some View {
         VStack {
-            URLImageView(url: avatar)
+            URLImageView(url: avatar, isDefaultAvatar: true)
                 .clipShape(Circle())
                 .frame(width: 50, height: 50)
                 .background(Color.white)

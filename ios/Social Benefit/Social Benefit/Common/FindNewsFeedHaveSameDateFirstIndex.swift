@@ -72,7 +72,10 @@ func getDateHistoryName(timeArray: [String], sameDateGroup: [SeparateByDateData]
         } else {
             timeName.append(timeArray[index])
         }
-        index = sameDateGroup[i].head
+        
+        if i < sameDateGroup.count - 1 {
+            index = sameDateGroup[i + 1].head
+        }
     }
     
     return timeName

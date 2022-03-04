@@ -20,11 +20,11 @@ struct BenefitDetailView: View {
             
             VStack {
                 
-                Spacer().frame(height: 30)
+                Spacer().frame(height: 100)
                 
                 // Upper view...
                 // Reference at ListOfBenefitsView.swift...
-                BenefitUpperView(isRefreshing: $listOfBenefitsViewModel.isRefreshing, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "condition".localized, isShowTabBar: false)
+                BenefitUpperView(isRefreshing: $listOfBenefitsViewModel.isRefreshing, isPresentedTabBar: $homeScreenViewModel.isPresentedTabBar, text: "condition".localized, logo: benefitDetailViewModel.logoBenefit, isShowTabBar: false)
                 
                 Rectangle()
                     .fill(Color.gray)
@@ -54,8 +54,10 @@ struct BenefitDetailView: View {
                     .padding(.bottom, 20)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(ApplyPopupView(reload: .constant(false), benefitId: benefitDetailViewModel.benefit.id, index: benefitDetailViewModel.index))
         .overlay(BenefitErrorPopUpView().environmentObject(listOfBenefitsViewModel))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "condition".localized, isHaveLogo: true))
         .navigationBarHidden(true)
     }
     

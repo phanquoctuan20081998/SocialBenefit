@@ -14,6 +14,7 @@ struct InternalNewsDetailView: View {
     @ObservedObject var commentViewModel: CommentViewModel
     @ObservedObject var reactViewModel: ReactViewModel
     @ObservedObject var keyboardHandler = KeyboardHandler()
+    @StateObject var commentEnvironment = CommentEnvironmentObject()
     
     // For navigation from homescreen
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -24,9 +25,6 @@ struct InternalNewsDetailView: View {
     
     @State private var proxy: AmzdScrollViewProxy? = nil
     @State private var webViewHeight: CGFloat = .zero
-    
-    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
-    
     @State var activeSheet: ReactActiveSheet?
     
     init(internalNewData: InternalNewsData, isHiddenTabBarWhenBack: Bool, isNavigationFromHomeScreen: Bool) {
@@ -82,7 +80,7 @@ struct InternalNewsDetailView: View {
             .offset(y: -keyboardHandler.keyboardHeight)
         }
         .edgesIgnoringSafeArea(.all)
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "internal_news_detail".localized, isHaveLogo: true, isHiddenTabBarWhenBack: isHiddenTabBarWhenBack, backButtonTapped: backButtonTapped))
         
         // Dismiss reaction bar when tab outside
         .onTapGesture {

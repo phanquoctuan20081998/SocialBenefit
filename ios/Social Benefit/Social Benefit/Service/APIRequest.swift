@@ -13,7 +13,7 @@ class APIRequest {
     private var cancellation: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
-    func request<T: APIResponseProtocol>(url: String, method: HTTPMethod = .post, headers: HTTPHeaders? = nil, httpBody: APIModelProtocol? = nil, parameters: Parameters? = nil, type: T.Type, customError: String = "", debugPrint: Bool = false, completion: @escaping ((Result<T, AppError>) -> Void)) {
+    func request<T: APIResponseProtocol>(url: String, method: HTTPMethod = .post, headers: HTTPHeaders? = nil, httpBody: APIModelProtocol? = nil, parameters: Parameters? = nil, type: T.Type, customError: String = "", debugPrint: Bool = false, baseURL: String = Config.baseURL, completion: @escaping ((Result<T, AppError>) -> Void)) {
         cancellation?.cancel()
         let publisher: AnyPublisher<Result<T, AFError>, Never>
         let jsonHeader = HTTPHeader.init(name: "Content-Type", value: "application/json; charset=utf-8")
@@ -24,7 +24,7 @@ class APIRequest {
         } else {
             newHeaders = HTTPHeaders.init([jsonHeader])
         }
-        publisher = AF.request(Config.baseURL + url, method: method, parameters: parameters, headers: newHeaders) { urlRequest in
+        publisher = AF.request(baseURL + url, method: method, parameters: parameters, headers: newHeaders) { urlRequest in
             urlRequest.httpBody = httpBody?.data
             urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
             
@@ -46,14 +46,24 @@ class APIRequest {
     private func convertAppError<T: APIResponseProtocol>(_ result: Result<T, AFError>, customMess: String = "") -> Result<T, AppError> {
         switch result {
         case .success(let value):
-            if value.status == 200 {
-                return .success(value)
-            } else {
-                if customMess.isEmpty {
-                    return .failure(AppError.unkown)
-                } else {
-                    return .failure(AppError.custom(text: customMess))
+            if value.status != nil {
+                if value.status == 200 {
+                    return .success(value)
+                } else {                    
+                    if customMess.isEmpty {
+                        if let messages = value.messages {
+                            let text = messages.map { m in
+                                return m.localized
+                            }
+                            return .failure(AppError.custom(text: text.joined(separator: "\n")))
+                        }
+                        return .failure(AppError.unkown)
+                    } else {
+                        return .failure(AppError.custom(text: customMess))
+                    }
                 }
+            } else {
+                return .success(value)
             }
         case .failure(let afError):
             if afError.responseCode == 401 {

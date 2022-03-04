@@ -106,7 +106,8 @@ struct RecognitionsBannerView: View {
     @State private var currentPage = 0
     @State var selection: Int? = nil
     @State var isAnimating: Bool = true
-    @State var selectedIndex: Int = 0
+    @State var selectedData: RecognitionData = RecognitionData()
+    @State var isMoveToRecognitionPost: Bool = false
     @State private var proxy: AmzdScrollViewProxy? = nil
     
     var body: some View {
@@ -124,7 +125,9 @@ struct RecognitionsBannerView: View {
                                 RecognitionNewsCardView(companyData: homeViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: 0, isHaveReactAndCommentButton: false)
                                     .onTapGesture {
                                         DispatchQueue.main.async {
-                                            homeScreenViewModel.selectedTab = "star"
+//                                            homeScreenViewModel.selectedTab = "star"
+                                            self.isMoveToRecognitionPost = true
+                                            self.selectedData = homeViewModel.allRecognitionPost[index]
                                         }
                                         
                                         // Click count
@@ -141,6 +144,16 @@ struct RecognitionsBannerView: View {
         }
         .foregroundColor(.black)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
+        .background(
+            ZStack {
+                if selectedData.id != 0 {
+                    NavigationLink(
+                        destination: NavigationLazyView(RecognitionPostView(companyData: selectedData)),
+                        isActive: $isMoveToRecognitionPost,
+                        label: { EmptyView() })
+                }
+            }
+        )
     }
     
     func topTitleTapped() {
@@ -330,7 +343,7 @@ extension MainCardView {
             
             Spacer()
             
-            URLImageView(url: userInfor.avatar)
+            URLImageView(url: userInfor.avatar, isDefaultAvatar: true)
                 .clipShape(Circle())
                 .frame(width: 70, height: 70)
                 .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 2))

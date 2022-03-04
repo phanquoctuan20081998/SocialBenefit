@@ -30,7 +30,7 @@
         <!--Med247 View Controller-->
         <scene sceneID="5nS-D2-fDF">
             <objects>
-                <viewController storyboardIdentifier="Med247ViewController" id="RAr-4y-Saz" customClass="Med247ViewController" customModule="Social_Benefit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Med247ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RAr-4y-Saz" customClass="Med247ViewController" customModule="Social_Benefit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zCo-He-eLh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -72,9 +72,8 @@ struct RecognitionView: View {
             homeScreenViewModel.isPresentedTabBar = true
         })
         .environmentObject(recognitionViewModel)
-        .background(BackgroundViewWithNotiAndSearch())
         .edgesIgnoringSafeArea(.all)
-        
+        .background(BackgroundViewWithNotiAndSearch())
     }
 }
 
@@ -139,7 +138,7 @@ extension RecognitionView {
                 
                 
                 // Content
-                if recognitionViewModel.isLoading && recognitionViewModel.isRefreshing {
+                if recognitionViewModel.isLoading && !recognitionViewModel.isRefreshing {
                     LoadingPageView()
                 } else {
                     ForEach(recognitionViewModel.allRecognitionPost.indices, id: \.self) { index in
@@ -156,13 +155,7 @@ extension RecognitionView {
                                     .padding(.vertical)
                             }
                             
-                            
                             RecognitionNewsCardView(companyData: recognitionViewModel.allRecognitionPost[index], index: index, proxy: $proxy, newsFeedType: recognitionViewModel.selectedTab, isHaveReactAndCommentButton: true)
-                                .frame(width: ScreenInfor().screenWidth * 0.92, alignment: .bottom)
-                                .background(Color.white)
-                                .cornerRadius(20)
-                                .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                                .foregroundColor(.black)
                                 .onTapGesture(perform: {
                                     self.isRecognitionPostClick = true
                                     self.selectedPost = recognitionViewModel.allRecognitionPost[index]

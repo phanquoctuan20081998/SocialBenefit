@@ -17,6 +17,7 @@ extension UserDefaults {
         case appLanguage
         case companyLogo
         case autoLogin
+        case showOnboarding
     }
     
     static func getCompanyCode() -> String {
@@ -59,6 +60,10 @@ extension UserDefaults {
         if let value = UserDefaults.standard.string(forKey: UserDefaultsKey.appLanguage.rawValue) {
             return AppLanguage.init(rawValue: value) ?? .en
         }
+        let langStr = Locale.current.languageCode
+        if langStr == AppLanguage.vi.rawValue {
+            return .vi
+        }
         return .en
     }
     
@@ -82,6 +87,15 @@ extension UserDefaults {
     
     static func setAutoLogin(value: Bool) {
         UserDefaults.standard.set(value, forKey: UserDefaultsKey.autoLogin.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func getShowOnboarding() -> Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaultsKey.showOnboarding.rawValue)
+    }
+    
+    static func setShowOnboarding(value: Bool) {
+        UserDefaults.standard.set(value, forKey: UserDefaultsKey.showOnboarding.rawValue)
         UserDefaults.standard.synchronize()
     }
 }

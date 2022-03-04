@@ -15,7 +15,6 @@ struct InternalNewsView: View {
     
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeScreenViewModel: HomeScreenViewModel
-    @ObservedObject var commentViewModel = CommentViewModel(contentId: 0)
     
     @State private var selectedTabIndex = InternalNewsSelectedTab
     @State private var isSearching = false

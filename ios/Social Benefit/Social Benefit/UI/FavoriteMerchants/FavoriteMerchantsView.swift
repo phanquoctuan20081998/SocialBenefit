@@ -89,6 +89,7 @@ struct FavoriteMerchantsView: View {
                 }
             }
         )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "your_favorite_merchant".localized, isHaveLogo: true))
         .navigationBarHidden(true)
         .errorPopup($viewModel.error)

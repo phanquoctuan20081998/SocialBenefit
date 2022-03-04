@@ -9,4 +9,5 @@ import Foundation
 
 struct SurveyChoiceResultModel: APIResponseProtocol {
     var status: Int?
+    var messages: [String]?
 }

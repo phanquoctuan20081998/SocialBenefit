@@ -284,7 +284,6 @@ class RecognitionActionViewModel: ObservableObject, Identifiable {
             }
             
             pointTransaction.append(PointTransactionRequestData(employeeId: allSelectedUser[i].getId(), point: pointInt[i], message: wishesText[i]))
-            
         }
         
         Utils.dismissKeyboard()

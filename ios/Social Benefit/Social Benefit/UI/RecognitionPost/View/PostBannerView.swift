@@ -53,7 +53,7 @@ extension PostBannerView {
             Spacer()
             
             HStack(spacing: 15) {
-                URLImageView(url: recognitionPostViewModel.recognitionDetailData.getSenderAvatar())
+                URLImageView(url: recognitionPostViewModel.recognitionDetailData.getSenderAvatar(), isDefaultAvatar: true)
                     .clipShape(Circle())
                     .frame(width: 30, height: 30)
                 
@@ -74,7 +74,7 @@ extension PostBannerView {
                         .bold()
                 }
                 .font(.system(size: 13))
-                URLImageView(url: recognitionPostViewModel.recognitionDetailData.getReceiverAvatar())
+                URLImageView(url: recognitionPostViewModel.recognitionDetailData.getReceiverAvatar(), isDefaultAvatar: true)
                     .clipShape(Circle())
                     .frame(width: 30, height: 30)
             }

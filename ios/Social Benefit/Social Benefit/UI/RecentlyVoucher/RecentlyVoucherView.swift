@@ -52,6 +52,7 @@ struct RecentlyVoucherView: View {
             }
             .loadingView(isLoading: $viewModel.isLoadingBuyInfor, dimBackground: false)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(BackgroundViewWithMyVoucher.init(title: "recent_view_voucher".localized))
         .background(
             ZStack {
@@ -87,6 +88,9 @@ struct RecentlyVoucherView: View {
                         .lineLimit(2)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.leading)
+                        .if(item.canBuy == false) {
+                            $0.foregroundColor(Color.gray)
+                        }
 
                     loveAndCartCountView(item)
                     
@@ -113,6 +117,9 @@ struct RecentlyVoucherView: View {
                     .font(.system(size: 13))
                 Text(item.favoriteValue?.string ?? "")
                     .font(.system(size: 13))
+                    .if(item.canBuy == false) {
+                        $0.foregroundColor(Color.gray)
+                    }
             }
             
             Rectangle()
@@ -127,6 +134,9 @@ struct RecentlyVoucherView: View {
                     .font(.system(size: 13))
                 Text(item.shoppingValue?.string ?? "")
                     .font(.system(size: 13))
+                    .if(item.canBuy == false) {
+                        $0.foregroundColor(Color.gray)
+                    }
             }
         }
         .frame(width: 150, alignment: .leading)
@@ -140,11 +150,17 @@ struct RecentlyVoucherView: View {
                     .bold()
                     .foregroundColor(.blue)
                     .font(.system(size: 11))
+                    .if(item.canBuy == false) {
+                        $0.hidden()
+                    }
                 
                 HStack {
                     Text(item.moneyValueText)
                         .strikethrough()
                         .font(.system(size: 11))
+                        .if(item.canBuy == false) {
+                            $0.hidden()
+                        }
                     
                     Text(item.discountValueText)
                         .bold()
@@ -152,6 +168,9 @@ struct RecentlyVoucherView: View {
                         .font(.system(size: 10))
                         .padding(2)
                         .background(RoundedRectangle(cornerRadius: 6).fill(Color.orange))
+                        .if(item.canBuy == false) {
+                            $0.hidden()
+                        }
                 }
             }
             

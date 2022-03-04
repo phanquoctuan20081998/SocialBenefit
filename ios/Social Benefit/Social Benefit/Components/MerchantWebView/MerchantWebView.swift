@@ -49,10 +49,7 @@ extension MerchantWebView {
                     Spacer()
                 }
             }
-            .padding(.top, ScreenInfor().screenHeight * 0.05)
-            .padding()
         }
-        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
     }
 }

@@ -43,7 +43,7 @@ struct CommentBarView: View {
                 }
                 
                 HStack {
-                    URLImageView(url: Config.baseURL + userInfor.avatar)
+                    URLImageView(url: Config.baseURL + userInfor.avatar, isDefaultAvatar: true)
                         .clipShape(Circle())
                         .frame(width: 30, height: 30)
                         .padding(.all, 2)
@@ -51,7 +51,7 @@ struct CommentBarView: View {
                     
                     Spacer().frame(width: 18)
                     
-                    AutoResizeTextField(text: $commentText, isFocus: $isFocus, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                    AutoResizeTextField(text: $commentText, isFocus: $isFocus, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized, maxLength: 250)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .overlay(RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.blue.opacity(0.5), lineWidth: 2))

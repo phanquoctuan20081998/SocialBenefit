@@ -10,6 +10,7 @@ import Foundation
 struct LoginModel: APIResponseProtocol {
     var status: Int?
     var result: LoginResultMode?
+    var messages: [String]?
 }
 
 struct LoginResultMode: APIModelProtocol {

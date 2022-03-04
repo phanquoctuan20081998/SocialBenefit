@@ -13,7 +13,7 @@ struct MerchantLoadingView: View {
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: ScreenInfor().screenHeight * 0.1)
+                .frame(height: 70)
             Spacer()
             ActivityRep()
                 .frame(width: 50, height: 50)
@@ -22,10 +22,9 @@ struct MerchantLoadingView: View {
                 .padding(.horizontal, 30)
             Spacer()
         }
-        .frame(width: ScreenInfor().screenWidth, height: ScreenInfor().screenHeight)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: false))
         .background(Color.white)
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

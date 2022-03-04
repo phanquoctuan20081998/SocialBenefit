@@ -28,4 +28,6 @@ extension APIModelProtocol {
 
 protocol APIResponseProtocol: APIModelProtocol {
     var status: Int? { get set }
+    var messages: [String]? { get set }
 }
+

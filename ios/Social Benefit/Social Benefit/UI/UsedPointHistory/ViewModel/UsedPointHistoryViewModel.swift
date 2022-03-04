@@ -14,11 +14,7 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     @Published var selectedTab = 0
     @Published var fromIndex: Int = 0
     @Published var allUsedPointsHistoryData = [UsedPointsHistoryData]()
-    
-//    @Published var allUsedPointsHistoryData = [UsedPointsHistoryData(id: 7, mDate: "25th October 2021", mTime: "16:28", mAction: 3, mDestination: "Vinasoy", mPoint: -50),
-//                                               UsedPointsHistoryData(id: 4, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Zhang Bin Bin 3", mPoint: 100),
-//                                               UsedPointsHistoryData(id: 5, mDate: "25th October 2021", mTime: "16:28", mAction: 0, mDestination: "Nhân sự-nv2", mPoint: 500)]
-    
+
     var sameDateGroup = [SeparateByDateData]() // Store the first index of transaction  of each date group
     
     @Published var isLoading: Bool = false
@@ -91,8 +87,13 @@ class UsedPointHistoryViewModel: ObservableObject, Identifiable {
     }
     
     func reload() {
-        DispatchQueue.main.async {
-            self.loadData(selectedTab: self.selectedTab, searchPattern: self.searchText, fromIndex: self.fromIndex)
+        usedPointsHistoryService.getAPI(pointActionType: selectedTab, searchPattern: searchText, fromIndex: fromIndex) { [weak self] data in
+            DispatchQueue.main.async {
+                for i in data {
+                    self?.allUsedPointsHistoryData.append(i)
+                }
+                self?.countData()
+            }
         }
     }
     

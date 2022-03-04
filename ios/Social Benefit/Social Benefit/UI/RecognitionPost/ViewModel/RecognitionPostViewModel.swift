@@ -11,8 +11,8 @@ import Combine
 class RecognitionPostViewModel: ObservableObject, Identifiable {
     
     // For post content controller
-    @Published var recognitionDetailData = RecognitionDetailData.sampleData
-    @Published var recognitionData = RecognitionData.sampleData[0]
+    @Published var recognitionDetailData = RecognitionDetailData()
+    @Published var recognitionData = RecognitionData()
     
     // For comment controller
     @Published var parentComment = [ParentCommentData]()

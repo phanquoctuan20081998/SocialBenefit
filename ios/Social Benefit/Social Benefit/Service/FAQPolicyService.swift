@@ -10,23 +10,20 @@ import SwiftUI
 import Alamofire
 import SwiftyJSON
 
-class FAQPolicyService {
+class FAQPolicyService: APIServiceProtocol {
     
-    func getAPI(docType: Int, lang_code: String, returnCallBack: @escaping (JSON) -> ()) {
-        let service = BaseAPI()
+    let apiRequest = APIRequest()
+    
+    func request(docType: Int, completion: @escaping (Result<FAQPolicyModel, AppError>) -> Void) {
         
-        let header = ["token": userInfor.token,
-                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
+        let header: HTTPHeaders = ["token": userInfor.token,
+                                   "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
-        let params: Parameters = ["typePage": docType,
-                                  "typeTab": Constants.SystemType.Mobile,
-                                  "lang_code": lang_code]
+        let body = FAQPolicyRequestModel.init(docType: docType)
         
-        service.makeCall(endpoint: Config.API_FAQ_POLICY_GET, method: "POST", header: header, body: params, callback: { (result) in
-            print(result)
-            returnCallBack(result)
-            
-        })
+        apiRequest.request(url: Config.API_FAQ_POLICY_GET, method: .post, headers: header, httpBody: body, type: FAQPolicyModel.self, debugPrint: false) { response in
+            completion(response)
+        }
     }
 }
 

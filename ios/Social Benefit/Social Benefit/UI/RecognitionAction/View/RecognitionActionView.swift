@@ -10,7 +10,7 @@ import Alamofire
 
 struct RecognitionActionView: View {
     
-    @ObservedObject var recognitionActionViewModel = RecognitionActionViewModel()
+    @StateObject var recognitionActionViewModel = RecognitionActionViewModel()
     @ObservedObject var keyboardHandler = KeyboardHandler()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -22,7 +22,8 @@ struct RecognitionActionView: View {
     var body: some View {
         ZStack {
             VStack {
-                Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
+                Spacer()
+                    .frame(height: 70)
                 
                 if userInfor.isLeader {
                     CompanyAndPersonalBudgetView
@@ -57,15 +58,21 @@ struct RecognitionActionView: View {
         .onTapGesture(perform: {
             Utils.dismissKeyboard()
         })
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "", isHaveLogo: true, isHiddenTabBarWhenBack: false, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
-        .edgesIgnoringSafeArea(.all)
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "recognize".localized, isHaveLogo: true, isHiddenTabBarWhenBack: false, isHaveDiffirentHandle: true, diffirentHandle: backButtonClick))
         .background(
-            NavigationLink(destination: NavigationLazyView(UserSearchView().environmentObject(recognitionActionViewModel)),
-                           isActive: $addMoreClick,
-                           label: { EmptyView() })
+            ZStack {
+                NavigationLink(destination: EmptyView(), label: {
+                    EmptyView()
+                })
+                
+                NavigationLink(destination: NavigationLazyView(UserSearchView().environmentObject(recognitionActionViewModel)),
+                               isActive: $addMoreClick,
+                               label: { EmptyView() })
+            }
         )
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .ignoresKeyboard()
     }
 }
 
@@ -186,10 +193,11 @@ extension RecognitionActionView {
             
             Spacer()
             
+            AddMorePersonButton
+            
             if recognitionActionViewModel.selectedTab == RecognitionActionViewModel.Tab.COMPANY {
                 NotePointView
             }
-            AddMorePersonButton
         }
         .background(Color.white)
         .environmentObject(recognitionActionViewModel)
@@ -212,28 +220,32 @@ extension RecognitionActionView {
             countClick()
             
         } label: {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color("nissho_blue"))
-                .frame(width: ScreenInfor().screenWidth * 0.93, height: 50, alignment: .trailing)
-                .overlay(Text("send_point".localized.uppercased())
-                            .bold()
-                            .foregroundColor(.black)
-                            .font(.system(size: 20)))
-            
-                .padding(.top, 5)
-                .padding(.bottom, ScreenInfor().screenHeight * 0.04)
+            VStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color("nissho_blue"))
+                    .overlay(Text("send_point".localized.uppercased())
+                                .bold()
+                                .foregroundColor(.black)
+                                .font(.system(size: 16)))
+            }
+            .frame(maxWidth: .infinity, maxHeight: 60)
+            .padding(EdgeInsets.init(top: 5, leading: 20, bottom: 5, trailing: 20))
         }
     }
     
     var AddMorePersonButton: some View {
-        Text("add_more_person".localized)
-            .frame(width: ScreenInfor().screenWidth * 0.8, alignment: .trailing)
-            .foregroundColor(.blue)
-            .onTapGesture {
+        HStack {
+            Spacer()
+            Button {
                 recognitionActionViewModel.isAddMoreClick = true
                 addMoreClick = true
+            } label: {
+                Text("add_more_person".localized)
+                    .foregroundColor(.blue)
             }
-        
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 20)
     }
     
     var ConfirmPopUpView: some View {

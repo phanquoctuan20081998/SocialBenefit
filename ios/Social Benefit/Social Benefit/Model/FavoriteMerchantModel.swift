@@ -10,6 +10,7 @@ import Foundation
 struct FavoriteMerchantModel: APIResponseProtocol {
     var status: Int?
     var result: [FavoriteMerchantResultModel]?
+    var messages: [String]?
 }
 
 struct FavoriteMerchantResultModel: APIModelProtocol, Identifiable, Equatable, Hashable {

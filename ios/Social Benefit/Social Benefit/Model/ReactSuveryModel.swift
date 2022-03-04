@@ -11,6 +11,7 @@ import SwiftUI
 struct ReactSuveryModel: APIResponseProtocol {
     var status: Int?
     var result: [ReactResultModel]?
+    var messages: [String]?
     
     var imageName: String {
         if let result = result, result.count > 0 {

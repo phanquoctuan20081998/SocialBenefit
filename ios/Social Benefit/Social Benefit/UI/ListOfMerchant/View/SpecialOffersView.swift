@@ -213,12 +213,3 @@ extension SpecialOfferCardView {
         .padding(.bottom, 10)
     }
 }
-
-struct SpecialOffersView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpecialOffersView()
-            .environmentObject(MerchantVoucherDetailViewModel(voucherId: 0))
-            .environmentObject(MerchantVoucherSpecialListViewModel())
-            
-    }
-}

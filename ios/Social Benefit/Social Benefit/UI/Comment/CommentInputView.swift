@@ -20,7 +20,7 @@ struct CommentInputView: View {
         VStack(alignment: .leading) {
             Divider()
             HStack(alignment: .center, spacing: 10) {
-                URLImageView(url: Config.baseURL + userInfor.avatar)
+                URLImageView(url: Config.baseURL + userInfor.avatar, isDefaultAvatar: true)
                     .clipShape(Circle())
                     .frame(width: 30, height: 30)
                     .padding(.all, 3)
@@ -45,7 +45,7 @@ struct CommentInputView: View {
                         }
                     }
                     HStack {
-                        AutoResizeTextField(text: $commentEnvironment.commentString, isFocus: $commentEnvironment.focusComment, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized)
+                        AutoResizeTextField(text: $commentEnvironment.commentString, isFocus: $commentEnvironment.focusComment, minHeight: 30, maxHeight: 80, placeholder: "type_comment".localized, maxLength: 250)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .overlay(RoundedRectangle(cornerRadius: 20)
                                         .stroke(Color.blue.opacity(0.5), lineWidth: 2))

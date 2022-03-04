@@ -34,6 +34,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
     private var notificationListService = NotificationListService()
     private let surveyGetSerivce = SurveyGetService()
     private let notificationService = NotificationService()
+    private let recognitionService = RecognitionService()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -46,7 +47,7 @@ class NotificationViewModel: ObservableObject, Identifiable {
         
     }
     
-    private func loadNotificationItemsData(fromIndex: Int) {
+    public func loadNotificationItemsData(fromIndex: Int) {
         self.isLoading = true
         
         notificationListService.getAPI(nextPageIndex: fromIndex, pageSize: 10) { [weak self] data in
@@ -103,13 +104,38 @@ class NotificationViewModel: ObservableObject, Identifiable {
         }
     }
     
+    public func isMoveToNextPage(notificationItem: NotificationItemData) -> Bool {
+        let type = notificationItem.getType()
+        
+        if (type == Constants.NotificationLogType.NOTIFICATION_HR) ||
+            (type == Constants.NotificationLogType.SYSTEM) {
+            return false
+        }
+        
+        if (type == Constants.NotificationLogType.COMMENT ||
+            type == Constants.NotificationLogType.REACT_COMMENT) {
+            
+            let cmtType = Int(notificationItem.getContentParams()[2]) ?? 0
+            
+            if (cmtType != Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS &&
+                cmtType != Constants.CommentContentType.COMMENT_TYPE_SURVEY &&
+                cmtType != Constants.CommentContentType.COMMENT_TYPE_RECOGNITION) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
     public func changeDesitionationView(notificationItem: NotificationItemData) {
         switch notificationItem.getType() {
         case Constants.NotificationLogType.NOTIFICATION_HR: do {
-            
+            // Not moving anywhere
         }
         case Constants.NotificationLogType.SURVEY: do {
-            self.destinationView = AnyView(SurveyDetailView(contentId: notificationItem.getTypeId()))
+            DispatchQueue.main.async {
+                self.destinationView = AnyView(SurveyDetailView(contentId: notificationItem.getTypeId()))
+            }
         }
         case Constants.NotificationLogType.COMMENT: do {
             switch Int(notificationItem.getContentParams()[2]) ?? 0 {
@@ -117,7 +143,6 @@ class NotificationViewModel: ObservableObject, Identifiable {
                 internalNewsDetailService.getAPI(internalNewsId: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
                     DispatchQueue.main.async {
                         self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
-                        self.isNotLazyLoading = true
                     }
                 }
             }
@@ -125,16 +150,21 @@ class NotificationViewModel: ObservableObject, Identifiable {
                 internalNewsDetailService.getAPI(internalNewsId: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
                     DispatchQueue.main.async {
                         self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
-                        self.isNotLazyLoading = true
                     }
                 }
             }
             case Constants.CommentContentType.COMMENT_TYPE_SURVEY: do {
-                let id = Int(notificationItem.getContentParams()[3]) ?? 0
-                self.destinationView = AnyView(SurveyDetailView.init(contentId: id))
+                DispatchQueue.main.async {
+                    let id = Int(notificationItem.getContentParams()[3]) ?? 0
+                    self.destinationView = AnyView(SurveyDetailView.init(contentId: id))
+                }
             }
             case Constants.CommentContentType.COMMENT_TYPE_RECOGNITION: do {
-                
+                recognitionService.getPostReaction(id: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
+                    DispatchQueue.main.async {
+                        self.destinationView = AnyView(RecognitionPostView(companyData: data))
+                    }
+                }
             }
             default: do { }
             }
@@ -142,66 +172,131 @@ class NotificationViewModel: ObservableObject, Identifiable {
             //Call API
             
         }
-        case Constants.NotificationLogType.COMMENT_RECOGNITION: do {
             
+        case Constants.NotificationLogType.COMMENT_RECOGNITION: do {
+            recognitionService.getPostReaction(id: Int(notificationItem.getContentParams()[1]) ?? 0) { data in
+                DispatchQueue.main.async {
+                    self.destinationView = AnyView(RecognitionPostView(companyData: data))
+                }
+            }
         }
+            
         case Constants.NotificationLogType.BENEFIT: do {
             
             //Call API
             checkBenefitService.getAPI(benefitId: notificationItem.getTypeId()) { error, data in
-                self.benefitDetailViewModel.getData(benefit: data, index: 0)
-                self.destinationView = AnyView(BenefitDetailView()
-                                                .environmentObject(self.benefitDetailViewModel)
-                                                .environmentObject(self.listOfBenefitsViewModel))
+                DispatchQueue.main.async {
+                    self.benefitDetailViewModel.getData(benefit: data, index: 0)
+                    self.destinationView = AnyView(BenefitDetailView()
+                                                    .environmentObject(self.benefitDetailViewModel)
+                                                    .environmentObject(self.listOfBenefitsViewModel))
+                }
             }
         }
-        case Constants.NotificationLogType.RECOGNIZE: do {
             
+        case Constants.NotificationLogType.RECOGNIZE: do {
+            recognitionService.getPostReaction(id: notificationItem.getTypeId()) { data in
+                DispatchQueue.main.async {
+                    self.destinationView = AnyView(RecognitionPostView(companyData: data))
+                }
+            }
         }
+            
         case Constants.NotificationLogType.SYSTEM: do {
            
         }
+            
         case Constants.NotificationLogType.INTERNAL_NEWS: do {
             //Call API
             internalNewsDetailService.getAPI(internalNewsId: notificationItem.getTypeId()) { data in
                 DispatchQueue.main.async {
                     self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
-                    self.isNotLazyLoading = true
+//                    self.isNotLazyLoading = true
                 }
             }
         }
+            
         case Constants.NotificationLogType.BENEFIT_REQUEST: do {
             //Call API
             checkBenefitService.getAPI(benefitId: notificationItem.getTypeId()) { error, data in
-                self.benefitDetailViewModel.getData(benefit: data, index: 0)
-                self.destinationView = AnyView(BenefitDetailView()
-                                                .environmentObject(self.benefitDetailViewModel)
-                                                .environmentObject(self.listOfBenefitsViewModel))
+                DispatchQueue.main.async {
+                    self.benefitDetailViewModel.getData(benefit: data, index: 0)
+                    self.destinationView = AnyView(BenefitDetailView()
+                                                    .environmentObject(self.benefitDetailViewModel)
+                                                    .environmentObject(self.listOfBenefitsViewModel))
+                }
             }
         }
+            
         case Constants.NotificationLogType.BENEFIT_APPROVE: do {
             //Call API
             checkBenefitService.getAPI(benefitId: notificationItem.getTypeId()) { error, data in
-                self.benefitDetailViewModel.getData(benefit: data, index: 0)
-                self.destinationView = AnyView(BenefitDetailView()
-                                                .environmentObject(self.benefitDetailViewModel)
-                                                .environmentObject(self.listOfBenefitsViewModel))
+                DispatchQueue.main.async {
+                    self.benefitDetailViewModel.getData(benefit: data, index: 0)
+                    self.destinationView = AnyView(BenefitDetailView()
+                                                    .environmentObject(self.benefitDetailViewModel)
+                                                    .environmentObject(self.listOfBenefitsViewModel))
+                }
             }
         }
+            
         case Constants.NotificationLogType.SURVEY_REMIND: do {
-            self.destinationView = AnyView(SurveyDetailView(contentId: notificationItem.getTypeId()))
+            DispatchQueue.main.async {
+                self.destinationView = AnyView(SurveyDetailView(contentId: notificationItem.getTypeId()))
+            }
         }
+            
         case Constants.NotificationLogType.REACT_RECOGNITION: do {
-            
+            recognitionService.getPostReaction(id: Int(notificationItem.getContentParams()[1]) ?? 0) { data in
+                DispatchQueue.main.async {
+                    self.destinationView = AnyView(RecognitionPostView(companyData: data))
+                }
+            }
         }
-        case Constants.NotificationLogType.VOUCHER_REMIND: do {
             
+        case Constants.NotificationLogType.VOUCHER_REMIND: do {
+            DispatchQueue.main.async {
+                self.destinationView = AnyView(MyVoucherView())
+                self.isNotLazyLoading = true
+            }
         }
         case Constants.NotificationLogType.VOUCHER_EXPIRED: do {
             
         }
+            
         case Constants.NotificationLogType.NEW_VOUCHER: do {
            
+        }
+            
+        case Constants.NotificationLogType.REACT_COMMENT: do {
+            switch Int(notificationItem.getContentParams()[2]) ?? 0 {
+            case Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS: do {
+                internalNewsDetailService.getAPI(internalNewsId: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
+                    DispatchQueue.main.async {
+                        self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
+                    }
+                }
+            }
+            case Constants.CommentContentType.COMMENT_TYPE_COMMENT: do {
+                internalNewsDetailService.getAPI(internalNewsId: Int(notificationItem.getContentParams()[3]) ?? 0) { data in
+                    DispatchQueue.main.async {
+                        self.destinationView = AnyView(InternalNewsDetailView(internalNewData: data))
+                    }
+                }
+            }
+            case Constants.CommentContentType.COMMENT_TYPE_SURVEY: do {
+                DispatchQueue.main.async {
+                    let id = Int(notificationItem.getContentParams()[3]) ?? 0
+                    self.destinationView = AnyView(SurveyDetailView.init(contentId: id))
+                }
+            }
+            case Constants.CommentContentType.COMMENT_TYPE_RECOGNITION: do {
+                
+            }
+            default: do {
+                
+            }
+            }
         }
             
         default: do { }

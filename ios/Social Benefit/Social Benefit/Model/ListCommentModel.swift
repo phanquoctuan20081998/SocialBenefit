@@ -11,6 +11,7 @@ import SwiftUI
 struct ListCommentModel: APIResponseProtocol {
     var status: Int?
     var result: [CommentResultModel]?
+    var messages: [String]?
     
     var comments: [CommentResultModel] {
         if let result = result {

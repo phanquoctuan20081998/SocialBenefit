@@ -16,7 +16,9 @@ struct DynamicHeightTextField: UIViewRepresentable {
     
     var textfieldType: Int
     var isFirstResponder: Bool = false
-    var onEnd: () -> ()
+    var maxLength: Int?
+    
+    var onEnd: () -> Void
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -67,7 +69,7 @@ struct DynamicHeightTextField: UIViewRepresentable {
 
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(dynamicSizeTextField: self, isFocus: $isFocus)
+        return Coordinator(dynamicSizeTextField: self, isFocus: $isFocus, maxLength: maxLength)
     }
 }
 
@@ -78,11 +80,14 @@ class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
     
     @Binding var isFocus: Bool
     
+    var maxLength: Int?
+    
     weak var textView: UITextView?
 
-    init(dynamicSizeTextField: DynamicHeightTextField, isFocus: Binding<Bool>) {
+    init(dynamicSizeTextField: DynamicHeightTextField, isFocus: Binding<Bool>, maxLength: Int?) {
         self.dynamicHeightTextField = dynamicSizeTextField
         _isFocus = isFocus
+        self.maxLength = maxLength
     }
     
     //Keyboard closed
@@ -99,6 +104,9 @@ class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
 //            textView.resignFirstResponder()
 //            return false
 //        }
+        if let maxLength = maxLength {
+            return textView.text.count + (text.count - range.length) <= maxLength
+        }
         return true
     }
     
@@ -139,6 +147,8 @@ struct AutoResizeTextField: View {
     var textfiledType: Int = Constants.AutoResizeTextfieldType.DEFAULT
 
     @State var textHeight: CGFloat = 0
+    
+    var maxLength: Int?
 
     var textFieldHeight: CGFloat {
 
@@ -174,7 +184,7 @@ struct AutoResizeTextField: View {
                 }
             }
             
-            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, textfieldType: textfiledType, isFirstResponder: isFocus, onEnd: {
+            DynamicHeightTextField(text: $text, height: $textHeight, isFocus: $isFocus, textfieldType: textfiledType, isFirstResponder: isFocus, maxLength: maxLength, onEnd: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }).padding(textfiledType == Constants.AutoResizeTextfieldType.RECOGNITION_ACTION ? 8 : 2)
         }

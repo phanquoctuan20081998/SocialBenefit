@@ -29,7 +29,7 @@ struct SurveyDetailView: View {
     
     var body: some View {
         survetList
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "", isHaveLogo: true))
+            .background(BackgroundViewWithoutNotiAndSearch(isActive: Binding.constant(false), title: "detail_survey".localized, isHaveLogo: true))
         .onAppear() {
             viewModel.refreshData()
             viewModel.request(id: contentId)

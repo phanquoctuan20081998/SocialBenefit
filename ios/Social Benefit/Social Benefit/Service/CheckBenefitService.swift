@@ -31,11 +31,13 @@ class CheckBenefitService {
             let title = result["benefit"]["title"].string ?? ""
             let status =  result["status"].int ?? -1
             let body = result["benefit"]["body"].string ?? ""
-            let logo = result["benefit"]["logo"].string ?? ""
+            var logo = result["benefit"]["logo"].string ?? userInfor.companyLogo
             let typeMember = result["benefit"]["typeMember"].int ?? -1
             let mobileStatus = result["benefit"]["mobileStatus"].int ?? -1
             let actionTime = result["benefit"]["actionTime"].string ?? ""
-            
+            if logo.isEmpty {
+                logo = userInfor.companyLogo
+            }
             let data = BenefitData(id: id, title: title, body: body, logo: logo, typeMember: typeMember, status: status, mobileStatus: mobileStatus, actionTime: actionTime)
             
             returnCallBack(error, data)

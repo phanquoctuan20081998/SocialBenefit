@@ -14,4 +14,11 @@ extension View {
         let resign = #selector(UIResponder.resignFirstResponder)
         UIApplication.shared.sendAction(resign, to: nil, from: nil, for: nil)
     }
+    
+    @ViewBuilder
+    func ignoresKeyboard() -> some View {
+        if #available(iOS 14.0, *) {
+            self.ignoresSafeArea(.keyboard)
+        }
+    }
 }

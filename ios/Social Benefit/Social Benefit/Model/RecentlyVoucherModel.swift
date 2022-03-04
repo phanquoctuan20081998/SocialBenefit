@@ -10,6 +10,7 @@ import Foundation
 struct RecentlyVoucherModel: APIResponseProtocol {
     var status: Int?
     var result: [RecentlyVoucherResultModel]?
+    var messages: [String]?
 }
 
 struct RecentlyVoucherResultModel: APIModelProtocol, Identifiable, Equatable, Hashable {

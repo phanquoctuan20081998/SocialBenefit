@@ -94,63 +94,75 @@ struct BackgroundViewWithoutNotiAndSearch: View {
     var isHaveDiffirentHandle: Bool = false
     var diffirentHandle: () -> () = { }
     
+    var backgroundColor: Color?
+    
     var body: some View {
         VStack {
-            Image("pic_background")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .edgesIgnoringSafeArea([.top])
-                .frame(width: ScreenInfor().screenWidth)
-                .overlay(
-                    HStack {
-                        HStack {
-                            Button(action: {
-                                if !isHaveDiffirentHandle {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                    self.isActive.toggle()
-                                    
-                                    backButtonTapped()
-                                } else {
-                                    diffirentHandle()
-                                }
-                                
-                                if !isHiddenTabBarWhenBack {
-                                    homeScreen.isPresentedTabBar = true
-                                }
-                                
-                            }, label: {
-                                VStack(alignment: .leading) {
-                                    Image(systemName: "arrow.backward")
-                                        .font(.headline)
-                                        .foregroundColor(.blue)
-                                        .padding(.leading)
-                                }
-                            }).padding()
-                            
-                            if !title.isEmpty {
-                                Text(title)
-                                    .bold()
-                                    .foregroundColor(.blue)
-                                    .font(.system(size: 15))
-                            }
-                            
-                            Spacer()
-                        }
+            HStack {
+                Button(action: {
+                    if !isHaveDiffirentHandle {
+                        self.presentationMode.wrappedValue.dismiss()
+                        self.isActive.toggle()
                         
-                        if isHaveLogo {
-                            URLImageView(url: userInfor.companyLogo)
-                                .scaledToFit()
-                                .frame(height: 30, alignment: .trailing)
-                                .padding(.trailing, 25)
-                                .onTapGesture {
-                                    Utils.setTabbarIsRoot()
-                                }
+                        backButtonTapped()
+                    } else {
+                        diffirentHandle()
+                    }
+                    
+                    if !isHiddenTabBarWhenBack {
+                        homeScreen.isPresentedTabBar = true
+                    }
+                    
+                }, label: {
+                    VStack(alignment: .leading) {
+                        Image(systemName: "arrow.backward")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                            .padding(.leading)
+                    }
+                }).padding()
+                
+                if !title.isEmpty {
+                    Text(title)
+                        .bold()
+                        .foregroundColor(.blue)
+                        .font(.system(size: 15))
+                }
+                
+                Spacer()
+                
+                if isHaveLogo {
+                    URLImageView(url: userInfor.companyLogo)
+                        .scaledToFit()
+                        .frame(height: 30, alignment: .trailing)
+                        .padding(.trailing, 25)
+                        .onTapGesture {
+                            Utils.setTabbarIsRoot()
                         }
-                    }.padding(.top, ScreenInfor().screenHeight * 0.05)
-                    ,alignment: .top)
-                .edgesIgnoringSafeArea(.all)
-            
+                }
+            }
             Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(
+            background()
+        )
+    }
+    
+    @ViewBuilder
+    func background() -> some View {
+        if let backgroundColor = backgroundColor {
+           backgroundColor
+                .edgesIgnoringSafeArea(.all)
+        } else {
+            VStack {
+                Image("pic_background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipped()
+                Spacer()
+            }
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }

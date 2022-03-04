@@ -13,6 +13,12 @@ struct HomeView: View {
     @EnvironmentObject var internalNewsViewModel: InternalNewsViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
     
+    @State private var isPresentedSurvey = false
+    
+    @State private var isPresentedSurveyDetail = false
+    
+    @State private var surveyDetailId: Int?
+    
     var body: some View {
         ZStack {
             VStack {
@@ -32,6 +38,9 @@ struct HomeView: View {
                             RecognitionsBannerView()
                             PromotionsBannerView()
                         }
+                        
+                        surveyList()
+                        
                     }.background(ScrollViewConfigurator {
                         $0?.bounces = false               // << here !!
                     })
@@ -44,9 +53,84 @@ struct HomeView: View {
             .onAppear {
                 homeScreenViewModel.isPresentedTabBar = true
                 homeViewModel.loadWalletInfor()
+                homeViewModel.requestHomeSurvey()
             }
+            .errorPopup($homeViewModel.error)
         }
         .navigationBarHidden(true)
+    }
+    
+    @ViewBuilder
+    func surveyList() -> some View {
+        if homeViewModel.showHomeSurvey() {
+            VStack {
+                
+                TopTitleView.init(title: "survey".localized) {
+                    self.isPresentedSurvey = true
+                }
+                
+                Divider().frame(width: ScreenInfor().screenWidth * 0.9)
+                
+                Spacer().frame(height: 15)
+                
+                if #available(iOS 14.0, *) {
+                    let rows = [
+                        GridItem(.fixed(100)),
+                        GridItem(.fixed(100)),
+                    ]
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHGrid(rows: rows, spacing: 10) {
+                            ForEach(homeViewModel.listSurvey, id: \.self) { item in
+                                HStack {
+                                    HStack(alignment: .top, spacing: 10) {
+                                        Image("survey_0909")
+                                            .resizable()
+                                            .frame(width: 70, height: 70)
+                                            .scaledToFit()
+                                            .clipped()
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            Text(item.deadlineText)
+                                                .bold()
+                                                .font(.system(size: 14))
+                                            Text(item.surveyNameText)
+                                                .font(.system(size: 14))
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                                    .padding(10)
+                                    .background(Color.white)
+                                }
+                                .frame(width: ScreenInfor().screenWidth - 100, height: 100, alignment: .leading)
+                                .overlay(RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.init("nissho_blue"), lineWidth: 1))
+                                .onTapGesture {
+                                    surveyDetailId = item.id
+                                    isPresentedSurveyDetail = true
+                                }
+                            }
+                        }
+                    }
+                    .padding(EdgeInsets.init(top: 5, leading: 20, bottom: 5, trailing: 20))
+                }
+            }
+            .background(
+                ZStack {
+                    NavigationLink(
+                        destination: NavigationLazyView(ListSurveyView()),
+                        isActive: $isPresentedSurvey,
+                        label: { EmptyView() })
+                    
+                    if let surveyDetailId = surveyDetailId {
+                        NavigationLink(
+                            destination: NavigationLazyView(SurveyDetailView.init(contentId: surveyDetailId)),
+                            isActive: $isPresentedSurveyDetail,
+                            label: { EmptyView() })
+                    }
+                    
+                }
+            )
+        }
     }
 }
 
@@ -79,5 +163,15 @@ extension UIView {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreenView(selectedTab: "house")
+    }
+}
+
+extension View {
+    
+    @ViewBuilder
+    func showFullScreen<Content>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content) -> some View where Content : View {
+        if #available(iOS 14.0, *) {
+            self.fullScreenCover(isPresented: isPresented, onDismiss: onDismiss, content: content)
+        }
     }
 }

@@ -60,20 +60,17 @@ struct Constants {
     }
     
     struct CommentContentType {
-        static var COMMENT_TYPE_RECOGNITION = 0
         static var COMMENT_TYPE_INTERNAL_NEWS = 1
         static var COMMENT_TYPE_COMMENT = 2
         static var COMMENT_TYPE_SURVEY = 3
+        static var COMMENT_TYPE_RECOGNITION = 4
     }
-    
+
     // Language...
     struct LANGUAGE {
         static let ENG = 0
         static let VN = 1
-    }
-    
-    static let LANGUAGE_CODE = ["ENG", "VIE"]
-    static let LANGUAGE_TAB = ["en", "vn"]
+    }    
     
     // Change Password Error...
     struct ChangePasswordErrors {
@@ -146,6 +143,7 @@ struct Constants {
         static let VOUCHER_REMIND = 11
         static let VOUCHER_EXPIRED = 12
         static let NEW_VOUCHER = 13
+        static let REACT_COMMENT = 14
     }
     
     // Merchant Special
@@ -171,9 +169,9 @@ struct Constants {
         static let Mobile = 2
     }
     
-    struct DocumentType {
-        static let FAQ = 0
-        static let PolicyTerm = 1
+    enum DocumentType: Int {
+        case FAQ = 0
+        case PolicyTerm = 1
     }
     
     static let APPID = "1601163900"
@@ -191,11 +189,23 @@ struct Constants {
                                     BackgroundSearch(tab: "recognize", icon: "star.fill", color: Color.yellow, destination: 8, functionId: FuctionId.COMPANY_BUDGET_POINT),
                                     BackgroundSearch(tab: "recognize_ranking", icon: "ic_medal_gold", color: Color.white, destination: 9, functionId: FuctionId.COMPANY_BUDGET_POINT),
                                     BackgroundSearch(tab: "used_points_history", icon: "clock.arrow.circlepath", color: Color.gray, destination: 10, functionId: FuctionId.COMPANY_BUDGET_POINT)]
+    
+    static var showFAQ = false
+    static var showPolicy = false
 }
 
 enum AppLanguage: String, CaseIterable {
     case en
     case vi
+    
+    var code: String {
+        switch self {
+        case .en:
+            return "ENG"
+        case .vi:
+            return "VIE"
+        }
+    }
 }
 
 struct BackgroundSearch {

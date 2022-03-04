@@ -15,6 +15,7 @@ class RecognitionViewModel: ObservableObject, Identifiable {
     @Published var myRank: Int = 0
     @Published var selectedTab: Int = 0
     
+    @Published var isLoadingRanking: Bool = false
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false {
         didSet {
@@ -55,30 +56,32 @@ class RecognitionViewModel: ObservableObject, Identifiable {
                     
                     self?.isLoading = false
                     self?.isRefreshing = false
+                    
+                    self?.countData()
                 }
             }
         } else {
-            recognitionService.getListByEmployee(employeeId: userInfor.employeeId, fromIndex: fromIndex) { [weak self] data in
+            recognitionService.getListByEmployee(employeeId: userInfor.employeeId, fromIndex: fromIndex, onlyCurrentMonth: false) { [weak self] data in
                 DispatchQueue.main.async {
                     self?.allRecognitionPost = data
                     
                     self?.isLoading = false
                     self?.isRefreshing = false
+                    
+                    self?.countData()
                 }
             }
         }
-        
-        countData()
     }
     
     func loadTop3Recognition() {
-        self.isLoading = true
+        self.isLoadingRanking = true
         recognitionService.getTop3Recognition { [weak self] data in
             DispatchQueue.main.async {
             
                 self?.top3Recognition = data
                 
-                self?.isLoading = false
+                self?.isLoadingRanking = false
                 self?.isRefreshing = false
             }
         }
@@ -105,7 +108,6 @@ class RecognitionViewModel: ObservableObject, Identifiable {
         }
         
         self.sameDateGroup = FindNewsFeedHaveSameDateFirstIndex(timeArray: timeArray)
-        
     }
     
     func loadSelectedTab(selectedTab: Int) {
@@ -125,36 +127,27 @@ class RecognitionViewModel: ObservableObject, Identifiable {
     }
     
     func reloadData() {
-        
-        self.isLoading = true
-        
         if selectedTab == 0 {
             recognitionService.getListByCompany(fromIndex: fromIndex) { [weak self] data in
-                
                 DispatchQueue.main.async {
                     for i in data {
                         self?.allRecognitionPost.append(i)
                     }
                     
-                    self?.isLoading = false
-                    self?.isRefreshing = false
+                    self?.countData()
                 }
             }
         } else {
-            recognitionService.getListByEmployee(employeeId: userInfor.employeeId, fromIndex: fromIndex) { [weak self] data in
+            recognitionService.getListByEmployee(employeeId: userInfor.employeeId, fromIndex: fromIndex, onlyCurrentMonth: false) { [weak self] data in
                 DispatchQueue.main.async {
                     for i in data {
                         self?.allRecognitionPost.append(i)
                     }
                     
-                    self?.isLoading = false
-                    self?.isRefreshing = false
+                    self?.countData()
                 }
             }
         }
-        
-        loadMyRank()
-        loadTop3Recognition()
     }
     
     func isNewDate(index: Int) -> Int {

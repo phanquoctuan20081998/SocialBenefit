@@ -17,6 +17,7 @@ enum BuyInforStatus {
 struct BuyInforVoucherModel: APIResponseProtocol {
     var status: Int?
     var result: BuyInforVoucherResultModel?
+    var messages: [String]?
 }
 
 struct BuyInforVoucherResultModel: APIModelProtocol {

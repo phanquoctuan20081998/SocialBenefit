@@ -219,6 +219,10 @@ struct BuyVoucherView: View {
                         if self.numberOfVoucher == buyInforModel?.maxCanBuyNumber  {
                             inforText = "limit_bought_reached".localized
                         }
+                        
+                        if noEnoughPointWithNumberOfVoucher() {
+                            inforText = "no_enough_point".localized
+                        }
                     }, label: {
                         Image(systemName: "plus.circle.fill")
                     })
@@ -233,7 +237,20 @@ struct BuyVoucherView: View {
         if let maxCanBuyNumber = buyInforModel?.maxCanBuyNumber, numberOfVoucher < maxCanBuyNumber {
             return true
         }
+        
+        if noEnoughPointWithNumberOfVoucher() {
+            return false
+        }
+        
         if buyInforModel?.maxCanBuyNumber == nil {
+            return true
+        }        
+        
+        return false
+    }
+    
+    func noEnoughPointWithNumberOfVoucher() -> Bool {
+        if let voucherPoint = buyInforModel?.voucherPoint, let remainPoint = buyInforModel?.remainPoint, voucherPoint * (numberOfVoucher + 1) > remainPoint {
             return true
         }
         return false

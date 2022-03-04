@@ -29,7 +29,7 @@ extension SortView {
             HStack(spacing: 10)  {
                 Text("sort".localized)
                     .font(.system(size: 13))
-                Image(systemName: "line.3.horizontal.decrease")
+                Image(systemName: "line.horizontal.3.decrease")
                     .resizable()
                     .frame(width: 10, height: 10)
             }
@@ -62,8 +62,6 @@ extension SortView {
                                         
                                         DispatchQueue.main.async {
                                             self.offersViewModel.filterConditionItems = "[{\"filterType\":\"\(Constants.FilterAndSortType[i])\",\"sortType\":\"\(Constants.SortDirectionType[0])\"}]"
-                                            
-                                            print(self.offersViewModel.filterConditionItems)
                                         }
                     
                                     }

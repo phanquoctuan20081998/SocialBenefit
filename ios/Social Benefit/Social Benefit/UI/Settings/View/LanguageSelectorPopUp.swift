@@ -23,36 +23,32 @@ extension LanguageSelectorPopUp {
     
     var PopUpContent: some View {
         VStack(alignment: .leading, spacing: 15) {
-            ForEach(Constants.LANGUAGE_TAB.indices) { i in
-                Text(Constants.LANGUAGE_TAB[i].localized)
+            ForEach(AppLanguage.allCases.indices) { i in
+                let lang = AppLanguage.allCases[i]
+                Text(lang.rawValue.localized)
                     .onTapGesture {
                         withAnimation {
-                            settingsViewModel.selectedlanguage = i
+                            settingsViewModel.selectedlanguage = lang
                             
-                            switch settingsViewModel.selectedlanguage {
-                            case 0: Bundle.setLanguage(lang: AppLanguage.en)
-                            case 1: Bundle.setLanguage(lang: AppLanguage.vi)
-                            default: Bundle.setLanguage(lang: AppLanguage.en)
-                            }
-//                            Bundle.setLanguage(lang: Constants.LANGUAGE_TAB[i])
-                            UserDefaults.standard.set(i, forKey: "language")
+                            Bundle.setLanguage(lang: lang)
                             isPresentedPopup = false
                         }
                     }
             }
-        }.font(.system(size: 15))
-            .padding(.horizontal, 20)
-            .frame(width: ScreenInfor().screenWidth, height: 200)
-            .background(
-                RoundedCornersShape(radius: 40, corners: [.topLeft, .topRight])
-                    .fill(Color.white)
-            )
-            .background(Rectangle()
-                            .edgesIgnoringSafeArea(.bottom)
-                            .offset(y: 50)
-                            .foregroundColor(.white))
-            .animation(.easeInOut)
-            .transition(.move(edge: .bottom).combined(with: .opacity))
+        }
+        .font(.system(size: 15))
+        .padding(.horizontal, 20)
+        .frame(width: ScreenInfor().screenWidth, height: 200)
+        .background(
+            RoundedCornersShape(radius: 40, corners: [.topLeft, .topRight])
+                .fill(Color.white)
+        )
+        .background(Rectangle()
+                        .edgesIgnoringSafeArea(.bottom)
+                        .offset(y: 50)
+                        .foregroundColor(.white))
+        .animation(.easeInOut)
+        .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }
 

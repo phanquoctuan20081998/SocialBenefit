@@ -22,6 +22,8 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
     
     @Published var isLoading: Bool = false
     
+    @Published var logoBenefit: String = ""
+    
     private let checkBenefitService = CheckBenefitService()
     private var benefitDetailService = BenefitDetailService(id: 0)
     
@@ -40,6 +42,7 @@ class BenefitDetailViewModel: ObservableObject, Identifiable {
                 if error.isEmpty {
                     self.applyStatus = data.status
                     self.typeMember = data.typeMember
+                    self.logoBenefit = data.logo
                 } else if error == MessageID.C00189_E {
                     self.applyStatus = 4 // Assign button to pending
                 } else {

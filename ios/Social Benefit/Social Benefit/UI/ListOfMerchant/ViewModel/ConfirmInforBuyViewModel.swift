@@ -17,14 +17,21 @@ class ConfirmInforBuyViewModel: ObservableObject, Identifiable {
     @Published var buyVoucherResponse = BuyVoucherData()
     @Published var isPresentedError = false
     
+    // Loading & refreshing
+    @Published var isLoading: Bool = false
+    
     private var confirmInforBuyService = ConfirmInforBuyService()
     private var walletInforService = WalletInforService()
 
     
     func getBuyVoucherInfor(voucherId: Int) {
+        self.isLoading = true
+        
         self.confirmInforBuyService.getAPI(voucherId: voucherId) { data in
             DispatchQueue.main.async {
                 self.buyVoucher = data
+                
+                self.isLoading = false
             }
         }
     }

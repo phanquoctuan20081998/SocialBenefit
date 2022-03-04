@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class EmployeeRankingViewModel: ObservableObject, Identifiable {
-    @Published var employeeInfor = userInfor
+    @Published var employeeInfor = UserInfor()
     @Published var employeeRank = RankingOfRecognitionData.sampleData[0]
     @Published var employeeRecognitionList = RecognitionData.sampleData
     
@@ -42,7 +42,6 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
         self.isLoading = true
         
         employeeInforService.getAPI(employeeId: employeeId) { [weak self] data in
-            
             DispatchQueue.main.async {
                 self?.employeeInfor = data
                 
@@ -69,17 +68,16 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
         self.isLoading = true
         let employeeIdString = String(employeeId)
         
-        recognitionService.getListByEmployee(employeeId: employeeIdString, fromIndex: fromIndex) { [weak self] data in
+        recognitionService.getListByEmployee(employeeId: employeeIdString, fromIndex: fromIndex, onlyCurrentMonth: true) { [weak self] data in
             DispatchQueue.main.async {
                 
                 self?.employeeRecognitionList = data
                 
+                self?.countData()
                 self?.isLoading = false
                 self?.isRefreshing = false
             }
         }
-        
-        countData()
     }
     
     func countData() {
@@ -89,7 +87,6 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
         for data in self.employeeRecognitionList {
             timeArray.append(data.getDate())
         }
-        
         self.sameDateGroup = FindNewsFeedHaveSameDateFirstIndex(timeArray: timeArray)
         
     }
@@ -102,7 +99,17 @@ class EmployeeRankingViewModel: ObservableObject, Identifiable {
     }
     
     func reloadData() {
-        self.loadRecognitionData(employeeId: employeeId, fromIndex: fromIndex)
+        let employeeIdString = String(employeeId)
+        
+        recognitionService.getListByEmployee(employeeId: employeeIdString, fromIndex: fromIndex, onlyCurrentMonth: true) { [weak self] data in
+            DispatchQueue.main.async {
+                for i in data {
+                    self?.employeeRecognitionList.append(i)
+                }
+                
+                self?.countData()
+            }
+        }
     }
     
     func isNewDate(index: Int) -> Int {

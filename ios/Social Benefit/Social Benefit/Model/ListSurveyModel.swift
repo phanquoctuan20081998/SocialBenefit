@@ -10,9 +10,11 @@ import Foundation
 struct ListSurveyModel: APIResponseProtocol {
     var status: Int?
     var result: [SurveyResultModel]?
+    var messages: [String]?
 }
 
-struct SurveyResultModel: Codable, Identifiable {
+struct SurveyResultModel: APIModelProtocol, Identifiable, Hashable, Equatable {
+    
     var id: Int
     var surveyName: String?
     var deadlineDate: TimeInterval?
@@ -72,10 +74,15 @@ struct SurveyResultModel: Codable, Identifiable {
         }
         return ""
     }
+    
+    static func == (lhs: SurveyResultModel, rhs: SurveyResultModel) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 
-struct SurveyQuestionList: Codable, Identifiable {
+struct SurveyQuestionList: APIModelProtocol, Identifiable, Hashable, Equatable {
+   
     var version: Int?
     var active: Bool?
     var id: Int?
@@ -97,9 +104,13 @@ struct SurveyQuestionList: Codable, Identifiable {
         text += questionName ?? ""
         return text
     }
+    
+    static func == (lhs: SurveyQuestionList, rhs: SurveyQuestionList) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
-struct SurveyChoiceList: Codable {
+struct SurveyChoiceList: APIModelProtocol, Equatable, Hashable {
     var version: Int?
     var active: Bool?
     var id: Int?
@@ -109,4 +120,8 @@ struct SurveyChoiceList: Codable {
     var numberAnswer: Int?
     var otherChoice: Bool?
     var customAnswer: Bool?
+    
+    static func == (lhs: SurveyChoiceList, rhs: SurveyChoiceList) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

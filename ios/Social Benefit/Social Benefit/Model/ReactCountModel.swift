@@ -10,6 +10,7 @@ import Foundation
 struct ReactCountModel: APIResponseProtocol {
     var status: Int?
     var result: [ReactCountResultModel]?
+    var messages: [String]?
     
     var list: [ReactCountResultModel] {
         if var result = result {

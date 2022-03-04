@@ -22,7 +22,8 @@ struct MyVoucherView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
+            Spacer()
+                .frame(height: 70)
             
             SearchView
             
@@ -53,7 +54,6 @@ struct MyVoucherView: View {
         .overlay(BuyVoucherPopUp(isPresentPopUp: $confirmInforBuyViewModel.isPresentedPopup, isReloadSpecialVoucher: .constant(true), isReloadAllVoucher: .constant(true)))
         
         .environmentObject(myVoucherViewModel)
-        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }

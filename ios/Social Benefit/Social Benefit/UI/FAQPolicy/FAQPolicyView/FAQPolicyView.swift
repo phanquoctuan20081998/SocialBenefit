@@ -10,11 +10,13 @@ import SwiftUI
 
 struct FAQPolicyView: View {
     
-    @ObservedObject var faqPolicyViewModel: FAQPolicyViewModel
+    let docType: Constants.DocumentType
+    
+    @StateObject var faqPolicyViewModel = FAQPolicyViewModel()
                                                                             
     var body: some View {
         ZStack {
-            BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: faqPolicyViewModel.getTitle(), isHaveLogo: false)
+            BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: faqPolicyViewModel.getTitle(docType: docType), isHaveLogo: false)
             
             if faqPolicyViewModel.isLoading {
                 LoadingPageView()
@@ -30,16 +32,11 @@ struct FAQPolicyView: View {
                     }
                 }
             }
-            
-            // Error
-            ErrorMessageView(error: faqPolicyViewModel.error, isPresentedError: $faqPolicyViewModel.isPresentError)
         }
+        .onAppear() {
+            faqPolicyViewModel.loadData(docType: docType)
+        }
+        .errorPopup($faqPolicyViewModel.error)
         .navigationBarHidden(true)
-    }
-}
-
-struct FAQView_Previews: PreviewProvider {
-    static var previews: some View {
-        FAQPolicyView(faqPolicyViewModel: FAQPolicyViewModel(docType: Constants.DocumentType.FAQ))
     }
 }

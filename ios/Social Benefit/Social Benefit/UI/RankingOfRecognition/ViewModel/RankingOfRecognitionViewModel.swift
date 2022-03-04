@@ -12,7 +12,7 @@ class RankingOfRecognitionViewModel: ObservableObject, Identifiable {
     @Published var fromIndex: Int = 0
     @Published var limit: Int = 10
     //    @Published var allRankingList = [RankingOfRecognitionData]()
-    @Published var allRankingList = RankingOfRecognitionData.sampleData
+    @Published var allRankingList: [RankingOfRecognitionData] = []
     
     @Published var myRank = RankingOfRecognitionData.sampleData[0]
     

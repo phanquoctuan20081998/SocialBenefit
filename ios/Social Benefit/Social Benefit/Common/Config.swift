@@ -42,6 +42,19 @@ struct Config {
         }
     }
     
+    static var webAdminURL: String {
+        switch xcodeConfig {
+        case .dev:
+            return "http://113.190.243.99:4044"
+        case .ft:
+            return "http://113.190.243.99:4066"
+        case .prod:
+            return "http://113.190.243.99:4000"
+        case .it:
+            return "http://113.190.243.99:4022"
+        }
+    }
+    
     static let API_LOGIN = "/employee/login"
     static let API_EMPLOYEE_FORGOTPASS = "/employee/forgotpassword"
     static let API_EMPLOYEE_CHANGEPASSWORD = "/employee/changepassword"
@@ -116,4 +129,9 @@ struct Config {
     static let API_FAQ_POLICY_GET = "/mobile/faq_policy/get"
     
     static let API_RECENT_VIEW_VOUCHER = "/merchant-voucher-recent-view"
+    
+    static let API_HOME_SURVEY = "/mobile/survey/home/list"
+    
+    static let API_ONBOARING_VN = "/onBoarding_vn.json"
+    static let API_ONBOARING = "/onBoarding.json"
 }

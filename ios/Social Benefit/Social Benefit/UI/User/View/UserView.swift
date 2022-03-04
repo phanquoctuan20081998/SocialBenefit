@@ -15,7 +15,7 @@ struct UserView: View {
     @EnvironmentObject var homescreen: HomeScreenViewModel
     @EnvironmentObject var customerSupportViewModel: CustomerSupportViewModel
     
-    @ObservedObject var userViewModel = UserViewModel()
+    @StateObject var userViewModel = UserViewModel()
     
     @State var selection: Int? = nil
     @State var isRate: Bool = false
@@ -49,13 +49,17 @@ struct UserView: View {
                         }
                     }
                     
-                    NavigationLink(destination: NavigationLazyView(RecentlyVoucherView()), tag: 13, selection: $selection) {
-                        FunctionCardView(thumnail: "clock", thumailColor: Color.init(red: 3/255, green: 218/255, blue: 197/255), functionName: "recent_view_voucher".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 13)
+                    if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                        NavigationLink(destination: NavigationLazyView(RecentlyVoucherView()), tag: 13, selection: $selection) {
+                            FunctionCardView(thumnail: "clock", thumailColor: Color.init(red: 3/255, green: 218/255, blue: 197/255), functionName: "recent_view_voucher".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 13)
+                        }
                     }
                     
-                    NavigationLink(destination: NavigationLazyView(FavoriteMerchantsView()), tag: 12, selection: $selection) {
-                        FunctionCardView(thumnail: "bookmark.fill", thumailColor: Color.orange, functionName: "favorite_merchants".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 12)
-                    }
+                    if isDisplayFunction(Constants.FuctionId.COMPANY_BUDGET_POINT) {
+                        NavigationLink(destination: NavigationLazyView(FavoriteMerchantsView()), tag: 12, selection: $selection) {
+                            FunctionCardView(thumnail: "bookmark.fill", thumailColor: Color.orange, functionName: "favorite_merchants".localized, chevron: true, isPresentTabBar: false, selection: $selection, isRate: .constant(false), selectedNumber: 12)
+                        }
+                    }                    
                     
                     if isDisplayFunction(Constants.FuctionId.BENEFIT) {
                         NavigationLink(destination: NavigationLazyView(ListOfBenefitsView()), tag: 4, selection: $selection) {
@@ -85,13 +89,13 @@ struct UserView: View {
                     
                     if userViewModel.showFAQ {
                         NavigationLink(destination: NavigationLazyView(FAQView()), tag: 10, selection: $selection) {
-                            FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
+                            FunctionCardView(thumnail: "questionmark.circle.fill", thumailColor: Color.blue, functionName: "faq".localized, chevron: true, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 10)
                         }
                     }
                     
                     if userViewModel.showPolicy {
                         NavigationLink(destination: NavigationLazyView(PolicyView()), tag: 11, selection: $selection) {
-                            FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: false, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 11)
+                            FunctionCardView(thumnail: "checkmark.shield.fill", thumailColor: Color.green, functionName: "policy".localized, chevron: true, isPresentTabBar: true, selection: $selection, isRate: $isRate, selectedNumber: 11)
                         }
                     }
                     
@@ -139,9 +143,10 @@ struct UserView: View {
             SafariView(url: URL(string: Constants.RATEAPPURL)!)
         })
         .background(BackgroundViewWithNotiAndSearch())
-        
         .onAppear {
             homescreen.isPresentedTabBar = true
+            userViewModel.isDisplayFAQ()
+            userViewModel.isDisplayPolicy()
         }
     }
 }
@@ -179,7 +184,7 @@ struct UserInforView: View {
             HStack {
                 HStack(spacing: 15) {
                     
-                    URLImageView(url: userInfor.avatar)
+                    URLImageView(url: userInfor.avatar, isDefaultAvatar: true)
                         .frame(width: 50, height: 50, alignment: .center)
                         .clipShape(Circle())
                         .padding(.all, 5)

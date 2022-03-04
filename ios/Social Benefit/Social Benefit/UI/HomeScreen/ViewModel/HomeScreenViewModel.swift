@@ -13,4 +13,32 @@ class HomeScreenViewModel: ObservableObject, Identifiable {
     @Published var isPresentedTabBar = true
     @Published var isPresentedSearchView = false
     @Published var isPresentOtherPopUp = false
+    
+    private let faqService = FAQPolicyService()
+    private let policyService = FAQPolicyService()
+    
+    init() {
+        requestFaqPolicy()
+    }
+    
+    func requestFaqPolicy() {
+        faqService.request(docType: Constants.DocumentType.FAQ.rawValue) { response in
+            switch response {
+            case .success(let value):
+                Constants.showFAQ = value.hasContent
+            case .failure(_):
+                break
+            }
+        }
+        
+        policyService.request(docType: Constants.DocumentType.PolicyTerm.rawValue) { response in
+            switch response {
+            case .success(let value):
+                Constants.showPolicy = value.hasContent
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
 }

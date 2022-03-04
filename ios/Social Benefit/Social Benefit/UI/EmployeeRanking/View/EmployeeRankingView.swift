@@ -13,6 +13,9 @@ struct EmployeeRankingView: View {
     @ObservedObject var employeeRankingViewModel: EmployeeRankingViewModel
     @State private var proxy: AmzdScrollViewProxy? = nil
     
+    @State var isRecognitionPostClick = false
+    @State var selectedPost = RecognitionData()
+    
     // Infinite ScrollView controller
     @State var isShowProgressView: Bool = false
     
@@ -23,6 +26,7 @@ struct EmployeeRankingView: View {
     var body: some View {
         VStack {
             Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
+            
             EmployeeInforView
             Spacer()
             RefreshableScrollView(height: 70, refreshing: self.$employeeRankingViewModel.isRefreshing) {
@@ -34,9 +38,17 @@ struct EmployeeRankingView: View {
             }.padding(.top)
             Spacer()
         }
-        
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "employee_rank".localized, isHaveLogo: true))
+        .background(
+            ZStack {
+                if self.selectedPost.id != 0 {
+                    NavigationLink(destination: NavigationLazyView(RecognitionPostView(companyData: selectedPost)),
+                                   isActive: $isRecognitionPostClick,
+                                   label: { EmptyView() })
+                }
+            }
+        )
         .edgesIgnoringSafeArea(.all)
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "employee_rank".localized, isHaveLogo: true))
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
@@ -46,7 +58,7 @@ extension EmployeeRankingView {
     
     var EmployeeInforView: some View {
         VStack {
-            URLImageView(url: employeeRankingViewModel.employeeInfor.avatar)
+            URLImageView(url: employeeRankingViewModel.employeeInfor.avatar, isDefaultAvatar: true)
                 .clipShape(Circle())
                 .frame(width: 80, height: 80)
                 .padding(.all, 7)
@@ -64,7 +76,11 @@ extension EmployeeRankingView {
                         .bold()
                 }.font(.system(size: 20))
                 
-                Text(employeeRankingViewModel.employeeInfor.department)
+                HStack(spacing: 0) {
+                    Text(employeeRankingViewModel.employeeInfor.position)
+                    Text(" - ")
+                    Text(employeeRankingViewModel.employeeInfor.department)
+                }
                 
                 Spacer().frame(height: 10)
                 
@@ -76,7 +92,7 @@ extension EmployeeRankingView {
                         .foregroundColor(.blue)
                 }
                 
-            }.font(.system(size: 16))
+            }.font(.system(size: 13))
         }
     }
     
@@ -92,7 +108,7 @@ extension EmployeeRankingView {
                         let i = self.employeeRankingViewModel.isNewDate(index: index)
                         
                         if i != -1 {
-                            Text(employeeRankingViewModel.sameDateGroup[i].date)
+                            Text(getDateSinceToday(time: employeeRankingViewModel.sameDateGroup[i].date).localized)
                                 .bold()
                                 .font(.system(size: 14))
                                 .frame(width: ScreenInfor().screenWidth * 0.9, alignment: .leading)
@@ -102,6 +118,13 @@ extension EmployeeRankingView {
  
                         RecognitionNewsCardView(companyData: employeeRankingViewModel.employeeRecognitionList[index], index: index, proxy: $proxy, newsFeedType: Constants.RecognitionNewsFeedType.YOUR_HISTORY, isHaveReactAndCommentButton: true)
                                 .foregroundColor(.black)
+                                .onTapGesture(perform: {
+                                    self.isRecognitionPostClick = true
+                                    self.selectedPost = employeeRankingViewModel.employeeRecognitionList[index]
+                                    
+                                    // Click count
+                                    countClick(contentId: employeeRankingViewModel.employeeRecognitionList[index].getId(), contentType: Constants.ViewContent.TYPE_RECOGNITION)
+                                })
                        
                         
                         Spacer().frame(height: 20)

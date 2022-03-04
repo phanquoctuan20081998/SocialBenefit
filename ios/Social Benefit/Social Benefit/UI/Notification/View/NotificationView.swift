@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotificationView: View {
     
-    @ObservedObject var notificationViewModel = NotificationViewModel()
+    @StateObject var notificationViewModel = NotificationViewModel()
     
     @State var isMoveToNextPage = false
     
@@ -23,7 +23,8 @@ struct NotificationView: View {
                 LoadingPageView()
                 Spacer()
             } else {
-                Spacer().frame(height: ScreenInfor().screenHeight * 0.13)
+                Spacer()
+                    .frame(height: 70)
                 
                 RefreshableScrollView(height: 70, refreshing: self.$notificationViewModel.isRefreshing) {
                     NotificationListView
@@ -31,21 +32,31 @@ struct NotificationView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
-            notificationViewModel.isRefreshing = true
+            notificationViewModel.loadNotificationItemsData(fromIndex: 0)
+            notificationViewModel.destinationView = AnyView(LoadingView().navigationBarHidden(true))
         }
         .background(
             ZStack {
-                NavigationLink(destination: EmptyView()) {
-                    EmptyView()
+                if notificationViewModel.isNotLazyLoading {
+                    NavigationLink(destination: EmptyView()) {
+                        EmptyView()
+                    }
+                    NavigationLink(destination: notificationViewModel.destinationView, isActive: $isMoveToNextPage, label: {
+                        EmptyView()
+                    })
+                } else {
+                    NavigationLink(destination: EmptyView()) {
+                        EmptyView()
+                    }
+                    NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView), isActive: $isMoveToNextPage, label: {
+                        EmptyView()
+                    })
                 }
-                NavigationLink(destination: NavigationLazyView(notificationViewModel.destinationView.navigationBarHidden(true)), isActive: $isMoveToNextPage, label: {
-                    EmptyView()
-                }).isDetailLink(false)
             }
         )
         .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "notification".localized, isHaveLogo: true, isHiddenTabBarWhenBack: false, backButtonTapped: notificationViewModel.updateReadNotification))
-        .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
     }
 }
@@ -61,7 +72,10 @@ extension NotificationView {
                             DispatchQueue.main.async {
                                 notificationViewModel.changeDesitionationView(notificationItem: notificationViewModel.allNotificationItems[index])
                                 notificationViewModel.updateReadNotification(items: [notificationViewModel.allNotificationItems[index]])
-                                self.isMoveToNextPage = true
+                                
+                                if notificationViewModel.isMoveToNextPage(notificationItem: notificationViewModel.allNotificationItems[index]) {
+                                    self.isMoveToNextPage = true
+                                }
                             }
                         }
                     Spacer().frame(height: 20)

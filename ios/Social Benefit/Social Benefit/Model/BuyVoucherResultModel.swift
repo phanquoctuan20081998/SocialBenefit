@@ -10,6 +10,7 @@ import Foundation
 struct BuyVoucherModel: APIResponseProtocol {
     var status: Int?
     var result: BuyVoucherResultModel?
+    var messages: [String]?
 }
 
 struct BuyVoucherResultModel: APIModelProtocol {

@@ -50,6 +50,13 @@ class ReactViewModel: ObservableObject, Identifiable {
     }
     
     // Recognition...
+    init(contentId: Int, contentType: Int) {
+        initComment(contentId: contentId)
+        self.contentType = contentType
+        self.getListReact(id: contentId)
+//        self.requestListComment(id: contentId)
+    }
+    
     init(myReact: Int, reactTop1: Int, reactTop2: Int) {
         if myReact != -1 {
             isReacted = true 
@@ -110,7 +117,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     
     func getListReact(id: Int?) {
         isLoadingReact = true
-        listReactService.request(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { response in
+        listReactService.request(contentId: id, contentType: contentType) { response in
             switch response {
             case .success(let value):
                 self.reactModel = value
@@ -125,7 +132,7 @@ class ReactViewModel: ObservableObject, Identifiable {
     func sendReaction(contentId: Int) {
         isLoadingReact = true
         addReactService.request(contentId: contentId,
-                                contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS,
+                                contentType: contentType,
                                 reactType: currentReaction) { response in
             switch response {
             case .success(let value):
@@ -140,17 +147,6 @@ class ReactViewModel: ObservableObject, Identifiable {
             }
         }
     }
-    
-//    func requestListComment(id: Int) {
-//        listCommentService.request(contentId: id, contentType: Constants.CommentContentType.COMMENT_TYPE_INTERNAL_NEWS) { response in
-//            switch response {
-//            case .success(let value):
-//                self.listComment = value
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
     
     // Old version
     func addSubscribers() {

@@ -18,7 +18,7 @@ struct TextFieldDynamicWidth: View {
             Text(text == "" ? title : text).background(GlobalGeometryGetter(rect: $textRect)).layoutPriority(1).opacity(0)
             HStack {
                 TextField(title, text: $text)
-                .frame(width: textRect.width)
+                .frame(width: textRect.width + 5)
             }
         }
     }

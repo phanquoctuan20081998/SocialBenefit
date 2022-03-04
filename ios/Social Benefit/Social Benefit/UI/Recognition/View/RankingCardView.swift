@@ -12,6 +12,12 @@ struct RankingCardView: View {
     @EnvironmentObject var recognitionViewModel: RecognitionViewModel
     var isHaveTopTitle = true
     
+    var allowTapAvatar = false
+    
+    @State private var isShowDetail = false
+    
+    @State private var employeeId: String?
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -34,6 +40,19 @@ struct RankingCardView: View {
             
             RankingBackgroud
         }
+        .background(
+            ZStack {
+                
+                if let employeeId = employeeId, let id = Int(employeeId) {
+                    NavigationLink(
+                        destination: NavigationLazyView(EmployeeRankingView.init(employeeId: id)),
+                        isActive: $isShowDetail,
+                        label: { EmptyView() })
+                }
+                
+            }
+        )
+
     }
 }
 
@@ -52,9 +71,13 @@ extension RankingCardView {
             RankingOfMonthView
                 .padding(.bottom, 135)
             
-            ImageFrame(rank: 1)
-            ImageFrame(rank: 2)
-            ImageFrame(rank: 3)
+            if recognitionViewModel.isLoadingRanking {
+                LoadingPageView()
+            } else {
+                ImageFrame(rank: 1)
+                ImageFrame(rank: 2)
+                ImageFrame(rank: 3)
+            }
         }
         .cornerRadius(30)
         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
@@ -66,7 +89,7 @@ extension RankingCardView {
         
         if rank == 1 && recognitionViewModel.top3Recognition.count >= 1 {
             VStack(spacing: 5) {
-                URLImageView(url: recognitionViewModel.top3Recognition[0].avatar)
+                URLImageView(url: recognitionViewModel.top3Recognition[0].avatar, isDefaultAvatar: true)
                     .clipShape(Circle())
                     .frame(width: 60, height: 60)
                     .padding(.all, 7)
@@ -86,10 +109,17 @@ extension RankingCardView {
                     .multilineTextAlignment(.center)
                     .frame(width: 100, height: 30)
                     .minimumScaleFactor(0.5)
-            }.offset(x: 0, y: -40)
+            }
+            .offset(x: 0, y: -40)
+            .if(allowTapAvatar) {
+                $0.onTapGesture {
+                    employeeId = recognitionViewModel.top3Recognition[0].employeeId
+                    isShowDetail = true
+                }
+            }
         } else if rank == 2 && recognitionViewModel.top3Recognition.count >= 2 {
             VStack(spacing: 5) {
-                URLImageView(url: recognitionViewModel.top3Recognition[1].avatar)
+                URLImageView(url: recognitionViewModel.top3Recognition[1].avatar, isDefaultAvatar: true)
                     .clipShape(Circle())
                     .frame(width: 45, height: 45)
                     .padding(.all, 7)
@@ -109,10 +139,17 @@ extension RankingCardView {
                     .multilineTextAlignment(.center)
                     .frame(width: 100, height: 30)
                     .minimumScaleFactor(0.5)
-            }.offset(x: -120, y: -20)
+            }
+            .offset(x: -120, y: -20)
+            .if(allowTapAvatar) {
+                $0.onTapGesture {
+                    employeeId = recognitionViewModel.top3Recognition[1].employeeId
+                    isShowDetail = true
+                }
+            }
         } else if rank == 3 && recognitionViewModel.top3Recognition.count >= 3 {
             VStack(spacing: 5) {
-                URLImageView(url: recognitionViewModel.top3Recognition[2].avatar)
+                URLImageView(url: recognitionViewModel.top3Recognition[2].avatar, isDefaultAvatar: true)
                     .clipShape(Circle())
                     .frame(width: 45, height: 45)
                     .padding(.all, 7)
@@ -132,6 +169,12 @@ extension RankingCardView {
                     .minimumScaleFactor(0.5)
             }
             .offset(x: 120, y: -20)
+            .if(allowTapAvatar) {
+                $0.onTapGesture {
+                    employeeId = recognitionViewModel.top3Recognition[2].employeeId
+                    isShowDetail = true
+                }
+            }
         }
     }
     

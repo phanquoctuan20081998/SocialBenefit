@@ -41,6 +41,39 @@ struct UserInfor {
     var functionNames: [String]
     var merchantSpecial: [MerchantSpecialInfo]
     
+    init() {
+        userId = ""
+        employeeId = ""
+        token = ""
+        companyId = ""
+        name = ""
+        avatar = ""
+        position = ""
+        nickname = ""
+        email = ""
+        phone = ""
+        noStreet = ""
+        ward = ""
+        district = ""
+        city = ""
+        address = ""
+        birthday = Date()
+        gender = ""
+        CMND = ""
+        passport = ""
+        insurance = ""
+        department = ""
+        isLeader = false
+        companyLogo = ""
+        citizenId = ""
+        locationId = ""
+        clientId = ""
+        clientSecret = ""
+        merchantSpecialData = []
+        functionNames = []
+        merchantSpecial = []
+    }
+    
     init(userId: String, employeeId: String, token: String, companyId: String, name: String, avatar: String, position: String, nickname: String, email: String, phone: String, noStreet: String, ward: String, district: String, city: String, address: String, birthday: Date, gender: String, CMND: String, passport: String, insurance: String, department: String, isLeader: Bool, companyLogo: String, citizenId: String, locationId: String, clientId: String, clientSecret: String, merchantSpecialList: [MerchantSpecialList], functionNames: [String], merchantSpecial: [MerchantSpecialInfo]) {
         
         self.userId = userId
@@ -79,7 +112,7 @@ struct UserInfor {
     init(employeeDto: JSON, citizen: JSON) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-
+        
         self.userId = employeeDto["employeeCode"].string ?? ""
         self.employeeId = String(employeeDto["id"].int ?? 0)
         self.token = ""
@@ -151,7 +184,7 @@ func updateUserInfor(token: String, employeeDto: JSON, citizen: JSON, functionNa
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
-
+    
     userInfor.userId = employeeDto["employeeCode"].string ?? ""
     userInfor.employeeId = String(employeeDto["id"].int ?? 0)
     userInfor.token = token

@@ -23,7 +23,7 @@ struct CommentListView: View {
         VStack(alignment: .leading, spacing: 10) {
             ForEach(commentEnvironment.listComment.comments) { comment in
                 HStack(alignment: .top) {
-                    URLImageView(url: Config.baseURL + (comment.avatar ?? ""))
+                    URLImageView(url: Config.baseURL + (comment.avatar ?? ""), isDefaultAvatar: true)
                         .clipShape(Circle())
                         .frame(width: 30, height: 30)
                         .padding(.all, 5)
@@ -36,10 +36,11 @@ struct CommentListView: View {
                     
                 }
                 .padding(EdgeInsets.init(top: 0, leading: 20, bottom: 10, trailing: 20))
+                .fixedSize(horizontal: false, vertical: true)
                 
                 ForEach(comment.children ?? []) { child in
                     HStack(alignment: .top) {
-                        URLImageView(url: Config.baseURL + (child.avatar ?? ""))
+                        URLImageView(url: Config.baseURL + (child.avatar ?? ""), isDefaultAvatar: true)
                             .clipShape(Circle())
                             .frame(width: 30, height: 30)
                             .padding(.all, 5)
@@ -52,10 +53,11 @@ struct CommentListView: View {
                         
                     }
                     .padding(EdgeInsets.init(top: 0, leading: 70, bottom: 10, trailing: 20))
+                    .fixedSize(horizontal: false, vertical: true)
                 }
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .onAppear() {
             commentEnvironment.requestListComment(id: contentId, contentType: contentType)
         }

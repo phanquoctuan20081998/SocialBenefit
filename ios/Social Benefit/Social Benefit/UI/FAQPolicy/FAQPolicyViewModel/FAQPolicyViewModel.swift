@@ -11,40 +11,28 @@ import SwiftUI
 class FAQPolicyViewModel: ObservableObject, Identifiable {
     
     @Published var isPresentError: Bool = false
-    @Published var error: String = ""
     @Published var content: String = ""
     @Published var isLoading: Bool = false
-    @Published var docType: Int = 0
+    @Published var error: AppError = .none
     
     private var faqPolicyService = FAQPolicyService()
-    private let currentLang = Constants.LANGUAGE_CODE[UserDefaults.standard.integer(forKey: "language")]
     
-    init(docType: Int) {
-        self.docType = docType
-        loadData()
-    }
-    
-    func loadData() {
+    func loadData(docType: Constants.DocumentType) {
         
         self.isLoading = true
         
-        FAQPolicyService().getAPI(docType: docType, lang_code: currentLang) { data in
-            DispatchQueue.main.async {
-                let errors = data["errors"].string ?? ""
-                
-                if !errors.isEmpty {
-                    self.error = errors
-                    self.isPresentError = true
-                } else {
-                    self.content = data["content"].string ?? ""
-                }
-                
-                self.isLoading = false
+        faqPolicyService.request(docType: docType.rawValue, completion: { response in
+            self.isLoading = false
+            switch response {
+            case .success(let value):
+                self.content = value.result?.content ?? ""
+            case .failure(let error):
+                self.error = error
             }
-        }
+        })
     }
     
-    func getTitle() -> String {
+    func getTitle(docType: Constants.DocumentType) -> String {
         if docType == Constants.DocumentType.FAQ {
             return "faq".localized
         } else {

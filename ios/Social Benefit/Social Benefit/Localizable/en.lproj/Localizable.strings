@@ -148,6 +148,7 @@
 "are_you_sure_to_delete_comment" = "Are you sure you want to delete this comment?";
 "edit_comment" = "Edit comment";
 "delete_comment" = "Delete comment";
+"internal_news_detail" = "Internal news detail";
 
 // Benefit Detail
 "apply_this_benefit" = "Apply this Benefit?";
@@ -155,7 +156,7 @@
 "cancel_button" = "CANCEL";
 "ok_button" = "OK";
 "register_now" = "Register now!";
-"condition" = "CONDITION OF BENEFIT";
+"condition" = "Condition of benefit";
 
 //Merchant List
 "promotion" = "Promotion";
@@ -264,7 +265,7 @@
 "version %@" = "Version: %@";
 "close" = "Close";
 "developed_by" = "Developed by";
-"vn" = "Vietnamese";
+"vi" = "Vietnamese";
 "en" = "English";
 "password_not_match" = "Password not match";
 "password_6_to_15" = "New password must be at least 6~15 characters in length";
@@ -349,6 +350,7 @@
 "C00198_I" = "Your vouchers are about to expire, use them today!";
 "C00199_I" = "Voucher <b>%1$@</b> has expired";
 "C00200_I" = "New voucher: <b>%1$@</b>";
+"C00205_I" = "<b>%1$@</b> has reacted on your comment";
 
 "C00150_I" = "Benefit <b>%1$@</b> has been finished, your request has been rejected";
 "S00110_I" = "Admin has rejected your benefit request: <b>%1$@</b> <br>Reason: <b>%2$@</b>";
@@ -447,3 +449,11 @@
 "would_you_spend2" = "to buy this voucher?";
 "limit_bought_reached" = "Maximum voucher has reached.";
 
+"skip" = "Skip";
+"start" = "Start";
+"detail_survey" = "Survey details";
+"no_enough_point" = "Not enough point to buy more";
+"M00121_E" = "Voucher is not available";
+"M00136_E" = "You have reach maximum number to buy";
+"M00137_E" = "Number of voucher is not enough";
+"M00125_E" = "Voucher has expired";

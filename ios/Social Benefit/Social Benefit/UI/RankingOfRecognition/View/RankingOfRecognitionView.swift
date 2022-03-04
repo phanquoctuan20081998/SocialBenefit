@@ -17,8 +17,9 @@ struct RankingOfRecognitionView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
-            Social_Benefit.RankingCardView(isHaveTopTitle: false)
+            Spacer()
+                .frame(height: 70)
+            RankingCardView(isHaveTopTitle: false, allowTapAvatar: true)
                 .padding(.bottom, 20)
             VStack {
                 RankingView
@@ -27,8 +28,8 @@ struct RankingOfRecognitionView: View {
             }.background(Color("nissho_light_blue").opacity(0.7))
         }
         .environmentObject(recognitionViewModel)
-        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "ranking_of_the_month".localized, isHaveLogo: true))
         .edgesIgnoringSafeArea(.all)
+        .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "ranking_of_the_month".localized, isHaveLogo: true))
     }
 }
 
@@ -43,7 +44,7 @@ extension RankingOfRecognitionView {
                     NavigationLink {
                         NavigationLazyView(EmployeeRankingView(employeeId: rankingOfRecognitionViewModel.allRankingList[index].getId()))
                     } label: {
-                        RankingCardView(rankingCard: rankingOfRecognitionViewModel.allRankingList[index])
+                        rankingCardView(rankingCard: rankingOfRecognitionViewModel.allRankingList[index])
                             .foregroundColor(.black)
                     }
     
@@ -126,7 +127,7 @@ extension RankingOfRecognitionView {
     }
     
     @ViewBuilder
-    func RankingCardView(rankingCard: RankingOfRecognitionData) -> some View {
+    func rankingCardView(rankingCard: RankingOfRecognitionData) -> some View {
         HStack(spacing: 0) {
             ZStack {
                 Top3Mark(top: rankingCard.getRank())

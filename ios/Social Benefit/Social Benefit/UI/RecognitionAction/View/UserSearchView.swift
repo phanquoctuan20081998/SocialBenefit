@@ -138,7 +138,7 @@ extension UserSearchView {
 @ViewBuilder
 func UserCardView(avatar: String, userName: String, positionName: String, departmentName: String, isInUserView: Bool) -> some View {
     HStack(spacing: 20) {
-        URLImageView(url: avatar)
+        URLImageView(url: avatar, isDefaultAvatar: true)
             .clipShape(Circle())
             .frame(width: 40, height: 40)
             .background(Color.white)
@@ -154,7 +154,9 @@ func UserCardView(avatar: String, userName: String, positionName: String, depart
                     .fixedSize(horizontal: false, vertical: true)
             }
         }.frame(width: isInUserView ? ScreenInfor().screenWidth * 0.5 : ScreenInfor().screenWidth * 0.7, alignment: .leading)
-    }.font(.system(size: 13))
+    }
+    .font(.system(size: 13))
+    .contentShape(Rectangle())
 }
 
 struct UserSearchView_Previews: PreviewProvider {

@@ -7,17 +7,14 @@
 
 import Foundation
 
-
 class UserViewModel: ObservableObject, Identifiable {
-    @Published var showFAQ = true
-    @Published var showPolicy = true
+    @Published var showFAQ = Constants.showFAQ
+    @Published var showPolicy = Constants.showPolicy
     
     var sessionExpired: SessionExpired
     
     init() {
         sessionExpired = SessionExpired.shared
-        isDisplayFAQ()
-        isDisplayPolicy()
     }
     
     func logout() {
@@ -25,39 +22,26 @@ class UserViewModel: ObservableObject, Identifiable {
     }
     
     func isDisplayFAQ() {
-        
-        FAQPolicyService().getAPI(docType: Constants.DocumentType.FAQ, lang_code: Constants.LANGUAGE_CODE[UserDefaults.standard.integer(forKey: "language")]) { data in
-            
-            DispatchQueue.main.async {
-                guard let content = data["content"].string else {
-                    self.showFAQ = false
-                    return
-                }
-                
-                if content.isEmpty {
-                    self.showFAQ = false
-                } else {
-                    self.showFAQ = true
-                }
+        FAQPolicyService().request(docType: Constants.DocumentType.FAQ.rawValue) { response in
+            switch response {
+            case .success(let value):
+                self.showFAQ = value.hasContent
+                Constants.showFAQ = value.hasContent
+            case .failure(_):
+                break
             }
         }
     }
     
     func isDisplayPolicy() {
         
-        FAQPolicyService().getAPI(docType: Constants.DocumentType.PolicyTerm, lang_code: Constants.LANGUAGE_CODE[UserDefaults.standard.integer(forKey: "language")]) { data in
-            
-            DispatchQueue.main.async {
-                guard let content = data["content"].string else {
-                    self.showPolicy = false
-                    return
-                }
-                
-                if content.isEmpty {
-                    self.showPolicy = false
-                } else {
-                    self.showPolicy = true
-                }
+        FAQPolicyService().request(docType: Constants.DocumentType.PolicyTerm.rawValue) { response in
+            switch response {
+            case .success(let value):
+                self.showPolicy = value.hasContent
+                Constants.showPolicy = value.hasContent
+            case .failure(_):
+                break
             }
         }
     }

@@ -15,7 +15,6 @@ struct HomeScreenView: View {
     @ObservedObject var offersViewModel = MerchantVoucherListByCategoryViewModel()
     @ObservedObject var confirmInforBuyViewModel = ConfirmInforBuyViewModel()
     @ObservedObject var homeScreenViewModel = HomeScreenViewModel()
-//    @ObservedObject var merchantVoucherDetailViewModel = MerchantVoucherDetailViewModel()
     @ObservedObject var customerSupportViewModel = CustomerSupportViewModel()
     @ObservedObject var searchViewModel = SearchViewModel()
     @ObservedObject var homeViewModel = HomeViewModel()

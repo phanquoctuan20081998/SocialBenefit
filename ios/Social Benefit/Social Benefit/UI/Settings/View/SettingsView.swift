@@ -82,7 +82,7 @@ struct SettingsView: View {
             
             if trailingElement == "selector" {
                 HStack {
-                    Text(Constants.LANGUAGE_TAB[settingsViewModel.selectedlanguage].localized)
+                    Text(settingsViewModel.selectedlanguage.rawValue.localized)
                     Spacer()
                     Image(systemName: "chevron.down")
                 }

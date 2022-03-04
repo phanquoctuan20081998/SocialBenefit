@@ -9,4 +9,5 @@ import Foundation
 
 struct AddCommentResultModel: APIResponseProtocol {
     var status: Int?
+    var messages: [String]?
 }

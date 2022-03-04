@@ -76,6 +76,18 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func isLoadImage(_ type: Int) -> Bool {
+        if (type == Constants.NotificationLogType.COMMENT) ||
+            (type == Constants.NotificationLogType.RECOGNIZE) ||
+            (type == Constants.NotificationLogType.COMMENT_RECOGNITION) ||
+            (type == Constants.NotificationLogType.REACT_COMMENT) ||
+            (type == Constants.NotificationLogType.REACT_RECOGNITION) {
+            return true
+        }
+        
+        return false
+    }
+    
     func classifyNoti() {
         switch notificationItem.getType() {
         case Constants.NotificationLogType.NOTIFICATION_HR: do {
@@ -123,8 +135,8 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
             self.notiTypeName = "survey".localized
         }
         case Constants.NotificationLogType.REACT_RECOGNITION: do {
-            self.image = "notify_hr"
-            self.notiTypeName = "react".localized
+            self.image = Config.baseURL + self.notificationItem.getImgURL()
+            self.notiTypeName = "notification".localized
         }
         case Constants.NotificationLogType.VOUCHER_REMIND: do {
             self.image = "notify_hr"
@@ -136,6 +148,10 @@ class NotificationCardViewModel: ObservableObject, Identifiable {
         }
         case Constants.NotificationLogType.NEW_VOUCHER: do {
             self.image = "notify_hr"
+            self.notiTypeName = "notification".localized
+        }
+        case Constants.NotificationLogType.REACT_COMMENT: do {
+            self.image = Config.baseURL + self.notificationItem.getImgURL()
             self.notiTypeName = "notification".localized
         }
             

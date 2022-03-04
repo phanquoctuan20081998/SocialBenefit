@@ -13,21 +13,18 @@ struct RecognitionPostView: View {
     @ObservedObject var recognitionPostViewModel: RecognitionPostViewModel
     @ObservedObject var reactViewModel: ReactViewModel
     @ObservedObject var keyboardHandler = KeyboardHandler()
-    
-    @ObservedObject var commentEnvironment = CommentEnvironmentObject()
+    @StateObject var commentEnvironment = CommentEnvironmentObject()
     
     @State var previousReaction: Int = 6 // index = 6 is defined as "" in reaction array
     @State private var proxy: AmzdScrollViewProxy? = nil
+    @State var activeSheet: ReactActiveSheet?
     
     var companyData: RecognitionData = RecognitionData.sampleData[0]
     
-    @State var activeSheet: ReactActiveSheet?
-    
+
     init(companyData: RecognitionData) {
-        self.reactViewModel = ReactViewModel(myReact: companyData.getMyReact(), reactTop1: companyData.getReactTop1(), reactTop2: companyData.getReactTop2())
-        
+        self.reactViewModel = ReactViewModel(contentId: companyData.getId(), contentType: Constants.ReactContentType.RECOGNIZE)
         self.recognitionPostViewModel = RecognitionPostViewModel(id: companyData.getId())
-        
         self.companyData = companyData
         self.recognitionPostViewModel.numOfComment = companyData.getCommentCount()
     }
@@ -35,7 +32,8 @@ struct RecognitionPostView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 15) {
-                Spacer().frame(height: ScreenInfor().screenHeight * 0.1)
+                Spacer()
+                    .frame(height: 70)
                 
                 RefreshableScrollView(height: 70, refreshing: self.$recognitionPostViewModel.isRefreshing) {
                     AmzdScrollViewReader { proxy in
@@ -53,12 +51,11 @@ struct RecognitionPostView: View {
                 CommentInputView(contentId: recognitionPostViewModel.contentId, contentType: Constants.CommentContentType.COMMENT_TYPE_RECOGNITION)
                     .environmentObject(commentEnvironment)
                     .background(Color.white)
-                    .offset(y: -keyboardHandler.keyboardHeight)
+//                    .offset(y: -keyboardHandler.keyboardHeight)
             }
             .background(BackgroundViewWithoutNotiAndSearch(isActive: .constant(true), title: "recognition".localized, isHaveLogo: true))
             .environmentObject(recognitionPostViewModel)
             .environmentObject(reactViewModel)
-            .edgesIgnoringSafeArea(.all)
             .onAppear {
                 recognitionPostViewModel.numOfComment = self.companyData.getCommentCount()
             }
@@ -108,8 +105,9 @@ extension RecognitionPostView {
                         listComment: commentEnvironment.listComment,
                         sendReaction: { reactViewModel.sendReaction(contentId: companyData.getId()) })
             
-            Divider()
-                .frame(width: ScreenInfor().screenWidth * 0.95)
+            Rectangle()
+                .fill(Color("nissho_blue"))
+                .frame(width: ScreenInfor().screenWidth * 0.95, height: 1)
         }
     }
     

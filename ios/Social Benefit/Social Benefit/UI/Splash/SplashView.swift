@@ -22,7 +22,11 @@ struct SplashView: View {
             }
             
             if animationFinished {
-                LoginView()
+                if !UserDefaults.getShowOnboarding() {
+                    OnboardingView()
+                } else {
+                    LoginView()
+                }
             }
         }
         .onAppear {

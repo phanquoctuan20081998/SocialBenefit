@@ -19,7 +19,8 @@ class RecognitionService {
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
-                      "companyId": userInfor.companyId]
+                      "companyId": userInfor.companyId,
+                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["fromIndex": fromIndex]
         
@@ -56,16 +57,18 @@ class RecognitionService {
         })
     }
     
-    func getListByEmployee(employeeId: String, fromIndex: Int, returnCallBack: @escaping ([RecognitionData]) -> ()) {
+    func getListByEmployee(employeeId: String, fromIndex: Int, onlyCurrentMonth: Bool, returnCallBack: @escaping ([RecognitionData]) -> ()) {
         let service = BaseAPI()
         var data = [RecognitionData]()
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
-                      "companyId": userInfor.companyId]
+                      "companyId": userInfor.companyId,
+                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["fromIndex": fromIndex,
-                                  "employeeId": employeeId]
+                                  "employeeId": employeeId,
+                                  "onlyCurrentMonth": onlyCurrentMonth]
         
         service.makeCall(endpoint: Config.API_RECOGNITION_LIST_BY_EMPLOYEE, method: "POST", header: header, body: params, callback: { (result) in
             
@@ -181,7 +184,8 @@ class RecognitionService {
         
         let header = ["token": userInfor.token,
                       "employeeId": userInfor.employeeId,
-                      "companyId": userInfor.companyId]
+                      "companyId": userInfor.companyId,
+                      "timezoneOffset":  "\(Utils.millisecondsFromGMT / -60000)"]
         
         let params: Parameters = ["": ""]
         

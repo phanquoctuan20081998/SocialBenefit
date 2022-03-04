@@ -38,7 +38,9 @@ struct UserInformationView: View {
                     ButtonView
                     Spacer().frame(height: 30)
                 }
-            }.background(
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
                 BackgroundViewWithoutNotiAndSearch(isActive: $homeScreen.isPresentedTabBar,
                                                    title: "",
                                                    isHaveLogo: true,
@@ -61,6 +63,7 @@ struct UserInformationView: View {
             PopUpView(isPresentedPopUp: $userInformationViewModel.isPresentConfirmPopUp, outOfPopUpAreaTapped: outOfPopUpAreaTapped, popUpContent: AnyView(ConfirmPopUp))
             SuccessedMessageView(successedMessage: "updated".localized, color: Color.green, isPresented: $userInformationViewModel.isSuccessed)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .loadingView(isLoading: $userInformationViewModel.isUpdating)
         .environmentObject(userInformationViewModel)
         .onTapGesture {
@@ -82,7 +85,7 @@ extension UserInformationView {
             }, label: {
                 
                 if userInformationViewModel.image == nil {
-                    URLImageView(url: userInfor.avatar)
+                    URLImageView(url: userInfor.avatar, isDefaultAvatar: true)
                         .clipShape(Circle())
                         .frame(width: 70, height: 70)
                         .padding(.all, 7)
